@@ -2,75 +2,84 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on MaoXian Play</title>
-    <link>http://blog.maoxianplay.com/tags/</link>
+    <link>https://blog.maoxianplay.com/tags/</link>
     <description>Recent content in Tags on MaoXian Play</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Jul 2014 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 28 Sep 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://blog.maoxianplay.com/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.maoxianplay.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Development</title>
-      <link>http://blog.maoxianplay.com/tags/development/</link>
-      <pubDate>Mon, 28 Jul 2014 00:00:00 +0000</pubDate>
-      
-      <guid>http://blog.maoxianplay.com/tags/development/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>http://blog.maoxianplay.com/tags/go/</link>
-      <pubDate>Mon, 28 Jul 2014 00:00:00 +0000</pubDate>
-      
-      <guid>http://blog.maoxianplay.com/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Golang</title>
-      <link>http://blog.maoxianplay.com/tags/golang/</link>
-      <pubDate>Mon, 28 Jul 2014 00:00:00 +0000</pubDate>
-      
-      <guid>http://blog.maoxianplay.com/tags/golang/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>Hugo</title>
-      <link>http://blog.maoxianplay.com/tags/hugo/</link>
+      <link>https://blog.maoxianplay.com/tags/hugo/</link>
       <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.maoxianplay.com/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Templates</title>
-      <link>http://blog.maoxianplay.com/tags/templates/</link>
-      <pubDate>Mon, 28 Jul 2014 00:00:00 +0000</pubDate>
-      
-      <guid>http://blog.maoxianplay.com/tags/templates/</guid>
+      <guid>https://blog.maoxianplay.com/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Theme</title>
-      <link>http://blog.maoxianplay.com/tags/theme/</link>
+      <link>https://blog.maoxianplay.com/tags/theme/</link>
       <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.maoxianplay.com/tags/theme/</guid>
+      <guid>https://blog.maoxianplay.com/tags/theme/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Themes</title>
-      <link>http://blog.maoxianplay.com/tags/themes/</link>
+      <title>development</title>
+      <link>https://blog.maoxianplay.com/tags/development/</link>
       <pubDate>Mon, 28 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.maoxianplay.com/tags/themes/</guid>
+      <guid>https://blog.maoxianplay.com/tags/development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>https://blog.maoxianplay.com/tags/go/</link>
+      <pubDate>Mon, 28 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>https://blog.maoxianplay.com/tags/golang/</link>
+      <pubDate>Mon, 28 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://blog.maoxianplay.com/tags/hugo/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>templates</title>
+      <link>https://blog.maoxianplay.com/tags/templates/</link>
+      <pubDate>Mon, 28 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/tags/templates/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>themes</title>
+      <link>https://blog.maoxianplay.com/tags/themes/</link>
+      <pubDate>Mon, 28 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/tags/themes/</guid>
       <description></description>
     </item>
     
