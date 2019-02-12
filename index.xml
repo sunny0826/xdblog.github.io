@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>XD Guo on XD Guo</title>
+    <title>MaoXian Play on MaoXian Play</title>
     <link>http://blog.maoxianplay.com/</link>
-    <description>Recent content in XD Guo on XD Guo</description>
+    <description>Recent content in MaoXian Play on MaoXian Play</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 29 Aug 2018 00:00:00 +0000</lastBuildDate>
@@ -187,6 +187,16 @@ which has received &lt;strong&gt;21 contributions by 10 contributors&lt;/strong&
 &lt;li&gt;Fix &amp;ldquo;adding a bundle&amp;rdquo; in server mode &lt;a href=&#34;https://github.com/gohugoio/hugo/commit/d139a037d98e4b388687eecb7831758412247c58&#34;&gt;d139a037&lt;/a&gt; &lt;a href=&#34;https://github.com/bep&#34;&gt;@bep&lt;/a&gt; &lt;a href=&#34;https://github.com/gohugoio/hugo/issues/5075&#34;&gt;#5075&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Fix typo &lt;a href=&#34;https://github.com/gohugoio/hugo/commit/c362634b7d8802ea81b0b4341c800a9f78f7cd7c&#34;&gt;c362634b&lt;/a&gt; &lt;a href=&#34;https://github.com/satotake&#34;&gt;@satotake&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://blog.maoxianplay.com/about/</link>
+      <pubDate>Sun, 05 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/about/</guid>
+      <description>&lt;p&gt;郭旭东，是一名在上海工作的devops工程师，目前就职于&lt;a href=&#34;https://www.keking.com&#34;&gt;上海凯京科技&lt;/a&gt;，对新技术，尤其是devops方面的技术有着强烈的好奇与不懈的追求，欢迎加入&lt;a href=&#34;https://www.keking.com&#34;&gt;上海凯京科技&lt;/a&gt;，一起探索与创造更好更合适的devops理念。简历可以通过首页的联系方式投递。&lt;/p&gt;
 </description>
     </item>
     
@@ -2075,28 +2085,6 @@ so, such as in this example:&lt;/p&gt;
   {{end}}&amp;lt;/ul&amp;gt;
 &amp;lt;/nav&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>About Hugo</title>
-      <link>http://blog.maoxianplay.com/about/</link>
-      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>http://blog.maoxianplay.com/about/</guid>
-      <description>&lt;p&gt;Hugo is the &lt;strong&gt;world’s fastest framework for building websites&lt;/strong&gt;. It is written in Go.&lt;/p&gt;
-
-&lt;p&gt;It makes use of a variety of open source projects including:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/russross/blackfriday&#34;&gt;https://github.com/russross/blackfriday&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/alecthomas/chroma&#34;&gt;https://github.com/alecthomas/chroma&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/muesli/smartcrop&#34;&gt;https://github.com/muesli/smartcrop&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/spf13/cobra&#34;&gt;https://github.com/spf13/cobra&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/spf13/viper&#34;&gt;https://github.com/spf13/viper&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Learn more and contribute on &lt;a href=&#34;https://github.com/gohugoio&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

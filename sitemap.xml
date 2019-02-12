@@ -33,6 +33,16 @@
     </url>
   
     <url>
+      <loc>http://blog.maoxianplay.com/about/</loc>
+      
+      <lastmod>2018-08-05T00:00:00+00:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
       <loc>http://blog.maoxianplay.com/posts/news/0.46-relnotes/</loc>
       
       <lastmod>2018-08-01T00:00:00+00:00</lastmod>
@@ -106,16 +116,6 @@
       <loc>http://blog.maoxianplay.com/posts/goisforlovers/</loc>
       
       <lastmod>2014-07-28T00:00:00+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.maoxianplay.com/about/</loc>
-      
-      <lastmod>2014-04-09T00:00:00+00:00</lastmod>
       
       
       
@@ -225,6 +225,18 @@
     </url>
   
     <url>
+      <loc>http://blog.maoxianplay.com/</loc>
+      
+      <lastmod>2018-08-29T00:00:00+00:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
       <loc>http://blog.maoxianplay.com/posts/</loc>
       
       <lastmod>2014-09-28T00:00:00+00:00</lastmod>
@@ -300,18 +312,6 @@
       <loc>http://blog.maoxianplay.com/categories/uncategorized/</loc>
       
       <lastmod>2014-09-28T00:00:00+00:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.maoxianplay.com/</loc>
-      
-      <lastmod>2018-08-29T00:00:00+00:00</lastmod>
       
       
       
