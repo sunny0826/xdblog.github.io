@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on XD Guo</title>
-    <link>http://example.org/categories/</link>
+    <link>https://sunny0826.github.io/xdblog.github.io/categories/</link>
     <description>Recent content in Categories on XD Guo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 24 Jul 2017 18:36:00 +0200</lastBuildDate>
     
-	<atom:link href="http://example.org/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sunny0826.github.io/xdblog.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Blog</title>
-      <link>http://example.org/categories/blog/</link>
+      <link>https://sunny0826.github.io/xdblog.github.io/categories/blog/</link>
       <pubDate>Mon, 24 Jul 2017 18:36:00 +0200</pubDate>
       
-      <guid>http://example.org/categories/blog/</guid>
+      <guid>https://sunny0826.github.io/xdblog.github.io/categories/blog/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Releases</title>
-      <link>http://example.org/categories/releases/</link>
+      <link>https://sunny0826.github.io/xdblog.github.io/categories/releases/</link>
       <pubDate>Wed, 29 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/categories/releases/</guid>
+      <guid>https://sunny0826.github.io/xdblog.github.io/categories/releases/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Uncategorized</title>
-      <link>http://example.org/categories/uncategorized/</link>
+      <link>https://sunny0826.github.io/xdblog.github.io/categories/uncategorized/</link>
       <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/categories/uncategorized/</guid>
+      <guid>https://sunny0826.github.io/xdblog.github.io/categories/uncategorized/</guid>
       <description></description>
     </item>
     
