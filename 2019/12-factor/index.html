@@ -197,7 +197,20 @@
 </ul>
 
     </div>
-
+    <div id="container"></div>
+    <link rel="stylesheet" href="https://billts.site/extra_css/gitment.css">
+    <script src="https://billts.site/js/gitment.js"></script>
+    <script>
+    var gitment = new Gitment({
+      owner: 'sunny0826',              
+      repo: 'xdblog.github.io',                 
+      oauth: {
+        client_id: '3ef9f9cd4c4ed7dc26c0',          
+        client_secret: '28bc547ce26ef11909e05016997a0a9a6cf17ebb',  
+      },
+    })
+    gitment.render('container')
+    </script>
     <div class="post-copyright">
              
             <p class="copyright-item">
