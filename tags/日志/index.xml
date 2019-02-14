@@ -12,12 +12,12 @@
     
     
     <item>
-      <title>blog.maoxianplay.com更新日志</title>
+      <title>网站更新日志</title>
       <link>https://blog.maoxianplay.com/2019/xdguo-change-log/</link>
       <pubDate>Thu, 14 Feb 2019 16:15:15 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/2019/xdguo-change-log/</guid>
-      <description> TODO 评论功能  2019-01-13  我的博客https://blog.maoxianplay.com/正式上线，使用GitHub pages 托管 网站使用LeaveIt主题 域名由阿里云购买，并购买SSL证书 使用share.js作为社交分享插件 使用不蒜子统计站点信息  2019-01-14  更新第一篇博文理解十二要素应用(12-Factor) 开始编写网站更新日志  </description>
+      <description> TODO 评论功能  2019-01-13  我的博客https://blog.maoxianplay.com/正式上线，使用GitHub pages 托管 网站使用LeaveIt主题 域名由阿里云购买，并购买SSL证书 使用share.js作为社交分享插件 使用不蒜子统计站点信息  2019-01-14  更新第一篇博文理解十二要素应用(12-Factor) 开始编写网站更新日志 网站添加评论功能  </description>
     </item>
     
   </channel>

@@ -10,7 +10,7 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>blog.maoxianplay.com更新日志</title>
+      <title>网站更新日志</title>
       <link>https://blog.maoxianplay.com/2019/xdguo-change-log/</link>
       <pubDate>Thu, 14 Feb 2019 16:15:15 +0800</pubDate>
       
@@ -20,7 +20,7 @@
 &lt;h2 id=&#34;todo&#34;&gt;TODO&lt;/h2&gt;
 
 &lt;ul class=&#34;task-list&#34;&gt;
-&lt;li&gt;&lt;label&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; 评论功能&lt;/label&gt;&lt;/li&gt;
+&lt;li&gt;&lt;label&gt;&lt;input type=&#34;checkbox&#34; checked disabled class=&#34;task-list-item&#34;&gt; 评论功能&lt;/label&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;2019-01-13&#34;&gt;2019-01-13&lt;/h2&gt;
@@ -38,6 +38,7 @@
 &lt;ol&gt;
 &lt;li&gt;更新第一篇博文&lt;a href=&#34;https://blog.maoxianplay.com/2019/12-factor/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;理解十二要素应用(12-Factor)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;开始编写网站更新日志&lt;/li&gt;
+&lt;li&gt;网站添加评论功能&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>
