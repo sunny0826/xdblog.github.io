@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="XuDong.Guo">
+  <meta name="description" content="码到成功">
+  
+  
+  <link rel="prev" href="https://blog.maoxianplay.com/2014/creating-a-new-theme/" />
+  
+  <link rel="canonical" href="https://blog.maoxianplay.com/2019/12-factor/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="stylesheet" href="/css/share.min.css" />
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           理解十二要素应用(12-Factor) | MaoXian Play
+       
+  </title>
+  <meta name="title" content="理解十二要素应用(12-Factor) | MaoXian Play">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https://blog.maoxianplay.com/"
+    },
+    "articleSection" : "posts",
+    "name" : "理解十二要素应用(12-Factor)",
+    "headline" : "理解十二要素应用(12-Factor)",
+    "description" : " 背景  为了更好的拥抱云原生架构，同时提高软件交付质量，开发人员必须改变他们的编码方式，并未开发者和应用程序所运行的基础架构之间创造一个新的协议，十二要素应用宣言应运而生。
+ 构建云原生应用程序时  使用详实的设计，尽量自动化已降低时间成本和资源花费 在不同环境（测试&amp;生产）和不同平台（Linux&amp;Windows）中应用程序的可移植性 使用适于云平台的应用程序，并了解资源分配和管理 使用一致的环境，减少持续交付/部署中的错误，从而最大限度地发挥软件的敏捷性 通过最少的监督和设计灾难恢复框架来扩展应用程序，实现高可用性  十二要素应用宣言  基础代码：每份部署代码都使用版本控制追踪，并在不同的平台中部署多个实例 依赖管理：应用程序应该显式声明依赖关系，并使用工具在单独管理依赖，例如Bundler、pip和Maven 定义配置：不同环境中的配置（例如环境变量）可能会不同，例如开发环境、预发布环境和生产环境应该在操作系统级定义 后端服务：所有资源都要被当做应用程序自身的一部分来对待。例如数据库、消息队列这样的后端服务应该被当做附加资源来看待，在所有的环境中以相同的方式被消费 构建、发布、运行：包括构建组件、绑定配置，根据绑定的组件和配置文件启动一个或多个实例 进程无状态：以一个或多个无状态进程运行应用（例如master和worker），进程实例之间不共享任何内容 服务端口绑定：应用程序应当自包含，如果有任何需要对外暴露的服务，应当使用端口绑定的形式来完成（首选HTTP） 扩容无状态应用：该架构应该强调基础平台中的无状态进程管理，而不是实现更复杂的应用程序 进程状态管理：进程应该可以迅速地增加，并在一小段时间后正常关闭。在这些方面可实现快速可拓展性、部署更改和灾难恢复 持续发布和部署到生产：保持环境一致，不论是预发布环境还是生产环境。这样可以保证在跨越不同的环境时获取相似的结果，有利于向生产环境持续交付 把日志当事件流：不论是平台级的日志，还是应用级的日志，都十分重要，因为日志可以帮助你了解应用程序背后都做了什么 后台管理任务呗当作一次性进程运行：在云原生的方法中，作为应用程序发布一部分的管理任务（例如数据库迁移）应该作为一次性进程运行，而不是作为常规应用程序长时间运行  ",
+    "inLanguage" : "en-us",
+    "author" : "XuDong.Guo",
+    "creator" : "XuDong.Guo",
+    "publisher": "XuDong.Guo",
+    "accountablePerson" : "XuDong.Guo",
+    "copyrightHolder" : "XuDong.Guo",
+    "copyrightYear" : "2019",
+    "datePublished": "2019-02-14 14:07:06 &#43;0800 CST",
+    "dateModified" : "2019-02-14 14:07:06 &#43;0800 CST",
+    "url" : "https://blog.maoxianplay.com/2019/12-factor/",
+    "wordCount" : "21",
+    "keywords" : [ "软件设计","云原生","微服务", "MaoXian Play"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://blog.maoxianplay.com/">MaoXian Play</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/" title="">home</a>
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://blog.maoxianplay.com/">MaoXian Play</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/" title="">home</a>
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">理解十二要素应用(12-Factor)</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://blog.maoxianplay.com/" rel="author">XuDong.Guo</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2019-02-14 itemprop="datePublished">February 14, 2019</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://blog.maoxianplay.com/categories/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"> 应用程序开发 </a>
+                        
+                </span>
+                
+                <h5 id="wc">100 Words|Read in about 1 Min|本文总阅读量<span id="busuanzi_value_page_pv"></span>次</h5>
+                <h5 id="tags">Tags: 
+                    
+                    <a href="https://blog.maoxianplay.com/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/">软件设计</a> &nbsp;
+                    
+                    <a href="https://blog.maoxianplay.com/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/">云原生</a> &nbsp;
+                    
+                    <a href="https://blog.maoxianplay.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a> &nbsp;
+                </h5>
+        </div>
+    </header>
+    <div class="post-content">
+        
+        
+        
+
+        
+        
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="背景">背景</h2>
+
+<blockquote>
+<p>为了更好的拥抱云原生架构，同时提高软件交付质量，开发人员必须改变他们的编码方式，并未开发者和应用程序所运行的基础架构之间创造一个新的协议，十二要素应用宣言应运而生。</p>
+</blockquote>
+
+<h2 id="构建云原生应用程序时">构建云原生应用程序时</h2>
+
+<ul>
+<li>使用详实的设计，尽量自动化已降低时间成本和资源花费</li>
+<li>在不同环境（测试&amp;生产）和不同平台（Linux&amp;Windows）中应用程序的可移植性</li>
+<li>使用适于云平台的应用程序，并了解资源分配和管理</li>
+<li>使用一致的环境，减少持续交付/部署中的错误，从而最大限度地发挥软件的敏捷性</li>
+<li>通过最少的监督和设计灾难恢复框架来扩展应用程序，实现高可用性</li>
+</ul>
+
+<h2 id="十二要素应用宣言">十二要素应用宣言</h2>
+
+<ul>
+<li><strong>基础代码</strong>：每份部署代码都使用版本控制追踪，并在不同的平台中部署多个实例</li>
+<li><strong>依赖管理</strong>：应用程序应该显式声明依赖关系，并使用工具在单独管理依赖，例如Bundler、pip和Maven</li>
+<li><strong>定义配置</strong>：不同环境中的配置（例如环境变量）可能会不同，例如开发环境、预发布环境和生产环境应该在操作系统级定义</li>
+<li><strong>后端服务</strong>：所有资源都要被当做应用程序自身的一部分来对待。例如数据库、消息队列这样的后端服务应该被当做附加资源来看待，在所有的环境中以相同的方式被消费</li>
+<li><strong>构建、发布、运行</strong>：包括构建组件、绑定配置，根据绑定的组件和配置文件启动一个或多个实例</li>
+<li><strong>进程无状态</strong>：以一个或多个无状态进程运行应用（例如master和worker），进程实例之间不共享任何内容</li>
+<li><strong>服务端口绑定</strong>：应用程序应当自包含，如果有任何需要对外暴露的服务，应当使用端口绑定的形式来完成（首选HTTP）</li>
+<li><strong>扩容无状态应用</strong>：该架构应该强调基础平台中的无状态进程管理，而不是实现更复杂的应用程序</li>
+<li><strong>进程状态管理</strong>：进程应该可以迅速地增加，并在一小段时间后正常关闭。在这些方面可实现快速可拓展性、部署更改和灾难恢复</li>
+<li><strong>持续发布和部署到生产</strong>：保持环境一致，不论是预发布环境还是生产环境。这样可以保证在跨越不同的环境时获取相似的结果，有利于向生产环境持续交付</li>
+<li><strong>把日志当事件流</strong>：不论是平台级的日志，还是应用级的日志，都十分重要，因为日志可以帮助你了解应用程序背后都做了什么</li>
+<li><strong>后台管理任务呗当作一次性进程运行</strong>：在云原生的方法中，作为应用程序发布一部分的管理任务（例如数据库迁移）应该作为一次性进程运行，而不是作为常规应用程序长时间运行</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>XuDong.Guo </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://blog.maoxianplay.com/2019/12-factor/>https://blog.maoxianplay.com/2019/12-factor/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="https://blog.maoxianplay.com/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/">
+                    #软件设计</a></span>
+            
+            <span class="tag"><a href="https://blog.maoxianplay.com/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/">
+                    #云原生</a></span>
+            
+            <span class="tag"><a href="https://blog.maoxianplay.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+                    #微服务</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://blog.maoxianplay.com/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://blog.maoxianplay.com/2014/creating-a-new-theme/" class="prev" rel="prev" title="Creating a New Theme"><i class="iconfont icon-left"></i>&nbsp;Creating a New Theme</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+    <div class="social-share" data-initialized="true" data-wechat-qrcode-title="不扫别后悔">
+    <center>
+    <font style="font-size:18px;color:darkcyan;">分享到：</font>
+    <a href="#" class="social-share-icon icon-weibo"></a>
+    <a href="#" class="social-share-icon icon-wechat"></a>
+    <a href="#" class="social-share-icon icon-twitter"></a>
+    <a href="#" class="social-share-icon icon-linkedin"></a>
+    <a href="#" class="social-share-icon icon-facebook"></a>
+    <a href="#" class="social-share-icon icon-qq"></a>
+    <a href="#" class="social-share-icon icon-qzone"></a>
+    </center>
+</div>
+
+
+<script src="https://hugo-picture.oss-cn-beijing.aliyuncs.com/social-share.min.js"></script>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2019</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://blog.maoxianplay.com/">XuDong.Guo</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+          <span id="busuanzi_container_site_pv">
+            本站访问量：<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          &nbsp;
+          <span id="busuanzi_container_site_uv">
+            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+          </span>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset =  100000 
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
+     </div>
+  </body>
+</html>

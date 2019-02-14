@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>软件设计 on MaoXian Play</title>
+    <link>https://blog.maoxianplay.com/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/</link>
+    <description>Recent content in 软件设计 on MaoXian Play</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 14 Feb 2019 14:07:06 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.maoxianplay.com/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>理解十二要素应用(12-Factor)</title>
+      <link>https://blog.maoxianplay.com/2019/12-factor/</link>
+      <pubDate>Thu, 14 Feb 2019 14:07:06 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/2019/12-factor/</guid>
+      <description> 背景  为了更好的拥抱云原生架构，同时提高软件交付质量，开发人员必须改变他们的编码方式，并未开发者和应用程序所运行的基础架构之间创造一个新的协议，十二要素应用宣言应运而生。
+ 构建云原生应用程序时  使用详实的设计，尽量自动化已降低时间成本和资源花费 在不同环境（测试&amp;amp;生产）和不同平台（Linux&amp;amp;Windows）中应用程序的可移植性 使用适于云平台的应用程序，并了解资源分配和管理 使用一致的环境，减少持续交付/部署中的错误，从而最大限度地发挥软件的敏捷性 通过最少的监督和设计灾难恢复框架来扩展应用程序，实现高可用性  十二要素应用宣言  基础代码：每份部署代码都使用版本控制追踪，并在不同的平台中部署多个实例 依赖管理：应用程序应该显式声明依赖关系，并使用工具在单独管理依赖，例如Bundler、pip和Maven 定义配置：不同环境中的配置（例如环境变量）可能会不同，例如开发环境、预发布环境和生产环境应该在操作系统级定义 后端服务：所有资源都要被当做应用程序自身的一部分来对待。例如数据库、消息队列这样的后端服务应该被当做附加资源来看待，在所有的环境中以相同的方式被消费 构建、发布、运行：包括构建组件、绑定配置，根据绑定的组件和配置文件启动一个或多个实例 进程无状态：以一个或多个无状态进程运行应用（例如master和worker），进程实例之间不共享任何内容 服务端口绑定：应用程序应当自包含，如果有任何需要对外暴露的服务，应当使用端口绑定的形式来完成（首选HTTP） 扩容无状态应用：该架构应该强调基础平台中的无状态进程管理，而不是实现更复杂的应用程序 进程状态管理：进程应该可以迅速地增加，并在一小段时间后正常关闭。在这些方面可实现快速可拓展性、部署更改和灾难恢复 持续发布和部署到生产：保持环境一致，不论是预发布环境还是生产环境。这样可以保证在跨越不同的环境时获取相似的结果，有利于向生产环境持续交付 把日志当事件流：不论是平台级的日志，还是应用级的日志，都十分重要，因为日志可以帮助你了解应用程序背后都做了什么 后台管理任务呗当作一次性进程运行：在云原生的方法中，作为应用程序发布一部分的管理任务（例如数据库迁移）应该作为一次性进程运行，而不是作为常规应用程序长时间运行  </description>
+    </item>
+    
+  </channel>
+</rss>
