@@ -23,7 +23,7 @@
 &lt;li&gt;&lt;label&gt;&lt;input type=&#34;checkbox&#34; checked disabled class=&#34;task-list-item&#34;&gt; 评论功能&lt;/label&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;2019-01-13&#34;&gt;2019-01-13&lt;/h2&gt;
+&lt;h2 id=&#34;2019-02-13&#34;&gt;2019-02-13&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;我的博客&lt;a href=&#34;https://blog.maoxianplay.com/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://blog.maoxianplay.com/&lt;/a&gt;正式上线，使用GitHub pages 托管&lt;/li&gt;
@@ -33,12 +33,19 @@
 &lt;li&gt;使用&lt;a href=&#34;http://busuanzi.ibruce.info/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;不蒜子&lt;/a&gt;统计站点信息&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&#34;2019-01-14&#34;&gt;2019-01-14&lt;/h2&gt;
+&lt;h2 id=&#34;2019-02-14&#34;&gt;2019-02-14&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;更新第一篇博文&lt;a href=&#34;https://blog.maoxianplay.com/2019/12-factor/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;理解十二要素应用(12-Factor)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;开始编写网站更新日志&lt;/li&gt;
 &lt;li&gt;网站添加评论功能&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;2019-02-15&#34;&gt;2019-02-15&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;修复了评论初始化错误的问题&lt;/li&gt;
+&lt;li&gt;修复了之前更新日志日期填写错误的问题&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>
