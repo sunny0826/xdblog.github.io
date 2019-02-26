@@ -22,6 +22,33 @@
     </item>
     
     <item>
+      <title>kubernetes中pod同步时区问题</title>
+      <link>https://blog.maoxianplay.com/2019/pod-timezone/</link>
+      <pubDate>Wed, 30 Jan 2019 20:18:13 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/2019/pod-timezone/</guid>
+      <description>  新版监控大屏于18年最后一天正式上线，之后陆续进行了几次优化和修改，最近发现一个比较大的bug，就是监控显示的时间轴不对，显示的就是和目前的时间相差8小时，这就引出了docker中的时区问题
+ 问题的原因 默认的情况，在K8S里启动一个容器，该容器的设置的时区是UTC0，但是对用户而言，主机环境并不在UTC0。我们在UTC8。如果不把容器的时区和主机主机设置为一致，则在查找日志等时候将非常不方便，也容易造成误解。但是K8S以及Docker容器没有一个简便的设置/开关在系统层面做配置。都需要我们从单个容器入手做设置，具体有两个方法：
+ 直接修改镜像的时间设置，好处是应用部署时无需做特殊设置，但是需要手动构建Docker镜像。 部署应用时，单独读取主机的“/etc/localtime”文件，即创建pod时同步时区，无需修改镜像，但是每个应用都要单独设置。  问题的解决 这里我们选择第二种方法，即修改部署应用的yaml文件，创建pod时同步时区
+apiVersion: extensions/v1beta1 kind: Deployment metadata: name: myweb spec: replicas: 2 template: metadata: labels: app: myweb spec: containers: - name: myweb image: nginx:apline ports: - containerPort: 80 #挂载到pod中 volumeMounts: - name: host-time mountPath: /etc/localtime #需要被挂载的宿主机的时区文件 volumes: - name: host-time hostPath: path: /etc/localtime  效果对比 修改时区前 修改时区后 </description>
+    </item>
+    
+    <item>
+      <title>为ingress配置SSL证书，实现HTTPS访问</title>
+      <link>https://blog.maoxianplay.com/2018/https-ingress/</link>
+      <pubDate>Sat, 29 Dec 2018 21:28:13 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/2018/https-ingress/</guid>
+      <description>devops平台率先在公司内使用kubernetes集群提供后端服务，但是由于之前一直处于探索阶段，所以使用的事http的方式提供后端服务，但是在开发统一入口后，出现了访问HTTPS页面的跨域问题，由此引出了后端服务配置SSL证书的问题
+ 使用rancher配置SSL证书 下载SSL证书文件 首先需要获得SSL证书文件，可以直接在阿里云SSL证书管理控制台下载
+选中需要下载证书，选择下载nginx证书 将证书上传项目 打开rancher，选择要使用证书的项目，点击资源中的证书
+将证书上传项目 打开rancher，选择要使用证书的项目，点击资源中的证书 添加证书，点击从文件上传 上传证书文件中的秘钥和证书，点击保存即可
+使用yaml上传证书 这个证书的原理其实是在相应的命名空间创建了一个包含证书信息的secrets
+apiVersion: v1 data: tls.crt: {私钥} tls.key: {证书} kind: Secret metadata: name: keking-cn namespace: devops-plat type: kubernetes.io/tls  在kubernetes上运行该yaml即可
+rancher中证书绑定 选中需要绑定证书的ingress，点击编辑，选中证书，保存即可（由于ingress-controller中没有绑定默认证书，所以这里不能选中默认） 保存完毕，证书即可生效</description>
+    </item>
+    
+    <item>
       <title>阿里云部署rancher2.1采坑记</title>
       <link>https://blog.maoxianplay.com/2018/install-rancher/</link>
       <pubDate>Thu, 29 Nov 2018 18:28:13 +0800</pubDate>

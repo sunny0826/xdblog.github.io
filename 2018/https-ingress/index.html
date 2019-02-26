@@ -9,9 +9,9 @@
   <meta name="description" content="码到成功">
   
   
-  <link rel="prev" href="https://blog.maoxianplay.com/2018/dashboard-k8s/" />
-  <link rel="next" href="https://blog.maoxianplay.com/2018/https-ingress/" />
-  <link rel="canonical" href="https://blog.maoxianplay.com/2018/install-rancher/" />
+  <link rel="prev" href="https://blog.maoxianplay.com/2018/install-rancher/" />
+  <link rel="next" href="https://blog.maoxianplay.com/2019/pod-timezone/" />
+  <link rel="canonical" href="https://blog.maoxianplay.com/2018/https-ingress/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -23,10 +23,10 @@
   <title>
        
        
-           阿里云部署rancher2.1采坑记 | MaoXian Play
+           为ingress配置SSL证书，实现HTTPS访问 | MaoXian Play
        
   </title>
-  <meta name="title" content="阿里云部署rancher2.1采坑记 | MaoXian Play">
+  <meta name="title" content="为ingress配置SSL证书，实现HTTPS访问 | MaoXian Play">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -45,26 +45,15 @@
          "@id": "https://blog.maoxianplay.com/"
     },
     "articleSection" : "posts",
-    "name" : "阿里云部署rancher2.1采坑记",
-    "headline" : "阿里云部署rancher2.1采坑记",
-    "description" : "近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以将部署到阿里云的图中遇到的问题和踩到的坑在这里进行记录
- 无法删除namespace 在安装新环境的rancher之前，需要将kubernetes集群中cattle-system ns下面的cluster-agent和node-agent干掉，这里我选择直接删除cattle-system这个命名空间
-kubectl delete ns cattle-system  然而问题来了，在删除命名空间之后，这个命名空间并没有立刻被删除，而是一直处于Terminating状态，这里我专门写了一篇文章解决这个问题，这里就不再赘述
-阿里云证书配置 由于之前使用的ucloud的机器进行测试，使用默认自签名证书并没有使用SSL证书，所以在配置证书这里遇到的许多的问题
-首先根据官方文档使用权威CA机构颁发的证书，这里使用的是本公司自己的证书
-获取证书方法： 点击下载证书，选择nginx证书下载 之后将下载的证书上传到rancher所在服务器，并配置好数据卷挂载
-将下面代码的挂载地址指向证书文件，运行代码
-docker run -d --restart=unless-stopped \ -p 80:80 -p 443:443 \ -v /root/var/log/auditlog:/var/log/auditlog \ -e AUDIT_LEVEL=3 \ -v /etc/your_certificate_directory/fullchain.pem:/etc/rancher/ssl/cert.pem \ -v /etc/your_certificate_directory/privkey.pem:/etc/rancher/ssl/key.pem \ rancher/rancher:latest --no-cacerts  之后会自动冲dockerhub上拉取最新的rancher进行进行安装，之后使用命令
-docker ps  查看容器是否在运行，如果运行正常，则后端的配置就完成了
-划重点：这是是在后端配置了证书，所以在阿里云的配置上要使用四层TCP监听
-这个地方可是坑了我许久，我一直在前端配置https七层监听，导致一直无法正常访问，一度已经到了怀疑人生的地步=。=
-之后就是简单的阿里云SLB配置四层TCP监听，这里也就不再赘述了
-k8s集群导入rancher 前后端都准备就绪，现在就可以访问rancher了，访问rancher根据页面提示进行基本配置，登录后选择添加集群
-选择导入现有集群 为集群创建一个rancher中的名称，然后根据提示将命令拷贝到k8s集群所在宿主机执行即可，注意：这里由于配置了证书，所以选择有证书，不绕过证书的那个命令执行，之后就可看到集群数据导入中 等待几秒即可开心的使用rancher了！
-关于rancher部署后访问集群api超时问题 经过排查，原因是阿里云在容器服务对外连接处设置了TLS双向认证，导致rancher的外网ip经常性的被拦截，导致超时
-解决办法：
-对k8s集群中rancher的cattle-cluster-agent传递内网参数，将其配置为内网连接，就可以正常访问了
-kubectl -n cattle-system patch deployments cattle-cluster-agent --patch '{ &quot;spec&quot;: { &quot;template&quot;: { &quot;spec&quot;: { &quot;hostAliases&quot;: [{ &quot;hostnames&quot;:[&quot;rancher.",
+    "name" : "为ingress配置SSL证书，实现HTTPS访问",
+    "headline" : "为ingress配置SSL证书，实现HTTPS访问",
+    "description" : "devops平台率先在公司内使用kubernetes集群提供后端服务，但是由于之前一直处于探索阶段，所以使用的事http的方式提供后端服务，但是在开发统一入口后，出现了访问HTTPS页面的跨域问题，由此引出了后端服务配置SSL证书的问题
+ 使用rancher配置SSL证书 下载SSL证书文件 首先需要获得SSL证书文件，可以直接在阿里云SSL证书管理控制台下载
+选中需要下载证书，选择下载nginx证书 将证书上传项目 打开rancher，选择要使用证书的项目，点击资源中的证书
+将证书上传项目 打开rancher，选择要使用证书的项目，点击资源中的证书 添加证书，点击从文件上传 上传证书文件中的秘钥和证书，点击保存即可
+使用yaml上传证书 这个证书的原理其实是在相应的命名空间创建了一个包含证书信息的secrets
+apiVersion: v1 data: tls.crt: {私钥} tls.key: {证书} kind: Secret metadata: name: keking-cn namespace: devops-plat type: kubernetes.io/tls  在kubernetes上运行该yaml即可
+rancher中证书绑定 选中需要绑定证书的ingress，点击编辑，选中证书，保存即可（由于ingress-controller中没有绑定默认证书，所以这里不能选中默认） 保存完毕，证书即可生效",
     "inLanguage" : "en-us",
     "author" : "XuDong.Guo",
     "creator" : "XuDong.Guo",
@@ -72,11 +61,11 @@ kubectl -n cattle-system patch deployments cattle-cluster-agent --patch '{ &quot
     "accountablePerson" : "XuDong.Guo",
     "copyrightHolder" : "XuDong.Guo",
     "copyrightYear" : "2018",
-    "datePublished": "2018-11-29 18:28:13 &#43;0800 CST",
-    "dateModified" : "2018-11-29 18:28:13 &#43;0800 CST",
-    "url" : "https://blog.maoxianplay.com/2018/install-rancher/",
-    "wordCount" : "82",
-    "keywords" : [ "容器","阿里云","rancher", "MaoXian Play"]
+    "datePublished": "2018-12-29 21:28:13 &#43;0800 CST",
+    "dateModified" : "2018-12-29 21:28:13 &#43;0800 CST",
+    "url" : "https://blog.maoxianplay.com/2018/https-ingress/",
+    "wordCount" : "33",
+    "keywords" : [ "kubernetes","阿里云","rancher", "MaoXian Play"]
 }
 </script>
 
@@ -138,23 +127,23 @@ kubectl -n cattle-system patch deployments cattle-cluster-agent --patch '{ &quot
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">阿里云部署rancher2.1采坑记</h1>
+        <h1 class="post-title" itemprop="name headline">为ingress配置SSL证书，实现HTTPS访问</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="https://blog.maoxianplay.com/" rel="author">XuDong.Guo</a> with ♥ 
                 <span class="post-time">
-                on <time datetime=2018-11-29 itemprop="datePublished">November 29, 2018</time>
+                on <time datetime=2018-12-29 itemprop="datePublished">December 29, 2018</time>
                 </span>
                 in
                 <i class="iconfont icon-folder"></i>
                 <span class="post-category">
-                        <a href="https://blog.maoxianplay.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"> 问题解决 </a>
+                        <a href="https://blog.maoxianplay.com/categories/kubernetes/"> kubernetes </a>
                         
                 </span>
                 
                 <h5 id="wc">100 Words|Read in about 1 Min|本文总阅读量<span id="busuanzi_value_page_pv"></span>次</h5>
                 <h5 id="tags">Tags: 
                     
-                    <a href="https://blog.maoxianplay.com/tags/%E5%AE%B9%E5%99%A8/">容器</a> &nbsp;
+                    <a href="https://blog.maoxianplay.com/tags/kubernetes/">kubernetes</a> &nbsp;
                     
                     <a href="https://blog.maoxianplay.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91/">阿里云</a> &nbsp;
                     
@@ -182,89 +171,52 @@ kubectl -n cattle-system patch deployments cattle-cluster-agent --patch '{ &quot
           
 
 <blockquote>
-<p>近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以将部署到阿里云的图中遇到的问题和踩到的坑在这里进行记录</p>
+<p>devops平台率先在公司内使用kubernetes集群提供后端服务，但是由于之前一直处于探索阶段，所以使用的事http的方式提供后端服务，但是在开发统一入口后，出现了访问HTTPS页面的跨域问题，由此引出了后端服务配置SSL证书的问题</p>
 </blockquote>
 
-<h1 id="无法删除namespace">无法删除namespace</h1>
+<h1 id="使用rancher配置ssl证书">使用rancher配置SSL证书</h1>
 
-<p>在安装新环境的rancher之前，需要将kubernetes集群中cattle-system ns下面的cluster-agent和node-agent干掉，这里我选择直接删除cattle-system这个命名空间</p>
+<h2 id="下载ssl证书文件">下载SSL证书文件</h2>
 
-<pre><code>kubectl delete ns cattle-system
-</code></pre>
+<p>首先需要获得SSL证书文件，可以直接在阿里云SSL证书管理控制台下载</p>
 
-<p>然而问题来了，在删除命名空间之后，这个命名空间并没有立刻被删除，而是一直处于Terminating状态，这里我专门写了一篇文章解决这个问题，这里就不再赘述</p>
-
-<h1 id="阿里云证书配置">阿里云证书配置</h1>
-
-<p>由于之前使用的ucloud的机器进行测试，使用默认自签名证书并没有使用SSL证书，所以在配置证书这里遇到的许多的问题</p>
-
-<p>首先根据官方文档使用权威CA机构颁发的证书，这里使用的是本公司自己的证书</p>
-
-<p>获取证书方法：
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/jinrussl.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
-
-<p>点击下载证书，选择nginx证书下载
+<p>选中需要下载证书，选择下载nginx证书
 <figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/zhengshu.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
 
-<p>之后将下载的证书上传到rancher所在服务器，并配置好数据卷挂载</p>
+<h2 id="将证书上传项目">将证书上传项目</h2>
 
-<p>将下面代码的挂载地址指向证书文件，运行代码</p>
+<p>打开rancher，选择要使用证书的项目，点击资源中的证书</p>
 
-<pre><code>docker run -d --restart=unless-stopped \
--p 80:80 -p 443:443 \
--v /root/var/log/auditlog:/var/log/auditlog \
--e AUDIT_LEVEL=3 \
--v /etc/your_certificate_directory/fullchain.pem:/etc/rancher/ssl/cert.pem \
--v /etc/your_certificate_directory/privkey.pem:/etc/rancher/ssl/key.pem \
-rancher/rancher:latest --no-cacerts
+<h2 id="将证书上传项目-1">将证书上传项目</h2>
+
+<p>打开rancher，选择要使用证书的项目，点击资源中的证书
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/https-1.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
+添加证书，点击从文件上传
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/https-2.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
+上传证书文件中的秘钥和证书，点击保存即可</p>
+
+<h1 id="使用yaml上传证书">使用yaml上传证书</h1>
+
+<p>这个证书的原理其实是在相应的命名空间创建了一个包含证书信息的secrets</p>
+
+<pre><code>apiVersion: v1
+data:
+    tls.crt: {私钥}
+    tls.key: {证书}
+kind: Secret
+metadata:
+    name: keking-cn
+    namespace: devops-plat
+type: kubernetes.io/tls
 </code></pre>
 
-<p>之后会自动冲dockerhub上拉取最新的rancher进行进行安装，之后使用命令</p>
+<p>在kubernetes上运行该yaml即可</p>
 
-<pre><code>docker ps
-</code></pre>
+<h1 id="rancher中证书绑定">rancher中证书绑定</h1>
 
-<p>查看容器是否在运行，如果运行正常，则后端的配置就完成了</p>
-
-<p>划重点：这是是在后端配置了证书，所以在阿里云的配置上要使用四层TCP监听</p>
-
-<p>这个地方可是坑了我许久，我一直在前端配置https七层监听，导致一直无法正常访问，一度已经到了怀疑人生的地步=。=</p>
-
-<p>之后就是简单的阿里云SLB配置四层TCP监听，这里也就不再赘述了</p>
-
-<h1 id="k8s集群导入rancher">k8s集群导入rancher</h1>
-
-<p>前后端都准备就绪，现在就可以访问rancher了，访问rancher根据页面提示进行基本配置，登录后选择添加集群</p>
-
-<p>选择导入现有集群
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/add.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
-
-<p>为集群创建一个rancher中的名称，然后根据提示将命令拷贝到k8s集群所在宿主机执行即可，注意：这里由于配置了证书，所以选择有证书，不绕过证书的那个命令执行，之后就可看到集群数据导入中
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/wating.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
-
-<p>等待几秒即可开心的使用rancher了！</p>
-
-<h1 id="关于rancher部署后访问集群api超时问题">关于rancher部署后访问集群api超时问题</h1>
-
-<p>经过排查，原因是阿里云在容器服务对外连接处设置了TLS双向认证，导致rancher的外网ip经常性的被拦截，导致超时</p>
-
-<p>解决办法：</p>
-
-<p>对k8s集群中rancher的cattle-cluster-agent传递内网参数，将其配置为内网连接，就可以正常访问了</p>
-
-<pre><code>kubectl -n cattle-system patch deployments cattle-cluster-agent --patch '{
-    &quot;spec&quot;: {
-        &quot;template&quot;: {
-                &quot;spec&quot;: {
-                    &quot;hostAliases&quot;: [{
-                                    &quot;hostnames&quot;:[&quot;rancher.keking.cn&quot;],  #rancher的域名
-                                    &quot;ip&quot;: &quot;10.0.0.219&quot;  #rancher部署地址
-                                    }]
-                        }
-                    }
-            }
-}'
-</code></pre>
+<p>选中需要绑定证书的ingress，点击编辑，选中证书，保存即可（由于ingress-controller中没有绑定默认证书，所以这里不能选中默认）
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/https-3.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
+保存完毕，证书即可生效</p>
 
     </div>
     <div id="container"></div>
@@ -292,7 +244,7 @@ rancher/rancher:latest --no-cacerts
              
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=https://blog.maoxianplay.com/2018/install-rancher/>https://blog.maoxianplay.com/2018/install-rancher/</span>
+                    <a href=https://blog.maoxianplay.com/2018/https-ingress/>https://blog.maoxianplay.com/2018/https-ingress/</span>
             </p>
             
              
@@ -308,8 +260,8 @@ rancher/rancher:latest --no-cacerts
             <section>
             <i class="iconfont icon-tag"></i>Tag(s): 
             
-            <span class="tag"><a href="https://blog.maoxianplay.com/tags/%E5%AE%B9%E5%99%A8/">
-                    #容器</a></span>
+            <span class="tag"><a href="https://blog.maoxianplay.com/tags/kubernetes/">
+                    #kubernetes</a></span>
             
             <span class="tag"><a href="https://blog.maoxianplay.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91/">
                     #阿里云</a></span>
@@ -327,10 +279,10 @@ rancher/rancher:latest --no-cacerts
 
     <div class="post-nav">
         
-        <a href="https://blog.maoxianplay.com/2018/dashboard-k8s/" class="prev" rel="prev" title="阿里云日志服务采集k8s日志并实现livetail功能"><i class="iconfont icon-left"></i>&nbsp;阿里云日志服务采集k8s日志并实现livetail功能</a>
+        <a href="https://blog.maoxianplay.com/2018/install-rancher/" class="prev" rel="prev" title="阿里云部署rancher2.1采坑记"><i class="iconfont icon-left"></i>&nbsp;阿里云部署rancher2.1采坑记</a>
          
         
-        <a href="https://blog.maoxianplay.com/2018/https-ingress/" class="next" rel="next" title="为ingress配置SSL证书，实现HTTPS访问">为ingress配置SSL证书，实现HTTPS访问&nbsp;<i class="iconfont icon-right"></i></a>
+        <a href="https://blog.maoxianplay.com/2019/pod-timezone/" class="next" rel="next" title="kubernetes中pod同步时区问题">kubernetes中pod同步时区问题&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
