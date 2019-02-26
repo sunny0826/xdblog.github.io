@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kubernetes on MaoXian Play</title>
+    <link>https://blog.maoxianplay.com/tags/kubernetes/</link>
+    <description>Recent content in kubernetes on MaoXian Play</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Aug 2018 20:07:03 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.maoxianplay.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>centos7.2 安装k8s v1.11.0</title>
+      <link>https://blog.maoxianplay.com/2018/install-k8s/</link>
+      <pubDate>Tue, 14 Aug 2018 20:07:03 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/2018/install-k8s/</guid>
+      <description>前言  最近由于公司业务发展到了瓶颈，原有的技术架构已经逐渐无法满足业务开发和测试的需求，出现了应用测试环境搭建复杂，有许多套（真的很多很多）应用环境，应用在持续集成/持续交付也遇到了很大的困难，经过讨论研究决定对应用和微服务进行容器化，这就是我首次直面docker和k8s的契机（好吧，我是菜鸟）
+ Kubernetes 介绍 Kubernetes 是 Google 团队发起的开源项目，它的目标是管理跨多个主机的容器，提供基本的部署，维护以及运用伸缩，主要实现语言为 Go 语言。 Kubernetes的特点：
+ 易学：轻量级，简单，容易理解 便携：支持公有云，私有云，混合云，以及多种云平台 可拓展：模块化，可插拔，支持钩子，可任意组合 自修复：自动重调度，自动重启，自动复制  准备工作 注：以下操作都是在root权限下执行的
+ 安装docker-ce，这里使用docker-ce-17.09.0.c版本，安装方法见之前的教程 安装Kubeadm
+#安装 Kubeadm 首先我们要配置好阿里云的国内源，执行如下命令： cat &amp;lt;&amp;lt;EOF &amp;gt; /etc/yum.repos.d/kubernetes.repo [kubernetes] name=Kubernetes baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64 enabled=1 gpgcheck=0 EOF #之后，执行以下命令来重建yum缓存： yum -y install epel-releaseyum clean all yum makecache  接下来需要安装指定版本的Kubeadm（这里要安装指定版本，因为后续依赖的镜像由于有墙无法拉取，这里我们只有指定版本的镜像），注意：这里是安装指定版本的Kubeadm，k8s的版本更新之快完全超出你的想象！
+yum -y install kubelet-1.11.0-0 yum -y install kubeadm-1.11.0-0 yum -y install kubectl-1.11.0-0 yum -y install kubernetes-cni #执行命令启动Kubeadm服务： systemctl enable kubelet &amp;amp;&amp;amp; systemctl start kubelet  配置 Kubeadm 所用到的镜像 这里是重中之重，因为在国内的原因，无法访问到 Google 的镜像库，所以我们需要执行以下脚本来从 Docker Hub 仓库中获取相同的镜像，并且更改 TAG 让其变成与 Google 拉去镜像一致。</description>
+    </item>
+    
+    <item>
+      <title>kubernetes安装dashboard</title>
+      <link>https://blog.maoxianplay.com/2018/dashboard-k8s/</link>
+      <pubDate>Tue, 14 Aug 2018 19:07:03 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/2018/dashboard-k8s/</guid>
+      <description>前言  在安装搭建k8s的时候，往往会遇到各种各样的问题，而安装k8s的web展示组件kubernetes-dashboard则是困难中的困难，本人在实际搭建中则被整整卡住了2天，Google和百度轮番搜索，各种技术博客和技术视频反复研究才勉强搭建成功
+ 开始安装 在安装好k8s集群之后，确保集群各个节点都处于ready状态的时候，就可以安装kubernetes-dashboard了 如果没有安装好k8s集群，可以参考之前的文章：centos7.2 安装k8s v1.11.0 创建kubernetes-dashboard.yaml文件
+# Copyright 2017 The Kubernetes Authors. # # Licensed under the Apache License, Version 2.0 (the &amp;quot;License&amp;quot;); # you may not use this file except in compliance with the License. # You may obtain a copy of the License at # # http://www.apache.org/licenses/LICENSE-2.0 # # Unless required by applicable law or agreed to in writing, software # distributed under the License is distributed on an &amp;quot;AS IS&amp;quot; BASIS, # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</description>
+    </item>
+    
+  </channel>
+</rss>
