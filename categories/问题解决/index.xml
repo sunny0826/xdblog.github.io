@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>问题解决 on MaoXian Play</title>
+    <link>https://blog.maoxianplay.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</link>
+    <description>Recent content in 问题解决 on MaoXian Play</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 Sep 2018 19:27:03 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.maoxianplay.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker容器启动退出解决方案</title>
+      <link>https://blog.maoxianplay.com/2018/docker-quit/</link>
+      <pubDate>Thu, 27 Sep 2018 19:27:03 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/2018/docker-quit/</guid>
+      <description>现象 启动docker容器
+docker run –name [CONTAINER_NAME] [CONTAINER_ID]  查看容器运行状态
+docker ps -a  发现刚刚启动的mydocker容器已经退出
+原因 docker容器的主线程（dockfile中CMD执行的命令）结束，容器会退出
+解决办法  可以使用交互式启动
+docker run -i [CONTAINER_NAME or CONTAINER_ID]  上面的不太友好，建议使用后台模式和tty选项
+docker run -dit [CONTAINER_NAME or CONTAINER_ID]  Docker 容器在后台以守护态（Daemonized）形式运行，可以通过添加 -d 参数来实现
+$ sudo docker run -d ubuntu:14.04 /bin/sh -c &amp;quot;while true; do echo hello world; sleep 1; done&amp;quot;  在脚本最后一行添加tail -f /dev/null，这个命令永远完成不了，所以该脚本一直不会执行完，所以该容器永远不会退出。
+   TIPs:退出时，使用[ctrl + D]，这样会结束docker当前线程，容器结束，可以使用[ctrl + P][ctrl + Q]退出而不终止容器运行</description>
+    </item>
+    
+  </channel>
+</rss>

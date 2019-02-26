@@ -9,9 +9,9 @@
   <meta name="description" content="码到成功">
   
   
-  <link rel="prev" href="https://blog.maoxianplay.com/2018/docker-quit/" />
-  
-  <link rel="canonical" href="https://blog.maoxianplay.com/2019/12-factor/" />
+  <link rel="prev" href="https://blog.maoxianplay.com/2018/install-docker/" />
+  <link rel="next" href="https://blog.maoxianplay.com/2018/docker-quit/" />
+  <link rel="canonical" href="https://blog.maoxianplay.com/2018/con-ind/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -23,10 +23,10 @@
   <title>
        
        
-           理解十二要素应用(12-Factor) | MaoXian Play
+           容器技术概述 | MaoXian Play
        
   </title>
-  <meta name="title" content="理解十二要素应用(12-Factor) | MaoXian Play">
+  <meta name="title" content="容器技术概述 | MaoXian Play">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -45,22 +45,26 @@
          "@id": "https://blog.maoxianplay.com/"
     },
     "articleSection" : "posts",
-    "name" : "理解十二要素应用(12-Factor)",
-    "headline" : "理解十二要素应用(12-Factor)",
-    "description" : " 背景  为了更好的拥抱云原生架构，同时提高软件交付质量，开发人员必须改变他们的编码方式，并未开发者和应用程序所运行的基础架构之间创造一个新的协议，十二要素应用宣言应运而生。
- 构建云原生应用程序时  使用详实的设计，尽量自动化已降低时间成本和资源花费 在不同环境（测试&amp;生产）和不同平台（Linux&amp;Windows）中应用程序的可移植性 使用适于云平台的应用程序，并了解资源分配和管理 使用一致的环境，减少持续交付/部署中的错误，从而最大限度地发挥软件的敏捷性 通过最少的监督和设计灾难恢复框架来扩展应用程序，实现高可用性  十二要素应用宣言  基础代码：每份部署代码都使用版本控制追踪，并在不同的平台中部署多个实例 依赖管理：应用程序应该显式声明依赖关系，并使用工具在单独管理依赖，例如Bundler、pip和Maven 定义配置：不同环境中的配置（例如环境变量）可能会不同，例如开发环境、预发布环境和生产环境应该在操作系统级定义 后端服务：所有资源都要被当做应用程序自身的一部分来对待。例如数据库、消息队列这样的后端服务应该被当做附加资源来看待，在所有的环境中以相同的方式被消费 构建、发布、运行：包括构建组件、绑定配置，根据绑定的组件和配置文件启动一个或多个实例 进程无状态：以一个或多个无状态进程运行应用（例如master和worker），进程实例之间不共享任何内容 服务端口绑定：应用程序应当自包含，如果有任何需要对外暴露的服务，应当使用端口绑定的形式来完成（首选HTTP） 扩容无状态应用：该架构应该强调基础平台中的无状态进程管理，而不是实现更复杂的应用程序 进程状态管理：进程应该可以迅速地增加，并在一小段时间后正常关闭。在这些方面可实现快速可拓展性、部署更改和灾难恢复 持续发布和部署到生产：保持环境一致，不论是预发布环境还是生产环境。这样可以保证在跨越不同的环境时获取相似的结果，有利于向生产环境持续交付 把日志当事件流：不论是平台级的日志，还是应用级的日志，都十分重要，因为日志可以帮助你了解应用程序背后都做了什么 后台管理任务呗当作一次性进程运行：在云原生的方法中，作为应用程序发布一部分的管理任务（例如数据库迁移）应该作为一次性进程运行，而不是作为常规应用程序长时间运行  ",
+    "name" : "容器技术概述",
+    "headline" : "容器技术概述",
+    "description" : " 背景  自从微服务（Microservice）的出现，出于业务的需要，IT应用模型不断的变革。开发模式从瀑布式到敏捷开发；开发、运维和测试互相配合的devops思想；应用程序架构从单体模型到分层模型再到微服务；部署方式也从面向物理机到虚拟键再到容器；应用程序的基础架构从自建机房到托管再到云计算，等等。这些变革使得IT技术应用的效率大大提升，同时却以更低的成本交付更高质量的产品。
+尤其是以Docker为代表的容器技术的出现，终结了devops中交付和部署环节因环节、配置及程序本身的不同而造成的动辄几种甚至十几种部署配置的困境，将它们统一在容器镜像（image）之上。这就是我在工作中遇到最先遇到的困境，同时也是我开始研究容器技术的契机。
+如今，越来越多的企业或组织开始开始选择以镜像文件为交付载体。容器镜像之内直接包含了应用程序及其依赖的系统环境、库、基础程序等，从而能够在容器引擎上直接运行。
+ 容器技术概述 容器是一种轻量级、可移植、自包含的软件打包技术，它使得应用程序可以在几乎任何地方以相同的方式运行。
+容器有应用程序本身和它的环境依赖（库和其他应用程序）两部分组成，并在宿主机（Host）操作系统的用户空间中运行，但与操作系统的其他进程互相隔离，他们的实现机制有别于VMWare、KVM、Xen等实现方案的虚拟化技术。容器与虚拟机的对比关系如下图 由于同一个宿主机上的所有容器都共享其底层操作系统（内核空间），这就使得容器在体积上要比传统的虚拟机小很多。另外，启动容器无须启动整个操作系统，所以容器部署和启动的速度更快，开销更小，也更容易迁移。事实上，容器赋予了应用程序超强的可移植能力。
+容器技术的优势  开发方面：“一次构建、到处运行”（Build Once, Run Anywhere）。容器意味着环境隔离和可重复性，开发人员只需为应用创建一个运行环境，并将其打包成容器便可在各种部署环境上运行，并与它所在的宿主机环境隔离。 运维方面：“一次配置，运行所以”（Configure Once, Run Anything）。一旦配置好标准的容器运行时环境，服务器就可以运行任何容器，这使得运维人员的工作变得更高效、一致和可重复。容器消除了开发、测试、生产环境的不一致性。·  ",
     "inLanguage" : "en-us",
     "author" : "XuDong.Guo",
     "creator" : "XuDong.Guo",
     "publisher": "XuDong.Guo",
     "accountablePerson" : "XuDong.Guo",
     "copyrightHolder" : "XuDong.Guo",
-    "copyrightYear" : "2019",
-    "datePublished": "2019-02-14 14:07:06 &#43;0800 CST",
-    "dateModified" : "2019-02-14 14:07:06 &#43;0800 CST",
-    "url" : "https://blog.maoxianplay.com/2019/12-factor/",
-    "wordCount" : "21",
-    "keywords" : [ "软件设计","云原生","微服务", "MaoXian Play"]
+    "copyrightYear" : "2018",
+    "datePublished": "2018-08-30 18:45:22 &#43;0800 CST",
+    "dateModified" : "2018-08-30 18:45:22 &#43;0800 CST",
+    "url" : "https://blog.maoxianplay.com/2018/con-ind/",
+    "wordCount" : "17",
+    "keywords" : [ "容器","云原生", "MaoXian Play"]
 }
 </script>
 
@@ -122,27 +126,25 @@
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">理解十二要素应用(12-Factor)</h1>
+        <h1 class="post-title" itemprop="name headline">容器技术概述</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="https://blog.maoxianplay.com/" rel="author">XuDong.Guo</a> with ♥ 
                 <span class="post-time">
-                on <time datetime=2019-02-14 itemprop="datePublished">February 14, 2019</time>
+                on <time datetime=2018-08-30 itemprop="datePublished">August 30, 2018</time>
                 </span>
                 in
                 <i class="iconfont icon-folder"></i>
                 <span class="post-category">
-                        <a href="https://blog.maoxianplay.com/categories/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"> 应用程序开发 </a>
+                        <a href="https://blog.maoxianplay.com/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"> 基础知识 </a>
                         
                 </span>
                 
                 <h5 id="wc">100 Words|Read in about 1 Min|本文总阅读量<span id="busuanzi_value_page_pv"></span>次</h5>
                 <h5 id="tags">Tags: 
                     
-                    <a href="https://blog.maoxianplay.com/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/">软件设计</a> &nbsp;
+                    <a href="https://blog.maoxianplay.com/tags/%E5%AE%B9%E5%99%A8/">容器</a> &nbsp;
                     
                     <a href="https://blog.maoxianplay.com/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/">云原生</a> &nbsp;
-                    
-                    <a href="https://blog.maoxianplay.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a> &nbsp;
                 </h5>
         </div>
     </header>
@@ -150,6 +152,8 @@
         
         
         
+            
+        
 
         
         
@@ -163,37 +167,29 @@
 
           
 
-<h2 id="背景">背景</h2>
+<h1 id="背景">背景</h1>
 
 <blockquote>
-<p>为了更好的拥抱云原生架构，同时提高软件交付质量，开发人员必须改变他们的编码方式，并未开发者和应用程序所运行的基础架构之间创造一个新的协议，十二要素应用宣言应运而生。</p>
+<p>自从微服务（Microservice）的出现，出于业务的需要，IT应用模型不断的变革。开发模式从瀑布式到敏捷开发；开发、运维和测试互相配合的devops思想；应用程序架构从单体模型到分层模型再到微服务；部署方式也从面向物理机到虚拟键再到容器；应用程序的基础架构从自建机房到托管再到云计算，等等。这些变革使得IT技术应用的效率大大提升，同时却以<strong>更低的成本交付更高质量的产品</strong>。</p>
+
+<p>尤其是以Docker为代表的容器技术的出现，终结了devops中交付和部署环节因环节、配置及程序本身的不同而造成的动辄几种甚至十几种部署配置的困境，将它们统一在容器镜像（image）之上。这就是我在工作中遇到最先遇到的困境，同时也是我开始研究容器技术的契机。</p>
+
+<p>如今，越来越多的企业或组织开始开始选择以镜像文件为交付载体。容器镜像之内直接包含了应用程序及其依赖的系统环境、库、基础程序等，从而能够在容器引擎上直接运行。</p>
 </blockquote>
 
-<h2 id="构建云原生应用程序时">构建云原生应用程序时</h2>
+<h1 id="容器技术概述">容器技术概述</h1>
+
+<p>容器是一种轻量级、可移植、自包含的软件打包技术，它使得应用程序可以在几乎任何地方以相同的方式运行。</p>
+
+<p>容器有应用程序本身和它的环境依赖（库和其他应用程序）两部分组成，并在宿主机（Host）操作系统的用户空间中运行，但与操作系统的其他进程互相隔离，他们的实现机制有别于VMWare、KVM、Xen等实现方案的虚拟化技术。容器与虚拟机的对比关系如下图
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/vs.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
+由于同一个宿主机上的所有容器都共享其底层操作系统（内核空间），这就使得容器在体积上要比传统的虚拟机小很多。另外，启动容器无须启动整个操作系统，所以容器部署和启动的速度更快，开销更小，也更容易迁移。事实上，容器赋予了应用程序超强的可移植能力。</p>
+
+<h1 id="容器技术的优势">容器技术的优势</h1>
 
 <ul>
-<li>使用详实的设计，尽量自动化已降低时间成本和资源花费</li>
-<li>在不同环境（测试&amp;生产）和不同平台（Linux&amp;Windows）中应用程序的可移植性</li>
-<li>使用适于云平台的应用程序，并了解资源分配和管理</li>
-<li>使用一致的环境，减少持续交付/部署中的错误，从而最大限度地发挥软件的敏捷性</li>
-<li>通过最少的监督和设计灾难恢复框架来扩展应用程序，实现高可用性</li>
-</ul>
-
-<h2 id="十二要素应用宣言">十二要素应用宣言</h2>
-
-<ul>
-<li><strong>基础代码</strong>：每份部署代码都使用版本控制追踪，并在不同的平台中部署多个实例</li>
-<li><strong>依赖管理</strong>：应用程序应该显式声明依赖关系，并使用工具在单独管理依赖，例如Bundler、pip和Maven</li>
-<li><strong>定义配置</strong>：不同环境中的配置（例如环境变量）可能会不同，例如开发环境、预发布环境和生产环境应该在操作系统级定义</li>
-<li><strong>后端服务</strong>：所有资源都要被当做应用程序自身的一部分来对待。例如数据库、消息队列这样的后端服务应该被当做附加资源来看待，在所有的环境中以相同的方式被消费</li>
-<li><strong>构建、发布、运行</strong>：包括构建组件、绑定配置，根据绑定的组件和配置文件启动一个或多个实例</li>
-<li><strong>进程无状态</strong>：以一个或多个无状态进程运行应用（例如master和worker），进程实例之间不共享任何内容</li>
-<li><strong>服务端口绑定</strong>：应用程序应当自包含，如果有任何需要对外暴露的服务，应当使用端口绑定的形式来完成（首选HTTP）</li>
-<li><strong>扩容无状态应用</strong>：该架构应该强调基础平台中的无状态进程管理，而不是实现更复杂的应用程序</li>
-<li><strong>进程状态管理</strong>：进程应该可以迅速地增加，并在一小段时间后正常关闭。在这些方面可实现快速可拓展性、部署更改和灾难恢复</li>
-<li><strong>持续发布和部署到生产</strong>：保持环境一致，不论是预发布环境还是生产环境。这样可以保证在跨越不同的环境时获取相似的结果，有利于向生产环境持续交付</li>
-<li><strong>把日志当事件流</strong>：不论是平台级的日志，还是应用级的日志，都十分重要，因为日志可以帮助你了解应用程序背后都做了什么</li>
-<li><strong>后台管理任务呗当作一次性进程运行</strong>：在云原生的方法中，作为应用程序发布一部分的管理任务（例如数据库迁移）应该作为一次性进程运行，而不是作为常规应用程序长时间运行</li>
+<li>开发方面：“一次构建、到处运行”（Build Once, Run Anywhere）。容器意味着环境隔离和可重复性，开发人员只需为应用创建一个运行环境，并将其打包成容器便可在各种部署环境上运行，并与它所在的宿主机环境隔离。</li>
+<li>运维方面：“一次配置，运行所以”（Configure Once, Run Anything）。一旦配置好标准的容器运行时环境，服务器就可以运行任何容器，这使得运维人员的工作变得更高效、一致和可重复。容器消除了开发、测试、生产环境的不一致性。·</li>
 </ul>
 
     </div>
@@ -222,7 +218,7 @@
              
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=https://blog.maoxianplay.com/2019/12-factor/>https://blog.maoxianplay.com/2019/12-factor/</span>
+                    <a href=https://blog.maoxianplay.com/2018/con-ind/>https://blog.maoxianplay.com/2018/con-ind/</span>
             </p>
             
              
@@ -238,14 +234,11 @@
             <section>
             <i class="iconfont icon-tag"></i>Tag(s): 
             
-            <span class="tag"><a href="https://blog.maoxianplay.com/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/">
-                    #软件设计</a></span>
+            <span class="tag"><a href="https://blog.maoxianplay.com/tags/%E5%AE%B9%E5%99%A8/">
+                    #容器</a></span>
             
             <span class="tag"><a href="https://blog.maoxianplay.com/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/">
                     #云原生</a></span>
-            
-            <span class="tag"><a href="https://blog.maoxianplay.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
-                    #微服务</a></span>
             
             </section>
         
@@ -257,8 +250,10 @@
 
     <div class="post-nav">
         
-        <a href="https://blog.maoxianplay.com/2018/docker-quit/" class="prev" rel="prev" title="Docker容器启动退出解决方案"><i class="iconfont icon-left"></i>&nbsp;Docker容器启动退出解决方案</a>
+        <a href="https://blog.maoxianplay.com/2018/install-docker/" class="prev" rel="prev" title="centos7安装指定版本的docker"><i class="iconfont icon-left"></i>&nbsp;centos7安装指定版本的docker</a>
          
+        
+        <a href="https://blog.maoxianplay.com/2018/docker-quit/" class="next" rel="next" title="Docker容器启动退出解决方案">Docker容器启动退出解决方案&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -322,8 +317,9 @@
 
 
     
-    
-    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
     
   
 

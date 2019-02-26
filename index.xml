@@ -6,49 +6,8 @@
     <description>Recent content in MaoXian Play on MaoXian Play</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 14 Feb 2019 16:15:15 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 14 Feb 2019 14:07:06 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>blog.maoxianplay.com更新日志</title>
-      <link>https://blog.maoxianplay.com/2019/changelog/</link>
-      <pubDate>Thu, 14 Feb 2019 16:15:15 +0800</pubDate>
-      
-      <guid>https://blog.maoxianplay.com/2019/changelog/</guid>
-      <description>
-
-&lt;h2 id=&#34;todo&#34;&gt;TODO&lt;/h2&gt;
-
-&lt;ul class=&#34;task-list&#34;&gt;
-&lt;li&gt;&lt;label&gt;&lt;input type=&#34;checkbox&#34; checked disabled class=&#34;task-list-item&#34;&gt; 评论功能&lt;/label&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;2019-02-13&#34;&gt;2019-02-13&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;我的博客&lt;a href=&#34;https://blog.maoxianplay.com/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://blog.maoxianplay.com/&lt;/a&gt;正式上线，使用GitHub pages 托管&lt;/li&gt;
-&lt;li&gt;网站使用&lt;a href=&#34;https://github.com/liuzc/LeaveIt&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;LeaveIt&lt;/a&gt;主题&lt;/li&gt;
-&lt;li&gt;域名由阿里云购买，并购买SSL证书&lt;/li&gt;
-&lt;li&gt;使用&lt;a href=&#34;https://github.com/overtrue/share.js&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;share.js&lt;/a&gt;作为社交分享插件&lt;/li&gt;
-&lt;li&gt;使用&lt;a href=&#34;http://busuanzi.ibruce.info/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;不蒜子&lt;/a&gt;统计站点信息&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;2019-02-14&#34;&gt;2019-02-14&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;更新第一篇博文&lt;a href=&#34;https://blog.maoxianplay.com/2019/12-factor/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;理解十二要素应用(12-Factor)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;开始编写网站更新日志&lt;/li&gt;
-&lt;li&gt;网站添加评论功能&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;2019-02-15&#34;&gt;2019-02-15&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;修复了评论初始化错误的问题&lt;/li&gt;
-&lt;li&gt;修复了之前更新日志日期填写错误的问题&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-    </item>
     
     <item>
       <title>理解十二要素应用(12-Factor)</title>
@@ -90,6 +49,175 @@
 &lt;li&gt;&lt;strong&gt;把日志当事件流&lt;/strong&gt;：不论是平台级的日志，还是应用级的日志，都十分重要，因为日志可以帮助你了解应用程序背后都做了什么&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;后台管理任务呗当作一次性进程运行&lt;/strong&gt;：在云原生的方法中，作为应用程序发布一部分的管理任务（例如数据库迁移）应该作为一次性进程运行，而不是作为常规应用程序长时间运行&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Docker容器启动退出解决方案</title>
+      <link>https://blog.maoxianplay.com/2018/docker-quit/</link>
+      <pubDate>Thu, 27 Sep 2018 19:27:03 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/2018/docker-quit/</guid>
+      <description>
+
+&lt;h1 id=&#34;现象&#34;&gt;现象&lt;/h1&gt;
+
+&lt;p&gt;启动docker容器&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run –name [CONTAINER_NAME] [CONTAINER_ID] 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;查看容器运行状态&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker ps -a 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;发现刚刚启动的mydocker容器已经退出&lt;/p&gt;
+
+&lt;h1 id=&#34;原因&#34;&gt;原因&lt;/h1&gt;
+
+&lt;p&gt;docker容器的主线程（dockfile中CMD执行的命令）结束，容器会退出&lt;/p&gt;
+
+&lt;h1 id=&#34;解决办法&#34;&gt;解决办法&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;可以使用交互式启动&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run -i [CONTAINER_NAME or CONTAINER_ID]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;上面的不太友好，建议使用后台模式和tty选项&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run -dit [CONTAINER_NAME or CONTAINER_ID]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Docker 容器在后台以守护态（Daemonized）形式运行，可以通过添加 -d 参数来实现&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo docker run -d ubuntu:14.04 /bin/sh -c &amp;quot;while true; do echo hello world; sleep 1; done&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;在脚本最后一行添加&lt;strong&gt;tail -f /dev/null&lt;/strong&gt;，这个命令永远完成不了，所以该脚本一直不会执行完，所以该容器永远不会退出。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;TIPs:退出时，使用[ctrl + D]，这样会结束docker当前线程，容器结束，可以使用[ctrl + P][ctrl + Q]退出而不终止容器运行&lt;/p&gt;
+
+&lt;p&gt;如下命令，会在指定容器中执行指定命令，[ctrl+D]退出后不会终止容器运行&lt;/p&gt;
+
+&lt;p&gt;docker默认会把容器内部pid=1的作为默认的程序&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>容器技术概述</title>
+      <link>https://blog.maoxianplay.com/2018/con-ind/</link>
+      <pubDate>Thu, 30 Aug 2018 18:45:22 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/2018/con-ind/</guid>
+      <description>
+
+&lt;h1 id=&#34;背景&#34;&gt;背景&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;自从微服务（Microservice）的出现，出于业务的需要，IT应用模型不断的变革。开发模式从瀑布式到敏捷开发；开发、运维和测试互相配合的devops思想；应用程序架构从单体模型到分层模型再到微服务；部署方式也从面向物理机到虚拟键再到容器；应用程序的基础架构从自建机房到托管再到云计算，等等。这些变革使得IT技术应用的效率大大提升，同时却以&lt;strong&gt;更低的成本交付更高质量的产品&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;尤其是以Docker为代表的容器技术的出现，终结了devops中交付和部署环节因环节、配置及程序本身的不同而造成的动辄几种甚至十几种部署配置的困境，将它们统一在容器镜像（image）之上。这就是我在工作中遇到最先遇到的困境，同时也是我开始研究容器技术的契机。&lt;/p&gt;
+
+&lt;p&gt;如今，越来越多的企业或组织开始开始选择以镜像文件为交付载体。容器镜像之内直接包含了应用程序及其依赖的系统环境、库、基础程序等，从而能够在容器引擎上直接运行。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&#34;容器技术概述&#34;&gt;容器技术概述&lt;/h1&gt;
+
+&lt;p&gt;容器是一种轻量级、可移植、自包含的软件打包技术，它使得应用程序可以在几乎任何地方以相同的方式运行。&lt;/p&gt;
+
+&lt;p&gt;容器有应用程序本身和它的环境依赖（库和其他应用程序）两部分组成，并在宿主机（Host）操作系统的用户空间中运行，但与操作系统的其他进程互相隔离，他们的实现机制有别于VMWare、KVM、Xen等实现方案的虚拟化技术。容器与虚拟机的对比关系如下图
+&lt;img src=&#34;https://blog.maoxianplay.com/images/source/vs.png&#34; alt=&#34;image&#34; /&gt;
+由于同一个宿主机上的所有容器都共享其底层操作系统（内核空间），这就使得容器在体积上要比传统的虚拟机小很多。另外，启动容器无须启动整个操作系统，所以容器部署和启动的速度更快，开销更小，也更容易迁移。事实上，容器赋予了应用程序超强的可移植能力。&lt;/p&gt;
+
+&lt;h1 id=&#34;容器技术的优势&#34;&gt;容器技术的优势&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;开发方面：“一次构建、到处运行”（Build Once, Run Anywhere）。容器意味着环境隔离和可重复性，开发人员只需为应用创建一个运行环境，并将其打包成容器便可在各种部署环境上运行，并与它所在的宿主机环境隔离。&lt;/li&gt;
+&lt;li&gt;运维方面：“一次配置，运行所以”（Configure Once, Run Anything）。一旦配置好标准的容器运行时环境，服务器就可以运行任何容器，这使得运维人员的工作变得更高效、一致和可重复。容器消除了开发、测试、生产环境的不一致性。·&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>centos7安装指定版本的docker</title>
+      <link>https://blog.maoxianplay.com/2018/install-docker/</link>
+      <pubDate>Tue, 14 Aug 2018 20:05:21 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/2018/install-docker/</guid>
+      <description>
+
+&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;在使用&lt;strong&gt;centos7&lt;/strong&gt;，并使用荫安装搬运工的时候，往往不希望安装最新版本的搬运工，而是希望安装与自己熟悉或者当前业务环境需要的版本，例如目前Kubernetes支持的最新搬运工版本为v17.03，所以就产生了安装指定版本码头工人的需求。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&#34;安装步骤&#34;&gt;安装步骤&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;# 安装依赖包
+yum install -y yum-utils device-mapper-persistent-data lvm2
+
+# 添加Docker软件包源
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+#关闭测试版本list（只显示稳定版）
+sudo yum-config-manager --enable docker-ce-edge
+sudo yum-config-manager --enable docker-ce-test
+
+# 更新yum包索引
+yum makecache fast
+
+#NO.1 直接安装Docker CE （will always install the highest  possible version，可能不符合你的需求）
+yum install docker-ce
+
+#NO.2 指定版本安装
+yum list docker-ce --showduplicates|sort -r 
+#找到需要安装的
+yum install docker-ce-17.09.0.ce -y
+#启动docker
+systemctl start docker &amp;amp; systemctl enable docker
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;采坑指南&#34;&gt;采坑指南&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;当然本着万事皆有坑的原则，这里也是有坑的，在安装中也是会遇到如下的问题&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;在执行一下命令的时候：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;yum install docker-ce-17.03.0.ce -y
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;会出现如下的报错：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;--&amp;gt; Finished Dependency Resolution
+Error: Package: docker-ce-17.03.0.ce-1.el7.centos.x86_64 (docker-ce-stable)
+        Requires: docker-ce-selinux &amp;gt;= 17.03.0.ce-1.el7.centos
+        Available: docker-ce-selinux-17.03.0.ce-1.el7.centos.noarch (docker-ce-stable)
+            docker-ce-selinux = 17.03.0.ce-1.el7.centos
+        Available: docker-ce-selinux-17.03.1.ce-1.el7.centos.noarch (docker-ce-stable)
+            docker-ce-selinux = 17.03.1.ce-1.el7.centos
+        Available: docker-ce-selinux-17.03.2.ce-1.el7.centos.noarch (docker-ce-stable)
+            docker-ce-selinux = 17.03.2.ce-1.el7.centos
+You could try using --skip-broken to work around the problem
+You could try running: rpm -Va --nofiles --nodigest
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在出现这个问题之后，需要执行以下命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#要先安装docker-ce-selinux-17.03.2.ce，否则安装docker-ce会报错
+yum install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-selinux-17.03.2.ce-1.el7.centos.noarch.rpm
+
+#然后再安装 docker-ce-17.03.2.ce，就能正常安装
+yum install docker-ce-17.03.2.ce-1.el7.centos
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
