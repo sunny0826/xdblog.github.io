@@ -9,8 +9,8 @@
   <meta name="description" content="码到成功">
   
   
-  
-  <link rel="next" href="https://blog.maoxianplay.com/2018/install-docker/" />
+  <link rel="prev" href="https://blog.maoxianplay.com/2018/image-size/" />
+  <link rel="next" href="https://blog.maoxianplay.com/2018/install-rancher/" />
   <link rel="canonical" href="https://blog.maoxianplay.com/2018/dashboard-k8s/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -23,10 +23,10 @@
   <title>
        
        
-           kubernetes安装dashboard | MaoXian Play
+           阿里云日志服务采集k8s日志并实现livetail功能 | MaoXian Play
        
   </title>
-  <meta name="title" content="kubernetes安装dashboard | MaoXian Play">
+  <meta name="title" content="阿里云日志服务采集k8s日志并实现livetail功能 | MaoXian Play">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -45,11 +45,14 @@
          "@id": "https://blog.maoxianplay.com/"
     },
     "articleSection" : "posts",
-    "name" : "kubernetes安装dashboard",
-    "headline" : "kubernetes安装dashboard",
-    "description" : "前言  在安装搭建k8s的时候，往往会遇到各种各样的问题，而安装k8s的web展示组件kubernetes-dashboard则是困难中的困难，本人在实际搭建中则被整整卡住了2天，Google和百度轮番搜索，各种技术博客和技术视频反复研究才勉强搭建成功
- 开始安装 在安装好k8s集群之后，确保集群各个节点都处于ready状态的时候，就可以安装kubernetes-dashboard了 如果没有安装好k8s集群，可以参考之前的文章：centos7.2 安装k8s v1.11.0 创建kubernetes-dashboard.yaml文件
-# Copyright 2017 The Kubernetes Authors. # # Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); # you may not use this file except in compliance with the License. # You may obtain a copy of the License at # # http://www.apache.org/licenses/LICENSE-2.0 # # Unless required by applicable law or agreed to in writing, software # distributed under the License is distributed on an &quot;AS IS&quot; BASIS, # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.",
+    "name" : "阿里云日志服务采集k8s日志并实现livetail功能",
+    "headline" : "阿里云日志服务采集k8s日志并实现livetail功能",
+    "description" : "前言  目前的项目日志都是通过Logtail直接采集，投递到OSS持久化，同时可以通过阿里云日志服务、devops自建平台进行查看（虽然大部分人是直接登录ECS查看=。=）， 在开始进行容器化之后，同样遇到日志的问题，目前的解决方案是阿里云日志服务持久化和展现格式化后的日志、使用rancher查看实时日志， 但是之前由于rancher平台出现一些问题，导致不能及时查看日志的情况，在这个背景下对阿里云日志服务采集k8s日志和livetail进行搭建并调研词方案是否可行。
+ 简介（转自阿里云官方文档） 日志服务（Log Service，简称 LOG）是针对日志类数据的一站式服务，在阿里巴巴集团经历大量大数据场景锤炼而成。您无需开发就能快捷完成日志数据采集、消费、投递以及查询分析等功能，提升运维、运营效率，建立 DT 时代海量日志处理能力。
+kubernetes日志采集组件安装 安装Logtail  进入阿里云容器服务找到集群id  通过ssh登录master节点，或者任意安装了kubectl并配置了该集群kubeconfig的服务器
+ 执行命令，将${your_k8s_cluster_id}替换为集群id
+wget http://logtail-release-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/kubernetes/alicloud-log-k8s-install.sh -O alicloud-log-k8s-install.sh; chmod 744 ./alicloud-log-k8s-install.sh; sh ./alicloud-log-k8s-install.sh ${your_k8s_cluster_id}   Project k8s-log-${your_k8s_cluster_id}下会自动创建名为config-operation-log的Logstore，用于存储alibaba-log-controller的运行日志。请勿删除此Logstore，否则无法为alibaba-log-controller排查问题。 若您需要将日志采集到已有的Project，请执行安装命令sh ./alicloud-log-k8s-install.sh${your_k8s_cluster_id} ${your_project_name} ，并确保日志服务Project和您的Kubernetes集群在同一地域。  该条命令其实就是执行了一个shell脚本，使用helm安装了采集kubernetes集群日志的组件
+#!/bin/bash if [ $# -eq 0 ] ; then echo &quot;[Invalid Param], use sudo ./install-k8s-log.sh {your-k8s-cluster-id}&quot; exit 1 fi clusterName=$(echo $1 | tr '[A-Z]' '[a-z]') curl --connect-timeout 5 http://100.100.100.200/latest/meta-data/region-id if [ $?",
     "inLanguage" : "en-us",
     "author" : "XuDong.Guo",
     "creator" : "XuDong.Guo",
@@ -57,11 +60,11 @@
     "accountablePerson" : "XuDong.Guo",
     "copyrightHolder" : "XuDong.Guo",
     "copyrightYear" : "2018",
-    "datePublished": "2018-08-14 19:07:03 &#43;0800 CST",
-    "dateModified" : "2018-08-14 19:07:03 &#43;0800 CST",
+    "datePublished": "2018-10-29 21:28:13 &#43;0800 CST",
+    "dateModified" : "2018-10-29 21:28:13 &#43;0800 CST",
     "url" : "https://blog.maoxianplay.com/2018/dashboard-k8s/",
-    "wordCount" : "572",
-    "keywords" : [ "容器","kubernetes", "MaoXian Play"]
+    "wordCount" : "377",
+    "keywords" : [ "日志","阿里云", "MaoXian Play"]
 }
 </script>
 
@@ -123,11 +126,11 @@
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">kubernetes安装dashboard</h1>
+        <h1 class="post-title" itemprop="name headline">阿里云日志服务采集k8s日志并实现livetail功能</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="https://blog.maoxianplay.com/" rel="author">XuDong.Guo</a> with ♥ 
                 <span class="post-time">
-                on <time datetime=2018-08-14 itemprop="datePublished">August 14, 2018</time>
+                on <time datetime=2018-10-29 itemprop="datePublished">October 29, 2018</time>
                 </span>
                 in
                 <i class="iconfont icon-folder"></i>
@@ -136,12 +139,12 @@
                         
                 </span>
                 
-                <h5 id="wc">600 Words|Read in about 3 Min|本文总阅读量<span id="busuanzi_value_page_pv"></span>次</h5>
+                <h5 id="wc">400 Words|Read in about 2 Min|本文总阅读量<span id="busuanzi_value_page_pv"></span>次</h5>
                 <h5 id="tags">Tags: 
                     
-                    <a href="https://blog.maoxianplay.com/tags/%E5%AE%B9%E5%99%A8/">容器</a> &nbsp;
+                    <a href="https://blog.maoxianplay.com/tags/%E6%97%A5%E5%BF%97/">日志</a> &nbsp;
                     
-                    <a href="https://blog.maoxianplay.com/tags/kubernetes/">kubernetes</a> &nbsp;
+                    <a href="https://blog.maoxianplay.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91/">阿里云</a> &nbsp;
                 </h5>
         </div>
     </header>
@@ -167,225 +170,197 @@
 <h1 id="前言">前言</h1>
 
 <blockquote>
-<p>在安装搭建k8s的时候，往往会遇到各种各样的问题，而安装k8s的web展示组件kubernetes-dashboard则是困难中的困难，本人在实际搭建中则被整整卡住了2天，Google和百度轮番搜索，各种技术博客和技术视频反复研究才勉强搭建成功</p>
+<p>目前的项目日志都是通过Logtail直接采集，投递到OSS持久化，同时可以通过阿里云日志服务、devops自建平台进行查看（虽然大部分人是直接登录ECS查看=。=），
+在开始进行容器化之后，同样遇到日志的问题，目前的解决方案是阿里云日志服务持久化和展现格式化后的日志、使用rancher查看实时日志，
+但是之前由于rancher平台出现一些问题，导致不能及时查看日志的情况，在这个背景下对阿里云日志服务采集k8s日志和livetail进行搭建并调研词方案是否可行。</p>
 </blockquote>
 
-<h1 id="开始安装">开始安装</h1>
+<h1 id="简介-转自阿里云官方文档">简介（转自阿里云官方文档）</h1>
 
-<p>在安装好k8s集群之后，确保集群各个节点都处于ready状态的时候，就可以安装kubernetes-dashboard了
-如果没有安装好k8s集群，可以参考之前的文章：<a href="/2018/install-k8s">centos7.2 安装k8s v1.11.0</a>
-<strong>创建kubernetes-dashboard.yaml文件</strong></p>
+<p>日志服务（Log Service，简称 LOG）是针对日志类数据的一站式服务，在阿里巴巴集团经历大量大数据场景锤炼而成。您无需开发就能快捷完成日志数据采集、消费、投递以及查询分析等功能，提升运维、运营效率，建立 DT 时代海量日志处理能力。</p>
 
-<pre><code># Copyright 2017 The Kubernetes Authors.
+<h1 id="kubernetes日志采集组件安装">kubernetes日志采集组件安装</h1>
 
-#
-# Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# Configuration to deploy release version of the Dashboard UI compatible with
-# Kubernetes 1.8.
-#
-# Example usage: kubectl create -f &lt;this_file&gt;
-# ------------------- Dashboard Secret ------------------- #
-apiVersion: v1
-kind: Secret
-metadata:
-    labels:
-        k8s-app: kubernetes-dashboard
-    name: kubernetes-dashboard-certs
-namespace: kube-system
-type: Opaque
----
-# ------------------- Dashboard Service Account ------------------- #
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-    labels:
-        k8s-app: kubernetes-dashboard
-    name: kubernetes-dashboard
-namespace: kube-system
----
-# ------------------- Dashboard Role &amp; Role Binding ------------------- #
-kind: Role
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-    name: kubernetes-dashboard-minimal
-namespace: kube-system
-rules:
-    # Allow Dashboard to create 'kubernetes-dashboard-key-holder' secret.
-    - apiGroups: [&quot;&quot;]
-    resources: [&quot;secrets&quot;]
-    verbs: [&quot;create&quot;]
-    # Allow Dashboard to create 'kubernetes-dashboard-settings' config map.
-    - apiGroups: [&quot;&quot;]
-    resources: [&quot;configmaps&quot;]
-    verbs: [&quot;create&quot;]
-    # Allow Dashboard to get, update and delete Dashboard exclusive secrets.
-    - apiGroups: [&quot;&quot;]
-    resources: [&quot;secrets&quot;]
-    resourceNames: [&quot;kubernetes-dashboard-key-holder&quot;, &quot;kubernetes-dashboard-certs&quot;]
-    verbs: [&quot;get&quot;, &quot;update&quot;, &quot;delete&quot;]
-    # Allow Dashboard to get and update 'kubernetes-dashboard-settings' config map.
-    - apiGroups: [&quot;&quot;]
-    resources: [&quot;configmaps&quot;]
-    resourceNames: [&quot;kubernetes-dashboard-settings&quot;]
-    verbs: [&quot;get&quot;, &quot;update&quot;]
-    # Allow Dashboard to get metrics from heapster.
-    - apiGroups: [&quot;&quot;]
-    resources: [&quot;services&quot;]
-    resourceNames: [&quot;heapster&quot;]
-    verbs: [&quot;proxy&quot;]
-    - apiGroups: [&quot;&quot;]
-    resources: [&quot;services/proxy&quot;]
-    resourceNames: [&quot;heapster&quot;, &quot;http:heapster:&quot;, &quot;https:heapster:&quot;]
-    verbs: [&quot;get&quot;]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-    name: kubernetes-dashboard-minimal
-namespace: kube-system
-roleRef:
-    apiGroup: rbac.authorization.k8s.io
-kind: Role
-name: kubernetes-dashboard-minimal
-subjects:
-    - kind: ServiceAccount
-    name: kubernetes-dashboard
-namespace: kube-system
----
-# ------------------- Dashboard Deployment ------------------- #
-kind: Deployment
-apiVersion: apps/v1beta2
-metadata:
-    labels:
-        k8s-app: kubernetes-dashboard
-name: kubernetes-dashboard
-namespace: kube-system
-spec:
-    replicas: 1
-    revisionHistoryLimit: 10
-    selector:
-        matchLabels:
-            k8s-app: kubernetes-dashboard
-    template:
-        metadata:
-            labels:
-                k8s-app: kubernetes-dashboard
-        spec:
-        serviceAccountName: kubernetes-dashboard
-        containers:
-            - name: kubernetes-dashboard
-        image: k8s.gcr.io/kubernetes-dashboard-amd64:v1.8.3
-        ports:
-            - containerPort: 9090
-        protocol: TCP
-        args:
-        #- --auto-generate-certificates
-        # Uncomment the following line to manually specify Kubernetes API server Host
-        # If not specified, Dashboard will attempt to auto discover the API server and connect
-        # to it. Uncomment only if the default does not work.
-        #- --apiserver-host=http://10.0.1.168:8080
-        volumeMounts:
-        - name: kubernetes-dashboard-certs
-        mountPath: /certs
-        # Create on-disk volume to store exec logs
-        - mountPath: /tmp
-        name: tmp-volume
-        livenessProbe:
-            httpGet:
-                scheme: HTTP
-            path: /
-            port: 9090
-            initialDelaySeconds: 30
-            timeoutSeconds: 30
-        volumes:
-            - name: kubernetes-dashboard-certs
-        secret:
-            secretName: kubernetes-dashboard-certs
-            - name: tmp-volume
-        emptyDir: {}
-        serviceAccountName: kubernetes-dashboard
-        # Comment the following tolerations if Dashboard must not be deployed on master
-        tolerations:
-            - key: node-role.kubernetes.io/master
-        effect: NoSchedule
----
-# ------------------- Dashboard Service ------------------- #
-kind: Service
-apiVersion: v1
-metadata:
-    labels:
-        k8s-app: kubernetes-dashboard
-name: kubernetes-dashboard
-namespace: kube-system
-spec:
-    ports:
-        - port: 9090
-    targetPort: 9090
-    selector:
-    k8s-app: kubernetes-dashboard
-# ------------------------------------------------------------
-kind: Service
-apiVersion: v1
-metadata:
-    labels:
-        k8s-app: kubernetes-dashboard
-name: kubernetes-dashboard-external
-namespace: kube-system
-spec:
-    ports:
-        - port: 9090
-    targetPort: 9090
-    nodePort: 30090
-    type: NodePort
-    selector:
-        k8s-app: kubernetes-dashboard
+<h2 id="安装logtail">安装Logtail</h2>
+
+<ul>
+<li><p>进入阿里云容器服务找到集群id
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/log_ser.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p></li>
+
+<li><p>通过ssh登录master节点，或者任意安装了kubectl并配置了该集群kubeconfig的服务器</p></li>
+
+<li><p>执行命令，将${your_k8s_cluster_id}替换为集群id</p>
+
+<pre><code>wget http://logtail-release-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/kubernetes/alicloud-log-k8s-install.sh -O alicloud-log-k8s-install.sh; chmod 744 ./alicloud-log-k8s-install.sh; sh ./alicloud-log-k8s-install.sh ${your_k8s_cluster_id}
 </code></pre>
 
-<p><strong>创建kubernetes-dashboard-admin.rbac.yaml文件</strong></p>
+<ul>
+<li>Project k8s-log-${your_k8s_cluster_id}下会自动创建名为config-operation-log的Logstore，用于存储alibaba-log-controller的运行日志。请勿删除此Logstore，否则无法为alibaba-log-controller排查问题。</li>
+<li>若您需要将日志采集到已有的Project，请执行安装命令sh ./alicloud-log-k8s-install.sh${your_k8s_cluster_id} ${your_project_name} ，并确保日志服务Project和您的Kubernetes集群在同一地域。</li>
+</ul></li>
 
-<pre><code>---
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-    labels:
-        k8s-app: kubernetes-dashboard
-name: kubernetes-dashboard-admin
-namespace: kube-system
----
-apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: ClusterRoleBinding
-metadata:
-    name: kubernetes-dashboard-admin
-    labels:
-        k8s-app: kubernetes-dashboard
-roleRef:
-    apiGroup: rbac.authorization.k8s.io
-kind: ClusterRole
-name: cluster-admin
-subjects:
-    - kind: ServiceAccount
-name: kubernetes-dashboard-admin
-namespace: kube-system
-</code></pre>
+<li><p>该条命令其实就是执行了一个shell脚本，使用helm安装了采集kubernetes集群日志的组件</p>
 
-<p><strong>执行命令创建仪表盘所需要的所有容器</strong></p>
+<pre><code>#!/bin/bash
 
-<pre><code>kubectl -n kube-system create -f .
-</code></pre>
+if [ $# -eq 0 ] ; then
+    echo &quot;[Invalid Param], use sudo ./install-k8s-log.sh {your-k8s-cluster-id}&quot;
+    exit 1
+fi
 
-<p>访问主节点的30090端口即可看到dashboard页面</p>
+clusterName=$(echo $1 | tr '[A-Z]' '[a-z]')
+curl --connect-timeout 5  http://100.100.100.200/latest/meta-data/region-id
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/k8s-dashboard.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+if [ $? != 0 ]; then
+    echo &quot;[FAIL] ECS meta server connect fail, only support alibaba cloud k8s service&quot;
+    exit 1
+fi
+
+regionId=`curl http://100.100.100.200/latest/meta-data/region-id`
+aliuid=`curl http://100.100.100.200/latest/meta-data/owner-account-id`
+
+helmPackageUrl=&quot;http://logtail-release-$regionId.oss-$regionId.aliyuncs.com/kubernetes/alibaba-cloud-log.tgz&quot;
+wget $helmPackageUrl -O alibaba-cloud-log.tgz
+if [ $? != 0 ]; then
+    echo &quot;[FAIL] download alibaba-cloud-log.tgz from $helmPackageUrl failed&quot;
+    exit 1
+fi
+
+project=&quot;k8s-log-&quot;$clusterName
+if [ $# -ge 2 ]; then
+    project=$2
+fi
+
+echo [INFO] your k8s is using project : $project
+
+helm install alibaba-cloud-log.tgz --name alibaba-log-controller \
+    --set ProjectName=$project \
+    --set RegionId=$regionId \
+    --set InstallParam=$regionId \
+    --set MachineGroupId=&quot;k8s-group-&quot;$clusterName \
+    --set Endpoint=$regionId&quot;-intranet.log.aliyuncs.com&quot; \
+    --set AlibabaCloudUserId=&quot;:&quot;$aliuid \
+    --set LogtailImage.Repository=&quot;registry.$regionId.aliyuncs.com/log-service/logtail&quot; \
+    --set ControllerImage.Repository=&quot;registry.$regionId.aliyuncs.com/log-service/alibabacloud-log-controller&quot;
+
+installRst=$?
+
+if [ $installRst -eq 0 ]; then
+    echo &quot;[SUCCESS] install helm package : alibaba-log-controller success.&quot;
+    exit 0
+else
+    echo &quot;[FAIL] install helm package failed, errno &quot; $installRst
+    exit 0
+fi
+</code></pre></li>
+
+<li><p>命令执行后，会在kubernetes集群中的每个节点运行一个日志采集的pod：logatail-ds，该pod位于kube-system</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/log_detail.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p></li>
+
+<li><p>安装完成后，可使用以下命令来查看pod状态，若状态全部成功后，则表示安装完成</p>
+
+<pre><code>[root@izuf6d75c59ll4woscqmh5z ~]# helm status alibaba-log-controller
+LAST DEPLOYED: Thu Nov 22 15:09:35 2018
+NAMESPACE: default
+STATUS: DEPLOYED
+
+RESOURCES:
+==&gt; v1/ServiceAccount
+NAME                    SECRETS  AGE
+alibaba-log-controller  1        6d
+
+==&gt; v1beta1/CustomResourceDefinition
+NAME                                   AGE
+aliyunlogconfigs.log.alibabacloud.com  6d
+
+==&gt; v1beta1/ClusterRole
+alibaba-log-controller  6d
+
+==&gt; v1beta1/ClusterRoleBinding
+NAME                    AGE
+alibaba-log-controller  6d
+
+==&gt; v1beta1/DaemonSet
+NAME        DESIRED  CURRENT  READY  UP-TO-DATE  AVAILABLE  NODE SELECTOR  AGE
+logtail-ds  16       16       16     16          16         &lt;none&gt;         6d
+
+==&gt; v1beta1/Deployment
+NAME                    DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
+alibaba-log-controller  1        1        1           1          6d
+
+==&gt; v1/Pod(related)
+NAME                                     READY  STATUS   RESTARTS  AGE
+logtail-ds-2fqs4                         1/1    Running  0         6d
+logtail-ds-4bz7w                         1/1    Running  1         6d
+logtail-ds-6vg88                         1/1    Running  0         6d
+logtail-ds-7tp6v                         1/1    Running  0         6d
+logtail-ds-9575c                         1/1    Running  0         6d
+logtail-ds-bgq84                         1/1    Running  0         6d
+logtail-ds-kdlhr                         1/1    Running  0         6d
+logtail-ds-lknxw                         1/1    Running  0         6d
+logtail-ds-pdxfk                         1/1    Running  0         6d
+logtail-ds-pf4dz                         1/1    Running  0         6d
+logtail-ds-rzsnw                         1/1    Running  0         6d
+logtail-ds-sqhbv                         1/1    Running  0         6d
+logtail-ds-vvtwn                         1/1    Running  0         6d
+logtail-ds-wwmhg                         1/1    Running  0         6d
+logtail-ds-xbp4j                         1/1    Running  0         6d
+logtail-ds-zpld9                         1/1    Running  0         6d
+alibaba-log-controller-85f8fbb498-nzhc8  1/1    Running  0         6d
+</code></pre></li>
+</ul>
+
+<h1 id="配置日志组件展示">配置日志组件展示</h1>
+
+<ul>
+<li><p>在集群内安装好日志组件后，登录阿里云日志服务控制台，就会发现有一个新的project，名称为k8s-log-{集群id}
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/log_src_de.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p></li>
+
+<li><p>创建Logstore
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/log-1.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p></li>
+
+<li><p>数据导入
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/log-2.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p></li>
+
+<li><p>选择数据类型中选择docker标准输出
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/log-3.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p></li>
+
+<li><p>数据源配置，这里可以使用默认的
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/log-4.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p></li>
+
+<li><p>选择数据源
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/log-5.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p></li>
+
+<li><p>配置好之后等待1-2分钟，日志就会进来了
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/log-6.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p></li>
+
+<li><p>为了快速查询和过滤，需要配置索引
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/log-7.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p></li>
+
+<li><p>添加容器名称、命名空间、pod名称作为索引（后续使用livetail需要）
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/log-8.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p></li>
+
+<li><p>这样就完成了一个k8s集群日志采集和展示的基本流程了</p></li>
+</ul>
+
+<h1 id="livetail功能使用">livetail功能使用</h1>
+
+<h2 id="背景介绍">背景介绍</h2>
+
+<p>在线上运维的场景中，往往需要对日志队列中进入的数据进行实时监控，从最新的日志数据中提取出关键的信息进而快速地分析出异常原因。在传统的运维方式中，如果需要对日志文件进行实时监控，需要到服务器上对日志文件执行命令tail -f，如果实时监控的日志信息不够直观，可以加上grep或者grep -v进行关键词过滤。日志服务在控制台提供了日志数据实时监控的交互功能LiveTail，针对线上日志进行实时监控分析，减轻运维压力。</p>
+
+<h2 id="使用方法">使用方法</h2>
+
+<ul>
+<li><p>这里选择来源类型为kubernetes，命名空间、pod名称、容器名称为上一步新建的3个索引的内容，过滤关键字的功劳与tail命令后加的grep命令是一样的，用于关键词过滤
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/log-9.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p></li>
+
+<li><p>点击开启livetail，这时就有实时日志展示出来了
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/source/log-10.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p></li>
+</ul>
+
+<p><strong>以上就是阿里云livetail日志服务功能</strong></p>
 
     </div>
     <div id="container"></div>
@@ -429,11 +404,11 @@ namespace: kube-system
             <section>
             <i class="iconfont icon-tag"></i>Tag(s): 
             
-            <span class="tag"><a href="https://blog.maoxianplay.com/tags/%E5%AE%B9%E5%99%A8/">
-                    #容器</a></span>
+            <span class="tag"><a href="https://blog.maoxianplay.com/tags/%E6%97%A5%E5%BF%97/">
+                    #日志</a></span>
             
-            <span class="tag"><a href="https://blog.maoxianplay.com/tags/kubernetes/">
-                    #kubernetes</a></span>
+            <span class="tag"><a href="https://blog.maoxianplay.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91/">
+                    #阿里云</a></span>
             
             </section>
         
@@ -444,9 +419,11 @@ namespace: kube-system
     </div>
 
     <div class="post-nav">
+        
+        <a href="https://blog.maoxianplay.com/2018/image-size/" class="prev" rel="prev" title="精简docker镜像"><i class="iconfont icon-left"></i>&nbsp;精简docker镜像</a>
          
         
-        <a href="https://blog.maoxianplay.com/2018/install-docker/" class="next" rel="next" title="centos7安装指定版本的docker">centos7安装指定版本的docker&nbsp;<i class="iconfont icon-right"></i></a>
+        <a href="https://blog.maoxianplay.com/2018/install-rancher/" class="next" rel="next" title="阿里云部署rancher2.1采坑记">阿里云部署rancher2.1采坑记&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 

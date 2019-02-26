@@ -6,10 +6,24 @@
     <description>Recent content in 部署安装 on MaoXian Play</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Aug 2018 20:07:03 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 29 Oct 2018 21:28:13 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>阿里云日志服务采集k8s日志并实现livetail功能</title>
+      <link>https://blog.maoxianplay.com/2018/dashboard-k8s/</link>
+      <pubDate>Mon, 29 Oct 2018 21:28:13 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/2018/dashboard-k8s/</guid>
+      <description>前言  目前的项目日志都是通过Logtail直接采集，投递到OSS持久化，同时可以通过阿里云日志服务、devops自建平台进行查看（虽然大部分人是直接登录ECS查看=。=）， 在开始进行容器化之后，同样遇到日志的问题，目前的解决方案是阿里云日志服务持久化和展现格式化后的日志、使用rancher查看实时日志， 但是之前由于rancher平台出现一些问题，导致不能及时查看日志的情况，在这个背景下对阿里云日志服务采集k8s日志和livetail进行搭建并调研词方案是否可行。
+ 简介（转自阿里云官方文档） 日志服务（Log Service，简称 LOG）是针对日志类数据的一站式服务，在阿里巴巴集团经历大量大数据场景锤炼而成。您无需开发就能快捷完成日志数据采集、消费、投递以及查询分析等功能，提升运维、运营效率，建立 DT 时代海量日志处理能力。
+kubernetes日志采集组件安装 安装Logtail  进入阿里云容器服务找到集群id  通过ssh登录master节点，或者任意安装了kubectl并配置了该集群kubeconfig的服务器
+ 执行命令，将${your_k8s_cluster_id}替换为集群id
+wget http://logtail-release-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/kubernetes/alicloud-log-k8s-install.sh -O alicloud-log-k8s-install.sh; chmod 744 ./alicloud-log-k8s-install.sh; sh ./alicloud-log-k8s-install.sh ${your_k8s_cluster_id}   Project k8s-log-${your_k8s_cluster_id}下会自动创建名为config-operation-log的Logstore，用于存储alibaba-log-controller的运行日志。请勿删除此Logstore，否则无法为alibaba-log-controller排查问题。 若您需要将日志采集到已有的Project，请执行安装命令sh ./alicloud-log-k8s-install.sh${your_k8s_cluster_id} ${your_project_name} ，并确保日志服务Project和您的Kubernetes集群在同一地域。  该条命令其实就是执行了一个shell脚本，使用helm安装了采集kubernetes集群日志的组件
+#!/bin/bash if [ $# -eq 0 ] ; then echo &amp;quot;[Invalid Param], use sudo ./install-k8s-log.sh {your-k8s-cluster-id}&amp;quot; exit 1 fi clusterName=$(echo $1 | tr &#39;[A-Z]&#39; &#39;[a-z]&#39;) curl --connect-timeout 5 http://100.100.100.200/latest/meta-data/region-id if [ $?</description>
+    </item>
     
     <item>
       <title>centos7.2 安装k8s v1.11.0</title>
@@ -33,17 +47,6 @@ yum -y install kubelet-1.11.0-0 yum -y install kubeadm-1.11.0-0 yum -y install k
       <guid>https://blog.maoxianplay.com/2018/install-docker/</guid>
       <description>前言  在使用centos7，并使用荫安装搬运工的时候，往往不希望安装最新版本的搬运工，而是希望安装与自己熟悉或者当前业务环境需要的版本，例如目前Kubernetes支持的最新搬运工版本为v17.03，所以就产生了安装指定版本码头工人的需求。
  安装步骤 # 安装依赖包 yum install -y yum-utils device-mapper-persistent-data lvm2 # 添加Docker软件包源 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo #关闭测试版本list（只显示稳定版） sudo yum-config-manager --enable docker-ce-edge sudo yum-config-manager --enable docker-ce-test # 更新yum包索引 yum makecache fast #NO.1 直接安装Docker CE （will always install the highest possible version，可能不符合你的需求） yum install docker-ce #NO.2 指定版本安装 yum list docker-ce --showduplicates|sort -r #找到需要安装的 yum install docker-ce-17.09.0.ce -y #启动docker systemctl start docker &amp;amp; systemctl enable docker  采坑指南  当然本着万事皆有坑的原则，这里也是有坑的，在安装中也是会遇到如下的问题</description>
-    </item>
-    
-    <item>
-      <title>kubernetes安装dashboard</title>
-      <link>https://blog.maoxianplay.com/2018/dashboard-k8s/</link>
-      <pubDate>Tue, 14 Aug 2018 19:07:03 +0800</pubDate>
-      
-      <guid>https://blog.maoxianplay.com/2018/dashboard-k8s/</guid>
-      <description>前言  在安装搭建k8s的时候，往往会遇到各种各样的问题，而安装k8s的web展示组件kubernetes-dashboard则是困难中的困难，本人在实际搭建中则被整整卡住了2天，Google和百度轮番搜索，各种技术博客和技术视频反复研究才勉强搭建成功
- 开始安装 在安装好k8s集群之后，确保集群各个节点都处于ready状态的时候，就可以安装kubernetes-dashboard了 如果没有安装好k8s集群，可以参考之前的文章：centos7.2 安装k8s v1.11.0 创建kubernetes-dashboard.yaml文件
-# Copyright 2017 The Kubernetes Authors. # # Licensed under the Apache License, Version 2.0 (the &amp;quot;License&amp;quot;); # you may not use this file except in compliance with the License. # You may obtain a copy of the License at # # http://www.apache.org/licenses/LICENSE-2.0 # # Unless required by applicable law or agreed to in writing, software # distributed under the License is distributed on an &amp;quot;AS IS&amp;quot; BASIS, # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</description>
     </item>
     
   </channel>

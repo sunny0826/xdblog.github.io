@@ -6,18 +6,23 @@
     <description>Recent content in 日志 on MaoXian Play</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 14 Feb 2019 16:15:15 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 29 Oct 2018 21:28:13 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/tags/%E6%97%A5%E5%BF%97/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>blog.maoxianplay.com更新日志</title>
-      <link>https://blog.maoxianplay.com/2019/changelog/</link>
-      <pubDate>Thu, 14 Feb 2019 16:15:15 +0800</pubDate>
+      <title>阿里云日志服务采集k8s日志并实现livetail功能</title>
+      <link>https://blog.maoxianplay.com/2018/dashboard-k8s/</link>
+      <pubDate>Mon, 29 Oct 2018 21:28:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/2019/changelog/</guid>
-      <description> TODO 评论功能  2019-02-13  我的博客https://blog.maoxianplay.com/正式上线，使用GitHub pages 托管 网站使用LeaveIt主题 域名由阿里云购买，并购买SSL证书 使用share.js作为社交分享插件 使用不蒜子统计站点信息  2019-02-14  更新第一篇博文理解十二要素应用(12-Factor) 开始编写网站更新日志 网站添加评论功能  2019-02-15  修复了评论初始化错误的问题 修复了之前更新日志日期填写错误的问题  </description>
+      <guid>https://blog.maoxianplay.com/2018/dashboard-k8s/</guid>
+      <description>前言  目前的项目日志都是通过Logtail直接采集，投递到OSS持久化，同时可以通过阿里云日志服务、devops自建平台进行查看（虽然大部分人是直接登录ECS查看=。=）， 在开始进行容器化之后，同样遇到日志的问题，目前的解决方案是阿里云日志服务持久化和展现格式化后的日志、使用rancher查看实时日志， 但是之前由于rancher平台出现一些问题，导致不能及时查看日志的情况，在这个背景下对阿里云日志服务采集k8s日志和livetail进行搭建并调研词方案是否可行。
+ 简介（转自阿里云官方文档） 日志服务（Log Service，简称 LOG）是针对日志类数据的一站式服务，在阿里巴巴集团经历大量大数据场景锤炼而成。您无需开发就能快捷完成日志数据采集、消费、投递以及查询分析等功能，提升运维、运营效率，建立 DT 时代海量日志处理能力。
+kubernetes日志采集组件安装 安装Logtail  进入阿里云容器服务找到集群id  通过ssh登录master节点，或者任意安装了kubectl并配置了该集群kubeconfig的服务器
+ 执行命令，将${your_k8s_cluster_id}替换为集群id
+wget http://logtail-release-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/kubernetes/alicloud-log-k8s-install.sh -O alicloud-log-k8s-install.sh; chmod 744 ./alicloud-log-k8s-install.sh; sh ./alicloud-log-k8s-install.sh ${your_k8s_cluster_id}   Project k8s-log-${your_k8s_cluster_id}下会自动创建名为config-operation-log的Logstore，用于存储alibaba-log-controller的运行日志。请勿删除此Logstore，否则无法为alibaba-log-controller排查问题。 若您需要将日志采集到已有的Project，请执行安装命令sh ./alicloud-log-k8s-install.sh${your_k8s_cluster_id} ${your_project_name} ，并确保日志服务Project和您的Kubernetes集群在同一地域。  该条命令其实就是执行了一个shell脚本，使用helm安装了采集kubernetes集群日志的组件
+#!/bin/bash if [ $# -eq 0 ] ; then echo &amp;quot;[Invalid Param], use sudo ./install-k8s-log.sh {your-k8s-cluster-id}&amp;quot; exit 1 fi clusterName=$(echo $1 | tr &#39;[A-Z]&#39; &#39;[a-z]&#39;) curl --connect-timeout 5 http://100.100.100.200/latest/meta-data/region-id if [ $?</description>
     </item>
     
   </channel>

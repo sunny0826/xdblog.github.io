@@ -13,6 +13,36 @@
     </url>
   
     <url>
+      <loc>https://blog.maoxianplay.com/2018/install-rancher/</loc>
+      
+      <lastmod>2018-11-29T18:28:13+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://blog.maoxianplay.com/2018/dashboard-k8s/</loc>
+      
+      <lastmod>2018-10-29T21:28:13+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://blog.maoxianplay.com/2018/image-size/</loc>
+      
+      <lastmod>2018-09-27T20:28:13+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
       <loc>https://blog.maoxianplay.com/2018/docker-quit/</loc>
       
       <lastmod>2018-09-27T19:27:03+08:00</lastmod>
@@ -46,16 +76,6 @@
       <loc>https://blog.maoxianplay.com/2018/install-docker/</loc>
       
       <lastmod>2018-08-14T20:05:21+08:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://blog.maoxianplay.com/2018/dashboard-k8s/</loc>
-      
-      <lastmod>2018-08-14T19:07:03+08:00</lastmod>
       
       
       
@@ -143,6 +163,18 @@
     </url>
   
     <url>
+      <loc>https://blog.maoxianplay.com/tags/rancher/</loc>
+      
+      <lastmod>2018-11-29T18:28:13+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
       <loc>https://blog.maoxianplay.com/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/</loc>
       
       <lastmod>2019-02-14T14:07:06+08:00</lastmod>
@@ -169,7 +201,7 @@
     <url>
       <loc>https://blog.maoxianplay.com/tags/%E5%AE%B9%E5%99%A8/</loc>
       
-      <lastmod>2018-09-27T19:27:03+08:00</lastmod>
+      <lastmod>2018-11-29T18:28:13+08:00</lastmod>
       
       
       
@@ -203,6 +235,18 @@
     </url>
   
     <url>
+      <loc>https://blog.maoxianplay.com/tags/%E6%97%A5%E5%BF%97/</loc>
+      
+      <lastmod>2018-10-29T21:28:13+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
       <loc>https://blog.maoxianplay.com/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/</loc>
       
       <lastmod>2019-02-14T14:07:06+08:00</lastmod>
@@ -217,7 +261,7 @@
     <url>
       <loc>https://blog.maoxianplay.com/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/</loc>
       
-      <lastmod>2018-08-14T20:07:03+08:00</lastmod>
+      <lastmod>2018-10-29T21:28:13+08:00</lastmod>
       
       
       
@@ -229,7 +273,19 @@
     <url>
       <loc>https://blog.maoxianplay.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</loc>
       
-      <lastmod>2018-09-27T19:27:03+08:00</lastmod>
+      <lastmod>2018-11-29T18:28:13+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://blog.maoxianplay.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
+      
+      <lastmod>2018-11-29T18:28:13+08:00</lastmod>
       
       
       

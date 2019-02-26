@@ -6,10 +6,51 @@
     <description>Recent content in 问题解决 on MaoXian Play</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 27 Sep 2018 19:27:03 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 29 Nov 2018 18:28:13 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>阿里云部署rancher2.1采坑记</title>
+      <link>https://blog.maoxianplay.com/2018/install-rancher/</link>
+      <pubDate>Thu, 29 Nov 2018 18:28:13 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/2018/install-rancher/</guid>
+      <description>近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以将部署到阿里云的图中遇到的问题和踩到的坑在这里进行记录
+ 无法删除namespace 在安装新环境的rancher之前，需要将kubernetes集群中cattle-system ns下面的cluster-agent和node-agent干掉，这里我选择直接删除cattle-system这个命名空间
+kubectl delete ns cattle-system  然而问题来了，在删除命名空间之后，这个命名空间并没有立刻被删除，而是一直处于Terminating状态，这里我专门写了一篇文章解决这个问题，这里就不再赘述
+阿里云证书配置 由于之前使用的ucloud的机器进行测试，使用默认自签名证书并没有使用SSL证书，所以在配置证书这里遇到的许多的问题
+首先根据官方文档使用权威CA机构颁发的证书，这里使用的是本公司自己的证书
+获取证书方法： 点击下载证书，选择nginx证书下载 之后将下载的证书上传到rancher所在服务器，并配置好数据卷挂载
+将下面代码的挂载地址指向证书文件，运行代码
+docker run -d --restart=unless-stopped \ -p 80:80 -p 443:443 \ -v /root/var/log/auditlog:/var/log/auditlog \ -e AUDIT_LEVEL=3 \ -v /etc/your_certificate_directory/fullchain.pem:/etc/rancher/ssl/cert.pem \ -v /etc/your_certificate_directory/privkey.pem:/etc/rancher/ssl/key.pem \ rancher/rancher:latest --no-cacerts  之后会自动冲dockerhub上拉取最新的rancher进行进行安装，之后使用命令
+docker ps  查看容器是否在运行，如果运行正常，则后端的配置就完成了
+划重点：这是是在后端配置了证书，所以在阿里云的配置上要使用四层TCP监听
+这个地方可是坑了我许久，我一直在前端配置https七层监听，导致一直无法正常访问，一度已经到了怀疑人生的地步=。=
+之后就是简单的阿里云SLB配置四层TCP监听，这里也就不再赘述了
+k8s集群导入rancher 前后端都准备就绪，现在就可以访问rancher了，访问rancher根据页面提示进行基本配置，登录后选择添加集群
+选择导入现有集群 为集群创建一个rancher中的名称，然后根据提示将命令拷贝到k8s集群所在宿主机执行即可，注意：这里由于配置了证书，所以选择有证书，不绕过证书的那个命令执行，之后就可看到集群数据导入中 等待几秒即可开心的使用rancher了！
+关于rancher部署后访问集群api超时问题 经过排查，原因是阿里云在容器服务对外连接处设置了TLS双向认证，导致rancher的外网ip经常性的被拦截，导致超时
+解决办法：
+对k8s集群中rancher的cattle-cluster-agent传递内网参数，将其配置为内网连接，就可以正常访问了
+kubectl -n cattle-system patch deployments cattle-cluster-agent --patch &#39;{ &amp;quot;spec&amp;quot;: { &amp;quot;template&amp;quot;: { &amp;quot;spec&amp;quot;: { &amp;quot;hostAliases&amp;quot;: [{ &amp;quot;hostnames&amp;quot;:[&amp;quot;rancher.</description>
+    </item>
+    
+    <item>
+      <title>精简docker镜像</title>
+      <link>https://blog.maoxianplay.com/2018/image-size/</link>
+      <pubDate>Thu, 27 Sep 2018 20:28:13 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/2018/image-size/</guid>
+      <description>精简Docker镜像的好处很多，不仅可以节省存储空间和带宽，还能减少安全隐患。优化镜像大小的手段多种多样，因服务所使用的基础开发语言不同而有差异。本文将介绍精简Docker镜像的几种通用方法。
+ 精简Docker镜像大小的必要性 Docker镜像由很多镜像层（Layers）组成（最多127层），镜像层依赖于一系列的底层技术，比如文件系统(filesystems)、写时复制(copy-on-write)、联合挂载(union mounts)等技术，你可以查看Docker社区文档以了解更多有关Docker存储驱动的内容，这里就不再赘述技术细节。总的来说，Dockerfile中的每条指令都会创建一个镜像层，继而会增加整体镜像的尺寸。
+下面是精简Docker镜像尺寸的好处：
+ 减少构建时间 减少磁盘使用量 减少下载时间 因为包含文件少，攻击面减小，提高了安全性 提高部署速度  五点建议减小Docker镜像尺寸
+一、优化基础镜像 优化基础镜像的方法就是选用合适的更小的基础镜像，常用的 Linux 系统镜像一般有 Ubuntu、CentOs、Alpine，其中Alpine更推荐使用。大小对比如下：
+guoxudong@ubuntu ~/s&amp;gt; docker images REPOSITORY TAG IMAGE ID CREATED SIZE ubuntu latest 74f8760a2a8b 8 days ago 82.4MB alpine latest 11cd0b38bc3c 2 weeks ago 4.41MB centos 7 49f7960eb7e4 7 weeks ago 200MB debian latest 3bbb526d2608 8 days ago 101MB guoxudong@ubuntu ~/s&amp;gt;  Alpine是一个高度精简又包含了基本工具的轻量级Linux发行版，基础镜像只有4.41M，各开发语言和框架都有基于Alpine制作的基础镜像，强烈推荐使用它。Alpine镜像各个语言和框架支持情况，可以参考《优化Docker镜像、加速应用部署》。 查看上面的镜像尺寸对比结果，你会发现最小的镜像也有4.41M，那么有办法构建更小的镜像吗？答案是肯定的，例如 gcr.io/google_containers/pause-amd64:3.1 镜像仅有742KB。为什么这个镜像能这么小？在为大家解密之前，再推荐两个基础镜像：
+ scratch镜像  scratch是一个空镜像，只能用于构建其他镜像，比如你要运行一个包含所有依赖的二进制文件，如Golang程序，可以直接使用scratch作为基础镜像。现在给大家展示一下上文提到的Google pause镜像Dockerfile：</description>
+    </item>
     
     <item>
       <title>Docker容器启动退出解决方案</title>
