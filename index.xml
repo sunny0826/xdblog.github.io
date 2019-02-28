@@ -497,7 +497,12 @@ alibaba-log-controller-85f8fbb498-nzhc8  1/1    Running  0         6d
 
 &lt;ul&gt;
 &lt;li&gt;第一类客户端通常包含用户和Pod对象两种，它们通过API Server访问kubernetes集群完成管理任务，例如，管理集群上的各种资源对象。&lt;/li&gt;
-&lt;li&gt;第二类客户端一般也包含人类用户和Pod对象两种，它们的访问目标是Pod上运行于容器中的应用程序提供的各种具体的服务，如redis或nginx等，不过，这些访问请求通常要经由Service或Ingress资源对象进行。另外，第二类客户端的访问目标对象的操作要经由第一类客户端创建和配置完成后才进行。&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;第二类客户端一般也包含人类用户和Pod对象两种，它们的访问目标是Pod上运行于容器中的应用程序提供的各种具体的服务，如redis或nginx等，不过，这些访问请求通常要经由Service或Ingress资源对象进行。另外，第二类客户端的访问目标对象的操作要经由第一类客户端创建和配置完成后才进行。&lt;/p&gt;
+
+&lt;p&gt;访问API Server时，人类用户一般借助于命令行工具kubectl或图形UI（例如kubernetes dashboard）进行，也通过编程接口进行访问，包括REST API。访问Pod中的应用时，其访问方式要取决于Pod中的应用程序，例如，对于运行Nginx容器的Pod来说，其最常用工具就是浏览器。&lt;/p&gt;
+
+&lt;p&gt;管理员（开发人员或运维人员）使用kubernetes集群的常见操作包括通过控制器创建Pod，在Pod的基础上创建Service供第二类客户端访问，更新Pod中的应用版本（更新和回滚）以及对应用规模进行扩容或缩容等，另外还有集群附件管理、存储卷管理、网络及网络策略管理、资源管理和安全管理等。&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
