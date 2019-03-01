@@ -43,6 +43,16 @@
     </url>
   
     <url>
+      <loc>https://blog.maoxianplay.com/2018/k8s-d-n/</loc>
+      
+      <lastmod>2018-11-16T18:18:13+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
       <loc>https://blog.maoxianplay.com/2018/dashboard-k8s/</loc>
       
       <lastmod>2018-10-29T21:28:13+08:00</lastmod>
@@ -181,9 +191,9 @@
     </url>
   
     <url>
-      <loc>https://blog.maoxianplay.com/tags/kubernetes/</loc>
+      <loc>https://blog.maoxianplay.com/categories/kubernetes/</loc>
       
-      <lastmod>2019-01-30T20:18:13+08:00</lastmod>
+      <lastmod>2018-12-29T21:28:13+08:00</lastmod>
       
       
       
@@ -193,9 +203,9 @@
     </url>
   
     <url>
-      <loc>https://blog.maoxianplay.com/categories/kubernetes/</loc>
+      <loc>https://blog.maoxianplay.com/tags/kubernetes/</loc>
       
-      <lastmod>2018-12-29T21:28:13+08:00</lastmod>
+      <lastmod>2019-01-30T20:18:13+08:00</lastmod>
       
       
       
@@ -220,18 +230,6 @@
       <loc>https://blog.maoxianplay.com/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/</loc>
       
       <lastmod>2019-02-14T14:07:06+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://blog.maoxianplay.com/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</loc>
-      
-      <lastmod>2018-08-30T18:45:22+08:00</lastmod>
       
       
       

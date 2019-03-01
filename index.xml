@@ -270,6 +270,36 @@ rancher/rancher:latest --no-cacerts
     </item>
     
     <item>
+      <title>Kubernetes删除一直处于Terminating状态的namespace</title>
+      <link>https://blog.maoxianplay.com/2018/k8s-d-n/</link>
+      <pubDate>Fri, 16 Nov 2018 18:18:13 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/2018/k8s-d-n/</guid>
+      <description>
+
+&lt;blockquote&gt;
+&lt;p&gt;近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以需要将原有Rancher依赖的namespace（cattle-system）删除，但在删除中出现了删除的namespace一直处于Terminating状态的情况
+&lt;img src=&#34;https://blog.maoxianplay.com/images/source/d-n-1.png&#34; alt=&#34;imgage&#34; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&#34;解决方案&#34;&gt;解决方案&lt;/h1&gt;
+
+&lt;p&gt;运行命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;kubectl edit namespaces cattle-system
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看到namespaces的yaml配置：
+&lt;img src=&#34;https://blog.maoxianplay.com/images/source/d-n-2.png&#34; alt=&#34;imgage&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;将finalizer的value删除，这里将其设置为[]&lt;/p&gt;
+
+&lt;p&gt;保存即可看到该namespace已被删除
+&lt;img src=&#34;https://blog.maoxianplay.com/images/source/d-n-3.png&#34; alt=&#34;imgage&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>阿里云日志服务采集k8s日志并实现livetail功能</title>
       <link>https://blog.maoxianplay.com/2018/dashboard-k8s/</link>
       <pubDate>Mon, 29 Oct 2018 21:28:13 +0800</pubDate>
