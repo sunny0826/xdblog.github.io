@@ -23,10 +23,10 @@
   <title>
        
        
-           Pod质量服务类别 | MaoXian Play
+           Pod质量服务类别(QoS) | MaoXian Play
        
   </title>
-  <meta name="title" content="Pod质量服务类别 | MaoXian Play">
+  <meta name="title" content="Pod质量服务类别(QoS) | MaoXian Play">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -45,8 +45,8 @@
          "@id": "https://blog.maoxianplay.com/"
     },
     "articleSection" : "posts",
-    "name" : "Pod质量服务类别",
-    "headline" : "Pod质量服务类别",
+    "name" : "Pod质量服务类别(QoS)",
+    "headline" : "Pod质量服务类别(QoS)",
     "description" : "根据Pod对象的requests和limits属性，kubernetes将Pod对象归类到BestEffort、Burstable和Guaranteed三个服务质量（Quality of Service，QoS）类别
   Guaranteed  cpu:requests=limits memory:requests=limits 这类Pod具有最高优先级  Burstable  至少一个容器设置了cpu或内存资源的requests 这类Pod具有中等优先级  BestEffort  未有任何一个容器设置requests或limits属性 这类Pod具有最低优先级   同级别优先级的Pod资源在OOM时，与自身的requests属性相比，其内存占用比例最大的Pod对象将被首先杀死。如上图同属Burstable类别的Pod A将先于Pod B被杀死，虽然其内存用量小，但与自身的requests值相比，它的占用比例95%要大于Pod B的80%。",
     "inLanguage" : "en-us",
@@ -122,7 +122,7 @@
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Pod质量服务类别</h1>
+        <h1 class="post-title" itemprop="name headline">Pod质量服务类别(QoS)</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="https://blog.maoxianplay.com/" rel="author">XuDong.Guo</a> with ♥ 
                 <span class="post-time">
