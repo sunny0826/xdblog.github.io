@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
     <url>
+      <loc>https://blog.maoxianplay.com/2019/k8s-qos/</loc>
+      
+      <lastmod>2019-03-04T19:18:13+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
       <loc>https://blog.maoxianplay.com/2019/12-factor/</loc>
       
       <lastmod>2019-02-14T14:07:06+08:00</lastmod>
@@ -157,7 +167,7 @@
     <url>
       <loc>https://blog.maoxianplay.com/</loc>
       
-      <lastmod>2019-02-14T14:07:06+08:00</lastmod>
+      <lastmod>2019-03-04T19:18:13+08:00</lastmod>
       
       
       
@@ -169,7 +179,7 @@
     <url>
       <loc>https://blog.maoxianplay.com/posts/</loc>
       
-      <lastmod>2019-02-14T14:07:06+08:00</lastmod>
+      <lastmod>2019-03-04T19:18:13+08:00</lastmod>
       
       
       
@@ -191,9 +201,9 @@
     </url>
   
     <url>
-      <loc>https://blog.maoxianplay.com/categories/kubernetes/</loc>
+      <loc>https://blog.maoxianplay.com/tags/kubernetes/</loc>
       
-      <lastmod>2018-12-29T21:28:13+08:00</lastmod>
+      <lastmod>2019-03-04T19:18:13+08:00</lastmod>
       
       
       
@@ -203,9 +213,9 @@
     </url>
   
     <url>
-      <loc>https://blog.maoxianplay.com/tags/kubernetes/</loc>
+      <loc>https://blog.maoxianplay.com/categories/kubernetes/</loc>
       
-      <lastmod>2019-01-30T20:18:13+08:00</lastmod>
+      <lastmod>2019-03-04T19:18:13+08:00</lastmod>
       
       
       

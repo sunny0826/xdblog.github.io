@@ -6,10 +6,20 @@
     <description>Recent content in kubernetes on MaoXian Play</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 29 Dec 2018 21:28:13 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 04 Mar 2019 19:18:13 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/categories/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Pod质量服务类别</title>
+      <link>https://blog.maoxianplay.com/2019/k8s-qos/</link>
+      <pubDate>Mon, 04 Mar 2019 19:18:13 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/2019/k8s-qos/</guid>
+      <description>根据Pod对象的requests和limits属性，kubernetes将Pod对象归类到BestEffort、Burstable和Guaranteed三个服务质量（Quality of Service，QoS）类别
+  Guaranteed  cpu:requests=limits memory:requests=limits 这类Pod具有最高优先级  Burstable  至少一个容器设置了cpu或内存资源的requests 这类Pod具有中等优先级  BestEffort  未有任何一个容器设置requests或limits属性 这类Pod具有最低优先级   同级别优先级的Pod资源在OOM时，与自身的requests属性相比，其内存占用比例最大的Pod对象将被首先杀死。如上图同属Burstable类别的Pod A将先于Pod B被杀死，虽然其内存用量小，但与自身的requests值相比，它的占用比例95%要大于Pod B的80%。</description>
+    </item>
     
     <item>
       <title>为ingress配置SSL证书，实现HTTPS访问</title>

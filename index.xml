@@ -6,8 +6,46 @@
     <description>Recent content in MaoXian Play on MaoXian Play</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 14 Feb 2019 14:07:06 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 04 Mar 2019 19:18:13 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Pod质量服务类别</title>
+      <link>https://blog.maoxianplay.com/2019/k8s-qos/</link>
+      <pubDate>Mon, 04 Mar 2019 19:18:13 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/2019/k8s-qos/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;根据Pod对象的requests和limits属性，kubernetes将Pod对象归类到BestEffort、Burstable和Guaranteed三个服务质量（Quality of Service，QoS）类别&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Guaranteed
+
+&lt;ul&gt;
+&lt;li&gt;cpu:requests=limits&lt;/li&gt;
+&lt;li&gt;memory:requests=limits&lt;/li&gt;
+&lt;li&gt;这类Pod具有最高优先级&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Burstable
+
+&lt;ul&gt;
+&lt;li&gt;至少一个容器设置了cpu或内存资源的requests&lt;/li&gt;
+&lt;li&gt;这类Pod具有中等优先级&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;BestEffort
+
+&lt;ul&gt;
+&lt;li&gt;未有任何一个容器设置requests或limits属性&lt;/li&gt;
+&lt;li&gt;这类Pod具有最低优先级&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://ww1.sinaimg.cn/large/ad5fbf65ly1g0rv2ipzqkj20hx0edmx8.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;同级别优先级的Pod资源在OOM时，与自身的requests属性相比，其内存占用比例最大的Pod对象将被首先杀死。如上图同属Burstable类别的Pod A将先于Pod B被杀死，虽然其内存用量小，但与自身的requests值相比，它的占用比例95%要大于Pod B的80%。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>理解十二要素应用(12-Factor)</title>
