@@ -1,0 +1,367 @@
+[
+    {
+        "title": "联系我们",
+        "uri": "contact",
+        "content": "2018 4                                                                  devops                                                                        GitHub https   github com sunny0826        https   my oschina net keking                                               guoxudong keking cn",
+        "objectID": "contact",
+        "id": "contact"
+    },
+    {
+        "title": "毛线",
+        "uri": "maoxian",
+        "content": "",
+        "objectID": "maoxian",
+        "date": "2019-03-09T02:07:20.000Z",
+        "draft": false
+    },
+    {
+        "title": "博客",
+        "uri": "posts",
+        "content": "",
+        "objectID": "posts",
+        "draft": false,
+        "date": "2018-05-20T07:51:19.000Z"
+    },
+    {
+        "title": "理解十二要素应用(12-Factor)",
+        "uri": "posts/12-factor",
+        "content": "Linux Windows                                                                                                                                                                                         Bundler pip Maven                                                                                                                                                                                                      master worker                                                                 HTTP",
+        "objectID": "posts/12-factor",
+        "date": "2019-02-14T06:07:06.000Z",
+        "draft": false,
+        "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g0t0qnqav0j21qi15o48y.jpg",
+        "author": "郭旭东",
+        "summary": "为了更好的拥抱云原生架构，同时提高软件交付质量，开发人员必须改变他们的编码方式，并未开发者和应用程序所运行的基础架构之间创造一个新的协议，十二要素应用宣言应运而生。",
+        "tags": [
+            "软件设计",
+            "云原生",
+            "微服务"
+        ],
+        "categories": [
+            "应用程序开发"
+        ],
+        "keywords": [
+            "软件设计",
+            "云原生",
+            "微服务",
+            "架构"
+        ]
+    },
+    {
+        "title": "容器技术概述",
+        "uri": "posts/con-ind",
+        "content": "Microservice             IT                                     devops                                                                             IT                                     Docker               devops                                                      image                                                                                                                                                                                                                       Host                                        VMWare KVM Xen                                                                                                                                                                             Build Once  Run Anywhere                                                                                        Configure Once  Run Anything",
+        "objectID": "posts/con-ind",
+        "date": "2018-08-30T10:45:22.000Z",
+        "draft": false,
+        "tags": [
+            "容器",
+            "云原生"
+        ],
+        "categories": [
+            "kubernetes"
+        ],
+        "banner": "https://wx1.sinaimg.cn/large/ad5fbf65ly1g0t12qboftj21qf15otch.jpg",
+        "author": "郭旭东",
+        "summary": "自从微服务（Microservice）的出现，出于业务的需要，IT应用模型不断的变革。开发模式从瀑布式到敏捷开发；开发、运维和测试互相配合的devops思想；应用程序架构从单体模型到分层模型再到微服务；部署方式也从面向物理机到虚拟键再到容器；应用程序的基础架构从自建机房到托管再到云计算，等等。这些变革使得IT技术应用的效率大大提升，同时却以更低的成本交付更高质量的产品。",
+        "keywords": [
+            "容器",
+            "云原生"
+        ]
+    },
+    {
+        "title": "阿里云日志服务采集k8s日志并实现livetail功能",
+        "uri": "posts/dashboard-k8s",
+        "content": "Logtail        OSS                  devops                    ECS                                                            rancher              rancher                                       k8s   livetail                                   Log Service    LOG                                                                                   DT             kubernetes           Logtail              id   ssh  master          kubectl       kubeconfig             yourk8scluster_id      id wget http   logtail release cn hangzhou oss cn hangzhou aliyuncs com kubernetes alicloud log k8s install sh  O alicloud log k8s install sh  chmod 744   alicloud log k8s install sh  sh   alicloud log k8s install sh   yourk8scluster_id  Project k8s log   yourk8scluster_id         config operation log Logstore     alibaba log controller           Logstore      alibaba log controller                   Project        sh   alicloud log k8s install sh  yourk8sclusterid    yourproject_name          Project   Kubernetes                      shell     helm     kubernetes           bin bash       eq 0     echo   Invalid Param   use sudo   install k8s log sh  your k8s cluster id   exit 1 fi clusterName   echo  1   tr   A Z     a z    curl   connect timeout 5 http   100 100 100 200 latest meta data region id         0    echo   FAIL  ECS meta server connect fail  support alibaba cloud k8s service  exit 1 fi regionId curl http   100 100 100 200 latest meta data region id aliuid curl http   100 100 100 200 latest meta data owner account id helmPackageUrl  http   logtail release  regionId oss  regionId aliyuncs com kubernetes alibaba cloud log tgz  wget  helmPackageUrl  O alibaba cloud log tgz         0    echo   FAIL  download alibaba cloud log tgz  helmPackageUrl failed  exit 1 fi project  k8s log   clusterName       ge 2    project  2 fi echo  INFO  k8s using project    project helm install alibaba cloud log tgz   name alibaba log controller     set ProjectName  project     set RegionId  regionId     set InstallParam  regionId     set MachineGroupId  k8s group   clusterName     set Endpoint  regionId  intranet log aliyuncs com      set AlibabaCloudUserId     aliuid     set LogtailImage Repository  registry  regionId aliyuncs com log service logtail      set ControllerImage Repository  registry  regionId aliyuncs com log service alibabacloud log controller  installRst       installRst  eq 0    echo   SUCCESS  install helm package   alibaba log controller success   exit 0 else echo   FAIL  install helm package failed  errno    installRst exit 0 fi         kubernetes                 pod logatail ds  pod  kube system                 pod                     root izuf6d75c59ll4woscqmh5z     helm status alibaba log controller LAST DEPLOYED  Thu Nov 22 15 09 35 2018 NAMESPACE  default STATUS  DEPLOYED RESOURCES      v1 ServiceAccount NAME SECRETS AGE alibaba log controller 1 6d     v1beta1 CustomResourceDefinition NAME AGE aliyunlogconfigs log alibabacloud com 6d     v1beta1 ClusterRole alibaba log controller 6d     v1beta1 ClusterRoleBinding NAME AGE alibaba log controller 6d     v1beta1 DaemonSet NAME DESIRED CURRENT READY UP TO DATE AVAILABLE NODE SELECTOR AGE logtail ds 16 16 16 16 16 6d     v1beta1 Deployment NAME DESIRED CURRENT UP TO DATE AVAILABLE AGE alibaba log controller 1 1 1 1 6d     v1 Pod related  NAME READY STATUS RESTARTS AGE logtail ds 2fqs4 1 1 Running 0 6d logtail ds 4bz7w 1 1 Running 1 6d logtail ds 6vg88 1 1 Running 0 6d logtail ds 7tp6v 1 1 Running 0 6d logtail ds 9575c 1 1 Running 0 6d logtail ds bgq84 1 1 Running 0 6d logtail ds kdlhr 1 1 Running 0 6d logtail ds lknxw 1 1 Running 0 6d logtail ds pdxfk 1 1 Running 0 6d logtail ds pf4dz 1 1 Running 0 6d logtail ds rzsnw 1 1 Running 0 6d logtail ds sqhbv 1 1 Running 0 6d logtail ds vvtwn 1 1 Running 0 6d logtail ds wwmhg 1 1 Running 0 6d logtail ds xbp4j 1 1 Running 0 6d logtail ds zpld9 1 1 Running 0 6d alibaba log controller 85f8fbb498 nzhc8 1 1 Running 0 6d                                             project    k8s log    id    Logstore               docker                                  1 2                                        pod           livetail            k8s                livetail                                                                                                                  tail  f                     grep  grep  v                                LiveTail                                      kubernetes      pod              3                tail     grep                   livetail                      livetail",
+        "objectID": "posts/dashboard-k8s",
+        "date": "2019-02-14T06:07:06.000Z",
+        "draft": false,
+        "banner": "https://ws3.sinaimg.cn/large/ad5fbf65ly1g0t0tydo76j21qi15oaqs.jpg",
+        "author": "郭旭东",
+        "summary": "阿里云日志服务采集k8s日志和livetail功能调研",
+        "tags": [
+            "阿里云",
+            "日志",
+            "kubernetes"
+        ],
+        "categories": [
+            "部署安装"
+        ],
+        "keywords": [
+            "阿里云",
+            "日志",
+            "kubernetes"
+        ]
+    },
+    {
+        "title": "Docker容器启动退出解决方案",
+        "uri": "posts/docker-quit",
+        "content": "docker   docker run  name  CONTAINERNAME   CONTAINERID           docker ps  a        mydocker          docker       dockfile CMD                              docker run  i  CONTAINERNAME CONTAINERID                   tty   docker run  dit  CONTAINERNAME CONTAINERID  Docker           Daemonized              d         sudo docker run  d ubuntu 14 04  bin sh  c  while true  echo hello world  sleep 1  done           tail  f  dev null                                       TIPs       ctrl   D       docker               ctrl   P                                ctrl D              docker        pid 1",
+        "objectID": "posts/docker-quit",
+        "date": "2018-09-27T11:27:03.000Z",
+        "draft": false,
+        "tags": [
+            "容器",
+            "Linux"
+        ],
+        "categories": [
+            "问题解决"
+        ],
+        "banner": "https://ws2.sinaimg.cn/large/ad5fbf65ly1g0t14jxg0jj21qq15ojvp.jpg",
+        "author": "郭旭东",
+        "summary": "解决容器启动退出问题。",
+        "keywords": [
+            "容器",
+            "Linux"
+        ]
+    },
+    {
+        "title": "为ingress配置SSL证书，实现HTTPS访问",
+        "uri": "posts/https-ingress",
+        "content": "devops          kubernetes                              http                          HTTPS                   SSL        rancher  SSL     SSL           SSL             SSL                       nginx             rancher                               rancher                                                         yaml                                   secrets apiVersion  v1 data  tls crt       tls key       kind  Secret metadata  name  keking cn namespace  devops plat type  kubernetes io tls  kubernetes    yaml   rancher               ingress                  ingress controller",
+        "objectID": "posts/https-ingress",
+        "date": "2018-12-29T13:28:13.000Z",
+        "draft": false,
+        "tags": [
+            "kubernetes",
+            "阿里云",
+            "rancher"
+        ],
+        "categories": [
+            "kubernetes"
+        ],
+        "banner": "https://ws1.sinaimg.cn/large/ad5fbf65ly1g0t15tmebvj21qi15oah8.jpg",
+        "author": "郭旭东",
+        "summary": "devops平台率先在公司内使用kubernetes集群提供后端服务，但是由于之前一直处于探索阶段，所以使用的事http的方式提供后端服务，但是在开发统一入口后，出现了访问HTTPS页面的跨域问题，由此引出了后端服务配置SSL证书的问题。",
+        "keywords": [
+            "kubernetes",
+            "阿里云",
+            "rancher"
+        ]
+    },
+    {
+        "title": "精简docker镜像",
+        "uri": "posts/image-size",
+        "content": "Docker                                                                        Docker             Docker         Docker         Layers      127                         filesystems       copy on write       union mounts          Docker           Docker                         Dockerfile                                   Docker                                                                 Docker                                          Linux         Ubuntu CentOs Alpine   Alpine              guoxudong ubuntu   s  docker images REPOSITORY TAG IMAGE ID CREATED SIZE ubuntu latest 74f8760a2a8b 8 days ago 82 4MB alpine latest 11cd0b38bc3c 2 weeks ago 4 41MB centos 7 49f7960eb7e4 7 weeks ago 200MB debian latest 3bbb526d2608 8 days ago 101MB guoxudong ubuntu   s  Alpine                   Linux          4 41M             Alpine                Alpine                     Docker                                     4 41M                         gcr io google_containers pause amd64 3 1     742KB                                 scratch   scratch                                        Golang         scratch                     Google pause  Dockerfile  scratch ARG ARCH ADD bin pause   ARCH   pause ENTRYPOINT    pause   Google pause     scratch                                                          Golang            Golang C                               ldd linuxdeployqt                                 busybox   scratch                      Linux   busybox               1 16M                 Dockerfile         Dockerfile         RUN                                     127           Dockerfile                       RUN                    RUN                                                      Dockerfile  ubuntu ENV VER 3 0 0 ENV TARBALL http   download redis io releases redis  VER tar gz     Install curl helper tools    RUN apt get update RUN apt get install  y curl gcc     Download  compile  install    RUN curl  L  TARBALL   tar zxv WORKDIR redis  VER RUN RUN install          Clean up    WORKDIR   RUN apt get remove  y   auto remove curl gcc RUN apt get clean RUN rm  rf  var lib apt lists    redis  VER      CMD   redis server            test test 0 1     Dockerfile       Dockerfile  ubuntu ENV VER 3 0 0 ENV TARBALL http   download redis io releases redis  VER tar gz RUN echo      Install curl helper tools          apt get update      apt get install  y curl gcc      echo      Download  compile  install          curl  L  TARBALL   tar zxv      cd redis  VER           install      echo      Clean up          apt get remove  y   auto remove curl gcc      apt get clean      rm  rf  var lib apt lists    redis  VER      CMD   redis server            test test 0 2            root k8s master  tmp iops  docker images REPOSITORY TAG IMAGE ID CREATED SIZE test test 0 2 58468c0222ed 2 minutes ago 98 1MB test test 0 1 e496cf7243f2 6 minutes ago 307MB root k8s master  tmp iops         RUN                    RUN                         Docker 1 13                    Dockerfile                         Docker                  Docker    experimental      Docker build            squash                   Dockerfile                                     Dockerfile                                                   Dockerfile                                                                      Docker 17 05 0 ce                        Dockerfile     FROM     FROM                                 COPY                              COPY   from            Dockerfile  Compile golang 1 9 0 builder WORKDIR  go src v9 git   com     k8s monitor COPY     WORKDIR  go src v9 git   com     k8s monitor RUN build RUN mv k8s monitor  root Package Use scratch image scratch WORKDIR  root  COPY   from builder  root   EXPOSE 8080 CMD    root k8s monitor                     COPY               2M          Dockerfile   Dockerfile                                               Docker build                               cache                                                           cache     Docker build                      Docker build     cache       Spring Boot                           Java WAR  Nodejs npm                 Dockerfile        maven   jar    unzip  jar  d app Dockerfile           4   COPY          3       4                        spring boot       openjdk 8 jre alpine LABEL maintainer  opl xws xiaomi com  COPY app BOOT INF lib   app BOOT INF lib  COPY app org  app org COPY app META INF  app META INF COPY app BOOT INF classes  app BOOT INF classes EXPOSE 8080 CMD    usr bin java     cp     app    org springframework boot loader JarLauncher                                RUN     apt apk  yum         RUN     apt apk  yum                                            apt get install  y        no install recommends                          apk add        no cache           yum install  y                  yum install  y gcc gcc c          yum install       RUN                                       apk   update add php7    rm  rf  var cache apk      Dockerfile                  apk add      rm  rf                apk             Ubuntu Debian     rm  rf  var lib apt lists           ",
+        "objectID": "posts/image-size",
+        "date": "2018-09-27T12:28:13.000Z",
+        "draft": false,
+        "tags": [
+            "容器"
+        ],
+        "categories": [
+            "问题解决"
+        ],
+        "banner": "https://ws1.sinaimg.cn/large/ad5fbf65ly1g0t171doafj211f15ogrl.jpg",
+        "author": "郭旭东",
+        "summary": "精简Docker镜像的好处很多，不仅可以节省存储空间和带宽，还能减少安全隐患。优化镜像大小的手段多种多样，因服务所使用的基础开发语言不同而有差异。本文将介绍精简Docker镜像的几种通用方法。",
+        "keywords": [
+            "容器"
+        ]
+    },
+    {
+        "title": "centos7安装指定版本的docker",
+        "uri": "posts/install-docker",
+        "content": "centos7                                                           Kubernetes           v17 03                                 yum install  y yum utils device mapper persistent data lvm2   Docker     yum config manager   add repo https   download docker com linux centos docker ce repo        list         sudo yum config manager   enable docker ce edge sudo yum config manager   enable docker ce test   yum    yum makecache fast  NO 1     Docker CE  will always install highest possible version            yum install docker ce  NO 2        yum list docker ce   showduplicates sort  r          yum install docker ce 17 09 0 ce  y    docker systemctl start docker   systemctl enable docker                                                       yum install docker ce 17 03 0 ce  y               Finished Dependency Resolution Error  Package  docker ce 17 03 0 ce 1 el7 centos x86_64  docker ce stable  Requires  docker ce selinux    17 03 0 ce 1 el7 centos Available  docker ce selinux 17 03 0 ce 1 el7 centos noarch  docker ce stable  docker ce selinux   17 03 0 ce 1 el7 centos Available  docker ce selinux 17 03 1 ce 1 el7 centos noarch  docker ce stable  docker ce selinux   17 03 1 ce 1 el7 centos Available  docker ce selinux 17 03 2 ce 1 el7 centos noarch  docker ce stable  docker ce selinux   17 03 2 ce 1 el7 centos try using   skip broken work around problem try running  rpm  Va   nofiles   nodigest                          docker ce selinux 17 03 2 ce     docker ce    yum install https   download docker com linux centos 7 x86_64 stable Packages docker ce selinux 17 03 2 ce 1 el7 centos noarch rpm        docker ce 17 03 2 ce        yum install docker ce 17 03 2 ce 1 el7 centos",
+        "objectID": "posts/install-docker",
+        "date": "2018-08-14T12:05:21.000Z",
+        "draft": false,
+        "tags": [
+            "容器",
+            "Linux"
+        ],
+        "categories": [
+            "部署安装"
+        ],
+        "banner": "https://wx1.sinaimg.cn/large/ad5fbf65ly1g0t18xk06xj21qq15ods6.jpg",
+        "author": "郭旭东",
+        "summary": "在使用CentOS7，并使用荫安装搬运工的时候，往往不希望安装最新版本的搬运工，而是希望安装与自己熟悉或者当前业务环境需要的版本，例如目前Kubernetes支持的最新搬运工版本为v17.03，所以就产生了安装指定版本码头工人的需求。",
+        "keywords": [
+            "容器",
+            "Linux"
+        ]
+    },
+    {
+        "title": "centos7.2 安装k8s v1.11.0",
+        "uri": "posts/install-k8s",
+        "content": "docker k8s     Kubernetes    Kubernetes   Google                                                    Go     Kubernetes                                                                                                      root         docker ce     docker ce 17 09 0 c                Kubeadm     Kubeadm                         cat  etc yum repos d kubernetes repo  kubernetes  name Kubernetes baseurl https   mirrors aliyun com kubernetes yum repos kubernetes el7 x86_64 enabled 1 gpgcheck 0 EOF              yum    yum  y install epel releaseyum clean yum makecache             Kubeadm                                                         Kubeadm k8s                 yum  y install kubelet 1 11 0 0 yum  y install kubeadm 1 11 0 0 yum  y install kubectl 1 11 0 0 yum  y install kubernetes cni        Kubeadm    systemctl enable kubelet    systemctl start kubelet    Kubeadm                               Google                     Docker Hub                 TAG       Google              Shell                docker sh    bin bash images  kube proxy amd64 v1 11 0 kube scheduler amd64 v1 11 0 kube controller manager amd64 v1 11 0 kube apiserver amd64 v1 11 0 etcd amd64 3 2 18 coredns 1 1 3 pause amd64 3 1 kubernetes dashboard amd64 v1 8 3 k8s dns sidecar amd64 1 14 9 k8s dns kube dns amd64 1 14 9 k8s dns dnsmasq nanny amd64 1 14 9   imageName   images       docker pull keveon  imageName docker tag keveon  imageName k8s gcr io  imageName docker rmi keveon  imageName done         V 1 11 0    docker tag da86e6ba6ca1 k8s gcr io pause 3 1      chmod           chmod  R 777   docker sh          sh docker sh                     swap sudo swapoff  a       swap            swap    sudo vi  etc stab   SELinux      selinux         etc sysconfig selinux     sed  i  s SELINUX permissive SELINUX disabled    etc sysconfig selinux                setenforce 0       systemctl disable firewalld service    systemctl stop firewalld service                         cat  etc sysctl d k8s conf net bridge bridge nf call ip6tables   1 net bridge bridge nf call iptables   1 vm swappiness 0 EOF                sysctl   system       k8s                                                                        kubeadm init   kubernetes version v1 11 0   pod network cidr 10 10 0 0 16                        I0712 10 46 30 938979 13461 feature_gate go 230  feature gates    map     init  using Kubernetes version  v1 11 0  preflight  running pre flight checks I0712 10 46 30 961005 13461 kernel_validator go 81  Validating kernel version I0712 10 46 30 961061 13461 kernel_validator go 96  Validating kernel config  WARNING SystemVerification   docker version greater recently validated version  Docker version  18 03 1 ce  Max validated version  17 03  WARNING Hostname   hostname  g2 apigateway  not reached  WARNING Hostname   hostname  g2 apigateway  lookup g2 apigateway 100 100 2 138 53  no host  preflight images  Pulling images required setting Kubernetes cluster  preflight images  minute two  depending speed internet connection  preflight images  perform action beforehand using  kubeadm config images pull   kubelet  Writing kubelet environment file flags file   var lib kubelet kubeadm flags env   kubelet  Writing kubelet configuration file   var lib kubelet config yaml   preflight  Activating kubelet service  certificates  Generated ca certificate key   certificates  Generated apiserver certificate key   certificates  apiserver serving cert signed DNS names  g2 apigateway kubernetes kubernetes default kubernetes default svc kubernetes default svc cluster local  IPs  10 96 0 1 172 16 8 62   certificates  Generated apiserver kubelet client certificate key   certificates  Generated sa key public key   certificates  Generated front proxy ca certificate key   certificates  Generated front proxy client certificate key   certificates  Generated etcd ca certificate key   certificates  Generated etcd server certificate key   certificates  etcd server serving cert signed DNS names  g2 apigateway localhost  IPs  127 0 0 1   1   certificates  Generated etcd peer certificate key   certificates  etcd peer serving cert signed DNS names  g2 apigateway localhost  IPs  172 16 8 62 127 0 0 1   1   certificates  Generated etcd healthcheck client certificate key   certificates  Generated apiserver etcd client certificate key   certificates  valid certificates keys exist   etc kubernetes pki   kubeconfig  Wrote KubeConfig file disk    etc kubernetes admin conf   kubeconfig  Wrote KubeConfig file disk    etc kubernetes kubelet conf   kubeconfig  Wrote KubeConfig file disk    etc kubernetes controller manager conf   kubeconfig  Wrote KubeConfig file disk    etc kubernetes scheduler conf   controlplane  wrote Static Pod manifest component kube apiserver   etc kubernetes manifests kube apiserver yaml   controlplane  wrote Static Pod manifest component kube controller manager   etc kubernetes manifests kube controller manager yaml   controlplane  wrote Static Pod manifest component kube scheduler   etc kubernetes manifests kube scheduler yaml   etcd  Wrote Static Pod manifest local etcd instance   etc kubern",
+        "objectID": "posts/install-k8s",
+        "date": "2018-08-14T12:07:03.000Z",
+        "draft": false,
+        "tags": [
+            "容器",
+            "kubernetes"
+        ],
+        "categories": [
+            "部署安装"
+        ],
+        "banner": "https://ws3.sinaimg.cn/large/ad5fbf65ly1g0t1a2z4m7j21rt15otlh.jpg",
+        "author": "郭旭东",
+        "summary": "最近由于公司业务发展到了瓶颈，原有的技术架构已经逐渐无法满足业务开发和测试的需求，出现了应用测试环境搭建复杂，有许多套（真的很多很多）应用环境，应用在持续集成/持续交付也遇到了很大的困难，经过讨论研究决定对应用和微服务进行容器化，这就是我首次直面docker和k8s的契机。",
+        "keywords": [
+            "容器",
+            "kubernetes"
+        ]
+    },
+    {
+        "title": "阿里云部署rancher2.1采坑记",
+        "uri": "posts/install-rancher",
+        "content": "ucloud  rancher                                           namespace        rancher      kubernetes   cattle system ns   cluster agent node agent            cattle system       kubectl delete ns cattle system                                       Terminating                                            ucloud                      SSL                                 CA                                        nginx                rancher                                      docker run  d   restart unless stopped    p 80 80  p 443 443    v  root var log auditlog  var log auditlog    e AUDIT_LEVEL 3    v  etc yourcertificatedirectory fullchain pem  etc rancher ssl cert pem    v  etc yourcertificatedirectory privkey pem  etc rancher ssl key pem   rancher rancher latest   no cacerts       dockerhub      rancher              docker ps                                                            TCP                       https                                           SLB    TCP             k8s    rancher                 rancher    rancher                                       rancher                 k8s                                                                       rancher     rancher       api                             TLS       rancher   ip                    k8s   rancher cattle cluster agent                          kubectl  n cattle system patch deployments cattle cluster agent   patch     spec      template      spec      hostAliases       hostnames    rancher keking cn     rancher     ip    10 0 0 219   rancher",
+        "objectID": "posts/install-rancher",
+        "date": "2018-11-29T10:28:13.000Z",
+        "draft": false,
+        "tags": [
+            "容器",
+            "阿里云",
+            "rancher"
+        ],
+        "categories": [
+            "问题解决"
+        ],
+        "banner": "https://ws1.sinaimg.cn/large/ad5fbf65ly1g0t1au03u7j21qf15ogr2.jpg",
+        "author": "郭旭东",
+        "summary": "近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以将部署到阿里云的图中遇到的问题和踩到的坑在这里进行记录。",
+        "keywords": [
+            "容器",
+            "kubernetes"
+        ]
+    },
+    {
+        "title": "Kubernetes删除一直处于Terminating状态的namespace",
+        "uri": "posts/k8s-d-n",
+        "content": "ucloud  rancher               Rancher   namespace cattle system               namespace    Terminating                 kubectl edit namespaces cattle system     namespaces yaml     finalizer value                    namespace",
+        "objectID": "posts/k8s-d-n",
+        "date": "2018-11-16T10:18:13.000Z",
+        "draft": false,
+        "tags": [
+            "kubernetes"
+        ],
+        "categories": [
+            "问题解决"
+        ],
+        "banner": "https://wx2.sinaimg.cn/large/ad5fbf65ly1g0t1c036hkj21qi15odl1.jpg",
+        "author": "郭旭东",
+        "summary": "kubernetes解决删除的namespace一直处于Terminating状态的情况。",
+        "keywords": [
+            "容器",
+            "kubernetes"
+        ]
+    },
+    {
+        "title": "解决kubernetes中ingress-nginx配置问题",
+        "uri": "posts/k8s-ingress-config",
+        "content": "kubernetes                                              kubernetes    7      ingress           HTTP S       ingress Ingress kubernetes API                   DNS   host  URL           Service                                Ingress    Ingress Controller             HTTP HTTPS            Nginx Envoy HAProxy Vulcand Traefik  Ingress        Pod          Pod                      NGINX Ingress Controller    NGINX               kubernetes                         NGINX Ingress Controller        Ingress     400 Request Header Cookie Large                       header       token                          token        400 Request Header Cookie Large  400 Request Header Cookie Large 400 Bad Request Request Header Cookie Large nginx 1 15 6          Service  nodeport                   ingress nginx            Ingress Controller Pod                 www data nginx ingress controller 5vx7x  etc nginx  cat nginx conf   grep clientheaderbuffer_size clientheaderbuffer_size 1k  www data nginx ingress controller 5vx7x  etc nginx  cat nginx conf   grep largeclientheader_buffers largeclientheader_buffers 4 8k        ingress      nginx ingress kubernetes io server snippet  clientheaderbuffer_size 2046k    Server snippet  Using annotation              nginx server                                         Excel            3W                        proxyreadtimeout                                    ingress      nginx ingress kubernetes io proxy read timeout  600              value   number      s             NGINX ingress controller       nginx                 nginx      ingress    https   kubernetes github io ingress nginx user guide nginx configuration annotations",
+        "objectID": "posts/k8s-ingress-config",
+        "date": "2019-03-06T06:42:05.000Z",
+        "draft": false,
+        "banner": "https://images.pexels.com/photos/1194713/pexels-photo-1194713.jpeg",
+        "author": "郭旭东",
+        "summary": "随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外的扎眼。这里就对实践中kubernetes集群中的7层负载均衡器ingress遇到的问题进行总结。",
+        "tags": [
+            "kubernetes",
+            "容器"
+        ],
+        "categories": [
+            "kubernetes"
+        ],
+        "keywords": [
+            "kubernetes",
+            "容器"
+        ]
+    },
+    {
+        "title": "Pod质量服务类别(QoS)",
+        "uri": "posts/k8s-qos",
+        "content": "Pod   requests limits   kubernetes Pod     BestEffort Burstable Guaranteed       Quality Service QoS     Guaranteed cpu requests limits memory requests limits   Pod        Burstable          cpu      requests   Pod        BestEffort           requests limits     Pod               Pod   OOM      requests               Pod              Burstable   Pod A   Pod B                  requests          95    Pod B 80",
+        "objectID": "posts/k8s-qos",
+        "date": "2019-03-04T11:18:13.000Z",
+        "draft": false,
+        "tags": [
+            "kubernetes"
+        ],
+        "categories": [
+            "kubernetes"
+        ],
+        "banner": "https://wx2.sinaimg.cn/large/ad5fbf65ly1g0t1d4atzlj21qf15oq8r.jpg",
+        "author": "郭旭东",
+        "summary": "根据Pod对象的requests和limits属性，kubernetes将Pod对象归类到BestEffort、Burstable和Guaranteed三个服务质量（Quality of Service，QoS）类别。",
+        "keywords": [
+            "容器",
+            "kubernetes"
+        ]
+    },
+    {
+        "title": "kubernetes集群概述",
+        "uri": "posts/k8s-topo",
+        "content": "2017 AWS Azure                   kubernetes     Docker      10       Swarm kubernetes       kubernetes                   2018               kubernetes   kubernetes                                 kubernetes   kubernetes                                                                                                                                                              kubernetes                                            kubernetes        kubernetes             API Server            Pod                       Pod         API Server  kubernetes                                          Pod             Pod                        redis nginx                Service Ingress                                                  API Server                kubectl   UI   kubernetes dashboard                  REST API   Pod               Pod              Nginx   Pod                                kubernetes                Pod  Pod      Service            Pod",
+        "objectID": "posts/k8s-topo",
+        "date": "2018-10-03T04:18:13.000Z",
+        "draft": false,
+        "tags": [
+            "kubernetes"
+        ],
+        "categories": [
+            "kubernetes"
+        ],
+        "banner": "https://wx3.sinaimg.cn/large/ad5fbf65ly1g0t1e34opvj21qi15owjf.jpg",
+        "author": "郭旭东",
+        "summary": "随着2017年AWS，Azure和阿里云相继在其原有容器服务上新增了对kubernetes的支持，而Docker官网也在同年10月宣布同时支持Swarm好kubernetes容器编排系统。kubernetes俨然已成为容器编排领域事实上的标准，而2018年更是各大公司相继将服务迁移到kubernetes上，而kubernetes则以惊人更新速度，保持着每个季度发布一个大版本的速度高速发展着。",
+        "keywords": [
+            "容器",
+            "kubernetes"
+        ]
+    },
+    {
+        "title": "kubernetes中pod同步时区问题",
+        "uri": "posts/pod-timezone",
+        "content": "18                                   bug                           8        docker                    K8S                  UTC0                UTC0    UTC8                                               K8S  Docker                                                                                    Docker                   etc localtime       pod                                                     yaml     pod      apiVersion  extensions v1beta1 kind  Deployment metadata  name  myweb spec  replicas  2 template  metadata  labels  app  myweb spec  containers  name  myweb image  nginx apline ports  containerPort  80     pod  volumeMounts  name  host time mountPath   etc localtime                 volumes  name  host time hostPath  path   etc localtime",
+        "objectID": "posts/pod-timezone",
+        "date": "2019-01-30T12:18:13.000Z",
+        "draft": false,
+        "tags": [
+            "kubernetes"
+        ],
+        "categories": [
+            "问题解决"
+        ],
+        "banner": "https://ws3.sinaimg.cn/large/ad5fbf65ly1g0t1f80hkgj21qo15oglu.jpg",
+        "author": "郭旭东",
+        "summary": "解决容器中时区问题。",
+        "keywords": [
+            "容器",
+            "kubernetes"
+        ]
+    },
+    {
+        "title": "Jenkins Pipeline集成Sonar进行代码质量检测",
+        "uri": "posts/sonar-pipline",
+        "content": "https   my oschina net keking     jenkins pipeline  Jenkins Pipeline        Pipeline                        Jenkins         Pipeline                                             Jenkins Pipeline                                          Jenkins Pipeline                       Jenkins     SonarQube  SonarQube open source platform perform automatic reviews static analysis code detect bugs  code smells security vulnerabilities 25  programming languages including Java  C   JavaScript  TypeScript  C C    COBOL more   SonarQube                               25       Java C  JavaScript TypeScript C C   COBOL                 devops    CI CD                     CI                                                                         review            sonar                      bug                                                 devops       jenkins sonarqube            jenkins2 166 sonarqube6 7 6        jenkins                         SonarQube Scanner Jenkins  SonarQube  token   token                  jenkins                SonarQube servers  sonar  webhook                  jenkins    Jenkins webhook    http    jenkins_url  sonarqube webhook        web       URL    jenkins pipeline  jenkinsfile        stage             steps   echo  starting codeAnalyze SonarQube        withSonarQubeEnv  sonar           withSonarQubeEnv          SonarQube servers Name      withMaven maven   M3     sh  mvn clean package  Dmaven test skip true sonar sonar  Dsonar projectKey    key   Dsonar projectName         Dsonar projectVersion         Dsonar sourceEncoding UTF 8  Dsonar exclusions src test     Dsonar sources src   Dsonar java binaries target classes  Dsonar host url  SonarQube     Dsonar login  SonarQube token       script   timeout 1              1                    sonar webhook    pipeline              pipeline  fail def qg   waitForQualityGate  sonar          waitForQualityGate           SonarQube servers Name       qg status     OK     error     Sonarqube               failure    qg status                   sonar projectKey   key       sonar projectName           sonar projectVersion           sonar sources            sonar java binaries     class               sonar exclusions            sonar host url SonarQube   sonar login SonarQube   token      jenkins                 sonar                   sonar                SonarQube          jenkins    SonarQube                                   hudson remoting ProxyException  hudson AbortException  SonarQube installation defined job  sonar  does not match configured installation  Number installations configured  1  want reassign jobs different SonarQube installation  check documentation https   redirect sonarsource com plugins jenkins html hudson plugins sonar SonarInstallation checkValid SonarInstallation java 94  hudson plugins sonar SonarBuildWrapper setUp SonarBuildWrapper java 67  org jenkinsci plugins workflow steps CoreWrapperStep Execution start CoreWrapperStep java 80  org jenkinsci plugins workflow cps DSL invokeStep DSL java 268  Caused  hudson remoting ProxyException  org codehaus groovy runtime InvokerInvocationException  hudson AbortException  SonarQube installation defined job  sonar  does not match configured installation  Number installations configured  1  want reassign jobs different SonarQube installation  check documentation https   redirect sonarsource com plugins jenkins html org jenkinsci plugins workflow cps CpsStepContext replay CpsStepContext java 499  org jenkinsci plugins workflow cps DSL invokeStep DSL java 295  org jenkinsci plugins workflow cps DSL invokeStep DSL java 207  org jenkinsci plugins workflow cps DSL invokeDescribable DSL java 395  org jenkinsci plugins workflow cps DSL invokeMethod DSL java 179  org jenkinsci plugins workflow cps CpsScript invokeMethod CpsScript java 122  sun reflect GeneratedMethodAccessor1200 invoke Unknown Source  sun reflect DelegatingMethodAccessorImpl invoke DelegatingMethodAccessorImpl java 43  java lang reflect Method invoke Method java 498  org codehaus groovy reflection CachedMethod invoke CachedMethod java 93  groovy lang MetaMethod doMethodInvoke MetaMethod java 325  groovy lang MetaClassImpl invokeMethod MetaClassImpl java 1213  groovy lang MetaClassImpl invokeMethod MetaClassImpl java 1022  org codehaus groovy runtime callsite PogoMetaClassSite call PogoMetaClassSite java 42  org codehaus groovy runtime callsite CallSiteArray defaultCall CallSiteArray java 48  org codehaus groovy runtime callsite AbstractCallSite call AbstractCallSite java 113  org kohsuke groovy sandbox impl Checker 1 call Checker java 157  org kohsuke groovy sandbox GroovyInterceptor onMethodCall GroovyInterceptor java 23  org jenkinsci plugins scriptsecurity sandbox groovy SandboxInterceptor onMethodCall SandboxInterceptor java 155  org kohsuke groovy sandbox impl Checker 1 call Checker java 155  org kohsuke groovy sandbox impl Checker checkedCall Checker java 159  org kohsuke groovy sandbox impl Checker checkedCall Checker java 129  org kohsuke groovy sandbox impl Checker checkedCall Checker java 129  org kohsuke groovy sandbox impl Checker checkedCall ",
+        "objectID": "posts/sonar-pipline",
+        "date": "2019-03-07T01:14:39.000Z",
+        "draft": false,
+        "banner": "https://wx1.sinaimg.cn/large/ad5fbf65ly1g0u28qlkvrj21pj15o4ji.jpg",
+        "author": "郭旭东",
+        "summary": "在devops理念中，CI/CD毫无疑问是最重要的一环，而代码质量检查则是CI中必不可少的一步。在敏捷开发的思想下，代码的迭代周期变短，交付速度提升，这个时候代码的质量就很难保证，测试只能保证功能完整与可用，而代码的质量纯靠review的话效率又很低，这个时候sonar...",
+        "tags": [
+            "devops",
+            "jenkins",
+            "sonar"
+        ],
+        "categories": [
+            "devops"
+        ],
+        "keywords": [
+            "devops",
+            "jenkins",
+            "sonar"
+        ]
+    },
+    {
+        "title": "Sunny",
+        "uri": "sunny",
+        "content": "",
+        "objectID": "sunny",
+        "date": "2019-03-09T02:09:48.000Z",
+        "draft": false
+    }
+]

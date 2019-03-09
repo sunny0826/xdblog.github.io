@@ -1,90 +1,86 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>kubernetes on MaoXian Play</title>
-    <link>https://blog.maoxianplay.com/tags/kubernetes/</link>
-    <description>Recent content in kubernetes on MaoXian Play</description>
+    <title>Kubernetes on GuoXD Blog</title>
+    <link>http://blog.maoxianplay.com/tags/kubernetes/</link>
+    <description>Recent content in Kubernetes on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 04 Mar 2019 19:18:13 +0800</lastBuildDate>
+    <language>zh</language>
+    <lastBuildDate>Wed, 06 Mar 2019 14:42:05 +0800</lastBuildDate>
     
-	<atom:link href="https://blog.maoxianplay.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://blog.maoxianplay.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>解决kubernetes中ingress-nginx配置问题</title>
+      <link>http://blog.maoxianplay.com/posts/2019/k8s-ingress-config/</link>
+      <pubDate>Wed, 06 Mar 2019 14:42:05 +0800</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/posts/2019/k8s-ingress-config/</guid>
+      <description>前言 随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外</description>
+    </item>
+    
+    <item>
       <title>Pod质量服务类别(QoS)</title>
-      <link>https://blog.maoxianplay.com/2019/k8s-qos/</link>
+      <link>http://blog.maoxianplay.com/posts/2019/k8s-qos/</link>
       <pubDate>Mon, 04 Mar 2019 19:18:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/2019/k8s-qos/</guid>
-      <description>根据Pod对象的requests和limits属性，kubernetes将Pod对象归类到BestEffort、Burstable和Guaranteed三个服务质量（Quality of Service，QoS）类别
-  Guaranteed  cpu:requests=limits memory:requests=limits 这类Pod具有最高优先级  Burstable  至少一个容器设置了cpu或内存资源的requests 这类Pod具有中等优先级  BestEffort  未有任何一个容器设置requests或limits属性 这类Pod具有最低优先级   同级别优先级的Pod资源在OOM时，与自身的requests属性相比，其内存占用比例最大的Pod对象将被首先杀死。如上图同属Burstable类别的Pod A将先于Pod B被杀死，虽然其内存用量小，但与自身的requests值相比，它的占用比例95%要大于Pod B的80%。</description>
+      <guid>http://blog.maoxianplay.com/posts/2019/k8s-qos/</guid>
+      <description>根据Pod对象的requests和limits属性，kubernetes将Pod对象归类到BestEffort、Burstable和Guar</description>
+    </item>
+    
+    <item>
+      <title>阿里云日志服务采集k8s日志并实现livetail功能</title>
+      <link>http://blog.maoxianplay.com/posts/2019/dashboard-k8s/</link>
+      <pubDate>Thu, 14 Feb 2019 14:07:06 +0800</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/posts/2019/dashboard-k8s/</guid>
+      <description>前言 目前的项目日志都是通过Logtail直接采集，投递到OSS持久化，同时可以通过阿里云日志服务、devops自建平台进行查看（虽然大部分人</description>
     </item>
     
     <item>
       <title>kubernetes中pod同步时区问题</title>
-      <link>https://blog.maoxianplay.com/2019/pod-timezone/</link>
+      <link>http://blog.maoxianplay.com/posts/2019/pod-timezone/</link>
       <pubDate>Wed, 30 Jan 2019 20:18:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/2019/pod-timezone/</guid>
-      <description>  新版监控大屏于18年最后一天正式上线，之后陆续进行了几次优化和修改，最近发现一个比较大的bug，就是监控显示的时间轴不对，显示的就是和目前的时间相差8小时，这就引出了docker中的时区问题
- 问题的原因 默认的情况，在K8S里启动一个容器，该容器的设置的时区是UTC0，但是对用户而言，主机环境并不在UTC0。我们在UTC8。如果不把容器的时区和主机主机设置为一致，则在查找日志等时候将非常不方便，也容易造成误解。但是K8S以及Docker容器没有一个简便的设置/开关在系统层面做配置。都需要我们从单个容器入手做设置，具体有两个方法：
- 直接修改镜像的时间设置，好处是应用部署时无需做特殊设置，但是需要手动构建Docker镜像。 部署应用时，单独读取主机的“/etc/localtime”文件，即创建pod时同步时区，无需修改镜像，但是每个应用都要单独设置。  问题的解决 这里我们选择第二种方法，即修改部署应用的yaml文件，创建pod时同步时区
-apiVersion: extensions/v1beta1 kind: Deployment metadata: name: myweb spec: replicas: 2 template: metadata: labels: app: myweb spec: containers: - name: myweb image: nginx:apline ports: - containerPort: 80 #挂载到pod中 volumeMounts: - name: host-time mountPath: /etc/localtime #需要被挂载的宿主机的时区文件 volumes: - name: host-time hostPath: path: /etc/localtime  效果对比 修改时区前 修改时区后 </description>
+      <guid>http://blog.maoxianplay.com/posts/2019/pod-timezone/</guid>
+      <description>新版监控大屏于18年最后一天正式上线，之后陆续进行了几次优化和修改，最近发现一个比较大的bug，就是监控显示的时间轴不对，显示的就是和目前的</description>
     </item>
     
     <item>
       <title>为ingress配置SSL证书，实现HTTPS访问</title>
-      <link>https://blog.maoxianplay.com/2018/https-ingress/</link>
+      <link>http://blog.maoxianplay.com/posts/2018/https-ingress/</link>
       <pubDate>Sat, 29 Dec 2018 21:28:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/2018/https-ingress/</guid>
-      <description>devops平台率先在公司内使用kubernetes集群提供后端服务，但是由于之前一直处于探索阶段，所以使用的事http的方式提供后端服务，但是在开发统一入口后，出现了访问HTTPS页面的跨域问题，由此引出了后端服务配置SSL证书的问题
- 使用rancher配置SSL证书 下载SSL证书文件 首先需要获得SSL证书文件，可以直接在阿里云SSL证书管理控制台下载
-选中需要下载证书，选择下载nginx证书 将证书上传项目 打开rancher，选择要使用证书的项目，点击资源中的证书
-将证书上传项目 打开rancher，选择要使用证书的项目，点击资源中的证书 添加证书，点击从文件上传 上传证书文件中的秘钥和证书，点击保存即可
-使用yaml上传证书 这个证书的原理其实是在相应的命名空间创建了一个包含证书信息的secrets
-apiVersion: v1 data: tls.crt: {私钥} tls.key: {证书} kind: Secret metadata: name: keking-cn namespace: devops-plat type: kubernetes.io/tls  在kubernetes上运行该yaml即可
-rancher中证书绑定 选中需要绑定证书的ingress，点击编辑，选中证书，保存即可（由于ingress-controller中没有绑定默认证书，所以这里不能选中默认） 保存完毕，证书即可生效</description>
+      <guid>http://blog.maoxianplay.com/posts/2018/https-ingress/</guid>
+      <description>devops平台率先在公司内使用kubernetes集群提供后端服务，但是由于之前一直处于探索阶段，所以使用的事http的方式提供后端服务，</description>
     </item>
     
     <item>
       <title>Kubernetes删除一直处于Terminating状态的namespace</title>
-      <link>https://blog.maoxianplay.com/2018/k8s-d-n/</link>
+      <link>http://blog.maoxianplay.com/posts/2018/k8s-d-n/</link>
       <pubDate>Fri, 16 Nov 2018 18:18:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/2018/k8s-d-n/</guid>
-      <description>  近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以需要将原有Rancher依赖的namespace（cattle-system）删除，但在删除中出现了删除的namespace一直处于Terminating状态的情况  解决方案 运行命令：
-kubectl edit namespaces cattle-system  可以看到namespaces的yaml配置： 将finalizer的value删除，这里将其设置为[]
-保存即可看到该namespace已被删除 </description>
+      <guid>http://blog.maoxianplay.com/posts/2018/k8s-d-n/</guid>
+      <description>近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以需要将原有Rancher依赖的namespace（cattle-s</description>
     </item>
     
     <item>
       <title>kubernetes集群概述</title>
-      <link>https://blog.maoxianplay.com/2018/k8s-topo/</link>
+      <link>http://blog.maoxianplay.com/posts/2018/k8s-topo/</link>
       <pubDate>Wed, 03 Oct 2018 12:18:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/2018/k8s-topo/</guid>
-      <description>  随着2017年AWS，Azure和阿里云相继在其原有容器服务上新增了对kubernetes的支持，而Docker官网也在同年10月宣布同时支持Swarm好kubernetes容器编排系统。kubernetes俨然已成为容器编排领域事实上的标准，而2018年更是各大公司相继将服务迁移到kubernetes上，而kubernetes则以惊人更新速度，保持着每个季度发布一个大版本的速度高速发展着。
- kubernetes特征 kubernetes是一种在一组主机上运行和协同容器化应用程序的系统，旨在提供可预测性、可拓展性与高可用性的方法来完全管理容器化应用和服务的生命周期平台。用户可以定义应用程序的运行方式，以及与其他应用程序或外部世界交互的途径，并能实现服务的扩容和缩容，执行平滑滚动更新，以及在不同版本的应用程序之间调度流量以测试功能或回滚有问题的部署。kubernetes提供了接口和可组合帆软平台原语，使得用户能够以高度的灵活性和可靠性定义及管理应用程序。
-kubernetes组件及网络通信 kubernetes集群的客户端可以分为两类：API Server客户端和应用程序（运行为Pod中的容器）客户端。  第一类客户端通常包含用户和Pod对象两种，它们通过API Server访问kubernetes集群完成管理任务，例如，管理集群上的各种资源对象。 第二类客户端一般也包含人类用户和Pod对象两种，它们的访问目标是Pod上运行于容器中的应用程序提供的各种具体的服务，如redis或nginx等，不过，这些访问请求通常要经由Service或Ingress资源对象进行。另外，第二类客户端的访问目标对象的操作要经由第一类客户端创建和配置完成后才进行。
-访问API Server时，人类用户一般借助于命令行工具kubectl或图形UI（例如kubernetes dashboard）进行，也通过编程接口进行访问，包括REST API。访问Pod中的应用时，其访问方式要取决于Pod中的应用程序，例如，对于运行Nginx容器的Pod来说，其最常用工具就是浏览器。
-管理员（开发人员或运维人员）使用kubernetes集群的常见操作包括通过控制器创建Pod，在Pod的基础上创建Service供第二类客户端访问，更新Pod中的应用版本（更新和回滚）以及对应用规模进行扩容或缩容等，另外还有集群附件管理、存储卷管理、网络及网络策略管理、资源管理和安全管理等。
-  </description>
+      <guid>http://blog.maoxianplay.com/posts/2018/k8s-topo/</guid>
+      <description>随着2017年AWS，Azure和阿里云相继在其原有容器服务上新增了对kubernetes的支持，而Docker官网也在同年10月宣布同时支</description>
     </item>
     
     <item>
       <title>centos7.2 安装k8s v1.11.0</title>
-      <link>https://blog.maoxianplay.com/2018/install-k8s/</link>
+      <link>http://blog.maoxianplay.com/posts/2018/install-k8s/</link>
       <pubDate>Tue, 14 Aug 2018 20:07:03 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/2018/install-k8s/</guid>
-      <description>前言  最近由于公司业务发展到了瓶颈，原有的技术架构已经逐渐无法满足业务开发和测试的需求，出现了应用测试环境搭建复杂，有许多套（真的很多很多）应用环境，应用在持续集成/持续交付也遇到了很大的困难，经过讨论研究决定对应用和微服务进行容器化，这就是我首次直面docker和k8s的契机（好吧，我是菜鸟）
- Kubernetes 介绍 Kubernetes 是 Google 团队发起的开源项目，它的目标是管理跨多个主机的容器，提供基本的部署，维护以及运用伸缩，主要实现语言为 Go 语言。 Kubernetes的特点：
- 易学：轻量级，简单，容易理解 便携：支持公有云，私有云，混合云，以及多种云平台 可拓展：模块化，可插拔，支持钩子，可任意组合 自修复：自动重调度，自动重启，自动复制  准备工作 注：以下操作都是在root权限下执行的
- 安装docker-ce，这里使用docker-ce-17.09.0.c版本，安装方法见之前的教程 安装Kubeadm
-#安装 Kubeadm 首先我们要配置好阿里云的国内源，执行如下命令： cat &amp;lt;&amp;lt;EOF &amp;gt; /etc/yum.repos.d/kubernetes.repo [kubernetes] name=Kubernetes baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64 enabled=1 gpgcheck=0 EOF #之后，执行以下命令来重建yum缓存： yum -y install epel-releaseyum clean all yum makecache  接下来需要安装指定版本的Kubeadm（这里要安装指定版本，因为后续依赖的镜像由于有墙无法拉取，这里我们只有指定版本的镜像），注意：这里是安装指定版本的Kubeadm，k8s的版本更新之快完全超出你的想象！
-yum -y install kubelet-1.11.0-0 yum -y install kubeadm-1.11.0-0 yum -y install kubectl-1.11.0-0 yum -y install kubernetes-cni #执行命令启动Kubeadm服务： systemctl enable kubelet &amp;amp;&amp;amp; systemctl start kubelet  配置 Kubeadm 所用到的镜像 这里是重中之重，因为在国内的原因，无法访问到 Google 的镜像库，所以我们需要执行以下脚本来从 Docker Hub 仓库中获取相同的镜像，并且更改 TAG 让其变成与 Google 拉去镜像一致。</description>
+      <guid>http://blog.maoxianplay.com/posts/2018/install-k8s/</guid>
+      <description>前言 最近由于公司业务发展到了瓶颈，原有的技术架构已经逐渐无法满足业务开发和测试的需求，出现了应用测试环境搭建复杂，有许多套（真的很多很多）应</description>
     </item>
     
   </channel>
