@@ -337,6 +337,15 @@ autocomplete('#aa-search-input',
 
 <p><img src="https://ws1.sinaimg.cn/large/ad5fbf65ly1g0yvjjcvdaj211b0jhgod.jpg" alt="image" /></p></li>
 
+<li><p>在pom.xml文件中添加</p>
+
+<pre><code>&lt;plugin&gt;
+    &lt;groupId&gt;org.sonarsource.scanner.maven&lt;/groupId&gt;
+    &lt;artifactId&gt;sonar-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;3.6.0.1398&lt;/version&gt;
+&lt;/plugin&gt;
+</code></pre></li>
+
 <li><p>配置jenkins</p>
 
 <p><strong>[系统管理]</strong>-<strong>[系统设置]</strong>-<strong>[SonarQube servers]</strong></p>
@@ -358,7 +367,6 @@ autocomplete('#aa-search-input',
 <pre><code>stage('依赖安全检查') {
     steps{
         dependencyCheckAnalyzer datadir: '', hintsFile: '', includeCsvReports: false, includeHtmlReports: true, includeJsonReports: false, includeVulnReports: true, isAutoupdateDisabled: false, outdir: '', scanpath: '', skipOnScmChange: false, skipOnUpstreamChange: false, suppressionFile: '', zipExtensions: ''
-
     }
 }
 
