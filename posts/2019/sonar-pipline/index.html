@@ -246,7 +246,7 @@ autocomplete('#aa-search-input',
                             
                             
                             |
-                            2700字 | 阅读大约需要6分钟
+                            3200字 | 阅读大约需要7分钟
                             </div>
                             
                             
@@ -300,13 +300,19 @@ autocomplete('#aa-search-input',
 <p>SonarQube是一个开源的平台，以执行与代码的静态分析，自动审查，可以检测在25+的编程语言如Java，C＃，JavaScript，TypeScript，C/C++，COBOL等的代码缺陷和安全漏洞。</p>
 </blockquote>
 
+<h3 id="owasp">OWASP</h3>
+
+<blockquote>
+<p>OWASP，全称是：Open Web Application Security Project，翻译为中文就是：开放式Web应用程序安全项目，是一个非营利组织，不附属于任何企业或财团，这也是该组织可以不受商业控制地进行安全开发及安全普及的重要原因，<a href="https://en.wikipedia.org/wiki/OWASP/">详细介绍</a>。OWASP Dependency-Check，它识别项目依赖关系，并检查是否存在任何已知的、公开的、漏洞，基于OWASP Top 10 2013。</p>
+</blockquote>
+
 <h2 id="场景">场景</h2>
 
 <p>在devops理念中，CI/CD毫无疑问是最重要的一环，而代码质量检查则是CI中必不可少的一步。在敏捷开发的思想下，代码的迭代周期变短，交付速度提升，这个时候代码的质量就很难保证，测试只能保证功能完整与可用，而代码的质量纯靠review的话效率又很低，这个时候sonar就可以很好的帮助开发自动化检测代码质量，降低bug数量，也可以根据扫描结果养成良好的编程习惯，同时也可以减少测试的工作量，真正提升整个团队效率，实现devops理念。</p>
 
 <h2 id="前提">前提</h2>
 
-<p>jenkins、sonarqube服务已经搭建完成</p>
+<p>jenkins、sonarqube服务已经搭建完成，jenkins安装sonar插件<code>SonarQube Scanner for Jenkins</code>，jenkins、sonarqube安装Dependency-Check插件<code>OWASP Dependency-Check Plugin</code></p>
 
 <p>版本：jenkins2.166，sonarqube6.7.6</p>
 
@@ -322,6 +328,14 @@ autocomplete('#aa-search-input',
 <li><p>SonarQube生成token，<strong>这个token不会显示第二次，所以一定要记住</strong></p>
 
 <p><img src="https://ws1.sinaimg.cn/mw690/ad5fbf65ly1g0u5902q6nj213f0hgwgn.jpg" alt="image" /></p></li>
+
+<li><p>SonarQube配置Dependency-Check</p>
+
+<p><strong>[配置]</strong>-<strong>[Dependency-Check]</strong></p>
+
+<p><strong>[注意：]</strong>这里去掉 <code>${WORKSPACE}/</code>，否则将报<code>[INFO] Dependency-Check XML report does not exists. Please check property sonar.dependencyCheck.reportPath:/data/jenkinsHome/workspace/xxx/${WORKSPACE}/dependency-check-report.xml</code></p>
+
+<p><img src="https://ws1.sinaimg.cn/large/ad5fbf65ly1g0yvjjcvdaj211b0jhgod.jpg" alt="image" /></p></li>
 
 <li><p>配置jenkins</p>
 
@@ -341,7 +355,16 @@ autocomplete('#aa-search-input',
 
 <p>在jenkinsfile文件中添加配置</p>
 
-<pre><code>stage('静态代码检查') {
+<pre><code>stage('依赖安全检查') {
+    steps{
+        dependencyCheckAnalyzer datadir: '', hintsFile: '', includeCsvReports: false, includeHtmlReports: true, includeJsonReports: false, includeVulnReports: true, isAutoupdateDisabled: false, outdir: '', scanpath: '', skipOnScmChange: false, skipOnUpstreamChange: false, suppressionFile: '', zipExtensions: ''
+        //有高级别组件漏洞时，fail掉pipeline
+        dependencyCheckPublisher canComputeNew: false, defaultEncoding: '', failedTotalHigh: '0', healthy: '', pattern: '', unHealthy: ''
+
+    }
+}
+
+stage('静态代码检查') {
     steps {
         echo &quot;starting codeAnalyze with SonarQube......&quot;
         withSonarQubeEnv('sonar') {
@@ -529,6 +552,18 @@ Cancelling nested steps due to timeout
 
 <p>原因：SonarQube没有配置webhook回调，导致请求超时，按照步骤4配置webhook即可解决</p>
 
+<h3 id="问题四-sonar找不到dependency-check-xml">问题四：sonar找不到Dependency-Check XML</h3>
+
+<pre><code>[INFO] Sensor Dependency-Check [dependencycheck]
+[INFO] Process Dependency-Check report
+[INFO] Dependency-Check XML report does not exists. Please check property sonar.dependencyCheck.reportPath:/data/jenkinsHome/workspace/xxx/${WORKSPACE}/dependency-check-report.xml
+[INFO] Analysis skipped/aborted due to missing report file
+[INFO] Dependency-Check HTML report does not exists. Please check property sonar.dependencyCheck.htmlReportPath:/data/jenkinsHome/workspace/xxx/${WORKSPACE}/dependency-check-report.html
+[INFO] HTML-Dependency-Check report does not exist.
+</code></pre>
+
+<p>原因：SonarQube配置Dependency-Check插件有误，按照上文配置即可</p>
+
 <h2 id="结语">结语</h2>
 
 <p>sonar与jenkins集成的方式还有很多，不止pipeline+maven这一种，还有配置在jenkins构建任务中、直接使用sonar脚本等方法。采用这样方法，一方面是配置相对简单，不需要每个构建任务都进行配置，只需要将jenkinsfile中拷入相应代码并修改几个参数即可。同时可以在静态代码扫描期间完整maven打包，减少持续集成的时间。</p>
@@ -662,7 +697,6 @@ Cancelling nested steps due to timeout
 
                 </div>
                 
-
             </div>
             
         </div>
