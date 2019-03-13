@@ -6,10 +6,19 @@
     <description>Recent content on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 09 Mar 2019 10:09:48 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 13 Mar 2019 15:45:43 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.maoxianplay.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>阿里云环境Istio初探</title>
+      <link>http://blog.maoxianplay.com/posts/2019/istio-demo/</link>
+      <pubDate>Wed, 13 Mar 2019 15:45:43 +0800</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/posts/2019/istio-demo/</guid>
+      <description>istio应用部署样例 该实例为一套istio服务上线流程：注入-&amp;gt;部署-&amp;gt;创建目标规则-&amp;gt;创建默认路由。就大多数istio</description>
+    </item>
     
     <item>
       <title>Sunny</title>
