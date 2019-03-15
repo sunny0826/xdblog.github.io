@@ -6,10 +6,19 @@
     <description>Recent content in 容器 on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 06 Mar 2019 14:42:05 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 15 Mar 2019 09:53:02 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.maoxianplay.com/tags/%E5%AE%B9%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Alpine Linux详解</title>
+      <link>http://blog.maoxianplay.com/posts/2019/alpine-linux/</link>
+      <pubDate>Fri, 15 Mar 2019 09:53:02 +0800</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/posts/2019/alpine-linux/</guid>
+      <description>简介 Small. Simple. Secure.Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox. Alpine Linux 是一个社区开发的面向安全应用的轻量级Linux发行版。 Alpine 的意思是“高山的”，它采用了musl libc</description>
+    </item>
     
     <item>
       <title>解决kubernetes中ingress-nginx配置问题</title>

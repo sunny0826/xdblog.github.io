@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Alpine Linux详解</title>
+      <link>http://blog.maoxianplay.com/posts/2019/alpine-linux/</link>
+      <pubDate>Fri, 15 Mar 2019 09:53:02 +0800</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/posts/2019/alpine-linux/</guid>
+      <description>简介 Small. Simple. Secure.Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox. Alpine Linux 是一个社区开发的面向安全应用的轻量级Linux发行版。 Alpine 的意思是“高山的”，它采用了musl libc</description>
+    </item>
+    
+    <item>
       <title>阿里云环境Istio初探</title>
       <link>http://blog.maoxianplay.com/posts/2019/istio-demo/</link>
       <pubDate>Wed, 13 Mar 2019 15:45:43 +0800</pubDate>

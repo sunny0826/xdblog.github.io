@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>系统 on GuoXD Blog</title>
+    <link>http://blog.maoxianplay.com/categories/%E7%B3%BB%E7%BB%9F/</link>
+    <description>Recent content in 系统 on GuoXD Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 15 Mar 2019 09:53:02 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.maoxianplay.com/categories/%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Alpine Linux详解</title>
+      <link>http://blog.maoxianplay.com/posts/2019/alpine-linux/</link>
+      <pubDate>Fri, 15 Mar 2019 09:53:02 +0800</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/posts/2019/alpine-linux/</guid>
+      <description>简介 Small. Simple. Secure.Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox. Alpine Linux 是一个社区开发的面向安全应用的轻量级Linux发行版。 Alpine 的意思是“高山的”，它采用了musl libc</description>
+    </item>
+    
+  </channel>
+</rss>
