@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://blog.maoxianplay.com/posts/2019/merge-kubeconfig/</loc>
+    <lastmod>2019-03-17T17:45:02+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.maoxianplay.com/posts/2019/alpine-linux/</loc>
     <lastmod>2019-03-15T09:53:02+08:00</lastmod>
   </url>
@@ -127,7 +132,7 @@
   
   <url>
     <loc>http://blog.maoxianplay.com/</loc>
-    <lastmod>2019-03-15T09:53:02+08:00</lastmod>
+    <lastmod>2019-03-17T17:45:02+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -151,13 +156,13 @@
   
   <url>
     <loc>http://blog.maoxianplay.com/tags/kubernetes/</loc>
-    <lastmod>2019-03-06T14:42:05+08:00</lastmod>
+    <lastmod>2019-03-17T17:45:02+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://blog.maoxianplay.com/categories/kubernetes/</loc>
-    <lastmod>2019-03-06T14:42:05+08:00</lastmod>
+    <lastmod>2019-03-17T17:45:02+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -200,6 +205,12 @@
   <url>
     <loc>http://blog.maoxianplay.com/tags/%E5%AE%B9%E5%99%A8/</loc>
     <lastmod>2019-03-15T09:53:02+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.maoxianplay.com/tags/%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2019-03-17T17:45:02+08:00</lastmod>
     <priority>0</priority>
   </url>
   
