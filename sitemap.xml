@@ -4,7 +4,7 @@
   
   <url>
     <loc>http://blog.maoxianplay.com/posts/2019/merge-kubeconfig/</loc>
-    <lastmod>2019-03-17T17:45:02+08:00</lastmod>
+    <lastmod>2019-03-17T10:45:02+08:00</lastmod>
   </url>
   
   <url>
@@ -113,13 +113,13 @@
   </url>
   
   <url>
-    <loc>http://blog.maoxianplay.com/categories/devops/</loc>
+    <loc>http://blog.maoxianplay.com/tags/devops/</loc>
     <lastmod>2019-03-07T09:14:39+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://blog.maoxianplay.com/tags/devops/</loc>
+    <loc>http://blog.maoxianplay.com/categories/devops/</loc>
     <lastmod>2019-03-07T09:14:39+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -132,18 +132,18 @@
   
   <url>
     <loc>http://blog.maoxianplay.com/</loc>
-    <lastmod>2019-03-17T17:45:02+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.maoxianplay.com/categories/istio/</loc>
-    <lastmod>2019-03-13T15:45:43+08:00</lastmod>
+    <lastmod>2019-03-17T10:45:02+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://blog.maoxianplay.com/tags/istio/</loc>
+    <lastmod>2019-03-13T15:45:43+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.maoxianplay.com/categories/istio/</loc>
     <lastmod>2019-03-13T15:45:43+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -155,14 +155,14 @@
   </url>
   
   <url>
-    <loc>http://blog.maoxianplay.com/categories/kubernetes/</loc>
-    <lastmod>2019-03-17T17:45:02+08:00</lastmod>
+    <loc>http://blog.maoxianplay.com/tags/kubernetes/</loc>
+    <lastmod>2019-03-17T10:45:02+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://blog.maoxianplay.com/tags/kubernetes/</loc>
-    <lastmod>2019-03-17T17:45:02+08:00</lastmod>
+    <loc>http://blog.maoxianplay.com/categories/kubernetes/</loc>
+    <lastmod>2019-03-17T10:45:02+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -210,7 +210,7 @@
   
   <url>
     <loc>http://blog.maoxianplay.com/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2019-03-17T17:45:02+08:00</lastmod>
+    <lastmod>2019-03-17T10:45:02+08:00</lastmod>
     <priority>0</priority>
   </url>
   

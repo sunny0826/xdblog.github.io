@@ -364,7 +364,7 @@
         "uri": "posts/merge-kubeconfig",
         "content": "kubernetes                                kubernetes       kubernetes                                                                                                          rancher                                      Context  kubectl config use context      kubectl config view                kubeconfig                                 apiVersion  v1 kind  Config preferences     clusters  cluster  name   cluster name  users  name   user name  contexts  context  cluster   cluster name  user   user name  name   context name  current context   context name                                    kubeconfig        kubeconfig    yaml              kubeconfig  json                                           kubernetes                                                  kubeconfig      yaml                                          json                             kubeconfig            kubeconfig          GitHub https   github com sunny0826 mergeKubeConfig                      kubernetes      istio            kube    config           Python   2 7  3                     pip install PyYAML             kubeconfig     python merge py    kubeconfig     python merge py  d  custom dir            config     kube    cp config    kube          kubernetes     kubectl config get contexts     kubernetes       kubectl config   help   kubernetes   kubectl config use context  your contexts        kubernetes",
         "objectID": "posts/merge-kubeconfig",
-        "date": "2019-03-17T09:45:02.000Z",
+        "date": "2019-03-17T02:45:02.000Z",
         "draft": false,
         "banner": "https://ws2.sinaimg.cn/large/ad5fbf65gy1g15zla19o4j21y013ete4.jpg",
         "author": "郭旭东",
