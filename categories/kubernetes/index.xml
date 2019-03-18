@@ -13,55 +13,55 @@
     
     <item>
       <title>自动合并Kubeconfig，实现多k8s集群切换</title>
-      <link>http://blog.maoxianplay.com/posts/2019/merge-kubeconfig/</link>
+      <link>http://blog.maoxianplay.com/posts/merge-kubeconfig/</link>
       <pubDate>Sun, 17 Mar 2019 10:45:02 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2019/merge-kubeconfig/</guid>
+      <guid>http://blog.maoxianplay.com/posts/merge-kubeconfig/</guid>
       <description>前言 随着微服务和容器化的深入人心，以及kubernetes已经成为容器编排领域的事实标准，越来越多的公司将自己的服务迁移到kubernete</description>
     </item>
     
     <item>
       <title>解决kubernetes中ingress-nginx配置问题</title>
-      <link>http://blog.maoxianplay.com/posts/2019/k8s-ingress-config/</link>
+      <link>http://blog.maoxianplay.com/posts/k8s-ingress-config/</link>
       <pubDate>Wed, 06 Mar 2019 14:42:05 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2019/k8s-ingress-config/</guid>
+      <guid>http://blog.maoxianplay.com/posts/k8s-ingress-config/</guid>
       <description>前言 随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外</description>
     </item>
     
     <item>
       <title>Pod质量服务类别(QoS)</title>
-      <link>http://blog.maoxianplay.com/posts/2019/k8s-qos/</link>
+      <link>http://blog.maoxianplay.com/posts/k8s-qos/</link>
       <pubDate>Mon, 04 Mar 2019 19:18:13 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2019/k8s-qos/</guid>
+      <guid>http://blog.maoxianplay.com/posts/k8s-qos/</guid>
       <description>根据Pod对象的requests和limits属性，kubernetes将Pod对象归类到BestEffort、Burstable和Guar</description>
     </item>
     
     <item>
       <title>为ingress配置SSL证书，实现HTTPS访问</title>
-      <link>http://blog.maoxianplay.com/posts/2018/https-ingress/</link>
+      <link>http://blog.maoxianplay.com/posts/https-ingress/</link>
       <pubDate>Sat, 29 Dec 2018 21:28:13 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2018/https-ingress/</guid>
+      <guid>http://blog.maoxianplay.com/posts/https-ingress/</guid>
       <description>devops平台率先在公司内使用kubernetes集群提供后端服务，但是由于之前一直处于探索阶段，所以使用的事http的方式提供后端服务，</description>
     </item>
     
     <item>
       <title>kubernetes集群概述</title>
-      <link>http://blog.maoxianplay.com/posts/2018/k8s-topo/</link>
+      <link>http://blog.maoxianplay.com/posts/k8s-topo/</link>
       <pubDate>Wed, 03 Oct 2018 12:18:13 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2018/k8s-topo/</guid>
+      <guid>http://blog.maoxianplay.com/posts/k8s-topo/</guid>
       <description>随着2017年AWS，Azure和阿里云相继在其原有容器服务上新增了对kubernetes的支持，而Docker官网也在同年10月宣布同时支</description>
     </item>
     
     <item>
       <title>容器技术概述</title>
-      <link>http://blog.maoxianplay.com/posts/2018/con-ind/</link>
+      <link>http://blog.maoxianplay.com/posts/con-ind/</link>
       <pubDate>Thu, 30 Aug 2018 18:45:22 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2018/con-ind/</guid>
+      <guid>http://blog.maoxianplay.com/posts/con-ind/</guid>
       <description>背景 自从微服务（Microservice）的出现，出于业务的需要，IT应用模型不断的变革。开发模式从瀑布式到敏捷开发；开发、运维和测试互相配</description>
     </item>
     

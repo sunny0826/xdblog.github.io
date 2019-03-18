@@ -13,46 +13,46 @@
     
     <item>
       <title>kubernetes中pod同步时区问题</title>
-      <link>http://blog.maoxianplay.com/posts/2019/pod-timezone/</link>
+      <link>http://blog.maoxianplay.com/posts/pod-timezone/</link>
       <pubDate>Wed, 30 Jan 2019 20:18:13 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2019/pod-timezone/</guid>
+      <guid>http://blog.maoxianplay.com/posts/pod-timezone/</guid>
       <description>新版监控大屏于18年最后一天正式上线，之后陆续进行了几次优化和修改，最近发现一个比较大的bug，就是监控显示的时间轴不对，显示的就是和目前的</description>
     </item>
     
     <item>
       <title>阿里云部署rancher2.1采坑记</title>
-      <link>http://blog.maoxianplay.com/posts/2018/install-rancher/</link>
+      <link>http://blog.maoxianplay.com/posts/install-rancher/</link>
       <pubDate>Thu, 29 Nov 2018 18:28:13 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2018/install-rancher/</guid>
+      <guid>http://blog.maoxianplay.com/posts/install-rancher/</guid>
       <description>近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以将部署到阿里云的图中遇到的问题和踩到的坑在这里进行记录。 无法删除n</description>
     </item>
     
     <item>
       <title>Kubernetes删除一直处于Terminating状态的namespace</title>
-      <link>http://blog.maoxianplay.com/posts/2018/k8s-d-n/</link>
+      <link>http://blog.maoxianplay.com/posts/k8s-d-n/</link>
       <pubDate>Fri, 16 Nov 2018 18:18:13 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2018/k8s-d-n/</guid>
+      <guid>http://blog.maoxianplay.com/posts/k8s-d-n/</guid>
       <description>近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以需要将原有Rancher依赖的namespace（cattle-s</description>
     </item>
     
     <item>
       <title>精简docker镜像</title>
-      <link>http://blog.maoxianplay.com/posts/2018/image-size/</link>
+      <link>http://blog.maoxianplay.com/posts/image-size/</link>
       <pubDate>Thu, 27 Sep 2018 20:28:13 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2018/image-size/</guid>
+      <guid>http://blog.maoxianplay.com/posts/image-size/</guid>
       <description>精简Docker镜像的好处很多，不仅可以节省存储空间和带宽，还能减少安全隐患。优化镜像大小的手段多种多样，因服务所使用的基础开发语言不同而有</description>
     </item>
     
     <item>
       <title>Docker容器启动退出解决方案</title>
-      <link>http://blog.maoxianplay.com/posts/2018/docker-quit/</link>
+      <link>http://blog.maoxianplay.com/posts/docker-quit/</link>
       <pubDate>Thu, 27 Sep 2018 19:27:03 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2018/docker-quit/</guid>
+      <guid>http://blog.maoxianplay.com/posts/docker-quit/</guid>
       <description>现象 启动docker容器 docker run –name [CONTAINER_NAME] [CONTAINER_ID] 查看容器运行状态 docker ps -a 发现刚刚启动的mydocker容器已经退出 原因 docker容器的主线程（do</description>
     </item>
     

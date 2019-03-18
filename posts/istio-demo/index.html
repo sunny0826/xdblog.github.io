@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>阿里云环境Istio初探 · guoxudong 博客</title>
+  <meta name="author" content="郭旭东" />
+
+  
+  <meta name="keywords" content="istio, service mesh, 阿里云">
+  
+
+  <meta name="generator" content="Hugo 0.52" />
+
+  
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  
+  <link href="/css/animate.css" rel="stylesheet">
+
+  
+  
+  <link href="/css/style.violet.css" rel="stylesheet" id="theme-stylesheet">
+  
+
+  
+  <link href="/css/custom.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/search.css" />
+
+  
+  
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+
+  
+  <link href="/css/owl.carousel.css" rel="stylesheet">
+  <link href="/css/owl.theme.css" rel="stylesheet">
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="GuoXD Blog">
+
+  
+  <link rel="stylesheet" href="/css/prism.css" />
+
+  
+  <meta property="og:title" content="阿里云环境Istio初探" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/posts/istio-demo//" />
+  <meta property="og:image" content="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" />
+  <meta property="og:image:alt" content="ServiceMesher Logo" />
+
+  
+  <meta name="description" content="极简的istio样例部署，可以帮助新手快速入门，相较官方提供的Bookinfo应用更容易上手。">
+  <meta property="og:description" content="极简的istio样例部署，可以帮助新手快速入门，相较官方提供的Bookinfo应用更容易上手。">
+  <meta name="twitter:description" content="极简的istio样例部署，可以帮助新手快速入门，相较官方提供的Bookinfo应用更容易上手。">
+  <meta property="og:description" content="极简的istio样例部署，可以帮助新手快速入门，相较官方提供的Bookinfo应用更容易上手。" />
+
+  
+  
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?86f8ba05a3c18723f9672cc23a880558";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+  
+  
+
+</head>
+
+
+  <body>
+
+    <div id="all">
+
+        <header>
+
+          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="/">
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="阿里云环境Istio初探 logo" class="hidden-xs hidden-sm">
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="阿里云环境Istio初探 logo" class="visible-xs visible-sm">
+                    <span class="sr-only">阿里云环境Istio初探 - 跳到主页</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">切换导航</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/">主页</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/posts/">博客</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">小助手写真 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      
+                        <li><a href="/maoxian/">毛线</a></li>
+                      
+                        <li><a href="/sunny/">Sunny</a></li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/contact/">关于我们</a>
+                    
+                  </li>
+                  
+                  
+                    <li>
+                        <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+                        <span class="hidden-sm hidden-md hidden-lg">搜索</span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+                    </a>
+                    </li>
+                  
+                </ul>
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+<div id="modalSearch" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">博客搜索</h4>
+      </div>
+      <div class="modal-body">
+          
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="输入文章标题或摘要" name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+<script src="/js/algoliasearch.min.js"></script>
+<script src="/js/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("BE80MGWD9D", "77ca6abe5531ce66ff7c3b2486222d85");
+var index = client.initIndex("gxd-blog");
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            baseURL="http:\/\/blog.maoxianplay.com\//"
+            baseURL=baseURL.substring(0,baseURL.length-1)
+            return '<span>' + '<a href="' + baseURL + suggestion.uri+ '">' +
+                suggestion._highlightResult.title.value + '</a></span>'+
+                '<span>'+suggestion._highlightResult.summary.value+'</span>';
+        }
+    }
+});
+</script>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        </header>
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>阿里云环境Istio初探</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+                        <div class="well">
+                            <div class="author-category">
+                            <i class="fa fa-calendar-o">
+                            2019年3月13日
+                            </i>
+                            |
+                            
+                            作者 郭旭东
+                            
+                            
+                            
+                            |
+                            1600字 | 阅读大约需要4分钟
+                            </div>
+                            
+                            
+                            <div class="author-category">
+                            
+                            
+                            归档于 <a href="/categories/istio">istio</a>
+                            
+                            |
+                            
+                            
+                            
+                            标签
+                            
+                            <a style="text-transform:capitalize" href="/tags/istio/"><i>#istio</i></a>
+                            
+                            <a style="text-transform:capitalize" href="/tags/service-mesh/"><i>#service mesh</i></a>
+                            
+                            <a style="text-transform:capitalize" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/"><i>#阿里云</i></a>
+                            
+                            </div>
+                            
+                            
+                        </div>
+                        <div id="post-content">
+                          
+
+<h1 id="istio应用部署样例">istio应用部署样例</h1>
+
+<blockquote>
+<p>该实例为一套istio服务上线流程：<code>注入</code>-&gt;<code>部署</code>-&gt;<code>创建目标规则</code>-&gt;<code>创建默认路由</code>。就大多数istio服务网格应用均可基于这一流程上线。</p>
+</blockquote>
+
+<h3 id="部署istio">部署istio</h3>
+
+<p>istio有多种部署方式，阿里云、华为云等云服务商均提供一键安装，同时也可以通过GitHub下载release包，使用<code>install/kubernetes/istio-demo.yaml</code>部署，或者使用helm部署。<strong>这里采用阿里云容器服务一键部署istio</strong>。</p>
+
+<p><img src="https://ws4.sinaimg.cn/large/ad5fbf65ly1g117xxixlvj20a00ajdgb.jpg" alt="image" /></p>
+
+<h3 id="部署两个版本的服务">部署两个版本的服务</h3>
+
+<p>这里选择一个简单的Python项目作为服务端，这里使用<a href="https://github.com/fleeto">崔秀龙</a>老哥的<a href="https://github.com/fleeto/flaskapp/blob/master/app/main.py">flaskapp</a>服务，该服务的作用就是提供2个url路径：</p>
+
+<ul>
+<li>一个是/env，用户获取容器中的环境变量，例如 <a href="http://flaskapp/env/version">http://flaskapp/env/version</a></li>
+<li>另一个是/fetch ，用于获取在参数url中指定的网址的内容，例如 <a href="http://flaskapp/fetch?url=http://weibo.com">http://flaskapp/fetch?url=http://weibo.com</a></li>
+</ul>
+
+<p>创建2个Deployment，分别命名为 flaskapp-v1 和 flaskapp-v2 ，同时创建一个 Service ,将其命名为flaskapp。代码文件为 <code>flaskapp.istio.yaml</code>。</p>
+
+<pre><code>---
+apiVersion: v1
+kind: Service
+metadata:
+name: flaskapp
+labels:
+    app: flaskapp
+spec:
+selector:
+    app: flaskapp
+ports:
+- name: http
+    port: 80
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+name: flaskapp-v1
+spec:
+replicas: 1
+template:
+    metadata:
+    labels:
+        app: flaskapp
+        version: v1
+    spec:
+    containers:
+    - name: flaskapp
+        image: dustise/flaskapp
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: version
+        value: v1
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+name: flaskapp-v2
+spec:
+replicas: 1
+template:
+    metadata:
+    labels:
+        app: flaskapp
+        version: v2
+    spec:
+    containers:
+    - name: flaskapp
+        image: dustise/flaskapp
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: version
+        value: v2
+</code></pre>
+
+<p><strong>注意</strong></p>
+
+<ul>
+<li>两个版本Deployment的镜像一致，但是使用了不同的version标签区分，分别为 v1 和 v2 。实际环境中的镜像是不同的</li>
+<li>在两个Deployment中都有一个名为version的环境变量，分别为 v1 和 v2 。这里设置是为了方便后续区分服务。</li>
+<li>两个Deployment中都使用了 app 和 version 标签，在 istio 网格应用中通常会使用这两个标签作为应用和版本的标识。</li>
+<li>Service 中的 Selector 仅使用了一个 app 标签，这意味着该 Service 对两个 Deployment 都是有效的。</li>
+<li>将在 Service 中定义的端口根据 <strong>istio 规范</strong>命名为http。</li>
+</ul>
+
+<p><strong>istio注入并部署服务端</strong></p>
+
+<pre><code>$ istioctl kube-inject -f flask.istio.yaml | kubectl apply -f -
+service/flaskapp created
+deployment.extensions/flaskapp-v1 created
+deployment.extensions/flaskapp-v2 created
+</code></pre>
+
+<p>在rancher查看注入情况</p>
+
+<p><img src="https://ws4.sinaimg.cn/large/ad5fbf65ly1g1045ku3dcj20cj05kglp.jpg" alt="image" /></p>
+
+<p>这里也可以使用<code>kubectl describe po flaskapp-v1-7d4f9b8459-2ncnf</code>命令查看Pod容器，这里可以看到Pod中多了一个容器，名为<code>istio-proxy</code>，这就表示注入成功了。而前面<code>istio-init</code>的初始化容器，这个容器是用于初始化劫持的。</p>
+
+<h3 id="部署客户端">部署客户端</h3>
+
+<p>这里的客户端是一个安装了测试工具的镜像，测试的内容可以在容器内通过shell完成。代码文件为 <code>sleep.istio.yaml</code>。</p>
+
+<pre><code>---
+apiVersion: v1
+kind: Service
+metadata:
+name: sleep
+labels:
+    app: sleep
+    version: v1
+spec:
+selector:
+    app: sleep
+    version: v1
+ports:
+- name: ssh
+    port: 80
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+name: sleep
+spec:
+replicas: 1
+template:
+    metadata:
+    labels:
+        app: sleep
+        version: v1
+    spec:
+    containers:
+    - name: sleep
+        image: dustise/sleep
+        imagePullPolicy: IfNotPresent
+</code></pre>
+
+<p><strong>istio注入并部署客户端</strong></p>
+
+<pre><code>$ istioctl kube-inject -f sleep.istio.yaml | kubectl apply -f -
+service/sleep created
+deployment.extensions/sleep created
+</code></pre>
+
+<p><code>sleep</code>应用的Pod进入Running状态就可以进行验证了</p>
+
+<h3 id="验证服务">验证服务</h3>
+
+<p>直接在sleep容器中执行命令行</p>
+
+<pre><code>bash-4.4# for i in `seq 10`;do http --body http://flaskapp/env/version;done
+
+v1
+
+v2
+
+...
+
+v1
+</code></pre>
+
+<p>该命令使用一个for循环，重复访问 <a href="http://flaskapp/env/version">http://flaskapp/env/version</a> ，查看内容，结果为 v1 和 v2 随机出现，各占一半。出现 v1 和 v2 版本轮流调用的效果，达到了基本的负载均衡的功能。</p>
+
+<h3 id="创建目标规则">创建目标规则</h3>
+
+<p>目标规则代码 <code>flaskapp-destinationrule.yaml</code></p>
+
+<pre><code>apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+name: flaskapp
+spec:
+host: flaskapp
+subsets:
+- name: v1
+    labels:
+    version: v1
+- name: v2
+    labels:
+    version: v2
+</code></pre>
+
+<p><strong>部署目标规则（这里使用kubectl和istioctl均可）</strong></p>
+
+<pre><code>$ kubectl apply -f flaskapp-destinationrule.yaml
+Created config destination-rule/default/flaskapp at revision 59183403
+</code></pre>
+
+<h3 id="创建默认路由">创建默认路由</h3>
+
+<p>默认路由代码 <code>flaskapp-default-vs-v2.yaml</code></p>
+
+<pre><code>apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+name: flaskapp-default-v2
+spec:
+hosts: 
+- flaskapp
+http:
+- route:
+    - destination:
+    host: flaskapp
+    subset: v2
+</code></pre>
+
+<p><strong>部署默认路由</strong></p>
+
+<pre><code>$ kubectl apply -f flaskapp-default-vs-v2.yaml
+Created config virtual-service/default/flaskapp-default-v2 at revision 59185583
+</code></pre>
+
+<h3 id="验证路由规则是否生效">验证路由规则是否生效</h3>
+
+<p>再次在sleep容器中执行命令，查看新定义的流量管理规则是否生效</p>
+
+<pre><code>bash-4.4# for i in `seq 10`;do http --body http://flaskapp/env/version;done
+v2
+
+v2
+
+v2
+
+v2
+
+v2
+
+v2
+
+v2
+
+v2
+
+v2
+
+v2
+</code></pre>
+
+<p>这里就可以看到，设置的默认路由已经生效了，多次重复访问，返回的内容都是来自环境变量 version 设置为 v2 的版本，也就是v2版本。</p>
+
+<h4 id="kiali查看调用情况">kiali查看调用情况</h4>
+
+<p><img src="https://ws4.sinaimg.cn/large/ad5fbf65ly1g104tydblxj21az0li40i.jpg" alt="image" /></p>
+
+<p>可以看到流量都进入了v2版本中</p>
+
+<h3 id="小结">小结</h3>
+
+<blockquote>
+<p>这里实现了一个极简的istio应用，可以帮助新手快速入门，官网提供的Bookinfo应用较为复杂。这里提供的小例子更为简洁易懂，非常利于入门。</p>
+</blockquote>
+
+<h3 id="参考">参考</h3>
+
+<ul>
+<li><a href="https://github.com/fleeto/istio-for-beginner">《深入浅出Istio》</a>    &mdash;   崔秀龙</li>
+</ul>
+
+                        </div>
+                        
+                        
+                        
+                        
+                        <ul class="pager blog-pager">
+                        
+                        <li class="previous">
+                        <a href="http://blog.maoxianplay.com/posts/sonar-pipline/" data-toggle="tooltip" data-placement="top" title="Jenkins Pipeline集成Sonar进行代码质量检测">&larr; 更旧</a>
+                        </li>
+                         
+                        <li class="next">
+                        <a href="http://blog.maoxianplay.com/posts/alpine-linux/" data-toggle="tooltip" data-placement="top" title="Alpine Linux详解">更新 &rarr;</a>
+                        </li>
+                        
+                        </ul>
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        <div class="panel panel-default sidebar-menu">
+     
+    <div class="panel-heading">
+     <h3 class="panel-title">相关文章</h3>
+    </div>
+    <div class="panel-body">
+     <ul class="nav nav-pills nav-stacked">
+        
+        <li><a href="/posts/dashboard-k8s/"><i class="fa fa-link"></i>阿里云日志服务采集k8s日志并实现livetail功能</a></li>
+         
+        <li><a href="/posts/https-ingress/"><i class="fa fa-link"></i>为ingress配置SSL证书，实现HTTPS访问</a></li>
+         
+        <li><a href="/posts/install-rancher/"><i class="fa fa-link"></i>阿里云部署rancher2.1采坑记</a></li>
+         
+     </ul>
+    </div>
+     
+</div>
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">分类</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            <li><a href="/categories/devops"><i class="fa fa-navicon"></i>devops (1)</a>
+            </li>
+            
+            <li><a href="/categories/istio"><i class="fa fa-navicon"></i>istio (1)</a>
+            </li>
+            
+            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (6)</a>
+            </li>
+            
+            <li><a href="/categories/%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f%e5%bc%80%e5%8f%91"><i class="fa fa-navicon"></i>应用程序开发 (1)</a>
+            </li>
+            
+            <li><a href="/categories/%e7%b3%bb%e7%bb%9f"><i class="fa fa-navicon"></i>系统 (1)</a>
+            </li>
+            
+            <li><a href="/categories/%e9%83%a8%e7%bd%b2%e5%ae%89%e8%a3%85"><i class="fa fa-navicon"></i>部署安装 (3)</a>
+            </li>
+            
+            <li><a href="/categories/%e9%97%ae%e9%a2%98%e8%a7%a3%e5%86%b3"><i class="fa fa-navicon"></i>问题解决 (5)</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+    <div class="panel-heading">
+      <h3 class="panel-title">标签</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="/tags/devops"><i class="fa fa-tags"></i> devops</a>
+            </li>
+            
+            <li><a href="/tags/docker"><i class="fa fa-tags"></i> docker</a>
+            </li>
+            
+            <li><a href="/tags/istio"><i class="fa fa-tags"></i> istio</a>
+            </li>
+            
+            <li><a href="/tags/jenkins"><i class="fa fa-tags"></i> jenkins</a>
+            </li>
+            
+            <li><a href="/tags/kubernetes"><i class="fa fa-tags"></i> kubernetes</a>
+            </li>
+            
+            <li><a href="/tags/linux"><i class="fa fa-tags"></i> linux</a>
+            </li>
+            
+            <li><a href="/tags/rancher"><i class="fa fa-tags"></i> rancher</a>
+            </li>
+            
+            <li><a href="/tags/service-mesh"><i class="fa fa-tags"></i> service-mesh</a>
+            </li>
+            
+            <li><a href="/tags/sonar"><i class="fa fa-tags"></i> sonar</a>
+            </li>
+            
+            <li><a href="/tags/%e4%ba%91%e5%8e%9f%e7%94%9f"><i class="fa fa-tags"></i> 云原生</a>
+            </li>
+            
+            <li><a href="/tags/%e5%ae%b9%e5%99%a8"><i class="fa fa-tags"></i> 容器</a>
+            </li>
+            
+            <li><a href="/tags/%e5%b7%a5%e5%85%b7"><i class="fa fa-tags"></i> 工具</a>
+            </li>
+            
+            <li><a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1"><i class="fa fa-tags"></i> 微服务</a>
+            </li>
+            
+            <li><a href="/tags/%e6%97%a5%e5%bf%97"><i class="fa fa-tags"></i> 日志</a>
+            </li>
+            
+            <li><a href="/tags/%e8%bd%af%e4%bb%b6%e8%ae%be%e8%ae%a1"><i class="fa fa-tags"></i> 软件设计</a>
+            </li>
+            
+            <li><a href="/tags/%e9%98%bf%e9%87%8c%e4%ba%91"><i class="fa fa-tags"></i> 阿里云</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+            </div>
+            
+        </div>
+        
+
+        <footer id="footer">
+    <div class="container">
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>关于我们</h4>
+
+            <p><p>凯京科技-新物流平台领军者</p><img src=https://wx4.sinaimg.cn/thumb150/ad5fbf65ly1g0szvh8amaj20dw0dwwfc.jpg></p>
+
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+             
+            <h4>最新博客</h4>
+
+            <div class="blog-entries">
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/posts/merge-kubeconfig/">
+                          
+                          <img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g15zla19o4j21y013ete4.jpg" class="img-responsive" alt="自动合并Kubeconfig，实现多k8s集群切换">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/merge-kubeconfig/">自动合并Kubeconfig，实现多k8s集群切换</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/posts/alpine-linux/">
+                          
+                          <img src="https://ws3.sinaimg.cn/large/ad5fbf65ly1g13fonf2emj21qi15o7k2.jpg" class="img-responsive" alt="Alpine Linux详解">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/alpine-linux/">Alpine Linux详解</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/posts/istio-demo/">
+                          
+                          <img src="https://wx3.sinaimg.cn/large/ad5fbf65ly1g117v91a61j21qi15otcd.jpg" class="img-responsive" alt="阿里云环境Istio初探">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/istio-demo/">阿里云环境Istio初探</a></h5>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr class="hidden-md hidden-lg">
+             
+
+        </div>
+        
+
+        
+        <div class="col-md-4 col-sm-6">
+
+          <h4>联系</h4>
+
+            <p>加我微信（请备注姓名-公司）</p><p><img src="https://ws1.sinaimg.cn/thumb150/ad5fbf65ly1g0szrz7jd6j20ah0ahjtd.jpg"></p>
+      
+
+
+            <a href="/contact" class="btn btn-small btn-template-main">跳到联系页面</a>
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Hugo模板来自</p>
+            
+            
+            <p class="pull-left">&nbsp;<a href="http://www.miibeian.gov.cn/"> <a href="http://www.servicemesher.com/">ServiceMesher社区<a/></a></p>
+            
+            <p class="pull-right">
+              模板来自 <a href="http://bootstrapious.com/free-templates">Bootstrapious</a>.
+              
+              移植到 Hugo 来自 <a href="https://github.com/devcows/hugo-universal-theme">DevCows</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    </div>
+    
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+<script src="/js/front.js"></script>
+
+
+<script src="/js/owl.carousel.min.js"></script>
+
+<script src="/js/prism.js"></script>
+
+
+<script src="/js/algoliasearch.min.js"></script>
+<script src="/js/autocomplete.min.js"></script>
+
+
+  </body>
+</html>

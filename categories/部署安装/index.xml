@@ -13,28 +13,28 @@
     
     <item>
       <title>阿里云日志服务采集k8s日志并实现livetail功能</title>
-      <link>http://blog.maoxianplay.com/posts/2019/dashboard-k8s/</link>
+      <link>http://blog.maoxianplay.com/posts/dashboard-k8s/</link>
       <pubDate>Thu, 14 Feb 2019 14:07:06 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2019/dashboard-k8s/</guid>
+      <guid>http://blog.maoxianplay.com/posts/dashboard-k8s/</guid>
       <description>前言 目前的项目日志都是通过Logtail直接采集，投递到OSS持久化，同时可以通过阿里云日志服务、devops自建平台进行查看（虽然大部分人</description>
     </item>
     
     <item>
       <title>centos7.2 安装k8s v1.11.0</title>
-      <link>http://blog.maoxianplay.com/posts/2018/install-k8s/</link>
+      <link>http://blog.maoxianplay.com/posts/install-k8s/</link>
       <pubDate>Tue, 14 Aug 2018 20:07:03 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2018/install-k8s/</guid>
+      <guid>http://blog.maoxianplay.com/posts/install-k8s/</guid>
       <description>前言 最近由于公司业务发展到了瓶颈，原有的技术架构已经逐渐无法满足业务开发和测试的需求，出现了应用测试环境搭建复杂，有许多套（真的很多很多）应</description>
     </item>
     
     <item>
       <title>centos7安装指定版本的docker</title>
-      <link>http://blog.maoxianplay.com/posts/2018/install-docker/</link>
+      <link>http://blog.maoxianplay.com/posts/install-docker/</link>
       <pubDate>Tue, 14 Aug 2018 20:05:21 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2018/install-docker/</guid>
+      <guid>http://blog.maoxianplay.com/posts/install-docker/</guid>
       <description>前言 在使用centos7，并使用荫安装搬运工的时候，往往不希望安装最新版本的搬运工，而是希望安装与自己熟悉或者当前业务环境需要的版本，例如目</description>
     </item>
     

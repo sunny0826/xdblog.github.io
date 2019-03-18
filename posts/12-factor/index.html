@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>理解十二要素应用(12-Factor) · guoxudong 博客</title>
+  <meta name="author" content="郭旭东" />
+
+  
+  <meta name="keywords" content="软件设计, 云原生, 微服务, 架构">
+  
+
+  <meta name="generator" content="Hugo 0.52" />
+
+  
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  
+  <link href="/css/animate.css" rel="stylesheet">
+
+  
+  
+  <link href="/css/style.violet.css" rel="stylesheet" id="theme-stylesheet">
+  
+
+  
+  <link href="/css/custom.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/search.css" />
+
+  
+  
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+
+  
+  <link href="/css/owl.carousel.css" rel="stylesheet">
+  <link href="/css/owl.theme.css" rel="stylesheet">
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="GuoXD Blog">
+
+  
+  <link rel="stylesheet" href="/css/prism.css" />
+
+  
+  <meta property="og:title" content="理解十二要素应用(12-Factor)" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/posts/12-factor//" />
+  <meta property="og:image" content="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" />
+  <meta property="og:image:alt" content="ServiceMesher Logo" />
+
+  
+  <meta name="description" content="为了更好的拥抱云原生架构，同时提高软件交付质量，开发人员必须改变他们的编码方式，并未开发者和应用程序所运行的基础架构之间创造一个新的协议，十二要素应用宣言应运而生。">
+  <meta property="og:description" content="为了更好的拥抱云原生架构，同时提高软件交付质量，开发人员必须改变他们的编码方式，并未开发者和应用程序所运行的基础架构之间创造一个新的协议，十二要素应用宣言应运而生。">
+  <meta name="twitter:description" content="为了更好的拥抱云原生架构，同时提高软件交付质量，开发人员必须改变他们的编码方式，并未开发者和应用程序所运行的基础架构之间创造一个新的协议，十二要素应用宣言应运而生。">
+  <meta property="og:description" content="为了更好的拥抱云原生架构，同时提高软件交付质量，开发人员必须改变他们的编码方式，并未开发者和应用程序所运行的基础架构之间创造一个新的协议，十二要素应用宣言应运而生。" />
+
+  
+  
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?86f8ba05a3c18723f9672cc23a880558";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+  
+  
+
+</head>
+
+
+  <body>
+
+    <div id="all">
+
+        <header>
+
+          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="/">
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="理解十二要素应用(12-Factor) logo" class="hidden-xs hidden-sm">
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="理解十二要素应用(12-Factor) logo" class="visible-xs visible-sm">
+                    <span class="sr-only">理解十二要素应用(12-Factor) - 跳到主页</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">切换导航</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/">主页</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/posts/">博客</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">小助手写真 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      
+                        <li><a href="/maoxian/">毛线</a></li>
+                      
+                        <li><a href="/sunny/">Sunny</a></li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/contact/">关于我们</a>
+                    
+                  </li>
+                  
+                  
+                    <li>
+                        <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+                        <span class="hidden-sm hidden-md hidden-lg">搜索</span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+                    </a>
+                    </li>
+                  
+                </ul>
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+<div id="modalSearch" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">博客搜索</h4>
+      </div>
+      <div class="modal-body">
+          
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="输入文章标题或摘要" name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+<script src="/js/algoliasearch.min.js"></script>
+<script src="/js/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("BE80MGWD9D", "77ca6abe5531ce66ff7c3b2486222d85");
+var index = client.initIndex("gxd-blog");
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            baseURL="http:\/\/blog.maoxianplay.com\//"
+            baseURL=baseURL.substring(0,baseURL.length-1)
+            return '<span>' + '<a href="' + baseURL + suggestion.uri+ '">' +
+                suggestion._highlightResult.title.value + '</a></span>'+
+                '<span>'+suggestion._highlightResult.summary.value+'</span>';
+        }
+    }
+});
+</script>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        </header>
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>理解十二要素应用(12-Factor)</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+                        <div class="well">
+                            <div class="author-category">
+                            <i class="fa fa-calendar-o">
+                            2019年2月14日
+                            </i>
+                            |
+                            
+                            作者 郭旭东
+                            
+                            
+                            
+                            |
+                            1000字 | 阅读大约需要2分钟
+                            </div>
+                            
+                            
+                            <div class="author-category">
+                            
+                            
+                            归档于 <a href="/categories/%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f%e5%bc%80%e5%8f%91">应用程序开发</a>
+                            
+                            |
+                            
+                            
+                            
+                            标签
+                            
+                            <a style="text-transform:capitalize" href="/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/"><i>#软件设计</i></a>
+                            
+                            <a style="text-transform:capitalize" href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/"><i>#云原生</i></a>
+                            
+                            <a style="text-transform:capitalize" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"><i>#微服务</i></a>
+                            
+                            </div>
+                            
+                            
+                        </div>
+                        <div id="post-content">
+                          
+
+<h2 id="背景">背景</h2>
+
+<blockquote>
+<p>为了更好的拥抱云原生架构，同时提高软件交付质量，开发人员必须改变他们的编码方式，并未开发者和应用程序所运行的基础架构之间创造一个新的协议，十二要素应用宣言应运而生。</p>
+</blockquote>
+
+<h2 id="构建云原生应用程序时">构建云原生应用程序时</h2>
+
+<ul>
+<li>使用详实的设计，尽量自动化已降低时间成本和资源花费</li>
+<li>在不同环境（测试&amp;生产）和不同平台（Linux&amp;Windows）中应用程序的可移植性</li>
+<li>使用适于云平台的应用程序，并了解资源分配和管理</li>
+<li>使用一致的环境，减少持续交付/部署中的错误，从而最大限度地发挥软件的敏捷性</li>
+<li>通过最少的监督和设计灾难恢复框架来扩展应用程序，实现高可用性</li>
+</ul>
+
+<h2 id="十二要素应用宣言">十二要素应用宣言</h2>
+
+<ul>
+<li><strong>基础代码</strong>：每份部署代码都使用版本控制追踪，并在不同的平台中部署多个实例</li>
+<li><strong>依赖管理</strong>：应用程序应该显式声明依赖关系，并使用工具在单独管理依赖，例如Bundler、pip和Maven</li>
+<li><strong>定义配置</strong>：不同环境中的配置（例如环境变量）可能会不同，例如开发环境、预发布环境和生产环境应该在操作系统级定义</li>
+<li><strong>后端服务</strong>：所有资源都要被当做应用程序自身的一部分来对待。例如数据库、消息队列这样的后端服务应该被当做附加资源来看待，在所有的环境中以相同的方式被消费</li>
+<li><strong>构建、发布、运行</strong>：包括构建组件、绑定配置，根据绑定的组件和配置文件启动一个或多个实例</li>
+<li><strong>进程无状态</strong>：以一个或多个无状态进程运行应用（例如master和worker），进程实例之间不共享任何内容</li>
+<li><strong>服务端口绑定</strong>：应用程序应当自包含，如果有任何需要对外暴露的服务，应当使用端口绑定的形式来完成（首选HTTP）</li>
+<li><strong>扩容无状态应用</strong>：该架构应该强调基础平台中的无状态进程管理，而不是实现更复杂的应用程序</li>
+<li><strong>进程状态管理</strong>：进程应该可以迅速地增加，并在一小段时间后正常关闭。在这些方面可实现快速可拓展性、部署更改和灾难恢复</li>
+<li><strong>持续发布和部署到生产</strong>：保持环境一致，不论是预发布环境还是生产环境。这样可以保证在跨越不同的环境时获取相似的结果，有利于向生产环境持续交付</li>
+<li><strong>把日志当事件流</strong>：不论是平台级的日志，还是应用级的日志，都十分重要，因为日志可以帮助你了解应用程序背后都做了什么</li>
+<li><strong>后台管理任务呗当作一次性进程运行</strong>：在云原生的方法中，作为应用程序发布一部分的管理任务（例如数据库迁移）应该作为一次性进程运行，而不是作为常规应用程序长时间运行</li>
+</ul>
+
+                        </div>
+                        
+                        
+                        
+                        
+                        <ul class="pager blog-pager">
+                        
+                        <li class="previous">
+                        <a href="http://blog.maoxianplay.com/posts/dashboard-k8s/" data-toggle="tooltip" data-placement="top" title="阿里云日志服务采集k8s日志并实现livetail功能">&larr; 更旧</a>
+                        </li>
+                         
+                        <li class="next">
+                        <a href="http://blog.maoxianplay.com/posts/k8s-qos/" data-toggle="tooltip" data-placement="top" title="Pod质量服务类别(QoS)">更新 &rarr;</a>
+                        </li>
+                        
+                        </ul>
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        <div class="panel panel-default sidebar-menu">
+     
+    <div class="panel-heading">
+     <h3 class="panel-title">相关文章</h3>
+    </div>
+    <div class="panel-body">
+     <ul class="nav nav-pills nav-stacked">
+        
+        <li><a href="/posts/con-ind/"><i class="fa fa-link"></i>容器技术概述</a></li>
+         
+     </ul>
+    </div>
+     
+</div>
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">分类</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            <li><a href="/categories/devops"><i class="fa fa-navicon"></i>devops (1)</a>
+            </li>
+            
+            <li><a href="/categories/istio"><i class="fa fa-navicon"></i>istio (1)</a>
+            </li>
+            
+            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (6)</a>
+            </li>
+            
+            <li><a href="/categories/%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f%e5%bc%80%e5%8f%91"><i class="fa fa-navicon"></i>应用程序开发 (1)</a>
+            </li>
+            
+            <li><a href="/categories/%e7%b3%bb%e7%bb%9f"><i class="fa fa-navicon"></i>系统 (1)</a>
+            </li>
+            
+            <li><a href="/categories/%e9%83%a8%e7%bd%b2%e5%ae%89%e8%a3%85"><i class="fa fa-navicon"></i>部署安装 (3)</a>
+            </li>
+            
+            <li><a href="/categories/%e9%97%ae%e9%a2%98%e8%a7%a3%e5%86%b3"><i class="fa fa-navicon"></i>问题解决 (5)</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+    <div class="panel-heading">
+      <h3 class="panel-title">标签</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="/tags/devops"><i class="fa fa-tags"></i> devops</a>
+            </li>
+            
+            <li><a href="/tags/docker"><i class="fa fa-tags"></i> docker</a>
+            </li>
+            
+            <li><a href="/tags/istio"><i class="fa fa-tags"></i> istio</a>
+            </li>
+            
+            <li><a href="/tags/jenkins"><i class="fa fa-tags"></i> jenkins</a>
+            </li>
+            
+            <li><a href="/tags/kubernetes"><i class="fa fa-tags"></i> kubernetes</a>
+            </li>
+            
+            <li><a href="/tags/linux"><i class="fa fa-tags"></i> linux</a>
+            </li>
+            
+            <li><a href="/tags/rancher"><i class="fa fa-tags"></i> rancher</a>
+            </li>
+            
+            <li><a href="/tags/service-mesh"><i class="fa fa-tags"></i> service-mesh</a>
+            </li>
+            
+            <li><a href="/tags/sonar"><i class="fa fa-tags"></i> sonar</a>
+            </li>
+            
+            <li><a href="/tags/%e4%ba%91%e5%8e%9f%e7%94%9f"><i class="fa fa-tags"></i> 云原生</a>
+            </li>
+            
+            <li><a href="/tags/%e5%ae%b9%e5%99%a8"><i class="fa fa-tags"></i> 容器</a>
+            </li>
+            
+            <li><a href="/tags/%e5%b7%a5%e5%85%b7"><i class="fa fa-tags"></i> 工具</a>
+            </li>
+            
+            <li><a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1"><i class="fa fa-tags"></i> 微服务</a>
+            </li>
+            
+            <li><a href="/tags/%e6%97%a5%e5%bf%97"><i class="fa fa-tags"></i> 日志</a>
+            </li>
+            
+            <li><a href="/tags/%e8%bd%af%e4%bb%b6%e8%ae%be%e8%ae%a1"><i class="fa fa-tags"></i> 软件设计</a>
+            </li>
+            
+            <li><a href="/tags/%e9%98%bf%e9%87%8c%e4%ba%91"><i class="fa fa-tags"></i> 阿里云</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+            </div>
+            
+        </div>
+        
+
+        <footer id="footer">
+    <div class="container">
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>关于我们</h4>
+
+            <p><p>凯京科技-新物流平台领军者</p><img src=https://wx4.sinaimg.cn/thumb150/ad5fbf65ly1g0szvh8amaj20dw0dwwfc.jpg></p>
+
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+             
+            <h4>最新博客</h4>
+
+            <div class="blog-entries">
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/posts/merge-kubeconfig/">
+                          
+                          <img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g15zla19o4j21y013ete4.jpg" class="img-responsive" alt="自动合并Kubeconfig，实现多k8s集群切换">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/merge-kubeconfig/">自动合并Kubeconfig，实现多k8s集群切换</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/posts/alpine-linux/">
+                          
+                          <img src="https://ws3.sinaimg.cn/large/ad5fbf65ly1g13fonf2emj21qi15o7k2.jpg" class="img-responsive" alt="Alpine Linux详解">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/alpine-linux/">Alpine Linux详解</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/posts/istio-demo/">
+                          
+                          <img src="https://wx3.sinaimg.cn/large/ad5fbf65ly1g117v91a61j21qi15otcd.jpg" class="img-responsive" alt="阿里云环境Istio初探">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/istio-demo/">阿里云环境Istio初探</a></h5>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr class="hidden-md hidden-lg">
+             
+
+        </div>
+        
+
+        
+        <div class="col-md-4 col-sm-6">
+
+          <h4>联系</h4>
+
+            <p>加我微信（请备注姓名-公司）</p><p><img src="https://ws1.sinaimg.cn/thumb150/ad5fbf65ly1g0szrz7jd6j20ah0ahjtd.jpg"></p>
+      
+
+
+            <a href="/contact" class="btn btn-small btn-template-main">跳到联系页面</a>
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Hugo模板来自</p>
+            
+            
+            <p class="pull-left">&nbsp;<a href="http://www.miibeian.gov.cn/"> <a href="http://www.servicemesher.com/">ServiceMesher社区<a/></a></p>
+            
+            <p class="pull-right">
+              模板来自 <a href="http://bootstrapious.com/free-templates">Bootstrapious</a>.
+              
+              移植到 Hugo 来自 <a href="https://github.com/devcows/hugo-universal-theme">DevCows</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    </div>
+    
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+<script src="/js/front.js"></script>
+
+
+<script src="/js/owl.carousel.min.js"></script>
+
+<script src="/js/prism.js"></script>
+
+
+<script src="/js/algoliasearch.min.js"></script>
+<script src="/js/autocomplete.min.js"></script>
+
+
+  </body>
+</html>

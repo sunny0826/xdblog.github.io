@@ -13,10 +13,10 @@
     
     <item>
       <title>自动合并Kubeconfig，实现多k8s集群切换</title>
-      <link>http://blog.maoxianplay.com/posts/2019/merge-kubeconfig/</link>
+      <link>http://blog.maoxianplay.com/posts/merge-kubeconfig/</link>
       <pubDate>Sun, 17 Mar 2019 10:45:02 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2019/merge-kubeconfig/</guid>
+      <guid>http://blog.maoxianplay.com/posts/merge-kubeconfig/</guid>
       <description>前言 随着微服务和容器化的深入人心，以及kubernetes已经成为容器编排领域的事实标准，越来越多的公司将自己的服务迁移到kubernete</description>
     </item>
     

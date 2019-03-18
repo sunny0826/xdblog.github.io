@@ -13,19 +13,19 @@
     
     <item>
       <title>为ingress配置SSL证书，实现HTTPS访问</title>
-      <link>http://blog.maoxianplay.com/posts/2018/https-ingress/</link>
+      <link>http://blog.maoxianplay.com/posts/https-ingress/</link>
       <pubDate>Sat, 29 Dec 2018 21:28:13 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2018/https-ingress/</guid>
+      <guid>http://blog.maoxianplay.com/posts/https-ingress/</guid>
       <description>devops平台率先在公司内使用kubernetes集群提供后端服务，但是由于之前一直处于探索阶段，所以使用的事http的方式提供后端服务，</description>
     </item>
     
     <item>
       <title>阿里云部署rancher2.1采坑记</title>
-      <link>http://blog.maoxianplay.com/posts/2018/install-rancher/</link>
+      <link>http://blog.maoxianplay.com/posts/install-rancher/</link>
       <pubDate>Thu, 29 Nov 2018 18:28:13 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2018/install-rancher/</guid>
+      <guid>http://blog.maoxianplay.com/posts/install-rancher/</guid>
       <description>近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以将部署到阿里云的图中遇到的问题和踩到的坑在这里进行记录。 无法删除n</description>
     </item>
     

@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>centos7.2 安装k8s v1.11.0 · guoxudong 博客</title>
+  <meta name="author" content="郭旭东" />
+
+  
+  <meta name="keywords" content="容器, kubernetes">
+  
+
+  <meta name="generator" content="Hugo 0.52" />
+
+  
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  
+  <link href="/css/animate.css" rel="stylesheet">
+
+  
+  
+  <link href="/css/style.violet.css" rel="stylesheet" id="theme-stylesheet">
+  
+
+  
+  <link href="/css/custom.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/search.css" />
+
+  
+  
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+
+  
+  <link href="/css/owl.carousel.css" rel="stylesheet">
+  <link href="/css/owl.theme.css" rel="stylesheet">
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="GuoXD Blog">
+
+  
+  <link rel="stylesheet" href="/css/prism.css" />
+
+  
+  <meta property="og:title" content="centos7.2 安装k8s v1.11.0" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/posts/install-k8s//" />
+  <meta property="og:image" content="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" />
+  <meta property="og:image:alt" content="ServiceMesher Logo" />
+
+  
+  <meta name="description" content="最近由于公司业务发展到了瓶颈，原有的技术架构已经逐渐无法满足业务开发和测试的需求，出现了应用测试环境搭建复杂，有许多套（真的很多很多）应用环境，应用在持续集成/持续交付也遇到了很大的困难，经过讨论研究决定对应用和微服务进行容器化，这就是我首次直面docker和k8s的契机。">
+  <meta property="og:description" content="最近由于公司业务发展到了瓶颈，原有的技术架构已经逐渐无法满足业务开发和测试的需求，出现了应用测试环境搭建复杂，有许多套（真的很多很多）应用环境，应用在持续集成/持续交付也遇到了很大的困难，经过讨论研究决定对应用和微服务进行容器化，这就是我首次直面docker和k8s的契机。">
+  <meta name="twitter:description" content="最近由于公司业务发展到了瓶颈，原有的技术架构已经逐渐无法满足业务开发和测试的需求，出现了应用测试环境搭建复杂，有许多套（真的很多很多）应用环境，应用在持续集成/持续交付也遇到了很大的困难，经过讨论研究决定对应用和微服务进行容器化，这就是我首次直面docker和k8s的契机。">
+  <meta property="og:description" content="最近由于公司业务发展到了瓶颈，原有的技术架构已经逐渐无法满足业务开发和测试的需求，出现了应用测试环境搭建复杂，有许多套（真的很多很多）应用环境，应用在持续集成/持续交付也遇到了很大的困难，经过讨论研究决定对应用和微服务进行容器化，这就是我首次直面docker和k8s的契机。" />
+
+  
+  
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?86f8ba05a3c18723f9672cc23a880558";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+  
+  
+
+</head>
+
+
+  <body>
+
+    <div id="all">
+
+        <header>
+
+          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="/">
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="centos7.2 安装k8s v1.11.0 logo" class="hidden-xs hidden-sm">
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="centos7.2 安装k8s v1.11.0 logo" class="visible-xs visible-sm">
+                    <span class="sr-only">centos7.2 安装k8s v1.11.0 - 跳到主页</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">切换导航</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/">主页</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/posts/">博客</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">小助手写真 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      
+                        <li><a href="/maoxian/">毛线</a></li>
+                      
+                        <li><a href="/sunny/">Sunny</a></li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/contact/">关于我们</a>
+                    
+                  </li>
+                  
+                  
+                    <li>
+                        <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+                        <span class="hidden-sm hidden-md hidden-lg">搜索</span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+                    </a>
+                    </li>
+                  
+                </ul>
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+<div id="modalSearch" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">博客搜索</h4>
+      </div>
+      <div class="modal-body">
+          
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="输入文章标题或摘要" name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+<script src="/js/algoliasearch.min.js"></script>
+<script src="/js/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("BE80MGWD9D", "77ca6abe5531ce66ff7c3b2486222d85");
+var index = client.initIndex("gxd-blog");
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            baseURL="http:\/\/blog.maoxianplay.com\//"
+            baseURL=baseURL.substring(0,baseURL.length-1)
+            return '<span>' + '<a href="' + baseURL + suggestion.uri+ '">' +
+                suggestion._highlightResult.title.value + '</a></span>'+
+                '<span>'+suggestion._highlightResult.summary.value+'</span>';
+        }
+    }
+});
+</script>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        </header>
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>centos7.2 安装k8s v1.11.0</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+                        <div class="well">
+                            <div class="author-category">
+                            <i class="fa fa-calendar-o">
+                            2018年8月14日
+                            </i>
+                            |
+                            
+                            作者 郭旭东
+                            
+                            
+                            
+                            |
+                            2800字 | 阅读大约需要6分钟
+                            </div>
+                            
+                            
+                            <div class="author-category">
+                            
+                            
+                            归档于 <a href="/categories/%e9%83%a8%e7%bd%b2%e5%ae%89%e8%a3%85">部署安装</a>
+                            
+                            |
+                            
+                            
+                            
+                            标签
+                            
+                            <a style="text-transform:capitalize" href="/tags/%E5%AE%B9%E5%99%A8/"><i>#容器</i></a>
+                            
+                            <a style="text-transform:capitalize" href="/tags/kubernetes/"><i>#kubernetes</i></a>
+                            
+                            </div>
+                            
+                            
+                        </div>
+                        <div id="post-content">
+                          
+
+<h1 id="前言">前言</h1>
+
+<blockquote>
+<p>最近由于公司业务发展到了瓶颈，原有的技术架构已经逐渐无法满足业务开发和测试的需求，出现了应用测试环境搭建复杂，有许多套（真的很多很多）应用环境，应用在持续集成/持续交付也遇到了很大的困难，经过讨论研究决定对应用和微服务进行容器化，这就是我首次直面docker和k8s的契机.</p>
+</blockquote>
+
+<h1 id="kubernetes-介绍">Kubernetes 介绍</h1>
+
+<p>Kubernetes 是 Google 团队发起的开源项目，它的目标是管理跨多个主机的容器，提供基本的部署，维护以及运用伸缩，主要实现语言为
+Go 语言。
+Kubernetes的特点：</p>
+
+<ul>
+<li>易学：轻量级，简单，容易理解</li>
+<li>便携：支持公有云，私有云，混合云，以及多种云平台</li>
+<li>可拓展：模块化，可插拔，支持钩子，可任意组合</li>
+<li>自修复：自动重调度，自动重启，自动复制</li>
+</ul>
+
+<h1 id="准备工作">准备工作</h1>
+
+<p><strong>注：以下操作都是在root权限下执行的</strong></p>
+
+<ol>
+<li>安装docker-ce，这里使用docker-ce-17.09.0.c版本，安装方法见<a href="/2018/install-docker">之前的教程</a></li>
+
+<li><p>安装Kubeadm</p>
+
+<pre><code>#安装 Kubeadm 首先我们要配置好阿里云的国内源，执行如下命令：
+cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=0
+EOF
+
+#之后，执行以下命令来重建yum缓存：
+yum -y install epel-releaseyum
+clean all
+yum makecache
+</code></pre>
+
+<p>接下来需要安装指定版本的Kubeadm（这里要安装指定版本，因为后续依赖的镜像由于有墙无法拉取，这里我们只有指定版本的镜像），注意：<strong>这里是安装指定版本的Kubeadm，k8s的版本更新之快完全超出你的想象！</strong></p>
+
+<pre><code>yum -y install kubelet-1.11.0-0
+yum -y install kubeadm-1.11.0-0
+yum -y install kubectl-1.11.0-0
+yum -y install kubernetes-cni
+
+#执行命令启动Kubeadm服务：
+systemctl enable kubelet &amp;&amp; systemctl start kubelet
+</code></pre></li>
+
+<li><p>配置 Kubeadm 所用到的镜像
+这里是重中之重，因为在国内的原因，无法访问到 Google 的镜像库，所以我们需要执行以下脚本来从 Docker Hub 仓库中获取相同的镜像，并且更改 TAG 让其变成与 Google 拉去镜像一致。</p>
+
+<p><strong>新建一个 Shell 脚本，填入以下代码之后保存</strong></p>
+
+<pre><code>#docker.sh
+#!/bin/bash
+images=(kube-proxy-amd64:v1.11.0 kube-scheduler-amd64:v1.11.0 kube-controller-manager-amd64:v1.11.0 kube-apiserver-amd64:v1.11.0 etcd-amd64:3.2.18 coredns:1.1.3 pause-amd64:3.1 kubernetes-dashboard-amd64:v1.8.3 k8s-dns-sidecar-amd64:1.14.9 k8s-dns-kube-dns-amd64:1.14.9 k8s-dns-dnsmasq-nanny-amd64:1.14.9 )
+for imageName in ${images[@]} ; do
+docker pull keveon/$imageName
+docker tag keveon/$imageName k8s.gcr.io/$imageName
+docker rmi keveon/$imageName
+done
+# 个人新加的一句，V 1.11.0 必加
+docker tag da86e6ba6ca1 k8s.gcr.io/pause:3.1
+</code></pre>
+
+<p><strong>保存后使用chmod命令赋予脚本执行权限</strong></p>
+
+<pre><code>chmod -R 777 ./docker.sh
+</code></pre>
+
+<p><strong>执行脚本拉取镜像</strong></p>
+
+<pre><code>sh docker.sh
+#这里就开始了漫长的拉取镜像之路
+</code></pre>
+
+<p><strong>关闭掉swap</strong></p>
+
+<pre><code>sudo swapoff -a
+#要永久禁掉swap分区，打开如下文件注释掉swap那一行
+# sudo vi /etc/stab
+</code></pre>
+
+<p><strong>关闭SELinux的</strong></p>
+
+<pre><code># 临时禁用selinux
+# 永久关闭 修改/etc/sysconfig/selinux文件设置
+sed -i 's/SELINUX=permissive/SELINUX=disabled/' /etc/sysconfig/selinux
+# 这里按回车，下面是第二条命令
+setenforce 0
+</code></pre>
+
+<p><strong>关闭防火墙</strong></p>
+
+<pre><code>systemctl disable firewalld.service &amp;&amp; systemctl stop firewalld.service
+</code></pre>
+
+<p><strong>配置转发参数</strong></p>
+
+<pre><code># 配置转发相关参数，否则可能会出错
+cat &lt;&lt;EOF &gt; /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+vm.swappiness=0
+EOF
+# 这里按回车，下面是第二条命令
+sysctl --system
+</code></pre>
+
+<p><strong>这里就完成了k8s集群搭建的准备工作，集群搭建的话以上操作结束后将操作完的系统制作成系统镜像，方便集群搭建</strong></p></li>
+</ol>
+
+<h1 id="正式安装">正式安装</h1>
+
+<p><strong>以下的操作都只在主节点上进行：</strong></p>
+
+<p><strong>初始化镜像</strong></p>
+
+<pre><code>kubeadm init --kubernetes-version=v1.11.0 --pod-network-cidr=10.10.0.0/16  #这里填写集群所在网段
+</code></pre>
+
+<p><strong>之后的输出会是这样：</strong></p>
+
+<pre><code>I0712 10:46:30.938979   13461 feature_gate.go:230] feature gates: &amp;{map[]}
+[init] using Kubernetes version: v1.11.0
+[preflight] running pre-flight checks
+I0712 10:46:30.961005   13461 kernel_validator.go:81] Validating kernel version
+I0712 10:46:30.961061   13461 kernel_validator.go:96] Validating kernel config
+    [WARNING SystemVerification]: docker version is greater than the most recently validated version. Docker version: 18.03.1-ce. Max validated version: 17.03
+    [WARNING Hostname]: hostname &quot;g2-apigateway&quot; could not be reached
+    [WARNING Hostname]: hostname &quot;g2-apigateway&quot; lookup g2-apigateway on 100.100.2.138:53: no such host
+[preflight/images] Pulling images required for setting up a Kubernetes cluster
+[preflight/images] This might take a minute or two, depending on the speed of your internet connection
+[preflight/images] You can also perform this action in beforehand using 'kubeadm config images pull'
+[kubelet] Writing kubelet environment file with flags to file &quot;/var/lib/kubelet/kubeadm-flags.env&quot;
+[kubelet] Writing kubelet configuration to file &quot;/var/lib/kubelet/config.yaml&quot;
+[preflight] Activating the kubelet service
+[certificates] Generated ca certificate and key.
+[certificates] Generated apiserver certificate and key.
+[certificates] apiserver serving cert is signed for DNS names [g2-apigateway kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local] and IPs [10.96.0.1 172.16.8.62]
+[certificates] Generated apiserver-kubelet-client certificate and key.
+[certificates] Generated sa key and public key.
+[certificates] Generated front-proxy-ca certificate and key.
+[certificates] Generated front-proxy-client certificate and key.
+[certificates] Generated etcd/ca certificate and key.
+[certificates] Generated etcd/server certificate and key.
+[certificates] etcd/server serving cert is signed for DNS names [g2-apigateway localhost] and IPs [127.0.0.1 ::1]
+[certificates] Generated etcd/peer certificate and key.
+[certificates] etcd/peer serving cert is signed for DNS names [g2-apigateway localhost] and IPs [172.16.8.62 127.0.0.1 ::1]
+[certificates] Generated etcd/healthcheck-client certificate and key.
+[certificates] Generated apiserver-etcd-client certificate and key.
+[certificates] valid certificates and keys now exist in &quot;/etc/kubernetes/pki&quot;
+[kubeconfig] Wrote KubeConfig file to disk: &quot;/etc/kubernetes/admin.conf&quot;
+[kubeconfig] Wrote KubeConfig file to disk: &quot;/etc/kubernetes/kubelet.conf&quot;
+[kubeconfig] Wrote KubeConfig file to disk: &quot;/etc/kubernetes/controller-manager.conf&quot;
+[kubeconfig] Wrote KubeConfig file to disk: &quot;/etc/kubernetes/scheduler.conf&quot;
+[controlplane] wrote Static Pod manifest for component kube-apiserver to &quot;/etc/kubernetes/manifests/kube-apiserver.yaml&quot;
+[controlplane] wrote Static Pod manifest for component kube-controller-manager to &quot;/etc/kubernetes/manifests/kube-controller-manager.yaml&quot;
+[controlplane] wrote Static Pod manifest for component kube-scheduler to &quot;/etc/kubernetes/manifests/kube-scheduler.yaml&quot;
+[etcd] Wrote Static Pod manifest for a local etcd instance to &quot;/etc/kubernetes/manifests/etcd.yaml&quot;
+[init] waiting for the kubelet to boot up the control plane as Static Pods from directory &quot;/etc/kubernetes/manifests&quot;
+[init] this might take a minute or longer if the control plane images have to be pulled
+[apiclient] All control plane components are healthy after 41.001672 seconds
+[uploadconfig] storing the configuration used in ConfigMap &quot;kubeadm-config&quot; in the &quot;kube-system&quot; Namespace
+[kubelet] Creating a ConfigMap &quot;kubelet-config-1.11&quot; in namespace kube-system with the configuration for the kubelets in the cluster
+[markmaster] Marking the node g2-apigateway as master by adding the label &quot;node-role.kubernetes.io/master=''&quot;
+[markmaster] Marking the node g2-apigateway as master by adding the taints [node-role.kubernetes.io/master:NoSchedule]
+[patchnode] Uploading the CRI Socket information &quot;/var/run/dockershim.sock&quot; to the Node API object &quot;g2-apigateway&quot; as an annotation
+[bootstraptoken] using token: o337m9.ceq32wg9g2gro7gx
+[bootstraptoken] configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
+[bootstraptoken] configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
+[bootstraptoken] configured RBAC rules to allow certificate rotation for all node client certificates in the cluster
+[bootstraptoken] creating the &quot;cluster-info&quot; ConfigMap in the &quot;kube-public&quot; namespace
+[addons] Applied essential addon: CoreDNS
+[addons] Applied essential addon: kube-proxy
+
+Your Kubernetes master has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run &quot;kubectl apply -f [podnetwork].yaml&quot; with one of the options listed at:
+https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+You can now join any number of machines by running the following on each node
+as root:
+
+kubeadm join 10.10.207.253:6443 --token t69z6h.lr2etdbg9mfx5r15 --discovery-token-ca-cert-hash sha256:90e3a748c0eb4cb7058f3d0ee8870ee5d746214ab0589b5e841fd5d68fec8f00
+</code></pre>
+
+<p><strong>这里注意最后一行：</strong></p>
+
+<pre><code>kubeadm join 10.10.207.253:6443 --token t69z6h.lr2etdbg9mfx5r15 --discovery-token-ca-cert-hash sha256:90e3a748c0eb4cb7058f3d0ee8870ee5d746214ab0589b5e841fd5d68fec8f00
+</code></pre>
+
+<p>证明集群主节点安装成功，这里要记得保存这条命令，以便之后各个节点加入集群</p>
+
+<p><strong>配置kubetl认证信息</strong></p>
+
+<pre><code>export KUBECONFIG=/etc/kubernetes/admin.conf
+# 如果你想持久化的话，直接执行以下命令【推荐】
+echo &quot;export KUBECONFIG=/etc/kubernetes/admin.conf&quot; &gt;&gt; ~/.bash_profile
+</code></pre>
+
+<p><strong>安装flanel网络</strong></p>
+
+<pre><code>mkdir -p /etc/cni/net.d/
+
+cat &lt;&lt;EOF&gt; /etc/cni/net.d/10-flannel.conf
+{
+&quot;name&quot;: &quot;cbr0&quot;,
+&quot;type&quot;: &quot;flannel&quot;,
+&quot;delegate&quot;: {
+&quot;isDefaultGateway&quot;: true
+}
+}
+EOF
+
+mkdir /usr/share/oci-umount/oci-umount.d -p
+
+mkdir /run/flannel/
+
+cat &lt;&lt;EOF&gt; /run/flannel/subnet.env
+FLANNEL_NETWORK=10.244.0.0/16
+FLANNEL_SUBNET=10.244.1.0/24
+FLANNEL_MTU=1450
+FLANNEL_IPMASQ=true
+EOF
+</code></pre>
+
+<p><strong>最后需要新建一个flannel.yml文件：</strong></p>
+
+<pre><code>---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+name: flannel
+rules:
+- apiGroups:
+    - &quot;&quot;
+    resources:
+    - pods
+    verbs:
+    - get
+- apiGroups:
+    - &quot;&quot;
+    resources:
+    - nodes
+    verbs:
+    - list
+    - watch
+- apiGroups:
+    - &quot;&quot;
+    resources:
+    - nodes/status
+    verbs:
+    - patch
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+name: flannel
+roleRef:
+apiGroup: rbac.authorization.k8s.io
+kind: ClusterRole
+name: flannel
+subjects:
+- kind: ServiceAccount
+name: flannel
+namespace: kube-system
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+name: flannel
+namespace: kube-system
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+name: kube-flannel-cfg
+namespace: kube-system
+labels:
+    tier: node
+    app: flannel
+data:
+cni-conf.json: |
+    {
+    &quot;name&quot;: &quot;cbr0&quot;,
+    &quot;type&quot;: &quot;flannel&quot;,
+    &quot;delegate&quot;: {
+        &quot;isDefaultGateway&quot;: true
+    }
+    }
+net-conf.json: |
+    {
+    &quot;Network&quot;: &quot;10.10.0.0/16&quot;,    #这里换成集群所在的网段
+    &quot;Backend&quot;: {
+        &quot;Type&quot;: &quot;vxlan&quot;
+    }
+    }
+---
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+name: kube-flannel-ds
+namespace: kube-system
+labels:
+    tier: node
+    app: flannel
+spec:
+template:
+    metadata:
+    labels:
+        tier: node
+        app: flannel
+    spec:
+    hostNetwork: true
+    nodeSelector:
+        beta.kubernetes.io/arch: amd64
+    tolerations:
+    - key: node-role.kubernetes.io/master
+        operator: Exists
+        effect: NoSchedule
+    serviceAccountName: flannel
+    initContainers:
+    - name: install-cni
+        image: quay.io/coreos/flannel:v0.9.1-amd64
+        command:
+        - cp
+        args:
+        - -f
+        - /etc/kube-flannel/cni-conf.json
+        - /etc/cni/net.d/10-flannel.conf
+        volumeMounts:
+        - name: cni
+        mountPath: /etc/cni/net.d
+        - name: flannel-cfg
+        mountPath: /etc/kube-flannel/
+    containers:
+    - name: kube-flannel
+        image: quay.io/coreos/flannel:v0.9.1-amd64
+        command: [ &quot;/opt/bin/flanneld&quot;, &quot;--ip-masq&quot;, &quot;--kube-subnet-mgr&quot; ]
+        securityContext:
+        privileged: true
+        env:
+        - name: POD_NAME
+        valueFrom:
+            fieldRef:
+            fieldPath: metadata.name
+        - name: POD_NAMESPACE
+        valueFrom:
+            fieldRef:
+            fieldPath: metadata.namespace
+        volumeMounts:
+        - name: run
+        mountPath: /run
+        - name: flannel-cfg
+        mountPath: /etc/kube-flannel/
+    volumes:
+        - name: run
+        hostPath:
+            path: /run
+        - name: cni
+        hostPath:
+            path: /etc/cni/net.d
+        - name: flannel-cfg
+        configMap:
+            name: kube-flannel-cfg
+</code></pre>
+
+<p><strong>执行：</strong></p>
+
+<pre><code>kubectl create -f ./flannel.yml
+</code></pre>
+
+<p>默认情况下，master节点不参与工作负载，但如果希望安装出一个all-in-one的k8s环境，则可以执行以下命令：</p>
+
+<p><strong>让master节点成为一个node节点：</strong></p>
+
+<pre><code>kubectl taint nodes --all node-role.kubernetes.io/master-
+</code></pre>
+
+<p><strong>查看节点信息：</strong></p>
+
+<pre><code>kubectl get nodes
+</code></pre>
+
+<p><strong>会看到如下的输出：</strong></p>
+
+<pre><code>NAME            STATUS     ROLES     AGE       VERSION
+k8s-master      Ready      master    18h       v1.11.0
+</code></pre>
+
+<p><strong>以下是节点配置</strong></p>
+
+<p>在配置好主节点之后，就可以配置集群的其他节点了，这里建议直接安装之前做好准备工作的系统镜像
+进入节点机器之后，直接执行之前保存好的命令</p>
+
+<pre><code>kubeadm join 10.10.207.253:6443 --token t69z6h.lr2etdbg9mfx5r15 --discovery-token-ca-cert-hash sha256:90e3a748c0eb4cb7058f3d0ee8870ee5d746214ab0589b5e841fd5d68fec8f00
+</code></pre>
+
+<p>执行完后会看到：</p>
+
+<pre><code>[preflight] running pre-flight checks
+        [WARNING RequiredIPVSKernelModulesAvailable]: the IPVS proxier will not be used, because the following required kernel modules are not loaded: [ip_vs_wrr ip_vs_sh ip_vs ip_vs_rr] or no builtin kernel ipvs support: map[ip_vs_rr:{} ip_vs_wrr:{} ip_vs_sh:{} nf_conntrack_ipv4:{} ip_vs:{}]
+you can solve this problem with following methods:
+1. Run 'modprobe -- ' to load missing kernel modules;
+2. Provide the missing builtin kernel ipvs support
+
+I0725 09:59:27.929247   10196 kernel_validator.go:81] Validating kernel version
+I0725 09:59:27.929356   10196 kernel_validator.go:96] Validating kernel config
+[discovery] Trying to connect to API Server &quot;10.10.207.253:6443&quot;
+[discovery] Created cluster-info discovery client, requesting info from &quot;https://10.10.207.253:6443&quot;
+[discovery] Requesting info from &quot;https://10.10.207.253:6443&quot; again to validate TLS against the pinned public key
+[discovery] Cluster info signature and contents are valid and TLS certificate validates against pinned roots, will use API Server &quot;10.10.207.253:6443&quot;
+[discovery] Successfully established connection with API Server &quot;10.10.207.253:6443&quot;
+[kubelet] Downloading configuration for the kubelet from the &quot;kubelet-config-1.11&quot; ConfigMap in the kube-system namespace
+[kubelet] Writing kubelet configuration to file &quot;/var/lib/kubelet/config.yaml&quot;
+[kubelet] Writing kubelet environment file with flags to file &quot;/var/lib/kubelet/kubeadm-flags.env&quot;
+[preflight] Activating the kubelet service
+[tlsbootstrap] Waiting for the kubelet to perform the TLS Bootstrap...
+[patchnode] Uploading the CRI Socket information &quot;/var/run/dockershim.sock&quot; to the Node API object &quot;k8s-node1&quot; as an annotation
+
+This node has joined the cluster:
+* Certificate signing request was sent to master and a response
+was received.
+* The Kubelet was informed of the new secure connection details.
+
+Run 'kubectl get nodes' on the master to see this node join the cluster.
+</code></pre>
+
+<p><strong>这里就表示执行完毕了，可以去主节点执行命令：</strong></p>
+
+<pre><code>kubectl get nodes
+</code></pre>
+
+<p><strong>可以看到节点已加入集群：</strong></p>
+
+<pre><code>NAME        STATUS    ROLES     AGE       VERSION
+k8s-master  Ready     master    20h       v1.11.0
+k8s-node1   Ready     &lt;none&gt;    20h       v1.11.0
+k8s-node2   Ready     &lt;none&gt;    20h       v1.11.0
+</code></pre>
+
+<p>这期间可能需要等待一段时间，状态才会全部变为ready</p>
+
+<h1 id="kubernetes-dashboard安装">kubernetes-dashboard安装</h1>
+
+<p>详见：<a href="/2018/dashboard-k8s">kubernetes安装dashboard</a></p>
+
+<h1 id="采坑指南">采坑指南</h1>
+
+<p>有时会出现master节点一直处于notready的状态，这里可能是没有启动flannel，只需要按照上面的教程配置好flannel，然后执行：</p>
+
+<pre><code>kubectl create -f ./flannel.yml
+</code></pre>
+
+                        </div>
+                        
+                        
+                        
+                        
+                        <ul class="pager blog-pager">
+                        
+                        <li class="previous">
+                        <a href="http://blog.maoxianplay.com/posts/install-docker/" data-toggle="tooltip" data-placement="top" title="centos7安装指定版本的docker">&larr; 更旧</a>
+                        </li>
+                         
+                        <li class="next">
+                        <a href="http://blog.maoxianplay.com/posts/con-ind/" data-toggle="tooltip" data-placement="top" title="容器技术概述">更新 &rarr;</a>
+                        </li>
+                        
+                        </ul>
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        <div class="panel panel-default sidebar-menu">
+     
+    <div class="panel-heading">
+     <h3 class="panel-title">相关文章</h3>
+    </div>
+    <div class="panel-body">
+     <ul class="nav nav-pills nav-stacked">
+        
+        <li><a href="/posts/install-docker/"><i class="fa fa-link"></i>centos7安装指定版本的docker</a></li>
+         
+     </ul>
+    </div>
+     
+</div>
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">分类</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            <li><a href="/categories/devops"><i class="fa fa-navicon"></i>devops (1)</a>
+            </li>
+            
+            <li><a href="/categories/istio"><i class="fa fa-navicon"></i>istio (1)</a>
+            </li>
+            
+            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (6)</a>
+            </li>
+            
+            <li><a href="/categories/%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f%e5%bc%80%e5%8f%91"><i class="fa fa-navicon"></i>应用程序开发 (1)</a>
+            </li>
+            
+            <li><a href="/categories/%e7%b3%bb%e7%bb%9f"><i class="fa fa-navicon"></i>系统 (1)</a>
+            </li>
+            
+            <li><a href="/categories/%e9%83%a8%e7%bd%b2%e5%ae%89%e8%a3%85"><i class="fa fa-navicon"></i>部署安装 (3)</a>
+            </li>
+            
+            <li><a href="/categories/%e9%97%ae%e9%a2%98%e8%a7%a3%e5%86%b3"><i class="fa fa-navicon"></i>问题解决 (5)</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+    <div class="panel-heading">
+      <h3 class="panel-title">标签</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="/tags/devops"><i class="fa fa-tags"></i> devops</a>
+            </li>
+            
+            <li><a href="/tags/docker"><i class="fa fa-tags"></i> docker</a>
+            </li>
+            
+            <li><a href="/tags/istio"><i class="fa fa-tags"></i> istio</a>
+            </li>
+            
+            <li><a href="/tags/jenkins"><i class="fa fa-tags"></i> jenkins</a>
+            </li>
+            
+            <li><a href="/tags/kubernetes"><i class="fa fa-tags"></i> kubernetes</a>
+            </li>
+            
+            <li><a href="/tags/linux"><i class="fa fa-tags"></i> linux</a>
+            </li>
+            
+            <li><a href="/tags/rancher"><i class="fa fa-tags"></i> rancher</a>
+            </li>
+            
+            <li><a href="/tags/service-mesh"><i class="fa fa-tags"></i> service-mesh</a>
+            </li>
+            
+            <li><a href="/tags/sonar"><i class="fa fa-tags"></i> sonar</a>
+            </li>
+            
+            <li><a href="/tags/%e4%ba%91%e5%8e%9f%e7%94%9f"><i class="fa fa-tags"></i> 云原生</a>
+            </li>
+            
+            <li><a href="/tags/%e5%ae%b9%e5%99%a8"><i class="fa fa-tags"></i> 容器</a>
+            </li>
+            
+            <li><a href="/tags/%e5%b7%a5%e5%85%b7"><i class="fa fa-tags"></i> 工具</a>
+            </li>
+            
+            <li><a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1"><i class="fa fa-tags"></i> 微服务</a>
+            </li>
+            
+            <li><a href="/tags/%e6%97%a5%e5%bf%97"><i class="fa fa-tags"></i> 日志</a>
+            </li>
+            
+            <li><a href="/tags/%e8%bd%af%e4%bb%b6%e8%ae%be%e8%ae%a1"><i class="fa fa-tags"></i> 软件设计</a>
+            </li>
+            
+            <li><a href="/tags/%e9%98%bf%e9%87%8c%e4%ba%91"><i class="fa fa-tags"></i> 阿里云</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+            </div>
+            
+        </div>
+        
+
+        <footer id="footer">
+    <div class="container">
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>关于我们</h4>
+
+            <p><p>凯京科技-新物流平台领军者</p><img src=https://wx4.sinaimg.cn/thumb150/ad5fbf65ly1g0szvh8amaj20dw0dwwfc.jpg></p>
+
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+             
+            <h4>最新博客</h4>
+
+            <div class="blog-entries">
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/posts/merge-kubeconfig/">
+                          
+                          <img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g15zla19o4j21y013ete4.jpg" class="img-responsive" alt="自动合并Kubeconfig，实现多k8s集群切换">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/merge-kubeconfig/">自动合并Kubeconfig，实现多k8s集群切换</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/posts/alpine-linux/">
+                          
+                          <img src="https://ws3.sinaimg.cn/large/ad5fbf65ly1g13fonf2emj21qi15o7k2.jpg" class="img-responsive" alt="Alpine Linux详解">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/alpine-linux/">Alpine Linux详解</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/posts/istio-demo/">
+                          
+                          <img src="https://wx3.sinaimg.cn/large/ad5fbf65ly1g117v91a61j21qi15otcd.jpg" class="img-responsive" alt="阿里云环境Istio初探">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/istio-demo/">阿里云环境Istio初探</a></h5>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr class="hidden-md hidden-lg">
+             
+
+        </div>
+        
+
+        
+        <div class="col-md-4 col-sm-6">
+
+          <h4>联系</h4>
+
+            <p>加我微信（请备注姓名-公司）</p><p><img src="https://ws1.sinaimg.cn/thumb150/ad5fbf65ly1g0szrz7jd6j20ah0ahjtd.jpg"></p>
+      
+
+
+            <a href="/contact" class="btn btn-small btn-template-main">跳到联系页面</a>
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Hugo模板来自</p>
+            
+            
+            <p class="pull-left">&nbsp;<a href="http://www.miibeian.gov.cn/"> <a href="http://www.servicemesher.com/">ServiceMesher社区<a/></a></p>
+            
+            <p class="pull-right">
+              模板来自 <a href="http://bootstrapious.com/free-templates">Bootstrapious</a>.
+              
+              移植到 Hugo 来自 <a href="https://github.com/devcows/hugo-universal-theme">DevCows</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    </div>
+    
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+<script src="/js/front.js"></script>
+
+
+<script src="/js/owl.carousel.min.js"></script>
+
+<script src="/js/prism.js"></script>
+
+
+<script src="/js/algoliasearch.min.js"></script>
+<script src="/js/autocomplete.min.js"></script>
+
+
+  </body>
+</html>

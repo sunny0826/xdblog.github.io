@@ -13,73 +13,73 @@
     
     <item>
       <title>Alpine Linux详解</title>
-      <link>http://blog.maoxianplay.com/posts/2019/alpine-linux/</link>
+      <link>http://blog.maoxianplay.com/posts/alpine-linux/</link>
       <pubDate>Fri, 15 Mar 2019 09:53:02 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2019/alpine-linux/</guid>
+      <guid>http://blog.maoxianplay.com/posts/alpine-linux/</guid>
       <description>简介 Small. Simple. Secure.Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox. Alpine Linux 是一个社区开发的面向安全应用的轻量级Linux发行版。 Alpine 的意思是“高山的”，它采用了musl libc</description>
     </item>
     
     <item>
       <title>解决kubernetes中ingress-nginx配置问题</title>
-      <link>http://blog.maoxianplay.com/posts/2019/k8s-ingress-config/</link>
+      <link>http://blog.maoxianplay.com/posts/k8s-ingress-config/</link>
       <pubDate>Wed, 06 Mar 2019 14:42:05 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2019/k8s-ingress-config/</guid>
+      <guid>http://blog.maoxianplay.com/posts/k8s-ingress-config/</guid>
       <description>前言 随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外</description>
     </item>
     
     <item>
       <title>阿里云部署rancher2.1采坑记</title>
-      <link>http://blog.maoxianplay.com/posts/2018/install-rancher/</link>
+      <link>http://blog.maoxianplay.com/posts/install-rancher/</link>
       <pubDate>Thu, 29 Nov 2018 18:28:13 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2018/install-rancher/</guid>
+      <guid>http://blog.maoxianplay.com/posts/install-rancher/</guid>
       <description>近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以将部署到阿里云的图中遇到的问题和踩到的坑在这里进行记录。 无法删除n</description>
     </item>
     
     <item>
       <title>精简docker镜像</title>
-      <link>http://blog.maoxianplay.com/posts/2018/image-size/</link>
+      <link>http://blog.maoxianplay.com/posts/image-size/</link>
       <pubDate>Thu, 27 Sep 2018 20:28:13 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2018/image-size/</guid>
+      <guid>http://blog.maoxianplay.com/posts/image-size/</guid>
       <description>精简Docker镜像的好处很多，不仅可以节省存储空间和带宽，还能减少安全隐患。优化镜像大小的手段多种多样，因服务所使用的基础开发语言不同而有</description>
     </item>
     
     <item>
       <title>Docker容器启动退出解决方案</title>
-      <link>http://blog.maoxianplay.com/posts/2018/docker-quit/</link>
+      <link>http://blog.maoxianplay.com/posts/docker-quit/</link>
       <pubDate>Thu, 27 Sep 2018 19:27:03 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2018/docker-quit/</guid>
+      <guid>http://blog.maoxianplay.com/posts/docker-quit/</guid>
       <description>现象 启动docker容器 docker run –name [CONTAINER_NAME] [CONTAINER_ID] 查看容器运行状态 docker ps -a 发现刚刚启动的mydocker容器已经退出 原因 docker容器的主线程（do</description>
     </item>
     
     <item>
       <title>容器技术概述</title>
-      <link>http://blog.maoxianplay.com/posts/2018/con-ind/</link>
+      <link>http://blog.maoxianplay.com/posts/con-ind/</link>
       <pubDate>Thu, 30 Aug 2018 18:45:22 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2018/con-ind/</guid>
+      <guid>http://blog.maoxianplay.com/posts/con-ind/</guid>
       <description>背景 自从微服务（Microservice）的出现，出于业务的需要，IT应用模型不断的变革。开发模式从瀑布式到敏捷开发；开发、运维和测试互相配</description>
     </item>
     
     <item>
       <title>centos7.2 安装k8s v1.11.0</title>
-      <link>http://blog.maoxianplay.com/posts/2018/install-k8s/</link>
+      <link>http://blog.maoxianplay.com/posts/install-k8s/</link>
       <pubDate>Tue, 14 Aug 2018 20:07:03 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2018/install-k8s/</guid>
+      <guid>http://blog.maoxianplay.com/posts/install-k8s/</guid>
       <description>前言 最近由于公司业务发展到了瓶颈，原有的技术架构已经逐渐无法满足业务开发和测试的需求，出现了应用测试环境搭建复杂，有许多套（真的很多很多）应</description>
     </item>
     
     <item>
       <title>centos7安装指定版本的docker</title>
-      <link>http://blog.maoxianplay.com/posts/2018/install-docker/</link>
+      <link>http://blog.maoxianplay.com/posts/install-docker/</link>
       <pubDate>Tue, 14 Aug 2018 20:05:21 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/2018/install-docker/</guid>
+      <guid>http://blog.maoxianplay.com/posts/install-docker/</guid>
       <description>前言 在使用centos7，并使用荫安装搬运工的时候，往往不希望安装最新版本的搬运工，而是希望安装与自己熟悉或者当前业务环境需要的版本，例如目</description>
     </item>
     
