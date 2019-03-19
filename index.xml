@@ -6,10 +6,19 @@
     <description>Recent content on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 17 Mar 2019 10:45:02 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 19 Mar 2019 16:12:56 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.maoxianplay.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Service Mesh是什么</title>
+      <link>http://blog.maoxianplay.com/posts/istio-servicemesh/</link>
+      <pubDate>Tue, 19 Mar 2019 16:12:56 +0800</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/posts/istio-servicemesh/</guid>
+      <description>本文转自《Istio 服务网格进阶实战》 什么是服务网格？ Service mesh 又译作 “服务网格”，作为服务间通信的基础设施层。Buoyant 公司的 CEO Willian Morgan 在他的这</description>
+    </item>
     
     <item>
       <title>自动合并Kubeconfig，实现多k8s集群切换</title>

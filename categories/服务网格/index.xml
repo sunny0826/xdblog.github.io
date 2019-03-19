@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Service Mesh on GuoXD Blog</title>
-    <link>http://blog.maoxianplay.com/tags/service-mesh/</link>
-    <description>Recent content in Service Mesh on GuoXD Blog</description>
+    <title>服务网格 on GuoXD Blog</title>
+    <link>http://blog.maoxianplay.com/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</link>
+    <description>Recent content in 服务网格 on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Tue, 19 Mar 2019 16:12:56 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.maoxianplay.com/tags/service-mesh/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://blog.maoxianplay.com/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>http://blog.maoxianplay.com/posts/istio-servicemesh/</guid>
       <description>本文转自《Istio 服务网格进阶实战》 什么是服务网格？ Service mesh 又译作 “服务网格”，作为服务间通信的基础设施层。Buoyant 公司的 CEO Willian Morgan 在他的这</description>
-    </item>
-    
-    <item>
-      <title>阿里云环境Istio初探</title>
-      <link>http://blog.maoxianplay.com/posts/istio-demo/</link>
-      <pubDate>Wed, 13 Mar 2019 15:45:43 +0800</pubDate>
-      
-      <guid>http://blog.maoxianplay.com/posts/istio-demo/</guid>
-      <description>istio应用部署样例 该实例为一套istio服务上线流程：注入-&amp;gt;部署-&amp;gt;创建目标规则-&amp;gt;创建默认路由。就大多数istio</description>
     </item>
     
   </channel>

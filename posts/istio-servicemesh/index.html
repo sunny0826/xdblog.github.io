@@ -6,11 +6,11 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>精简docker镜像 · guoxudong 博客</title>
+  <title>Service Mesh是什么 · guoxudong 博客</title>
   <meta name="author" content="郭旭东" />
 
   
-  <meta name="keywords" content="容器">
+  <meta name="keywords" content="Service Mesh">
   
 
   <meta name="generator" content="Hugo 0.52" />
@@ -52,17 +52,17 @@
   <link rel="stylesheet" href="/css/prism.css" />
 
   
-  <meta property="og:title" content="精简docker镜像" />
+  <meta property="og:title" content="Service Mesh是什么" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/posts/image-size//" />
+  <meta property="og:url" content="/posts/istio-servicemesh//" />
   <meta property="og:image" content="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" />
   <meta property="og:image:alt" content="ServiceMesher Logo" />
 
   
-  <meta name="description" content="精简Docker镜像的好处很多，不仅可以节省存储空间和带宽，还能减少安全隐患。优化镜像大小的手段多种多样，因服务所使用的基础开发语言不同而有差异。本文将介绍精简Docker镜像的几种通用方法。">
-  <meta property="og:description" content="精简Docker镜像的好处很多，不仅可以节省存储空间和带宽，还能减少安全隐患。优化镜像大小的手段多种多样，因服务所使用的基础开发语言不同而有差异。本文将介绍精简Docker镜像的几种通用方法。">
-  <meta name="twitter:description" content="精简Docker镜像的好处很多，不仅可以节省存储空间和带宽，还能减少安全隐患。优化镜像大小的手段多种多样，因服务所使用的基础开发语言不同而有差异。本文将介绍精简Docker镜像的几种通用方法。">
-  <meta property="og:description" content="精简Docker镜像的好处很多，不仅可以节省存储空间和带宽，还能减少安全隐患。优化镜像大小的手段多种多样，因服务所使用的基础开发语言不同而有差异。本文将介绍精简Docker镜像的几种通用方法。" />
+  <meta name="description" content="现在Service Mesh很热，但是到底什么事Service Mesh，Service Mesh能为我们做什么，我们为什么要用Service Mesh。">
+  <meta property="og:description" content="现在Service Mesh很热，但是到底什么事Service Mesh，Service Mesh能为我们做什么，我们为什么要用Service Mesh。">
+  <meta name="twitter:description" content="现在Service Mesh很热，但是到底什么事Service Mesh，Service Mesh能为我们做什么，我们为什么要用Service Mesh。">
+  <meta property="og:description" content="现在Service Mesh很热，但是到底什么事Service Mesh，Service Mesh能为我们做什么，我们为什么要用Service Mesh。" />
 
   
   
@@ -96,9 +96,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="/">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="精简docker镜像 logo" class="hidden-xs hidden-sm">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="精简docker镜像 logo" class="visible-xs visible-sm">
-                    <span class="sr-only">精简docker镜像 - 跳到主页</span>
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="Service Mesh是什么 logo" class="hidden-xs hidden-sm">
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="Service Mesh是什么 logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Service Mesh是什么 - 跳到主页</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -219,7 +219,7 @@ autocomplete('#aa-search-input',
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>精简docker镜像</h1>
+                <h1>Service Mesh是什么</h1>
             </div>
         </div>
     </div>
@@ -237,7 +237,7 @@ autocomplete('#aa-search-input',
                         <div class="well">
                             <div class="author-category">
                             <i class="fa fa-calendar-o">
-                            2018年9月27日
+                            2019年3月19日
                             </i>
                             |
                             
@@ -246,14 +246,14 @@ autocomplete('#aa-search-input',
                             
                             
                             |
-                            3500字 | 阅读大约需要7分钟
+                            1900字 | 阅读大约需要4分钟
                             </div>
                             
                             
                             <div class="author-category">
                             
                             
-                            归档于 <a href="/categories/%e9%97%ae%e9%a2%98%e8%a7%a3%e5%86%b3">问题解决</a>
+                            归档于 <a href="/categories/%e6%9c%8d%e5%8a%a1%e7%bd%91%e6%a0%bc">服务网格</a>
                             
                             |
                             
@@ -261,7 +261,7 @@ autocomplete('#aa-search-input',
                             
                             标签
                             
-                            <a style="text-transform:capitalize" href="/tags/%E5%AE%B9%E5%99%A8/"><i>#容器</i></a>
+                            <a style="text-transform:capitalize" href="/tags/service-mesh/"><i>#Service Mesh</i></a>
                             
                             </div>
                             
@@ -270,224 +270,89 @@ autocomplete('#aa-search-input',
                         <div id="post-content">
                           
 
-<blockquote>
-<p>精简Docker镜像的好处很多，不仅可以节省存储空间和带宽，还能减少安全隐患。优化镜像大小的手段多种多样，因服务所使用的基础开发语言不同而有差异。本文将介绍精简Docker镜像的几种通用方法。</p>
-</blockquote>
+<p>本文转自<a href="http://www.servicemesher.com/istio-handbook/concepts-and-principle/what-is-service-mesh.html">《Istio 服务网格进阶实战》</a></p>
 
-<h1 id="精简docker镜像大小的必要性">精简Docker镜像大小的必要性</h1>
+<h1 id="什么是服务网格">什么是服务网格？</h1>
 
-<p>Docker镜像由很多镜像层（Layers）组成（最多127层），镜像层依赖于一系列的底层技术，比如文件系统(filesystems)、写时复制(copy-on-write)、联合挂载(union mounts)等技术，你可以查看Docker社区文档以了解更多有关Docker存储驱动的内容，这里就不再赘述技术细节。总的来说，Dockerfile中的每条指令都会创建一个镜像层，继而会增加整体镜像的尺寸。</p>
+<p>Service mesh 又译作 “服务网格”，作为服务间通信的基础设施层。Buoyant 公司的 CEO Willian Morgan 在他的这篇文章 <a href="https://buoyant.io/2017/04/25/whats-a-service-mesh-and-why-do-i-need-one/">WHAT’S A SERVICE MESH? AND WHY DO I NEED ONE?</a> 中解释了什么是 Service Mesh，为什么云原生应用需要 Service Mesh。</p>
 
-<p>下面是精简Docker镜像尺寸的好处：</p>
+<p>服务网格是用于处理服务间通信的专用基础设施层。它负责通过包含现代云原生应用程序的复杂服务拓扑来可靠地传递请求。实际上，服务网格通常通过一组轻量级网络代理来实现，这些代理与应用程序代码一起部署，而不需要感知应用程序本身。——  <a href="https://twitter.com/wm">Willian Morgan</a> Buoyant CEO</p>
 
-<ol>
-<li>减少构建时间</li>
-<li>减少磁盘使用量</li>
-<li>减少下载时间</li>
-<li>因为包含文件少，攻击面减小，提高了安全性</li>
-<li>提高部署速度</li>
-</ol>
+<p>服务网格（Service Mesh）这个术语通常用于描述构成这些应用程序的微服务网络以及应用之间的交互。随着规模和复杂性的增长，服务网格越来越难以理解和管理。它的需求包括服务发现、负载均衡、故障恢复、指标收集和监控以及通常更加复杂的运维需求，例如 A/B 测试、金丝雀发布、限流、访问控制和端到端认证等。</p>
 
-<p><strong>五点建议减小Docker镜像尺寸</strong></p>
+<h2 id="服务网格的特点">服务网格的特点</h2>
 
-<h1 id="一-优化基础镜像">一、优化基础镜像</h1>
-
-<p>优化基础镜像的方法就是选用合适的更小的基础镜像，常用的 Linux 系统镜像一般有 Ubuntu、CentOs、Alpine，其中Alpine更推荐使用。大小对比如下：</p>
-
-<pre><code>guoxudong@ubuntu ~/s&gt; docker images
-REPOSITORY         TAG             IMAGE ID            CREATED             SIZE
-ubuntu             latest        74f8760a2a8b        8 days ago          82.4MB
-alpine             latest        11cd0b38bc3c        2 weeks ago         4.41MB
-centos               7           49f7960eb7e4        7 weeks ago         200MB
-debian             latest        3bbb526d2608        8 days ago          101MB
-guoxudong@ubuntu ~/s&gt;
-</code></pre>
-
-<p>Alpine是一个高度精简又包含了基本工具的轻量级Linux发行版，基础镜像只有4.41M，各开发语言和框架都有基于Alpine制作的基础镜像，强烈推荐使用它。Alpine镜像各个语言和框架支持情况，可以参考《优化Docker镜像、加速应用部署》。
-查看上面的镜像尺寸对比结果，你会发现最小的镜像也有4.41M，那么有办法构建更小的镜像吗？答案是肯定的，例如 gcr.io/google_containers/pause-amd64:3.1 镜像仅有742KB。为什么这个镜像能这么小？在为大家解密之前，再推荐两个基础镜像：</p>
-
-<ol>
-<li>scratch镜像</li>
-</ol>
-
-<p>scratch是一个空镜像，只能用于构建其他镜像，比如你要运行一个包含所有依赖的二进制文件，如Golang程序，可以直接使用scratch作为基础镜像。现在给大家展示一下上文提到的Google pause镜像Dockerfile：</p>
-
-<pre><code>FROM scratch
-ARG ARCH
-ADD bin/pause-${ARCH} /pause
-ENTRYPOINT [&quot;/pause&quot;]
-</code></pre>
-
-<p>Google pause镜像使用了scratch作为基础镜像，这个镜像本身是不占空间的，使用它构建的镜像大小几乎和二进制文件本身一样大，所以镜像非常小。当然在我们的Golang程序中也会使用。对于一些Golang/C程序，可能会依赖一些动态库，你可以使用自动提取动态库工具，比如ldd、linuxdeployqt等提取所有动态库，然后将二进制文件和依赖动态库一起打包到镜像中。</p>
-
-<ol>
-<li>busybox镜像</li>
-</ol>
-
-<p>scratch是个空镜像，如果希望镜像里可以包含一些常用的Linux工具，busybox镜像是个不错选择，镜像本身只有1.16M，非常便于构建小镜像。</p>
-
-<h1 id="二-串联-dockerfile-指令">二、串联 Dockerfile 指令</h1>
-
-<p>大家在定义Dockerfile时，如果太多的使用RUN指令，经常会导致镜像有特别多的层，镜像很臃肿，而且甚至会碰到超出最大层数（127层）限制的问题，遵循 Dockerfile 最佳实践，我们应该把多个命令串联合并为一个 RUN（通过运算符&amp;&amp;和/ 来实现），每一个 RUN 要精心设计，确保安装构建最后进行清理，这样才可以降低镜像体积，以及最大化的利用构建缓存。</p>
-
-<p>下面是一个优化前Dockerfile：</p>
-
-<pre><code>FROM ubuntu
-ENV VER     3.0.0 
-ENV TARBALL http://download.redis.io/releases/redis-$VER.tar.gz 
-# ==&gt; Install curl and helper tools...
-RUN apt-get update 
-RUN apt-get install -y  curl make gcc 
-# ==&gt; Download, compile, and install...
-RUN curl -L $TARBALL | tar zxv 
-WORKDIR  redis-$VER 
-RUN make 
-RUN make install 
-#...
-# ==&gt; Clean up...
-WORKDIR / 
-RUN apt-get remove -y --auto-remove curl make gcc 
-RUN apt-get clean 
-RUN rm -rf /var/lib/apt/lists/*  /redis-$VER 
-#...
-CMD [&quot;redis-server&quot;]
-</code></pre>
-
-<p>构建镜像，名称叫 test/test:0.1。</p>
-
-<p>我们对Dockerfile做优化，优化后Dockerfile：</p>
-
-<pre><code>FROM ubuntu
-ENV VER     3.0.0 
-ENV TARBALL http://download.redis.io/releases/redis-$VER.tar.gz
-RUN echo &quot;==&gt; Install curl and helper tools...&quot;  &amp;&amp; \ 
-apt-get update                      &amp;&amp; \
-apt-get install -y  curl make gcc   &amp;&amp; \
-echo &quot;==&gt; Download, compile, and install...&quot;  &amp;&amp; \
-curl -L $TARBALL | tar zxv  &amp;&amp; \
-cd redis-$VER               &amp;&amp; \
-make                        &amp;&amp; \
-make install                &amp;&amp; \
-echo &quot;==&gt; Clean up...&quot;  &amp;&amp; \
-apt-get remove -y --auto-remove curl make gcc  &amp;&amp; \
-apt-get clean                                  &amp;&amp; \
-rm -rf /var/lib/apt/lists/*  /redis-$VER
-#...
-CMD [&quot;redis-server&quot;]
-</code></pre>
-
-<p>构建镜像，名称叫 test/test:0.2。</p>
-
-<p>对比两个镜像大小：</p>
-
-<pre><code>root@k8s-master:/tmp/iops# docker images
-REPOSITORY       TAG           IMAGE ID            CREATED             SIZE
-test/test        0.2         58468c0222ed        2 minutes ago       98.1MB
-test/test        0.1         e496cf7243f2        6 minutes ago       307MB
-root@k8s-master:/tmp/iops#
-</code></pre>
-
-<p>可以看到，将多条RUN命令串联起来构建的镜像大小是每条命令分别RUN的三分之一。</p>
-
-<p><strong>提示：</strong>为了应对镜像中存在太多镜像层，Docker 1.13版本以后，提供了一个压扁镜像功能，即将 Dockerfile 中所有的操作压缩为一层。这个特性还处于实验阶段，Docker默认没有开启，如果要开启，需要在启动Docker时添加-experimental 选项，并在Docker build 构建镜像时候添加 &ndash;squash 。我们不推荐使用这个办法，请在撰写 Dockerfile 时遵循最佳实践编写，不要试图用这种办法去压缩镜像。</p>
-
-<h1 id="三-使用多阶段构建">三、使用多阶段构建</h1>
-
-<p>Dockerfile中每条指令都会为镜像增加一个镜像层，并且你需要在移动到下一个镜像层之前清理不需要的组件。实际上，有一个Dockerfile用于开发（其中包含构建应用程序所需的所有内容）以及一个用于生产的瘦客户端，它只包含你的应用程序以及运行它所需的内容。这被称为“建造者模式”。Docker 17.05.0-ce版本以后支持多阶段构建。使用多阶段构建，你可以在Dockerfile中使用多个FROM语句，每条FROM指令可以使用不同的基础镜像，这样您可以选择性地将服务组件从一个阶段COPY到另一个阶段，在最终镜像中只保留需要的内容。</p>
-
-<p>下面是一个使用COPY &ndash;from 和 FROM &hellip; AS &hellip; 的Dockerfile：</p>
-
-<pre><code># Compile
-FROM golang:1.9.0 AS builder
-WORKDIR /go/src/v9.git...com/.../k8s-monitor
-COPY . .
-WORKDIR /go/src/v9.git...com/.../k8s-monitor
-RUN make build
-RUN mv k8s-monitor /root
-# Package
-# Use scratch image
-FROM scratch
-WORKDIR /root/
-COPY --from=builder /root .
-EXPOSE 8080
-CMD [&quot;/root/k8s-monitor&quot;]
-</code></pre>
-
-<p>构建镜像，你会发现生成的镜像只有上面COPY 指令指定的内容，镜像大小只有2M。这样在以前使用两个Dockerfile（一个Dockerfile用于开发和一个用于生产的瘦客户端），现在使用多阶段构建就可以搞定。</p>
-
-<h1 id="四-构建业务服务镜像技巧">四、构建业务服务镜像技巧</h1>
-
-<p>Docker在build镜像的时候，如果某个命令相关的内容没有变化，会使用上一次缓存（cache）的文件层，在构建业务镜像的时候可以注意下面两点：</p>
+<p>服务网格有如下几个特点：</p>
 
 <ul>
-<li>不变或者变化很少的体积较大的依赖库和经常修改的自有代码分开；</li>
-<li>因为cache缓存在运行Docker build命令的本地机器上，建议固定使用某台机器来进行Docker build，以便利用cache。</li>
+<li>应用程序间通讯的中间层</li>
+<li>轻量级网络代理</li>
+<li>应用程序无感知</li>
+<li>解耦应用程序的重试/超时、监控、追踪和服务发现</li>
 </ul>
 
-<p>下面是构建Spring Boot应用镜像的例子，用来说明如何分层。其他类型的应用，比如Java WAR包，Nodejs的npm 模块等，可以采取类似的方式。</p>
+<p>目前两款流行的服务网格开源软件 <a href="https://linkerd.io">Linkerd</a> 和 <a href="https://Istio.io">Istio</a> 都可以直接在 Kubernetes 中集成，其中 Linkerd 已经成为 CNCF 成员，Istio 在 2018年7月31日宣布 <a href="https://istio.io/zh/blog/2018/announcing-1.0/">1.0</a>。</p>
+
+<h2 id="理解服务网格">理解服务网格</h2>
+
+<p>如果用一句话来解释什么是服务网格，可以将它比作是应用程序或者说微服务间的 TCP/IP，负责服务之间的网络调用、限流、熔断和监控。对于编写应用程序来说一般无须关心 TCP/IP 这一层（比如通过 HTTP 协议的 RESTful 应用），同样使用服务网格也就无须关心服务之间的那些原来是通过应用程序或者其他框架实现的事情，比如 Spring Cloud、OSS，现在只要交给服务网格就可以了。</p>
+
+<p><a href="http://philcalcado.com/">Phil Calçado</a> 在他的这篇博客 <a href="http://philcalcado.com/2017/08/03/pattern_service_mesh.html">Pattern: Service Mesh</a> 中详细解释了服务网格的来龙去脉：</p>
 
 <ol>
-<li><p>在Dockerfile所在目录，解压缩maven生成的jar包</p>
-
-<p>$ unzip <path-to-app-jar>.jar -d app</p></li>
-
-<li><p>Dockerfile 我们把应用的内容分成4个部分COPY到镜像里面：其中前面3个基本不变，第4个是经常变化的自有代码。最后一行是解压缩后，启动spring boot应用的方式。</p>
-
-<p>FROM openjdk:8-jre-alpine
-LABEL maintainer &ldquo;opl-xws@xiaomi.com&rdquo;
-COPY app/BOOT-INF/lib/ /app/BOOT-INF/lib/
-COPY app/org /app/org
-COPY app/META-INF /app/META-INF
-COPY app/BOOT-INF/classes /app/BOOT-INF/classes
-EXPOSE 8080
-CMD [&ldquo;/usr/bin/java&rdquo;, &ldquo;-cp&rdquo;, &ldquo;/app&rdquo;, &ldquo;org.springframework.boot.loader.JarLauncher&rdquo;]</p></li>
+<li>从最原始的主机之间直接使用网线相连</li>
+<li>网络层的出现</li>
+<li>集成到应用程序内部的控制流</li>
+<li>分解到应用程序外部的控制流</li>
+<li>应用程序的中集成服务发现和断路器</li>
+<li>出现了专门用于服务发现和断路器的软件包/库，如 <a href="https://finagle.github.io/">Twitter 的 Finagle</a> 和 <a href="https://code.fb.com/networking-traffic/introducing-proxygen-facebook-s-c-http-framework/">Facebook  的 Proxygen</a>，这时候还是集成在应用程序内部</li>
+<li>出现了专门用于服务发现和断路器的开源软件，如 <a href="http://netflix.github.io/">Netflix OSS</a>、Airbnb 的 <a href="https://github.com/airbnb/synapse">synapse</a> 和 <a href="https://github.com/airbnb/nerve">nerve</a></li>
+<li>最后作为微服务的中间层服务网格出现</li>
 </ol>
 
-<p>这样在构建镜像时候可大大提高构建速度。</p>
+<p>服务网格的架构如下图所示：</p>
 
-<h1 id="五-其他优化办法">五、其他优化办法</h1>
+<p><img src="https://ws1.sinaimg.cn/large/00704eQkly1fswh7dbs1pj30id0bpmxl.jpg" alt="Service Mesh 架构图" /></p>
+
+<p>图片来自：<a href="http://philcalcado.com/2017/08/03/pattern_service_mesh.html">Pattern: Service Mesh</a></p>
+
+<p>服务网格作为 sidecar 运行，对应用程序来说是透明，所有应用程序间的流量都会通过它，所以对应用程序流量的控制都可以在 serivce mesh 中实现。</p>
+
+<h2 id="服务网格如何工作">服务网格如何工作？</h2>
+
+<p>下面以 Istio 为例讲解服务网格如何在 Kubernetes 中工作。</p>
 
 <ol>
-<li><p>RUN命令中执行apt、apk或者yum类工具技巧，如果在RUN命令中执行apt、apk或者yum类工具，可以借助这些工具提供的一些小技巧来减少镜像层数量及镜像大小。举几个例子：</p>
-
-<ol>
-<li>在执行apt-get install -y 时增加选项— no-install-recommends ，可以不用安装建议性（非必须）的依赖，也可以在执行apk add 时添加选项&ndash;no-cache 达到同样效果；</li>
-<li>执行yum install -y 时候， 可以同时安装多个工具，比如yum install -y gcc gcc-c++ make &hellip;。将所有yum install 任务放在一条RUN命令上执行，从而减少镜像层的数量；</li>
-<li>组件的安装和清理要串联在一条指令里面，如 apk &ndash;update add php7 &amp;&amp; rm -rf /var/cache/apk/* ，因为Dockerfile的每条指令都会产生一个文件层，如果将apk add &hellip;和 rm -rf &hellip; 命令分开，清理无法减小apk命令产生的文件层的大小。 Ubuntu或Debian可以使用 rm -rf /<strong>var</strong>/lib/apt/lists/* 清理镜像中缓存文件；CentOS等系统使用yum clean all 命令清理。</li>
-</ol></li>
-
-<li><p>压缩镜像</p></li>
+<li>Istio 将服务请求路由到目的地址，根据其中的参数判断是到生产环境、测试环境还是 staging 环境中的服务（服务可能同时部署在这三个环境中），是路由到本地环境还是公有云环境？所有的这些路由信息可以动态配置，可以是全局配置也可以为某些服务单独配置。</li>
+<li>当 Istio 确认了目的地址后，将流量发送到相应服务发现端点，在 Kubernetes 中是 service，然后 service 会将服务转发给后端的实例。</li>
+<li>Istio 根据它观测到最近请求的延迟时间，选择出所有应用程序的实例中响应最快的实例。</li>
+<li>Istio 将请求发送给该实例，同时记录响应类型和延迟数据。</li>
+<li>如果该实例挂了、不响应了或者进程不工作了，Istio 将把请求发送到其他实例上重试。</li>
+<li>如果该实例持续返回 error，Istio 会将该实例从负载均衡池中移除，稍后再周期性得重试。</li>
+<li>如果请求的截止时间已过，Istio 主动失败该请求，而不是再次尝试添加负载。</li>
+<li>Istio 以 metric 和分布式追踪的形式捕获上述行为的各个方面，这些追踪信息将发送到集中 metric 系统。</li>
 </ol>
 
-<p>Docker 自带的一些命令还能协助压缩镜像，比如 export 和 import</p>
+<h2 id="为何使用服务网格">为何使用服务网格？</h2>
 
-<pre><code>docker run -d test/test:0.2
-$ docker export 747dc0e72d13 | docker import - test/test:0.3
-</code></pre>
+<p>服务网格并没有给我们带来新功能，它是用于解决其他工具已经解决过的问题，只不过这次是在云原生的 Kubernetes 环境下的实现。</p>
 
-<p>使用这种方式需要先将容器运行起来，而且这个过程中会丢失镜像原有的一些信息，比如：导出端口，环境变量，默认指令。</p>
+<p>在传统的 MVC 三层 Web 应用程序架构下，服务之间的通讯并不复杂，在应用程序内部自己管理即可，但是在现今的复杂的大型网站情况下，单体应用被分解为众多的微服务，服务之间的依赖和通讯十分复杂，出现了 twitter 开发的 <a href="https://twitter.github.io/finagle/">Finagle</a>、Netflix 开发的 <a href="https://github.com/Netflix/Hystrix">Hystrix</a> 和 Google 的 Stubby 这样的 “胖客户端” 库，这些就是早期的服务网格，但是它们都仅适用于特定的环境和特定的开发语言，并不能作为平台级的服务网格支持。</p>
 
-<p>查看这两个镜像history信息，如下，可以看到test/test:0.3 丢失了所有的镜像层信息：</p>
+<p>在云原生架构下，容器的使用给予了异构应用程序的更多可行性，Kubernetes 增强的应用的横向扩容能力，用户可以快速的编排出复杂环境、复杂依赖关系的应用程序，同时开发者又无须过分关心应用程序的监控、扩展性、服务发现和分布式追踪这些繁琐的事情而专注于程序开发，赋予开发者更多的创造性。</p>
 
-<pre><code>root@k8s-master:/tmp/iops# docker history test/test:0.3
-IMAGE               CREATED             CREATED BY          SIZE                COMMENT
-6fb3f00b7a72        15 seconds ago                          84.7MB              Imported from -
-root@k8s-master:/tmp/iops# docker history test/test:0.2
-IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
-58468c0222ed        2 hours ago         /bin/sh -c #(nop)  CMD [&quot;redis-server&quot;]         0B     
-1af7ffe3d163        2 hours ago         /bin/sh -c echo &quot;==&gt; Install curl and helper...   15.7MB 
-8bac6e733d54        2 hours ago         /bin/sh -c #(nop)  ENV TARBALL=http://downlo...   0B     
-793282f3ef7a        2 hours ago         /bin/sh -c #(nop)  ENV VER=3.0.0                0B     
-74f8760a2a8b        8 days ago          /bin/sh -c #(nop)  CMD [&quot;/bin/bash&quot;]            0B     
-&lt;missing&gt;           8 days ago          /bin/sh -c mkdir -p /run/systemd &amp;&amp; echo 'do...   7B
-&lt;missing&gt;           8 days ago          /bin/sh -c sed -i 's/^#\s*\(deb.*universe\)$...   2.76kB
-&lt;missing&gt;           8 days ago          /bin/sh -c rm -rf /var/lib/apt/lists/*          0B
-&lt;missing&gt;           8 days ago          /bin/sh -c set -xe   &amp;&amp; echo '#!/bin/sh' &gt; /...   745B   
-&lt;missing&gt;           8 days ago          /bin/sh -c #(nop) ADD file:5fabb77ea8d61e02d...   82.4MB 
-root@k8s-master:/tmp/iops#
-</code></pre>
+<h2 id="参考">参考</h2>
 
-<p>社区里还有很多压缩工具，比如Docker-squash ，用起来更简单方便，并且不会丢失原有镜像的自带信息，大家有兴趣可以试试。</p>
+<ul>
+<li><a href="https://buoyant.io/2017/04/25/whats-a-service-mesh-and-why-do-i-need-one/">WHAT’S A SERVICE MESH? AND WHY DO I NEED ONE? - buoyant.io</a></li>
+<li><a href="https://medium.com/attest-engineering/Istio-a-service-mesh-for-aws-ecs-937f201f847a">Istio: A service mesh for AWS ECS - medium.com</a></li>
+<li><a href="https://istio.io/blog/istio-service-mesh-for-microservices.html">初次了解 Istio - istio.io</a></li>
+<li><a href="http://blog.christianposta.com/microservices/application-network-functions-with-esbs-api-management-and-now-service-mesh/">Application Network Functions With ESBs, API Management, and Now.. Service Mesh? - blog.christianposta.com</a></li>
+<li><a href="http://philcalcado.com/2017/08/03/pattern_service_mesh.html">Pattern: Service Mesh - philcalcado.com</a></li>
+<li><a href="http://www.servicemesher.com/envoy/">Envoy 官方文档中文版 - servicemesher.com</a></li>
+<li><a href="https://istio.io/zh">Istio 官方文档 - istio.io</a></li>
+<li><a href="https://github.com/servicemesher/awesome-servicemesh/">servicemesher/awesome-servicemesh - github.com</a></li>
+</ul>
 
                         </div>
                         
@@ -497,13 +362,9 @@ root@k8s-master:/tmp/iops#
                         <ul class="pager blog-pager">
                         
                         <li class="previous">
-                        <a href="http://blog.maoxianplay.com/posts/docker-quit/" data-toggle="tooltip" data-placement="top" title="Docker容器启动退出解决方案">&larr; 更旧</a>
+                        <a href="http://blog.maoxianplay.com/posts/merge-kubeconfig/" data-toggle="tooltip" data-placement="top" title="自动合并Kubeconfig，实现多k8s集群切换">&larr; 更旧</a>
                         </li>
                          
-                        <li class="next">
-                        <a href="http://blog.maoxianplay.com/posts/k8s-topo/" data-toggle="tooltip" data-placement="top" title="kubernetes集群概述">更新 &rarr;</a>
-                        </li>
-                        
                         </ul>
 
                     </div>
@@ -518,23 +379,6 @@ root@k8s-master:/tmp/iops#
                         
 
                         <div class="panel panel-default sidebar-menu">
-     
-    <div class="panel-heading">
-     <h3 class="panel-title">相关文章</h3>
-    </div>
-    <div class="panel-body">
-     <ul class="nav nav-pills nav-stacked">
-        
-        <li><a href="/posts/docker-quit/"><i class="fa fa-link"></i>Docker容器启动退出解决方案</a></li>
-         
-        <li><a href="/posts/con-ind/"><i class="fa fa-link"></i>容器技术概述</a></li>
-         
-        <li><a href="/posts/install-k8s/"><i class="fa fa-link"></i>centos7.2 安装k8s v1.11.0</a></li>
-         
-        <li><a href="/posts/install-docker/"><i class="fa fa-link"></i>centos7安装指定版本的docker</a></li>
-         
-     </ul>
-    </div>
      
 </div>
 

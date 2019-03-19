@@ -275,6 +275,26 @@
         ]
     },
     {
+        "title": "Service Mesh是什么",
+        "uri": "posts/istio-servicemesh",
+        "content": "Istio                    Service mesh                          Buoyant     CEO Willian Morgan         WHAT S SERVICE MESH  WHY NEED ONE          Service Mesh            Service Mesh                                                                                                                  Willian Morgan Buoyant CEO      Service Mesh                                                                                                           A B                                                                                                                   Linkerd   Istio        Kubernetes        Linkerd      CNCF    Istio   2018 7 31    1 0                                              TCP IP                                       TCP IP          HTTP     RESTful                                                  Spring Cloud OSS                 Phil Cal ado         Pattern  Service Mesh                                                                                                                Twitter   Finagle   Facebook   Proxygen                                       Netflix OSS Airbnb   synapse   nerve                                      Pattern  Service Mesh        sidecar                                                serivce mesh                    Istio             Kubernetes      Istio                                     staging                                                                                Istio                           Kubernetes    service    service               Istio                                       Istio                                               Istio                           error Istio                                       Istio                      Istio   metric                                   metric                                                              Kubernetes              MVC    Web                                                                                      twitter     Finagle Netflix     Hystrix   Google   Stubby                                                                                               Kubernetes                                                                                                           WHAT S SERVICE MESH  WHY NEED ONE    buoyant io Istio  service mesh AWS ECS   medium com      Istio   istio io Application Network Functions ESBs  API Management  Now   Service Mesh    blog christianposta com Pattern  Service Mesh   philcalcado com Envoy           servicemesher com Istio        istio io servicemesher awesome servicemesh   github com",
+        "objectID": "posts/istio-servicemesh",
+        "date": "2019-03-19T08:12:56.000Z",
+        "draft": "flase",
+        "banner": "https://ws1.sinaimg.cn/large/ad5fbf65ly1g188a7s4ttj21qi15ogpc.jpg",
+        "author": "郭旭东",
+        "summary": "现在Service Mesh很热，但是到底什么事Service Mesh，Service Mesh能为我们做什么，我们为什么要用Service Mesh。",
+        "tags": [
+            "Service Mesh"
+        ],
+        "categories": [
+            "服务网格"
+        ],
+        "keywords": [
+            "Service Mesh"
+        ]
+    },
+    {
         "title": "Kubernetes删除一直处于Terminating状态的namespace",
         "uri": "posts/k8s-d-n",
         "content": "ucloud  rancher               Rancher   namespace cattle system               namespace    Terminating                 kubectl edit namespaces cattle system     namespaces yaml     finalizer value                    namespace",
