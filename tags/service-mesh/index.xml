@@ -6,10 +6,19 @@
     <description>Recent content in Service Mesh on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 19 Mar 2019 16:12:56 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 20 Mar 2019 09:12:28 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.maoxianplay.com/tags/service-mesh/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>浅析ServiceMesh &amp; Istio</title>
+      <link>http://blog.maoxianplay.com/posts/istio-share/</link>
+      <pubDate>Wed, 20 Mar 2019 09:12:28 +0800</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/posts/istio-share/</guid>
+      <description>前言 公司于18年10月正式确认服务容器化，到18年12月4日第一个服务正式部署到生产环境kubernetes集群，再到如今已有23个服务完成</description>
+    </item>
     
     <item>
       <title>Service Mesh是什么</title>
