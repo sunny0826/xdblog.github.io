@@ -6,10 +6,19 @@
     <description>Recent content on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 20 Mar 2019 09:12:28 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 21 Mar 2019 09:42:18 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.maoxianplay.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Istio初探之Bookinfo样例部署</title>
+      <link>http://blog.maoxianplay.com/posts/istio-bookinfo-demo/</link>
+      <pubDate>Thu, 21 Mar 2019 09:42:18 +0800</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/posts/istio-bookinfo-demo/</guid>
+      <description>前言 之前介绍了 Istio 和 Service Mesh 能给我们带来什么，我们为什么要用 Istio ，但大家对 Istio 的认识可能还没有那么深刻。正如Linux 的创始人 Linus Torvalds 的那句话：Talk is</description>
+    </item>
     
     <item>
       <title>浅析ServiceMesh &amp; Istio</title>
