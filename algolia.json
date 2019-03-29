@@ -2,7 +2,7 @@
     {
         "title": "联系我们",
         "uri": "contact",
-        "content": "2018 4                                                                  devops                                                                        GitHub https   github com sunny0826        https   my oschina net keking                                               guoxudong keking cn",
+        "content": "2018 4                          MVP                                            devops                                                                        GitHub https   github com sunny0826        https   my oschina net keking                                               guoxudong keking cn",
         "objectID": "contact",
         "id": "contact"
     },
@@ -492,6 +492,28 @@
             "devops",
             "jenkins",
             "sonar"
+        ]
+    },
+    {
+        "title": "Service Mesh是什么，我们又为什么需要它",
+        "uri": "posts/whats-a-service-mesh-and-why-do-i-need-one",
+        "content": "William Morgan    2017 4 25  2018 11 26       Service Mesh                                                 Cloud Native             Service Mesh            Service Mesh                  Paypal   Ticketmaster   Credit Karma           Service Mesh                2017 1      Service Mesh    Linkerd           CNCF             CNCF                 Service Mesh                           Service Mesh                              Service Mesh             API           ESB  enterprise service bus               Service Mesh                    Service Mesh            Service Mesh Service Mesh                                                           Cloud Native      Service Mesh                                          Service Mesh                                                                     kubernetes                                                                        Service Mesh            Service Mesh       TCP IP                  L3 L4                                               Service Mesh                     Service Mesh                TCP                                                                                      TCP       Service Mesh                                              Service Mesh                                            Service Mesh                                 Linkerd                                                              Linkerd                  Linkerd                                                                                                                                       Linkerd                              Linkerd            Linkerd              Linkerd                           Linkerd                                            Linkerd                                             Linkerd                          Linkerd                          Linkerd                                                   Linkerd          TLS                                                                                                                    Service Mesh                                         Service Mesh       Service Mesh                         Web               Service Mesh                15      2000      Web                               web                                   2         Mesh                                                         Google   Netflix     Twitte                                                                                                    Twitter   Finagle  Netflix   Hystrix   Google   Stubby                  Finagle  Stubby   Hystrix           Service Mesh                                               Finagle   Hystrix                                                                                                                                                                                                                           Service Mesh   Service Mesh     Service Mesh                                    Serverless     Amazon   Lambda     Service Mesh                     Service Mesh                                     Service Mesh      TCP   IP                   Linkerd     Finagle           Service Mesh                                Service Mesh              Linkerd    1            CNCF                          Monzo                   Paypal  Ticketmaster   Credit Karma              Houghton Mifflin Harcourt                          Linkerd      Service Mesh                                                  https   buoyant io 2017 04 25 whats a service mesh and why do i need one",
+        "objectID": "posts/whats-a-service-mesh-and-why-do-i-need-one",
+        "date": "2019-03-25T10:17:20.000Z",
+        "draft": false,
+        "banner": "https://ws2.sinaimg.cn/large/ad5fbf65ly1g1ji5k4b8dj21qg15ojvt.jpg",
+        "author": "郭旭东",
+        "summary": "Service Mesh 是一个专门用于使服务与服务之间的通信变得安全、快速和可靠的的基础设施。如果你正在在构建一个云原生（ Cloud Native ）应用，那么 Service Mesh 是你需要的。",
+        "tags": [
+            "翻译",
+            "service mesh"
+        ],
+        "categories": [
+            "翻译"
+        ],
+        "keywords": [
+            "翻译",
+            "service mesh"
         ]
     },
     {

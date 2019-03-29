@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>翻译 on GuoXD Blog</title>
+    <link>http://blog.maoxianplay.com/tags/%E7%BF%BB%E8%AF%91/</link>
+    <description>Recent content in 翻译 on GuoXD Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 25 Mar 2019 18:17:20 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.maoxianplay.com/tags/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Service Mesh是什么，我们又为什么需要它</title>
+      <link>http://blog.maoxianplay.com/posts/whats-a-service-mesh-and-why-do-i-need-one/</link>
+      <pubDate>Mon, 25 Mar 2019 18:17:20 +0800</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/posts/whats-a-service-mesh-and-why-do-i-need-one/</guid>
+      <description>作者：William Morgan 发表于2017年4月25日，2018年11月26日有所修改。 Service Mesh 是一个专门使服务与服务之间的通信变得安全、快速和可靠的</description>
+    </item>
+    
+  </channel>
+</rss>
