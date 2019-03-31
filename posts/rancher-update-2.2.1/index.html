@@ -8,11 +8,11 @@
   <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>微服务 · guoxudong 博客</title>
+  <title>单节点版rancher升级指南 · guoxudong 博客</title>
   <meta name="author" content="郭旭东" />
 
   
-  <meta name="keywords" content="devops">
+  <meta name="keywords" content="rancher, 容器, kubernetes">
   
 
   <meta name="generator" content="Hugo 0.52" />
@@ -54,17 +54,17 @@
   <link rel="stylesheet" href="/css/prism.css" />
 
   
-  <meta property="og:title" content="微服务" />
+  <meta property="og:title" content="单节点版rancher升级指南" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1//" />
+  <meta property="og:url" content="/posts/rancher-update-2.2.1//" />
   <meta property="og:image" content="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" />
   <meta property="og:image:alt" content="ServiceMesher Logo" />
 
   
-  <meta name="description" content="guoxudong 博客">
-  <meta property="og:description" content="guoxudong 博客">
-  <meta name="twitter:description" content="guoxudong 博客">
-  <meta property="og:description" content="guoxudong 博客" />
+  <meta name="description" content="目前我们使用的是 rancher 2.1.1版本，在去年 rancher 发布2.1.*版本的时候做过一次升级，当时遇到了很多问题，虽然都一一解决，但是并没有有效的记录下来，这里在升级2.2.*版本的时候做一个记录以便在今后升级的时候的提供参考作用。">
+  <meta property="og:description" content="目前我们使用的是 rancher 2.1.1版本，在去年 rancher 发布2.1.*版本的时候做过一次升级，当时遇到了很多问题，虽然都一一解决，但是并没有有效的记录下来，这里在升级2.2.*版本的时候做一个记录以便在今后升级的时候的提供参考作用。">
+  <meta name="twitter:description" content="目前我们使用的是 rancher 2.1.1版本，在去年 rancher 发布2.1.*版本的时候做过一次升级，当时遇到了很多问题，虽然都一一解决，但是并没有有效的记录下来，这里在升级2.2.*版本的时候做一个记录以便在今后升级的时候的提供参考作用。">
+  <meta property="og:description" content="目前我们使用的是 rancher 2.1.1版本，在去年 rancher 发布2.1.*版本的时候做过一次升级，当时遇到了很多问题，虽然都一一解决，但是并没有有效的记录下来，这里在升级2.2.*版本的时候做一个记录以便在今后升级的时候的提供参考作用。" />
 
   
   
@@ -98,9 +98,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="/">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="微服务 logo" class="hidden-xs hidden-sm">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="微服务 logo" class="visible-xs visible-sm">
-                    <span class="sr-only">微服务 - 跳到主页</span>
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="单节点版rancher升级指南 logo" class="hidden-xs hidden-sm">
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="单节点版rancher升级指南 logo" class="visible-xs visible-sm">
+                    <span class="sr-only">单节点版rancher升级指南 - 跳到主页</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -221,7 +221,7 @@ autocomplete('#aa-search-input',
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>微服务</h1>
+                <h1>单节点版rancher升级指南</h1>
             </div>
         </div>
     </div>
@@ -230,72 +230,146 @@ autocomplete('#aa-search-input',
 
         <div id="content">
             <div class="container">
+
                 <div class="row">
+
                     
 
-                    <div class="col-md-9" id="blog-listing-medium">
-
-                        
-                        
-                        <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                  <div class="image">
-                                      <a href="/posts/12-factor/">
-                                          
-                                          <img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g0t0qnqav0j21qi15o48y.jpg" class="img-responsive" alt="">
-                                          
-                                      </a>
-                                  </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="/posts/12-factor/">理解十二要素应用(12-Factor)</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">
-                                          
-                                          作者 郭旭东
-                                          
-                                          
-                                          |
-                                          1000字 | 阅读大约需要2分钟
-                                          |
-                                          
-                                          
-                                          归档于<a href="/categories/%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f%e5%bc%80%e5%8f%91">应用程序开发</a>
-                                          
-                                          
-
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="/posts/12-factor/"><i class="fa fa-calendar-o"></i> 2019年2月14日</a>
-                                        </p>
-                                    </div>
-                                    
-                                    <p class="intro">为了更好的拥抱云原生架构，同时提高软件交付质量，开发人员必须改变他们的编码方式，并未开发者和应用程序所运行的基础架构之间创造一个新的协议，十二要素应用宣言应运而生。</p>
-                                    
-                                    <p class="read-more"><a href="http://blog.maoxianplay.com/posts/12-factor/" class="btn btn-template-main">继续阅读</a>
-                                    </p>
-                                </div>
+                    <div class="col-md-9" id="blog-post">
+                        <div class="well">
+                            <div class="author-category">
+                            <i class="fa fa-calendar-o">
+                            2019年3月31日
+                            </i>
+                            |
+                            
+                            作者 郭旭东
+                            
+                            
+                            
+                            |
+                            1000字 | 阅读大约需要2分钟
                             </div>
-                        </section>
+                            
+                            
+                            <div class="author-category">
+                            
+                            
+                            归档于 <a href="/categories/%e9%83%a8%e7%bd%b2%e5%ae%89%e8%a3%85">部署安装</a>
+                            
+                            |
+                            
+                            
+                            
+                            标签
+                            
+                            <a style="text-transform:capitalize" href="/tags/rancher/"><i>#rancher</i></a>
+                            
+                            <a style="text-transform:capitalize" href="/tags/%E5%AE%B9%E5%99%A8/"><i>#容器</i></a>
+                            
+                            <a style="text-transform:capitalize" href="/tags/kubernetes/"><i>#kubernetes</i></a>
+                            
+                            </div>
+                            
+                            
+                        </div>
+                        <div id="post-content">
+                          
+
+<blockquote>
+<p>目前我们使用的是 rancher 2.1.1版本，在去年 rancher 发布 <code>v2.1.*</code> 版本的时候做过一次升级，当时遇到了很多问题，虽然都一一解决，但是并没有有效的记录下来，这里在升级 <code>v2.2.*</code> 版本的时候做一个记录以便在今后升级的时候的提供参考作用。</p>
+</blockquote>
+
+<h2 id="升级前的准备">升级前的准备</h2>
+
+<ul>
+<li>首先查看当前 rancher 版本，记下这个版本号后面需要使用。查看方式就是登陆 rancher 在左下角就可以看到当前版本号，我们这里使用的<code>v2.1.1</code>版本。</li>
+<li>打开官方文档，这里推荐对照官方文档进行升级，一般官方文档都会及时更新并提供最佳升级方法，而一般的博客会因为其写作时间、使用版本、部署环境的不同有所偏差。官方文档： <a href="https://www.cnrancher.com/docs/rancher/v2.x/cn/upgrades/single-node-upgrade/">https://www.cnrancher.com/docs/rancher/v2.x/cn/upgrades/single-node-upgrade/</a></li>
+</ul>
+
+<h2 id="升级">升级</h2>
+
+<ol>
+<li><p>首先获取正在运行的 rancher 容器 ID,由以下命令可知 <code>RANCHER_CONTAINER_ID</code> 为 <code>83167cb60134</code></p>
+
+<pre><code>$ docker ps
+CONTAINER ID        IMAGE                    COMMAND             CREATED             STATUS              
+PORTS                                       NAMES
+83167cb60134        rancher/rancher:latest   &quot;entrypoint.sh&quot;     4 months ago        Up 4 months         0.0.0.0:80-&gt;80/tcp, 0.0.0.0:443-&gt;443/tcp   priceless_newton
+</code></pre></li>
+
+<li><p>停止该容器</p>
+
+<pre><code>$ docker stop {RANCHER_CONTAINER_ID}
+</code></pre></li>
+
+<li><p>创建正在运行的 Rancher Server 容器的数据卷容器，将在升级中使用，这里命名为 <code>rancher-data</code> 容器。</p>
+
+<ul>
+<li>替换{RANCHER_CONTAINER_ID}为上一步中的容器ID。</li>
+
+<li><p>替换{RANCHER_CONTAINER_TAG}为你当前正在运行的Rancher版本，如上面的先决条件中所述。</p>
+
+<pre><code>$ docker create --volumes-from {RANCHER_CONTAINER_ID} --name rancher-data rancher/rancher:{RANCHER_CONTAINER_TAG}
+</code></pre></li>
+</ul></li>
+
+<li><p>备份 <code>rancher-data</code> 数据卷容器</p>
+
+<p>如果升级失败，可以通过此备份还原Rancher Server，容器命名:rancher-data-snapshot-<CURRENT_VERSION>.</p>
+
+<ul>
+<li>替换{RANCHER_CONTAINER_ID}为上一步中的容器ID。</li>
+<li>替换{CURRENT_VERSION}为当前安装的Rancher版本的标记。</li>
+
+<li><p>替换{RANCHER_CONTAINER_TAG}为当前正在运行的Rancher版本，如先决条件中所述 。</p>
+
+<pre><code>$ docker create --volumes-from {RANCHER_CONTAINER_ID} --name rancher-data-snapshot-{CURRENT_VERSION} rancher/rancher:{RANCHER_CONTAINER_TAG}
+</code></pre></li>
+</ul></li>
+
+<li><p>拉取Rancher的最新镜像,这里确保有外网，可能拉取到新的镜像，如果没有外网，这里就需要将镜像上传到私有镜像仓库，将拉取地址设置为私有镜像仓库即可</p>
+
+<pre><code>$ docker pull rancher/rancher:latest
+</code></pre></li>
+
+<li><p>通过 <code>rancher-data</code> 数据卷容器启动新的 Rancher Server 容器。</p>
+
+<p><strong>这里要注意到，我们这是使用的是独立容器+外部七层负载均衡，是通过阿里云SLB进行SSL证书认证，需要在启动的时候增加<code>--no-cacerts</code></strong></p>
+
+<pre><code>$ docker run -d --volumes-from rancher-data --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher:latest --no-cacerts
+</code></pre>
+
+<blockquote>
+<p>升级过程会需要一定时间，不要在升级过程中终止升级，强制终止可能会导致数据库迁移错误。</p>
+
+<p>升级 Rancher Server后， server 容器中的数据会保存到 <code>rancher-data</code> 容器中，以便将来升级。</p>
+</blockquote></li>
+
+<li><p>删除旧版本 Rancher Server 容器</p>
+
+<p>如果你只是停止以前的Rancher Server容器(并且不删除它),则旧版本容器可能随着主机重启后自动运行，导致容器端口冲突。</p></li>
+
+<li><p>升级成功</p>
+
+<p>访问 rancher 可以看到右下角版本已经完成更新。</p>
+
+<p><img src="https://wx3.sinaimg.cn/large/ad5fbf65gy1g1lzcmucn6j20ck03qt8p.jpg" alt="image" /></p></li>
+</ol>
+
+                        </div>
                         
-
-                        <ul class="pager">
-                            
-                            <li class="previous disabled"><a href="#">&larr; 更新</a></li>
-                            
-
-                            
-                            <li class="next disabled"><a href="#">更旧 &rarr;</a></li>
-                            
+                        
+                        
+                        
+                        <ul class="pager blog-pager">
+                        
+                        <li class="previous">
+                        <a href="http://blog.maoxianplay.com/posts/whats-a-service-mesh-and-why-do-i-need-one/" data-toggle="tooltip" data-placement="top" title="Service Mesh是什么，我们又为什么需要它">&larr; 更旧</a>
+                        </li>
+                         
                         </ul>
 
-                        <div align="center" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                        
-
-                        
-                        
-                        </div>
                     </div>
                     
 
@@ -308,6 +382,25 @@ autocomplete('#aa-search-input',
                         
 
                         <div class="panel panel-default sidebar-menu">
+     
+    <div class="panel-heading">
+     <h3 class="panel-title">相关文章</h3>
+    </div>
+    <div class="panel-body">
+     <ul class="nav nav-pills nav-stacked">
+        
+        <li><a href="/posts/k8s-ingress-config/"><i class="fa fa-link"></i>解决kubernetes中ingress-nginx配置问题</a></li>
+         
+        <li><a href="/posts/https-ingress/"><i class="fa fa-link"></i>为ingress配置SSL证书，实现HTTPS访问</a></li>
+         
+        <li><a href="/posts/install-rancher/"><i class="fa fa-link"></i>阿里云部署rancher2.1采坑记</a></li>
+         
+        <li><a href="/posts/install-k8s/"><i class="fa fa-link"></i>centos7.2 安装k8s v1.11.0</a></li>
+         
+        <li><a href="/posts/k8s-qos/"><i class="fa fa-link"></i>Pod质量服务类别(QoS)</a></li>
+         
+     </ul>
+    </div>
      
 </div>
 
