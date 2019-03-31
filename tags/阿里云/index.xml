@@ -6,10 +6,19 @@
     <description>Recent content in 阿里云 on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 21 Mar 2019 09:42:18 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 31 Mar 2019 18:26:06 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.maoxianplay.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>阿里云容器服务新建集群优化方案</title>
+      <link>http://blog.maoxianplay.com/posts/aliyun-k8s-perfect/</link>
+      <pubDate>Sun, 31 Mar 2019 18:26:06 +0800</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/posts/aliyun-k8s-perfect/</guid>
+      <description>前言 选择阿里云的容器服务，主要原因是公司主要业务基本都在运行在阿里云上。相较自建 kubernetes 集群，容器服务的优势在于部署相对简单，与阿里云 VPC 完美兼容，</description>
+    </item>
     
     <item>
       <title>Istio初探之Bookinfo样例部署</title>
