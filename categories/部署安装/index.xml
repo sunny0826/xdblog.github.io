@@ -17,7 +17,7 @@
       <pubDate>Sun, 31 Mar 2019 11:15:35 +0800</pubDate>
       
       <guid>http://blog.maoxianplay.com/posts/rancher-update-2.2.1/</guid>
-      <description>目前我们使用的是 rancher 2.1.1版本，在去年 rancher 发布 v2.1.* 版本的时候做过一次升级，当时遇到了很多问题，虽然都一一解决，但是并没有有效的记录下来，这里在</description>
+      <description>Rancher 不仅可以在任何云提供商的任何地方部署 Kubernetes 集群，而且还将它们集中在集中式的身份验证和访问控制之下。由于它与资源的运行位置无关，因此您可以轻松地</description>
     </item>
     
     <item>
