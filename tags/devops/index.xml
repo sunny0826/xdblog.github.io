@@ -6,10 +6,19 @@
     <description>Recent content in Devops on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 07 Mar 2019 09:14:39 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 09 Apr 2019 13:21:56 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.maoxianplay.com/tags/devops/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Devops入门手册</title>
+      <link>http://blog.maoxianplay.com/posts/devops-tutorial/</link>
+      <pubDate>Tue, 09 Apr 2019 13:21:56 +0800</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/posts/devops-tutorial/</guid>
+      <description>DevOps 是什么？ “DevOps”这个词是 development 和 operations 这两个词的组合。它是一种促进开发和运维团队之间的协作，以自动化和可重复的方式更快地将代码部署到生产中</description>
+    </item>
     
     <item>
       <title>Jenkins Pipeline集成Sonar进行代码质量检测</title>
