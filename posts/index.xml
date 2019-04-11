@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>从边车模式到 Service Mesh</title>
+      <link>http://blog.maoxianplay.com/posts/sidercar-to-servicemesh/</link>
+      <pubDate>Wed, 10 Apr 2019 14:03:25 +0800</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/posts/sidercar-to-servicemesh/</guid>
+      <description>什么是边车模式 边车模式是一种分布式架构的设计模式。如上图所示，边车就是加装在摩托车旁来达到拓展功能的目的，比如行驶更加稳定，可以拉更多的人和</description>
+    </item>
+    
+    <item>
       <title>Devops入门手册</title>
       <link>http://blog.maoxianplay.com/posts/devops-tutorial/</link>
       <pubDate>Tue, 09 Apr 2019 13:21:56 +0800</pubDate>

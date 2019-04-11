@@ -6,10 +6,19 @@
     <description>Recent content in Service Mesh on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 25 Mar 2019 18:17:20 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Apr 2019 14:03:25 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.maoxianplay.com/tags/service-mesh/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>从边车模式到 Service Mesh</title>
+      <link>http://blog.maoxianplay.com/posts/sidercar-to-servicemesh/</link>
+      <pubDate>Wed, 10 Apr 2019 14:03:25 +0800</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/posts/sidercar-to-servicemesh/</guid>
+      <description>什么是边车模式 边车模式是一种分布式架构的设计模式。如上图所示，边车就是加装在摩托车旁来达到拓展功能的目的，比如行驶更加稳定，可以拉更多的人和</description>
+    </item>
     
     <item>
       <title>Service Mesh是什么，我们又为什么需要它</title>
