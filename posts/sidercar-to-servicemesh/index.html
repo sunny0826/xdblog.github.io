@@ -248,7 +248,7 @@ autocomplete('#aa-search-input',
                             
                             
                             |
-                            2200字 | 阅读大约需要5分钟
+                            2300字 | 阅读大约需要5分钟
                             </div>
                             
                             
@@ -275,6 +275,16 @@ autocomplete('#aa-search-input',
 <h2 id="什么是边车模式">什么是边车模式</h2>
 
 <p><img src="http://wx1.sinaimg.cn/large/ad5fbf65ly1g18zhnoh76j20dw0dw752.jpg" alt="" /></p>
+
+<p>在 <a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/">Azure Architecture Center</a> 的云设计模式中是这么介绍边车模式的：</p>
+
+<blockquote>
+<p>Deploy components of an application into a separate process or container to provide isolation and encapsulation.</p>
+
+<p>&mdash; <strong><em><a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/sidecar">Sidecar pattern</a></em></strong></p>
+</blockquote>
+
+<p><strong>这里要注意的是： 这里的 Sidecar 是分布式架构中云设计模式的一种，与我们目前在使用的 Istio 或 Linkerd 中的 Sidecar 是设计与实现的区别，后文中提到的边车模式均是指这种设计模式，请勿与 Istio 或 其他 Service Mesh 软件 中的 Sidecar 混淆。</strong></p>
 
 <p><strong>边车模式</strong>是一种分布式架构的设计模式。如上图所示，边车就是加装在摩托车旁来达到拓展功能的目的，比如行驶更加稳定，可以拉更多的人和货物，坐在边车上的人可以给驾驶员指路等。边车模式通过给应用服务加装一个“边车”来达到<strong>控制</strong>和<strong>逻辑</strong>的分离的目的。</p>
 
@@ -318,7 +328,7 @@ autocomplete('#aa-search-input',
 
 <p>边车模式有效的分离了系统控制和业务逻辑，可以将所有的服务进行统一管理，让开发人员更专注于业务开发，显著的提升开发效率。而遵循这种模式进行实践从很早以前就开始了，开发人员一直试图将上文中我们提到的功能（如：流量控制、服务注册、服务发现、服务限流、服务熔断等）提取成一个标准化的 Sidecar ，通过 Sidecar 代理来与其他系统进行交互，这样可以大大简化业务开发和运维。而随着分布式架构和微服务被越来越多的公司和开发者接受并使用，这一需求日益凸显。</p>
 
-<p>这就是 Service Mesh 服务网格诞生的契机，它是 CNCF（Cloud Native Computing Foundation，云原生基金会）目前主推的新一代微服务架构。 William Morgan 在 <a href="https://buoyant.io/2017/04/25/whats-a-service-mesh-and-why-do-i-need-one/">What&rsquo;s a service mesh? And why do I need one?</a> 中解释了什么是 Service Mesh ，这里也有<a href="https://blog.maoxianplay.com/posts/whats-a-service-mesh-and-why-do-i-need-one/">译文</a>。</p>
+<p>这就是 Service Mesh 服务网格诞生的契机，它是 CNCF（Cloud Native Computing Foundation，云原生基金会）目前主推的新一代微服务架构。 William Morgan 在 <a href="https://buoyant.io/2017/04/25/whats-a-service-mesh-and-why-do-i-need-one/">What&rsquo;s a service mesh? And why do I need one?</a> 【<a href="https://blog.maoxianplay.com/posts/whats-a-service-mesh-and-why-do-i-need-one/">译文</a>】中解释了什么是 Service Mesh 。</p>
 
 <p>Service Mesh 有如下几个特点：</p>
 
@@ -333,7 +343,7 @@ autocomplete('#aa-search-input',
 
 <h2 id="你真的需要-service-mesh-吗">你真的需要 Service Mesh 吗？</h2>
 
-<p>正如NGINX在其博客上发表的一篇文章名叫 <a href="https://www.nginx.com/blog/do-i-need-a-service-mesh/">Do I Need a Service Mesh? </a> ,这里可以看到<a href="http://www.servicemesher.com/blog/do-i-need-a-service-mesh/">译文</a>，文中提到的：</p>
+<p>正如 NGINX 在其博客上发表的一篇文章名叫 <a href="https://www.nginx.com/blog/do-i-need-a-service-mesh/">Do I Need a Service Mesh? </a> 【<a href="http://www.servicemesher.com/blog/do-i-need-a-service-mesh/">译文</a>】 的文章中提到：</p>
 
 <blockquote>
 <p>As the complexity of the application increases, service mesh becomes a realistic alternative to implementing capabilities service-by-service.</p>
@@ -348,6 +358,8 @@ autocomplete('#aa-search-input',
 <h2 id="参考">参考</h2>
 
 <ul>
+<li><p>Sidecar pattern ： <a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/sidecar">https://docs.microsoft.com/en-us/azure/architecture/patterns/sidecar</a></p></li>
+
 <li><p>What&rsquo;s a service mesh? And why do I need one?： <a href="https://buoyant.io/2017/04/25/whats-a-service-mesh-and-why-do-i-need-one/">https://buoyant.io/2017/04/25/whats-a-service-mesh-and-why-do-i-need-one/</a></p></li>
 
 <li><p>Do I Need a Service Mesh?：<a href="https://www.nginx.com/blog/do-i-need-a-service-mesh/">https://www.nginx.com/blog/do-i-need-a-service-mesh/</a></p></li>

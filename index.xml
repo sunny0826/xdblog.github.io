@@ -17,7 +17,7 @@
       <pubDate>Wed, 10 Apr 2019 14:03:25 +0800</pubDate>
       
       <guid>http://blog.maoxianplay.com/posts/sidercar-to-servicemesh/</guid>
-      <description>什么是边车模式 边车模式是一种分布式架构的设计模式。如上图所示，边车就是加装在摩托车旁来达到拓展功能的目的，比如行驶更加稳定，可以拉更多的人和</description>
+      <description>什么是边车模式 在 Azure Architecture Center 的云设计模式中是这么介绍边车模式的： Deploy components of an application into a separate process or container to provide isolation and encapsulation. &amp;mdash; Sidecar pattern 这里要注意的是： 这里的 Sidecar 是分布式架构中云设计</description>
     </item>
     
     <item>
