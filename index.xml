@@ -6,10 +6,19 @@
     <description>Recent content on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 10 Apr 2019 14:03:25 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 15 Apr 2019 13:32:59 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.maoxianplay.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>什么是 Kustomize ？</title>
+      <link>http://blog.maoxianplay.com/posts/kustomize-1/</link>
+      <pubDate>Mon, 15 Apr 2019 13:32:59 +0800</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/posts/kustomize-1/</guid>
+      <description>初识 Kustomize 第一次听说 Kustomize 其实是在 kubernetes 1.14 发布时候，它被集成到 kubectl 中，成为了一个子命令，但也只是扫了一眼，并没有深究。真正让我注意到它，并主动开始了解其功</description>
+    </item>
     
     <item>
       <title>从边车模式到 Service Mesh</title>
@@ -17,7 +26,7 @@
       <pubDate>Wed, 10 Apr 2019 14:03:25 +0800</pubDate>
       
       <guid>http://blog.maoxianplay.com/posts/sidercar-to-servicemesh/</guid>
-      <description>什么是边车模式 在 Azure Architecture Center 的云设计模式中是这么介绍边车模式的： Deploy components of an application into a separate process or container to provide isolation and encapsulation. &amp;mdash; Sidecar pattern 这里要注意的是： 这里的 Sidecar 是分布式架构中云设计</description>
+      <description>所谓边车模式（ Sidecar pattern ），也译作挎斗模式，是分布式架构中云设计模式的一种。因为其非常类似于生活中的边三轮摩托车而得名。该设计模式通过给应用程序加</description>
     </item>
     
     <item>

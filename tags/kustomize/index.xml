@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>工具 on GuoXD Blog</title>
-    <link>http://blog.maoxianplay.com/tags/%E5%B7%A5%E5%85%B7/</link>
-    <description>Recent content in 工具 on GuoXD Blog</description>
+    <title>Kustomize on GuoXD Blog</title>
+    <link>http://blog.maoxianplay.com/tags/kustomize/</link>
+    <description>Recent content in Kustomize on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Mon, 15 Apr 2019 13:32:59 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.maoxianplay.com/tags/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://blog.maoxianplay.com/tags/kustomize/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>http://blog.maoxianplay.com/posts/kustomize-1/</guid>
       <description>初识 Kustomize 第一次听说 Kustomize 其实是在 kubernetes 1.14 发布时候，它被集成到 kubectl 中，成为了一个子命令，但也只是扫了一眼，并没有深究。真正让我注意到它，并主动开始了解其功</description>
-    </item>
-    
-    <item>
-      <title>自动合并Kubeconfig，实现多k8s集群切换</title>
-      <link>http://blog.maoxianplay.com/posts/merge-kubeconfig/</link>
-      <pubDate>Sun, 17 Mar 2019 10:45:02 +0800</pubDate>
-      
-      <guid>http://blog.maoxianplay.com/posts/merge-kubeconfig/</guid>
-      <description>前言 随着微服务和容器化的深入人心，以及kubernetes已经成为容器编排领域的事实标准，越来越多的公司将自己的服务迁移到kubernete</description>
     </item>
     
   </channel>
