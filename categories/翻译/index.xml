@@ -6,10 +6,19 @@
     <description>Recent content in 翻译 on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 09 Apr 2019 13:21:56 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 15 Apr 2019 17:23:21 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.maoxianplay.com/categories/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kustomize: 无需模板定制你的 kubernetes 配置</title>
+      <link>http://blog.maoxianplay.com/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</link>
+      <pubDate>Mon, 15 Apr 2019 17:23:21 +0800</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</guid>
+      <description>作者：Jeff Regan (Google), Phil Wittrock (Google) 2018-05-29 如果你在运行 kubernetes 集群，你可能会拷贝一些包含 kubernetes API 对象的 YAML 文件，并且根据你的需求来修改这些文件，通过这些 YAML 文件来定义你的</description>
+    </item>
     
     <item>
       <title>Devops入门手册</title>
