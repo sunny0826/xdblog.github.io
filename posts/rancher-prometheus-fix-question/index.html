@@ -8,11 +8,11 @@
   <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>部署安装 · guoxudong 博客</title>
+  <title>Rancher 2.2.1 解决工作负载监控为空问题 · guoxudong 博客</title>
   <meta name="author" content="郭旭东" />
 
   
-  <meta name="keywords" content="devops">
+  <meta name="keywords" content="rancher, kubernetes, prometheus">
   
 
   <meta name="generator" content="Hugo 0.52" />
@@ -56,17 +56,17 @@
   <link rel="stylesheet" href="/css/share.min.css" />
 
   
-  <meta property="og:title" content="部署安装" />
+  <meta property="og:title" content="Rancher 2.2.1 解决工作负载监控为空问题" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85//" />
+  <meta property="og:url" content="/posts/rancher-prometheus-fix-question//" />
   <meta property="og:image" content="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" />
   <meta property="og:image:alt" content="ServiceMesher Logo" />
 
   
-  <meta name="description" content="guoxudong 博客">
-  <meta property="og:description" content="guoxudong 博客">
-  <meta name="twitter:description" content="guoxudong 博客">
-  <meta property="og:description" content="guoxudong 博客" />
+  <meta name="description" content="记一次在 Rancher 官方小哥帮助下解决 Rancher 问题的过程。">
+  <meta property="og:description" content="记一次在 Rancher 官方小哥帮助下解决 Rancher 问题的过程。">
+  <meta name="twitter:description" content="记一次在 Rancher 官方小哥帮助下解决 Rancher 问题的过程。">
+  <meta property="og:description" content="记一次在 Rancher 官方小哥帮助下解决 Rancher 问题的过程。" />
 
   
   
@@ -100,9 +100,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="/">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="部署安装 logo" class="hidden-xs hidden-sm">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="部署安装 logo" class="visible-xs visible-sm">
-                    <span class="sr-only">部署安装 - 跳到主页</span>
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="Rancher 2.2.1 解决工作负载监控为空问题 logo" class="hidden-xs hidden-sm">
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="Rancher 2.2.1 解决工作负载监控为空问题 logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Rancher 2.2.1 解决工作负载监控为空问题 - 跳到主页</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -223,7 +223,7 @@ autocomplete('#aa-search-input',
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>部署安装</h1>
+                <h1>Rancher 2.2.1 解决工作负载监控为空问题</h1>
             </div>
         </div>
     </div>
@@ -232,201 +232,124 @@ autocomplete('#aa-search-input',
 
         <div id="content">
             <div class="container">
+
                 <div class="row">
+
                     
 
-                    <div class="col-md-9" id="blog-listing-medium">
-
-                        
-                        
-                        <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                  <div class="image">
-                                      <a href="/posts/rancher-update-2.2.1/">
-                                          
-                                          <img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g1lzzx3n3fj20k00m2gpd.jpg" class="img-responsive" alt="">
-                                          
-                                      </a>
-                                  </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="/posts/rancher-update-2.2.1/">单节点版rancher升级指南</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">
-                                          
-                                          作者 郭旭东
-                                          
-                                          
-                                          |
-                                          1200字 | 阅读大约需要3分钟
-                                          |
-                                          
-                                          
-                                          归档于<a href="/categories/%e9%83%a8%e7%bd%b2%e5%ae%89%e8%a3%85">部署安装</a>
-                                          
-                                          
-
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="/posts/rancher-update-2.2.1/"><i class="fa fa-calendar-o"></i> 2019年3月31日</a>
-                                        </p>
-                                    </div>
-                                    
-                                    <p class="intro">Rancher 不仅可以在任何云提供商的任何地方部署 Kubernetes 集群，而且还将它们集中在集中式的身份验证和访问控制之下。由于它与资源的运行位置无关，因此您可以轻松地在不同的环境部署你的 kubernetes 集群并操作他们。 Rancher 不是将部署几个独立的 Kubernetes 集群，而是将它们统一为一个单独的托管Kubernetes Cloud。</p>
-                                    
-                                    <p class="read-more"><a href="http://blog.maoxianplay.com/posts/rancher-update-2.2.1/" class="btn btn-template-main">继续阅读</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
-                        
-                        <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                  <div class="image">
-                                      <a href="/posts/dashboard-k8s/">
-                                          
-                                          <img src="https://ws3.sinaimg.cn/large/ad5fbf65ly1g0t0tydo76j21qi15oaqs.jpg" class="img-responsive" alt="">
-                                          
-                                      </a>
-                                  </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="/posts/dashboard-k8s/">阿里云日志服务采集k8s日志并实现livetail功能</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">
-                                          
-                                          作者 郭旭东
-                                          
-                                          
-                                          |
-                                          1800字 | 阅读大约需要4分钟
-                                          |
-                                          
-                                          
-                                          归档于<a href="/categories/%e9%83%a8%e7%bd%b2%e5%ae%89%e8%a3%85">部署安装</a>
-                                          
-                                          
-
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="/posts/dashboard-k8s/"><i class="fa fa-calendar-o"></i> 2019年2月14日</a>
-                                        </p>
-                                    </div>
-                                    
-                                    <p class="intro">阿里云日志服务采集k8s日志和livetail功能调研</p>
-                                    
-                                    <p class="read-more"><a href="http://blog.maoxianplay.com/posts/dashboard-k8s/" class="btn btn-template-main">继续阅读</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
-                        
-                        <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                  <div class="image">
-                                      <a href="/posts/install-k8s/">
-                                          
-                                          <img src="https://ws3.sinaimg.cn/large/ad5fbf65ly1g0t1a2z4m7j21rt15otlh.jpg" class="img-responsive" alt="">
-                                          
-                                      </a>
-                                  </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="/posts/install-k8s/">centos7.2 安装k8s v1.11.0</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">
-                                          
-                                          作者 郭旭东
-                                          
-                                          
-                                          |
-                                          2800字 | 阅读大约需要6分钟
-                                          |
-                                          
-                                          
-                                          归档于<a href="/categories/%e9%83%a8%e7%bd%b2%e5%ae%89%e8%a3%85">部署安装</a>
-                                          
-                                          
-
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="/posts/install-k8s/"><i class="fa fa-calendar-o"></i> 2018年8月14日</a>
-                                        </p>
-                                    </div>
-                                    
-                                    <p class="intro">最近由于公司业务发展到了瓶颈，原有的技术架构已经逐渐无法满足业务开发和测试的需求，出现了应用测试环境搭建复杂，有许多套（真的很多很多）应用环境，应用在持续集成/持续交付也遇到了很大的困难，经过讨论研究决定对应用和微服务进行容器化，这就是我首次直面docker和k8s的契机。</p>
-                                    
-                                    <p class="read-more"><a href="http://blog.maoxianplay.com/posts/install-k8s/" class="btn btn-template-main">继续阅读</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
-                        
-                        <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                  <div class="image">
-                                      <a href="/posts/install-docker/">
-                                          
-                                          <img src="https://wx1.sinaimg.cn/large/ad5fbf65ly1g0t18xk06xj21qq15ods6.jpg" class="img-responsive" alt="">
-                                          
-                                      </a>
-                                  </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="/posts/install-docker/">centos7安装指定版本的docker</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">
-                                          
-                                          作者 郭旭东
-                                          
-                                          
-                                          |
-                                          500字 | 阅读大约需要1分钟
-                                          |
-                                          
-                                          
-                                          归档于<a href="/categories/%e9%83%a8%e7%bd%b2%e5%ae%89%e8%a3%85">部署安装</a>
-                                          
-                                          
-
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="/posts/install-docker/"><i class="fa fa-calendar-o"></i> 2018年8月14日</a>
-                                        </p>
-                                    </div>
-                                    
-                                    <p class="intro">在使用CentOS7，并使用荫安装搬运工的时候，往往不希望安装最新版本的搬运工，而是希望安装与自己熟悉或者当前业务环境需要的版本，例如目前Kubernetes支持的最新搬运工版本为v17.03，所以就产生了安装指定版本码头工人的需求。</p>
-                                    
-                                    <p class="read-more"><a href="http://blog.maoxianplay.com/posts/install-docker/" class="btn btn-template-main">继续阅读</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
-                        
-
-                        <ul class="pager">
+                    <div class="col-md-9" id="blog-post">
+                        <div class="well">
+                            <div class="author-category">
+                            <i class="fa fa-calendar-o">
+                            2019年4月18日
+                            </i>
+                            |
                             
-                            <li class="previous disabled"><a href="#">&larr; 更新</a></li>
+                            作者 郭旭东
                             
+                            
+                            
+                            |
+                            700字 | 阅读大约需要2分钟
+                            </div>
+                            
+                            
+                            <div class="author-category">
+                            
+                            
+                            归档于 <a href="/categories/%e9%97%ae%e9%a2%98%e8%a7%a3%e5%86%b3">问题解决</a>
+                            
+                            |
+                            
+                            
+                            
+                            标签
+                            
+                            <a style="text-transform:capitalize" href="/tags/rancher/"><i>#rancher</i></a>
+                            
+                            <a style="text-transform:capitalize" href="/tags/kubernetes/"><i>#kubernetes</i></a>
+                            
+                            <a style="text-transform:capitalize" href="/tags/prometheus/"><i>#prometheus</i></a>
+                            
+                            </div>
+                            
+                            
+                        </div>
+                        <div id="post-content">
+                          
 
-                            
-                            <li class="next disabled"><a href="#">更旧 &rarr;</a></li>
-                            
+<h2 id="前言">前言</h2>
+
+<p>Rancher 2.2.X 版本于3月底正式GA，新版本处理其他部分的优化以外，最大亮点莫过于本身集成了 Prometheus ，可以通过 Rancher 自带 UI 或者 Grafana 查看集群的实时监控，对所有监控进行了一次聚合，不用再和之前一样，每个集群都要安装一个 Prometheus 用于监控，而告警部分也可使用 Rancher 自带的通知组件进行告警。通知方式目前支持 Slack 、 邮件、 PagerDuty 、 Webhook 、 企业微信，由于我司办公使用钉钉，所以我们使用了 Webhook 的方式，告警触发后通知我们的消息服务，然后消息服务将其发送到钉钉进行告警。</p>
+
+<p><img src="http://wx2.sinaimg.cn/large/ad5fbf65gy1g26xsh6omvj20rk0ilta6.jpg" alt="image" /></p>
+
+<h2 id="问题">问题</h2>
+
+<p>Rancher 集成 Prometheus 后，监控方面变的十分强大，不用再徘徊于多个集群的 Grafana ，直接在 Rancher 上即可查看，非常方便</p>
+
+<p><img src="http://wx2.sinaimg.cn/large/ad5fbf65gy1g26xuv2frnj212b0onn1h.jpg" alt="image" /></p>
+
+<p>但是在使用的时候，我发现了一个问题：就是在查看 工作负载和 Pod 的时候会显示 <strong><em>没有足够的数据绘制图表</em></strong></p>
+
+<p><img src="https://ws4.sinaimg.cn/large/ad5fbf65gy1g26xzvi2cpj20po057q31.jpg" alt="image" /></p>
+
+<p>进入 Grafana 查看会发现，其实监控参数是存在的，但是没有采集到值，所以并没有展示出来。</p>
+
+<p><img src="https://wx3.sinaimg.cn/large/ad5fbf65gy1g26y4j4s3yj21f50m9wqj.jpg" alt="image" /></p>
+
+<h2 id="解决">解决</h2>
+
+<p>在检查了配置后并没有找到原因，只好去 GitHub 上提一个 issue 来询问一下开发者或者其他用户有无遇到这个问题。</p>
+
+<p>Rancher 官方的开发者还是十分负责的， GitHub 上用户名为 <a href="https://github.com/loganhz">Logan</a> 的官方小哥来我指导解决这个问题。</p>
+
+<p>小哥发现我是导入的集群，要我进入 Prometheus 查看，发现 <code>cattle-prometheus/exporter-kube-state-cluster-monitoring</code> 果然没有起来</p>
+
+<p><img src="https://wx2.sinaimg.cn/large/ad5fbf65gy1g26yb1p4eoj21db0am782.jpg" alt="image" /></p>
+
+<p>解决这个问题，需要在集群监控配置中添加一个高级选项，插入值为：exporter-kubelets.https=false</p>
+
+<p><img src="https://wx1.sinaimg.cn/large/ad5fbf65gy1g26ycq6amfj221q0uggp8.jpg" alt="image" /></p>
+
+<p>点击保存，问题就解决了！</p>
+
+<p><img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g26yheqwp7j213e0g3di5.jpg" alt="image" /></p>
+
+<h2 id="后记">后记</h2>
+
+<p>使用 Rancher 有半年，从2.0版本一直用到2.2版本，而18年分别在云栖大会和 KubeCon 上听了 Rancher 创始人梁胜博士的演讲。而从这一个小问题上就可以看到 Rancher 官方对每一个用户都是十分重视的，无论他有没有付费。</p>
+
+                          <div class="social-share" data-initialized="true" data-wechat-qrcode-title="分享更快乐">
+    <hr>
+    <center>
+    <font style="font-size:18px;color:darkcyan;">分享到：</font>
+    <a href="#" class="social-share-icon icon-weibo"></a>
+    <a href="#" class="social-share-icon icon-wechat"></a>
+    <a href="#" class="social-share-icon icon-twitter"></a>
+    <a href="#" class="social-share-icon icon-linkedin"></a>
+    <a href="#" class="social-share-icon icon-facebook"></a>
+    <a href="#" class="social-share-icon icon-qq"></a>
+    <a href="#" class="social-share-icon icon-qzone"></a>
+    </center>
+</div>
+
+
+<script src="/js/social-share.min.js"></script>
+
+                        </div>
+                        
+                        
+                        
+                        
+                        <ul class="pager blog-pager">
+                        
+                        <li class="previous">
+                        <a href="http://blog.maoxianplay.com/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/" data-toggle="tooltip" data-placement="top" title="Kustomize: 无需模板定制你的 kubernetes 配置">&larr; 更旧</a>
+                        </li>
+                         
                         </ul>
 
-                        <div align="center" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                        
-
-                        
-                        
-                        
-                        
-                        
-                        </div>
                     </div>
                     
 
@@ -439,6 +362,25 @@ autocomplete('#aa-search-input',
                         
 
                         <div class="panel panel-default sidebar-menu">
+     
+    <div class="panel-heading">
+     <h3 class="panel-title">相关文章</h3>
+    </div>
+    <div class="panel-body">
+     <ul class="nav nav-pills nav-stacked">
+        
+        <li><a href="/posts/rancher-update-2.2.1/"><i class="fa fa-link"></i>单节点版rancher升级指南</a></li>
+         
+        <li><a href="/posts/https-ingress/"><i class="fa fa-link"></i>为ingress配置SSL证书，实现HTTPS访问</a></li>
+         
+        <li><a href="/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/"><i class="fa fa-link"></i>Kustomize: 无需模板定制你的 kubernetes 配置</a></li>
+         
+        <li><a href="/posts/kustomize-1/"><i class="fa fa-link"></i>什么是 Kustomize ？</a></li>
+         
+        <li><a href="/posts/aliyun-k8s-perfect/"><i class="fa fa-link"></i>阿里云容器服务新建集群优化方案</a></li>
+         
+     </ul>
+    </div>
      
 </div>
 

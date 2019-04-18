@@ -567,6 +567,30 @@
         ]
     },
     {
+        "title": "Rancher 2.2.1 解决工作负载监控为空问题",
+        "uri": "posts/rancher-prometheus-fix-question",
+        "content": "Rancher 2 2 X    3    GA                             Prometheus       Rancher    UI    Grafana                                            Prometheus                Rancher                      Slack       PagerDuty   Webhook                           Webhook                                          Rancher    Prometheus                          Grafana      Rancher                                          Pod                       Grafana                                                            GitHub      issue                         Rancher                GitHub       Logan                                   Prometheus                                      exporter kubelets https false                    Rancher      2 0      2 2    18          KubeCon     Rancher                           Rancher",
+        "objectID": "posts/rancher-prometheus-fix-question",
+        "date": "2019-04-18T09:46:08.000Z",
+        "draft": false,
+        "banner": "https://ws4.sinaimg.cn/large/ad5fbf65gy1g26yrcsxvhj21qx15owo8.jpg",
+        "author": "郭旭东",
+        "summary": "记一次在 Rancher 官方小哥帮助下解决 Rancher 问题的过程。",
+        "tags": [
+            "rancher",
+            "kubernetes",
+            "prometheus"
+        ],
+        "categories": [
+            "问题解决"
+        ],
+        "keywords": [
+            "rancher",
+            "kubernetes",
+            "prometheus"
+        ]
+    },
+    {
         "title": "单节点版rancher升级指南",
         "uri": "posts/rancher-update-2.2.1",
         "content": "Rancher                    Kubernetes                                                              kubernetes          Rancher            Kubernetes                   Kubernetes Cloud              rancher 2 1 1       rancher                  rancher                           rancher                                                                                                         https   www cnrancher com docs rancher v2 x cn upgrades single node upgrade               rancher    ID           docker ps CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 83167cb60134 rancher rancher latest  entrypoint sh  4 months ago 4 months 0 0 0 0 80  80 tcp  0 0 0 0 443  443 tcp priceless_newton         docker stop  RANCHERCONTAINERID          Rancher Server                           RANCHERCONTAINERID         ID     RANCHERCONTAINERTAG          Rancher                  docker create   volumes from  RANCHERCONTAINERID    name rancher data rancher rancher  RANCHERCONTAINERTAG                     Rancher Server      rancher data snapshot      RANCHERCONTAINERID         ID     CURRENT_VERSION       Rancher          RANCHERCONTAINERTAG         Rancher                docker create   volumes from  RANCHERCONTAINERID    name rancher data snapshot  CURRENTVERSION  rancher rancher  RANCHERCONTAINER_TAG    Rancher                                                                    docker pull rancher rancher latest                                         SLB  SSL                  docker run  d   volumes from rancher data   restart unless stopped  p 80 80  p 443 443 rancher rancher latest   no cacerts                                                 Rancher Server   server                  Rancher Server              Rancher Server                                                 rancher",
