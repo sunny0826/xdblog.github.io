@@ -296,7 +296,7 @@ autocomplete('#aa-search-input',
 <ol>
 <li><p>首先获取正在运行的 rancher 容器 ID,由以下命令可知 <code>RANCHER_CONTAINER_ID</code> 为 <code>83167cb60134</code></p>
 
-<pre><code>$ docker ps
+<pre><code class="language-bash">$ docker ps
 CONTAINER ID        IMAGE                    COMMAND             CREATED             STATUS              
 PORTS                                       NAMES
 83167cb60134        rancher/rancher:latest   &quot;entrypoint.sh&quot;     4 months ago        Up 4 months         0.0.0.0:80-&gt;80/tcp, 0.0.0.0:443-&gt;443/tcp   priceless_newton
@@ -304,7 +304,7 @@ PORTS                                       NAMES
 
 <li><p>停止该容器</p>
 
-<pre><code>$ docker stop {RANCHER_CONTAINER_ID}
+<pre><code class="language-bash">$ docker stop {RANCHER_CONTAINER_ID}
 </code></pre></li>
 
 <li><p>创建正在运行的 Rancher Server 容器的数据卷容器，将在升级中使用，这里命名为 <code>rancher-data</code> 容器。</p>
@@ -314,7 +314,7 @@ PORTS                                       NAMES
 
 <li><p>替换{RANCHER_CONTAINER_TAG}为你当前正在运行的Rancher版本，如上面的先决条件中所述。</p>
 
-<pre><code>$ docker create --volumes-from {RANCHER_CONTAINER_ID} --name rancher-data rancher/rancher:{RANCHER_CONTAINER_TAG}
+<pre><code class="language-bash">$ docker create --volumes-from {RANCHER_CONTAINER_ID} --name rancher-data rancher/rancher:{RANCHER_CONTAINER_TAG}
 </code></pre></li>
 </ul></li>
 
@@ -328,20 +328,20 @@ PORTS                                       NAMES
 
 <li><p>替换{RANCHER_CONTAINER_TAG}为当前正在运行的Rancher版本，如先决条件中所述 。</p>
 
-<pre><code>$ docker create --volumes-from {RANCHER_CONTAINER_ID} --name rancher-data-snapshot-{CURRENT_VERSION} rancher/rancher:{RANCHER_CONTAINER_TAG}
+<pre><code class="language-bash">$ docker create --volumes-from {RANCHER_CONTAINER_ID} --name rancher-data-snapshot-{CURRENT_VERSION} rancher/rancher:{RANCHER_CONTAINER_TAG}
 </code></pre></li>
 </ul></li>
 
 <li><p>拉取Rancher的最新镜像,这里确保有外网，可能拉取到新的镜像，如果没有外网，这里就需要将镜像上传到私有镜像仓库，将拉取地址设置为私有镜像仓库即可</p>
 
-<pre><code>$ docker pull rancher/rancher:latest
+<pre><code class="language-bash">$ docker pull rancher/rancher:latest
 </code></pre></li>
 
 <li><p>通过 <code>rancher-data</code> 数据卷容器启动新的 Rancher Server 容器。</p>
 
 <p><strong>这里要注意到，我们这是使用的是独立容器+外部七层负载均衡，是通过阿里云SLB进行SSL证书认证，需要在启动的时候增加<code>--no-cacerts</code></strong></p>
 
-<pre><code>$ docker run -d --volumes-from rancher-data --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher:latest --no-cacerts
+<pre><code class="language-bash">$ docker run -d --volumes-from rancher-data --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher:latest --no-cacerts
 </code></pre>
 
 <blockquote>

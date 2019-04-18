@@ -309,11 +309,9 @@ autocomplete('#aa-search-input',
 
 <h2 id="部署应用">部署应用</h2>
 
-<blockquote>
 <p>这里 Istio 的安装部署就不在赘述了。</p>
 
 <p>值得注意的是：如果使用的是<strong>阿里云</strong>容器服务安装的 Istio ，需要在 <code>容器服务</code>-<code>市场</code>-<code>应用目录</code> 中选择 <code>gateway</code> 进行安装，这里提供了多种 <code>gateway</code> ，我们选择 <code>istio-ingressgateway</code>，选择直接安装的话会默认创建 <code>LoadBalancer</code> 类型的Service，会自动创建一个经典网络SLB，这里是可以调整的，会在后续的文章中进行详细讲解，这里不做赘述。</p>
-</blockquote>
 
 <p>在 Istio 中运行这一应用，无需对应用自身做出任何改变。我们只要简单的在 Istio 环境中对服务进行配置和运行，具体一点说就是把 Envoy sidecar 注入到每个服务之中。这个过程所需的具体命令和配置方法由运行时环境决定，而部署结果较为一致，如下图所示：</p>
 
@@ -337,7 +335,7 @@ autocomplete('#aa-search-input',
 
 <p>需要修改 namespace ，为其添加 label 标签，这样所以在这个 namespace 中创建的应用都会被自动注入 sidecar</p>
 
-<pre><code>$ kubectl label namespace {inject-namespace} istio-injection=enabled
+<pre><code class="language-bash">$ kubectl label namespace {inject-namespace} istio-injection=enabled
 $ kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
 </code></pre></li>
 
@@ -345,14 +343,14 @@ $ kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
 
 <p>需要使用 istioctl 命令生成注入后应用的配置，然后在部署应用</p>
 
-<pre><code>$ istioctl kube-inject -f samples/bookinfo/platform/kube/bookinfo.yaml | kubectl apply -f -
+<pre><code class="language-bash">$ istioctl kube-inject -f samples/bookinfo/platform/kube/bookinfo.yaml | kubectl apply -f -
 </code></pre></li>
 </ul>
 
 <p>由于是测试，这里我们使用手工注入的方法。
 上面的命令会启动全部的四个服务，其中也包括了 <code>reviews</code> 服务的三个版本（<code>v1</code>、<code>v2</code> 以及 <code>v3</code>）</p>
 
-<pre><code>$ istioctl kube-inject -f bookinfo.yaml | kubectl apply -f -
+<pre><code class="language-bash">$ istioctl kube-inject -f bookinfo.yaml | kubectl apply -f -
 service/details created
 deployment.extensions/details-v1 configured
 service/ratings created
@@ -386,19 +384,19 @@ reviews              ClusterIP   10.11.162.37    &lt;none&gt;        9080/TCP   
 <ol>
 <li><p>为为应用程序定义入口网关：</p>
 
-<pre><code>$ kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
+<pre><code class="language-bash">$ kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
 </code></pre></li>
 
 <li><p>确认网关创建完成</p>
 
-<pre><code>$ kubectl get gateway
+<pre><code class="language-bash">$ kubectl get gateway
 NAME               AGE
 bookinfo-gateway   1h
 </code></pre></li>
 
 <li><p>快速查询访问地址，这里的是之前在阿里云上创建的 <code>LoadBalancer</code> 类型的 Service</p>
 
-<pre><code>$ kubectl get svc istio-ingressgateway -n istio-system
+<pre><code class="language-bash">$ kubectl get svc istio-ingressgateway -n istio-system
 NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP       PORT(S)                  AGE
 istio-ingressgateway   LoadBalancer   10.11.18.83   xxx.xxx.xxx.xxx   80:xxx/TCP,443:xxx/TCP   2h
 </code></pre></li>
@@ -421,17 +419,17 @@ istio-ingressgateway   LoadBalancer   10.11.18.83   xxx.xxx.xxx.xxx   80:xxx/TCP
 <ul>
 <li><p>如果不需要启用双向TLS，请执行以下命令：</p>
 
-<pre><code>$ kubectl apply -f samples/bookinfo/networking/destination-rule-all.yaml
+<pre><code class="language-bash">$ kubectl apply -f samples/bookinfo/networking/destination-rule-all.yaml
 </code></pre></li>
 
 <li><p>如果需要启用双向 TLS，请执行以下命令：</p>
 
-<pre><code>$ kubectl apply -f samples/bookinfo/networking/destination-rule-all-mtls.yaml
+<pre><code class="language-bash">$ kubectl apply -f samples/bookinfo/networking/destination-rule-all-mtls.yaml
 </code></pre>
 
 <p>等待几秒钟，等待目标规则生效。你可以使用以下命令查看目标规则：</p>
 
-<pre><code>kubectl get destinationrules
+<pre><code class="language-bash">kubectl get destinationrules
 NAME          AGE
 details       28s
 productpage   28s
@@ -444,12 +442,12 @@ reviews       28s
 
 <p>通过运行如下命令，将所有微服务的缺省版本设置为v1：</p>
 
-<pre><code>$ kubectl apply -f samples/bookinfo/networking/virtual-service-all-v1.yaml
+<pre><code class="language-bash">$ kubectl apply -f samples/bookinfo/networking/virtual-service-all-v1.yaml
 </code></pre>
 
 <p>可以通过下面的命令来显示所有已创建的路由规则：</p>
 
-<pre><code>$ kubectl get virtualservices
+<pre><code class="language-bash">$ kubectl get virtualservices
 NAME       AGE
 bookinfo      33m
 details       8s
@@ -460,7 +458,7 @@ reviews       8s
 
 <p>显示已创建的详细路由规划：</p>
 
-<pre><code>$ kubectl get virtualservices -o yaml
+<pre><code class="language-bash">$ kubectl get virtualservices -o yaml
 </code></pre>
 
 <p>由于路由规则是通过异步方式分发到代理的，过一段时间后规则才会同步到所有pod上。因此需要等几秒钟后再尝试访问应用。</p>
@@ -473,18 +471,16 @@ reviews       8s
 
 <h3 id="将来自特定用户的请求路由到reviews-v2">将来自特定用户的请求路由到reviews:v2</h3>
 
-<blockquote>
 <p>本例中，首先使用 Istio 将100%的请求流量都路由到了 Bookinfo 服务的<code>v1</code>版本；然后再设置了一条路由规则，路由规则基于请求的 header（例如一个用户cookie）选择性地将特定的流量路由到了 <code>reviews</code> 服务的<code>v2</code>版本。</p>
-</blockquote>
 
 <p>通过运行如下命令，把来自测试用户&rdquo;jason&rdquo;的请求路由到 <code>reviews:v2</code>，以启用ratings服务。</p>
 
-<pre><code>$ kubectl apply -f samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml
+<pre><code class="language-bash">$ kubectl apply -f samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml
 </code></pre>
 
 <p>通过如下命令确认规则是否创建：</p>
 
-<pre><code>$ kubectl get virtualservice reviews -o yaml
+<pre><code class="language-bash">$ kubectl get virtualservice reviews -o yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
@@ -520,9 +516,7 @@ http:
 
 <p>以&rdquo;jason&rdquo;用户登录 <code>productpage</code> 页面，您可以在每条评价后面看到星级信息。</p>
 
-<blockquote>
 <p>这里登录用户名为 <code>jason</code> ，密码随便输入即可</p>
-</blockquote>
 
 <p><img src="https://ws2.sinaimg.cn/large/ad5fbf65ly1g1adtjugp3j21gb0iygoa.jpg" alt="image" /></p>
 
@@ -532,23 +526,21 @@ http:
 
 <p>首先，将所有微服务的缺省版本设置为v1：</p>
 
-<pre><code>$ kubectl replace -f samples/bookinfo/networking/virtual-service-all-v1.yaml
+<pre><code class="language-bash">$ kubectl replace -f samples/bookinfo/networking/virtual-service-all-v1.yaml
 </code></pre>
 
 <p>其次，使用下面的命令把50%的流量从reviews:v1转移到reviews:v3:</p>
 
-<pre><code>$ kubectl replace -f samples/bookinfo/networking/virtual-service-reviews-50-v3.yaml
+<pre><code class="language-bash">$ kubectl replace -f samples/bookinfo/networking/virtual-service-reviews-50-v3.yaml
 </code></pre>
 
 <p>在浏览器中多次刷新productpage页面，大约有50%的几率会看到页面中出现带红星的评价内容。</p>
 
-<blockquote>
 <p>说明： 注意该方式和使用容器编排平台的部署特性来进行版本迁移是完全不同的。容器编排平台使用了实例scaling来对流量进行管理。而通过Istio，两个版本的reviews服务可以独立地进行扩容和缩容，并不会影响这两个版本服务之间的流量分发。</p>
-</blockquote>
 
 <p>如果觉得 <code>reviews：v3</code> 微服务已经稳定，你可以通过以下命令， 将 <code>virtual service</code> 100％的流量路由到 <code>reviews：v3</code>，从而实现一个灰度发布的功能。</p>
 
-<pre><code>$ kubectl replace -f samples/bookinfo/networking/virtual-service-reviews-v3.yaml
+<pre><code class="language-bash">$ kubectl replace -f samples/bookinfo/networking/virtual-service-reviews-v3.yaml
 </code></pre>
 
 <h2 id="在华为云-cce-上运行">在华为云（CCE）上运行</h2>

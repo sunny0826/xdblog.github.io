@@ -302,7 +302,7 @@ Kubernetes的特点：</p>
 
 <li><p>安装Kubeadm</p>
 
-<pre><code>#安装 Kubeadm 首先我们要配置好阿里云的国内源，执行如下命令：
+<pre><code class="language-bash">#安装 Kubeadm 首先我们要配置好阿里云的国内源，执行如下命令：
 cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
@@ -319,11 +319,11 @@ yum makecache
 
 <p>接下来需要安装指定版本的Kubeadm（这里要安装指定版本，因为后续依赖的镜像由于有墙无法拉取，这里我们只有指定版本的镜像），注意：<strong>这里是安装指定版本的Kubeadm，k8s的版本更新之快完全超出你的想象！</strong></p>
 
-<pre><code>yum -y install kubelet-1.11.0-0
+<pre><code class="language-bash">yum -y install kubelet-1.11.0-0
 yum -y install kubeadm-1.11.0-0
 yum -y install kubectl-1.11.0-0
 yum -y install kubernetes-cni
-
+    
 #执行命令启动Kubeadm服务：
 systemctl enable kubelet &amp;&amp; systemctl start kubelet
 </code></pre></li>
@@ -333,7 +333,7 @@ systemctl enable kubelet &amp;&amp; systemctl start kubelet
 
 <p><strong>新建一个 Shell 脚本，填入以下代码之后保存</strong></p>
 
-<pre><code>#docker.sh
+<pre><code class="language-vim">#docker.sh
 #!/bin/bash
 images=(kube-proxy-amd64:v1.11.0 kube-scheduler-amd64:v1.11.0 kube-controller-manager-amd64:v1.11.0 kube-apiserver-amd64:v1.11.0 etcd-amd64:3.2.18 coredns:1.1.3 pause-amd64:3.1 kubernetes-dashboard-amd64:v1.8.3 k8s-dns-sidecar-amd64:1.14.9 k8s-dns-kube-dns-amd64:1.14.9 k8s-dns-dnsmasq-nanny-amd64:1.14.9 )
 for imageName in ${images[@]} ; do
@@ -347,25 +347,25 @@ docker tag da86e6ba6ca1 k8s.gcr.io/pause:3.1
 
 <p><strong>保存后使用chmod命令赋予脚本执行权限</strong></p>
 
-<pre><code>chmod -R 777 ./docker.sh
+<pre><code class="language-bash">chmod -R 777 ./docker.sh
 </code></pre>
 
 <p><strong>执行脚本拉取镜像</strong></p>
 
-<pre><code>sh docker.sh
+<pre><code class="language-bash">sh docker.sh
 #这里就开始了漫长的拉取镜像之路
 </code></pre>
 
 <p><strong>关闭掉swap</strong></p>
 
-<pre><code>sudo swapoff -a
+<pre><code class="language-bash">sudo swapoff -a
 #要永久禁掉swap分区，打开如下文件注释掉swap那一行
 # sudo vi /etc/stab
 </code></pre>
 
 <p><strong>关闭SELinux的</strong></p>
 
-<pre><code># 临时禁用selinux
+<pre><code class="language-bash"># 临时禁用selinux
 # 永久关闭 修改/etc/sysconfig/selinux文件设置
 sed -i 's/SELINUX=permissive/SELINUX=disabled/' /etc/sysconfig/selinux
 # 这里按回车，下面是第二条命令
@@ -374,12 +374,12 @@ setenforce 0
 
 <p><strong>关闭防火墙</strong></p>
 
-<pre><code>systemctl disable firewalld.service &amp;&amp; systemctl stop firewalld.service
+<pre><code class="language-bash">systemctl disable firewalld.service &amp;&amp; systemctl stop firewalld.service
 </code></pre>
 
 <p><strong>配置转发参数</strong></p>
 
-<pre><code># 配置转发相关参数，否则可能会出错
+<pre><code class="language-bash"># 配置转发相关参数，否则可能会出错
 cat &lt;&lt;EOF &gt; /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
@@ -398,12 +398,12 @@ sysctl --system
 
 <p><strong>初始化镜像</strong></p>
 
-<pre><code>kubeadm init --kubernetes-version=v1.11.0 --pod-network-cidr=10.10.0.0/16  #这里填写集群所在网段
+<pre><code class="language-bash">kubeadm init --kubernetes-version=v1.11.0 --pod-network-cidr=10.10.0.0/16  #这里填写集群所在网段
 </code></pre>
 
 <p><strong>之后的输出会是这样：</strong></p>
 
-<pre><code>I0712 10:46:30.938979   13461 feature_gate.go:230] feature gates: &amp;{map[]}
+<pre><code class="language-go">I0712 10:46:30.938979   13461 feature_gate.go:230] feature gates: &amp;{map[]}
 [init] using Kubernetes version: v1.11.0
 [preflight] running pre-flight checks
 I0712 10:46:30.961005   13461 kernel_validator.go:81] Validating kernel version
@@ -476,21 +476,21 @@ kubeadm join 10.10.207.253:6443 --token t69z6h.lr2etdbg9mfx5r15 --discovery-toke
 
 <p><strong>这里注意最后一行：</strong></p>
 
-<pre><code>kubeadm join 10.10.207.253:6443 --token t69z6h.lr2etdbg9mfx5r15 --discovery-token-ca-cert-hash sha256:90e3a748c0eb4cb7058f3d0ee8870ee5d746214ab0589b5e841fd5d68fec8f00
+<pre><code class="language-go">kubeadm join 10.10.207.253:6443 --token t69z6h.lr2etdbg9mfx5r15 --discovery-token-ca-cert-hash sha256:90e3a748c0eb4cb7058f3d0ee8870ee5d746214ab0589b5e841fd5d68fec8f00
 </code></pre>
 
 <p>证明集群主节点安装成功，这里要记得保存这条命令，以便之后各个节点加入集群</p>
 
 <p><strong>配置kubetl认证信息</strong></p>
 
-<pre><code>export KUBECONFIG=/etc/kubernetes/admin.conf
+<pre><code class="language-bash">export KUBECONFIG=/etc/kubernetes/admin.conf
 # 如果你想持久化的话，直接执行以下命令【推荐】
 echo &quot;export KUBECONFIG=/etc/kubernetes/admin.conf&quot; &gt;&gt; ~/.bash_profile
 </code></pre>
 
 <p><strong>安装flanel网络</strong></p>
 
-<pre><code>mkdir -p /etc/cni/net.d/
+<pre><code class="language-bash">mkdir -p /etc/cni/net.d/
 
 cat &lt;&lt;EOF&gt; /etc/cni/net.d/10-flannel.conf
 {
@@ -516,7 +516,7 @@ EOF
 
 <p><strong>最后需要新建一个flannel.yml文件：</strong></p>
 
-<pre><code>---
+<pre><code class="language-yaml">---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
@@ -657,24 +657,24 @@ template:
 
 <p><strong>执行：</strong></p>
 
-<pre><code>kubectl create -f ./flannel.yml
+<pre><code class="language-bash">kubectl create -f ./flannel.yml
 </code></pre>
 
 <p>默认情况下，master节点不参与工作负载，但如果希望安装出一个all-in-one的k8s环境，则可以执行以下命令：</p>
 
 <p><strong>让master节点成为一个node节点：</strong></p>
 
-<pre><code>kubectl taint nodes --all node-role.kubernetes.io/master-
+<pre><code class="language-bash">kubectl taint nodes --all node-role.kubernetes.io/master-
 </code></pre>
 
 <p><strong>查看节点信息：</strong></p>
 
-<pre><code>kubectl get nodes
+<pre><code class="language-bash">kubectl get nodes
 </code></pre>
 
 <p><strong>会看到如下的输出：</strong></p>
 
-<pre><code>NAME            STATUS     ROLES     AGE       VERSION
+<pre><code class="language-bash">NAME            STATUS     ROLES     AGE       VERSION
 k8s-master      Ready      master    18h       v1.11.0
 </code></pre>
 
@@ -683,12 +683,12 @@ k8s-master      Ready      master    18h       v1.11.0
 <p>在配置好主节点之后，就可以配置集群的其他节点了，这里建议直接安装之前做好准备工作的系统镜像
 进入节点机器之后，直接执行之前保存好的命令</p>
 
-<pre><code>kubeadm join 10.10.207.253:6443 --token t69z6h.lr2etdbg9mfx5r15 --discovery-token-ca-cert-hash sha256:90e3a748c0eb4cb7058f3d0ee8870ee5d746214ab0589b5e841fd5d68fec8f00
+<pre><code class="language-bash">kubeadm join 10.10.207.253:6443 --token t69z6h.lr2etdbg9mfx5r15 --discovery-token-ca-cert-hash sha256:90e3a748c0eb4cb7058f3d0ee8870ee5d746214ab0589b5e841fd5d68fec8f00
 </code></pre>
 
 <p>执行完后会看到：</p>
 
-<pre><code>[preflight] running pre-flight checks
+<pre><code class="language-go">[preflight] running pre-flight checks
         [WARNING RequiredIPVSKernelModulesAvailable]: the IPVS proxier will not be used, because the following required kernel modules are not loaded: [ip_vs_wrr ip_vs_sh ip_vs ip_vs_rr] or no builtin kernel ipvs support: map[ip_vs_rr:{} ip_vs_wrr:{} ip_vs_sh:{} nf_conntrack_ipv4:{} ip_vs:{}]
 you can solve this problem with following methods:
 1. Run 'modprobe -- ' to load missing kernel modules;
@@ -718,12 +718,12 @@ Run 'kubectl get nodes' on the master to see this node join the cluster.
 
 <p><strong>这里就表示执行完毕了，可以去主节点执行命令：</strong></p>
 
-<pre><code>kubectl get nodes
+<pre><code class="language-bash">kubectl get nodes
 </code></pre>
 
 <p><strong>可以看到节点已加入集群：</strong></p>
 
-<pre><code>NAME        STATUS    ROLES     AGE       VERSION
+<pre><code class="language-bash">NAME        STATUS    ROLES     AGE       VERSION
 k8s-master  Ready     master    20h       v1.11.0
 k8s-node1   Ready     &lt;none&gt;    20h       v1.11.0
 k8s-node2   Ready     &lt;none&gt;    20h       v1.11.0
@@ -739,7 +739,7 @@ k8s-node2   Ready     &lt;none&gt;    20h       v1.11.0
 
 <p>有时会出现master节点一直处于notready的状态，这里可能是没有启动flannel，只需要按照上面的教程配置好flannel，然后执行：</p>
 
-<pre><code>kubectl create -f ./flannel.yml
+<pre><code class="language-bash">kubectl create -f ./flannel.yml
 </code></pre>
 
                         </div>

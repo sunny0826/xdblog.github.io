@@ -310,7 +310,7 @@ autocomplete('#aa-search-input',
 
 <p>例如，如果 <code>kustomization.yaml</code> 文件包括：</p>
 
-<pre><code>commonLabels:
+<pre><code class="language-yaml">commonLabels:
   app: hello
 resources:
 - deployment.yaml
@@ -320,7 +320,7 @@ resources:
 
 <p>确保这三个文件与 <code>kustomization.yaml</code> 位于同一目录下，然后运行：</p>
 
-<pre><code>kustomize build
+<pre><code class="language-bash">kustomize build
 </code></pre>
 
 <p>将创建包含三个资源的 YAML 流，其中 <code>app: hello</code> 为每个资源共同的标签。</p>
@@ -333,7 +333,7 @@ resources:
 
 <p>这里是一个目录树，用于管理集群应用程序的 <strong><em>演示</em></strong> 和 <strong><em>生产</em></strong> 配置参数：</p>
 
-<pre><code>someapp/
+<pre><code class="language-bash">someapp/
 ├── base/
 │   ├── kustomization.yaml
 │   ├── deployment.yaml
@@ -348,11 +348,11 @@ resources:
         └── cpu_count.yaml
 </code></pre>
 
-<p><code>someapp/base/kustomization.yaml</code> 文件指定了公共资源和常见自定义配置（例如，它们一些相同的标签，名称前缀和注释）。</p>
+<p><strong><code>someapp/base/kustomization.yaml</code> 文件指定了公共资源和常见自定义配置（例如，它们一些相同的标签，名称前缀和注释）。</strong></p>
 
-<p><code>someapp/overlays/production/kustomization.yaml</code> 文件的内容可能是：</p>
+<p><strong><code>someapp/overlays/production/kustomization.yaml</code> 文件的内容可能是：</strong></p>
 
-<pre><code>commonLabels:
+<pre><code class="language-yaml">commonLabels:
   env: production
 bases:
 - ../../base
@@ -362,7 +362,7 @@ patches:
 
 <p>这个 kustomization 指定了一个 <strong><em>patch</em></strong> 文件 <code>replica_count.yaml</code> ，其内容可能是：</p>
 
-<pre><code>apiVersion: apps/v1
+<pre><code class="language-yaml">apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: the-deployment
@@ -376,7 +376,7 @@ spec:
 
 <p>要为生产环境创建资源，请运行：</p>
 
-<pre><code>kustomize build someapp/overlays/production
+<pre><code class="language-bash">kustomize build someapp/overlays/production
 </code></pre>
 
 <p>运行结果将作为一组完整资源打印到标准输出，并准备应用于集群。可以用类似的命令定义演示环境的配置。</p>

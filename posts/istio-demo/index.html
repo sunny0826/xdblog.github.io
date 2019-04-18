@@ -278,9 +278,7 @@ autocomplete('#aa-search-input',
 
 <h1 id="istio应用部署样例">istio应用部署样例</h1>
 
-<blockquote>
 <p>该实例为一套istio服务上线流程：<code>注入</code>-&gt;<code>部署</code>-&gt;<code>创建目标规则</code>-&gt;<code>创建默认路由</code>。就大多数istio服务网格应用均可基于这一流程上线。</p>
-</blockquote>
 
 <h3 id="部署istio">部署istio</h3>
 
@@ -299,7 +297,7 @@ autocomplete('#aa-search-input',
 
 <p>创建2个Deployment，分别命名为 flaskapp-v1 和 flaskapp-v2 ，同时创建一个 Service ,将其命名为flaskapp。代码文件为 <code>flaskapp.istio.yaml</code>。</p>
 
-<pre><code>---
+<pre><code class="language-yaml">---
 apiVersion: v1
 kind: Service
 metadata:
@@ -366,7 +364,7 @@ template:
 
 <p><strong>istio注入并部署服务端</strong></p>
 
-<pre><code>$ istioctl kube-inject -f flask.istio.yaml | kubectl apply -f -
+<pre><code class="language-bash">$ istioctl kube-inject -f flask.istio.yaml | kubectl apply -f -
 service/flaskapp created
 deployment.extensions/flaskapp-v1 created
 deployment.extensions/flaskapp-v2 created
@@ -382,7 +380,7 @@ deployment.extensions/flaskapp-v2 created
 
 <p>这里的客户端是一个安装了测试工具的镜像，测试的内容可以在容器内通过shell完成。代码文件为 <code>sleep.istio.yaml</code>。</p>
 
-<pre><code>---
+<pre><code class="language-yaml">---
 apiVersion: v1
 kind: Service
 metadata:
@@ -418,25 +416,21 @@ template:
 
 <p><strong>istio注入并部署客户端</strong></p>
 
-<pre><code>$ istioctl kube-inject -f sleep.istio.yaml | kubectl apply -f -
+<pre><code class="language-bash">$ istioctl kube-inject -f sleep.istio.yaml | kubectl apply -f -
 service/sleep created
 deployment.extensions/sleep created
 </code></pre>
 
-<p><code>sleep</code>应用的Pod进入Running状态就可以进行验证了</p>
+<p><strong><code>sleep</code>应用的Pod进入Running状态就可以进行验证了</strong></p>
 
 <h3 id="验证服务">验证服务</h3>
 
 <p>直接在sleep容器中执行命令行</p>
 
-<pre><code>bash-4.4# for i in `seq 10`;do http --body http://flaskapp/env/version;done
-
+<pre><code class="language-bash">$ for i in `seq 10`;do http --body http://flaskapp/env/version;done
 v1
-
 v2
-
 ...
-
 v1
 </code></pre>
 
@@ -446,7 +440,7 @@ v1
 
 <p>目标规则代码 <code>flaskapp-destinationrule.yaml</code></p>
 
-<pre><code>apiVersion: networking.istio.io/v1alpha3
+<pre><code class="language-yaml">apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
 name: flaskapp
@@ -463,7 +457,7 @@ subsets:
 
 <p><strong>部署目标规则（这里使用kubectl和istioctl均可）</strong></p>
 
-<pre><code>$ kubectl apply -f flaskapp-destinationrule.yaml
+<pre><code class="language-bash">$ kubectl apply -f flaskapp-destinationrule.yaml
 Created config destination-rule/default/flaskapp at revision 59183403
 </code></pre>
 
@@ -471,7 +465,7 @@ Created config destination-rule/default/flaskapp at revision 59183403
 
 <p>默认路由代码 <code>flaskapp-default-vs-v2.yaml</code></p>
 
-<pre><code>apiVersion: networking.istio.io/v1alpha3
+<pre><code class="language-yaml">apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
 name: flaskapp-default-v2
@@ -487,7 +481,7 @@ http:
 
 <p><strong>部署默认路由</strong></p>
 
-<pre><code>$ kubectl apply -f flaskapp-default-vs-v2.yaml
+<pre><code class="language-bash">$ kubectl apply -f flaskapp-default-vs-v2.yaml
 Created config virtual-service/default/flaskapp-default-v2 at revision 59185583
 </code></pre>
 
@@ -495,25 +489,16 @@ Created config virtual-service/default/flaskapp-default-v2 at revision 59185583
 
 <p>再次在sleep容器中执行命令，查看新定义的流量管理规则是否生效</p>
 
-<pre><code>bash-4.4# for i in `seq 10`;do http --body http://flaskapp/env/version;done
+<pre><code class="language-bash">$ for i in `seq 10`;do http --body http://flaskapp/env/version;done
 v2
-
 v2
-
 v2
-
 v2
-
 v2
-
 v2
-
 v2
-
 v2
-
 v2
-
 v2
 </code></pre>
 
@@ -527,9 +512,7 @@ v2
 
 <h3 id="小结">小结</h3>
 
-<blockquote>
 <p>这里实现了一个极简的istio应用，可以帮助新手快速入门，官网提供的Bookinfo应用较为复杂。这里提供的小例子更为简洁易懂，非常利于入门。</p>
-</blockquote>
 
 <h3 id="参考">参考</h3>
 

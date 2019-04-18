@@ -276,15 +276,12 @@ autocomplete('#aa-search-input',
                         <div id="post-content">
                           
 
-<p>本文首发于博主所在公司凯京官方微博，欢迎关注：<a href="https://my.oschina.net/keking/">https://my.oschina.net/keking/</a></p>
-
 <h2 id="简介">简介</h2>
 
 <hr />
 
 <h3 id="jenkins-pipeline">jenkins pipeline</h3>
 
-<blockquote>
 <p>Jenkins Pipeline (或简称为 &ldquo;Pipeline&rdquo; )是一套插件，将持续交付的实现和实施集成到 Jenkins 中。</p>
 
 <p>持续交付Pipeline自动化的表达了这样一种流程：将基于版本控制管理的软件持续的交付到您的用户和消费者手中。</p>
@@ -292,21 +289,16 @@ autocomplete('#aa-search-input',
 <p>Jenkins Pipeline 提供了一套可扩展的工具，用于将“简单到复杂”的交付流程实现为“持续交付即代码”。 Jenkins Pipeline 的定义通常被写入到一个文本文件（称为 <code>Jenkinsfile</code> ）中，该文件可以被检入到项目的源代码控制库中。</p>
 
 <p>摘自<a href="https://jenkins.io/zh/">Jenkins官方文档</a></p>
-</blockquote>
 
 <h3 id="sonarqube">SonarQube</h3>
 
-<blockquote>
 <p>SonarQube is an open source platform to perform automatic reviews with static analysis of code to detect bugs, code smells and security vulnerabilities on 25+ programming languages including Java, C#, JavaScript, TypeScript, C/C++, COBOL and more.</p>
 
 <p>SonarQube是一个开源的平台，以执行与代码的静态分析，自动审查，可以检测在25+的编程语言如Java，C＃，JavaScript，TypeScript，C/C++，COBOL等的代码缺陷和安全漏洞。</p>
-</blockquote>
 
 <h3 id="owasp">OWASP</h3>
 
-<blockquote>
 <p>OWASP，全称是：Open Web Application Security Project，翻译为中文就是：开放式Web应用程序安全项目，是一个非营利组织，不附属于任何企业或财团，这也是该组织可以不受商业控制地进行安全开发及安全普及的重要原因，<a href="https://en.wikipedia.org/wiki/OWASP/">详细介绍</a>。OWASP Dependency-Check，它识别项目依赖关系，并检查是否存在任何已知的、公开的、漏洞，基于OWASP Top 10 2013。</p>
-</blockquote>
 
 <h2 id="场景">场景</h2>
 
@@ -335,13 +327,16 @@ autocomplete('#aa-search-input',
 
 <p><strong>[配置]</strong>-<strong>[Dependency-Check]</strong></p>
 
-<p><strong>[注意：]</strong>这里去掉 <code>${WORKSPACE}/</code>，否则将报<code>[INFO] Dependency-Check XML report does not exists. Please check property sonar.dependencyCheck.reportPath:/data/jenkinsHome/workspace/xxx/${WORKSPACE}/dependency-check-report.xml</code></p>
+<p><strong>[注意：]</strong>这里去掉 <code>${WORKSPACE}/</code>，否则将报</p>
+
+<pre><code class="language-Java">[INFO] Dependency-Check XML report does not exists. Please check property sonar.dependencyCheck.reportPath:/data/jenkinsHome/workspace/xxx/${WORKSPACE}/dependency-check-report.xml
+</code></pre>
 
 <p><img src="https://ws1.sinaimg.cn/large/ad5fbf65ly1g0yvjjcvdaj211b0jhgod.jpg" alt="image" /></p></li>
 
 <li><p>在pom.xml文件中添加</p>
 
-<pre><code>&lt;plugin&gt;
+<pre><code class="language-xml">&lt;plugin&gt;
     &lt;groupId&gt;org.sonarsource.scanner.maven&lt;/groupId&gt;
     &lt;artifactId&gt;sonar-maven-plugin&lt;/artifactId&gt;
     &lt;version&gt;3.6.0.1398&lt;/version&gt;
@@ -366,7 +361,7 @@ autocomplete('#aa-search-input',
 
 <p>在jenkinsfile文件中添加配置</p>
 
-<pre><code>stage('依赖安全检查') {
+<pre><code class="language-Groovy">stage('依赖安全检查') {
     steps{
         dependencyCheckAnalyzer datadir: '', hintsFile: '', includeCsvReports: false, includeHtmlReports: true, includeJsonReports: false, includeVulnReports: true, isAutoupdateDisabled: false, outdir: '', scanpath: '', skipOnScmChange: false, skipOnUpstreamChange: false, suppressionFile: '', zipExtensions: ''
     }
@@ -429,7 +424,7 @@ stage('静态代码检查') {
 
 <h3 id="问题一-无法扫描代码-错误提示">问题一：无法扫描代码，错误提示</h3>
 
-<pre><code>hudson.remoting.ProxyException: hudson.AbortException: SonarQube installation defined in this job (sonar) does not match any configured installation. Number of installations that can be configured: 1.
+<pre><code class="language-Java">hudson.remoting.ProxyException: hudson.AbortException: SonarQube installation defined in this job (sonar) does not match any configured installation. Number of installations that can be configured: 1.
 If you want to reassign jobs to a different SonarQube installation, check the documentation under https://redirect.sonarsource.com/plugins/jenkins.html
     at hudson.plugins.sonar.SonarInstallation.checkValid(SonarInstallation.java:94)
     at hudson.plugins.sonar.SonarBuildWrapper.setUp(SonarBuildWrapper.java:67)
@@ -527,7 +522,7 @@ Finished: FAILURE
 
 <h3 id="问题二-sonarqube的token配置不对-导致无法连接sonar">问题二：SonarQube的token配置不对，导致无法连接sonar</h3>
 
-<pre><code>[ERROR] Failed to execute goal org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar (default-cli) on project callcenter: Not authorized. Please check the properties sonar.login and sonar.password. -&gt; [Help 1]
+<pre><code class="language-Java">[ERROR] Failed to execute goal org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar (default-cli) on project callcenter: Not authorized. Please check the properties sonar.login and sonar.password. -&gt; [Help 1]
 [ERROR] 
 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
 [ERROR] Re-run Maven using the -X switch to enable full debug logging.
@@ -552,7 +547,7 @@ WARN: Unable to locate 'report-task.txt' in the workspace. Did the SonarScanner 
 
 <h3 id="问题三-jenkins-pipeline在sonarqube回调时显示超时">问题三：jenkins pipeline在SonarQube回调时显示超时</h3>
 
-<pre><code>[Pipeline] waitForQualityGate
+<pre><code class="language-Java">[Pipeline] waitForQualityGate
 Checking status of SonarQube task 'AWlX97LSgWqXn-z33SO5' on server 'sonar'
 SonarQube task 'AWlX97LSgWqXn-z33SO5' status is 'IN_PROGRESS'
 Cancelling nested steps due to timeout
@@ -562,7 +557,7 @@ Cancelling nested steps due to timeout
 
 <h3 id="问题四-sonar找不到dependency-check-xml">问题四：sonar找不到Dependency-Check XML</h3>
 
-<pre><code>[INFO] Sensor Dependency-Check [dependencycheck]
+<pre><code class="language-Java">[INFO] Sensor Dependency-Check [dependencycheck]
 [INFO] Process Dependency-Check report
 [INFO] Dependency-Check XML report does not exists. Please check property sonar.dependencyCheck.reportPath:/data/jenkinsHome/workspace/xxx/${WORKSPACE}/dependency-check-report.xml
 [INFO] Analysis skipped/aborted due to missing report file

@@ -278,12 +278,12 @@ autocomplete('#aa-search-input',
 
 <p>启动docker容器</p>
 
-<pre><code>docker run –name [CONTAINER_NAME] [CONTAINER_ID] 
+<pre><code class="language-bash">docker run –name [CONTAINER_NAME] [CONTAINER_ID] 
 </code></pre>
 
 <p>查看容器运行状态</p>
 
-<pre><code>docker ps -a 
+<pre><code class="language-bash">docker ps -a 
 </code></pre>
 
 <p>发现刚刚启动的mydocker容器已经退出</p>
@@ -297,26 +297,26 @@ autocomplete('#aa-search-input',
 <ol>
 <li><p>可以使用交互式启动</p>
 
-<pre><code>docker run -i [CONTAINER_NAME or CONTAINER_ID]
+<pre><code class="language-bash">docker run -i [CONTAINER_NAME or CONTAINER_ID]
 </code></pre></li>
 
 <li><p>上面的不太友好，建议使用后台模式和tty选项</p>
 
-<pre><code>docker run -dit [CONTAINER_NAME or CONTAINER_ID]
+<pre><code class="language-bash">docker run -dit [CONTAINER_NAME or CONTAINER_ID]
 </code></pre></li>
 
 <li><p>Docker 容器在后台以守护态（Daemonized）形式运行，可以通过添加 -d 参数来实现</p>
 
-<pre><code>$ sudo docker run -d ubuntu:14.04 /bin/sh -c &quot;while true; do echo hello world; sleep 1; done&quot;
+<pre><code class="language-bash">$ sudo docker run -d ubuntu:14.04 /bin/sh -c &quot;while true; do echo hello world; sleep 1; done&quot;
 </code></pre></li>
 
 <li><p>在脚本最后一行添加<strong>tail -f /dev/null</strong>，这个命令永远完成不了，所以该脚本一直不会执行完，所以该容器永远不会退出。</p></li>
 </ol>
 
 <blockquote>
-<p>TIPs:退出时，使用[ctrl + D]，这样会结束docker当前线程，容器结束，可以使用[ctrl + P][ctrl + Q]退出而不终止容器运行</p>
+<p><strong>TIPs</strong>:退出时，使用<code>[ctrl + D]</code>，这样会结束docker当前线程，容器结束，可以使用 <code>[ctrl + P]</code> <code>[ctrl + Q]</code> 退出而不终止容器运行</p>
 
-<p>如下命令，会在指定容器中执行指定命令，[ctrl+D]退出后不会终止容器运行</p>
+<p>如下命令，会在指定容器中执行指定命令， <code>[ctrl+D]</code> 退出后不会终止容器运行</p>
 
 <p>docker默认会把容器内部pid=1的作为默认的程序</p>
 </blockquote>

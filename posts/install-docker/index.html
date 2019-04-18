@@ -282,7 +282,7 @@ autocomplete('#aa-search-input',
 
 <h1 id="安装步骤">安装步骤</h1>
 
-<pre><code># 安装依赖包
+<pre><code class="language-bash"># 安装依赖包
 yum install -y yum-utils device-mapper-persistent-data lvm2
 
 # 添加Docker软件包源
@@ -314,12 +314,12 @@ systemctl start docker &amp; systemctl enable docker
 
 <p>在执行一下命令的时候：</p>
 
-<pre><code>yum install docker-ce-17.03.0.ce -y
+<pre><code class="language-bash">yum install docker-ce-17.03.0.ce -y
 </code></pre>
 
 <p>会出现如下的报错：</p>
 
-<pre><code>--&gt; Finished Dependency Resolution
+<pre><code class="language-bash">--&gt; Finished Dependency Resolution
 Error: Package: docker-ce-17.03.0.ce-1.el7.centos.x86_64 (docker-ce-stable)
         Requires: docker-ce-selinux &gt;= 17.03.0.ce-1.el7.centos
         Available: docker-ce-selinux-17.03.0.ce-1.el7.centos.noarch (docker-ce-stable)
@@ -334,7 +334,7 @@ You could try running: rpm -Va --nofiles --nodigest
 
 <p>在出现这个问题之后，需要执行以下命令：</p>
 
-<pre><code>#要先安装docker-ce-selinux-17.03.2.ce，否则安装docker-ce会报错
+<pre><code class="language-bash">#要先安装docker-ce-selinux-17.03.2.ce，否则安装docker-ce会报错
 yum install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-selinux-17.03.2.ce-1.el7.centos.noarch.rpm
 
 #然后再安装 docker-ce-17.03.2.ce，就能正常安装

@@ -273,24 +273,27 @@ autocomplete('#aa-search-input',
                           
 
 <blockquote>
-<p>近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以需要将原有Rancher依赖的namespace（cattle-system）删除，但在删除中出现了删除的namespace一直处于Terminating状态的情况
-<img src="/images/source/d-n-1.png" alt="imgage" /></p>
+<p>近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以需要将原有Rancher依赖的namespace（cattle-system）删除，但在删除中出现了删除的namespace一直处于Terminating状态的情况</p>
 </blockquote>
+
+<p><img src="/images/source/d-n-1.png" alt="imgage" /></p>
 
 <h1 id="解决方案">解决方案</h1>
 
 <p>运行命令：</p>
 
-<pre><code>kubectl edit namespaces cattle-system
+<pre><code class="language-bash">kubectl edit namespaces cattle-system
 </code></pre>
 
-<p>可以看到namespaces的yaml配置：
-<img src="/images/source/d-n-2.png" alt="imgage" /></p>
+<p>可以看到namespaces的yaml配置：</p>
+
+<p><img src="/images/source/d-n-2.png" alt="imgage" /></p>
 
 <p>将finalizer的value删除，这里将其设置为[]</p>
 
-<p>保存即可看到该namespace已被删除
-<img src="/images/source/d-n-3.png" alt="imgage" /></p>
+<p>保存即可看到该namespace已被删除</p>
+
+<p><img src="/images/source/d-n-3.png" alt="imgage" /></p>
 
                         </div>
                         

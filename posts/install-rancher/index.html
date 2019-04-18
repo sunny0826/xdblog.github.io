@@ -284,7 +284,7 @@ autocomplete('#aa-search-input',
 
 <p>在安装新环境的rancher之前，需要将kubernetes集群中cattle-system ns下面的cluster-agent和node-agent干掉，这里我选择直接删除cattle-system这个命名空间</p>
 
-<pre><code>kubectl delete ns cattle-system
+<pre><code class="language-bash">kubectl delete ns cattle-system
 </code></pre>
 
 <p>然而问题来了，在删除命名空间之后，这个命名空间并没有立刻被删除，而是一直处于Terminating状态，这里我专门写了一篇文章解决这个问题，这里就不再赘述</p>
@@ -305,7 +305,7 @@ autocomplete('#aa-search-input',
 
 <p>将下面代码的挂载地址指向证书文件，运行代码</p>
 
-<pre><code>docker run -d --restart=unless-stopped \
+<pre><code class="language-bash">$ docker run -d --restart=unless-stopped \
 -p 80:80 -p 443:443 \
 -v /root/var/log/auditlog:/var/log/auditlog \
 -e AUDIT_LEVEL=3 \
@@ -316,7 +316,7 @@ rancher/rancher:latest --no-cacerts
 
 <p>之后会自动冲dockerhub上拉取最新的rancher进行进行安装，之后使用命令</p>
 
-<pre><code>docker ps
+<pre><code class="language-bash">docker ps
 </code></pre>
 
 <p>查看容器是否在运行，如果运行正常，则后端的配置就完成了</p>
@@ -347,7 +347,7 @@ rancher/rancher:latest --no-cacerts
 
 <p>对k8s集群中rancher的cattle-cluster-agent传递内网参数，将其配置为内网连接，就可以正常访问了</p>
 
-<pre><code>kubectl -n cattle-system patch deployments cattle-cluster-agent --patch '{
+<pre><code class="language-bash">kubectl -n cattle-system patch deployments cattle-cluster-agent --patch '{
     &quot;spec&quot;: {
         &quot;template&quot;: {
                 &quot;spec&quot;: {

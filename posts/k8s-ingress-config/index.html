@@ -297,7 +297,7 @@ autocomplete('#aa-search-input',
 
 <p>微信小程序需要调用后端接口，需要在header中传一段很长的token参数，直接使用浏览器访问该端口可以访问通，但是在加上token访问之后，会报“400 Request Header Or Cookie Too Large”</p>
 
-<pre><code>&lt;html&gt;
+<pre><code class="language-html">&lt;html&gt;
     &lt;head&gt;
         &lt;title&gt;400 Request Header Or Cookie Too Large&lt;/title&gt;
     &lt;/head&gt;
@@ -316,9 +316,9 @@ autocomplete('#aa-search-input',
 
 <p>直接修改Service使用nodeport的形式访问，则没有报错，初步定位需要在ingress中nginx配置客户端的请求头，进入Ingress Controller的Pod查询配置，果然是请求头空间不足。</p>
 
-<pre><code>www-data@nginx-ingress-controller-5vx7x:/etc/nginx$ cat nginx.conf | grep client_header_buffer_size
+<pre><code class="language-bash">$ cat nginx.conf | grep client_header_buffer_size
     client_header_buffer_size       1k;
-www-data@nginx-ingress-controller-5vx7x:/etc/nginx$ cat nginx.conf | grep large_client_header_buffers
+$ cat nginx.conf | grep large_client_header_buffers
     large_client_header_buffers     4 8k;
 </code></pre>
 
@@ -326,7 +326,7 @@ www-data@nginx-ingress-controller-5vx7x:/etc/nginx$ cat nginx.conf | grep large_
 
 <p>在ingress中添加注释</p>
 
-<pre><code>nginx.ingress.kubernetes.io/server-snippet: client_header_buffer_size 2046k;
+<pre><code class="language-nginx">nginx.ingress.kubernetes.io/server-snippet: client_header_buffer_size 2046k;
 </code></pre>
 
 <blockquote>
@@ -350,7 +350,7 @@ www-data@nginx-ingress-controller-5vx7x:/etc/nginx$ cat nginx.conf | grep large_
 <p>调整proxy_read_timeout，连接成功后_等候后端服务器响应时间_其实已经进入后端的排队之中等候处理
 在ingress中添加注释</p>
 
-<pre><code>nginx.ingress.kubernetes.io/proxy-read-timeout: 600
+<pre><code class="language-nginx">nginx.ingress.kubernetes.io/proxy-read-timeout: 600
 </code></pre>
 
 <blockquote>

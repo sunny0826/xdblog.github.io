@@ -300,7 +300,7 @@ autocomplete('#aa-search-input',
 
 <li><p>执行命令，将${your_k8s_cluster_id}替换为集群id</p>
 
-<pre><code>wget http://logtail-release-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/kubernetes/alicloud-log-k8s-install.sh -O alicloud-log-k8s-install.sh; chmod 744 ./alicloud-log-k8s-install.sh; sh ./alicloud-log-k8s-install.sh ${your_k8s_cluster_id}
+<pre><code class="language-bash">wget http://logtail-release-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/kubernetes/alicloud-log-k8s-install.sh -O alicloud-log-k8s-install.sh; chmod 744 ./alicloud-log-k8s-install.sh; sh ./alicloud-log-k8s-install.sh ${your_k8s_cluster_id}
 </code></pre>
 
 <ul>
@@ -310,38 +310,38 @@ autocomplete('#aa-search-input',
 
 <li><p>该条命令其实就是执行了一个shell脚本，使用helm安装了采集kubernetes集群日志的组件</p>
 
-<pre><code>#!/bin/bash
+<pre><code class="language-vim">#!/bin/bash
 
 if [ $# -eq 0 ] ; then
     echo &quot;[Invalid Param], use sudo ./install-k8s-log.sh {your-k8s-cluster-id}&quot;
     exit 1
 fi
-
+    
 clusterName=$(echo $1 | tr '[A-Z]' '[a-z]')
 curl --connect-timeout 5  http://100.100.100.200/latest/meta-data/region-id
-
+    
 if [ $? != 0 ]; then
     echo &quot;[FAIL] ECS meta server connect fail, only support alibaba cloud k8s service&quot;
     exit 1
 fi
-
+    
 regionId=`curl http://100.100.100.200/latest/meta-data/region-id`
 aliuid=`curl http://100.100.100.200/latest/meta-data/owner-account-id`
-
+    
 helmPackageUrl=&quot;http://logtail-release-$regionId.oss-$regionId.aliyuncs.com/kubernetes/alibaba-cloud-log.tgz&quot;
 wget $helmPackageUrl -O alibaba-cloud-log.tgz
 if [ $? != 0 ]; then
     echo &quot;[FAIL] download alibaba-cloud-log.tgz from $helmPackageUrl failed&quot;
     exit 1
 fi
-
+    
 project=&quot;k8s-log-&quot;$clusterName
 if [ $# -ge 2 ]; then
     project=$2
 fi
-
+    
 echo [INFO] your k8s is using project : $project
-
+    
 helm install alibaba-cloud-log.tgz --name alibaba-log-controller \
     --set ProjectName=$project \
     --set RegionId=$regionId \
@@ -351,9 +351,9 @@ helm install alibaba-cloud-log.tgz --name alibaba-log-controller \
     --set AlibabaCloudUserId=&quot;:&quot;$aliuid \
     --set LogtailImage.Repository=&quot;registry.$regionId.aliyuncs.com/log-service/logtail&quot; \
     --set ControllerImage.Repository=&quot;registry.$regionId.aliyuncs.com/log-service/alibabacloud-log-controller&quot;
-
+    
 installRst=$?
-
+    
 if [ $installRst -eq 0 ]; then
     echo &quot;[SUCCESS] install helm package : alibaba-log-controller success.&quot;
     exit 0
@@ -369,35 +369,35 @@ fi
 
 <li><p>安装完成后，可使用以下命令来查看pod状态，若状态全部成功后，则表示安装完成</p>
 
-<pre><code>[root@izuf6d75c59ll4woscqmh5z ~]# helm status alibaba-log-controller
+<pre><code class="language-bash">$ helm status alibaba-log-controller
 LAST DEPLOYED: Thu Nov 22 15:09:35 2018
 NAMESPACE: default
 STATUS: DEPLOYED
-
+    
 RESOURCES:
 ==&gt; v1/ServiceAccount
 NAME                    SECRETS  AGE
 alibaba-log-controller  1        6d
-
+    
 ==&gt; v1beta1/CustomResourceDefinition
 NAME                                   AGE
 aliyunlogconfigs.log.alibabacloud.com  6d
-
+    
 ==&gt; v1beta1/ClusterRole
 alibaba-log-controller  6d
-
+    
 ==&gt; v1beta1/ClusterRoleBinding
 NAME                    AGE
 alibaba-log-controller  6d
-
+    
 ==&gt; v1beta1/DaemonSet
 NAME        DESIRED  CURRENT  READY  UP-TO-DATE  AVAILABLE  NODE SELECTOR  AGE
 logtail-ds  16       16       16     16          16         &lt;none&gt;         6d
-
+    
 ==&gt; v1beta1/Deployment
 NAME                    DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
 alibaba-log-controller  1        1        1           1          6d
-
+    
 ==&gt; v1/Pod(related)
 NAME                                     READY  STATUS   RESTARTS  AGE
 logtail-ds-2fqs4                         1/1    Running  0         6d

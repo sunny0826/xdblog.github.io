@@ -134,7 +134,7 @@
       <pubDate>Thu, 07 Mar 2019 09:14:39 +0800</pubDate>
       
       <guid>http://blog.maoxianplay.com/posts/sonar-pipline/</guid>
-      <description>本文首发于博主所在公司凯京官方微博，欢迎关注：https://my.oschina.net/keking/ 简介 jenkins pipeline Jenkins Pipeline (或简称为 &amp;ldquo;Pipeline&amp;rdquo; )是一套插</description>
+      <description>简介 jenkins pipeline Jenkins Pipeline (或简称为 &amp;ldquo;Pipeline&amp;rdquo; )是一套插件，将持续交付的实现和实施集成到 Jenkins 中。 持续交付Pipeline自动化的表达了这样一种流程：将基于版本控制管</description>
     </item>
     
     <item>

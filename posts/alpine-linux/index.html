@@ -292,7 +292,7 @@ autocomplete('#aa-search-input',
 
 <p>这里提供一个python3的基础镜像的<code>Dockerfile</code>，<a href="https://pip.pypa.io/en/latest/installing/">get-pip.py</a>可在 <a href="https://pip.pypa.io/en/latest/installing/">https://pip.pypa.io/en/latest/installing/</a> 下载。</p>
 
-<pre><code>FROM alpine
+<pre><code class="language-docker">FROM alpine
 
 MAINTAINER guoxudong@keking.cn
 
@@ -320,7 +320,7 @@ RUN echo &quot;https://mirrors.aliyun.com/alpine/v3.6/main/&quot; &gt; /etc/apk/
 
 <p><strong>对比</strong>：同样版本的python，对比镜像大小，可见使用alpine的优势</p>
 
-<pre><code>~ docker images | grep python
+<pre><code class="language-bash">~ docker images | grep python
 python                                  3.4                 ccbffa0d70d9        2 months ago        922MB
 alpine-python3                          latest              69e41b673a50        2 months ago        297MB
 </code></pre>
@@ -348,7 +348,7 @@ alpine-python3                          latest              69e41b673a50        
 
 <p>这里推荐使用阿里云镜像源，由于公司应用都是部署在阿里云上，使用阿里云镜像源会快很多</p>
 
-<pre><code>$ vi /etc/apk/repositories
+<pre><code class="language-bash">$ vi /etc/apk/repositories
 # 将这两行插入到repositories文件开头
 http://mirrors.aliyun.com/alpine/v3.9/main
 http://mirrors.aliyun.com/alpine/v3.9/community
@@ -362,9 +362,10 @@ http://dl-cdn.alpinelinux.org/alpine/v3.8/community
 <p>这里介绍一些常用的操作apk包管理命令</p>
 
 <ul>
-<li><p><code>apk --help</code>可以查看完整的包管理命令</p>
+<li><code>apk --help</code>可以查看完整的包管理命令</li>
+</ul>
 
-<pre><code>bash-4.3# apk --help
+<pre><code class="language-bash">bash-4.3# apk --help
 apk-tools 2.10.0, compiled for x86_64.
 
 Installing and removing packages:
@@ -393,44 +394,47 @@ Use apk &lt;command&gt; --help for command-specific help.
 Use apk --help --verbose for a full command listing.
 
 This apk has coffee making abilities.
-</code></pre></li>
+</code></pre>
 
-<li><p><code>apk info</code> 列出所有已安装的软件包</p></li>
+<ul>
+<li><code>apk info</code> 列出所有已安装的软件包</li>
+<li><code>apk apk update</code> 更新最新本地镜像源</li>
+<li><code>apk upgrade</code> 升级软件</li>
+<li><code>apk search</code> 搜索可用软件包，<strong>搜索之前最好先更新镜像源</strong></li>
+</ul>
 
-<li><p><code>apk apk update</code> 更新最新本地镜像源</p></li>
+<pre><code class="language-bash">$ apk search #查找所以可用软件包
+$ apk search -v #查找所以可用软件包及其描述内容
+$ apk search -v 'acf*' #通过软件包名称查找软件包
+$ apk search -v -d 'docker' #通过描述文件查找特定的软件包
+</code></pre>
 
-<li><p><code>apk upgrade</code> 升级软件</p></li>
+<ul>
+<li><code>apk add</code> 从仓库中安装最新软件包，并自动安装必须的依赖包,也可以从第三方仓库添加软件包
+<br /></li>
+</ul>
 
-<li><p><code>apk search</code> 搜索可用软件包，<strong>搜索之前最好先更新镜像源</strong></p>
-
-<pre><code>bash-4.3# apk search #查找所以可用软件包
-bash-4.3# apk search -v #查找所以可用软件包及其描述内容
-bash-4.3# apk search -v 'acf*' #通过软件包名称查找软件包
-bash-4.3# apk search -v -d 'docker' #通过描述文件查找特定的软件包
-</code></pre></li>
-
-<li><p><code>apk add</code> 从仓库中安装最新软件包，并自动安装必须的依赖包,也可以从第三方仓库添加软件包</p>
-
-<pre><code>bash-4.3# apk add curl busybox-extras       #软件以空格分开这里，这里列举我们用的最多的curl和telnet
+<pre><code class="language-bash">$ apk add curl busybox-extras       #软件以空格分开这里，这里列举我们用的最多的curl和telnet
 bash-4.3# apk add --no-cache curl
 bash-4.3# apk add mongodb --update-cache --repository http://mirrors.ustc.edu.cn/alpine/v3.6/main/ --allow-untrusted    #从指定镜像源拉取
 </code></pre>
 
 <p>安装指定版本软件包</p>
 
-<pre><code>bash-4.3# apk add mongodb=4.0.5-r0
+<pre><code class="language-bash">bash-4.3# apk add mongodb=4.0.5-r0
 bash-4.3# apk add 'mongodb&lt;4.0.5'
 bash-4.3# apk add 'mongodb&gt;4.0.5'
 </code></pre>
 
 <p>升级指定软件包</p>
 
-<pre><code>bash-4.3# apk add --upgrade busybox #升级指定软件包
+<pre><code class="language-bash">bash-4.3# apk add --upgrade busybox #升级指定软件包
 </code></pre>
 
-<p><strong>注</strong>：安装之前最好修改本地镜像源，更新镜像源，搜索软件包是否存在，选择合适岸本在进行安装。</p></li>
+<p><strong>注</strong>：安装之前最好修改本地镜像源，更新镜像源，搜索软件包是否存在，选择合适岸本在进行安装。</p>
 
-<li><p><code>apk del</code> 卸载并删除指定软件包</p></li>
+<ul>
+<li><code>apk del</code> 卸载并删除指定软件包</li>
 </ul></li>
 </ul>
 
