@@ -52,6 +52,8 @@
 
   
   <link rel="stylesheet" href="/css/prism.css" />
+  
+  <link rel="stylesheet" href="/css/share.min.css" />
 
   
   <meta property="og:title" content="自动合并Kubeconfig，实现多k8s集群切换" />
@@ -404,6 +406,23 @@ current-context: {context-name}
 <h2 id="结语">结语</h2>
 
 <p>在使用kubernetes初期，在多集群之间我一直是频繁的切换<code>.kube/config</code>文件来达到切换操作集群的目的。这也导致了我的<code>.kube</code>目录中存在这多个类似于<code>al_test_config.bak</code>、<code>al_prod_config.bak</code>、<code>hw_test_config.bak</code>的文件，本地环境已经自建环境，在集群切换的时候十分头疼。而后来使用<code>--kubeconfig</code>来进行切换集群，虽然比之前的方法要方便很多，但是并不十分优雅。这个简单的小工具一举解决了我的文件，对于我这个<code>kubectl</code>重度依赖者来说十分重要。</p>
+
+                          <div class="social-share" data-initialized="true" data-wechat-qrcode-title="分享更快乐">
+    <hr>
+    <center>
+    <font style="font-size:18px;color:darkcyan;">分享到：</font>
+    <a href="#" class="social-share-icon icon-weibo"></a>
+    <a href="#" class="social-share-icon icon-wechat"></a>
+    <a href="#" class="social-share-icon icon-twitter"></a>
+    <a href="#" class="social-share-icon icon-linkedin"></a>
+    <a href="#" class="social-share-icon icon-facebook"></a>
+    <a href="#" class="social-share-icon icon-qq"></a>
+    <a href="#" class="social-share-icon icon-qzone"></a>
+    </center>
+</div>
+
+
+<script src="/js/social-share.min.js"></script>
 
                         </div>
                         
