@@ -524,6 +524,30 @@
         ]
     },
     {
+        "title": "Kustomize 的使用方法",
+        "uri": "posts/kustomize-2",
+        "content": "Kustomize                                YAML                 repo                        ldap   kubernetes                       git     git init   ldap      mkdir  p   ldap base                mkdir  p   ldap overlays staging mkdir  p   ldap overlays production                 kustomize build   ldap overlays staging   kubectl apply  f   kustomize build   ldap overlays production   kubectl apply  f     kubernetes 1 14     kubectl apply  k   ldap overlays staging kubectl apply  k   ldap overlays production                         repo   fork kustomize                    fork modify rebase                       mkdir   ldap git clone https   github com  USER ldap   ldap base cd   ldap base git remote add upstream git github com  USER ldap                   mkdir  p   ldap overlays staging mkdir  p   ldap overlays production        kustomize build   ldap overlays staging   kubectl apply  f   kustomize build   ldap overlays production   kubectl apply  f     kubernetes 1 14     kubectl apply  k   ldap overlays staging kubectl apply  k   ldap overlays production                  cd   ldap base git fetch upstream git rebase upstream master    kustomize workflows   github com",
+        "objectID": "posts/kustomize-2",
+        "date": "2019-04-19T08:05:02.000Z",
+        "draft": false,
+        "banner": "https://wx3.sinaimg.cn/large/ad5fbf65gy1g2816bavnxj21qi15oacw.jpg",
+        "author": "郭旭东",
+        "summary": "使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法  本篇为系列文章第二篇，手把手教你使用 Kustomize 。",
+        "tags": [
+            "kubernetes",
+            "kustomize",
+            "工具"
+        ],
+        "categories": [
+            "kubernetes"
+        ],
+        "keywords": [
+            "kubernetes",
+            "kustomize",
+            "工具"
+        ]
+    },
+    {
         "title": "自动合并Kubeconfig，实现多k8s集群切换",
         "uri": "posts/merge-kubeconfig",
         "content": "kubernetes                                kubernetes       kubernetes                                                                                                          rancher                                      Context  kubectl config use context      kubectl config view                kubeconfig                                 apiVersion  v1 kind  Config preferences     clusters  cluster  name   cluster name  users  name   user name  contexts  context  cluster   cluster name  user   user name  name   context name  current context   context name                                    kubeconfig        kubeconfig    yaml              kubeconfig  json                                           kubernetes                                                  kubeconfig      yaml                                          json                             kubeconfig            kubeconfig          GitHub https   github com sunny0826 mergeKubeConfig                      kubernetes      istio            kube    config           Python   2 7  3                     pip install PyYAML             kubeconfig     python merge py    kubeconfig     python merge py  d  custom dir            config     kube    cp config    kube          kubernetes     kubectl config get contexts     kubernetes       kubectl config   help   kubernetes   kubectl config use context  your contexts        kubernetes",

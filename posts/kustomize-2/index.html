@@ -8,11 +8,11 @@
   <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>kubernetes集群概述 · guoxudong 博客</title>
+  <title>Kustomize 的使用方法 · guoxudong 博客</title>
   <meta name="author" content="郭旭东" />
 
   
-  <meta name="keywords" content="容器, kubernetes">
+  <meta name="keywords" content="kubernetes, kustomize, 工具">
   
 
   <meta name="generator" content="Hugo 0.52" />
@@ -56,17 +56,17 @@
   <link rel="stylesheet" href="/css/share.min.css" />
 
   
-  <meta property="og:title" content="kubernetes集群概述" />
+  <meta property="og:title" content="Kustomize 的使用方法" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/posts/k8s-topo//" />
+  <meta property="og:url" content="/posts/kustomize-2//" />
   <meta property="og:image" content="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" />
   <meta property="og:image:alt" content="ServiceMesher Logo" />
 
   
-  <meta name="description" content="随着2017年AWS，Azure和阿里云相继在其原有容器服务上新增了对kubernetes的支持，而Docker官网也在同年10月宣布同时支持Swarm好kubernetes容器编排系统。kubernetes俨然已成为容器编排领域事实上的标准，而2018年更是各大公司相继将服务迁移到kubernetes上，而kubernetes则以惊人更新速度，保持着每个季度发布一个大版本的速度高速发展着。">
-  <meta property="og:description" content="随着2017年AWS，Azure和阿里云相继在其原有容器服务上新增了对kubernetes的支持，而Docker官网也在同年10月宣布同时支持Swarm好kubernetes容器编排系统。kubernetes俨然已成为容器编排领域事实上的标准，而2018年更是各大公司相继将服务迁移到kubernetes上，而kubernetes则以惊人更新速度，保持着每个季度发布一个大版本的速度高速发展着。">
-  <meta name="twitter:description" content="随着2017年AWS，Azure和阿里云相继在其原有容器服务上新增了对kubernetes的支持，而Docker官网也在同年10月宣布同时支持Swarm好kubernetes容器编排系统。kubernetes俨然已成为容器编排领域事实上的标准，而2018年更是各大公司相继将服务迁移到kubernetes上，而kubernetes则以惊人更新速度，保持着每个季度发布一个大版本的速度高速发展着。">
-  <meta property="og:description" content="随着2017年AWS，Azure和阿里云相继在其原有容器服务上新增了对kubernetes的支持，而Docker官网也在同年10月宣布同时支持Swarm好kubernetes容器编排系统。kubernetes俨然已成为容器编排领域事实上的标准，而2018年更是各大公司相继将服务迁移到kubernetes上，而kubernetes则以惊人更新速度，保持着每个季度发布一个大版本的速度高速发展着。" />
+  <meta name="description" content="使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法  本篇为系列文章第二篇，手把手教你使用 Kustomize 。">
+  <meta property="og:description" content="使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法  本篇为系列文章第二篇，手把手教你使用 Kustomize 。">
+  <meta name="twitter:description" content="使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法  本篇为系列文章第二篇，手把手教你使用 Kustomize 。">
+  <meta property="og:description" content="使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法  本篇为系列文章第二篇，手把手教你使用 Kustomize 。" />
 
   
   
@@ -100,9 +100,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="/">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="kubernetes集群概述 logo" class="hidden-xs hidden-sm">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="kubernetes集群概述 logo" class="visible-xs visible-sm">
-                    <span class="sr-only">kubernetes集群概述 - 跳到主页</span>
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="Kustomize 的使用方法 logo" class="hidden-xs hidden-sm">
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="Kustomize 的使用方法 logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Kustomize 的使用方法 - 跳到主页</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -223,7 +223,7 @@ autocomplete('#aa-search-input',
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>kubernetes集群概述</h1>
+                <h1>Kustomize 的使用方法</h1>
             </div>
         </div>
     </div>
@@ -241,7 +241,7 @@ autocomplete('#aa-search-input',
                         <div class="well">
                             <div class="author-category">
                             <i class="fa fa-calendar-o">
-                            2018年10月3日
+                            2019年4月19日
                             </i>
                             |
                             
@@ -250,7 +250,7 @@ autocomplete('#aa-search-input',
                             
                             
                             |
-                            1100字 | 阅读大约需要3分钟
+                            600字 | 阅读大约需要2分钟
                             </div>
                             
                             
@@ -267,6 +267,10 @@ autocomplete('#aa-search-input',
                             
                             <a style="text-transform:capitalize" href="/tags/kubernetes/"><i>#kubernetes</i></a>
                             
+                            <a style="text-transform:capitalize" href="/tags/kustomize/"><i>#kustomize</i></a>
+                            
+                            <a style="text-transform:capitalize" href="/tags/%E5%B7%A5%E5%85%B7/"><i>#工具</i></a>
+                            
                             </div>
                             
                             
@@ -274,27 +278,110 @@ autocomplete('#aa-search-input',
                         <div id="post-content">
                           
 
-<blockquote>
-<p>随着2017年AWS，Azure和阿里云相继在其原有容器服务上新增了对kubernetes的支持，而Docker官网也在同年10月宣布同时支持Swarm好kubernetes容器编排系统。kubernetes俨然已成为容器编排领域事实上的标准，而2018年更是各大公司相继将服务迁移到kubernetes上，而kubernetes则以惊人更新速度，保持着每个季度发布一个大版本的速度高速发展着。</p>
-</blockquote>
+<p>本文介绍使用和维护 Kustomize 的方法步骤。</p>
 
-<h1 id="kubernetes特征">kubernetes特征</h1>
+<h2 id="定制配置">定制配置</h2>
 
-<p>kubernetes是一种在一组主机上运行和协同容器化应用程序的系统，旨在提供可预测性、可拓展性与高可用性的方法来完全管理容器化应用和服务的生命周期平台。用户可以定义应用程序的运行方式，以及与其他应用程序或外部世界交互的途径，并能实现服务的扩容和缩容，执行平滑滚动更新，以及在不同版本的应用程序之间调度流量以测试功能或回滚有问题的部署。kubernetes提供了接口和可组合帆软平台原语，使得用户能够以高度的灵活性和可靠性定义及管理应用程序。</p>
+<p>在这个工作流方式中，所有的配置文件（ YAML 资源）都是用户所有，存在于私有 repo 中。其他人是无法使用的。</p>
 
-<h1 id="kubernetes组件及网络通信">kubernetes组件及网络通信</h1>
+<p><img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g2813d1ia7j20qo0f0dgk.jpg" alt="" /></p>
 
-<p>kubernetes集群的客户端可以分为两类：API Server客户端和应用程序（运行为Pod中的容器）客户端。
-<img src="/images/source/kubernetes-topo.png" alt="image" /></p>
+<ol>
+<li><p>使用 <code>git</code> 创建一个目录</p>
+
+<p>创建一个名为 <strong><em>ldap</em></strong> 的 kubernetes 集群应用，希望将这个应用的配置保存在自己的 git 仓库中</p>
+
+<pre><code class="language-bash">git init ~/ldap
+</code></pre></li>
+
+<li><p>创建一个 <code>base</code></p>
+
+<pre><code class="language-bash">mkdir -p ~/ldap/base
+</code></pre>
+
+<p>在这个目录中创建并提交 <code>kustomization.yaml</code> 文件和一组资源，例如 <code>deployment.yaml</code> <code>service.yaml</code> 等。</p></li>
+
+<li><p>创建 <code>overlays</code></p>
+
+<pre><code class="language-bash">mkdir -p ~/ldap/overlays/staging
+mkdir -p ~/ldap/overlays/production
+</code></pre>
+
+<p>每个目录都需要一个 <code>kustomization.yaml</code> 文件以及一个或多个 <code>patch</code> ，例如 <code>healthcheck_patch.yaml</code> <code>memorylimit_patch.yaml</code> 等。。</p>
+
+<p><code>staging</code> 目录可能会使用一个 <code>patch</code> ，用于在 <code>configmap</code> 增加一个实验配置。</p>
+
+<p><code>production</code> 目录则可能会在 <code>deployment</code> 中增加在副本数。</p></li>
+
+<li><p>生成 <code>variants</code></p>
+
+<p>运行 <code>kustomize</code> ，将生成的配置用于 kubernetes 应用部署</p>
+
+<pre><code class="language-bash">kustomize build ~/ldap/overlays/staging | kubectl apply -f -
+kustomize build ~/ldap/overlays/production | kubectl apply -f -
+</code></pre>
+
+<p>在 kubernetes 1.14 版本， <code>kustomize</code> 已经集成到 <code>kubectl</code> 命令中，成为了其一个子命令，可使用 <code>kubectl</code> 来进行部署</p>
+
+<pre><code class="language-bash">kubectl apply -k ~/ldap/overlays/staging
+kubectl apply -k ~/ldap/overlays/production
+</code></pre></li>
+</ol>
+
+<h2 id="使用现有的配置">使用现有的配置</h2>
+
+<p>在这个工作流方式中，可从别人的 repo 中 fork kustomize 配置，并根据自己的需求来配置。</p>
+
+<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g281xyfebej20qo0f0dgr.jpg" alt="" /></p>
+
+<ol>
+<li><p>通过 fork/modify/rebase 等方式获得配置</p></li>
+
+<li><p>将其克隆为你自己的 <code>base</code></p>
+
+<p>在这个 <code>bash</code> 目录维护在一个 repo 中，在这个例子使用 <code>ladp</code> 的 repo</p>
+
+<pre><code class="language-bash">mkdir ~/ldap
+git clone https://github.com/$USER/ldap ~/ldap/base
+cd ~/ldap/base
+git remote add upstream git@github.com:$USER/ldap
+</code></pre></li>
+
+<li><p>创建 <code>overlays</code></p>
+
+<p>如上面的案例一样，创建并完善 <code>overlays</code> 目录中的内容</p>
+
+<pre><code class="language-bash">mkdir -p ~/ldap/overlays/staging
+mkdir -p ~/ldap/overlays/production
+</code></pre>
+
+<p>可以将 <code>overlays</code> 维护在不同的 repo 中</p></li>
+
+<li><p>生成 <code>variants</code></p>
+
+<pre><code class="language-bash">kustomize build ~/ldap/overlays/staging | kubectl apply -f -
+kustomize build ~/ldap/overlays/production | kubectl apply -f -
+</code></pre>
+
+<p>在 kubernetes 1.14 版本， <code>kustomize</code> 已经集成到 <code>kubectl</code> 命令中，成为了其一个子命令，可使用 <code>kubectl</code> 来进行部署</p>
+
+<pre><code class="language-bash">kubectl apply -k ~/ldap/overlays/staging
+kubectl apply -k ~/ldap/overlays/production
+</code></pre></li>
+
+<li><p>（可选）更新 <code>base</code>
+用户可以定期更新源 <code>base</code> 以保证及时更新</p>
+
+<pre><code class="language-bash">cd ~/ldap/base
+git fetch upstream
+git rebase upstream/master
+</code></pre></li>
+</ol>
+
+<h2 id="参考">参考</h2>
 
 <ul>
-<li>第一类客户端通常包含用户和Pod对象两种，它们通过API Server访问kubernetes集群完成管理任务，例如，管理集群上的各种资源对象。</li>
-
-<li><p>第二类客户端一般也包含人类用户和Pod对象两种，它们的访问目标是Pod上运行于容器中的应用程序提供的各种具体的服务，如redis或nginx等，不过，这些访问请求通常要经由Service或Ingress资源对象进行。另外，第二类客户端的访问目标对象的操作要经由第一类客户端创建和配置完成后才进行。</p>
-
-<p>访问API Server时，人类用户一般借助于命令行工具kubectl或图形UI（例如kubernetes dashboard）进行，也通过编程接口进行访问，包括REST API。访问Pod中的应用时，其访问方式要取决于Pod中的应用程序，例如，对于运行Nginx容器的Pod来说，其最常用工具就是浏览器。</p>
-
-<p>管理员（开发人员或运维人员）使用kubernetes集群的常见操作包括通过控制器创建Pod，在Pod的基础上创建Service供第二类客户端访问，更新Pod中的应用版本（更新和回滚）以及对应用规模进行扩容或缩容等，另外还有集群附件管理、存储卷管理、网络及网络策略管理、资源管理和安全管理等。</p></li>
+<li><a href="https://github.com/kubernetes-sigs/kustomize/blob/master/docs/workflows.md">kustomize workflows - github.com</a></li>
 </ul>
 
                           <div class="social-share" data-initialized="true" data-wechat-qrcode-title="分享更快乐">
@@ -322,13 +409,9 @@ autocomplete('#aa-search-input',
                         <ul class="pager blog-pager">
                         
                         <li class="previous">
-                        <a href="http://blog.maoxianplay.com/posts/image-size/" data-toggle="tooltip" data-placement="top" title="精简docker镜像">&larr; 更旧</a>
+                        <a href="http://blog.maoxianplay.com/posts/rancher-prometheus-fix-question/" data-toggle="tooltip" data-placement="top" title="Rancher 2.2.1 解决工作负载监控为空问题">&larr; 更旧</a>
                         </li>
                          
-                        <li class="next">
-                        <a href="http://blog.maoxianplay.com/posts/k8s-d-n/" data-toggle="tooltip" data-placement="top" title="Kubernetes删除一直处于Terminating状态的namespace">更新 &rarr;</a>
-                        </li>
-                        
                         </ul>
 
                     </div>
@@ -350,15 +433,15 @@ autocomplete('#aa-search-input',
     <div class="panel-body">
      <ul class="nav nav-pills nav-stacked">
         
-        <li><a href="/posts/install-k8s/"><i class="fa fa-link"></i>centos7.2 安装k8s v1.11.0</a></li>
+        <li><a href="/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/"><i class="fa fa-link"></i>Kustomize: 无需模板定制你的 kubernetes 配置</a></li>
          
-        <li><a href="/posts/image-size/"><i class="fa fa-link"></i>精简docker镜像</a></li>
+        <li><a href="/posts/kustomize-1/"><i class="fa fa-link"></i>什么是 Kustomize ？</a></li>
          
-        <li><a href="/posts/docker-quit/"><i class="fa fa-link"></i>Docker容器启动退出解决方案</a></li>
+        <li><a href="/posts/merge-kubeconfig/"><i class="fa fa-link"></i>自动合并Kubeconfig，实现多k8s集群切换</a></li>
          
-        <li><a href="/posts/con-ind/"><i class="fa fa-link"></i>容器技术概述</a></li>
+        <li><a href="/posts/rancher-prometheus-fix-question/"><i class="fa fa-link"></i>Rancher 2.2.1 解决工作负载监控为空问题</a></li>
          
-        <li><a href="/posts/install-docker/"><i class="fa fa-link"></i>centos7安装指定版本的docker</a></li>
+        <li><a href="/posts/aliyun-k8s-perfect/"><i class="fa fa-link"></i>阿里云容器服务新建集群优化方案</a></li>
          
      </ul>
     </div>
