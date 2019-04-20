@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>Kustomize 的使用方法</title>
+      <title>使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法</title>
       <link>http://blog.maoxianplay.com/posts/kustomize-2/</link>
       <pubDate>Fri, 19 Apr 2019 16:05:02 +0800</pubDate>
       
@@ -30,7 +30,7 @@
     </item>
     
     <item>
-      <title>什么是 Kustomize ？</title>
+      <title>使用 Kustomize 帮你管理 kubernetes 应用（一）：什么是 Kustomize ？</title>
       <link>http://blog.maoxianplay.com/posts/kustomize-1/</link>
       <pubDate>Mon, 15 Apr 2019 13:32:59 +0800</pubDate>
       
