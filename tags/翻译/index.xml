@@ -6,10 +6,19 @@
     <description>Recent content in 翻译 on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 15 Apr 2019 17:23:21 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 20 Apr 2019 19:54:50 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.maoxianplay.com/tags/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>什么的容器？Docker 工作原理及容器化简易指南</title>
+      <link>http://blog.maoxianplay.com/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</link>
+      <pubDate>Sat, 20 Apr 2019 19:54:50 +0800</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</guid>
+      <description>Docker 非常棒！ 它使软件开发者无需担心配置和依赖性，在任何地方打包，发送和运行他们的应用程序。而在与 kubernetes 相结合后，它使应用集群部署和管理变得更方便。</description>
+    </item>
     
     <item>
       <title>Kustomize: 无需模板定制你的 kubernetes 配置</title>
