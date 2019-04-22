@@ -250,7 +250,7 @@ autocomplete('#aa-search-input',
                             
                             
                             |
-                            1100字 | 阅读大约需要3分钟
+                            1300字 | 阅读大约需要3分钟
                             </div>
                             
                             
@@ -358,6 +358,27 @@ $ cat nginx.conf | grep large_client_header_buffers
 <blockquote>
 <p>这里需要注意的事该注释的value需要时number类型，不能加s，否则将不生效</p>
 </blockquote></li>
+
+<li><p>增加白名单</p>
+
+<h5 id="现象-2">现象</h5>
+
+<p>在实际的使用中，会有一部分应用需要设置只可以在办公场地的网络使用，之前使用阿里云 SLB 的时候可以针对端口进行访问控制，但是现在走 ingress ，都是从80 or 443端口进，所以需要在 ingress 设置</p>
+
+<h5 id="解决方法-2">解决方法</h5>
+
+<blockquote>
+<p><strong>Whitelist source range</strong></p>
+
+<p>You can specify allowed client IP source ranges through the nginx.ingress.kubernetes.io/whitelist-source-range annotation. The value is a comma separated list of CIDRs, e.g. 10.0.0.0/24,172.10.0.1.</p>
+</blockquote>
+
+<p>在 ingress 里配置 <code>nginx.ingress.kubernetes.io/whitelist-source-range</code> 即可</p>
+
+<pre><code class="language-nginx">nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/24
+</code></pre>
+
+<p>如果想全局适用，可以在阿里云 SLB 里操作，也可以将该配置加入到 <code>NGINX ConfigMap</code> 中。</p></li>
 </ol>
 
 <h3 id="总结">总结</h3>
