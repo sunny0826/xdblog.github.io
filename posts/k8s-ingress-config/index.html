@@ -373,7 +373,7 @@ $ cat nginx.conf | grep large_client_header_buffers
 <p>You can specify allowed client IP source ranges through the nginx.ingress.kubernetes.io/whitelist-source-range annotation. The value is a comma separated list of CIDRs, e.g. 10.0.0.0/24,172.10.0.1.</p>
 </blockquote>
 
-<p>在 ingress 里配置 <code>nginx.ingress.kubernetes.io/whitelist-source-range</code> 即可</p>
+<p>在 ingress 里配置 <code>nginx.ingress.kubernetes.io/whitelist-source-range</code> ，如有多个ip段，用逗号分隔即可</p>
 
 <pre><code class="language-nginx">nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/24
 </code></pre>
