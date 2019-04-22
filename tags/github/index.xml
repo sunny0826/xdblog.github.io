@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Github on GuoXD Blog</title>
+    <link>http://blog.maoxianplay.com/tags/github/</link>
+    <description>Recent content in Github on GuoXD Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 22 Apr 2019 09:11:24 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.maoxianplay.com/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GitHub 黑话指南</title>
+      <link>http://blog.maoxianplay.com/posts/cant/</link>
+      <pubDate>Mon, 22 Apr 2019 09:11:24 +0800</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/posts/cant/</guid>
+      <description>这里的黑话，其实就是 GitHub 上的一些迷之缩写，这些歪果老司机们在 GitHub 上肆无忌惮的使用着他们的“黑话”，让我们这些非英语母语国家的新司机在 code review 时经常是</description>
+    </item>
+    
+  </channel>
+</rss>
