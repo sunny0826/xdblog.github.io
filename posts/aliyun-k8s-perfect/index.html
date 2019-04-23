@@ -364,7 +364,7 @@ selector:
 <p>到上面这步，我们的 ingress 入口 SLB 已经创建完成，这里我们验证一下是否联通。
 - 在k8s集群中部署一个 <code>nginx</code> ，直接在阿里云容器服务控制台操作即可
     <img src="https://wx3.sinaimg.cn/large/ad5fbf65gy1g1mant7ec6j21s40qegpr.jpg" alt="image" />
-    这里创建 ingress 理由，<strong>注意：这里的域名需要解析到刚才创建的 SLB 绑定的弹性IP</strong>
+    这里创建 ingress 路由，<strong>注意：这里的域名需要解析到刚才创建的 SLB 绑定的弹性IP</strong>
     <img src="https://ws1.sinaimg.cn/large/ad5fbf65gy1g1maqf7gdjj21ns0kymz8.jpg" alt="image" />
 - 访问该域名，显示 <code>nginx</code> 欢迎页，则证明修改成功
     <img src="https://wx2.sinaimg.cn/large/ad5fbf65gy1g1mat8srhnj21ak0hmact.jpg" alt="image" /></p>
