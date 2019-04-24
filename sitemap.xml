@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://blog.maoxianplay.com/posts/kubernetes-is-hard/</loc>
+    <lastmod>2019-04-24T10:18:46+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.maoxianplay.com/posts/cant/</loc>
     <lastmod>2019-04-22T09:11:24+08:00</lastmod>
   </url>
@@ -208,7 +213,7 @@
   
   <url>
     <loc>http://blog.maoxianplay.com/</loc>
-    <lastmod>2019-04-22T09:11:24+08:00</lastmod>
+    <lastmod>2019-04-24T10:18:46+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -232,7 +237,7 @@
   
   <url>
     <loc>http://blog.maoxianplay.com/tags/kubernetes/</loc>
-    <lastmod>2019-04-19T16:05:02+08:00</lastmod>
+    <lastmod>2019-04-24T10:18:46+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -298,7 +303,7 @@
   
   <url>
     <loc>http://blog.maoxianplay.com/tags/%E5%AE%B9%E5%99%A8/</loc>
-    <lastmod>2019-04-20T19:54:50+08:00</lastmod>
+    <lastmod>2019-04-24T10:18:46+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -346,13 +351,13 @@
   
   <url>
     <loc>http://blog.maoxianplay.com/tags/%E7%BF%BB%E8%AF%91/</loc>
-    <lastmod>2019-04-22T09:11:24+08:00</lastmod>
+    <lastmod>2019-04-24T10:18:46+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://blog.maoxianplay.com/categories/%E7%BF%BB%E8%AF%91/</loc>
-    <lastmod>2019-04-20T19:54:50+08:00</lastmod>
+    <lastmod>2019-04-24T10:18:46+08:00</lastmod>
     <priority>0</priority>
   </url>
   

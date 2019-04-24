@@ -6,10 +6,19 @@
     <description>Recent content on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 22 Apr 2019 09:11:24 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 24 Apr 2019 10:18:46 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.maoxianplay.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>困难的 Kubernetes</title>
+      <link>http://blog.maoxianplay.com/posts/kubernetes-is-hard/</link>
+      <pubDate>Wed, 24 Apr 2019 10:18:46 +0800</pubDate>
+      
+      <guid>http://blog.maoxianplay.com/posts/kubernetes-is-hard/</guid>
+      <description>虽然 Kubernetes 赢得了容器战争，但是其仍然很难使用并且引起很多事故。 我想我应该给这篇文章做一点序言。 kubernetes 为许多应用程序提供新的 runtime ，如果使用得当，它可以成</description>
+    </item>
     
     <item>
       <title>GitHub 黑话指南</title>
