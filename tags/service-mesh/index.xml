@@ -2,66 +2,66 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Service Mesh on GuoXD Blog</title>
-    <link>http://blog.maoxianplay.com/tags/service-mesh/</link>
+    <link>https://blog.maoxianplay.com/tags/service-mesh/</link>
     <description>Recent content in Service Mesh on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 10 Apr 2019 14:03:25 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.maoxianplay.com/tags/service-mesh/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.maoxianplay.com/tags/service-mesh/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>从边车模式到 Service Mesh</title>
-      <link>http://blog.maoxianplay.com/posts/sidercar-to-servicemesh/</link>
+      <link>https://blog.maoxianplay.com/posts/sidercar-to-servicemesh/</link>
       <pubDate>Wed, 10 Apr 2019 14:03:25 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/sidercar-to-servicemesh/</guid>
+      <guid>https://blog.maoxianplay.com/posts/sidercar-to-servicemesh/</guid>
       <description>所谓边车模式（ Sidecar pattern ），也译作挎斗模式，是分布式架构中云设计模式的一种。因为其非常类似于生活中的边三轮摩托车而得名。该设计模式通过给应用程序加</description>
     </item>
     
     <item>
       <title>Service Mesh是什么，我们又为什么需要它</title>
-      <link>http://blog.maoxianplay.com/posts/whats-a-service-mesh-and-why-do-i-need-one/</link>
+      <link>https://blog.maoxianplay.com/posts/whats-a-service-mesh-and-why-do-i-need-one/</link>
       <pubDate>Mon, 25 Mar 2019 18:17:20 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/whats-a-service-mesh-and-why-do-i-need-one/</guid>
+      <guid>https://blog.maoxianplay.com/posts/whats-a-service-mesh-and-why-do-i-need-one/</guid>
       <description>作者：William Morgan 发表于2017年4月25日，2018年11月26日有所修改。 Service Mesh 是一个专门使服务与服务之间的通信变得安全、快速和可靠的</description>
     </item>
     
     <item>
       <title>Istio初探之Bookinfo样例部署</title>
-      <link>http://blog.maoxianplay.com/posts/istio-bookinfo-demo/</link>
+      <link>https://blog.maoxianplay.com/posts/istio-bookinfo-demo/</link>
       <pubDate>Thu, 21 Mar 2019 09:42:18 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/istio-bookinfo-demo/</guid>
+      <guid>https://blog.maoxianplay.com/posts/istio-bookinfo-demo/</guid>
       <description>前言 之前介绍了 Istio 和 Service Mesh 能给我们带来什么，我们为什么要用 Istio ，但大家对 Istio 的认识可能还没有那么深刻。正如Linux 的创始人 Linus Torvalds 的那句话：Talk is</description>
     </item>
     
     <item>
       <title>浅析ServiceMesh &amp; Istio</title>
-      <link>http://blog.maoxianplay.com/posts/istio-share/</link>
+      <link>https://blog.maoxianplay.com/posts/istio-share/</link>
       <pubDate>Wed, 20 Mar 2019 09:12:28 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/istio-share/</guid>
+      <guid>https://blog.maoxianplay.com/posts/istio-share/</guid>
       <description>前言 公司于18年10月正式确认服务容器化，到18年12月4日第一个服务正式部署到生产环境kubernetes集群，再到如今已有23个服务完成</description>
     </item>
     
     <item>
       <title>Service Mesh是什么</title>
-      <link>http://blog.maoxianplay.com/posts/istio-servicemesh/</link>
+      <link>https://blog.maoxianplay.com/posts/istio-servicemesh/</link>
       <pubDate>Tue, 19 Mar 2019 16:12:56 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/istio-servicemesh/</guid>
+      <guid>https://blog.maoxianplay.com/posts/istio-servicemesh/</guid>
       <description>本文转自《Istio 服务网格进阶实战》 什么是服务网格？ Service mesh 又译作 “服务网格”，作为服务间通信的基础设施层。Buoyant 公司的 CEO Willian Morgan 在他的这</description>
     </item>
     
     <item>
       <title>阿里云环境Istio初探</title>
-      <link>http://blog.maoxianplay.com/posts/istio-demo/</link>
+      <link>https://blog.maoxianplay.com/posts/istio-demo/</link>
       <pubDate>Wed, 13 Mar 2019 15:45:43 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/istio-demo/</guid>
+      <guid>https://blog.maoxianplay.com/posts/istio-demo/</guid>
       <description>istio应用部署样例 该实例为一套istio服务上线流程：注入-&amp;gt;部署-&amp;gt;创建目标规则-&amp;gt;创建默认路由。就大多数istio</description>
     </item>
     

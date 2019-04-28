@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>服务网格 on GuoXD Blog</title>
-    <link>http://blog.maoxianplay.com/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</link>
+    <link>https://blog.maoxianplay.com/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</link>
     <description>Recent content in 服务网格 on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 10 Apr 2019 14:03:25 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.maoxianplay.com/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.maoxianplay.com/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>从边车模式到 Service Mesh</title>
-      <link>http://blog.maoxianplay.com/posts/sidercar-to-servicemesh/</link>
+      <link>https://blog.maoxianplay.com/posts/sidercar-to-servicemesh/</link>
       <pubDate>Wed, 10 Apr 2019 14:03:25 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/sidercar-to-servicemesh/</guid>
+      <guid>https://blog.maoxianplay.com/posts/sidercar-to-servicemesh/</guid>
       <description>所谓边车模式（ Sidecar pattern ），也译作挎斗模式，是分布式架构中云设计模式的一种。因为其非常类似于生活中的边三轮摩托车而得名。该设计模式通过给应用程序加</description>
     </item>
     
     <item>
       <title>Service Mesh是什么</title>
-      <link>http://blog.maoxianplay.com/posts/istio-servicemesh/</link>
+      <link>https://blog.maoxianplay.com/posts/istio-servicemesh/</link>
       <pubDate>Tue, 19 Mar 2019 16:12:56 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/istio-servicemesh/</guid>
+      <guid>https://blog.maoxianplay.com/posts/istio-servicemesh/</guid>
       <description>本文转自《Istio 服务网格进阶实战》 什么是服务网格？ Service mesh 又译作 “服务网格”，作为服务间通信的基础设施层。Buoyant 公司的 CEO Willian Morgan 在他的这</description>
     </item>
     

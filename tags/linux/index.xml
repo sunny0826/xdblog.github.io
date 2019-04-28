@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on GuoXD Blog</title>
-    <link>http://blog.maoxianplay.com/tags/linux/</link>
+    <link>https://blog.maoxianplay.com/tags/linux/</link>
     <description>Recent content in Linux on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Fri, 15 Mar 2019 09:53:02 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.maoxianplay.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.maoxianplay.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Alpine Linux详解</title>
-      <link>http://blog.maoxianplay.com/posts/alpine-linux/</link>
+      <link>https://blog.maoxianplay.com/posts/alpine-linux/</link>
       <pubDate>Fri, 15 Mar 2019 09:53:02 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/alpine-linux/</guid>
+      <guid>https://blog.maoxianplay.com/posts/alpine-linux/</guid>
       <description>简介 Small. Simple. Secure.Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox. Alpine Linux 是一个社区开发的面向安全应用的轻量级Linux发行版。 Alpine 的意思是“高山的”，它采用了musl libc</description>
     </item>
     
     <item>
       <title>Docker容器启动退出解决方案</title>
-      <link>http://blog.maoxianplay.com/posts/docker-quit/</link>
+      <link>https://blog.maoxianplay.com/posts/docker-quit/</link>
       <pubDate>Thu, 27 Sep 2018 19:27:03 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/docker-quit/</guid>
+      <guid>https://blog.maoxianplay.com/posts/docker-quit/</guid>
       <description>现象 启动docker容器 docker run –name [CONTAINER_NAME] [CONTAINER_ID] 查看容器运行状态 docker ps -a 发现刚刚启动的mydocker容器已经退出 原因 docker容器的主线程（do</description>
     </item>
     
     <item>
       <title>centos7安装指定版本的docker</title>
-      <link>http://blog.maoxianplay.com/posts/install-docker/</link>
+      <link>https://blog.maoxianplay.com/posts/install-docker/</link>
       <pubDate>Tue, 14 Aug 2018 20:05:21 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/install-docker/</guid>
+      <guid>https://blog.maoxianplay.com/posts/install-docker/</guid>
       <description>前言 在使用centos7，并使用荫安装搬运工的时候，往往不希望安装最新版本的搬运工，而是希望安装与自己熟悉或者当前业务环境需要的版本，例如目</description>
     </item>
     

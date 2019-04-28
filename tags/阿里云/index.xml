@@ -2,66 +2,66 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>阿里云 on GuoXD Blog</title>
-    <link>http://blog.maoxianplay.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</link>
+    <link>https://blog.maoxianplay.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</link>
     <description>Recent content in 阿里云 on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 25 Apr 2019 22:26:06 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.maoxianplay.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.maoxianplay.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>阿里云容器服务新建集群优化方案(更新版)</title>
-      <link>http://blog.maoxianplay.com/posts/aliyun-k8s-perfect/</link>
+      <link>https://blog.maoxianplay.com/posts/aliyun-k8s-perfect/</link>
       <pubDate>Thu, 25 Apr 2019 22:26:06 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/aliyun-k8s-perfect/</guid>
+      <guid>https://blog.maoxianplay.com/posts/aliyun-k8s-perfect/</guid>
       <description>前言 选择阿里云的容器服务，主要原因是公司主要业务基本都在运行在阿里云上。相较自建 kubernetes 集群，容器服务的优势在于部署相对简单，与阿里云 VPC 完美兼容，</description>
     </item>
     
     <item>
       <title>Istio初探之Bookinfo样例部署</title>
-      <link>http://blog.maoxianplay.com/posts/istio-bookinfo-demo/</link>
+      <link>https://blog.maoxianplay.com/posts/istio-bookinfo-demo/</link>
       <pubDate>Thu, 21 Mar 2019 09:42:18 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/istio-bookinfo-demo/</guid>
+      <guid>https://blog.maoxianplay.com/posts/istio-bookinfo-demo/</guid>
       <description>前言 之前介绍了 Istio 和 Service Mesh 能给我们带来什么，我们为什么要用 Istio ，但大家对 Istio 的认识可能还没有那么深刻。正如Linux 的创始人 Linus Torvalds 的那句话：Talk is</description>
     </item>
     
     <item>
       <title>阿里云环境Istio初探</title>
-      <link>http://blog.maoxianplay.com/posts/istio-demo/</link>
+      <link>https://blog.maoxianplay.com/posts/istio-demo/</link>
       <pubDate>Wed, 13 Mar 2019 15:45:43 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/istio-demo/</guid>
+      <guid>https://blog.maoxianplay.com/posts/istio-demo/</guid>
       <description>istio应用部署样例 该实例为一套istio服务上线流程：注入-&amp;gt;部署-&amp;gt;创建目标规则-&amp;gt;创建默认路由。就大多数istio</description>
     </item>
     
     <item>
       <title>阿里云日志服务采集k8s日志并实现livetail功能</title>
-      <link>http://blog.maoxianplay.com/posts/dashboard-k8s/</link>
+      <link>https://blog.maoxianplay.com/posts/dashboard-k8s/</link>
       <pubDate>Thu, 14 Feb 2019 14:07:06 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/dashboard-k8s/</guid>
+      <guid>https://blog.maoxianplay.com/posts/dashboard-k8s/</guid>
       <description>前言 目前的项目日志都是通过Logtail直接采集，投递到OSS持久化，同时可以通过阿里云日志服务、devops自建平台进行查看（虽然大部分人</description>
     </item>
     
     <item>
       <title>为ingress配置SSL证书，实现HTTPS访问</title>
-      <link>http://blog.maoxianplay.com/posts/https-ingress/</link>
+      <link>https://blog.maoxianplay.com/posts/https-ingress/</link>
       <pubDate>Sat, 29 Dec 2018 21:28:13 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/https-ingress/</guid>
+      <guid>https://blog.maoxianplay.com/posts/https-ingress/</guid>
       <description>devops平台率先在公司内使用kubernetes集群提供后端服务，但是由于之前一直处于探索阶段，所以使用的事http的方式提供后端服务，</description>
     </item>
     
     <item>
       <title>阿里云部署rancher2.1采坑记</title>
-      <link>http://blog.maoxianplay.com/posts/install-rancher/</link>
+      <link>https://blog.maoxianplay.com/posts/install-rancher/</link>
       <pubDate>Thu, 29 Nov 2018 18:28:13 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/install-rancher/</guid>
+      <guid>https://blog.maoxianplay.com/posts/install-rancher/</guid>
       <description>近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以将部署到阿里云的图中遇到的问题和踩到的坑在这里进行记录。 无法删除n</description>
     </item>
     

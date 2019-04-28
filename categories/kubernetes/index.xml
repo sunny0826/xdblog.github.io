@@ -2,93 +2,93 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kubernetes on GuoXD Blog</title>
-    <link>http://blog.maoxianplay.com/categories/kubernetes/</link>
+    <link>https://blog.maoxianplay.com/categories/kubernetes/</link>
     <description>Recent content in Kubernetes on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 25 Apr 2019 22:26:06 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.maoxianplay.com/categories/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.maoxianplay.com/categories/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>阿里云容器服务新建集群优化方案(更新版)</title>
-      <link>http://blog.maoxianplay.com/posts/aliyun-k8s-perfect/</link>
+      <link>https://blog.maoxianplay.com/posts/aliyun-k8s-perfect/</link>
       <pubDate>Thu, 25 Apr 2019 22:26:06 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/aliyun-k8s-perfect/</guid>
+      <guid>https://blog.maoxianplay.com/posts/aliyun-k8s-perfect/</guid>
       <description>前言 选择阿里云的容器服务，主要原因是公司主要业务基本都在运行在阿里云上。相较自建 kubernetes 集群，容器服务的优势在于部署相对简单，与阿里云 VPC 完美兼容，</description>
     </item>
     
     <item>
       <title>使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法</title>
-      <link>http://blog.maoxianplay.com/posts/kustomize-2/</link>
+      <link>https://blog.maoxianplay.com/posts/kustomize-2/</link>
       <pubDate>Fri, 19 Apr 2019 16:05:02 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/kustomize-2/</guid>
+      <guid>https://blog.maoxianplay.com/posts/kustomize-2/</guid>
       <description>本文介绍使用和维护 Kustomize 的方法步骤。 定制配置 在这个工作流方式中，所有的配置文件（ YAML 资源）都是用户所有，存在于私有 repo 中。其他人是无法使用的。 使用 git</description>
     </item>
     
     <item>
       <title>使用 Kustomize 帮你管理 kubernetes 应用（一）：什么是 Kustomize ？</title>
-      <link>http://blog.maoxianplay.com/posts/kustomize-1/</link>
+      <link>https://blog.maoxianplay.com/posts/kustomize-1/</link>
       <pubDate>Mon, 15 Apr 2019 13:32:59 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/kustomize-1/</guid>
+      <guid>https://blog.maoxianplay.com/posts/kustomize-1/</guid>
       <description>初识 Kustomize 第一次听说 Kustomize 其实是在 kubernetes 1.14 发布时候，它被集成到 kubectl 中，成为了一个子命令，但也只是扫了一眼，并没有深究。真正让我注意到它，并主动开始了解其功</description>
     </item>
     
     <item>
       <title>自动合并Kubeconfig，实现多k8s集群切换</title>
-      <link>http://blog.maoxianplay.com/posts/merge-kubeconfig/</link>
+      <link>https://blog.maoxianplay.com/posts/merge-kubeconfig/</link>
       <pubDate>Sun, 17 Mar 2019 10:45:02 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/merge-kubeconfig/</guid>
+      <guid>https://blog.maoxianplay.com/posts/merge-kubeconfig/</guid>
       <description>前言 随着微服务和容器化的深入人心，以及kubernetes已经成为容器编排领域的事实标准，越来越多的公司将自己的服务迁移到kubernete</description>
     </item>
     
     <item>
       <title>解决kubernetes中ingress-nginx配置问题</title>
-      <link>http://blog.maoxianplay.com/posts/k8s-ingress-config/</link>
+      <link>https://blog.maoxianplay.com/posts/k8s-ingress-config/</link>
       <pubDate>Wed, 06 Mar 2019 14:42:05 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/k8s-ingress-config/</guid>
+      <guid>https://blog.maoxianplay.com/posts/k8s-ingress-config/</guid>
       <description>前言 随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外</description>
     </item>
     
     <item>
       <title>Pod质量服务类别(QoS)</title>
-      <link>http://blog.maoxianplay.com/posts/k8s-qos/</link>
+      <link>https://blog.maoxianplay.com/posts/k8s-qos/</link>
       <pubDate>Mon, 04 Mar 2019 19:18:13 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/k8s-qos/</guid>
+      <guid>https://blog.maoxianplay.com/posts/k8s-qos/</guid>
       <description>根据Pod对象的requests和limits属性，kubernetes将Pod对象归类到BestEffort、Burstable和Guar</description>
     </item>
     
     <item>
       <title>为ingress配置SSL证书，实现HTTPS访问</title>
-      <link>http://blog.maoxianplay.com/posts/https-ingress/</link>
+      <link>https://blog.maoxianplay.com/posts/https-ingress/</link>
       <pubDate>Sat, 29 Dec 2018 21:28:13 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/https-ingress/</guid>
+      <guid>https://blog.maoxianplay.com/posts/https-ingress/</guid>
       <description>devops平台率先在公司内使用kubernetes集群提供后端服务，但是由于之前一直处于探索阶段，所以使用的事http的方式提供后端服务，</description>
     </item>
     
     <item>
       <title>kubernetes集群概述</title>
-      <link>http://blog.maoxianplay.com/posts/k8s-topo/</link>
+      <link>https://blog.maoxianplay.com/posts/k8s-topo/</link>
       <pubDate>Wed, 03 Oct 2018 12:18:13 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/k8s-topo/</guid>
+      <guid>https://blog.maoxianplay.com/posts/k8s-topo/</guid>
       <description>随着2017年AWS，Azure和阿里云相继在其原有容器服务上新增了对kubernetes的支持，而Docker官网也在同年10月宣布同时支</description>
     </item>
     
     <item>
       <title>容器技术概述</title>
-      <link>http://blog.maoxianplay.com/posts/con-ind/</link>
+      <link>https://blog.maoxianplay.com/posts/con-ind/</link>
       <pubDate>Thu, 30 Aug 2018 18:45:22 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/con-ind/</guid>
+      <guid>https://blog.maoxianplay.com/posts/con-ind/</guid>
       <description>背景 自从微服务（Microservice）的出现，出于业务的需要，IT应用模型不断的变革。开发模式从瀑布式到敏捷开发；开发、运维和测试互相配</description>
     </item>
     

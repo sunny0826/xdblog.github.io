@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Istio on GuoXD Blog</title>
-    <link>http://blog.maoxianplay.com/tags/istio/</link>
+    <link>https://blog.maoxianplay.com/tags/istio/</link>
     <description>Recent content in Istio on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 21 Mar 2019 09:42:18 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.maoxianplay.com/tags/istio/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.maoxianplay.com/tags/istio/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Istio初探之Bookinfo样例部署</title>
-      <link>http://blog.maoxianplay.com/posts/istio-bookinfo-demo/</link>
+      <link>https://blog.maoxianplay.com/posts/istio-bookinfo-demo/</link>
       <pubDate>Thu, 21 Mar 2019 09:42:18 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/istio-bookinfo-demo/</guid>
+      <guid>https://blog.maoxianplay.com/posts/istio-bookinfo-demo/</guid>
       <description>前言 之前介绍了 Istio 和 Service Mesh 能给我们带来什么，我们为什么要用 Istio ，但大家对 Istio 的认识可能还没有那么深刻。正如Linux 的创始人 Linus Torvalds 的那句话：Talk is</description>
     </item>
     
     <item>
       <title>浅析ServiceMesh &amp; Istio</title>
-      <link>http://blog.maoxianplay.com/posts/istio-share/</link>
+      <link>https://blog.maoxianplay.com/posts/istio-share/</link>
       <pubDate>Wed, 20 Mar 2019 09:12:28 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/istio-share/</guid>
+      <guid>https://blog.maoxianplay.com/posts/istio-share/</guid>
       <description>前言 公司于18年10月正式确认服务容器化，到18年12月4日第一个服务正式部署到生产环境kubernetes集群，再到如今已有23个服务完成</description>
     </item>
     
     <item>
       <title>阿里云环境Istio初探</title>
-      <link>http://blog.maoxianplay.com/posts/istio-demo/</link>
+      <link>https://blog.maoxianplay.com/posts/istio-demo/</link>
       <pubDate>Wed, 13 Mar 2019 15:45:43 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/istio-demo/</guid>
+      <guid>https://blog.maoxianplay.com/posts/istio-demo/</guid>
       <description>istio应用部署样例 该实例为一套istio服务上线流程：注入-&amp;gt;部署-&amp;gt;创建目标规则-&amp;gt;创建默认路由。就大多数istio</description>
     </item>
     

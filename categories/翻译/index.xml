@@ -2,57 +2,57 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>翻译 on GuoXD Blog</title>
-    <link>http://blog.maoxianplay.com/categories/%E7%BF%BB%E8%AF%91/</link>
+    <link>https://blog.maoxianplay.com/categories/%E7%BF%BB%E8%AF%91/</link>
     <description>Recent content in 翻译 on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 24 Apr 2019 10:18:46 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.maoxianplay.com/categories/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.maoxianplay.com/categories/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>困难的 Kubernetes</title>
-      <link>http://blog.maoxianplay.com/posts/kubernetes-is-hard/</link>
+      <link>https://blog.maoxianplay.com/posts/kubernetes-is-hard/</link>
       <pubDate>Wed, 24 Apr 2019 10:18:46 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/kubernetes-is-hard/</guid>
+      <guid>https://blog.maoxianplay.com/posts/kubernetes-is-hard/</guid>
       <description>虽然 Kubernetes 赢得了容器之站，但是其仍然很难使用并且时长引起事故。 我想我应该给这篇文章做一点序言。 kubernetes 为许多应用程序提供新的 runtime ，如果使用得当，它可以成</description>
     </item>
     
     <item>
       <title>什么的容器？Docker 工作原理及容器化简易指南</title>
-      <link>http://blog.maoxianplay.com/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</link>
+      <link>https://blog.maoxianplay.com/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</link>
       <pubDate>Sat, 20 Apr 2019 19:54:50 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</guid>
+      <guid>https://blog.maoxianplay.com/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</guid>
       <description>Docker 非常棒！ 它使软件开发者无需担心配置和依赖性，在任何地方打包，发送和运行他们的应用程序。而在与 kubernetes 相结合后，它使应用集群部署和管理变得更方便。</description>
     </item>
     
     <item>
       <title>Kustomize: 无需模板定制你的 kubernetes 配置</title>
-      <link>http://blog.maoxianplay.com/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</link>
+      <link>https://blog.maoxianplay.com/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</link>
       <pubDate>Mon, 15 Apr 2019 17:23:21 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</guid>
+      <guid>https://blog.maoxianplay.com/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</guid>
       <description>作者：Jeff Regan (Google), Phil Wittrock (Google) 2018-05-29 如果你在运行 kubernetes 集群，你可能会拷贝一些包含 kubernetes API 对象的 YAML 文件，并且根据你的需求来修改这些文件，通过这些 YAML 文件来定义你的</description>
     </item>
     
     <item>
       <title>Devops入门手册</title>
-      <link>http://blog.maoxianplay.com/posts/devops-tutorial/</link>
+      <link>https://blog.maoxianplay.com/posts/devops-tutorial/</link>
       <pubDate>Tue, 09 Apr 2019 13:21:56 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/devops-tutorial/</guid>
+      <guid>https://blog.maoxianplay.com/posts/devops-tutorial/</guid>
       <description>DevOps 是什么？ “DevOps”这个词是 development 和 operations 这两个词的组合。它是一种促进开发和运维团队之间的协作，以自动化和可重复的方式更快地将代码部署到生产中</description>
     </item>
     
     <item>
       <title>Service Mesh是什么，我们又为什么需要它</title>
-      <link>http://blog.maoxianplay.com/posts/whats-a-service-mesh-and-why-do-i-need-one/</link>
+      <link>https://blog.maoxianplay.com/posts/whats-a-service-mesh-and-why-do-i-need-one/</link>
       <pubDate>Mon, 25 Mar 2019 18:17:20 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/whats-a-service-mesh-and-why-do-i-need-one/</guid>
+      <guid>https://blog.maoxianplay.com/posts/whats-a-service-mesh-and-why-do-i-need-one/</guid>
       <description>作者：William Morgan 发表于2017年4月25日，2018年11月26日有所修改。 Service Mesh 是一个专门使服务与服务之间的通信变得安全、快速和可靠的</description>
     </item>
     

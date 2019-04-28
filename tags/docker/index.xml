@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docker on GuoXD Blog</title>
-    <link>http://blog.maoxianplay.com/tags/docker/</link>
+    <link>https://blog.maoxianplay.com/tags/docker/</link>
     <description>Recent content in Docker on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Sat, 20 Apr 2019 19:54:50 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.maoxianplay.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.maoxianplay.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>什么的容器？Docker 工作原理及容器化简易指南</title>
-      <link>http://blog.maoxianplay.com/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</link>
+      <link>https://blog.maoxianplay.com/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</link>
       <pubDate>Sat, 20 Apr 2019 19:54:50 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</guid>
+      <guid>https://blog.maoxianplay.com/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</guid>
       <description>Docker 非常棒！ 它使软件开发者无需担心配置和依赖性，在任何地方打包，发送和运行他们的应用程序。而在与 kubernetes 相结合后，它使应用集群部署和管理变得更方便。</description>
     </item>
     
     <item>
       <title>Alpine Linux详解</title>
-      <link>http://blog.maoxianplay.com/posts/alpine-linux/</link>
+      <link>https://blog.maoxianplay.com/posts/alpine-linux/</link>
       <pubDate>Fri, 15 Mar 2019 09:53:02 +0800</pubDate>
       
-      <guid>http://blog.maoxianplay.com/posts/alpine-linux/</guid>
+      <guid>https://blog.maoxianplay.com/posts/alpine-linux/</guid>
       <description>简介 Small. Simple. Secure.Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox. Alpine Linux 是一个社区开发的面向安全应用的轻量级Linux发行版。 Alpine 的意思是“高山的”，它采用了musl libc</description>
     </item>
     
