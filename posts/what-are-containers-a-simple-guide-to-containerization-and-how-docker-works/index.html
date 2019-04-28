@@ -305,7 +305,7 @@ autocomplete('#aa-search-input',
 
 <p>简而言之，Docker 通过使用 Linux namespace 和 cgroup（以及其他一些命令）来协调配置容器，将应用程序文件复制到为容器分配的磁盘，然后运行启动命令。Docker 还附带了许多其他用于管理容器的工具，例如：列出正在运行的容器，停止容器，发布容器镜像等许多其他工具。</p>
 
-<p><img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g2a8h1rc6lj211a0rcjsu.jpg" alt="image" /></p>
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g2a8h1rc6lj211a0rcjsu.jpg" alt="image" /></p>
 
 <p>与虚拟机相比，容器更轻量且速度更快，因为它利用了 Linux 底层操作系统在隔离的环境中运行。虚拟机的 hypervisor 创建了一个非常牢固的边界，以防止应用程序突破它，而<a href="https://sysdig.com/blog/container-isolation-gone-wrong/">容器的边界不那么强大</a>。另一个区别是，由于 namespace 和 cgroups 功能仅在 Linux 上可用，因此容器无法在其他操作系统上运行。此时您可能想知道 Docker 如何在 macOS 或 Windows 上运行？ Docker 实际上使用了一个技巧，并在非 Linux 操作系统上安装 Linux 虚拟机，然后在虚拟机内运行容器。</p>
 
@@ -384,7 +384,7 @@ EXPOSE 8082
 
 <p>通过 <code>docker run</code> 命令，我们请求 Docker 基于 <code>codeahoydocker:latest</code> 镜像创建和启动一个容器。<code>-p 8082:8082</code> 将本地的8082端口映射到容器的8082端口（容器内的 Web 服务器正在监听8082端口上的连接）。打开你的浏览器并访问 localhost:8082/index.html 。你将可以看到 <strong><em>Hello World</em></strong> 信息。</p>
 
-<p><img src="https://wx1.sinaimg.cn/large/ad5fbf65gy1g2aazadeamj20yo0rcq5e.jpg" alt="image" /></p>
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g2aazadeamj20yo0rcq5e.jpg" alt="image" /></p>
 
 <p>最后我想补充一点，虽然 Docker 非常棒，而且对于大多数项目来说它是一个不错的选择，但我们并非处处都要使用它。在我的工作中，Docker 与 Kubernetes 结合使用，可以非常轻松地部署和管理后端微服务，我们不必为每个服务配置新的运行环境。另一方面，对于性能密集型应用程序，Docker 可能不是最佳选择。我经手的其中一个项目必须处理来自移动游戏客户端的 TCP 长连接（每台机器1000个），这时 Docker 网络出现了很多问题，导致无法将它用于该项目。</p>
 
@@ -652,7 +652,7 @@ EXPOSE 8082
                     <div class="image same-height-always">
                         <a href="/posts/kubernetes-is-hard/">
                           
-                          <img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g2dicvhncxj20xc0hi7wh.jpg" class="img-responsive" alt="困难的 Kubernetes">
+                          <img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g2dicvhncxj20xc0hi7wh.jpg" class="img-responsive" alt="困难的 Kubernetes">
                           
                         </a>
                     </div>
@@ -665,7 +665,7 @@ EXPOSE 8082
                     <div class="image same-height-always">
                         <a href="/posts/cant/">
                           
-                          <img src="https://ws1.sinaimg.cn/large/ad5fbf65gy1g2b5fe5ahmj20c80bhdg8.jpg" class="img-responsive" alt="GitHub 黑话指南">
+                          <img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g2b5fe5ahmj20c80bhdg8.jpg" class="img-responsive" alt="GitHub 黑话指南">
                           
                         </a>
                     </div>

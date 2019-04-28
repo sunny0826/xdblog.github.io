@@ -408,7 +408,7 @@ istio-ingressgateway   LoadBalancer   10.11.18.83   xxx.xxx.xxx.xxx   80:xxx/TCP
 <h3 id="查看效果">查看效果</h3>
 
 <p>访问 http://{EXTERNAL-IP}/productpage 注意：这里最后不能有/，否则将找不到页面
-<img src="https://wx2.sinaimg.cn/large/ad5fbf65ly1g1ad2jg6p3j21g90mxgo7.jpg" alt="image" />
+<img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1ad2jg6p3j21g90mxgo7.jpg" alt="image" />
 多次刷新浏览器，将在 <code>productpage</code> 中看到评论的不同的版本，它们会按照 round robin（红星、黑星、没有星星）的方式展现，这三个展示分来来自<code>v1</code>、<code>v2</code>和<code>v3</code>版本，因为还没有使用 Istio 来控制版本的路由，所以这里显示的是以轮询的负载均衡算法进行展示。</p>
 
 <h3 id="请求路由">请求路由</h3>
@@ -468,7 +468,7 @@ reviews       8s
 
 <p>在浏览器中打开 Bookinfo 应用程序的URL: http://{EXTERNAL-IP}/productpage。</p>
 
-<p><img src="https://ws2.sinaimg.cn/large/ad5fbf65ly1g1adqyf9dej21g70oitbd.jpg" alt="image" /></p>
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1adqyf9dej21g70oitbd.jpg" alt="image" /></p>
 
 <p>可以看到 Bookinfo 应用程序的 <code>productpage</code> 页面，显示的内容中不包含带星的评价信息，这是因为 <code>reviews:v1</code> 服务不会访问ratings服务。</p>
 
@@ -521,7 +521,7 @@ http:
 
 <p>这里登录用户名为 <code>jason</code> ，密码随便输入即可</p>
 
-<p><img src="https://ws2.sinaimg.cn/large/ad5fbf65ly1g1adtjugp3j21gb0iygoa.jpg" alt="image" /></p>
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1adtjugp3j21gb0iygoa.jpg" alt="image" /></p>
 
 <h3 id="流量转移">流量转移</h3>
 
@@ -552,28 +552,28 @@ http:
 
 <p>为了方便测试 Bookinfo 应用在华为云上提供了一键体验应用，点击即可省去刚刚那一系列的 <code>kubectl</code> 操作</p>
 
-<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65ly1g1afbs7oq4j21g90id0vv.jpg" alt="image" />
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1afbs7oq4j21g90id0vv.jpg" alt="image" />
 <center>一键创建体验应用</center></p>
 
-<p><img src="https://wx1.sinaimg.cn/large/ad5fbf65ly1g1afgth1cgj219b0a7tb1.jpg" alt="image" />
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1afgth1cgj219b0a7tb1.jpg" alt="image" />
 <center>点击灰度发布即可</center></p>
 
-<p><img src="https://wx2.sinaimg.cn/large/ad5fbf65ly1g1afjc5hvgj21fv0o1q6q.jpg" alt="image" />
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1afjc5hvgj21fv0o1q6q.jpg" alt="image" />
 <center>创建金丝雀发布</center></p>
 
-<p><img src="https://wx4.sinaimg.cn/large/ad5fbf65ly1g1afnqyqlhj20ze0o00vl.jpg" alt="image" />
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1afnqyqlhj20ze0o00vl.jpg" alt="image" />
 <center>选择灰度发布的组件</center></p>
 
-<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65ly1g1afp1c5ltj20zk0le765.jpg" alt="image" />
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1afp1c5ltj20zk0le765.jpg" alt="image" />
 <center>填写版本号</center></p>
 
-<p><img src="https://wx2.sinaimg.cn/large/ad5fbf65ly1g1afq846bjj20z80nowgl.jpg" alt="image" />
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1afq846bjj20z80nowgl.jpg" alt="image" />
 <center>选择镜像版本</center></p>
 
-<p><img src="https://wx1.sinaimg.cn/large/ad5fbf65ly1g1afra8rmhj21050mfgpb.jpg" alt="image" />
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1afra8rmhj21050mfgpb.jpg" alt="image" />
 <center>版本创建完成后配置灰度策略</center></p>
 
-<p><img src="https://wx4.sinaimg.cn/large/ad5fbf65ly1g1afwpan6qj21090mste1.jpg" alt="image" />
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1afwpan6qj21090mste1.jpg" alt="image" />
 <center>选择相应策略，策略下发即可</center></p>
 
 <p>总的来说，华为云的 Istio 确实已经是商业化应用，这里只是展示了部分灰度发布的功能。其他比如流量治理，流量监控等功能还没展示，这些功能做的十分细致，值得尝试。</p>
@@ -840,7 +840,7 @@ http:
                     <div class="image same-height-always">
                         <a href="/posts/kubernetes-is-hard/">
                           
-                          <img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g2dicvhncxj20xc0hi7wh.jpg" class="img-responsive" alt="困难的 Kubernetes">
+                          <img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g2dicvhncxj20xc0hi7wh.jpg" class="img-responsive" alt="困难的 Kubernetes">
                           
                         </a>
                     </div>
@@ -853,7 +853,7 @@ http:
                     <div class="image same-height-always">
                         <a href="/posts/cant/">
                           
-                          <img src="https://ws1.sinaimg.cn/large/ad5fbf65gy1g2b5fe5ahmj20c80bhdg8.jpg" class="img-responsive" alt="GitHub 黑话指南">
+                          <img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g2b5fe5ahmj20c80bhdg8.jpg" class="img-responsive" alt="GitHub 黑话指南">
                           
                         </a>
                     </div>
