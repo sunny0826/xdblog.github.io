@@ -283,14 +283,15 @@ autocomplete('#aa-search-input',
 
 <h2 id="定制配置">定制配置</h2>
 
-<p>在这个工作流方式中，所有的配置文件（ YAML 资源）都是用户所有，存在于私有 repo 中。其他人是无法使用的。</p>
+<p>在这个工作流方式中，所有的配置文件（ YAML 资源）都为用户所有，存在于私有 repo 中。其他人是无法使用的。</p>
 
 <p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g2813d1ia7j20qo0f0dgk.jpg" alt="" /></p>
 
 <ol>
-<li><p>使用 <code>git</code> 创建一个目录</p>
+<li><p>创建一个目录用于版本控制</p>
 
-<p>创建一个名为 <strong><em>ldap</em></strong> 的 kubernetes 集群应用，希望将这个应用的配置保存在自己的 git 仓库中</p>
+<p>我们希望将一个名为 <strong><em>ldap</em></strong> 的 Kubernetes 集群应用的配置保存在自己的 repo 中。
+这里使用 <code>git</code> 进行版本控制。</p>
 
 <pre><code class="language-bash">git init ~/ldap
 </code></pre></li>
@@ -329,7 +330,7 @@ kubectl apply -k ~/ldap/overlays/production
 </code></pre></li>
 </ol>
 
-<h2 id="使用现有的配置">使用现有的配置</h2>
+<h2 id="使用现成的配置">使用现成的配置</h2>
 
 <p>在这个工作流方式中，可从别人的 repo 中 fork kustomize 配置，并根据自己的需求来配置。</p>
 
@@ -356,7 +357,7 @@ git remote add upstream git@github.com:$USER/ldap
 mkdir -p ~/ldap/overlays/production
 </code></pre>
 
-<p>可以将 <code>overlays</code> 维护在不同的 repo 中</p></li>
+<p>用户可以将 <code>overlays</code> 维护在不同的 repo 中</p></li>
 
 <li><p>生成 <code>variants</code></p>
 
@@ -371,7 +372,7 @@ kubectl apply -k ~/ldap/overlays/production
 </code></pre></li>
 
 <li><p>（可选）更新 <code>base</code>
-用户可以定期更新源 <code>base</code> 以保证及时更新</p>
+用户可以定期从上游 repo 中 <code>rebase</code> 他们的 <code>base</code> 以保证及时更新</p>
 
 <pre><code class="language-bash">cd ~/ldap/base
 git fetch upstream

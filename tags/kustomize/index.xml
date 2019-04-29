@@ -17,7 +17,7 @@
       <pubDate>Fri, 19 Apr 2019 16:05:02 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kustomize-2/</guid>
-      <description>本文介绍使用和维护 Kustomize 的方法步骤。 定制配置 在这个工作流方式中，所有的配置文件（ YAML 资源）都是用户所有，存在于私有 repo 中。其他人是无法使用的。 使用 git</description>
+      <description>本文介绍使用和维护 Kustomize 的方法步骤。 定制配置 在这个工作流方式中，所有的配置文件（ YAML 资源）都为用户所有，存在于私有 repo 中。其他人是无法使用的。 创建一</description>
     </item>
     
     <item>
