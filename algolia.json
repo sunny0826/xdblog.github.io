@@ -31,6 +31,7 @@
         "draft": false,
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g0t0qnqav0j21qi15o48y.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "为了更好的拥抱云原生架构，同时提高软件交付质量，开发人员必须改变他们的编码方式，并未开发者和应用程序所运行的基础架构之间创造一个新的协议，十二要素应用宣言应运而生。",
         "tags": [
             "软件设计",
@@ -56,6 +57,7 @@
         "draft": false,
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65gy1g1ltc0evxsj20rs0ijq4s.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "这里记录了在工作中遇到阿里云容器服务的调优优化方案，帮助您绕过阿里云容器服务中的一些坑，来使用更好更优质的阿里云容器服务。",
         "tags": [
             "阿里云",
@@ -80,6 +82,7 @@
         "draft": false,
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g13fonf2emj21qi15o7k2.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "Alpine以其小巧、简单在docker容器中得到了广泛的应用。但是Alpine Linux使用了musl，可能和其他Linux发行版使用的glibc实现会有些不同。这里主要介绍了它的基础用法，但是足以满足日常运维需要。",
         "tags": [
             "Linux",
@@ -104,6 +107,7 @@
         "draft": false,
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65gy1g2b5fe5ahmj20c80bhdg8.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "这里总结了一些在 GitHub 上常见的<黑话>，这些乱七八糟的缩写着实给很多新司机带来了许多困扰 :)",
         "tags": [
             "GitHub",
@@ -133,6 +137,7 @@
         ],
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g0t12qboftj21qf15otch.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "自从微服务（Microservice）的出现，出于业务的需要，IT应用模型不断的变革。开发模式从瀑布式到敏捷开发；开发、运维和测试互相配合的devops思想；应用程序架构从单体模型到分层模型再到微服务；部署方式也从面向物理机到虚拟键再到容器；应用程序的基础架构从自建机房到托管再到云计算，等等。这些变革使得IT技术应用的效率大大提升，同时却以更低的成本交付更高质量的产品。",
         "keywords": [
             "容器",
@@ -148,6 +153,7 @@
         "draft": false,
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g0t0tydo76j21qi15oaqs.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "阿里云日志服务采集k8s日志和livetail功能调研",
         "tags": [
             "阿里云",
@@ -172,6 +178,7 @@
         "draft": false,
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65gy1g1wiaimt98j21qi15owk9.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "“DevOps”这个词是 “development” 和 “operations”这两个词的组合。它是一种促进开发和运维团队之间的协作，以自动化和可重复的方式更快地将代码部署到生产中的文化。",
         "tags": [
             "devops",
@@ -201,10 +208,33 @@
         ],
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g0t14jxg0jj21qq15ojvp.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "解决容器启动退出问题。",
         "keywords": [
             "容器",
             "Linux"
+        ]
+    },
+    {
+        "title": "科幻炫酷终端 eDEX-UI",
+        "uri": "posts/eDEX-UI",
+        "content": "4                                                                            4                                                                                                                                                                                eDEX UI eDEX UI                                                                                                                                           curses     curses            CPU RAM        GeoIP                                      CWD                            CSS                                                          tron disrupted                                      shell             eDEX UI      settings json                shell                  settings json   Mac          Users guoxudong Library Application Support eDEX UI                             zsh   tron disrupted                                                              pad                   CPU          CPU",
+        "objectID": "posts/eDEX-UI",
+        "date": "2019-04-29T03:55:47.000Z",
+        "draft": false,
+        "banner": "https://wx2.sinaimg.cn/large/ad5fbf65gy1g2jfg79sy3j21hc0tztfr.jpg",
+        "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
+        "summary": "eDEX-UI 是一个全屏且跨平台、可定制的终端模拟器，具有先进的监控和触摸屏支持。它的外观类似科幻的计算机界面。在保持未来感的外观和感觉的同时，它努力保持一定的功能水平并可用于现实场景，其更大的目标是将科幻用户体验纳入主流。",
+        "tags": [
+            "工具"
+        ],
+        "categories": [
+            "程序员趣闻"
+        ],
+        "keywords": [
+            "eDEX-UI",
+            "工具"
         ]
     },
     {
@@ -224,6 +254,7 @@
         ],
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g0t15tmebvj21qi15oah8.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "devops平台率先在公司内使用kubernetes集群提供后端服务，但是由于之前一直处于探索阶段，所以使用的事http的方式提供后端服务，但是在开发统一入口后，出现了访问HTTPS页面的跨域问题，由此引出了后端服务配置SSL证书的问题。",
         "keywords": [
             "kubernetes",
@@ -246,6 +277,7 @@
         ],
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g0t171doafj211f15ogrl.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "精简Docker镜像的好处很多，不仅可以节省存储空间和带宽，还能减少安全隐患。优化镜像大小的手段多种多样，因服务所使用的基础开发语言不同而有差异。本文将介绍精简Docker镜像的几种通用方法。",
         "keywords": [
             "容器"
@@ -267,6 +299,7 @@
         ],
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g0t18xk06xj21qq15ods6.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "在使用CentOS7，并使用荫安装搬运工的时候，往往不希望安装最新版本的搬运工，而是希望安装与自己熟悉或者当前业务环境需要的版本，例如目前Kubernetes支持的最新搬运工版本为v17.03，所以就产生了安装指定版本码头工人的需求。",
         "keywords": [
             "容器",
@@ -289,6 +322,7 @@
         ],
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g0t1a2z4m7j21rt15otlh.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "最近由于公司业务发展到了瓶颈，原有的技术架构已经逐渐无法满足业务开发和测试的需求，出现了应用测试环境搭建复杂，有许多套（真的很多很多）应用环境，应用在持续集成/持续交付也遇到了很大的困难，经过讨论研究决定对应用和微服务进行容器化，这就是我首次直面docker和k8s的契机。",
         "keywords": [
             "容器",
@@ -312,6 +346,7 @@
         ],
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g0t1au03u7j21qf15ogr2.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以将部署到阿里云的图中遇到的问题和踩到的坑在这里进行记录。",
         "keywords": [
             "容器",
@@ -327,6 +362,7 @@
         "draft": false,
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65gy1g24hv1hekoj21y012cqc6.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "本文介绍了 Kubernetes 原生的应用管理工具 Kustomize。",
         "tags": [
             "翻译",
@@ -353,6 +389,7 @@
         "draft": "flase",
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g1agvmgy2aj21qi15odmu.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "正如Linux 的创始人 Linus Torvalds 的那句话：Talk is cheap. Show me the code. 这里我们部署一个demo，由四个单独的微服务构成（注意这里的四个微服务是由不同的语言编写的），用来演示多种 Istio 特性。",
         "tags": [
             "istio",
@@ -379,6 +416,7 @@
         "draft": false,
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g117v91a61j21qi15otcd.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "极简的istio样例部署，可以帮助新手快速入门，相较官方提供的Bookinfo应用更容易上手。",
         "tags": [
             "istio",
@@ -403,6 +441,7 @@
         "draft": "flase",
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g188a7s4ttj21qi15ogpc.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "现在Service Mesh很热，但是到底什么事Service Mesh，Service Mesh能为我们做什么，我们为什么要用Service Mesh。",
         "tags": [
             "Service Mesh"
@@ -423,6 +462,7 @@
         "draft": "flase",
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g19a5834ojj21m515oq8p.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "在云原生架构下，容器的使用给予了异构应用程序的更多可行性，Kubernetes 增强了应用的横向扩容能力，用户可以快速的编排出复杂环境、复杂依赖关系的应用程序，Istio可以使开发者又无须过分关心应用程序的监控、扩展性、服务发现和分布式追踪这些繁琐的事情而专注于程序开发，赋予开发者更多的创造性。",
         "tags": [
             "istio",
@@ -451,6 +491,7 @@
         ],
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g0t1c036hkj21qi15odl1.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "kubernetes解决删除的namespace一直处于Terminating状态的情况。",
         "keywords": [
             "容器",
@@ -466,6 +507,7 @@
         "draft": false,
         "banner": "https://images.pexels.com/photos/1194713/pexels-photo-1194713.jpeg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外的扎眼。这里就对实践中kubernetes集群中的7层负载均衡器ingress遇到的问题进行总结。",
         "tags": [
             "kubernetes",
@@ -494,6 +536,7 @@
         ],
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g0t1d4atzlj21qf15oq8r.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "根据Pod对象的requests和limits属性，kubernetes将Pod对象归类到BestEffort、Burstable和Guaranteed三个服务质量（Quality of Service，QoS）类别。",
         "keywords": [
             "容器",
@@ -515,6 +558,7 @@
         ],
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g0t1e34opvj21qi15owjf.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "随着2017年AWS，Azure和阿里云相继在其原有容器服务上新增了对kubernetes的支持，而Docker官网也在同年10月宣布同时支持Swarm好kubernetes容器编排系统。kubernetes俨然已成为容器编排领域事实上的标准，而2018年更是各大公司相继将服务迁移到kubernetes上，而kubernetes则以惊人更新速度，保持着每个季度发布一个大版本的速度高速发展着。",
         "keywords": [
             "容器",
@@ -530,6 +574,7 @@
         "draft": false,
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65gy1g2dicvhncxj20xc0hi7wh.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "虽然 Kubernetes 赢得了容器战争，但是其仍然很难使用并且引起很多事故。",
         "tags": [
             "翻译",
@@ -552,6 +597,7 @@
         "draft": false,
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65gy1g23bdrc5tuj20x80wudlh.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "本篇为系列文章第一篇，介绍我对 Kustomize 的了解过程以及 Kustomize 是什么，为什么它能解决我的燃眉之急。",
         "tags": [
             "kubernetes",
@@ -576,6 +622,7 @@
         "draft": false,
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65gy1g2816bavnxj21qi15oacw.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "本篇为系列文章第二篇，手把手教你使用 Kustomize 的两种方式。",
         "tags": [
             "kubernetes",
@@ -600,6 +647,7 @@
         "draft": false,
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65gy1g15zla19o4j21y013ete4.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "随着kubernetes集群的增加，集群管理的问题就凸显出来，不同的环境存在不同的集群，不同的业务线不同的集群，甚至有些开发人员都有自己的集群。这里介绍一款工具来自动合并Kubeconfig，实现多k8s集群切换。",
         "tags": [
             "kubernetes",
@@ -628,6 +676,7 @@
         ],
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g0t1f80hkgj21qo15oglu.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "解决容器中时区问题。",
         "keywords": [
             "容器",
@@ -643,6 +692,7 @@
         "draft": false,
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65gy1g26yrcsxvhj21qx15owo8.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "记一次在 Rancher 官方小哥帮助下解决 Rancher 问题的过程。",
         "tags": [
             "rancher",
@@ -667,6 +717,7 @@
         "draft": false,
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65gy1g1lzzx3n3fj20k00m2gpd.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "Rancher 不仅可以在任何云提供商的任何地方部署 Kubernetes 集群，而且还将它们集中在集中式的身份验证和访问控制之下。由于它与资源的运行位置无关，因此您可以轻松地在不同的环境部署你的 kubernetes 集群并操作他们。 Rancher 不是将部署几个独立的 Kubernetes 集群，而是将它们统一为一个单独的托管Kubernetes Cloud。",
         "tags": [
             "rancher",
@@ -691,6 +742,7 @@
         "draft": false,
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65gy1g1yqu5v6y7j21qi15on1j.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "谈谈从边车模式这一分布式架构的设计模式到 Service Mesh 的演变。",
         "tags": [
             "Service Mesh"
@@ -711,6 +763,7 @@
         "draft": false,
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g0u28qlkvrj21pj15o4ji.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "在devops理念中，CI/CD毫无疑问是最重要的一环，而代码质量检查则是CI中必不可少的一步。在敏捷开发的思想下，代码的迭代周期变短，交付速度提升，这个时候代码的质量就很难保证，测试只能保证功能完整与可用，而代码的质量纯靠review的话效率又很低，这个时候sonar...",
         "tags": [
             "devops",
@@ -735,6 +788,7 @@
         "draft": false,
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65gy1g2adn11fe3j20rs0ijju6.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "Docker 非常棒！ 它使软件开发者无需担心配置和依赖性，在任何地方打包，发送和运行他们的应用程序。而在与 kubernetes 相结合后，它使应用集群部署和管理变得更方便。这使得 Docker 深受软件开发者的喜爱，越来越多的开发者开始使用 Docker。",
         "tags": [
             "翻译",
@@ -759,6 +813,7 @@
         "draft": false,
         "banner": "http://wx4.sinaimg.cn/large/ad5fbf65ly1g1ji5k4b8dj21qg15ojvt.jpg",
         "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
         "summary": "Service Mesh 是一个专门用于使服务与服务之间的通信变得安全、快速和可靠的的基础设施。如果你正在在构建一个云原生（ Cloud Native ）应用，那么 Service Mesh 是你需要的。",
         "tags": [
             "翻译",
