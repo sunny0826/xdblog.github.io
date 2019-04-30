@@ -76,14 +76,14 @@
     {
         "title": "4月29日 云栖社区分享PPT -- 阿里云容器服务的优势与调优",
         "uri": "posts/aliyun-share",
-        "content": "PPT   2019 4 26                                    PPT      https   yq aliyun com articles 700084 spm 5176 8961142 detail 9 5b064d71Wisi5L",
+        "content": "PPT   2019 4 26                                             GitHub                      PPT      https   yq aliyun com articles 700084",
         "objectID": "posts/aliyun-share",
         "date": "2019-04-30T10:46:24.000Z",
         "draft": false,
         "banner": "https://wx2.sinaimg.cn/large/ad5fbf65gy1g2kv2e5abdj20qo0f04cm.jpg",
         "author": "郭旭东",
         "authorlink": "https://github.com/sunny0826",
-        "summary": "该PPT 为 2019年4月26日 在云栖社区分享使用，这里留作展示和记录",
+        "summary": "该PPT 为 2019年4月26日 在云栖社区分享使用，这里留作展示和记录。",
         "tags": [
             "Kubernetes",
             "阿里云"
