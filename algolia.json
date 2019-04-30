@@ -99,6 +99,32 @@
         ]
     },
     {
+        "title": "8分钟入门 K8S",
+        "uri": "posts/an-8-minute-introduction-to-k8s",
+        "content": "Kubernetes  Running                      TL DR                                     Google Borg       K8S  Kubernetes                                                 Golang           K8S                API                                                                     K8S       ECS   Nomad   Mesos  ECS   AWS                 AWS            K8S       EKS        FARGATE                       K8S                                                                 K8S                                                          AWS                     ECS    K8S       k8s                                                                                API                                 K8S    11      1  Pods Pods   K8S                  pod                                   pod             IP        pod                             2  Nodes Node           K8S     pod                Nodes   K8S                                     3  Labels   Annotations Labels   K8S                                                       Service      Deployment                      k8s       Labels             app worker             pod            kubectl     k8s api      selector         Annotations   Labels                                               Kubernetes                            4                           K8S    pods  jobs                   K8S    etcd       etcd   K8S           Master                  K8S                          Pod         DNS    CoreDNS                     IP                  K8S            5  ReplicaSets    pod                                                 K8S    ReplicaSet                                                                                                                      6  DaemonSets                                 FileBeat               agent                                                  K8S    DaemonSets          7  StatefulSets                                                                                                                       StatefulSets                                               hostname                   3  ZooKeeper   StatefulSet       zk 1  zk 2   zk 3                zk 4   zk 5      StatefulSets       PVC   8  Jobs K8S                                                         Web                                                  K8S              Job    Jobs                                                 worker                                              worker  9  ConfigMaps   Secrets         Twelve Factor App manifest                                                                       ConfigMaps   K8S                      key value                            runtime     Secrets   ConfigMaps                                                      Hashicorp   Vault                      Vault                                      https   medium com prodopsio taking your hashicorp vault to the next level 8549e7988b24   10  Deployments                                       short feedback loops  K8S    Deployments          Deployments                              bug            k8s             K8S               Replacement                              RollingUpdate k8s                Pods         MaxAvailable                                  100      2      2                    MaxSurge              Pod                    100       X         X                 11  Storage K8S                                                  pod                           k8s                                        K8S                                                                                                       API                           API                                                                        K8S        API                                                                         Spinnaker  Istio                                                                        git                                k8s                                    K8S              K8S                          kubelet  kube proxy   api server         kubectl                               https   medium com prodopsio an 8 minute introduction to k8s 94fda1fa5184",
+        "objectID": "posts/an-8-minute-introduction-to-k8s",
+        "date": "2019-04-30T05:38:12.000Z",
+        "draft": false,
+        "banner": "https://ws3.sinaimg.cn/large/ad5fbf65gy1g2ji8i9dx3j20xc0m87ci.jpg",
+        "author": "Omer Hamerman",
+        "authorlink": "https://medium.com/@omerxx",
+        "translator": "郭旭东",
+        "translatorlink": "https://github.com/sunny0826",
+        "originallink": "https://medium.com/prodopsio/an-8-minute-introduction-to-k8s-94fda1fa5184",
+        "summary": "8分钟快速了解 Kubernetes 基本概念，快速入门 K8S。",
+        "tags": [
+            "翻译",
+            "kubernetes"
+        ],
+        "categories": [
+            "翻译"
+        ],
+        "keywords": [
+            "翻译",
+            "kubernetes"
+        ]
+    },
+    {
         "title": "GitHub 黑话指南",
         "uri": "posts/cant",
         "content": "GitHub                    GitHub                                    code review                                           GitHub       PR  Pull Request                             WIP  Work Progress       PR                   PR                          WIP                          review          LGTM  Looks Good Me           review             OJBK   SGTM  Sounds Good Me             review      PTAL  Please Look                   TBR  Reviewed          review  TL DR  Long  Didn t Read                                        TM    TBD  Done or Defined Discussed Decided Determined                                 LGTM           farer org",

@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>8分钟入门 K8S</title>
+      <link>https://blog.maoxianplay.com/posts/an-8-minute-introduction-to-k8s/</link>
+      <pubDate>Tue, 30 Apr 2019 13:38:12 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/posts/an-8-minute-introduction-to-k8s/</guid>
+      <description>读完 Kubernetes: Up and Running 后，我写下了这篇文章。旨在为那些认为文章 TL;DR 的人进行一些总结，这同时也是一种强迫自己检查所阅读内容的好方法。 基于 Google Borg 的开源系统 K8S( Kubernetes</description>
+    </item>
+    
+    <item>
       <title>炫酷的终端软件 eDEX-UI</title>
       <link>https://blog.maoxianplay.com/posts/edex-ui/</link>
       <pubDate>Mon, 29 Apr 2019 11:55:47 +0800</pubDate>

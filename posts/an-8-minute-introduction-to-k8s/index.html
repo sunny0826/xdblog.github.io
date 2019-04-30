@@ -9,11 +9,11 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <title>解决kubernetes中ingress-nginx配置问题 · guoxudong 博客</title>
+  <title>8分钟入门 K8S · guoxudong 博客</title>
   <meta name="author" content="郭旭东" />
 
   
-  <meta name="keywords" content="kubernetes, 容器">
+  <meta name="keywords" content="翻译, kubernetes">
   
 
   <meta name="generator" content="Hugo 0.52" />
@@ -57,17 +57,17 @@
   <link rel="stylesheet" href="/css/share.min.css" />
 
   
-  <meta property="og:title" content="解决kubernetes中ingress-nginx配置问题" />
+  <meta property="og:title" content="8分钟入门 K8S" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/posts/k8s-ingress-config//" />
+  <meta property="og:url" content="/posts/an-8-minute-introduction-to-k8s//" />
   <meta property="og:image" content="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" />
   <meta property="og:image:alt" content="ServiceMesher Logo" />
 
   
-  <meta name="description" content="随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外的扎眼。这里就对实践中kubernetes集群中的7层负载均衡器ingress遇到的问题进行总结。">
-  <meta property="og:description" content="随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外的扎眼。这里就对实践中kubernetes集群中的7层负载均衡器ingress遇到的问题进行总结。">
-  <meta name="twitter:description" content="随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外的扎眼。这里就对实践中kubernetes集群中的7层负载均衡器ingress遇到的问题进行总结。">
-  <meta property="og:description" content="随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外的扎眼。这里就对实践中kubernetes集群中的7层负载均衡器ingress遇到的问题进行总结。" />
+  <meta name="description" content="8分钟快速了解 Kubernetes 基本概念，快速入门 K8S。">
+  <meta property="og:description" content="8分钟快速了解 Kubernetes 基本概念，快速入门 K8S。">
+  <meta name="twitter:description" content="8分钟快速了解 Kubernetes 基本概念，快速入门 K8S。">
+  <meta property="og:description" content="8分钟快速了解 Kubernetes 基本概念，快速入门 K8S。" />
 
   
   
@@ -101,9 +101,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="/">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="解决kubernetes中ingress-nginx配置问题 logo" class="hidden-xs hidden-sm">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="解决kubernetes中ingress-nginx配置问题 logo" class="visible-xs visible-sm">
-                    <span class="sr-only">解决kubernetes中ingress-nginx配置问题 - 跳到主页</span>
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="8分钟入门 K8S logo" class="hidden-xs hidden-sm">
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="8分钟入门 K8S logo" class="visible-xs visible-sm">
+                    <span class="sr-only">8分钟入门 K8S - 跳到主页</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -224,7 +224,7 @@ autocomplete('#aa-search-input',
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>解决kubernetes中ingress-nginx配置问题</h1>
+                <h1>8分钟入门 K8S</h1>
             </div>
         </div>
     </div>
@@ -242,23 +242,28 @@ autocomplete('#aa-search-input',
                         <div class="well">
                             <div class="author-category">
                             <i class="fa fa-calendar-o">
-                            2019年3月6日
+                            2019年4月30日
                             </i>
                             |
                             
-                            作者 <a href="https://github.com/sunny0826">郭旭东</a>
+                            作者 <a href="https://medium.com/@omerxx">Omer Hamerman</a>
                             
+                            
+                            | 译者 <a href="https://github.com/sunny0826">郭旭东</a>
                             
                             
                             |
-                            1300字 | 阅读大约需要3分钟
+                            3300字 | 阅读大约需要7分钟
                             </div>
                             
                             
                             <div class="author-category">
                             
+                            <a href="https://medium.com/prodopsio/an-8-minute-introduction-to-k8s-94fda1fa5184">查看原文</a>
+                            |
                             
-                            归档于 <a href="/categories/kubernetes">kubernetes</a>
+                            
+                            归档于 <a href="/categories/%e7%bf%bb%e8%af%91">翻译</a>
                             
                             |
                             
@@ -266,9 +271,9 @@ autocomplete('#aa-search-input',
                             
                             标签
                             
-                            <a style="text-transform:capitalize" href="/tags/kubernetes/"><i>#kubernetes</i></a>
+                            <a style="text-transform:capitalize" href="/tags/%E7%BF%BB%E8%AF%91/"><i>#翻译</i></a>
                             
-                            <a style="text-transform:capitalize" href="/tags/%E5%AE%B9%E5%99%A8/"><i>#容器</i></a>
+                            <a style="text-transform:capitalize" href="/tags/kubernetes/"><i>#kubernetes</i></a>
                             
                             </div>
                             
@@ -277,118 +282,102 @@ autocomplete('#aa-search-input',
                         <div id="post-content">
                           
 
-<h3 id="前言">前言</h3>
-
-<p>随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外的扎眼。这里就对实践中kubernetes集群中的7层负载均衡器ingress遇到的问题进行总结。</p>
-
-<h3 id="http-s-负载均衡器-ingress">HTTP(S)负载均衡器-ingress</h3>
-
-<p>Ingress是kubernetes API的标准资源类型之一，其本质就是一组基于DNS名称(host)或URL路径把请求转发至指定的Service资源的规则，<strong>用于将集群外的请求流量转发至集群内部完成服务发布</strong>。</p>
-
-<p>Ingress控制器(Ingress Controller)可以由任何具有反向代理(HTTP/HTTPS)功能的服务程序实现，如Nginx、Envoy、HAProxy、Vulcand和Traefik等。Ingress控制器本身也作为Pod对象与被代理的运行为Pod资源的应用运行于同一网络中。我们在这里选择了NGINX Ingress Controller，由于对NGINX的配置较为熟悉，同时我们使用的kubernetes是阿里云的容器服务，构建集群的时候，容器服务会自带NGINX Ingress Controller。</p>
-
-<p><img src="http://wx2.sinaimg.cn/large/ad5fbf65ly1g0t3yj7wecj20w50doab9.jpg" alt="image" /></p>
-
-<h3 id="根据实际情况ingress调优">根据实际情况Ingress调优</h3>
-
-<hr />
-
-<ol>
-<li><p>解决400 Request Header Or Cookie Too Large问题</p>
-
-<h5 id="现象">现象</h5>
-
-<p>微信小程序需要调用后端接口，需要在header中传一段很长的token参数，直接使用浏览器访问该端口可以访问通，但是在加上token访问之后，会报“400 Request Header Or Cookie Too Large”</p>
-
-<pre><code class="language-html">&lt;html&gt;
-    &lt;head&gt;
-        &lt;title&gt;400 Request Header Or Cookie Too Large&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;center&gt;
-            &lt;h1&gt;400 Bad Request&lt;/h1&gt;
-        &lt;/center&gt;
-        &lt;center&gt;Request Header Or Cookie Too Large&lt;/center&gt;
-        &lt;hr&gt;
-        &lt;center&gt;nginx/1.15.6&lt;/center&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
-<h5 id="问题定位">问题定位</h5>
-
-<p>直接修改Service使用nodeport的形式访问，则没有报错，初步定位需要在ingress中nginx配置客户端的请求头，进入Ingress Controller的Pod查询配置，果然是请求头空间不足。</p>
-
-<pre><code class="language-bash">$ cat nginx.conf | grep client_header_buffer_size
-    client_header_buffer_size       1k;
-$ cat nginx.conf | grep large_client_header_buffers
-    large_client_header_buffers     4 8k;
-</code></pre>
-
-<h5 id="解决方法">解决方法</h5>
-
-<p>在ingress中添加注释</p>
-
-<pre><code class="language-nginx">nginx.ingress.kubernetes.io/server-snippet: client_header_buffer_size 2046k;
-</code></pre>
-
 <blockquote>
-<p>Server snippet</p>
-
-<p>Using the annotation <code>nginx.ingress.kubernetes.io/server-snippet</code> it is possible to add custom configuration in the server configuration block.</p>
-
-<p>该注释是将自定义配置加入nginx的server配置中</p>
-</blockquote></li>
-
-<li><p>解决请求超时问题</p>
-
-<h5 id="现象-1">现象</h5>
-
-<p>有一个数据导出功能，需要将大量数据进行处理，然后以Excel格式返回，在导出一个大约3W条数据的时候，出现访问超时情况。</p>
-
-<p><img src="https://ws2.sinaimg.cn/mw690/ad5fbf65ly1g0ubdwwzo5j21b30bjaat.jpg" alt="image" /></p>
-
-<h5 id="解决方法-1">解决方法</h5>
-
-<p>调整proxy_read_timeout，连接成功后_等候后端服务器响应时间_其实已经进入后端的排队之中等候处理
-在ingress中添加注释</p>
-
-<pre><code class="language-nginx">nginx.ingress.kubernetes.io/proxy-read-timeout: 600
-</code></pre>
-
-<blockquote>
-<p>这里需要注意的事该注释的value需要时number类型，不能加s，否则将不生效</p>
-</blockquote></li>
-
-<li><p>增加白名单</p>
-
-<h5 id="现象-2">现象</h5>
-
-<p>在实际的使用中，会有一部分应用需要设置只可以在办公场地的网络使用，之前使用阿里云 SLB 的时候可以针对端口进行访问控制，但是现在走 ingress ，都是从80 or 443端口进，所以需要在 ingress 设置</p>
-
-<h5 id="解决方法-2">解决方法</h5>
-
-<blockquote>
-<p><strong>Whitelist source range</strong></p>
-
-<p>You can specify allowed client IP source ranges through the nginx.ingress.kubernetes.io/whitelist-source-range annotation. The value is a comma separated list of CIDRs, e.g. 10.0.0.0/24,172.10.0.1.</p>
+<p>读完 <a href="https://www.amazon.com/Kubernetes-Running-Dive-Future-Infrastructure/dp/1491935677">Kubernetes: Up and Running</a> 后，我写下了这篇文章。旨在为那些认为文章 <a href="https://blog.maoxianplay.com/posts/cant/">TL;DR</a> 的人进行一些总结，这同时也是一种强迫自己检查所阅读内容的好方法。</p>
 </blockquote>
 
-<p>在 ingress 里配置 <code>nginx.ingress.kubernetes.io/whitelist-source-range</code> ，如有多个ip段，用逗号分隔即可</p>
+<p>基于 Google <a href="https://kubernetes.io/blog/2015/04/borg-predecessor-to-kubernetes/">Borg</a> 的开源系统 K8S( Kubernetes ) 是一个非常强大的容器编排调度系统。 其整个生态系统，包括：工具，模块，附加组件等，都是使用 Golang 语言编写的，这使得 K8S 及其周边生态系统基本上是面向 API 对象、运行速度非常快的二进制文件的集合，并且这些二进制文件都有很好的文档记录，易于编写和构建应用程序。</p>
 
-<pre><code class="language-nginx">nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/24
-</code></pre>
+<p>在深入了解之前，我想先介绍一下 K8S 的竞争对手：ECS 、 Nomad 和 Mesos 。ECS 是 AWS 自己的业务编排解决方案，而最近 AWS 上也引入了一个托管的 K8S 系统 &ndash; EKS 。两者都提供 <a href="https://aws.amazon.com/fargate/">FARGATE</a> ，允许用户运行其应用并忽略其运行物理资源。</p>
 
-<p>如果想全局适用，可以在阿里云 SLB 里操作，也可以将该配置加入到 <code>NGINX ConfigMap</code> 中。</p></li>
+<p>K8S 作为一个开源系统，在采用量上毫无疑问是最大赢家，同时它也可以以托管形式在三个主要云提供商上提供服务。然而，它比其他系统更加复杂。K8S 可以处理几乎任何类型的容器化工作负载，但这并不意味着每个人都需要它。用户也可以选择其他解决方案，例如，单独部署在 AWS 上的互联网产品可以在生产环境很好的使用 ECS 而非 K8S。</p>
+
+<p>话虽如此，k8s也有其神奇之处 &ndash; 它可以在任何地方部署，同时拥有一个活跃的社区和数百个核心开发人员，以及其广泛生态系统中的数千个其他开源贡献者。它快速、新颖、模块化和面向 API ，使其成为对于构建插件和服务非常友好的系统。</p>
+
+<h2 id="话不多说-这里把-k8s-分为的11个部分介绍">话不多说，这里把 K8S 分为的11个部分介绍</h2>
+
+<h3 id="1-pods">1. Pods</h3>
+
+<p><strong>Pods</strong> 是 K8S 中创建或部署的最小基本单位。一个 pod 可以由多个容器组成，这些容器将形成一个部署在单个节点上的单元。一个 pod 包含一个容器之间共享的 IP。在微服务中， pod 将是执行某些后端工作或提供传入请求的微服务的单个实例。</p>
+
+<h3 id="2-nodes">2. Nodes</h3>
+
+<p><strong>Node</strong> 就是服务器。它们是 K8S 部署其 pod 的“裸机”（也可以是虚拟机）。Nodes 为 K8S 提供可用的群集资源，以保持数据，运行作业，维护工作负载和创建网络路由。</p>
+
+<h3 id="3-labels-annotations">3. Labels &amp; Annotations</h3>
+
+<p><strong>Labels</strong> 是 K8S 及其终端用户过滤和筛选系统中类似资源的方式，也是一个资源需要“访问”或与另一个资源关联的粘合剂。例如：一个 Service 想要开放 Deployment 的端口。无论是监控，记录，日志，测试，任何k8s资源都应添加 Labels 以供进一步检查。例如： <code>app=worker</code> ，一个给系统中所有工作 pod 的标签，稍后可以使用 <code>kubectl</code> 工具或 k8s api 使用 <code>--selector</code> 字段进行选择。</p>
+
+<p><strong>Annotations</strong> 与 Labels 非常类似，但是它通常以字符串的形式用于存储元数据，但他不能用于标识和选择对象，通常也不会被 Kubernetes 直接使用，其主要目的是方便工具或用户的阅读和查找等。</p>
+
+<h3 id="4-服务发现">4. 服务发现</h3>
+
+<p>作为编排调度器，控制不同工作负载的资源，K8S 管理 pods 、jobs 和其他任何需要网络通信的物理资源。 K8S 使用 <a href="https://kubernetes.io/docs/concepts/overview/components/#etcd">etcd</a> 管理这些。 etcd 是 K8S 的“内部”数据库， Master 节点使用它来知道一切资源都在哪里。K8S 还为您的服务提供了实时的 “服务发现” - 所有 Pod 都使用的自定义 DNS 服务（CoreDNS），您可以通过解析其他服务的名称来获取其 IP 地址和端口。它不需要任何设置，在 K8S 集群中“开箱即用”。</p>
+
+<h3 id="5-replicasets">5. ReplicaSets</h3>
+
+<p>虽然 pod 运行任务，但通常单个实例是不够的。出于对冗余和负载处理的考虑，需要进行复制容器，即“弹性缩放”。K8S 使用 <strong>ReplicaSet</strong> 来实现伸缩扩展。根据副本的数量来表示系统的期望状态，并且在任何给定时刻保持系统的当前状态。</p>
+
+<p>这也是配置自动扩展的地方，在系统负载高时创建新的副本，以及在不再需要这些资源来支持运行工作负载时减少扩展。简单的讲就是：少则增加，多增删除。</p>
+
+<h3 id="6-daemonsets">6. DaemonSets</h3>
+
+<p>有时，某些应用程序在每个节点上只需要一个实例。最好的例子就是像 <a href="https://www.elastic.co/products/beats/filebeat">FileBeat</a> 这样的日志采集组件。为了让 agent 从节点上收集日志，它需要运行在所有节点上，但只需要一个实例即可。为了创建满足上面需求的的工作负载，K8S 使用 <strong>DaemonSets</strong> 来完成这个工作。</p>
+
+<h3 id="7-statefulsets">7. StatefulSets</h3>
+
+<p>虽然大多数微服务都是无状态的应用程序，但是还是有一部分并不是。有状态的工作负载需要由某种可靠的磁盘卷来支持。虽然应用程序容器本身可以是不变的，并且可以用更新的版本或更健康的实例来替换它们，但是即使使用其他副本也是需要持久化的数据。为此，<strong>StatefulSets</strong> 允许部署整个生命周期内需要运行在同一节点的应用程序。它还保留了它的 “名称” ; 容器内的 <code>hostname</code> 和整个集群中服务发现的名称。一个包含3个 ZooKeeper 的 StatefulSet 可以命名为 <code>zk-1</code> ，<code>zk-2</code> 和 <code>zk-3</code> 还可以扩展为包含其他成员，如 <code>zk-4</code> ， <code>zk-5</code> 等&hellip; StatefulSets 还需要管理 PVC 。</p>
+
+<h3 id="8-jobs">8. Jobs</h3>
+
+<p>K8S 核心团队考察了绝大多数需要使用编排系统的应用程序。虽然大多数应用程序需要持续的正常运行时间来处理服务请求，例如 Web 服务，但有时也需要运行批量任务并在任务完成后进行清理。如果您愿意，可以使用小型无服务器环境。而在 K8S 中实现这一功能，可以使用 <strong>Job</strong> 资源。Jobs 正是听起来的那样，一个工作负载容器来完成特定的工作，并在成功后被销毁。一个很好的例子是设置一组 worker ，从要处理和存储的队列中读取任务。一旦队列为空，直到下一批准备好进行处理，都不再需要启动 worker。</p>
+
+<h3 id="9-configmaps-secrets">9. ConfigMaps &amp; Secrets</h3>
+
+<p>如果您还不熟悉 <a href="https://12factor.net/">Twelve-Factor App manifest</a> 《<a href="../12-factor">十二要素应用</a>》 ，可以点击链接了解一下。现代应用程序的一个关键概念是无环境，可通过注入的环境变量进行配置。应用程序应完全与其所在位置无关。<strong>ConfigMaps</strong> 在 K8S 中实现这一重要概念。其本质上是环境变量的 key-value 列表，这些变量被传递给正在运行的工作负载以确定不同的 runtime 行为。</p>
+
+<p><strong>Secrets</strong> 与 <strong>ConfigMaps</strong> 类似，通过加密的方式防止密钥、密码、证书等敏感信息泄漏。</p>
+
+<blockquote>
+<p>我个人认为在任何系统上使用密码的最佳选择是 Hashicorp 的 Vault 。请务必阅读我去年写的关于它的<a href="https://medium.com/prodopsio/security-for-dummies-protecting-application-secrets-made-easy-5ef3f8b748f7">文章</a>，关于 Vault 可以为你的产品提供的功能，以及我的一位同事写的另一篇更具技术性的[文章](<a href="https://medium.com/prodopsio/taking-your-hashicorp-vault-to-the-next-level-8549e7988b24）。">https://medium.com/prodopsio/taking-your-hashicorp-vault-to-the-next-level-8549e7988b24）。</a></p>
+</blockquote>
+
+<h3 id="10-deployments">10. Deployments</h3>
+
+<p>为了使新版本快速替换原有的应用程序，我们希望将构建、测试和发布在一块来实现 <a href="https://www.ibm.com/developerworks/community/blogs/beingagile/entry/short_feedback_loops_everywhere?lang=en">short feedback loops</a> 。K8S 使用 Deployments 来不断部署新软件，Deployments 是一组用来描述特定运行工作负载的元数据。例如：发布新版本，bug 修复，甚至是回滚（这是k8s的另一个内部选项）。</p>
+
+<p>在 K8S 中部署软件有两个主要<strong>策略</strong>：</p>
+
+<ol>
+<li><p><strong>Replacement</strong>：将使用新副本替换您的整个工作负载，整个过程需要强制停机。</p></li>
+
+<li><p><strong>RollingUpdate</strong>：k8s通过两种特定配置来实现使用新的 Pods 实例滚动更新：</p>
+
+<ol>
+<li><code>MaxAvailable</code> ： 该设置表示在部署新版本时可用的工作负载的百分比（或确切数量），100％表示“我有2个容器，保持2个存活并在整个部署期间正常提供服务”。</li>
+<li><code>MaxSurge</code> ： 该设置表示升级期间总 Pod 数最多可以超出期望的百分比（或数量），100％表示“我有 X 个容器，再部署 X 个容器，然后开始推出旧容器”。</li>
+</ol></li>
 </ol>
 
-<hr />
+<h3 id="11-storage">11. Storage</h3>
 
-<p>根据工作中遇到的实际问题，持续更新中&hellip;</p>
+<p>K8S 在存储上添加了一层抽象，工作负载可以为不同的任务请求特定的存储，甚至可以管理持续的时间可以超过某个pod的生命周期。为了简短起见，我想向您介绍我最近发布的关于k8s存储的<a href="https://medium.com/prodopsio/k8s-will-not-solve-your-storage-problems-5bda2e6180b5">文章</a>，特别是为什么它不能完全解决数据库部署等数据持久性要求。</p>
 
-<h3 id="总结">总结</h3>
+<h2 id="概念性理解">概念性理解</h2>
 
-<p>使用NGINX ingress controller的好处就是对于nginx配置相对比较熟悉，性能也不差。相关nginx配置的对应的ingress可以在 <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/">https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/</a> 上查到。</p>
+<p>K8S 是根据一些指导方向设计和开发的，考虑到社区的性质，每个特征、概念和想法都被内置于系统中。此外，终端用户会以某种方式使用该系统，作为一个开源和免费的系统，不属于任何人，你可以用它做任何你想要做的事。</p>
+
+<p>面向 API ：系统中的每个部分都以一种可通过记录良好且可操作的 API 进行交互的方式进行构建。核心开发人员确保作为终端用户的您可以进行更改，查询和更新，用来提供更好的用户体验。</p>
+
+<p>工具友好 ： 作为上面一点的衍生，K8S 是热衷于在其 API 周围创建工具的。它将自身做为一个原始平台，以可定制的方式构建，以供其他人使用，并进一步开发用于不同的工具。有些已经变得非常有名并被广泛使用，如 Spinnaker ，Istio 和许多其他功工具。</p>
+
+<p>声明性状态 ： 鼓励用户使用具有声明性描述的系统而不是命令式描述。这意味着系统的状态和组件最好被描述为在某种版本控制（如 git ）中管理的代码，而不会因为某一处手动更改也对整体有影响。这样，k8s更容易<a href="https://en.wikipedia.org/wiki/Disaster_recovery">灾难恢复</a> ，易于在团队之间分享和传递。</p>
+
+<h2 id="最后">最后</h2>
+
+<p>本文试图将重点放在 K8S 的介绍和主要概念上，当然，K8S 还有其他非常重要的领域，比如物理系统构建模块，如 <code>kubelet</code>， <code>kube-proxy</code> ， <code>api-server</code> 和终端操作工具：<code>kubectl</code>。我将在下一篇文章中讨论以及介绍这些很酷的功能。</p>
+
+<p>原文地址： <a href="https://medium.com/prodopsio/an-8-minute-introduction-to-k8s-94fda1fa5184">https://medium.com/prodopsio/an-8-minute-introduction-to-k8s-94fda1fa5184</a></p>
 
                           <div class="social-share" data-initialized="true" data-wechat-qrcode-title="分享更快乐">
     <hr>
@@ -415,13 +404,9 @@ $ cat nginx.conf | grep large_client_header_buffers
                         <ul class="pager blog-pager">
                         
                         <li class="previous">
-                        <a href="https://blog.maoxianplay.com/posts/k8s-qos/" data-toggle="tooltip" data-placement="top" title="Pod质量服务类别(QoS)">&larr; 更旧</a>
+                        <a href="https://blog.maoxianplay.com/posts/edex-ui/" data-toggle="tooltip" data-placement="top" title="炫酷的终端软件 eDEX-UI">&larr; 更旧</a>
                         </li>
                          
-                        <li class="next">
-                        <a href="https://blog.maoxianplay.com/posts/sonar-pipline/" data-toggle="tooltip" data-placement="top" title="Jenkins Pipeline集成Sonar进行代码质量检测">更新 &rarr;</a>
-                        </li>
-                        
                         </ul>
 
                     </div>
@@ -443,15 +428,15 @@ $ cat nginx.conf | grep large_client_header_buffers
     <div class="panel-body">
      <ul class="nav nav-pills nav-stacked">
         
-        <li><a href="/posts/install-k8s/"><i class="fa fa-link"></i>centos7.2 安装k8s v1.11.0</a></li>
+        <li><a href="/posts/kubernetes-is-hard/"><i class="fa fa-link"></i>困难的 Kubernetes</a></li>
          
-        <li><a href="/posts/k8s-qos/"><i class="fa fa-link"></i>Pod质量服务类别(QoS)</a></li>
+        <li><a href="/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/"><i class="fa fa-link"></i>Kustomize: 无需模板定制你的 kubernetes 配置</a></li>
          
-        <li><a href="/posts/pod-timezone/"><i class="fa fa-link"></i>kubernetes中pod同步时区问题</a></li>
+        <li><a href="/posts/aliyun-k8s-perfect/"><i class="fa fa-link"></i>阿里云容器服务新建集群优化方案(更新版)</a></li>
          
-        <li><a href="/posts/install-rancher/"><i class="fa fa-link"></i>阿里云部署rancher2.1采坑记</a></li>
+        <li><a href="/posts/cant/"><i class="fa fa-link"></i>GitHub 黑话指南</a></li>
          
-        <li><a href="/posts/k8s-d-n/"><i class="fa fa-link"></i>Kubernetes删除一直处于Terminating状态的namespace</a></li>
+        <li><a href="/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/"><i class="fa fa-link"></i>什么的容器？Docker 工作原理及容器化简易指南</a></li>
          
      </ul>
     </div>
