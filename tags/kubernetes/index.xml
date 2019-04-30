@@ -6,10 +6,19 @@
     <description>Recent content in Kubernetes on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 30 Apr 2019 13:38:12 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 30 Apr 2019 18:46:24 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>4月29日 云栖社区分享PPT -- 阿里云容器服务的优势与调优</title>
+      <link>https://blog.maoxianplay.com/posts/aliyun-share/</link>
+      <pubDate>Tue, 30 Apr 2019 18:46:24 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/posts/aliyun-share/</guid>
+      <description>该PPT 为 2019年4月26日 在云栖社区分享使用，这里留作展示和记录，下载地址可以参考下方链接。 PPT 下载地址：https://yq.aliyu</description>
+    </item>
     
     <item>
       <title>8分钟入门 K8S</title>
