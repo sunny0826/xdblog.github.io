@@ -6,10 +6,19 @@
     <description>Recent content on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 30 Apr 2019 18:46:24 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 03 May 2019 14:37:14 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>什么是 DevSecOps ?</title>
+      <link>https://blog.maoxianplay.com/posts/what-is-devsecops/</link>
+      <pubDate>Fri, 03 May 2019 14:37:14 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/posts/what-is-devsecops/</guid>
+      <description>DevOps 不仅仅是开发和运营团队。如果您想要充分发挥出 DevOps 方法的敏捷性和响应力，则必须在应用的整个生命周期内同时兼顾 IT 安全性。 为什么？以往，安全性会在</description>
+    </item>
     
     <item>
       <title>4月29日 云栖社区分享PPT -- 阿里云容器服务的优势与调优</title>
