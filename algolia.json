@@ -1,6 +1,6 @@
 [
     {
-        "title": "联系我们",
+        "title": "关于",
         "uri": "contact",
         "content": "2018 4                          MVP                                            devops                                                                        GitHub https   github com sunny0826        https   my oschina net keking                                               guoxudong keking cn",
         "objectID": "contact",
@@ -697,7 +697,7 @@
         "banner": "https://wx4.sinaimg.cn/large/ad5fbf65gy1g2smcy97ooj21qi15o7bb.jpg",
         "author": "郭旭东",
         "authorlink": "https://github.com/sunny0826",
-        "summary": "本篇为系列文章第三篇，使用 jenkins 发布一个简单的使用 flask 写的 web 项目，来演示在 CI/CD 流程中 Kustomize 的简单使用  。",
+        "summary": "本篇为系列文章第三篇，使用 jenkins 发布一个简单的使用 flask 写的 web 项目，来演示在 CI/CD 流程中 Kustomize 的简单使用。",
         "tags": [
             "kubernetes",
             " ",
