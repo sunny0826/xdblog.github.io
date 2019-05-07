@@ -6,10 +6,19 @@
     <description>Recent content in Kubernetes on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 30 Apr 2019 18:46:24 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 06 May 2019 16:46:28 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/categories/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用 Kustomize 帮你管理 kubernetes 应用（三）：将 Kustomize 应用于 CI/CD</title>
+      <link>https://blog.maoxianplay.com/posts/kustomize-3/</link>
+      <pubDate>Mon, 06 May 2019 16:46:28 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/posts/kustomize-3/</guid>
+      <description>前言 首先明确软件版本，我这里使用的是 Jenkins ver. 2.121.3 ，这个版本比较老，其上安装 Kubernetes 插件所使用 kubectl 版本也比较老，无法使用 Kustomize 的 yaml 文件需要的 apiVersion: apps/v1 ，直接使用生成 deploy.yaml</description>
+    </item>
     
     <item>
       <title>4月29日 云栖社区分享PPT -- 阿里云容器服务的优势与调优</title>

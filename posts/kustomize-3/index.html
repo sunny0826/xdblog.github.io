@@ -9,11 +9,11 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <title>Kustomize: 无需模板定制你的 kubernetes 配置 · 郭旭东的博客</title>
+  <title>使用 Kustomize 帮你管理 kubernetes 应用（三）：将 Kustomize 应用于 CI/CD · 郭旭东的博客</title>
   <meta name="author" content="郭旭东" />
 
   
-  <meta name="keywords" content="翻译, kustomize, kubernetes, 工具">
+  <meta name="keywords" content="kubernetes, kustomize, 工具">
   
 
   <meta name="generator" content="Hugo 0.52" />
@@ -61,17 +61,17 @@
   <link rel="stylesheet" href="/css/share.min.css" />
 
   
-  <meta property="og:title" content="Kustomize: 无需模板定制你的 kubernetes 配置" />
+  <meta property="og:title" content="使用 Kustomize 帮你管理 kubernetes 应用（三）：将 Kustomize 应用于 CI/CD" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes//" />
+  <meta property="og:url" content="/posts/kustomize-3//" />
   <meta property="og:image" content="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" />
   <meta property="og:image:alt" content="ServiceMesher Logo" />
 
   
-  <meta name="description" content="本文介绍了 Kubernetes 原生的应用管理工具 Kustomize。">
-  <meta property="og:description" content="本文介绍了 Kubernetes 原生的应用管理工具 Kustomize。">
-  <meta name="twitter:description" content="本文介绍了 Kubernetes 原生的应用管理工具 Kustomize。">
-  <meta property="og:description" content="本文介绍了 Kubernetes 原生的应用管理工具 Kustomize。" />
+  <meta name="description" content="本篇为系列文章第三篇，使用 jenkins 发布一个简单的使用 flask 写的 web 项目，来演示在 CI/CD 流程中 Kustomize 的简单使用  。">
+  <meta property="og:description" content="本篇为系列文章第三篇，使用 jenkins 发布一个简单的使用 flask 写的 web 项目，来演示在 CI/CD 流程中 Kustomize 的简单使用  。">
+  <meta name="twitter:description" content="本篇为系列文章第三篇，使用 jenkins 发布一个简单的使用 flask 写的 web 项目，来演示在 CI/CD 流程中 Kustomize 的简单使用  。">
+  <meta property="og:description" content="本篇为系列文章第三篇，使用 jenkins 发布一个简单的使用 flask 写的 web 项目，来演示在 CI/CD 流程中 Kustomize 的简单使用  。" />
 
   
   
@@ -105,9 +105,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="/">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="Kustomize: 无需模板定制你的 kubernetes 配置 logo" class="hidden-xs hidden-sm">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="Kustomize: 无需模板定制你的 kubernetes 配置 logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Kustomize: 无需模板定制你的 kubernetes 配置 - 跳到主页</span>
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="使用 Kustomize 帮你管理 kubernetes 应用（三）：将 Kustomize 应用于 CI/CD logo" class="hidden-xs hidden-sm">
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="使用 Kustomize 帮你管理 kubernetes 应用（三）：将 Kustomize 应用于 CI/CD logo" class="visible-xs visible-sm">
+                    <span class="sr-only">使用 Kustomize 帮你管理 kubernetes 应用（三）：将 Kustomize 应用于 CI/CD - 跳到主页</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -228,7 +228,7 @@ autocomplete('#aa-search-input',
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Kustomize: 无需模板定制你的 kubernetes 配置</h1>
+                <h1>使用 Kustomize 帮你管理 kubernetes 应用（三）：将 Kustomize 应用于 CI/CD</h1>
             </div>
         </div>
     </div>
@@ -246,7 +246,7 @@ autocomplete('#aa-search-input',
                         <div class="well">
                             <div class="author-category">
                             <i class="fa fa-calendar-o">
-                            2019年4月15日
+                            2019年5月6日
                             </i>
                             |
                             
@@ -255,14 +255,14 @@ autocomplete('#aa-search-input',
                             
                             
                             |
-                            1900字 | 阅读大约需要4分钟
+                            2000字 | 阅读大约需要4分钟
                             </div>
                             
                             
                             <div class="author-category">
                             
                             
-                            归档于 <a href="/categories/%e7%bf%bb%e8%af%91">翻译</a>
+                            归档于 <a href="/categories/kubernetes">kubernetes</a>
                             
                             |
                             
@@ -270,11 +270,9 @@ autocomplete('#aa-search-input',
                             
                             标签
                             
-                            <a style="text-transform:capitalize" href="/tags/%E7%BF%BB%E8%AF%91/"><i>#翻译</i></a>
-                            
-                            <a style="text-transform:capitalize" href="/tags/kustomize/"><i>#kustomize</i></a>
-                            
                             <a style="text-transform:capitalize" href="/tags/kubernetes/"><i>#kubernetes</i></a>
+                            
+                            <a style="text-transform:capitalize" href="/tags//"><i># </i></a>
                             
                             <a style="text-transform:capitalize" href="/tags/%E5%B7%A5%E5%85%B7/"><i>#工具</i></a>
                             
@@ -285,120 +283,265 @@ autocomplete('#aa-search-input',
                         <div id="post-content">
                           
 
+<h2 id="前言">前言</h2>
+
+<p>首先明确软件版本，我这里使用的是 <code>Jenkins ver. 2.121.3</code> ，这个版本比较老，其上安装 Kubernetes 插件所使用 <code>kubectl</code> 版本也比较老，<strong>无法使用</strong> Kustomize 的 yaml 文件需要的 <code>apiVersion: apps/v1</code> ，直接使用生成 <code>deploy.yaml</code> 文件会报错，所以这里选择了自己构建一个包含 <code>kubectl</code> 和 <code>kustomize</code> 的镜像，在镜像中使用 Kustomize 生成所需 yaml 文件并在 Kubernetes 上部署。</p>
+
+<h2 id="软件版本">软件版本</h2>
+
+<table>
+<thead>
+<tr>
+<th>软件</th>
+<th>版本</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Jenkins</td>
+<td><a href="https://jenkins.io/">2.121.3</a></td>
+</tr>
+
+<tr>
+<td>kubectl</td>
+<td><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">v1.14.1</a></td>
+</tr>
+
+<tr>
+<td>kustomize</td>
+<td><a href="https://github.com/kubernetes-sigs/kustomize/releases">v2.0.3</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="前期准备">前期准备</h2>
+
+<ul>
+<li>Jenkins ：本篇使用 Jenkins 演示 CI/CD ，安装 Jenkins 就不在赘述，可以使用多种方法安装 Jenkins ，详细方法见<a href="https://jenkins.io">官网</a>。同时。 CI/CD 的工具有很多，这里为了省事使用笔者现有的 Jenkins 进行演示，<strong>不推荐</strong>使用同笔者一样的版本，请使用较新的版本；同时也可以使用其他 CI/CD 工具，这里推荐使用 <a href="https://drone.io/">drone</a>。如果有更好的方案，欢迎交流，可以在<a href="https://blog.maoxianplay.com/contact/">关于</a>中找到我的联系方式。</li>
+<li><code>kubectl</code> &amp; <code>kustomize</code> ：上文中提到了由于 Jenkins 版本比较老，所以这里笔者自己制作了包含二者的 docker 镜像，已上传 dockerhub ，需要自取： <a href="https://hub.docker.com/r/guoxudongdocker/kubectl"><code>guoxudongdocker/kubectl</code></a></li>
+<li>Web 应用：这里使用 flask 写了一个简单的 web 应用，用于演示，同样以上传 dockerhub <a href="https://hub.docker.com/r/guoxudongdocker/flask-python"><code>guoxudongdocker/flask-python</code></a></li>
+</ul>
+
+<h2 id="目录结构">目录结构</h2>
+
+<p>首先看一下目录结构，目录中包括 <code>Dockerfile</code> 、 <code>Jenkinsfile</code> 、 Kustomize 要使用的 <code>deploy</code> 目录以及 web 应用目录。</p>
+
+<pre><code class="language-bush">.
+├── Dockerfile
+├── Jenkinsfile
+├── app
+│   ├── main.py
+│   └── uwsgi.ini
+└── deploy
+    ├── base
+    │   ├── deployment.yaml
+    │   ├── kustomization.yaml
+    │   └── service.yaml
+    └── overlays
+        ├── dev
+        │   ├── healthcheck_patch.yaml
+        │   ├── kustomization.yaml
+        │   └── memorylimit_patch.yaml
+        └── prod
+            ├── healthcheck_patch.yaml
+            ├── kustomization.yaml
+            └── memorylimit_patch.yaml
+</code></pre>
+
+<p>这里可以看到 overlays 总共有两个子目录 <code>dev</code> 和 <code>prod</code> ，分别代表不同环境，在不同的环境中，应用不同的配置。</p>
+
+<h2 id="jenkins-配置">Jenkins 配置</h2>
+
+<p>Jenkins 的配置相对简单，只需要新建一个 pipeline 类型的 job</p>
+
+<p><img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g2rr57oixbj20tn0ogq6v.jpg" alt="WX20190506-180159" /></p>
+
+<p>增加参数化构建，<strong>注</strong>：参数化构建需要安装 Jenkins 插件</p>
+
+<p><img src="https://ws4.sinaimg.cn/large/ad5fbf65gy1g2rrcb5ic9j21470q7mz8.jpg" alt="WX20190506-180918" /></p>
+
+<p>然后配置代码仓库即可</p>
+
+<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g2sij1xlb2j214w0nw0uw.jpg" alt="WX20190507-094958" /></p>
+
+<h2 id="pipeline">Pipeline</h2>
+
+<pre><code class="language-groovy">podTemplate(label: 'jnlp-slave', cloud: 'kubernetes',
+  containers: [
+    containerTemplate(
+        name: 'jnlp',
+        image: 'guoxudongdocker/jenkins-slave',
+        alwaysPullImage: true
+    ),
+    containerTemplate(name: 'kubectl', image: 'guoxudongdocker/kubectl:v1.14.1', command: 'cat', ttyEnabled: true),
+  ],
+  nodeSelector:'ci=jenkins',
+  volumes: [
+    hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
+    hostPathVolume(mountPath: '/usr/bin/docker', hostPath: '/usr/bin/docker'),
+    hostPathVolume(mountPath: '/usr/local/jdk', hostPath: '/usr/local/jdk'),
+    hostPathVolume(mountPath: '/usr/local/maven', hostPath: '/usr/local/maven'),
+    secretVolume(mountPath: '/home/jenkins/.kube', secretName: 'devops-ctl'),
+  ],
+)
+{
+    node(&quot;jnlp-slave&quot;){
+        stage('Git Checkout'){
+            git branch: '${branch}', url: 'https://github.com/sunny0826/flask-python.git'
+        }
+        stage('Build and Push Image'){
+            withCredentials([usernamePassword(credentialsId: 'docker-register', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUser')]) {
+                sh '''
+                docker login -u ${dockerUser} -p ${dockerPassword}
+                docker build -t guoxudongdocker/flask-python:${Tag} .
+                docker push guoxudongdocker/flask-python:${Tag}
+                '''
+            }
+        }
+        stage('Deploy to K8s'){
+            if ('true' == &quot;${deploy}&quot;) {
+                container('kubectl') {
+                    sh '''
+                    cd deploy/base
+                    kustomize edit set image guoxudongdocker/flask-python:${Tag}
+                    '''
+                    echo &quot;部署到 Kubernetes&quot;
+                    if ('prod' == &quot;${ENV}&quot;) {
+                        sh '''
+                        # kustomize build deploy/overlays/prod | kubectl apply -f -
+                        kubectl applt -k deploy/overlays/prod
+                        '''
+                    }else {
+                        sh '''
+                        # kustomize build deploy/overlays/dev | kubectl apply -f -
+                        kubectl applt -k deploy/overlays/dev
+                        '''
+                    }	
+                }
+            }else{
+                echo &quot;跳过Deploy to K8s&quot;
+            }
+
+        }
+    }
+}
+
+
+</code></pre>
+
+<p>这里要注意几点：</p>
+
+<ul>
+<li>拉取 git 中的代码需要在 jenkins 中配置凭据。</li>
+<li>笔者的 jenkins 部署在 Kubernetes 上，要操作集群的话，需要将 kubeconfig 以 Secret 的形式挂载到 jenkins 所在 namespace。</li>
+<li><code>jenkins-slave</code> 需要 Java 环境运行，所以要将宿主机的 <code>jdk</code> 挂载到 <code>jenkins-slave</code> 中。</li>
+<li>同样的，宿主机中需要事先安装 <code>docker</code>。</li>
+<li><code>docker-register</code> 为 dockerhub 的登录凭证，需要在 jenkins 中添加相应的凭证。</li>
+</ul>
+
+<h2 id="演示">演示</h2>
+
+<hr />
+
+<h3 id="开始构建">开始构建</h3>
+
+<p>这里选择环境、分支，填入版本即可开始构建，<strong>注意：</strong>这里的版本将已 tag 的形式标记 docker 镜像。</p>
+
+<p><img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g2sikst7tuj20ob0evabw.jpg" alt="WX20190507-095142" /></p>
+
+<p>这里就可以看到构建成功了</p>
+
+<p><img src="https://ws2.sinaimg.cn/large/ad5fbf65ly1g2sjw9w22ej20v80km0w3.jpg" alt="WX20190507-103721" /></p>
+
+<h3 id="查看结果">查看结果</h3>
+
+<p>这里为了方便（其实就是懒），我就不给这个服务添加 ingress 来从外部访问了，这里使用 <a href="https://yq.aliyun.com/articles/690519">KT</a> 打通本地和 k8s 集群网络来进行调试。</p>
+
 <blockquote>
-<p>作者：Jeff Regan (Google), Phil Wittrock (Google) 2018-05-29</p>
+<p>为了简化在Kubernetes下进行联调测试的复杂度，云效在SSH隧道网络的基础上并结合Kubernetes特性构建了一款面向开发者的辅助工具kt</p>
 </blockquote>
 
-<p>如果你在运行 kubernetes 集群，你可能会拷贝一些包含 kubernetes API 对象的 YAML 文件，并且根据你的需求来修改这些文件，通过这些 YAML 文件来定义你的 kubernetes 配置。</p>
+<p>这里看到这个服务正常启动了</p>
 
-<p>但是这种方法存在很难找到配置的源头并对其进行改进。今天 Google 宣布推出 <strong>Kustomize</strong> ，一个作为 <a href="https://github.com/kubernetes/community/tree/master/sig-cli">SIG-CLI</a> 子项目的命令行工具。这个工具提供了一个全新的、纯粹的声明式的方法来定制 kubernetes 配置，遵循并利用我们熟悉且精心设计的 Kubernetes API。</p>
+<p><img src="https://ws2.sinaimg.cn/large/ad5fbf65ly1g2sk11dnzxj20av027jrn.jpg" alt="WX20190507-104154" /></p>
 
-<p>有这样一个常见的场景，在互联网上可以看到别人的 CMS（content management system，内容管理系统）的 kubernetes 配置，这个配置是一组包括 Kubernetes API 对象的 YAML 描述文件。然后，在您自己公司的某个角落，您找到一个你非常了解的数据库，希望用它来该 CMS 的数据。</p>
+<h3 id="发布新版本">发布新版本</h3>
 
-<p>你希望同时使用它们，此外，你希望自定义配置文件以便你的资源实例在集群中显示，并通过添加一个标签来区分在同一集群中做同样事情的其他资源。同时也希望为其配置适当的 CPU 、内存和副本数。</p>
+<p>更新 web 服务并提交</p>
 
-<p>此外，你还想要配置整个配置的多种变化：一个专门用于测试和实验的小服务实例（就计算资源而言），或更大的用于对外提供服务的生产级别的服务实例。同时，其他的团队也希望拥有他们自己的服务实例。</p>
+<p><img src="https://ws4.sinaimg.cn/large/ad5fbf65gy1g2sk94v1c5j209702vwej.jpg" alt="WX20190507-104936" /></p>
 
-<h2 id="定制就是复用">定制就是复用</h2>
+<p>按照上面步骤在 jenkins 中重新构建，当然也可以配置钩子，每次代码提交后自动构建</p>
 
-<p>kubernetes 的配置并不是代码（是使用 YAML 描述的 API 对象，严格来说应该是数据），但是配置的生命周期与代码的生命周期有许多相似之处。</p>
+<h3 id="查看查看新版本">查看查看新版本</h3>
 
-<p>你需要在版本控制中保留配置。所有者的配置不必与使用者的配置相同。配置可以作为整体的一部分。而用户希望为在不同的情况下复用这些配置。</p>
+<p>同上面一样，在构建成功后查看服务是否更新</p>
 
-<p>与代码复用相同，一种复用配置的方法是简单的全部拷贝并进行自定义。像代码一样，切断与源代码的联系使得从改进变的十分困难。许多团队和环境都使用这种方法，每个团队和环境都拥有自己的配置，这使得简单的升级变得十分棘手。</p>
+<p><img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g2skfczaz4j20by01smx7.jpg" alt="WX20190507-105539" /></p>
 
-<p>另一种复用方法是将源代码抽象为参数化模板。使用一个通过执行脚本来替换所需参数的模板处理工具生成配置，通过为同一模板设置不同的值来达到复用的目的。而这种方式面临的问题是模板和参数文件并不在 kubernetes API 资源的规范中，这种方式必定是一种包装了 kubernetes API 的新东西、新语言。虽然这种方式很强大，但是也带来了学习成本和安装工具的成本。不同的团队需要不同的更改，因此几乎所有可以包含在 YAML 文件中的规范都会需要抽象成参数。</p>
+<p>可以看到，版本已经更新了</p>
 
-<h2 id="自定义配置的新选择">自定义配置的新选择</h2>
+<h3 id="发布生产环境">发布生产环境</h3>
 
-<p><strong>kustomize</strong> 中工具的声明与规范是由名为 <code>kustomization.yaml</code> 的文件定义。</p>
+<p>这里模拟一下发布生产环境，假设生产环境是在 <code>devops-prod</code> 的 namespace 中，这里只做演示之用，真正的生产环境中，可能存在不止一个 k8s 集群，这时需要修改 Jenkinsfile 中的 <code>secretVolume</code> 来挂载不同 k8s 的 kubeconfig 来达到发布到不同集群的目的。当然，一般发布生产环境只需选择测试通过的镜像来发布即可，不需要在进行构建打包。</p>
 
-<p><strong>kustomize</strong> 将会读取声明文件和 Kubernetes API 资源文件，将其组合然后将完整的资源进行标准化的输出。输出的文本可以被其他工具进一步处理，或者直接通过 <strong>kubectl</strong> 应用于集群。</p>
+<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g2skrnbjyuj20fc0bjmxp.jpg" alt="WX20190507-110730" /></p>
 
-<p>例如，如果 <code>kustomization.yaml</code> 文件包括：</p>
+<h3 id="查看生产版本">查看生产版本</h3>
 
-<pre><code class="language-yaml">commonLabels:
-  app: hello
-resources:
-- deployment.yaml
-- configMap.yaml
-- service.yaml
+<p><img src="https://ws1.sinaimg.cn/large/ad5fbf65ly1g2skt3rp4yj20aq010glj.jpg" alt="WX20190507-110850" /></p>
+
+<h3 id="总结">总结</h3>
+
+<p>上面的这些步骤简单的演示了使用 jenkins 进行 CI/CD 的流程，流程十分简单，这里仅供参考</p>
+
+<h2 id="kustomize-的作用">Kustomize 的作用</h2>
+
+<p>那么， Kustomize 在整个流程中又扮演了一个什么角色呢？</p>
+
+<h3 id="更新镜像">更新镜像</h3>
+
+<p>在 <code>jenkinsfile</code> 中可以看到， kustomize 更新了基础配置的镜像版本，这里我们之前一直是使用 <code>sed -i &quot;s/#Tag/${Tag}/g&quot; deploy.yaml</code> 来进行替换了，但是不同环境存在比较多的差异，需要替换的越来越多，导致 Jekninsfile 也越来越臃肿和难以维护。 kustomize 解决了这个问题。</p>
+
+<pre><code class="language-bash">kustomize edit set image guoxudongdocker/flask-python:${Tag}
 </code></pre>
 
-<p>确保这三个文件与 <code>kustomization.yaml</code> 位于同一目录下，然后运行：</p>
+<h3 id="环境区分">环境区分</h3>
 
-<pre><code class="language-bash">kustomize build
-</code></pre>
+<p>上面也提到了，不同的环境我们存在这许多差异，虽然看上去大致类似，但是很多细节都需要修改。这时 kustomize 就起到了很大的作用，不同环境相同的配置都放在 <code>base</code> 中，而差异就可以在 <code>overlays</code> 中实现。</p>
 
-<p>将创建包含三个资源的 YAML 流，其中 <code>app: hello</code> 为每个资源共同的标签。</p>
-
-<p>同样的，你可以使用 <strong><em>commonAnnotations</em></strong> 字段给所有资源添加注释， <strong><em>namePrefix</em></strong> 字段为所有的资源添加共同的前缀名。这些琐碎而有常见的定制只是一个开始。</p>
-
-<p>一个更常见的例子是，你需要为一组相同资源设置不同的参数。例如：开发、演示和生产的参数。</p>
-
-<p>为此，<strong>Kustomize</strong> 允许用户以一个应用描述文件 （YAML 文件）为基础（Base YAML），然后通过 Overlay 的方式生成最终部署应用所需的描述文件。两者都是由 kustomization 文件表示。基础（Base）声明了共享的内容（资源和常见的资源配置），Overlay 则声明了差异。</p>
-
-<p>这里是一个目录树，用于管理集群应用程序的 <strong><em>演示</em></strong> 和 <strong><em>生产</em></strong> 配置参数：</p>
-
-<pre><code class="language-bash">someapp/
-├── base/
-│   ├── kustomization.yaml
+<pre><code class="language-bash">.
+├── base
 │   ├── deployment.yaml
-│   ├── configMap.yaml
+│   ├── kustomization.yaml
 │   └── service.yaml
-└── overlays/
-    ├── production/
-    │   └── kustomization.yaml
-    │   ├── replica_count.yaml
-    └── staging/
+└── overlays
+    ├── dev
+    │   ├── healthcheck_patch.yaml
+    │   ├── kustomization.yaml
+    │   └── memorylimit_patch.yaml
+    └── prod
+        ├── healthcheck_patch.yaml
         ├── kustomization.yaml
-        └── cpu_count.yaml
+        └── memorylimit_patch.yaml
 </code></pre>
 
-<p><strong><code>someapp/base/kustomization.yaml</code> 文件指定了公共资源和常见自定义配置（例如，它们一些相同的标签，名称前缀和注释）。</strong></p>
+<p>可以看到， <code>base</code> 中维护了项目共同的基础配置，如果有镜像版本等基础配置需要修改，可以使用 <code>kustomize edit set image ...</code> 来直接修改基础配置，而真正不同环境，或者不同使用情况的配置则在 <code>overlays</code> 中 以 patch 的形式添加配置。这里我的配置是 prod 环境部署的副本为2，同时给到的资源也更多，详情可以在 <a href="https://github.com/sunny0826/flask-python">Github</a> 上查看。</p>
 
-<p><strong><code>someapp/overlays/production/kustomization.yaml</code> 文件的内容可能是：</strong></p>
+<h3 id="与-kubectl-的集成">与 kubectl 的集成</h3>
 
-<pre><code class="language-yaml">commonLabels:
-  env: production
-bases:
-- ../../base
-patches:
-- replica_count.yaml
+<p>在 jenkinsfile 中可以看到</p>
+
+<pre><code class="language-bash"># kustomize build deploy/overlays/dev | kubectl apply -f -
+kubectl apply -k deploy/overlays/dev
 </code></pre>
 
-<p>这个 kustomization 指定了一个 <strong><em>patch</em></strong> 文件 <code>replica_count.yaml</code> ，其内容可能是：</p>
+<p>这两条命令的执行效果是一样的，在 <code>kubectl v1.14.0</code> 以上的版本中，已经集成了 kustomize ，可以直接使用 <code>kubectl</code> 进行部署。</p>
 
-<pre><code class="language-yaml">apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: the-deployment
-spec:
-  replicas: 100
-</code></pre>
+<h2 id="结语">结语</h2>
 
-<p><strong><em>patch</em></strong> 是部分的资源声明，在这个例子中是 Deployment 的补丁 <code>someapp/base/deployment.yaml</code> ，仅修改了副本数用以处理生产流量。</p>
-
-<p>该补丁不仅仅是一个无上下文 {parameter name，value} 元组。其作为部分 deployment spec，可以通过验证，即使与其余配置隔离读取，也具有明确的上下文和用途。</p>
-
-<p>要为生产环境创建资源，请运行：</p>
-
-<pre><code class="language-bash">kustomize build someapp/overlays/production
-</code></pre>
-
-<p>运行结果将作为一组完整资源打印到标准输出，并准备应用于集群。可以用类似的命令定义演示环境的配置。</p>
-
-<h2 id="综上所述">综上所述</h2>
-
-<p>使用 <strong>kustomize</strong> ，您可以仅使用 Kubernetes API 资源文件就可以管理任意数量的 Kubernetes 定制配置。kustomize 的每个产物都是纯 YAML 的，每个都可以进行验证和运行的。<strong>kustomize</strong> 鼓励通过 fork/modify/rebase 这样的<a href="https://github.com/kubernetes-sigs/kustomize/blob/master/docs/workflows.md">工作流</a>来管理海量的应用描述文件。</p>
-
-<p>尝试<a href="https://github.com/kubernetes-sigs/kustomize/tree/master/examples/helloWorld">hello world</a>示例，开始使用 <strong>kustomize</strong> 吧！有关的反馈与讨论，可以通过加入<a href="https://groups.google.com/forum/#!forum/kustomize">邮件列表</a>或提 <a href="https://github.com/kubernetes-sigs/kustomize/issues/new">issue</a>，欢迎提交PR。</p>
-
-<h2 id="译者按">译者按</h2>
-
-<p>随着 kubernetes 1.14 的发布，kustomize 被集成到 <code>kubectl</code> 中，用户可以利用 <code>kubectl apply -k dir/</code> 将指定目录的 <code>kustomization.yaml</code> 提交到集群中。</p>
-
-<p><strong>原文链接</strong> <a href="https://kubernetes.io/blog/2018/05/29/introducing-kustomize-template-free-configuration-customization-for-kubernetes/">https://kubernetes.io/blog/2018/05/29/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</a></p>
+<p>这里只是对 kustomize 在 CI/CD 中简单应用的展示，只是一种比较简单和基础的使用，真正的 CI 流程要比这个复杂的多，这里只是为了演示 kustomize 的使用而临时搭建的。而 kustomize 还有很多黑科技的用法，将会在后续的文章中介绍。</p>
 
                           
                           
@@ -476,13 +619,9 @@ spec:
                         <ul class="pager blog-pager">
                         
                         <li class="previous">
-                        <a href="https://blog.maoxianplay.com/posts/kustomize-1/" data-toggle="tooltip" data-placement="top" title="使用 Kustomize 帮你管理 kubernetes 应用（一）：什么是 Kustomize ？">&larr; 更旧</a>
+                        <a href="https://blog.maoxianplay.com/posts/what-is-devsecops/" data-toggle="tooltip" data-placement="top" title="什么是 DevSecOps ?">&larr; 更旧</a>
                         </li>
                          
-                        <li class="next">
-                        <a href="https://blog.maoxianplay.com/posts/rancher-prometheus-fix-question/" data-toggle="tooltip" data-placement="top" title="Rancher 2.2.1 解决工作负载监控为空问题">更新 &rarr;</a>
-                        </li>
-                        
                         </ul>
 
                     </div>
@@ -504,15 +643,15 @@ spec:
     <div class="panel-body">
      <ul class="nav nav-pills nav-stacked">
         
+        <li><a href="/posts/kustomize-2/"><i class="fa fa-link"></i>使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法</a></li>
+         
+        <li><a href="/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/"><i class="fa fa-link"></i>Kustomize: 无需模板定制你的 kubernetes 配置</a></li>
+         
         <li><a href="/posts/kustomize-1/"><i class="fa fa-link"></i>使用 Kustomize 帮你管理 kubernetes 应用（一）：什么是 Kustomize ？</a></li>
          
         <li><a href="/posts/merge-kubeconfig/"><i class="fa fa-link"></i>自动合并Kubeconfig，实现多k8s集群切换</a></li>
          
-        <li><a href="/posts/devops-tutorial/"><i class="fa fa-link"></i>Devops入门手册</a></li>
-         
-        <li><a href="/posts/rancher-update-2.2.1/"><i class="fa fa-link"></i>单节点版rancher升级指南</a></li>
-         
-        <li><a href="/posts/whats-a-service-mesh-and-why-do-i-need-one/"><i class="fa fa-link"></i>Service Mesh是什么，我们又为什么需要它</a></li>
+        <li><a href="/posts/an-8-minute-introduction-to-k8s/"><i class="fa fa-link"></i>8分钟入门 K8S</a></li>
          
      </ul>
     </div>
