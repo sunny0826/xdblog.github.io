@@ -219,13 +219,13 @@
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/tags/devops/</loc>
+    <loc>https://blog.maoxianplay.com/categories/devops/</loc>
     <lastmod>2019-05-03T14:37:14+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/categories/devops/</loc>
+    <loc>https://blog.maoxianplay.com/tags/devops/</loc>
     <lastmod>2019-05-03T14:37:14+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -249,13 +249,13 @@
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/tags/istio/</loc>
+    <loc>https://blog.maoxianplay.com/categories/istio/</loc>
     <lastmod>2019-03-21T09:42:18+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/categories/istio/</loc>
+    <loc>https://blog.maoxianplay.com/tags/istio/</loc>
     <lastmod>2019-03-21T09:42:18+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -267,13 +267,13 @@
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/tags/kubernetes/</loc>
+    <loc>https://blog.maoxianplay.com/categories/kubernetes/</loc>
     <lastmod>2019-05-06T16:46:28+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/categories/kubernetes/</loc>
+    <loc>https://blog.maoxianplay.com/tags/kubernetes/</loc>
     <lastmod>2019-05-06T16:46:28+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -385,13 +385,13 @@
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/tags/%E7%BF%BB%E8%AF%91/</loc>
+    <loc>https://blog.maoxianplay.com/categories/%E7%BF%BB%E8%AF%91/</loc>
     <lastmod>2019-04-30T13:38:12+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/categories/%E7%BF%BB%E8%AF%91/</loc>
+    <loc>https://blog.maoxianplay.com/tags/%E7%BF%BB%E8%AF%91/</loc>
     <lastmod>2019-04-30T13:38:12+08:00</lastmod>
     <priority>0</priority>
   </url>
