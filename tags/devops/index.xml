@@ -6,10 +6,19 @@
     <description>Recent content in Devops on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 03 May 2019 14:37:14 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 21 May 2019 08:59:00 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/tags/devops/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>轻量快速的 CI 工具 Drone</title>
+      <link>https://blog.maoxianplay.com/posts/drone-ci/</link>
+      <pubDate>Tue, 21 May 2019 08:59:00 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/posts/drone-ci/</guid>
+      <description>前言 公司之前一直在使用 Jenkins 作为 CI/CD 工具， Jenkins 非常强大，它完成了几乎所有 CI/CD 的工作，并且应用于整个团队有好长一段时间了。但是随着公司推荐数字化、智慧化</description>
+    </item>
     
     <item>
       <title>什么是 DevSecOps ?</title>

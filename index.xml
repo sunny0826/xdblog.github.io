@@ -6,10 +6,19 @@
     <description>Recent content on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 06 May 2019 16:46:28 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 21 May 2019 08:59:00 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>轻量快速的 CI 工具 Drone</title>
+      <link>https://blog.maoxianplay.com/posts/drone-ci/</link>
+      <pubDate>Tue, 21 May 2019 08:59:00 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/posts/drone-ci/</guid>
+      <description>前言 公司之前一直在使用 Jenkins 作为 CI/CD 工具， Jenkins 非常强大，它完成了几乎所有 CI/CD 的工作，并且应用于整个团队有好长一段时间了。但是随着公司推荐数字化、智慧化</description>
+    </item>
     
     <item>
       <title>使用 Kustomize 帮你管理 kubernetes 应用（三）：将 Kustomize 应用于 CI/CD</title>
