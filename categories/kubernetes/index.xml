@@ -6,19 +6,10 @@
     <description>Recent content in Kubernetes on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 06 May 2019 16:46:28 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 30 Apr 2019 18:46:24 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/categories/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>使用 Kustomize 帮你管理 kubernetes 应用（三）：将 Kustomize 应用于 CI/CD</title>
-      <link>https://blog.maoxianplay.com/posts/kustomize-3/</link>
-      <pubDate>Mon, 06 May 2019 16:46:28 +0800</pubDate>
-      
-      <guid>https://blog.maoxianplay.com/posts/kustomize-3/</guid>
-      <description>前言 首先明确软件版本，我这里使用的是 Jenkins ver. 2.121.3 ，这个版本比较老，其上安装 Kubernetes 插件所使用 kubectl 版本也比较老，无法使用 Kustomize 的 yaml 文件需要的 apiVersion: apps/v1 ，直接使用生成 deploy.yaml</description>
-    </item>
     
     <item>
       <title>4月29日 云栖社区分享PPT -- 阿里云容器服务的优势与调优</title>
@@ -36,24 +27,6 @@
       
       <guid>https://blog.maoxianplay.com/posts/aliyun-k8s-perfect/</guid>
       <description>前言 选择阿里云的容器服务，主要原因是公司主要业务基本都在运行在阿里云上。相较自建 kubernetes 集群，容器服务的优势在于部署相对简单，与阿里云 VPC 完美兼容，</description>
-    </item>
-    
-    <item>
-      <title>使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法</title>
-      <link>https://blog.maoxianplay.com/posts/kustomize-2/</link>
-      <pubDate>Fri, 19 Apr 2019 16:05:02 +0800</pubDate>
-      
-      <guid>https://blog.maoxianplay.com/posts/kustomize-2/</guid>
-      <description>本文介绍使用和维护 Kustomize 的方法及步骤。 定制配置 在这个工作流方式中，所有的配置文件（ YAML 资源）都为用户所有，存在于私有 repo 中。其他人是无法使用的。 创建</description>
-    </item>
-    
-    <item>
-      <title>使用 Kustomize 帮你管理 kubernetes 应用（一）：什么是 Kustomize ？</title>
-      <link>https://blog.maoxianplay.com/posts/kustomize-1/</link>
-      <pubDate>Mon, 15 Apr 2019 13:32:59 +0800</pubDate>
-      
-      <guid>https://blog.maoxianplay.com/posts/kustomize-1/</guid>
-      <description>初识 Kustomize 第一次听说 Kustomize 其实是在 kubernetes 1.14 发布时候，它被集成到 kubectl 中，成为了一个子命令，但也只是扫了一眼，并没有深究。真正让我注意到它，并主动开始了解其功</description>
     </item>
     
     <item>
