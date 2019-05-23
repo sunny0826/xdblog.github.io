@@ -255,7 +255,7 @@ autocomplete('#aa-search-input',
                             
                             
                             |
-                            1400字 | 阅读大约需要3分钟
+                            1500字 | 阅读大约需要3分钟
                             </div>
                             
                             
@@ -531,6 +531,8 @@ spec:
 <p>可以看到包括 <code>replicas</code>、<code>limits</code>、<code>requests</code>、<code>env</code> 等 dev 中个性的配置都已经出现在了生成的 yaml 中。由于篇幅有限，这里没有把所有的配置有罗列出来，需要的可以去 <a href="https://github.com/sunny0826/kustomize-demo">GitHub</a> 上自取。</p>
 
 <h2 id="结语">结语</h2>
+
+<p>上面所有的 <code>kustomize build dir/</code> 都可以使用 <code>kubectl apply -k dir/</code> 实现，但是需要 <code>v14.0</code> 版以上的 <code>kubectl</code>，也就是说，其实我们在集成到 CI/CD 中的时候，甚至都不需要用来 <code>kustomize</code> 命令集，有 <code>kubectl</code> 就够了。</p>
 
 <p>由于篇幅有限，这里没法吧所有 <code>kustomization.yaml</code> 的用途都罗列出来，不过可以在官方文档中找到我提交的中文翻译版 <a href="https://github.com/kubernetes-sigs/kustomize/blob/master/docs/zh/kustomization.yaml"><code>kustomization.yaml</code></a>，可以直接去官方 GitHub 查看。同时 <a href="https://github.com/sunny0826/kustomize-demo">kustomize-demo</a> 会持续更行，敬请关注。</p>
 
