@@ -768,7 +768,7 @@
         "objectID": "posts/kustomize-4",
         "date": "2019-05-23T04:50:12.000Z",
         "draft": false,
-        "banner": "http://wx4.sinaimg.cn/large/00704eQkgy1frk001fkixj30rs0ku4qp.jpg",
+        "banner": "https://ws4.sinaimg.cn/large/ad5fbf65gy1g3bbl0silkj21qi15o7bb.jpg",
         "author": "郭旭东",
         "authorlink": "https://github.com/sunny0826",
         "summary": "本篇为系列文章第四篇，将简述 kustomize 的核心配置文件 kustomization.yaml",
