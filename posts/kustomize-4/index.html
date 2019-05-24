@@ -287,7 +287,7 @@ autocomplete('#aa-search-input',
 
 <p>在前面的文章中已经介绍了 kustomize 是什么，如何开始使用已经如何简单的在 CI/CD 中使用，本篇文章将会介绍 kustomize 的核心文件 <a href="https://github.com/kubernetes-sigs/kustomize/blob/master/docs/zh/kustomization.yaml">kustomization.yaml</a>。</p>
 
-<p>另外，博主已经向 kustomize 贡献了中文文档，已被官方采纳，现在在 kustomize 中的 <a href="https://github.com/kubernetes-sigs/kustomize/tree/master/docs/zh"><code>docs/zh</code></a> 目录中就可看到，翻译的不好的地方欢迎指正。同时也在 GitHub 上新建了一个 名为 <a href="https://github.com/sunny0826/kustomize-demo">kustomize-demo</a> 的 repo 用于演示 kustomize 的各种用法及技巧，本文中介绍的内容也会同步更新到该 repo 中，欢迎 fork、star、PR。</p>
+<p>另外，博主已经向 kustomize 贡献了中文文档，已被官方采纳，现在在 kustomize 中的 <a href="https://github.com/kubernetes-sigs/kustomize/tree/master/docs/zh"><code>docs/zh</code></a> 目录中就可看到，翻译的不好的地方欢迎指正。同时也在 GitHub 上新建了一个 名为 <a href="https://github.com/sunny0826/kustomize-lab">kustomize-lab</a> 的 repo 用于演示 kustomize 的各种用法及技巧，本文中介绍的内容也会同步更新到该 repo 中，欢迎 fork、star、PR。</p>
 
 <h2 id="kustomization-yaml-的作用"><code>kustomization.yaml</code> 的作用</h2>
 
@@ -528,13 +528,13 @@ spec:
         name: host-time
 </code></pre>
 
-<p>可以看到包括 <code>replicas</code>、<code>limits</code>、<code>requests</code>、<code>env</code> 等 dev 中个性的配置都已经出现在了生成的 yaml 中。由于篇幅有限，这里没有把所有的配置有罗列出来，需要的可以去 <a href="https://github.com/sunny0826/kustomize-demo">GitHub</a> 上自取。</p>
+<p>可以看到包括 <code>replicas</code>、<code>limits</code>、<code>requests</code>、<code>env</code> 等 dev 中个性的配置都已经出现在了生成的 yaml 中。由于篇幅有限，这里没有把所有的配置有罗列出来，需要的可以去 <a href="https://github.com/sunny0826/kustomize-lab">GitHub</a> 上自取。</p>
 
 <h2 id="结语">结语</h2>
 
 <p>上面所有的 <code>kustomize build dir/</code> 都可以使用 <code>kubectl apply -k dir/</code> 实现，但是需要 <code>v14.0</code> 版以上的 <code>kubectl</code>，也就是说，其实我们在集成到 CI/CD 中的时候，甚至都不需要用来 <code>kustomize</code> 命令集，有 <code>kubectl</code> 就够了。</p>
 
-<p>由于篇幅有限，这里没法吧所有 <code>kustomization.yaml</code> 的用途都罗列出来，不过可以在官方文档中找到我提交的中文翻译版 <a href="https://github.com/kubernetes-sigs/kustomize/blob/master/docs/zh/kustomization.yaml"><code>kustomization.yaml</code></a>，可以直接去官方 GitHub 查看。同时 <a href="https://github.com/sunny0826/kustomize-demo">kustomize-demo</a> 会持续更行，敬请关注。</p>
+<p>由于篇幅有限，这里没法吧所有 <code>kustomization.yaml</code> 的用途都罗列出来，不过可以在官方文档中找到我提交的中文翻译版 <a href="https://github.com/kubernetes-sigs/kustomize/blob/master/docs/zh/kustomization.yaml"><code>kustomization.yaml</code></a>，可以直接去官方 GitHub 查看。同时 <a href="https://github.com/sunny0826/kustomize-lab">kustomize-lab</a> 会持续更行，敬请关注。</p>
 
                           
                           
