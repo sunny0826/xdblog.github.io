@@ -17,7 +17,7 @@
       <pubDate>Thu, 23 May 2019 12:50:12 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kustomize-4/</guid>
-      <description>前言 在前面的文章中已经介绍了 kustomize 是什么，以及如何开始使用已经如何简单的在 CI/CD 中使用，本篇文章将会介绍 kustomize 的核心文件 kustomization.ya</description>
+      <description>前言 在前面的文章中已经介绍了 kustomize 是什么，以及如何开始使用和如何简单的在 CI/CD 中使用，本篇文章将会介绍 kustomize 的核心文件 kustomization.yam</description>
     </item>
     
     <item>
