@@ -664,6 +664,27 @@
         ]
     },
     {
+        "title": "Kubecon 2019 见闻：云原生未来可期",
+        "uri": "posts/kubecon-2019",
+        "content": "2019 6 24 26  KubeCon   CloudNativeCon   Open Source Summit                          40    3500                                                         6                                               KubeCon                       3                                   Kubernetes   Cloud Native                                                                                  SOFAStack Workshop    CNCF  VMware       PingCAP          CNCF                          Apache ServiceComb Meetup      ServiceMesher                               SOFAStack Workshop                          SOFAStack                                                      Workshop                                  SOFAStack        SOFAStack           SOFABoot             Seata              Serverless               CloudMesh      Service Mesh   demo   Service Mesh                 Istio         ServiceMesher                                                    Apache ServiceComb Meetup             1                     Apache                               Apache Member                                                                 CNCF  VMware       PingCAP          CNCF           Harbor   Dragonfly   TiKV        CNCF             Dan Kohn                 CNCF                                                                                                        Linux   Git     Linus Torvalds        Keynote     Linux                                         Linus   Keynote                        Linus            Linus           red hall                                                   Linus                   Linux 5 1 rc6   release                                      Keynote                           K8s contributors                    10    CNCF        26   Kubernetes                               CNCF                                                                                                                                      rancher kong jenkins                                                           ServiceMesher                                      KubeCon                                   Jimmy                                11   KubeCon                     Service Mesh          4                             KubeCon     Keynote                    Kubernetes                KubeCon",
+        "objectID": "posts/kubecon-2019",
+        "date": "2019-07-02T02:18:18.000Z",
+        "draft": false,
+        "banner": "http://wx4.sinaimg.cn/large/00704eQkgy1frk001fkixj30rs0ku4qp.jpg",
+        "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
+        "summary": "2019年6月24-26日，KubeCon + CloudNativeCon + Open Source Summit大会在上海世博中心举行。本次大会规模空前，预计有超过40个国家，3500多名云原生、开源领域的开发者参加，门票更是早早售罄。作为一名云原生应用的使用者与开发者，我也报名参与了这次大会。",
+        "tags": [
+            "云原生"
+        ],
+        "categories": [
+            "程序员趣闻"
+        ],
+        "keywords": [
+            "kubecon"
+        ]
+    },
+    {
         "title": "困难的 Kubernetes",
         "uri": "posts/kubernetes-is-hard",
         "content": "Kubernetes                                             kubernetes             runtime                                                                       Kubernetes                       Kubernetes               Kubernetes    K8S              Kubernetes           Master   Workers Master                     Workers        Kubernetes   Master          API server          API                       Worker                    Worker        kubelet                  API                        Worker            kube proxy                                  kube dns   gVisor          overlay network            Kubernetes        pod                           Kelsey Hightowers   Kubernetes   Hard Way        Kubernetes                                                                                   Kubernetes                                                              Ansible   Terraform        kops                  kops                                                                           Kubernetes          Prometheus   Grafana         Kubernetes              Kubernetes                                                             Master                          pod                   CI                                    CI                 Docker                Kubernetes        Kubernetes                    CI                                                         git                                     Kubernetes                                                    Kubernetes            rook      Ceph                      Ceph                                                   Kubernetes                   Kubernetes                                                                                                                                     Kubernetes             Kubernetes                               Kubernetes              Kubernetes                    RedHat OpenShift                            Kubernetes    Gartner hype cycle                                           Kubernetes                                    Ops                            Kubernetes              Janos Pasztor 2018 12 04      https   pasztor at blog kubernetes is hard",

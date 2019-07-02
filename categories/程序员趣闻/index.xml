@@ -6,10 +6,19 @@
     <description>Recent content in 程序员趣闻 on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 29 Apr 2019 11:55:47 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 02 Jul 2019 10:18:18 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%B6%A3%E9%97%BB/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kubecon 2019 见闻：云原生未来可期</title>
+      <link>https://blog.maoxianplay.com/posts/kubecon-2019/</link>
+      <pubDate>Tue, 02 Jul 2019 10:18:18 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/posts/kubecon-2019/</guid>
+      <description>前言 2019年6月24-26日，KubeCon + CloudNativeCon + Open Source Summit大会在上海世博中心举行。本次大会规模空前，预计有超过40个国家，3500</description>
+    </item>
     
     <item>
       <title>炫酷的终端软件 eDEX-UI</title>
