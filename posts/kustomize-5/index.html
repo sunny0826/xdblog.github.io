@@ -9,11 +9,11 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <title>Devops入门手册 · 郭旭东的博客</title>
+  <title>使用 Kustomize 帮你管理 kubernetes 应用（五）：配合 kubedog 完善 CI/CD 的最后一步 · 郭旭东的博客</title>
   <meta name="author" content="郭旭东" />
 
   
-  <meta name="keywords" content="devops, 翻译">
+  <meta name="keywords" content="kubernetes, kustomize, 工具">
   
 
   <meta name="generator" content="Hugo 0.52" />
@@ -61,17 +61,17 @@
   <link rel="stylesheet" href="/css/share.min.css" />
 
   
-  <meta property="og:title" content="Devops入门手册" />
+  <meta property="og:title" content="使用 Kustomize 帮你管理 kubernetes 应用（五）：配合 kubedog 完善 CI/CD 的最后一步" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/posts/devops-tutorial//" />
+  <meta property="og:url" content="/posts/kustomize-5//" />
   <meta property="og:image" content="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" />
   <meta property="og:image:alt" content="ServiceMesher Logo" />
 
   
-  <meta name="description" content="“DevOps”这个词是 “development” 和 “operations”这两个词的组合。它是一种促进开发和运维团队之间的协作，以自动化和可重复的方式更快地将代码部署到生产中的文化。">
-  <meta property="og:description" content="“DevOps”这个词是 “development” 和 “operations”这两个词的组合。它是一种促进开发和运维团队之间的协作，以自动化和可重复的方式更快地将代码部署到生产中的文化。">
-  <meta name="twitter:description" content="“DevOps”这个词是 “development” 和 “operations”这两个词的组合。它是一种促进开发和运维团队之间的协作，以自动化和可重复的方式更快地将代码部署到生产中的文化。">
-  <meta property="og:description" content="“DevOps”这个词是 “development” 和 “operations”这两个词的组合。它是一种促进开发和运维团队之间的协作，以自动化和可重复的方式更快地将代码部署到生产中的文化。" />
+  <meta name="description" content="在以往的 pipeline 中，使用 kubectl 进行部署 Deployment 后无法检查 Deployment 是否部署成功，只能通过使用命令/脚本来手动检查 Deployment 状态，而 kubedog 这个小工具完美解决了这个问题，完善了 CI/CD 流水线的最后一步。">
+  <meta property="og:description" content="在以往的 pipeline 中，使用 kubectl 进行部署 Deployment 后无法检查 Deployment 是否部署成功，只能通过使用命令/脚本来手动检查 Deployment 状态，而 kubedog 这个小工具完美解决了这个问题，完善了 CI/CD 流水线的最后一步。">
+  <meta name="twitter:description" content="在以往的 pipeline 中，使用 kubectl 进行部署 Deployment 后无法检查 Deployment 是否部署成功，只能通过使用命令/脚本来手动检查 Deployment 状态，而 kubedog 这个小工具完美解决了这个问题，完善了 CI/CD 流水线的最后一步。">
+  <meta property="og:description" content="在以往的 pipeline 中，使用 kubectl 进行部署 Deployment 后无法检查 Deployment 是否部署成功，只能通过使用命令/脚本来手动检查 Deployment 状态，而 kubedog 这个小工具完美解决了这个问题，完善了 CI/CD 流水线的最后一步。" />
 
   
   
@@ -105,9 +105,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="/">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="Devops入门手册 logo" class="hidden-xs hidden-sm">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="Devops入门手册 logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Devops入门手册 - 跳到主页</span>
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="使用 Kustomize 帮你管理 kubernetes 应用（五）：配合 kubedog 完善 CI/CD 的最后一步 logo" class="hidden-xs hidden-sm">
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="使用 Kustomize 帮你管理 kubernetes 应用（五）：配合 kubedog 完善 CI/CD 的最后一步 logo" class="visible-xs visible-sm">
+                    <span class="sr-only">使用 Kustomize 帮你管理 kubernetes 应用（五）：配合 kubedog 完善 CI/CD 的最后一步 - 跳到主页</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -228,7 +228,7 @@ autocomplete('#aa-search-input',
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Devops入门手册</h1>
+                <h1>使用 Kustomize 帮你管理 kubernetes 应用（五）：配合 kubedog 完善 CI/CD 的最后一步</h1>
             </div>
         </div>
     </div>
@@ -246,7 +246,7 @@ autocomplete('#aa-search-input',
                         <div class="well">
                             <div class="author-category">
                             <i class="fa fa-calendar-o">
-                            2019年4月9日
+                            2019年7月3日
                             </i>
                             |
                             
@@ -255,14 +255,14 @@ autocomplete('#aa-search-input',
                             
                             
                             |
-                            4400字 | 阅读大约需要9分钟
+                            1000字 | 阅读大约需要2分钟
                             </div>
                             
                             
                             <div class="author-category">
                             
                             
-                            归档于 <a href="/categories/%e7%bf%bb%e8%af%91">翻译</a>
+                            归档于 <a href="/categories/kustomize">kustomize</a>
                             
                             |
                             
@@ -270,9 +270,11 @@ autocomplete('#aa-search-input',
                             
                             标签
                             
-                            <a style="text-transform:capitalize" href="/tags/devops/"><i>#devops</i></a>
+                            <a style="text-transform:capitalize" href="/tags/kubernetes/"><i>#kubernetes</i></a>
                             
-                            <a style="text-transform:capitalize" href="/tags/%E7%BF%BB%E8%AF%91/"><i>#翻译</i></a>
+                            <a style="text-transform:capitalize" href="/tags/kustomize/"><i>#kustomize</i></a>
+                            
+                            <a style="text-transform:capitalize" href="/tags/%E5%B7%A5%E5%85%B7/"><i>#工具</i></a>
                             
                             </div>
                             
@@ -281,350 +283,99 @@ autocomplete('#aa-search-input',
                         <div id="post-content">
                           
 
-<h1 id="devops-是什么">DevOps 是什么？</h1>
+<blockquote>
+<p>在以往的 pipeline 中，使用 kubectl 进行部署 Deployment 后无法检查 Deployment 是否部署成功，只能通过使用命令/脚本来手动检查 Deployment 状态，而 kubedog 这个小工具完美解决了这个问题，完善了 CI/CD 流水线的最后一步。</p>
+</blockquote>
 
-<p>“DevOps” 这个词是 <code>development</code> 和 <code>operations</code> 这两个词的组合。它是一种促进开发和运维团队之间的协作，以自动化和可重复的方式更快地将代码部署到生产中的<strong>文化</strong>。</p>
+<h2 id="kubedog">KubeDog</h2>
 
-<p>DevOps 帮助团体提高软件和服务的交付速度。它使团队能够更好地为客户服务，并提高在市场中的竞争力。</p>
+<p>kubedog 是一个 lib 库和 CLI 小工具，允许在 CI/CD 部署 pipeline 中观察和跟踪 Kubernetes 资源。与 kustomize 配合，集成到 pipeline 之后，完美的解决了 CI/CD 的最后一步，完美的替代了之前不够灵活的脚本（好吧，其实我也开发了类似的小工具，但是有这么好用的轮子，拿来直接用何乐而不为呢？）。</p>
 
-<p>简而言之， DevOps 可以定义为通过更好的沟通和协作，使开发和运维保持一致。</p>
+<p>kubedog 提供了 lib 库和 CLI 小工具，这里由于是介绍 CI/CD 中的实践，所以只介绍其中的 <code>rollout track</code> 功能。 lib 库的使用和 CLI 的 <code>follow</code> 功能这里就不做介绍了，有兴趣的同学可以去 <a href="https://github.com/flant/kubedog">GitHub</a> 上查看该项目的各种使用方式。</p>
 
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g1wbobryucj20db07dq2w.jpg" alt="what is devops" /></p>
+<h3 id="集成-kubedog">集成 KubeDog</h3>
 
-<p>本手册中，您将学到：</p>
+<p>由于我司目前使用的是 <a href="https://drone.io/">drone</a> 进行 CI ，每个 step 都是由一个 docker 制作的插件组成。我制作了一个包含 <code>kubectl</code> 、 <code>kustomize</code> 和 <code>kubedog</code> 的镜像。该镜像已上传 dockerhub ，需要的可以自行拉取使用 <code>guoxudongdocker/kubectl</code> ,而该插件的使用也在 <a href="https://github.com/sunny0826/kubectl-kustomize">GitHub</a> 和 <a href="https://cloud.docker.com/u/guoxudongdocker/repository/docker/guoxudongdocker/kubectl">DockerHub</a> 上查看。</p>
 
-<ul>
-<li><a href="#devops-是什么">DevOps 是什么？</a></li>
-<li><a href="#为什么需要-devops">为什么需要 DevOps ？</a></li>
-<li><a href="#devops-与传统运维有什么不同">DevOps 与传统运维有什么不同？</a></li>
-<li><a href="#为什么使用-devops">为什么使用 DevOps ？</a></li>
-<li><a href="#devops-的生命周期">DevOps 的生命周期</a></li>
-<li><a href="#devops-的工作流">DevOps 的工作流</a></li>
-<li><a href="devops-与敏捷有什么不同-devops-vs-agile">DevOps 与敏捷有什么不同？ DevOps VS Agile</a></li>
-<li><a href="#devops-原则">DevOps 原则</a></li>
-<li><a href="#谁可以做-devops-工程师">谁可以做 DevOps 工程师？</a></li>
-<li><a href="#devops-工程师的角色-职责和技能">DevOps 工程师的角色、职责和技能</a></li>
-<li><a href="#devops-工程师可以挣多少钱">DevOps 工程师可以挣多少钱？</a></li>
-<li><a href="#devops-培训认证">DevOps 培训认证</a></li>
-<li><a href="#devops-自动化工具">DevOps 自动化工具</a></li>
-<li><a href="#devops-的未来是怎样的">DevOps 的未来是怎样的？</a></li>
-<li><a href="#总结">总结</a></li>
-</ul>
+<p>而集成方式也比较简单，直接将 <code>kubectl</code> 、 <code>kustomize</code> 和 <code>kubedog</code> 的可执行包下载到 <code>/usr/local/bin</code> 并赋予执行权限即可，下面就是 <code>Dockerfile</code> 文件：</p>
 
-<h1 id="为什么需要-devops">为什么需要 DevOps ？</h1>
+<pre><code class="language-dockerfile">FROM alpine
 
-<ul>
-<li>在实行 DevOps 之前，开发和运维团队是完全孤立的。</li>
-<li>测试和部署是设计在构建之后完成的独立活动。因此，他们比实际构建周期消耗更多时间。</li>
-<li>在不使用 DevOps 的情况下，团队成员将大量时间花在测试，部署和设计上，而不是构建项目。</li>
-<li>手动部署代码会导致生产中出现人为错误。</li>
-<li>开发和运维团队都有各自的时间表，时间的不同步导致生产交付进一步延误。</li>
-</ul>
+LABEL maintainer=&quot;sunnydog0826@gmail.com&quot;
 
-<p>提高软件交付率是业务方最迫切的需求。根据 Forrester Consulting Study 统计，只有17％的团队可以足够快地交付软件。更是证明了这一痛点。</p>
+ENV KUBE_LATEST_VERSION=&quot;v1.14.1&quot;
 
-<h1 id="devops-与传统运维有什么不同">DevOps 与传统运维有什么不同？</h1>
+RUN apk add --update ca-certificates \
+ &amp;&amp; apk add --update -t deps curl \
+ &amp;&amp; curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBE_LATEST_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
+ &amp;&amp; chmod +x /usr/local/bin/kubectl \
+ &amp;&amp; curl -L https://github.com/kubernetes-sigs/kustomize/releases/download/v2.0.3/kustomize_2.0.3_linux_amd64 -o /usr/local/bin/kustomize \
+ &amp;&amp; chmod +x /usr/local/bin/kustomize \
+ &amp;&amp; curl -L https://dl.bintray.com/flant/kubedog/v0.2.0/kubedog-linux-amd64-v0.2.0 -o /usr/local/bin/kubedog \
+ &amp;&amp; chmod +x /usr/local/bin/kubedog \
+ &amp;&amp; apk del --purge deps \
+ &amp;&amp; rm /var/cache/apk/*
 
-<p>让我们将传统软件瀑布开发模型与 DevOps 进行比较，以了解 DevOps 带来的变化。</p>
 
-<p>我们假设有一个应用程序计划在2周内上线，代码完成80％。该应用程序是一个新的发布，从购买服务器开始</p>
+WORKDIR /root
+ENTRYPOINT [&quot;kubectl&quot;]
+CMD [&quot;help&quot;]
+</code></pre>
 
-<table>
-<thead>
-<tr>
-<th>瀑布式开发</th>
-<th>DevOps</th>
-</tr>
-</thead>
+<h2 id="kustomize-配合-kubedog-使用">Kustomize 配合 KubeDog 使用</h2>
 
-<tbody>
-<tr>
-<td>订购新服务器后，开发团队需要进行测试。运维团队根据需求文档开始部署基础设施。</td>
-<td>订购新服务器后，开发和运维团队根据需求文档共同调试部署新服务器。这样开发人员可以更好地了解服务器的基础架构。</td>
-</tr>
+<p>在镜像构建好之后就可以直接使用了，这里使用的是 DockerHub 的镜像仓库，这里建议将镜像同步到私有仓库，比如阿里云的容器镜像服务或者 Habor ，因为国内拉取 DockerHub 的镜像不太稳定，经常会拉取镜像失败或者访问超时，在 CI/CD 流水线中推荐使用更稳定镜像。</p>
 
-<tr>
-<td>关于故障转移，冗余策略，数据中心位置和存储要求的规划存在偏差，因为开发人员对应用程序有深入了解，但他们无法提供任何协助。</td>
-<td>由于开发人员的加入，有关故障转移，冗余策略，灾难恢复，数据中心位置和存储要求的规划非常准确。</td>
-</tr>
+<p>以下是 <code>.drone.yml</code> 示例：</p>
 
-<tr>
-<td>运维团队对开发团队的进展一无所知。只能根据运维团队理解制定监控计划。</td>
-<td>在 DevOps 中，运维团队完全了解开发人员的进展。通过互动，共同制定满足运维和业务需求的监控计划。他们还使用应用程序性能监视（APM）工具以优化应用。</td>
-</tr>
+<pre><code class="language-yaml">kind: pipeline
+name: {your-pipeline-name}
 
-<tr>
-<td>在上线之前，压力测试使应用程序崩溃。发布延迟了。</td>
-<td>在上线之前，压力测试使应用程序有点慢。开发团队迅速解决了瓶颈问题。该应用程序按时发布。</td>
-</tr>
-</tbody>
-</table>
+steps:
+- name: Kubernetes 部署
+  image: guoxudongdocker/kubectl
+  volumes:
+  - name: kube
+    path: /root/.kube
+  commands:
+    - cd deploy/overlays/dev    # 这里使用 kustomize ,详细使用方法请见 https://github.com/kubernetes-sigs/kustomize
+    - kustomize edit set image {your-docker-registry}:${DRONE_BUILD_NUMBER}
+    - kubectl apply -k . &amp;&amp; kubedog rollout track deployment {your-deployment-name} -n {your-namespace} -t {your-tomeout}
 
-<h1 id="为什么使用-devops">为什么使用 DevOps ？</h1>
+...
 
-<p>DevOps 允许敏捷开发团队实施持续集成和持续交付。这有助于他们更快地将产品推向市场。</p>
+volumes:
+- name: kube
+  host:
+    path: /tmp/cache/.kube  # kubeconfig 挂载位置
 
-<p>其他重要原因是：</p>
+trigger:
+  branch:
+  - master  # 触发 CI 的分支
+</code></pre>
+
+<p>从上面的配置可见，在该 step 中执行了如下几步：</p>
 
 <ol>
-<li><strong>可预测性：</strong> DevOps 可以显着降低新版本的故障率。</li>
-<li><strong>自愈性：</strong> 可以随时将应用回滚到较早的版本。</li>
-<li><strong>可维护性：</strong> 在新版本崩溃或当前系统不可用的情况下，可以毫不费力地进行恢复。</li>
-<li><strong>上线时间：</strong> DevOps 通过简化软件交付流程将上线时间缩短至50％。对于互联网和移动应用时间更短。</li>
-<li><strong>更高的质量：</strong> DevOps 帮助团队提高应用程序开发的质量。</li>
-<li><strong>降低风险：</strong> DevOps 在软件交付的生命周期中包含安全检查。它有助于减少整个软件生命周期中的安全风险。</li>
-<li><strong>弹性：</strong> 软件系统的运行状态更稳定，更安全，更改是可审计的。</li>
-<li><strong>成本效益：</strong> DevOps 在软件开发过程中提供了成本效益，这始终是互联网公司管理层所期望的。</li>
-<li><strong>将大的代码库分成小块：</strong> DevOps 是基于敏捷编程方法的。因此，它允许将大的代码库分解为更小且易于管理的块。</li>
+<li>进入 patch 所在路径</li>
+<li>使用了 Kustomize 命令 <code>kustomize edit set image {your-docker-registry}:${DRONE_BUILD_NUMBER}</code> 方式将前面 step 中构建好的镜像的 tag 插入到 patch 中</li>
+<li>使用 <code>kubectl apply -k .</code> 进行 k8s 部署，要注意最后的那个 <code>.</code></li>
+<li>使用 kubedog 跟踪 Deployment 部署状态</li>
 </ol>
 
-<h3 id="什么时候使用-devops">什么时候使用 DevOps ？</h3>
-
-<p>DevOps 应该用于大型分布式应用程序，例如电子商务站点或托管在云平台上的应用程序。</p>
-
-<h3 id="什么时候不使用-devops">什么时候不使用 DevOps？</h3>
-
-<p>它不应该用于关键任务应用程序，如银行，电力设施和其他敏感数据站点。此类应用程序需要对生产环境进行严格的访问控制，详细的变更管理策略，完善的数据中心访问控制策略。</p>
-
-<h1 id="devops-的生命周期">DevOps 的生命周期</h1>
-
-<p><img src="http://wx3.sinaimg.cn/large/ad5fbf65gy1g1wekkedpcj20k509mjrp.jpg" alt="devops Lifecycle" /></p>
-
-<p>DevOps 是开发和运维之间的深度集成。在不了解 DevOps 生命周期的情况下，是无法真正理解 DevOps 的。</p>
-
-<p>以下是有关 DevOps生命周期的简要信息：</p>
-
-<ol>
-<li><p>开发</p>
-
-<p>在此阶段，整个开发过程分为小的开发周期。这有利于 DevOps 团队加快软件开发和交付过程。</p></li>
-
-<li><p>测试</p>
-
-<p>QA 团队使用 <code>Selenium</code> 等自动化测试工具来识别和修复新代码中的错误。</p></li>
-
-<li><p>集成</p>
-
-<p>在此阶段，新功能与主分支代码集成，并进行测试。只有持续集成和测试才能实现持续交付。</p></li>
-
-<li><p>部署</p>
-
-<p>在此阶段，部署过程持续进行。它的执行方式是任何时候在代码中进行的任何更改都不应影响高流量网站的运行。</p></li>
-
-<li><p>监测</p>
-
-<p>在此阶段，运维团队将负责处理不合适的系统行为或生产中发现的错误。</p></li>
-</ol>
-
-<h1 id="devops-的工作流">DevOps 的工作流</h1>
-
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g1wewdq1elj20g009fa9y.jpg" alt=" DevOps Work Flow " /></p>
-
-<p>工作流允许排列和分离用户最需要的任务。它还能够在配置任务时反应其最理想过程。</p>
-
-<h1 id="devops-与敏捷有什么不同-devops-vs-agile">DevOps 与敏捷有什么不同？ DevOps VS Agile</h1>
-
-<p>这是一个典型的IT流程</p>
-
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g1wfmrcbafj20nq05wdg0.jpg" alt="" /></p>
-
-<p>敏捷解决了客户和开发人员沟通中的问题</p>
-
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g1wfn81bchj20no05q3ys.jpg" alt="" /></p>
-
-<p>DevOps 解决了开发人员运维人员沟通中的问题</p>
-
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g1wfnk7fi3j20nt05vt90.jpg" alt="" /></p>
-
-<table>
-<thead>
-<tr>
-<th>敏捷</th>
-<th>DevOps</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>强调打破开发人员和管理层之间的障碍。</td>
-<td>DevOps 是关于软件开发和运维团队的。</td>
-</tr>
-
-<tr>
-<td>解决客户需求与开发团队之间的距离。</td>
-<td>解决开发和运维团队之间的距离。</td>
-</tr>
-
-<tr>
-<td>重点关注功能和非功能准备。</td>
-<td>它侧重于运维和业务准备。</td>
-</tr>
-
-<tr>
-<td>敏捷开发主要涉及公司对开发方式的思考。</td>
-<td>DevOps 强调以最可靠和最安全的方式部署软件，而这些方式并不总是最快的。</td>
-</tr>
-
-<tr>
-<td>敏捷开发非常注重培训所有团队成员，使他们拥有各种相同的技能。因此，当出现问题时，任何团队成员都可以在没有团队领导的情况下从别的成员那里获得帮助。</td>
-<td>DevOps 在开发和运维团队之间传播技能，并保持一致的沟通。</td>
-</tr>
-
-<tr>
-<td>敏捷开发管理 “sprint” ，意味着时间更短（不到一个月），并且在此期间将产生和发布多个功能。</td>
-<td>DevOps 努力争取主要版本的稳定可靠，而不是更小和更频繁的发布版本。</td>
-</tr>
-</tbody>
-</table>
-
-<h1 id="devops-原则">DevOps 原则</h1>
-
-<p>这里有六个在采用 DevOps 时必不可少的原则：</p>
-
-<ol>
-<li><strong>以客户为中心：</strong> DevOps 团队必须以客户为中心，因为是他们不断向我的产品和服务投资。</li>
-<li><strong>端到端的责任：</strong> DevOps 团队需要在产品的整个生命周期提供性能支持。这提高了产品的水平和质量。</li>
-<li><strong>持续改进：</strong> DevOps 文化专注于持续改进，以尽量减少浪费。它不断加快产品或服务改进的速度。</li>
-<li><strong>自动化一切：</strong> 自动化是 DevOps 流程的重要原则。这不仅适用于软件开发，同时也适用于整个基础架构环境。</li>
-<li><strong>作为一个团队工作：</strong> 在 DevOps 文化角色中，设计人员，开发人员和测试人员已经定义。他们所需要做的就是作为一个团队完成合作。</li>
-<li><strong>监控和测试所有内容：</strong> DevOps 团队拥有强大的监控和测试程序是非常重要的。</li>
-</ol>
-
-<h1 id="谁可以做-devops-工程师">谁可以做 DevOps 工程师？</h1>
-
-<p>DevOps 工程师是一名IT专业人员，他与软件开发人员，系统运维人员和其他IT人员一起管理代码发布。DevOps 应具备与开发，测试和运维团队进行沟通和协作的硬技能和软技能。</p>
-
-<p>DevOps 方法需要对代码版本进行频繁的增量更改，这意味着频繁的部署和测试方案。尽管 DevOps 工程师需要偶尔从头开始编码，但重要的是他们应该具备软件开发语言的基础知识。</p>
-
-<p>DevOps 工程师将与开发团队的工作人员一起解决连接代码的元素（如库或软件开发工具包）所需的编码和脚本。</p>
-
-<h1 id="devops-工程师的角色-职责和技能">DevOps 工程师的角色、职责和技能</h1>
-
-<p>DevOps 工程师负责软件应用程序平台的生产和持续维护。</p>
-
-<p>以下是 DevOps 工程师的一些角色，职责和技能：</p>
+<blockquote>
+<p>命令解析：<code>kubedog rollout track deployment {your-deployment-name} -n {your-namespace} -t {your-tomeout}</code></p>
 
 <ul>
-<li>能够跨平台和应用程序域执行系统故障排除和问题解决。</li>
-<li>通过开放的，标准的平台有效管理项目。</li>
-<li>提高项目可见性和可追溯性。</li>
-<li>通过协作提高开发质量并降低开发成本。</li>
-<li>分析、设计和评估自动化脚本和系统。</li>
-<li>通过使用最佳的云安全解决方案确保系统的安全。</li>
-<li>DevOps 工程师应该具备问题解决者和快速学习者的软技能。</li>
+<li>deployment {your-deployment-name} : Deployment 的名称</li>
+<li>-n {your-namespace} : Deployment 所在的 namespace</li>
+<li>-t {your-tomeout} : 超时时间，单位为秒，超时后会报错，这里请根据实际部署情况进行设置</li>
 </ul>
+</blockquote>
 
-<h1 id="devops-工程师可以挣多少钱">DevOps 工程师可以挣多少钱？</h1>
+<h2 id="结语">结语</h2>
 
-<p>DevOps 是最热门的IT专业之一。这就是为什么那里都有很多机会的原因。因此，即使是初级DevOps工程师的薪酬水平也相当高。在美国，初级DevOps工程师的平均年薪为78,696美元。</p>
-
-<h1 id="devops-培训认证">DevOps 培训认证</h1>
-
-<p>DevOps 培训认证可以帮助任何渴望成为 DevOps 工程师职业的人。认证可从 Amazon web services 、 Red Hat 、 Microsoft Academy 、 DevOps Institute 获得。</p>
-
-<p><a href="https://aws.amazon.com/cn/certification/certified-devops-engineer-professional/">AWS Certified DevOps Engineer</a></p>
-
-<p>此 DevOps 工程师证书将测试您如何使用最常见的 DevOps 模式在 AWS 上开发，部署和维护应用程序。它还会评估 DevOps 方法的核心原则。</p>
-
-<p>该认证有两个必要条件：认证费用为300美元，持续时间为170分钟。</p>
-
-<p><a href="https://www.redhat.com/en/services/training-and-certification">Red Hat Certification</a></p>
-
-<p>红帽为 DevOps 专业人士提供不同级别的认证，如下所示:</p>
-
-<ul>
-<li>Red Hat Certificate of Expertise in Platform-as-a-Service</li>
-<li>Red Hat Certificate of Expertise in Containerized Application Development</li>
-<li>Red Hat Certificate of Expertise in Ansible Automation</li>
-<li>Red Hat Certificate of Expertise in Configuration Management</li>
-<li>Red Hat Certificate of Expertise in Container Administration</li>
-</ul>
-
-<p><a href="http://devopsinstitute.com/">Devops Institute</a></p>
-
-<p>Devops Institute是围绕新兴 DevOps 实践的全球学习社区。该组织正在为 DevOps 能力资格设置质量标准。Devops Institute目前提供三个课程和认证。</p>
-
-<p>公司提供的认证课程有：</p>
-
-<ul>
-<li>DevOps Foundation</li>
-<li>DevOps Foundation Certified</li>
-<li>Certified Agile Service Manager</li>
-<li>Certified Agile Process Owner</li>
-<li>DevOps Test Engineering</li>
-<li>Continuous Delivery Architecture</li>
-<li>DevOps Leader</li>
-<li>DevSecOps Engineering</li>
-</ul>
-
-<h1 id="devops-自动化工具">DevOps 自动化工具</h1>
-
-<p>所有测试流程自动化并对其进行配置以实现至关重要的速度和灵活性。此过程称为 DevOps 自动化。</p>
-
-<p>维护庞大的IT基础架构的大型 DevOps 团队面临的困难可以简要分为六个不同的类别。</p>
-
-<ol>
-<li>基础设施自动化</li>
-<li>配置管理</li>
-<li>部署自动化</li>
-<li>性能管理</li>
-<li>日志管理</li>
-<li>监测</li>
-</ol>
-
-<p>让我们看看每个类别中的工具以及它们如何解决痛点：</p>
-
-<h3 id="基础设施自动化">基础设施自动化</h3>
-
-<p>亚马逊网络服务（AWS）：作为云服务，您无需建立实际的数据中心。此外，它们易于按需扩展。没有前期硬件成本。它可以配置为自动根据流量配置更多服务器。</p>
-
-<h3 id="配置管理">配置管理</h3>
-
-<p>Chef：它是一个有用的 DevOps 工具，用于提升速度，规模和一致性。它可用于简化复杂任务并执行配置管理。使用此工具，DevOps 团队可以避免在一万台服务器上进行更改。相反，只需要在一个地方进行更改，这些更改会自动反映在其他服务器中。</p>
-
-<h3 id="部署自动化">部署自动化</h3>
-
-<p>Jenkins：该工具有助于持续集成和测试。通过在部署构建后快速查找问题，更​​轻松地集成项目更改。</p>
-
-<h3 id="日志管理">日志管理</h3>
-
-<p>Splunk：可以解决在一个地方聚合，存储和分析所有日志的问题的工具。</p>
-
-<h3 id="性能管理">性能管理</h3>
-
-<p>App Dynamic：它是一个 DevOps 工具，提供实时性能监控。此工具收集的数据可帮助开发人员在发生问题时进行调试。</p>
-
-<h3 id="监控">监控</h3>
-
-<p>Nagios：在基础架构和相关服务出现故障时通知相关人员也很重要。Nagios 就是这样一种工具，它可以帮助 DevOps 团队找到并纠正问题。</p>
-
-<h1 id="devops-的未来是怎样的">DevOps 的未来是怎样的？</h1>
-
-<ul>
-<li>团队将代码部署周期转换为数周和数月，而不是数年。</li>
-<li>很快就会看到，DevOps 工程师可以比企业中的任何其他人更多地接近和管理终端用户。</li>
-<li>DevOps 正在成为IT人员的重要技能。例如，Linux 招聘进行的一项调查发现，25％的受访者的求职者寻求 DevOps 工作。</li>
-<li>DevOps 和持续交付将继续存在。因为公司需要发展，他们别无选择，只能改变。然而，DevOps 概念的主流化则需要5到10年。</li>
-</ul>
-
-<h1 id="总结">总结</h1>
-
-<ul>
-<li>DevOps 是一种促进开发和运维团队之间的协作，以自动化和可重复的方式更快地将代码部署到生产中的<strong>文化</strong>。</li>
-<li>在 DevOps 出现之前运维和开发团队完全独立。</li>
-<li>手动部署代码会导致生产中出现人为错误。</li>
-<li>在旧的软件开发流程中，运维团队不了解开发团队的进度。因此，运维团队只能根据他们自己的理解制定了基础设施的购买和监控计划。</li>
-<li>在 DevOps 流程中，运维团队充分了解开发人员的进度。采购和监控计划准确无误。</li>
-<li>DevOps 提供可维护性，可预测性，更高质量的代码和更准确的上线时间。</li>
-<li>敏捷流程侧重于功能和非功能准备，而 DevOps 则侧重于IT基础架构方面。</li>
-<li>DevOps 生命周期包括开发，测试，集成，部署和监控。</li>
-<li>DevOps 工程师将与开发团队工作人员合作，以解决编码和脚本编写需求。</li>
-<li>DevOps 工程师应该具备问题解决者的软技能，并且是一个快速学习者。</li>
-<li>DevOps 认证可从 Amazon web services，Red Hat，Microsoft Academy，DevOps Institute 获得</li>
-<li>DevOps 可帮助团队将代码部署周期转换为数周和数月，而不是数年。</li>
-</ul>
-
-<p><strong>原文链接</strong> <a href="https://www.guru99.com/devops-tutorial.html">https://www.guru99.com/devops-tutorial.html</a></p>
+<p>从 Kubernetes release v1.14 版本开始，<code>kustomize</code> 集成到 <code>kubectl</code> 中，越来越多 k8S 周边的小工具出现。这些小工具的出现帮助了 Kubernetes 的使用者来拉平 Kubernetes 的使用曲线，同时也标志着 K8S 的成熟，越来越多的开发人员基于使用 K8S 的痛点开发相关工具。套用一句今年 KubeCon 的 Keynote 演讲上，阿里云智能容器平台负责人丁宇的话：<strong>Kubernetes 正当时，云原生未来可期</strong> 。</p>
 
                           
                           
@@ -702,13 +453,9 @@ autocomplete('#aa-search-input',
                         <ul class="pager blog-pager">
                         
                         <li class="previous">
-                        <a href="https://blog.maoxianplay.com/posts/rancher-update-2.2.1/" data-toggle="tooltip" data-placement="top" title="单节点版rancher升级指南">&larr; 更旧</a>
+                        <a href="https://blog.maoxianplay.com/posts/kustomize-err-1/" data-toggle="tooltip" data-placement="top" title="记一次使用 Kustomize 时遇到的愚蠢问题">&larr; 更旧</a>
                         </li>
                          
-                        <li class="next">
-                        <a href="https://blog.maoxianplay.com/posts/sidercar-to-servicemesh/" data-toggle="tooltip" data-placement="top" title="从边车模式到 Service Mesh">更新 &rarr;</a>
-                        </li>
-                        
                         </ul>
 
                     </div>
@@ -730,9 +477,15 @@ autocomplete('#aa-search-input',
     <div class="panel-body">
      <ul class="nav nav-pills nav-stacked">
         
-        <li><a href="/posts/whats-a-service-mesh-and-why-do-i-need-one/"><i class="fa fa-link"></i>Service Mesh是什么，我们又为什么需要它</a></li>
+        <li><a href="/posts/kustomize-err-1/"><i class="fa fa-link"></i>记一次使用 Kustomize 时遇到的愚蠢问题</a></li>
          
-        <li><a href="/posts/sonar-pipline/"><i class="fa fa-link"></i>Jenkins Pipeline集成Sonar进行代码质量检测</a></li>
+        <li><a href="/posts/kustomize-4/"><i class="fa fa-link"></i>使用 Kustomize 帮你管理 kubernetes 应用（四）：简述核心配置 kustomization.yaml</a></li>
+         
+        <li><a href="/posts/kustomize-3/"><i class="fa fa-link"></i>使用 Kustomize 帮你管理 kubernetes 应用（三）：将 Kustomize 应用于 CI/CD</a></li>
+         
+        <li><a href="/posts/kustomize-2/"><i class="fa fa-link"></i>使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法</a></li>
+         
+        <li><a href="/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/"><i class="fa fa-link"></i>Kustomize: 无需模板定制你的 kubernetes 配置</a></li>
          
      </ul>
     </div>

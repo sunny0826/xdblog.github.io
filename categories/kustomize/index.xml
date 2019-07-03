@@ -6,10 +6,19 @@
     <description>Recent content in Kustomize on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 03 Jul 2019 13:44:50 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jul 2019 15:20:31 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/categories/kustomize/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用 Kustomize 帮你管理 kubernetes 应用（五）：配合 kubedog 完善 CI/CD 的最后一步</title>
+      <link>https://blog.maoxianplay.com/posts/kustomize-5/</link>
+      <pubDate>Wed, 03 Jul 2019 15:20:31 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/posts/kustomize-5/</guid>
+      <description>在以往的 pipeline 中，使用 kubectl 进行部署 Deployment 后无法检查 Deployment 是否部署成功，只能通过使用命令/脚本来手动检查 Deployment 状态，而 kubedog 这个小工具完美解决了这个问题，完善了 CI/CD 流</description>
+    </item>
     
     <item>
       <title>记一次使用 Kustomize 时遇到的愚蠢问题</title>
