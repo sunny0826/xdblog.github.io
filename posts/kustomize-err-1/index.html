@@ -9,11 +9,11 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <title>Sonar · 郭旭东的博客</title>
+  <title>记一次使用 Kustomize 时遇到的愚蠢问题 · 郭旭东的博客</title>
   <meta name="author" content="郭旭东" />
 
   
-  <meta name="keywords" content="devops">
+  <meta name="keywords" content="kubernetes, kustomize, 工具">
   
 
   <meta name="generator" content="Hugo 0.52" />
@@ -61,17 +61,17 @@
   <link rel="stylesheet" href="/css/share.min.css" />
 
   
-  <meta property="og:title" content="Sonar" />
+  <meta property="og:title" content="记一次使用 Kustomize 时遇到的愚蠢问题" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/tags/sonar//" />
+  <meta property="og:url" content="/posts/kustomize-err-1//" />
   <meta property="og:image" content="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" />
   <meta property="og:image:alt" content="ServiceMesher Logo" />
 
   
-  <meta name="description" content="郭旭东的博客">
-  <meta property="og:description" content="郭旭东的博客">
-  <meta name="twitter:description" content="郭旭东的博客">
-  <meta property="og:description" content="郭旭东的博客" />
+  <meta name="description" content="解决使用 Kustomize 时遇到的报错： error: failed to find an object with apps_v1_Deployment|myapp to apply the patch ">
+  <meta property="og:description" content="解决使用 Kustomize 时遇到的报错： error: failed to find an object with apps_v1_Deployment|myapp to apply the patch ">
+  <meta name="twitter:description" content="解决使用 Kustomize 时遇到的报错： error: failed to find an object with apps_v1_Deployment|myapp to apply the patch ">
+  <meta property="og:description" content="解决使用 Kustomize 时遇到的报错： error: failed to find an object with apps_v1_Deployment|myapp to apply the patch " />
 
   
   
@@ -105,9 +105,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="/">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="Sonar logo" class="hidden-xs hidden-sm">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="Sonar logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Sonar - 跳到主页</span>
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="记一次使用 Kustomize 时遇到的愚蠢问题 logo" class="hidden-xs hidden-sm">
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="记一次使用 Kustomize 时遇到的愚蠢问题 logo" class="visible-xs visible-sm">
+                    <span class="sr-only">记一次使用 Kustomize 时遇到的愚蠢问题 - 跳到主页</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -228,7 +228,7 @@ autocomplete('#aa-search-input',
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Sonar</h1>
+                <h1>记一次使用 Kustomize 时遇到的愚蠢问题</h1>
             </div>
         </div>
     </div>
@@ -237,72 +237,160 @@ autocomplete('#aa-search-input',
 
         <div id="content">
             <div class="container">
+
                 <div class="row">
+
                     
 
-                    <div class="col-md-9" id="blog-listing-medium">
-
-                        
-                        
-                        <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                  <div class="image">
-                                      <a href="/posts/sonar-pipline/">
-                                          
-                                          <img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g0u28qlkvrj21pj15o4ji.jpg" class="img-responsive" alt="">
-                                          
-                                      </a>
-                                  </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="/posts/sonar-pipline/">Jenkins Pipeline集成Sonar进行代码质量检测</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">
-                                          
-                                          作者 <a href="https://github.com/sunny0826">郭旭东</a>
-                                          
-                                          
-                                          |
-                                          3200字 | 阅读大约需要7分钟
-                                          |
-                                          
-                                          
-                                          归档于<a href="/categories/devops">devops</a>
-                                          
-                                          
-
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="/posts/sonar-pipline/"><i class="fa fa-calendar-o"></i> 2019年3月7日</a>
-                                        </p>
-                                    </div>
-                                    
-                                    <p class="intro">在devops理念中，CI/CD毫无疑问是最重要的一环，而代码质量检查则是CI中必不可少的一步。在敏捷开发的思想下，代码的迭代周期变短，交付速度提升，这个时候代码的质量就很难保证，测试只能保证功能完整与可用，而代码的质量纯靠review的话效率又很低，这个时候sonar...</p>
-                                    
-                                    <p class="read-more"><a href="https://blog.maoxianplay.com/posts/sonar-pipline/" class="btn btn-template-main">继续阅读</a>
-                                    </p>
-                                </div>
+                    <div class="col-md-9" id="blog-post">
+                        <div class="well">
+                            <div class="author-category">
+                            <i class="fa fa-calendar-o">
+                            2019年7月3日
+                            </i>
+                            |
+                            
+                            作者 <a href="https://github.com/sunny0826">郭旭东</a>
+                            
+                            
+                            
+                            |
+                            400字 | 阅读大约需要1分钟
                             </div>
-                        </section>
+                            
+                            
+                            <div class="author-category">
+                            
+                            
+                            归档于 <a href="/categories/kustomize">kustomize</a>
+                            
+                            |
+                            
+                            
+                            
+                            标签
+                            
+                            <a style="text-transform:capitalize" href="/tags/kubernetes/"><i>#kubernetes</i></a>
+                            
+                            <a style="text-transform:capitalize" href="/tags/kustomize/"><i>#kustomize</i></a>
+                            
+                            <a style="text-transform:capitalize" href="/tags/%E5%B7%A5%E5%85%B7/"><i>#工具</i></a>
+                            
+                            </div>
+                            
+                            
+                        </div>
+                        <div id="post-content">
+                          
+
+<h2 id="现象">现象</h2>
+
+<p>在日常 CI/CD 流程中，已经将 Kustomize 集成到 pipeline 中使用，但是在对一个项目进行 Kustomize 改造时，将单个 <code>deploy.yaml</code> 拆分为了若干个 patch 以达到灵活 Kubernetes 部署的目的。但是在使用 <code>kubectl apply -k .</code> 命令进行部署的时候遇到了 <code>error: failed to find an object with apps_v1_Deployment|myapp to apply the patch</code> 的报错。</p>
+
+<p><img src="http://wx3.sinaimg.cn/large/ad5fbf65gy1g4mm1m3vx9j21oe10y102.jpg" alt="image" /></p>
+
+<h2 id="解决之路">解决之路</h2>
+
+<p>由于之前的使用中没有遇到此类报错，看报错信息像是 <code>apiVersion</code> 的问题，所以先检查了所有 patch 的 <code>apiVersion</code> ，但是并没有找到有什么问题。</p>
+
+<h3 id="google-搜索">Google 搜索</h3>
+
+<p>对该报错进行了搜索，搜索到如下结果：</p>
+
+<p><img src="https://ws4.sinaimg.cn/large/ad5fbf65gy1g4mmee8ctxj21900ns44c.jpg" alt="image" />
+<img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g4mmgrdz0fj21ou1b6wro.jpg" alt="image" /></p>
+
+<p>？？？ 为何这个 issue 没有解决就被提出者关闭了？</p>
+
+<h3 id="问题解决">问题解决</h3>
+
+<p>在 Google 了一圈之后还是没有找到什么有营养的回答，问题又回到了原点&hellip;只能对所有的 patch 的每个字符和每个配置逐一进行了检查。结果发现是 <code>name</code> 的内容 base 与 overlays 不同&hellip; base 中是 <code>name:myapp</code> ，而 overlays 中是 <code>name:my-app</code> &hellip;</p>
+
+<p>好吧，issue 关的是有道理的&hellip;</p>
+
+<p><img src="https://wx1.sinaimg.cn/large/ad5fbf65gy1g4mmuqm6n2j2098048a9z.jpg" alt="" /></p>
+
+                          
+                          
+<div class="entry-shang text-center">
+    <p>「一键投喂 小鱼干/小骨头」</p>
+    <button class="zs show-zs btn btn-bred">投喂</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+    <div class="zs-modal-head">
+        <button type="button" class="close">×</button>
+        <p class="author">
+            <a href="https://blog.maoxianplay.com">
+                <img src="https://wx3.sinaimg.cn/square/ad5fbf65gy1g2o621gcs6j20m80m8gng.jpg"/>
+            小助手毛线</a>
+        </p>
+        <p class="tip"><i></i><span>感谢投喂 <a href="/maoxian">毛线</a> & <a href="/sunny">Sunny</a> </span></p>
+    </div>
+    <div class="zs-modal-body">
+        <div class="zs-modal-btns">
+            <button class="btn btn-blink" data-num="2">2元</button>
+            <button class="btn btn-blink" data-num="5">5元</button>
+            <button class="btn btn-blink" data-num="10">10元</button>
+            <button class="btn btn-blink" data-num="50">50元</button>
+            <button class="btn btn-blink" data-num="100">100元</button>
+            <button class="btn btn-blink" data-num="any">任意金额</button>
+        </div>
+        <div class="zs-modal-pay">
+            <button class="btn btn-bred" id="pay-text">2元</button>
+            <p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+            <img id="pay-image" src="/images/alipay-2.png">
+        </div>
+    </div>
+    <div class="zs-modal-footer">
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="alipay" class="zs-type" checked="checked" style="float: left;">
+            <span class="zs-alipay">
+                <img src="/images/alipay-btn.png">
+            </span>
+        </label>
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="wechat" class="zs-type" style="float: left;">
+            <span class="zs-wechat">
+                <img src="/images/wechat-btn.png">
+            </span>
+        </label>
+    </div>
+</div>
+<script type="text/javascript" src="/js/jquery.min.js"></script> 
+<script type="text/javascript" src="/js/zanshang.js"></script> 
+
+                          
+                          <div class="social-share" data-initialized="true" data-wechat-qrcode-title="分享更快乐">
+    <hr>
+    <center>
+    <font style="font-size:18px;color:darkcyan;">分享到：</font>
+    <a href="#" class="social-share-icon icon-weibo"></a>
+    <a href="#" class="social-share-icon icon-wechat"></a>
+    <a href="#" class="social-share-icon icon-twitter"></a>
+    <a href="#" class="social-share-icon icon-linkedin"></a>
+    <a href="#" class="social-share-icon icon-facebook"></a>
+    <a href="#" class="social-share-icon icon-qq"></a>
+    <a href="#" class="social-share-icon icon-qzone"></a>
+    </center>
+</div>
+
+
+<script src="/js/social-share.min.js"></script>
+
+                        </div>
                         
-
-                        <ul class="pager">
-                            
-                            <li class="previous disabled"><a href="#">&larr; 更新</a></li>
-                            
-
-                            
-                            <li class="next disabled"><a href="#">更旧 &rarr;</a></li>
-                            
+                        
+                        
+                        
+                        <ul class="pager blog-pager">
+                        
+                        <li class="previous">
+                        <a href="https://blog.maoxianplay.com/posts/kubecon-2019/" data-toggle="tooltip" data-placement="top" title="Kubecon 2019 见闻：云原生未来可期">&larr; 更旧</a>
+                        </li>
+                         
                         </ul>
 
-                        <div align="center" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                        
-
-                        
-                        
-                        </div>
                     </div>
                     
 
@@ -315,6 +403,25 @@ autocomplete('#aa-search-input',
                         
 
                         <div class="panel panel-default sidebar-menu">
+     
+    <div class="panel-heading">
+     <h3 class="panel-title">相关文章</h3>
+    </div>
+    <div class="panel-body">
+     <ul class="nav nav-pills nav-stacked">
+        
+        <li><a href="/posts/kustomize-4/"><i class="fa fa-link"></i>使用 Kustomize 帮你管理 kubernetes 应用（四）：简述核心配置 kustomization.yaml</a></li>
+         
+        <li><a href="/posts/kustomize-3/"><i class="fa fa-link"></i>使用 Kustomize 帮你管理 kubernetes 应用（三）：将 Kustomize 应用于 CI/CD</a></li>
+         
+        <li><a href="/posts/kustomize-2/"><i class="fa fa-link"></i>使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法</a></li>
+         
+        <li><a href="/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/"><i class="fa fa-link"></i>Kustomize: 无需模板定制你的 kubernetes 配置</a></li>
+         
+        <li><a href="/posts/kustomize-1/"><i class="fa fa-link"></i>使用 Kustomize 帮你管理 kubernetes 应用（一）：什么是 Kustomize ？</a></li>
+         
+     </ul>
+    </div>
      
 </div>
 

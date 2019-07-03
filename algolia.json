@@ -808,6 +808,31 @@
         ]
     },
     {
+        "title": "记一次使用 Kustomize 时遇到的愚蠢问题",
+        "uri": "posts/kustomize-err-1",
+        "content": "CI CD         Kustomize     pipeline                Kustomize         deploy yaml         patch       Kubernetes             kubectl apply  k                error  failed find object appsv1Deployment myapp apply patch                                    apiVersion              patch   apiVersion                Google                                issue                      Google                                       patch                         name     base   overlays       base    name myapp    overlays    name my app        issue",
+        "objectID": "posts/kustomize-err-1",
+        "date": "2019-07-03T05:44:50.000Z",
+        "draft": false,
+        "banner": "https://wx1.sinaimg.cn/large/ad5fbf65gy1g4mmuqm6n2j2098048a9z.jpg",
+        "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
+        "summary": "解决使用 Kustomize 时遇到的报错： error: failed to find an object with apps_v1_Deployment|myapp to apply the patch ",
+        "tags": [
+            "kubernetes",
+            "kustomize",
+            "工具"
+        ],
+        "categories": [
+            "kustomize"
+        ],
+        "keywords": [
+            "kubernetes",
+            "kustomize",
+            "工具"
+        ]
+    },
+    {
         "title": "自动合并Kubeconfig，实现多k8s集群切换",
         "uri": "posts/merge-kubeconfig",
         "content": "kubernetes                                kubernetes       kubernetes                                                                                                          rancher                                      Context  kubectl config use context      kubectl config view                kubeconfig                                 apiVersion  v1 kind  Config preferences     clusters  cluster  name   cluster name  users  name   user name  contexts  context  cluster   cluster name  user   user name  name   context name  current context   context name                                    kubeconfig        kubeconfig    yaml              kubeconfig  json                                           kubernetes                                                  kubeconfig      yaml                                          json                             kubeconfig            kubeconfig          GitHub https   github com sunny0826 mergeKubeConfig                      kubernetes      istio            kube    config           Python   2 7  3                     pip install PyYAML             kubeconfig     python merge py    kubeconfig     python merge py  d  custom dir            config     kube    cp config    kube          kubernetes     kubectl config get contexts     kubernetes       kubectl config   help   kubernetes   kubectl config use context  your contexts        kubernetes",

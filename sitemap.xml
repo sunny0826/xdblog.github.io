@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.maoxianplay.com/posts/kustomize-err-1/</loc>
+    <lastmod>2019-07-03T13:44:50+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.maoxianplay.com/posts/kubecon-2019/</loc>
     <lastmod>2019-07-02T10:18:18+08:00</lastmod>
   </url>
@@ -264,7 +269,7 @@
   
   <url>
     <loc>https://blog.maoxianplay.com/</loc>
-    <lastmod>2019-07-02T10:18:18+08:00</lastmod>
+    <lastmod>2019-07-03T13:44:50+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -288,7 +293,7 @@
   
   <url>
     <loc>https://blog.maoxianplay.com/tags/kubernetes/</loc>
-    <lastmod>2019-05-23T12:50:12+08:00</lastmod>
+    <lastmod>2019-07-03T13:44:50+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -300,13 +305,13 @@
   
   <url>
     <loc>https://blog.maoxianplay.com/tags/kustomize/</loc>
-    <lastmod>2019-05-23T12:50:12+08:00</lastmod>
+    <lastmod>2019-07-03T13:44:50+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.maoxianplay.com/categories/kustomize/</loc>
-    <lastmod>2019-05-23T12:50:12+08:00</lastmod>
+    <lastmod>2019-07-03T13:44:50+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -370,7 +375,7 @@
   
   <url>
     <loc>https://blog.maoxianplay.com/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2019-05-23T12:50:12+08:00</lastmod>
+    <lastmod>2019-07-03T13:44:50+08:00</lastmod>
     <priority>0</priority>
   </url>
   
