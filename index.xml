@@ -6,10 +6,19 @@
     <description>Recent content on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 03 Jul 2019 15:20:31 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jul 2019 09:16:41 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>由一封邮件看 Mailing List 在开源项目中的重要性</title>
+      <link>https://blog.maoxianplay.com/posts/kubernetes-client-python/</link>
+      <pubDate>Thu, 04 Jul 2019 09:16:41 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/posts/kubernetes-client-python/</guid>
+      <description>只要仔细找，想要的轮子总会有的。 &amp;mdash; 某不知名 DevOps 工程师 感谢 kubernetes-dev 的 Mailing List ！早上在浏览邮件时发现了下面这封有趣的邮件： 接触 Kubernetes 也有不短的时间了，也见证了 Kubernetes</description>
+    </item>
     
     <item>
       <title>使用 Kustomize 帮你管理 kubernetes 应用（五）：配合 kubedog 完善 CI/CD 的最后一步</title>

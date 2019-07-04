@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
+  <meta name="baidu-site-verification" content="A85okozwVV" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="never">
+  <title>由一封邮件看 Mailing List 在开源项目中的重要性 · 郭旭东的博客</title>
+  <meta name="author" content="郭旭东" />
+
+  
+  <meta name="keywords" content="kubernetes, python, 工具">
+  
+
+  <meta name="generator" content="Hugo 0.52" />
+
+  
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  
+  <link href="/css/animate.css" rel="stylesheet">
+
+  
+  
+  <link href="/css/style.violet.css" rel="stylesheet" id="theme-stylesheet">
+  
+
+
+  
+  <link rel="stylesheet" type="text/css" href="/css/donate.css">
+
+  
+  <link href="/css/custom.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/search.css" />
+
+  
+  
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+
+  
+  <link href="/css/owl.carousel.css" rel="stylesheet">
+  <link href="/css/owl.theme.css" rel="stylesheet">
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="GuoXD Blog">
+
+  
+  <link rel="stylesheet" href="/css/prism.css" />
+  
+  <link rel="stylesheet" href="/css/share.min.css" />
+
+  
+  <meta property="og:title" content="由一封邮件看 Mailing List 在开源项目中的重要性" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/posts/kubernetes-client-python//" />
+  <meta property="og:image" content="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" />
+  <meta property="og:image:alt" content="ServiceMesher Logo" />
+
+  
+  <meta name="description" content="从发现、使用 Kubernetes Client/Python 这个项目的过程，谈谈 mailing list 在开源项目中的重要性。">
+  <meta property="og:description" content="从发现、使用 Kubernetes Client/Python 这个项目的过程，谈谈 mailing list 在开源项目中的重要性。">
+  <meta name="twitter:description" content="从发现、使用 Kubernetes Client/Python 这个项目的过程，谈谈 mailing list 在开源项目中的重要性。">
+  <meta property="og:description" content="从发现、使用 Kubernetes Client/Python 这个项目的过程，谈谈 mailing list 在开源项目中的重要性。" />
+
+  
+  
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?86f8ba05a3c18723f9672cc23a880558";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+  
+  
+
+</head>
+
+
+  <body>
+
+    <div id="all">
+
+        <header>
+
+          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="/">
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="由一封邮件看 Mailing List 在开源项目中的重要性 logo" class="hidden-xs hidden-sm">
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="由一封邮件看 Mailing List 在开源项目中的重要性 logo" class="visible-xs visible-sm">
+                    <span class="sr-only">由一封邮件看 Mailing List 在开源项目中的重要性 - 跳到主页</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">切换导航</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/">主页</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/posts/">博客</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">小助手写真 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      
+                        <li><a href="/maoxian/">毛线</a></li>
+                      
+                        <li><a href="/sunny/">Sunny</a></li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/contact/">关于</a>
+                    
+                  </li>
+                  
+                  
+                    <li>
+                        <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+                        <span class="hidden-sm hidden-md hidden-lg">搜索</span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+                    </a>
+                    </li>
+                  
+                </ul>
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+<div id="modalSearch" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">博客搜索</h4>
+      </div>
+      <div class="modal-body">
+          
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="输入文章标题或摘要" name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+<script src="/js/algoliasearch.min.js"></script>
+<script src="/js/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("BE80MGWD9D", "77ca6abe5531ce66ff7c3b2486222d85");
+var index = client.initIndex("gxd-blog");
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            baseURL="https:\/\/blog.maoxianplay.com\//"
+            baseURL=baseURL.substring(0,baseURL.length-1)
+            return '<span>' + '<a href="' + baseURL + suggestion.uri+ '">' +
+                suggestion._highlightResult.title.value + '</a></span>'+
+                '<span>'+suggestion._highlightResult.summary.value+'</span>';
+        }
+    }
+});
+</script>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        </header>
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>由一封邮件看 Mailing List 在开源项目中的重要性</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+                        <div class="well">
+                            <div class="author-category">
+                            <i class="fa fa-calendar-o">
+                            2019年7月4日
+                            </i>
+                            |
+                            
+                            作者 <a href="https://github.com/sunny0826">郭旭东</a>
+                            
+                            
+                            
+                            |
+                            1400字 | 阅读大约需要3分钟
+                            </div>
+                            
+                            
+                            <div class="author-category">
+                            
+                            
+                            归档于 <a href="/categories/kustomize">kustomize</a>
+                            
+                            |
+                            
+                            
+                            
+                            标签
+                            
+                            <a style="text-transform:capitalize" href="/tags/kubernetes/"><i>#kubernetes</i></a>
+                            
+                            <a style="text-transform:capitalize" href="/tags/python/"><i>#python</i></a>
+                            
+                            <a style="text-transform:capitalize" href="/tags/%E5%B7%A5%E5%85%B7/"><i>#工具</i></a>
+                            
+                            </div>
+                            
+                            
+                        </div>
+                        <div id="post-content">
+                          
+
+<blockquote>
+<p>只要仔细找，想要的轮子总会有的。
+&mdash; 某不知名 DevOps 工程师</p>
+</blockquote>
+
+<p>感谢 <code>kubernetes-dev</code> 的 Mailing List ！早上在浏览邮件时发现了下面这封有趣的邮件：</p>
+
+<p><img src="https://wx3.sinaimg.cn/large/ad5fbf65gy1g4nkmrb8scj21780q0afv.jpg" alt="image" /></p>
+
+<p>接触 Kubernetes 也有不短的时间了，也见证了 Kubernetes 干掉 Swarm 和 Mesos 成为容器编排领域的事实标准的过程。在享受 Kubernetes 及其生态圈带来的便利的同时也在为 Kubernetes 及 CNCF 项目进行贡献。而使用 <a href="https://github.com/kubernetes/kubectl"><code>kubectl</code></a>、<a href="https://github.com/rancher/rancher"><code>rancher</code></a> 甚至是 <a href="https://github.com/IBM/kui"><code>kui</code></a> 这些 CLI 和 UI 工具对 Kubernetes 集群进行操作和观察。</p>
+
+<p>虽然上面这些工具为操作 Kubernetes 集群带来了极大的便利，但是归根到底还是一些开源项目，并不能满足我们的全部需求。所以我们只能根据我们自己的需求和 Kubernetes 的 api-server 进行定制，但是由于 Kubernetes 的 api-server 比较复杂，短时间内并不是那么好梳理的。</p>
+
+<h2 id="kubernetes-client-python">kubernetes-client/python</h2>
+
+<p>由于我们自研的 DevOps 平台是使用 python 开发的，所以我也基于 python 语言开发了一套 Kubernetes Client ，但总的来说由于 Kubernetes 的功能实在太多，而我的开发实践并不是很多，开发出来的功能只是差强人意。</p>
+
+<p>而 <a href="https://github.com/kubernetes-client/python"><code>kubernetes-client/python</code></a> 这个官方给出的轮子是真的香！</p>
+
+<h3 id="安装方便">安装方便</h3>
+
+<p>这个安装方式简单的令人发指，支持的 python 版本为 <code>2.7 | 3.4 | 3.5 | 3.6 | 3.7</code> 并且和所有 python 依赖包一样，只需要使用 <code>pip</code> 安装即可：</p>
+
+<pre><code class="language-bash">pip install kubernetes
+</code></pre>
+
+<h3 id="简单示例">简单示例</h3>
+
+<p>查看所有的 pod ：</p>
+
+<pre><code class="language-python">#!/usr/bin/env python
+#encoding: utf-8
+#Author: guoxudong
+from kubernetes import client, config
+
+# Configs can be set in Configuration class directly or using helper utility
+config.load_kube_config()
+
+v1 = client.CoreV1Api()
+print(&quot;Listing pods with their IPs:&quot;)
+ret = v1.list_pod_for_all_namespaces(watch=False)
+for i in ret.items:
+    print(&quot;%s\t%s\t%s&quot; % (i.status.pod_ip, i.metadata.namespace, i.metadata.name))
+</code></pre>
+
+<p>运行查看结果：</p>
+
+<pre><code class="language-python">Listing pods with their IPs:
+172.22.1.126	kube-system	coredns-5975fdf55b-bqgkx
+172.22.0.2	kube-system	coredns-5975fdf55b-vxbb4
+10.16.16.13	kube-system	flexvolume-9ccf7
+10.16.16.15	kube-system	flexvolume-h5xn2
+10.16.16.14	kube-system	flexvolume-kvn5x
+10.16.16.17	kube-system	flexvolume-mf4zv
+10.16.16.14	kube-system	kube-proxy-worker-7lpfz
+10.16.16.15	kube-system	kube-proxy-worker-9wd9s
+10.16.16.17	kube-system	kube-proxy-worker-phbbj
+10.16.16.13	kube-system	kube-proxy-worker-pst5d
+172.22.1.9	kube-system	metrics-server-78b597d5bf-wdvqh
+172.22.1.12	kube-system	nginx-ingress-controller-796ccc5d76-9jh5s
+172.22.1.125	kube-system	nginx-ingress-controller-796ccc5d76-jwwwz
+10.16.16.17	kube-system	terway-6mfs8
+10.16.16.14	kube-system	terway-fz9ck
+10.16.16.13	kube-system	terway-t9777
+10.16.16.15	kube-system	terway-xbxlp
+172.22.1.8	kube-system	tiller-deploy-5b5d8dd754-wpcrc
+...
+</code></pre>
+
+<p>果然是一个好轮子，引入 kubeconfig 的方式及展示所有 namespace 的 pod 的方法封装的也十分简洁，是个非常漂亮的范例。建议可以看一下<a href="https://github.com/kubernetes-client/python">源码</a>，肯定会有收获的！</p>
+
+<h3 id="支持版本">支持版本</h3>
+
+<p><code>client-python</code> 遵循 <a href="https://semver.org/lang/zh-CN/">semver</a> 规范，所以在 <code>client-python</code> 的主要版本增加之前，代码将继续使用明确支持的 Kubernetes 集群版本。</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Kubernetes 1.5</th>
+<th>Kubernetes 1.6</th>
+<th>Kubernetes 1.7</th>
+<th>Kubernetes 1.8</th>
+<th>Kubernetes 1.9</th>
+<th>Kubernetes 1.10</th>
+<th>Kubernetes 1.11</th>
+<th>Kubernetes 1.12</th>
+<th>Kubernetes 1.13</th>
+<th>Kubernetes 1.14</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>client-python 1.0</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>client-python 2.0</td>
+<td>+</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>client-python 3.0</td>
+<td>+</td>
+<td>+</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>client-python 4.0</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>client-python 5.0</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>client-python 6.0</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>client-python 7.0</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>client-python 8.0</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>client-python 9.0</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>client-python 10.0</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>✓</td>
+</tr>
+
+<tr>
+<td>client-python HEAD</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="mailing-list-的重要性">Mailing List 的重要性</h2>
+
+<p>这次的收获很大程度得益于 <code>kubernetes-dev</code> 的 Mailing List 也就是邮件列表。这种沟通方式在国内不是很流行，大家更喜欢使用 QQ 和微信这样的即时通讯软件进行交流，但是大多数著名开源项目都是主要使用 <strong>Mailing List</strong> 进行交流，交流的数量甚至比在 GitHub issue 中还多，在与 Apache 、 CNCF 项目开源的贡献者和维护者交流中得知了使用 <strong>Mailing List</strong> 主要考虑是一下几点：</p>
+
+<ul>
+<li>这种异步的交流方式可以让更多关心该话题的开发人员一起加入到讨论中。</li>
+<li>mailing list 是永久保留的，如果你对某个话题感兴趣，可以随时回复邮件，关注这个话题的开发者都会收到邮件，无论这个话题是昨天提出的，还是去年提出的，可以有助于解决一些陈年老 BUG （俗称技术债）。</li>
+<li>即时通讯软件虽然很便利，但是问题很快会被评论顶掉，虽然诸如 slack 这样的工具解决了部分这方面的问题，但是还是不如 mailing list 好用。</li>
+<li>并不是所有地区的开发者都有高速的宽带，性能优秀的PC，在地球上很多地区还是只能使用拨号上网，网速只有几kb/s，他们甚至 GitHub issue 都无法使用。但是你不能剥夺他们参与开源项目的权利，而 mailing list 是一种很好的交流方式。</li>
+<li>通过 mailing list 可以很好掌握社区动态，效果明显好于 GitHub watch ，因为并不是项目的所有 commit 都是你关心的。</li>
+</ul>
+
+<h2 id="结语">结语</h2>
+
+<p>如果你有志于参与到开源运动，在享受开源软件带来便利的同事，还想为开源软件做出自己的贡献，那么 mailing list 是你进入社区最好的选择。在 mailing list 中和来自世界各地志同道合的开发者交流中提升自己的能力，创造更大的价值，迈出你参与开源运动的第一步。</p>
+
+                          
+                          
+<div class="entry-shang text-center">
+    <p>「一键投喂 小鱼干/小骨头」</p>
+    <button class="zs show-zs btn btn-bred">投喂</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+    <div class="zs-modal-head">
+        <button type="button" class="close">×</button>
+        <p class="author">
+            <a href="https://blog.maoxianplay.com">
+                <img src="https://wx3.sinaimg.cn/square/ad5fbf65gy1g2o621gcs6j20m80m8gng.jpg"/>
+            小助手毛线</a>
+        </p>
+        <p class="tip"><i></i><span>感谢投喂 <a href="/maoxian">毛线</a> & <a href="/sunny">Sunny</a> </span></p>
+    </div>
+    <div class="zs-modal-body">
+        <div class="zs-modal-btns">
+            <button class="btn btn-blink" data-num="2">2元</button>
+            <button class="btn btn-blink" data-num="5">5元</button>
+            <button class="btn btn-blink" data-num="10">10元</button>
+            <button class="btn btn-blink" data-num="50">50元</button>
+            <button class="btn btn-blink" data-num="100">100元</button>
+            <button class="btn btn-blink" data-num="any">任意金额</button>
+        </div>
+        <div class="zs-modal-pay">
+            <button class="btn btn-bred" id="pay-text">2元</button>
+            <p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+            <img id="pay-image" src="/images/alipay-2.png">
+        </div>
+    </div>
+    <div class="zs-modal-footer">
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="alipay" class="zs-type" checked="checked" style="float: left;">
+            <span class="zs-alipay">
+                <img src="/images/alipay-btn.png">
+            </span>
+        </label>
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="wechat" class="zs-type" style="float: left;">
+            <span class="zs-wechat">
+                <img src="/images/wechat-btn.png">
+            </span>
+        </label>
+    </div>
+</div>
+<script type="text/javascript" src="/js/jquery.min.js"></script> 
+<script type="text/javascript" src="/js/zanshang.js"></script> 
+
+                          
+                          <div class="social-share" data-initialized="true" data-wechat-qrcode-title="分享更快乐">
+    <hr>
+    <center>
+    <font style="font-size:18px;color:darkcyan;">分享到：</font>
+    <a href="#" class="social-share-icon icon-weibo"></a>
+    <a href="#" class="social-share-icon icon-wechat"></a>
+    <a href="#" class="social-share-icon icon-twitter"></a>
+    <a href="#" class="social-share-icon icon-linkedin"></a>
+    <a href="#" class="social-share-icon icon-facebook"></a>
+    <a href="#" class="social-share-icon icon-qq"></a>
+    <a href="#" class="social-share-icon icon-qzone"></a>
+    </center>
+</div>
+
+
+<script src="/js/social-share.min.js"></script>
+
+                        </div>
+                        
+                        
+                        
+                        
+                        <ul class="pager blog-pager">
+                        
+                        <li class="previous">
+                        <a href="https://blog.maoxianplay.com/posts/kustomize-5/" data-toggle="tooltip" data-placement="top" title="使用 Kustomize 帮你管理 kubernetes 应用（五）：配合 kubedog 完善 CI/CD 的最后一步">&larr; 更旧</a>
+                        </li>
+                         
+                        </ul>
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        <div class="panel panel-default sidebar-menu">
+     
+    <div class="panel-heading">
+     <h3 class="panel-title">相关文章</h3>
+    </div>
+    <div class="panel-body">
+     <ul class="nav nav-pills nav-stacked">
+        
+        <li><a href="/posts/kustomize-5/"><i class="fa fa-link"></i>使用 Kustomize 帮你管理 kubernetes 应用（五）：配合 kubedog 完善 CI/CD 的最后一步</a></li>
+         
+        <li><a href="/posts/kustomize-err-1/"><i class="fa fa-link"></i>记一次使用 Kustomize 时遇到的愚蠢问题</a></li>
+         
+        <li><a href="/posts/kustomize-4/"><i class="fa fa-link"></i>使用 Kustomize 帮你管理 kubernetes 应用（四）：简述核心配置 kustomization.yaml</a></li>
+         
+        <li><a href="/posts/kustomize-3/"><i class="fa fa-link"></i>使用 Kustomize 帮你管理 kubernetes 应用（三）：将 Kustomize 应用于 CI/CD</a></li>
+         
+        <li><a href="/posts/kustomize-2/"><i class="fa fa-link"></i>使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法</a></li>
+         
+     </ul>
+    </div>
+     
+</div>
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">分类</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            <li><a href="/categories/devops"><i class="fa fa-navicon"></i>devops (3)</a>
+            </li>
+            
+            <li><a href="/categories/istio"><i class="fa fa-navicon"></i>istio (3)</a>
+            </li>
+            
+            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (8)</a>
+            </li>
+            
+            <li><a href="/categories/kustomize"><i class="fa fa-navicon"></i>kustomize (7)</a>
+            </li>
+            
+            <li><a href="/categories/%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f%e5%bc%80%e5%8f%91"><i class="fa fa-navicon"></i>应用程序开发 (1)</a>
+            </li>
+            
+            <li><a href="/categories/%e6%9c%8d%e5%8a%a1%e7%bd%91%e6%a0%bc"><i class="fa fa-navicon"></i>服务网格 (2)</a>
+            </li>
+            
+            <li><a href="/categories/%e7%a8%8b%e5%ba%8f%e5%91%98%e8%b6%a3%e9%97%bb"><i class="fa fa-navicon"></i>程序员趣闻 (3)</a>
+            </li>
+            
+            <li><a href="/categories/%e7%b3%bb%e7%bb%9f"><i class="fa fa-navicon"></i>系统 (1)</a>
+            </li>
+            
+            <li><a href="/categories/%e7%bf%bb%e8%af%91"><i class="fa fa-navicon"></i>翻译 (7)</a>
+            </li>
+            
+            <li><a href="/categories/%e9%83%a8%e7%bd%b2%e5%ae%89%e8%a3%85"><i class="fa fa-navicon"></i>部署安装 (4)</a>
+            </li>
+            
+            <li><a href="/categories/%e9%97%ae%e9%a2%98%e8%a7%a3%e5%86%b3"><i class="fa fa-navicon"></i>问题解决 (6)</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+    <div class="panel-heading">
+      <h3 class="panel-title">标签</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="/tags/devops"><i class="fa fa-tags"></i> devops</a>
+            </li>
+            
+            <li><a href="/tags/docker"><i class="fa fa-tags"></i> docker</a>
+            </li>
+            
+            <li><a href="/tags/drone"><i class="fa fa-tags"></i> drone</a>
+            </li>
+            
+            <li><a href="/tags/github"><i class="fa fa-tags"></i> github</a>
+            </li>
+            
+            <li><a href="/tags/istio"><i class="fa fa-tags"></i> istio</a>
+            </li>
+            
+            <li><a href="/tags/jenkins"><i class="fa fa-tags"></i> jenkins</a>
+            </li>
+            
+            <li><a href="/tags/kubernetes"><i class="fa fa-tags"></i> kubernetes</a>
+            </li>
+            
+            <li><a href="/tags/kustomize"><i class="fa fa-tags"></i> kustomize</a>
+            </li>
+            
+            <li><a href="/tags/linux"><i class="fa fa-tags"></i> linux</a>
+            </li>
+            
+            <li><a href="/tags/prometheus"><i class="fa fa-tags"></i> prometheus</a>
+            </li>
+            
+            <li><a href="/tags/python"><i class="fa fa-tags"></i> python</a>
+            </li>
+            
+            <li><a href="/tags/rancher"><i class="fa fa-tags"></i> rancher</a>
+            </li>
+            
+            <li><a href="/tags/service-mesh"><i class="fa fa-tags"></i> service-mesh</a>
+            </li>
+            
+            <li><a href="/tags/sonar"><i class="fa fa-tags"></i> sonar</a>
+            </li>
+            
+            <li><a href="/tags/%e4%ba%91%e5%8e%9f%e7%94%9f"><i class="fa fa-tags"></i> 云原生</a>
+            </li>
+            
+            <li><a href="/tags/%e5%8d%8e%e4%b8%ba%e4%ba%91"><i class="fa fa-tags"></i> 华为云</a>
+            </li>
+            
+            <li><a href="/tags/%e5%ae%b9%e5%99%a8"><i class="fa fa-tags"></i> 容器</a>
+            </li>
+            
+            <li><a href="/tags/%e5%b7%a5%e5%85%b7"><i class="fa fa-tags"></i> 工具</a>
+            </li>
+            
+            <li><a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1"><i class="fa fa-tags"></i> 微服务</a>
+            </li>
+            
+            <li><a href="/tags/%e6%97%a5%e5%bf%97"><i class="fa fa-tags"></i> 日志</a>
+            </li>
+            
+            <li><a href="/tags/%e7%bf%bb%e8%af%91"><i class="fa fa-tags"></i> 翻译</a>
+            </li>
+            
+            <li><a href="/tags/%e8%bd%af%e4%bb%b6%e8%ae%be%e8%ae%a1"><i class="fa fa-tags"></i> 软件设计</a>
+            </li>
+            
+            <li><a href="/tags/%e9%98%bf%e9%87%8c%e4%ba%91"><i class="fa fa-tags"></i> 阿里云</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+            </div>
+            
+        </div>
+        
+
+        <footer id="footer">
+    <div class="container">
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>关于我们</h4>
+
+            <p><p>凯京科技-新物流平台领军者</p><img src=https://wx4.sinaimg.cn/thumb150/ad5fbf65ly1g0szvh8amaj20dw0dwwfc.jpg></p>
+
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+             
+            <h4>最新博客</h4>
+
+            <div class="blog-entries">
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/posts/kubernetes-client-python/">
+                          
+                          <img src="https://ws1.sinaimg.cn/large/ad5fbf65gy1g4nkephdw7j21qf15odp5.jpg" class="img-responsive" alt="由一封邮件看 Mailing List 在开源项目中的重要性">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/kubernetes-client-python/">由一封邮件看 Mailing List 在开源项目中的重要性</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/posts/kustomize-5/">
+                          
+                          <img src="http://wx2.sinaimg.cn/large/ad5fbf65gy1g4mm41w485j21qc15oq6d.jpg" class="img-responsive" alt="使用 Kustomize 帮你管理 kubernetes 应用（五）：配合 kubedog 完善 CI/CD 的最后一步">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/kustomize-5/">使用 Kustomize 帮你管理 kubernetes 应用（五）：配合 kubedog 完善 CI/CD 的最后一步</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/posts/kustomize-err-1/">
+                          
+                          <img src="https://wx1.sinaimg.cn/large/ad5fbf65gy1g4mmuqm6n2j2098048a9z.jpg" class="img-responsive" alt="记一次使用 Kustomize 时遇到的愚蠢问题">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/kustomize-err-1/">记一次使用 Kustomize 时遇到的愚蠢问题</a></h5>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr class="hidden-md hidden-lg">
+             
+
+        </div>
+        
+
+        
+        <div class="col-md-4 col-sm-6">
+
+          <h4>联系</h4>
+
+            <p>加我微信（请备注姓名-公司）</p><p><img src="https://ws1.sinaimg.cn/thumb150/ad5fbf65ly1g0szrz7jd6j20ah0ahjtd.jpg"></p>
+      
+
+
+            <a href="/contact" class="btn btn-small btn-template-main">跳到联系页面</a>
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Hugo模板来自</p>
+            
+            
+            <p class="pull-left">&nbsp;<a href="http://www.miibeian.gov.cn/"> <a href="https://www.servicemesher.com/">ServiceMesher社区<a/></a></p>
+            
+            <p class="pull-right">
+              模板来自 <a href="http://bootstrapious.com/free-templates">Bootstrapious</a>.
+              
+              移植到 Hugo 来自 <a href="https://github.com/devcows/hugo-universal-theme">DevCows</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    </div>
+    
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+<script src="/js/front.js"></script>
+
+
+<script src="/js/owl.carousel.min.js"></script>
+
+<script src="/js/prism.js"></script>
+
+
+<script src="/js/algoliasearch.min.js"></script>
+<script src="/js/autocomplete.min.js"></script>
+
+
+  </body>
+</html>
