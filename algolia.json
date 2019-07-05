@@ -1024,6 +1024,32 @@
         ]
     },
     {
+        "title": "【转】Kubernetes 儿童插图指南",
+        "uri": "posts/the-childrens-illustrated-guide-to-kubernetes",
+        "content": "https   juejin im post 5d1b2a656fb9a07edc0b7058 Kubernetes                                         Phippy                     PHP                                                                                          Web                           PHP                 Web               PHP                           Phippy                       Phippy                                                                                                                                                                       Phippy                                                                    PHP           Kube               Kubernetes                           Cybernetic   Gubernatorial       Kubernetes                                     Phippy                                             Kubernetes                                                                                        Phippy             Kube          Phippy             Kubernetes   Pod                     Pod                                   Pod         Kubernetes       Pod       Kubernetes          Phippy                                                                          Phippy      Replication Controller  Replication Controller            Pod        Replication Controller      Pod                    Replication Controller Kubernetes     Pod                                                                          N          Kube                             Phippy   Replication Controller                  Kube                                           Pod    Pod               Kubernetes              Pod   Replication Controller                 Pod          IP                        Kurbenetes                     Phippy                 Phippy     Goldie               Goldie                Phippy      Phippy                               Goldie                          Phippy        Goldie                                                                         Ceph Gluster                    Phippy     Kube                      Goldie                                                                       Kube                       Kubernetes            Pod Replication Controller                                         Phippy            Kube                                 Phippy             Phippy",
+        "objectID": "posts/the-childrens-illustrated-guide-to-kubernetes",
+        "date": "2019-07-04T08:50:58.000Z",
+        "draft": false,
+        "banner": "https://ws4.sinaimg.cn/large/ad5fbf65gy1g4nwsdbr8wj20qo0hs0w2.jpg",
+        "author": "Matt Butcher",
+        "authorlink": "https://www.cncf.io/the-childrens-illustrated-guide-to-kubernetes/",
+        "translator": "江五渣",
+        "translatorlink": "http://jalan.space",
+        "originallink": "https://juejin.im/post/5d1b2a656fb9a07edc0b7058",
+        "summary": "献给所有试图向孩子们解释软件工程的家长。",
+        "tags": [
+            "翻译",
+            "kubernetes"
+        ],
+        "categories": [
+            "翻译"
+        ],
+        "keywords": [
+            "翻译",
+            "kubernetes"
+        ]
+    },
+    {
         "title": "什么的容器？Docker 工作原理及容器化简易指南",
         "uri": "posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works",
         "content": "Docker                                                 kubernetes                           Docker                         Docker     Docker                                       Docker                           Docker                                                                                    CPU                                                                                                                                          Linux                 hypervisor               Linux                                               namespaces        Linux namespace               CPU                        namespaces               namespace             namespace                                 PID                                cgroups cgroups                            16G             namespace               1GB             Docker             Docker       Docker                        Docker                    namespace                        Docker                       Docker      Linux namespace   cgroup                                              Docker                                                                             Linux                      hypervisor                                               namespace   cgroups      Linux                               Docker     macOS   Windows      Docker                Linux         Linux                                             Docker            Docker                   Docker                 Docker          C      Web                       Web            Docker                                                                                Docker                                                              Docker                                       reds Docker        Debian        rootfs tarball           Redis               Alpine Linux           Docker      alpine                     Alpine Linux         5 MB                   umermansoor dockerprj  touch Dockerfile          Use Alpine Linux rootfs tarball base image alpine 3 9 Set working directory   home  WORKDIR   home  Setup application container s file system RUN wget http   www cs cmu edu afs cs academic class 15213 s00 www class28 tiny c      apk add build base      gcc tiny c  o tiny      echo  Hello World     index html Start web server  container s entry point CMD     tiny    8082   Expose port 8082 EXPOSE 8082                    umermansoor dockerprj  docker build  t codeahoydocker                   Successfully tagged codeahoydocker latest                               Alpine Linux         Web                                       umermansoor dockerprj  docker run  p 8082 8082 codeahoydocker latest                               Docker                                              Docker   Kubernetes                                                           Docker                                   TCP         1000      Docker                                            Umer Mansoor        Facebook   Twitter                 https   codeahoy com 2019 04 12 what are containers a simple guide to containerization and how docker works",

@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.maoxianplay.com/posts/the-childrens-illustrated-guide-to-kubernetes/</loc>
+    <lastmod>2019-07-04T16:50:58+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.maoxianplay.com/posts/kubernetes-client-python/</loc>
     <lastmod>2019-07-04T09:16:41+08:00</lastmod>
   </url>
@@ -279,7 +284,7 @@
   
   <url>
     <loc>https://blog.maoxianplay.com/</loc>
-    <lastmod>2019-07-04T09:16:41+08:00</lastmod>
+    <lastmod>2019-07-04T16:50:58+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -303,7 +308,7 @@
   
   <url>
     <loc>https://blog.maoxianplay.com/tags/kubernetes/</loc>
-    <lastmod>2019-07-04T09:16:41+08:00</lastmod>
+    <lastmod>2019-07-04T16:50:58+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -433,13 +438,13 @@
   
   <url>
     <loc>https://blog.maoxianplay.com/tags/%E7%BF%BB%E8%AF%91/</loc>
-    <lastmod>2019-04-30T13:38:12+08:00</lastmod>
+    <lastmod>2019-07-04T16:50:58+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.maoxianplay.com/categories/%E7%BF%BB%E8%AF%91/</loc>
-    <lastmod>2019-05-09T09:55:11+08:00</lastmod>
+    <lastmod>2019-07-04T16:50:58+08:00</lastmod>
     <priority>0</priority>
   </url>
   
