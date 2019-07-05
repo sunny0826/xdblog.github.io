@@ -6,7 +6,7 @@
     <description>Recent content in Kubernetes on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 04 Jul 2019 16:50:58 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jul 2019 09:50:58 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>【转】Kubernetes 儿童插图指南</title>
       <link>https://blog.maoxianplay.com/posts/the-childrens-illustrated-guide-to-kubernetes/</link>
-      <pubDate>Thu, 04 Jul 2019 16:50:58 +0800</pubDate>
+      <pubDate>Fri, 05 Jul 2019 09:50:58 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/the-childrens-illustrated-guide-to-kubernetes/</guid>
       <description>转自掘金社区，原文地址：https://juejin.im/post/5d1b2a656fb9a07edc0b7058 Kubernetes 儿童插图指南 献给所有</description>
