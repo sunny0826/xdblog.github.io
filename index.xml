@@ -6,10 +6,19 @@
     <description>Recent content on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 05 Jul 2019 09:50:58 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 06 Jul 2019 09:40:42 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>语义化版本控制规范（SemVer）</title>
+      <link>https://blog.maoxianplay.com/posts/semver/</link>
+      <pubDate>Sat, 06 Jul 2019 09:40:42 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/posts/semver/</guid>
+      <description>原文地址：https://semver.org/lang/zh-CN/ 语义化版本 2.0.0 提供多种语言，语义化版本控制的规范是由 Gravatars 创办者兼 GitHub 共同创办</description>
+    </item>
     
     <item>
       <title>【转】Kubernetes 儿童插图指南</title>

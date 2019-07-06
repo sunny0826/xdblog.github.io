@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.maoxianplay.com/posts/semver/</loc>
+    <lastmod>2019-07-06T09:40:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.maoxianplay.com/posts/the-childrens-illustrated-guide-to-kubernetes/</loc>
     <lastmod>2019-07-05T09:50:58+08:00</lastmod>
   </url>
@@ -253,13 +258,13 @@
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/categories/devops/</loc>
+    <loc>https://blog.maoxianplay.com/tags/devops/</loc>
     <lastmod>2019-05-21T08:59:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/tags/devops/</loc>
+    <loc>https://blog.maoxianplay.com/categories/devops/</loc>
     <lastmod>2019-05-21T08:59:00+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -284,18 +289,18 @@
   
   <url>
     <loc>https://blog.maoxianplay.com/</loc>
-    <lastmod>2019-07-05T09:50:58+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/categories/istio/</loc>
-    <lastmod>2019-03-21T09:42:18+08:00</lastmod>
+    <lastmod>2019-07-06T09:40:42+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.maoxianplay.com/tags/istio/</loc>
+    <lastmod>2019-03-21T09:42:18+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/categories/istio/</loc>
     <lastmod>2019-03-21T09:42:18+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -307,26 +312,26 @@
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/categories/kubernetes/</loc>
-    <lastmod>2019-04-30T18:46:24+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.maoxianplay.com/tags/kubernetes/</loc>
     <lastmod>2019-07-05T09:50:58+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/categories/kustomize/</loc>
-    <lastmod>2019-07-04T09:16:41+08:00</lastmod>
+    <loc>https://blog.maoxianplay.com/categories/kubernetes/</loc>
+    <lastmod>2019-04-30T18:46:24+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.maoxianplay.com/tags/kustomize/</loc>
     <lastmod>2019-07-03T15:20:31+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/categories/kustomize/</loc>
+    <lastmod>2019-07-04T09:16:41+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -374,7 +379,7 @@
   
   <url>
     <loc>https://blog.maoxianplay.com/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/</loc>
-    <lastmod>2019-07-02T10:18:18+08:00</lastmod>
+    <lastmod>2019-07-06T09:40:42+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -402,13 +407,13 @@
   
   <url>
     <loc>https://blog.maoxianplay.com/categories/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2019-02-14T14:07:06+08:00</lastmod>
+    <lastmod>2019-07-06T09:40:42+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.maoxianplay.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
-    <lastmod>2019-02-14T14:07:06+08:00</lastmod>
+    <lastmod>2019-07-06T09:40:42+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -437,20 +442,20 @@
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/categories/%E7%BF%BB%E8%AF%91/</loc>
-    <lastmod>2019-07-05T09:50:58+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.maoxianplay.com/tags/%E7%BF%BB%E8%AF%91/</loc>
     <lastmod>2019-07-05T09:50:58+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://blog.maoxianplay.com/categories/%E7%BF%BB%E8%AF%91/</loc>
+    <lastmod>2019-07-05T09:50:58+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.maoxianplay.com/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/</loc>
-    <lastmod>2019-02-14T14:07:06+08:00</lastmod>
+    <lastmod>2019-07-06T09:40:42+08:00</lastmod>
     <priority>0</priority>
   </url>
   
