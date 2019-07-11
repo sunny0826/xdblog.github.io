@@ -336,6 +336,27 @@
         ]
     },
     {
+        "title": "GitOps 与 ChatOps 的落地实践",
+        "uri": "posts/gitops-and-chatops",
+        "content": "GitOps   ChatOps          DevOps   DevOps                                                                                                  DevOps                                              DevOps                                                                         GitOps   ChatOps     DevOps                          Git                           GitOps GitOps                                           Git            Git                            Pull Request     Gi  t        Kubernetes                    Git                                                  GitOps                                            gitlab     github                                         GitOps                              CI CD                                      Git       fork                                     GitOps              git             CI CD                                                                Git                DevOps                                                 ChatOps ChatOps                                                                                                          ChatOps                                                                                                                                                                                                                        DevOps                       DevOps                                      ChatOps           GitHub                 Kubernetes        PR          k8s ci robot            RP              PR    commit         Reviewers                  Reviewers           commit                                          Prow    Google          CI CD                Prow                                              ChatOps                                    11       iOS app Android app       Twitter Chrome       Facebook      RSS Telegram          11           slack                                                           ChatOps                                  ChatOps        GitOps   ChatOps        Drone    GitOps DevOps                                           CI CD            jenkins   jenkins                                         jenkins       Job            Jenkinsfile      pipeline       gitlab         Job              SCM          jenkins            Job                                   drone CI    GitOps                         CI CD                         fork                           GitHub   DockerHub                         git                              drone CI        drone yml                 DevOps       Drone                     Java   Node   Python             DevOps      GitLab              drone yml         git                                                                           Outgoing      ChatOps                                                Outgoing           ChatOps            Outgoing                                                                                                                                                            DevOps       API                                                                                                                   DNS    Kubernetes                                              GitOps   ChatOps                GitOps   ChatOps        2            DevOps                   GitOps   ChatOps                                              GitOps   ChatOps                       GitOps DevOps      ChatOps",
+        "objectID": "posts/gitops-and-chatops",
+        "date": "2019-07-11T01:24:17.000Z",
+        "draft": false,
+        "banner": "https://wx2.sinaimg.cn/large/ad5fbf65gy1g4vxi3840tj21l215on1f.jpg",
+        "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
+        "summary": "本文介绍 GitOps 和 ChatOps 这两种 DevOps 实践，通过版本控制软件 Git 和实时聊天软件来达到提升交付速度和研发效率的目的。",
+        "tags": [
+            "devops"
+        ],
+        "categories": [
+            "devops"
+        ],
+        "keywords": [
+            "devops"
+        ]
+    },
+    {
         "title": "为ingress配置SSL证书，实现HTTPS访问",
         "uri": "posts/https-ingress",
         "content": "devops          kubernetes                              http                          HTTPS                   SSL        rancher  SSL     SSL           SSL             SSL                       nginx             rancher                               rancher                                                         yaml                                   secrets apiVersion  v1 data  tls crt       tls key       kind  Secret metadata  name  keking cn namespace  devops plat type  kubernetes io tls  kubernetes    yaml   rancher               ingress                  ingress controller",

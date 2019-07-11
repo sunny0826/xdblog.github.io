@@ -6,10 +6,19 @@
     <description>Recent content in Devops on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 21 May 2019 08:59:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jul 2019 09:24:17 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/categories/devops/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GitOps 与 ChatOps 的落地实践</title>
+      <link>https://blog.maoxianplay.com/posts/gitops-and-chatops/</link>
+      <pubDate>Thu, 11 Jul 2019 09:24:17 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/posts/gitops-and-chatops/</guid>
+      <description>前言 说到 GitOps 和 ChatOps ，那就不得不谈到 DevOps 。 DevOps 作为一种文化，旨在促进开发、测试和运维人员之间的沟通与协作。而促进合作的方式，往往是使用一系列工具，完成</description>
+    </item>
     
     <item>
       <title>轻量快速的 CI 工具 Drone</title>
