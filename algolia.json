@@ -243,32 +243,6 @@
         ]
     },
     {
-        "title": "使用 Helm 在多集群部署应用",
-        "uri": "posts/deploying-apps-on-multiple-kubernetes-clusters-with-helm",
-        "content": "Kubernetes   3                                                                  Kubernetes                           Kubernetes           Helm      chat       git          umbrella chart                                   chat                   API",
-        "objectID": "posts/deploying-apps-on-multiple-kubernetes-clusters-with-helm",
-        "date": "2019-07-14T06:16:56.000Z",
-        "draft": false,
-        "banner": "http://wx4.sinaimg.cn/large/00704eQkgy1frk001fkixj30rs0ku4qp.jpg",
-        "author": "Smaine Kahlouch",
-        "authorlink": "https://medium.com/@smainklh",
-        "translator": "郭旭东",
-        "translatorlink": "https://github.com/sunny0826",
-        "originallink": "https://medium.com/dailymotion/deploying-apps-on-multiple-kubernetes-clusters-with-helm-19ee2b06179e",
-        "summary": "这里填写文章文章摘要。",
-        "tags": [
-            "翻译",
-            "kubernetes"
-        ],
-        "categories": [
-            "翻译"
-        ],
-        "keywords": [
-            "翻译",
-            "kubernetes"
-        ]
-    },
-    {
         "title": "Devops入门手册",
         "uri": "posts/devops-tutorial",
         "content": "DevOps       DevOps       DevOps                                                    DevOps                                        DevOps            DevOps   DevOps                   DevOps   DevOps       DevOps      DevOps           DevOps VS Agile DevOps         DevOps      DevOps              DevOps            DevOps      DevOps       DevOps                   DevOps       DevOps                                                                 DevOps                                                                                                                Forrester Consulting Study      17                          DevOps                             DevOps          DevOps                      2         80                                  DevOps                                                                                                                                                                                                                                                                               DevOps                                                         APM                                                                                             DevOps   DevOps                                                      DevOps                                                                                  DevOps                   50                         DevOps                        DevOps                                                                             DevOps                                               DevOps                                             DevOps   DevOps                                              DevOps                                                                                   DevOps       DevOps                    DevOps                  DevOps          DevOps                                       DevOps                   QA                                                                                                                                             DevOps                                             DevOps           DevOps VS Agile        IT                      DevOps                          DevOps                                        DevOps                                                                                                                   DevOps                                                                                                                DevOps                                     sprint                                      DevOps                                 DevOps             DevOps                   DevOps                                       DevOps                                          DevOps                                                DevOps                                                DevOps                                                          DevOps                            DevOps      DevOps       IT                       IT           DevOps                                DevOps                                      DevOps                                       DevOps                                                DevOps              DevOps                            DevOps                                                                                                                                        DevOps                         DevOps            DevOps      IT                               DevOps                   DevOps         78 696    DevOps      DevOps                DevOps              Amazon web services   Red Hat   Microsoft Academy   DevOps Institute     AWS Certified DevOps Engineer   DevOps                   DevOps     AWS                     DevOps                          300        170    Red Hat Certification     DevOps                     Red Hat Certificate Expertise Platform as a Service Red Hat Certificate Expertise Containerized Application Development Red Hat Certificate Expertise Ansible Automation Red Hat Certificate Expertise Configuration Management Red Hat Certificate Expertise Container Administration Devops Institute Devops Institute      DevOps                  DevOps            Devops Institute                         DevOps Foundation DevOps Foundation Certified Certified Agile Service Manager Certified Agile Process Owner DevOps Test Engineering Continuous Delivery Architecture DevOps Leader DevSecOps Engineering DevOps                                            DevOps           IT        DevOps                                                                                                AWS                                                                    Chef         DevOps                                          DevOps                                                            Jenkins                                                 Splunk                                   App Dynamic      DevOps                                           Nagios                           Nagios                DevOps            DevOps                                     ",
