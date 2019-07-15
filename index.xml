@@ -6,10 +6,19 @@
     <description>Recent content on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 11 Jul 2019 09:24:17 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 14 Jul 2019 14:16:56 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用 Helm 在多集群部署应用</title>
+      <link>https://blog.maoxianplay.com/posts/deploying-apps-on-multiple-kubernetes-clusters-with-helm/</link>
+      <pubDate>Sun, 14 Jul 2019 14:16:56 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/posts/deploying-apps-on-multiple-kubernetes-clusters-with-helm/</guid>
+      <description>在日常工作中，我们在生产环境使用 Kubernetes 已经3年了。但是也面临在多个集群部署应用的挑战，这也是在过去的几年中我一直努力改进工具和工作流的原因。 How we</description>
+    </item>
     
     <item>
       <title>GitOps 与 ChatOps 的落地实践</title>
