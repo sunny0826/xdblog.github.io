@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
+  <meta name="baidu-site-verification" content="A85okozwVV" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="never">
+  <title>Golang 装逼指南：在 GitHub 上构建一个看上去正规的 Golang 项目 · 郭旭东的博客</title>
+  <meta name="author" content="郭旭东" />
+
+  
+  <meta name="keywords" content="go, golang, goreleaser">
+  
+
+  <meta name="generator" content="Hugo 0.52" />
+
+  
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  
+  <link href="/css/animate.css" rel="stylesheet">
+
+  
+  
+  <link href="/css/style.violet.css" rel="stylesheet" id="theme-stylesheet">
+  
+
+
+  
+  <link rel="stylesheet" type="text/css" href="/css/donate.css">
+
+  
+  <link href="/css/custom.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/search.css" />
+
+  
+  
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+
+  
+  <link href="/css/owl.carousel.css" rel="stylesheet">
+  <link href="/css/owl.theme.css" rel="stylesheet">
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="GuoXD Blog">
+
+  
+  <link rel="stylesheet" href="/css/prism.css" />
+  
+  <link rel="stylesheet" href="/css/share.min.css" />
+
+  
+  <meta property="og:title" content="Golang 装逼指南：在 GitHub 上构建一个看上去正规的 Golang 项目" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/posts/golang-project//" />
+  <meta property="og:image" content="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" />
+  <meta property="og:image:alt" content="ServiceMesher Logo" />
+
+  
+  <meta name="description" content="接触 golang 时间很长，但是真正动手开始写 golang 也就是在最近。跟着我在 GitHub 上构建一个看上去正规的 Golang 项目。">
+  <meta property="og:description" content="接触 golang 时间很长，但是真正动手开始写 golang 也就是在最近。跟着我在 GitHub 上构建一个看上去正规的 Golang 项目。">
+  <meta name="twitter:description" content="接触 golang 时间很长，但是真正动手开始写 golang 也就是在最近。跟着我在 GitHub 上构建一个看上去正规的 Golang 项目。">
+  <meta property="og:description" content="接触 golang 时间很长，但是真正动手开始写 golang 也就是在最近。跟着我在 GitHub 上构建一个看上去正规的 Golang 项目。" />
+
+  
+  
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?86f8ba05a3c18723f9672cc23a880558";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+  
+  
+
+</head>
+
+
+  <body>
+
+    <div id="all">
+
+        <header>
+
+          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="/">
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="Golang 装逼指南：在 GitHub 上构建一个看上去正规的 Golang 项目 logo" class="hidden-xs hidden-sm">
+                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="Golang 装逼指南：在 GitHub 上构建一个看上去正规的 Golang 项目 logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Golang 装逼指南：在 GitHub 上构建一个看上去正规的 Golang 项目 - 跳到主页</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">切换导航</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/">主页</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/posts/">博客</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">小助手写真 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      
+                        <li><a href="/maoxian/">毛线</a></li>
+                      
+                        <li><a href="/sunny/">Sunny</a></li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/contact/">关于</a>
+                    
+                  </li>
+                  
+                  
+                    <li>
+                        <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+                        <span class="hidden-sm hidden-md hidden-lg">搜索</span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+                    </a>
+                    </li>
+                  
+                </ul>
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+<div id="modalSearch" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">博客搜索</h4>
+      </div>
+      <div class="modal-body">
+          
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="输入文章标题或摘要" name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+<script src="/js/algoliasearch.min.js"></script>
+<script src="/js/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("BE80MGWD9D", "77ca6abe5531ce66ff7c3b2486222d85");
+var index = client.initIndex("gxd-blog");
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            baseURL="https:\/\/blog.maoxianplay.com\//"
+            baseURL=baseURL.substring(0,baseURL.length-1)
+            return '<span>' + '<a href="' + baseURL + suggestion.uri+ '">' +
+                suggestion._highlightResult.title.value + '</a></span>'+
+                '<span>'+suggestion._highlightResult.summary.value+'</span>';
+        }
+    }
+});
+</script>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        </header>
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Golang 装逼指南：在 GitHub 上构建一个看上去正规的 Golang 项目</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+                        <div class="well">
+                            <div class="author-category">
+                            <i class="fa fa-calendar-o">
+                            2019年7月19日
+                            </i>
+                            |
+                            
+                            作者 <a href="https://github.com/sunny0826">郭旭东</a>
+                            
+                            
+                            
+                            |
+                            1800字 | 阅读大约需要4分钟
+                            </div>
+                            
+                            
+                            <div class="author-category">
+                            
+                            
+                            归档于 <a href="/categories/go">go</a>
+                            
+                            |
+                            
+                            
+                            
+                            标签
+                            
+                            <a style="text-transform:capitalize" href="/tags/go/"><i>#go</i></a>
+                            
+                            </div>
+                            
+                            
+                        </div>
+                        <div id="post-content">
+                          
+
+<h2 id="前言">前言</h2>
+
+<p>接触 golang 时间很长，但是真正动手开始写 golang 也就是在最近。虽然写的不多，但是见过的 golang 项目可是不计其数，从 <a href="https://github.com/kubernetes/kubernetes">Kubernetes</a> 和 <a href="https://github.com/istio/istio">istio</a> 到亲身参与的 <a href="https://github.com/kubernetes-sigs/kustomize">kustomize</a> 再到 Kubernetes 生态圈的众多小工具，比如： <a href="https://github.com/instrumenta/kubeval">kubeval</a> 、 <a href="https://github.com/flant/kubedog">kubedog</a> 等。从项目使用者和贡献者的角度接触了各种形形色色的 golang 项目。作为一个开发人员，在享受各种开源项目带来便利的同时，也希望自己动手开发一个 golang 项目。以我阅项目无数的经验，那么肯定要构建一个看上去正规的 GitHub 项目。</p>
+
+<h2 id="goland-设置">GoLand 设置</h2>
+
+<p>Go 开发环境的安装网上教程很多，这里就不做介绍了。这里主要介绍一下在 GoLand 上开发环境的设置，这里的设置主要在 MacOS 上进行，其他系统可能有所不同。</p>
+
+<h3 id="使用goland-ide-vgo">使用Goland IDE vgo</h3>
+
+<p><code>vgo</code> 是基于 Go Module 规范的包管理工具，同官方的 go mod 命令工具类似。</p>
+
+<ol>
+<li><p>开启 <code>vgo</code>，<code>GoLand</code>-&gt;<code>Preferences</code>-&gt;<code>GO</code>-&gt;<code>Go Modules(vgo)</code>
+<img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g556yudwh8j20s20jhgn4.jpg" alt="image" /></p></li>
+
+<li><p>手动修改 <code>go.mod</code></p>
+
+<p>其中 latest 为最新版本，GoLand 会去下载最新依赖代码，下载成功后会修改 <code>go.mod</code> 并且生成 <code>go.sum</code> 依赖分析文件。</p>
+
+<pre><code class="language-go">module github.com/sunny0826/hamal
+
+go 1.12
+
+require (
+    github.com/mitchellh/go-homedir latest
+    github.com/spf13/cobra latest
+    github.com/spf13/viper latest
+)
+</code></pre></li>
+
+<li><p>更新成功</p>
+
+<p>在更新成功后，会生成 <code>go.sum</code> 文件并修改 <code>go.mod</code> 文件。</p>
+
+<pre><code class="language-go">module github.com/sunny0826/hamal
+
+go 1.12
+
+require (
+    github.com/mitchellh/go-homedir v1.1.0
+    github.com/spf13/cobra v0.0.5
+    github.com/spf13/viper v1.4.0
+)
+
+</code></pre></li>
+
+<li><p>使用快捷键 <code>⌥(option)+↩(return)</code> 或者点击鼠标右键, 选择 <code>Sync packages of github.com/sunny0826/hamal</code> 在 import 处导入依赖。</p></li>
+</ol>
+
+<h3 id="配置代理">配置代理</h3>
+
+<p>如果要选出 golang 最劝退一个原因，那么依赖下载难肯定得票最高！这个时候一个合适的梯子就很重要了，如果没有这个梯子，上面的这步就完全无法完成。这里主要介绍 GoLand 上的配置，Shadowsocks 的安装和配置就不做介绍了。</p>
+
+<p><code>GoLand</code>-&gt;<code>Preferences</code>-&gt;<code>Appearance &amp; Behavior</code>-&gt;<code>System Settings</code>-&gt;<code>HTTP Proxy</code> 这里设置好之后，别忘了点击 <code>Check connection</code> 测试一下梯子搭成没有。
+<img src="https://ws4.sinaimg.cn/large/ad5fbf65gy1g557j6it07j20s20je40p.jpg" alt="image" /></p>
+
+<h3 id="配置-go-fmt-goimports-和-golangci-lint">配置 <code>go fmt</code>、 <code>goimports</code> 和 <code>golangci-lint</code></h3>
+
+<p>这三个工具都是 GoLand 自带的，设置起来十分简单:<code>GoLand</code>-&gt;<code>Preferences</code>-&gt;<code>Tools</code>-&gt;<code>File Watchers</code>，点击添加即可。之后在写完代码之后就会自动触发这3个工具的自动检测，工具作用：</p>
+
+<ul>
+<li><code>go fmt</code> : 统一的代码格式化工具。</li>
+<li><code>golangci-lint</code> : 静态代码质量检测工具，用于包的质量分析。</li>
+<li><code>goimports</code> : 自动 import 依赖包工具。</li>
+</ul>
+
+<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g557ps83gsj20s30njtbs.jpg" alt="image" /></p>
+
+<h3 id="安装配置-golint">安装配置 <code>golint</code></h3>
+
+<p>GoLand 没有自带 <code>golint</code> 工具，需要手动安装：</p>
+
+<pre><code class="language-bash">mkdir -p $GOPATH/src/golang.org/x/
+cd $GOPATH/src/golang.org/x/
+git clone https://github.com/golang/lint.git
+git clone https://github.com/golang/tools.git
+cd $GOPATH/src/golang.org/x/lint/golint
+go install
+</code></pre>
+
+<p>安装成功之后将会在 <code>$GOPATH/bin</code> 目录下看到自动生成了 <code>golint</code> 二进制工具文件。</p>
+
+<p>GoLand 配置 <code>golint</code>，修改 <code>Name</code>, <code>Program</code>, <code>Arguments</code> 三项配置，其中 <code>Arguments</code> 需要加上 <code>-set_exit_status</code> 参数，如图所示：</p>
+
+<p><img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g557z8a5jgj20ln0i0t9z.jpg" alt="image" /></p>
+
+<h2 id="travis-ci-持续集成">Travis CI 持续集成</h2>
+
+<p>在 Github 上装逼怎么能少的了 Travis CI ，直接登录 <a href="https://travis-ci.org/">Travis CI</a>，使用 GitHub 登录，然后选择需要使用 Travis CI 的项目，在项目根目录添加 <code>.travis.yml</code> ，内容如下：</p>
+
+<pre><code class="language-yaml">language: go
+
+go:
+  - 1.12.5
+
+sudo: required
+
+install:
+  - echo &quot;install&quot;
+
+script:
+  - echo &quot;script&quot;
+</code></pre>
+
+<p>这里只是一个示例，在每次 push 代码之后，都会触发 CI，具体语法可以参看<a href="https://docs.travis-ci.com/">官方文档</a>。</p>
+
+<p><strong>装逼重点：</strong> 你以为使用 Travis CI 就是为了持续集成吗？那就太天真了！使用 Travis CI 当然为了他的 Badges ，将 <code>RESULT</code> 拷贝到你的 <code>README.md</code> 里面就好了。</p>
+
+<p><img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g558xf6io4j22dk15an4t.jpg" alt="image" /></p>
+
+<h2 id="go-report-card">GO Report Card</h2>
+
+<p><strong>又一装逼重点</strong>：我们在 GoLand 上安装了 <code>golint</code> 等工具进行代码质量检测，在撸码的时候就能进行代码检查，那么这个就是为了纯装逼了。<a href="https://goreportcard.com/">GO Report Card</a> 是一个 golang 代码检测网站，你只需把 Github 地址填上去即可。获取 Badges 的方法和 Travis CI 类似，将 MarkDown 中的内容拷贝到 <code>RERADME.md</code> 中就好。</p>
+
+<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g559flsl3xj21t410ok1a.jpg" alt="image" /></p>
+
+<h2 id="goreleaser">GoReleaser</h2>
+
+<p>持续集成有了，代码检查也有了，再下面就是怎么发布一个漂亮的 release 了。如果还在手动发布 release ，那么就又掉 low 了。使用 GoReleaser 一行命令来发布一个漂亮的 release 吧。</p>
+
+<p>由于使用的的 MacOS ，这里使用 <code>brew</code> 来安装：</p>
+
+<pre><code class="language-bash">brew install goreleaser
+</code></pre>
+
+<p>在项目根目录生成 <code>.goreleaser.yml</code> 配置：</p>
+
+<pre><code class="language-bash">goreleaser init
+</code></pre>
+
+<p>配置好了以后要记得往 <code>.gitignore</code> 加上 <code>dist</code>，因为 goreleaser 会默认把编译编译好的文件输出到 <code>dist</code> 目录中。</p>
+
+<p>goreleaser 配置好后，可以先编译测试一下：</p>
+
+<pre><code class="language-bash">goreleaser --skip-validate --skip-publish --snapshot
+</code></pre>
+
+<p><strong>注意：</strong> 首次使用 goreleaser 要配置 GITHUB_TOKEN ，可以在<a href="https://github.com/settings/tokens/new">这里</a>申请，申请好之后运行下面的命令配置<code>GITHUB_TOKEN</code></p>
+
+<pre><code class="language-bash">export GITHUB_TOKEN=&lt;YOUR_TOKEN&gt;
+</code></pre>
+
+<p>确保没有问题，那么就可以操作 git 和 goreleaser 来发布 release 了。</p>
+
+<pre><code class="language-bash">git add .
+git commit -m &quot;add goreleaser&quot;
+git tag -a v0.0.3 -m &quot;First release&quot;
+git push origin master
+git push origin v0.0.3
+</code></pre>
+
+<p>全部搞定后，一行命令起飞：</p>
+
+<pre><code class="language-bash">goreleaser
+</code></pre>
+
+<p><code>goreleaser</code> 配合 CI 食用，效果更佳，这里就不做介绍了。
+<img src="https://wx2.sinaimg.cn/large/ad5fbf65gy1g55a7t8bq4j20sq0liacm.jpg" alt="image" /></p>
+
+<h2 id="badges-展示神器">Badges 展示神器</h2>
+
+<p>这里介绍一个展示 Badges 的神器：<a href="https://shields.io/">https://shields.io/</a> 。这个网站提供各种各样的 Badges ，如果你愿意，完全可以把你的 GitHub README.md 填满，有兴趣的同学可以自取。
+<img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g55aendhrwj22fg19igz0.jpg" alt="image" /></p>
+
+<h2 id="后记">后记</h2>
+
+<p>到这里可以在 GitHub 上装逼的 golang 配置已经介绍的差不多了，其实还有 <a href="https://codecov.io/">Codecov</a>、<a href="https://circleci.com/">CircleCI</a> 等工具，这里就不做介绍了。这里要介绍的是我们的第一个 golang 项目 <a href="https://github.com/sunny0826/hamal">Hamal</a>，该项目是一个命令行工具，用来在不同的镜像仓库之间同步镜像。由于我司推行混合云，使用了阿里云与华为云，而在阿里云或华为云环境互相推镜像的时候时间都比较长，所以开发这个小工具用于在办公网络镜像同步，同时也可以用来将我在 dockerhub 上托管的镜像同步到我们的私有仓库，欢迎拍砖。</p>
+
+                          
+                          
+<div class="entry-shang text-center">
+    <p>「一键投喂 小鱼干/小骨头」</p>
+    <button class="zs show-zs btn btn-bred">投喂</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+    <div class="zs-modal-head">
+        <button type="button" class="close">×</button>
+        <p class="author">
+            <a href="https://blog.maoxianplay.com">
+                <img src="https://wx3.sinaimg.cn/square/ad5fbf65gy1g2o621gcs6j20m80m8gng.jpg"/>
+            小助手毛线</a>
+        </p>
+        <p class="tip"><i></i><span>感谢投喂 <a href="/maoxian">毛线</a> & <a href="/sunny">Sunny</a> </span></p>
+    </div>
+    <div class="zs-modal-body">
+        <div class="zs-modal-btns">
+            <button class="btn btn-blink" data-num="2">2元</button>
+            <button class="btn btn-blink" data-num="5">5元</button>
+            <button class="btn btn-blink" data-num="10">10元</button>
+            <button class="btn btn-blink" data-num="50">50元</button>
+            <button class="btn btn-blink" data-num="100">100元</button>
+            <button class="btn btn-blink" data-num="any">任意金额</button>
+        </div>
+        <div class="zs-modal-pay">
+            <button class="btn btn-bred" id="pay-text">2元</button>
+            <p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+            <img id="pay-image" src="/images/alipay-2.png">
+        </div>
+    </div>
+    <div class="zs-modal-footer">
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="alipay" class="zs-type" checked="checked" style="float: left;">
+            <span class="zs-alipay">
+                <img src="/images/alipay-btn.png">
+            </span>
+        </label>
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="wechat" class="zs-type" style="float: left;">
+            <span class="zs-wechat">
+                <img src="/images/wechat-btn.png">
+            </span>
+        </label>
+    </div>
+</div>
+<script type="text/javascript" src="/js/jquery.min.js"></script> 
+<script type="text/javascript" src="/js/zanshang.js"></script> 
+
+                          
+                          <div class="social-share" data-initialized="true" data-wechat-qrcode-title="分享更快乐">
+    <hr>
+    <center>
+    <font style="font-size:18px;color:darkcyan;">分享到：</font>
+    <a href="#" class="social-share-icon icon-weibo"></a>
+    <a href="#" class="social-share-icon icon-wechat"></a>
+    <a href="#" class="social-share-icon icon-twitter"></a>
+    <a href="#" class="social-share-icon icon-linkedin"></a>
+    <a href="#" class="social-share-icon icon-facebook"></a>
+    <a href="#" class="social-share-icon icon-qq"></a>
+    <a href="#" class="social-share-icon icon-qzone"></a>
+    </center>
+</div>
+
+
+<script src="/js/social-share.min.js"></script>
+
+                        </div>
+                        
+                        
+                        
+                        
+                        <ul class="pager blog-pager">
+                        
+                        <li class="previous">
+                        <a href="https://blog.maoxianplay.com/posts/deploying-apps-on-multiple-kubernetes-clusters-with-helm/" data-toggle="tooltip" data-placement="top" title="使用 Helm 在多集群部署应用">&larr; 更旧</a>
+                        </li>
+                         
+                        </ul>
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        <div class="panel panel-default sidebar-menu">
+     
+</div>
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">分类</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            <li><a href="/categories/devops"><i class="fa fa-navicon"></i>devops (4)</a>
+            </li>
+            
+            <li><a href="/categories/go"><i class="fa fa-navicon"></i>go (1)</a>
+            </li>
+            
+            <li><a href="/categories/istio"><i class="fa fa-navicon"></i>istio (3)</a>
+            </li>
+            
+            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (9)</a>
+            </li>
+            
+            <li><a href="/categories/kustomize"><i class="fa fa-navicon"></i>kustomize (7)</a>
+            </li>
+            
+            <li><a href="/categories/%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f%e5%bc%80%e5%8f%91"><i class="fa fa-navicon"></i>应用程序开发 (2)</a>
+            </li>
+            
+            <li><a href="/categories/%e6%9c%8d%e5%8a%a1%e7%bd%91%e6%a0%bc"><i class="fa fa-navicon"></i>服务网格 (2)</a>
+            </li>
+            
+            <li><a href="/categories/%e7%a8%8b%e5%ba%8f%e5%91%98%e8%b6%a3%e9%97%bb"><i class="fa fa-navicon"></i>程序员趣闻 (3)</a>
+            </li>
+            
+            <li><a href="/categories/%e7%b3%bb%e7%bb%9f"><i class="fa fa-navicon"></i>系统 (1)</a>
+            </li>
+            
+            <li><a href="/categories/%e7%bf%bb%e8%af%91"><i class="fa fa-navicon"></i>翻译 (9)</a>
+            </li>
+            
+            <li><a href="/categories/%e9%83%a8%e7%bd%b2%e5%ae%89%e8%a3%85"><i class="fa fa-navicon"></i>部署安装 (4)</a>
+            </li>
+            
+            <li><a href="/categories/%e9%97%ae%e9%a2%98%e8%a7%a3%e5%86%b3"><i class="fa fa-navicon"></i>问题解决 (6)</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+    <div class="panel-heading">
+      <h3 class="panel-title">标签</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="/tags/devops"><i class="fa fa-tags"></i> devops</a>
+            </li>
+            
+            <li><a href="/tags/docker"><i class="fa fa-tags"></i> docker</a>
+            </li>
+            
+            <li><a href="/tags/drone"><i class="fa fa-tags"></i> drone</a>
+            </li>
+            
+            <li><a href="/tags/github"><i class="fa fa-tags"></i> github</a>
+            </li>
+            
+            <li><a href="/tags/go"><i class="fa fa-tags"></i> go</a>
+            </li>
+            
+            <li><a href="/tags/istio"><i class="fa fa-tags"></i> istio</a>
+            </li>
+            
+            <li><a href="/tags/jenkins"><i class="fa fa-tags"></i> jenkins</a>
+            </li>
+            
+            <li><a href="/tags/kubernetes"><i class="fa fa-tags"></i> kubernetes</a>
+            </li>
+            
+            <li><a href="/tags/kustomize"><i class="fa fa-tags"></i> kustomize</a>
+            </li>
+            
+            <li><a href="/tags/linux"><i class="fa fa-tags"></i> linux</a>
+            </li>
+            
+            <li><a href="/tags/prometheus"><i class="fa fa-tags"></i> prometheus</a>
+            </li>
+            
+            <li><a href="/tags/python"><i class="fa fa-tags"></i> python</a>
+            </li>
+            
+            <li><a href="/tags/rancher"><i class="fa fa-tags"></i> rancher</a>
+            </li>
+            
+            <li><a href="/tags/service-mesh"><i class="fa fa-tags"></i> service-mesh</a>
+            </li>
+            
+            <li><a href="/tags/sonar"><i class="fa fa-tags"></i> sonar</a>
+            </li>
+            
+            <li><a href="/tags/%e4%ba%91%e5%8e%9f%e7%94%9f"><i class="fa fa-tags"></i> 云原生</a>
+            </li>
+            
+            <li><a href="/tags/%e5%8d%8e%e4%b8%ba%e4%ba%91"><i class="fa fa-tags"></i> 华为云</a>
+            </li>
+            
+            <li><a href="/tags/%e5%ae%b9%e5%99%a8"><i class="fa fa-tags"></i> 容器</a>
+            </li>
+            
+            <li><a href="/tags/%e5%b7%a5%e5%85%b7"><i class="fa fa-tags"></i> 工具</a>
+            </li>
+            
+            <li><a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1"><i class="fa fa-tags"></i> 微服务</a>
+            </li>
+            
+            <li><a href="/tags/%e6%97%a5%e5%bf%97"><i class="fa fa-tags"></i> 日志</a>
+            </li>
+            
+            <li><a href="/tags/%e7%bf%bb%e8%af%91"><i class="fa fa-tags"></i> 翻译</a>
+            </li>
+            
+            <li><a href="/tags/%e8%bd%af%e4%bb%b6%e8%ae%be%e8%ae%a1"><i class="fa fa-tags"></i> 软件设计</a>
+            </li>
+            
+            <li><a href="/tags/%e9%98%bf%e9%87%8c%e4%ba%91"><i class="fa fa-tags"></i> 阿里云</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+            </div>
+            
+        </div>
+        
+
+        <footer id="footer">
+    <div class="container">
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>微信公众号</h4>
+
+            <p><p>云原生之路</p><img src=https://wx3.sinaimg.cn/thumb150/ad5fbf65gy1g4z8s8509rj20nw0nw412.jpg></p>
+
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+             
+            <h4>最新博客</h4>
+
+            <div class="blog-entries">
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/posts/golang-project/">
+                          
+                          <img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g55b5m53wjj21qf15oq62.jpg" class="img-responsive" alt="Golang 装逼指南：在 GitHub 上构建一个看上去正规的 Golang 项目">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/golang-project/">Golang 装逼指南：在 GitHub 上构建一个看上去正规的 Golang 项目</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/posts/deploying-apps-on-multiple-kubernetes-clusters-with-helm/">
+                          
+                          <img src="https://wx2.sinaimg.cn/large/ad5fbf65gy1g51gkx94erj21qy15owly.jpg" class="img-responsive" alt="使用 Helm 在多集群部署应用">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/deploying-apps-on-multiple-kubernetes-clusters-with-helm/">使用 Helm 在多集群部署应用</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/posts/gitops-and-chatops/">
+                          
+                          <img src="https://wx2.sinaimg.cn/large/ad5fbf65gy1g4vxi3840tj21l215on1f.jpg" class="img-responsive" alt="GitOps 与 ChatOps 的落地实践">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/gitops-and-chatops/">GitOps 与 ChatOps 的落地实践</a></h5>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr class="hidden-md hidden-lg">
+             
+
+        </div>
+        
+
+        
+        <div class="col-md-4 col-sm-6">
+
+          <h4>联系</h4>
+
+            <p>加我微信（请备注姓名-公司）</p><p><img src="https://ws1.sinaimg.cn/thumb150/ad5fbf65ly1g0szrz7jd6j20ah0ahjtd.jpg"></p>
+      
+
+
+            <a href="/contact" class="btn btn-small btn-template-main">跳到联系页面</a>
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Hugo模板来自</p>
+            
+            
+            <p class="pull-left">&nbsp;<a href="http://www.miibeian.gov.cn/"> <a href="https://www.servicemesher.com/">ServiceMesher社区<a/></a></p>
+            
+            <p class="pull-right">
+              模板来自 <a href="http://bootstrapious.com/free-templates">Bootstrapious</a>.
+              
+              移植到 Hugo 来自 <a href="https://github.com/devcows/hugo-universal-theme">DevCows</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    </div>
+    
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+<script src="/js/front.js"></script>
+
+
+<script src="/js/owl.carousel.min.js"></script>
+
+<script src="/js/prism.js"></script>
+
+
+<script src="/js/algoliasearch.min.js"></script>
+<script src="/js/autocomplete.min.js"></script>
+
+
+  </body>
+</html>

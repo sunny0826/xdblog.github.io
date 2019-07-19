@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go on GuoXD Blog</title>
+    <link>https://blog.maoxianplay.com/tags/go/</link>
+    <description>Recent content in Go on GuoXD Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 19 Jul 2019 10:38:26 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.maoxianplay.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Golang 装逼指南：在 GitHub 上构建一个看上去正规的 Golang 项目</title>
+      <link>https://blog.maoxianplay.com/posts/golang-project/</link>
+      <pubDate>Fri, 19 Jul 2019 10:38:26 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/posts/golang-project/</guid>
+      <description>前言 接触 golang 时间很长，但是真正动手开始写 golang 也就是在最近。虽然写的不多，但是见过的 golang 项目可是不计其数，从 Kubernetes 和 istio 到亲身参与的 kustomize 再到 Kubernetes 生态圈的众多小</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Golang 装逼指南：在 GitHub 上构建一个看上去正规的 Golang 项目</title>
+      <link>https://blog.maoxianplay.com/posts/golang-project/</link>
+      <pubDate>Fri, 19 Jul 2019 10:38:26 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/posts/golang-project/</guid>
+      <description>前言 接触 golang 时间很长，但是真正动手开始写 golang 也就是在最近。虽然写的不多，但是见过的 golang 项目可是不计其数，从 Kubernetes 和 istio 到亲身参与的 kustomize 再到 Kubernetes 生态圈的众多小</description>
+    </item>
+    
+    <item>
       <title>使用 Helm 在多集群部署应用</title>
       <link>https://blog.maoxianplay.com/posts/deploying-apps-on-multiple-kubernetes-clusters-with-helm/</link>
       <pubDate>Sun, 14 Jul 2019 14:16:56 +0800</pubDate>

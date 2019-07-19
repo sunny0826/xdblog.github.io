@@ -383,6 +383,29 @@
         ]
     },
     {
+        "title": "Golang 装逼指南：在 GitHub 上构建一个看上去正规的 Golang 项目",
+        "uri": "posts/golang-project",
+        "content": "golang                golang                     golang            Kubernetes   istio        kustomize    Kubernetes               kubeval   kubedog                           golang                                          golang                               GitHub     GoLand    Go                                  GoLand                   MacOS                   Goland IDE vgo vgo     Go Module               go mod            vgo GoLand  Preferences  GO  Go Modules vgo       go mod    latest       GoLand                     go mod      go sum         module github com sunny0826 hamal go 1 12 require   github com mitchellh go homedir latest github com spf13 cobra latest github com spf13 viper latest                   go sum       go mod     module github com sunny0826 hamal go 1 12 require   github com mitchellh go homedir v1 1 0 github com spf13 cobra v0 0 5 github com spf13 viper v1 4 0           option    return               Sync packages github com sunny0826 hamal   import                   golang                                                                     GoLand      Shadowsocks               GoLand  Preferences  Appearance   Behavior  System Settings  HTTP Proxy               Check connection                go fmt  goimports   golangci lint         GoLand              GoLand  Preferences  Tools  File Watchers                        3               go fmt               golangci lint                        goimports      import             golint GoLand      golint            mkdir  p  GOPATH src golang org x  cd  GOPATH src golang org x  git clone https   github com golang lint git git clone https   github com golang tools git cd  GOPATH src golang org x lint golint go install            GOPATH bin            golint          GoLand    golint    Name  Program  Arguments         Arguments       setexitstatus          Travis CI        Github           Travis CI       Travis CI    GitHub             Travis CI               travis yml        language  go go  1 12 5 sudo  required install  echo  install  script  echo  script               push           CI                           Travis CI                     Travis CI        Badges    RESULT       README md        GO Report Card            GoLand      golint                                         GO Report Card     golang             Github            Badges      Travis CI      MarkDown         RERADME md      GoReleaser                               release            release        low      GoReleaser              release           MacOS       brew      brew install goreleaser           goreleaser yml     goreleaser init             gitignore    dist    goreleaser                 dist      goreleaser                 goreleaser   skip validate   skip publish   snapshot          goreleaser     GITHUBTOKEN                        GITHUBTOKEN export GITHUB_TOKEN                 git   goreleaser     release    git add   git commit  m  add goreleaser  git tag  a v0 0 3  m  First release  git push origin master git push origin v0 0 3               goreleaser goreleaser    CI                   Badges               Badges     https   shields io               Badges                GitHub README md                          GitHub      golang                  Codecov CircleCI                            golang    Hamal                                                                                                             dockerhub",
+        "objectID": "posts/golang-project",
+        "date": "2019-07-19T02:38:26.000Z",
+        "draft": false,
+        "banner": "https://ws2.sinaimg.cn/large/ad5fbf65gy1g55b5m53wjj21qf15oq62.jpg",
+        "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
+        "summary": "接触 golang 时间很长，但是真正动手开始写 golang 也就是在最近。跟着我在 GitHub 上构建一个看上去正规的 Golang 项目。",
+        "tags": [
+            "go"
+        ],
+        "categories": [
+            "go"
+        ],
+        "keywords": [
+            "go",
+            "golang",
+            "goreleaser"
+        ]
+    },
+    {
         "title": "为ingress配置SSL证书，实现HTTPS访问",
         "uri": "posts/https-ingress",
         "content": "devops          kubernetes                              http                          HTTPS                   SSL        rancher  SSL     SSL           SSL             SSL                       nginx             rancher                               rancher                                                         yaml                                   secrets apiVersion  v1 data  tls crt       tls key       kind  Secret metadata  name  keking cn namespace  devops plat type  kubernetes io tls  kubernetes    yaml   rancher               ingress                  ingress controller",
