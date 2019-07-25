@@ -6,10 +6,19 @@
     <description>Recent content on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 19 Jul 2019 10:38:26 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 25 Jul 2019 16:27:57 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Golang 装逼指南 Ⅱ：在 Homwbrew 发布 Golang 项目</title>
+      <link>https://blog.maoxianplay.com/posts/golang-to-homebrew/</link>
+      <pubDate>Thu, 25 Jul 2019 16:27:57 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/posts/golang-to-homebrew/</guid>
+      <description>前言 经过上篇文章，我们已经可以在 GitHub 上构建一个看上去正经的 Golang 项目了，但这并不是结束。一个真正的用 Golang 构建的可执行文件是可以在全平台运行的，前文中</description>
+    </item>
     
     <item>
       <title>Golang 装逼指南：在 GitHub 上构建一个看上去正规的 Golang 项目</title>

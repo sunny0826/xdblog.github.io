@@ -406,6 +406,29 @@
         ]
     },
     {
+        "title": "Golang 装逼指南 Ⅱ：在 Homwbrew 发布 Golang 项目",
+        "uri": "posts/golang-to-homebrew",
+        "content": "GitHub             Golang                    Golang                            goreleaser            release       release                                                        Homebrew        Golang                   brew            Homebrew      macOS       Homebrew             CentOS   yum   Ubuntu   apt get   Homebrew      Max Howell   Ruby    OS X               GitHub    Homebrew             The missing package manager OS X           macOS                   Homebrew                     Homebrew                      Homebrew                          Formula    rb            Tap         Formula      release       macOS   Darwin                 Formula brew create https   github com sunny0826 kubecm releases download v0 0 1 kubecm0 0 1Darwinx8664 tar gz        brew         kubecm rb       usr local Homebrew Library Taps homebrew homebrew core Formula         rb               kubecm rb       Documentation  https   github com Homebrew brew blob master share doc homebrew Formula Cookbook md http   www rubydoc info github Homebrew brew master Formula PLEASE REMOVE GENERATED COMMENTS SUBMITTING PULL REQUEST  class OtfccMac64  build depends_on  x11   formula requires X11 XQuartz components def install ENV deparallelize   formula fails when building parallel Remove unrecognized options warned configure system    configure      disable debug      disable dependency tracking      disable silent rules      prefix   prefix   system  cmake         stdcmakeargs system  make    install    fails  try separate make make install steps end test test will create  run delete temporary directory  test will fail won t accept that  It s enough just replace  false  main program formula installs  it d nice thorough  Run test brew test otfcc win32  Options passed brew install   HEAD need provided brew test  installed folder not path  so use entire path executables tested  system    bin  program    do    something   system  false  end end                       class Kubecm  build def install bin install  kubecm  end end      desc   homepage  url              darwin         install     bin install  kubecm                     brew install kubecm            Updating Homebrew    Fast forwarded master origin master  Fast forwarded master origin master    Auto updated Homebrew  Updated 2 taps  sunny0826 tap  homebrew cask     Updated Formulae sunny0826 tap kubecm   Downloading https   github com sunny0826 kubecm releases download v0 0 1 kubecm0 0 1Darwinx8664 tar gz Already downloaded   Users guoxudong Library Caches Homebrew kubecm 86 64 tar gz     usr local Cellar kubecm 86 64  5 files  5 4MB  built 1 second                 Tap                          GitHub         homebrew tap   repo     repo     homebrew                   kubecm rb         repo          brew                                                       brew uninstall kubecm Uninstalling  usr local Cellar kubecm 86 64     5 files  5 4MB       brew tap sunny0826 tap    brew install kubecm    brew install sunny0826 tap kubecm                     Homebrew         Golang              Golang                            rb                                Golang           kubecm            python            kubeconfig                kubeconfig      kubeconfig   context          Homebrew",
+        "objectID": "posts/golang-to-homebrew",
+        "date": "2019-07-25T08:27:57.000Z",
+        "draft": false,
+        "banner": "http://wx4.sinaimg.cn/large/00704eQkgy1frk001fkixj30rs0ku4qp.jpg",
+        "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
+        "summary": "这里填写文章文章摘要。",
+        "tags": [
+            "go"
+        ],
+        "categories": [
+            "go"
+        ],
+        "keywords": [
+            "go",
+            "golang",
+            "homebrew"
+        ]
+    },
+    {
         "title": "为ingress配置SSL证书，实现HTTPS访问",
         "uri": "posts/https-ingress",
         "content": "devops          kubernetes                              http                          HTTPS                   SSL        rancher  SSL     SSL           SSL             SSL                       nginx             rancher                               rancher                                                         yaml                                   secrets apiVersion  v1 data  tls crt       tls key       kind  Secret metadata  name  keking cn namespace  devops plat type  kubernetes io tls  kubernetes    yaml   rancher               ingress                  ingress controller",
