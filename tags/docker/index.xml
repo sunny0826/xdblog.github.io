@@ -17,7 +17,7 @@
       <pubDate>Sat, 20 Apr 2019 19:54:50 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</guid>
-      <description>Docker 非常棒！ 它使软件开发者无需担心配置和依赖性，在任何地方打包，发送和运行他们的应用程序。而在与 kubernetes 相结合后，它使应用集群部署和管理变得更方便。</description>
+      <description>Docker 非常棒！ 它使软件开发者无需担心配置和依赖性，在任何地方打包，发送和运行他们的应用程序。而在与 kubernetes 相结合后，它使应用集群部署和管理变得更方便。这使得 Docker 深受软件开发者的喜爱，越来越多的开发者开始使用 Docker。</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Fri, 15 Mar 2019 09:53:02 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/alpine-linux/</guid>
-      <description>简介 Small. Simple. Secure.Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox. Alpine Linux 是一个社区开发的面向安全应用的轻量级Linux发行版。 Alpine 的意思是“高山的”，它采用了musl libc</description>
+      <description>Alpine以其小巧、简单在docker容器中得到了广泛的应用。但是Alpine Linux使用了musl，可能和其他Linux发行版使用的glibc实现会有些不同。这里主要介绍了它的基础用法，但是足以满足日常运维需要。</description>
     </item>
     
   </channel>

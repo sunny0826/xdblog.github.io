@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Prometheus on GuoXD Blog</title>
+    <title>prometheus on GuoXD Blog</title>
     <link>https://blog.maoxianplay.com/tags/prometheus/</link>
-    <description>Recent content in Prometheus on GuoXD Blog</description>
+    <description>Recent content in prometheus on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 18 Apr 2019 17:46:08 +0800</lastBuildDate>
@@ -17,7 +17,7 @@
       <pubDate>Thu, 18 Apr 2019 17:46:08 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/rancher-prometheus-fix-question/</guid>
-      <description>前言 Rancher 2.2.X 版本于3月底正式GA，新版本处理其他部分的优化以外，最大亮点莫过于本身集成了 Prometheus ，可以通过 Rancher 自带 UI 或者 Grafana 查看集群的实时监控，对所有监控</description>
+      <description>记一次在 Rancher 官方小哥帮助下解决 Rancher 问题的过程。</description>
     </item>
     
   </channel>

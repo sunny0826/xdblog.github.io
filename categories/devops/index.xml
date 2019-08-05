@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Devops on GuoXD Blog</title>
+    <title>devops on GuoXD Blog</title>
     <link>https://blog.maoxianplay.com/categories/devops/</link>
-    <description>Recent content in Devops on GuoXD Blog</description>
+    <description>Recent content in devops on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 11 Jul 2019 09:24:17 +0800</lastBuildDate>
@@ -17,7 +17,7 @@
       <pubDate>Thu, 11 Jul 2019 09:24:17 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/gitops-and-chatops/</guid>
-      <description>前言 说到 GitOps 和 ChatOps ，那就不得不谈到 DevOps 。 DevOps 作为一种文化，旨在促进开发、测试和运维人员之间的沟通与协作。而促进合作的方式，往往是使用一系列工具，完成</description>
+      <description>本文介绍 GitOps 和 ChatOps 这两种 DevOps 实践，通过版本控制软件 Git 和实时聊天软件来达到提升交付速度和研发效率的目的。</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Tue, 21 May 2019 08:59:00 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/drone-ci/</guid>
-      <description>前言 公司之前一直在使用 Jenkins 作为 CI/CD 工具， Jenkins 非常强大，它完成了几乎所有 CI/CD 的工作，并且应用于整个团队有好长一段时间了。但是随着公司推荐数字化、智慧化</description>
+      <description>本文介绍一款轻量级的 CI 工具 Drone ，同时也介绍在实践中遇到的一些坑，帮助你快速搭建持续集成流水线。</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Fri, 03 May 2019 14:37:14 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/what-is-devsecops/</guid>
-      <description>DevOps 不仅仅是开发和运营团队。如果您想要充分发挥出 DevOps 方法的敏捷性和响应力，则必须在应用的整个生命周期内同时兼顾 IT 安全性。 为什么？以往，安全性会在</description>
+      <description>DevOps 不仅仅是开发和运营团队。如果您想要充分发挥出 DevOps 方法的敏捷性和响应力，则必须在应用的整个生命周期内同时兼顾 IT 安全性。</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       <pubDate>Thu, 07 Mar 2019 09:14:39 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/sonar-pipline/</guid>
-      <description>简介 jenkins pipeline Jenkins Pipeline (或简称为 &amp;ldquo;Pipeline&amp;rdquo; )是一套插件，将持续交付的实现和实施集成到 Jenkins 中。 持续交付Pipeline自动化的表达了这样一种流程：将基于版本控制管</description>
+      <description>在devops理念中，CI/CD毫无疑问是最重要的一环，而代码质量检查则是CI中必不可少的一步。在敏捷开发的思想下，代码的迭代周期变短，交付速度提升，这个时候代码的质量就很难保证，测试只能保证功能完整与可用，而代码的质量纯靠review的话效率又很低，这个时候sonar&amp;hellip;</description>
     </item>
     
   </channel>

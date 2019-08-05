@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Python on GuoXD Blog</title>
+    <title>python on GuoXD Blog</title>
     <link>https://blog.maoxianplay.com/tags/python/</link>
-    <description>Recent content in Python on GuoXD Blog</description>
+    <description>Recent content in python on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 04 Jul 2019 09:16:41 +0800</lastBuildDate>
@@ -17,7 +17,7 @@
       <pubDate>Thu, 04 Jul 2019 09:16:41 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kubernetes-client-python/</guid>
-      <description>只要仔细找，想要的轮子总会有的。 &amp;mdash; 某不知名 DevOps 工程师 感谢 kubernetes-dev 的 Mailing List ！早上在浏览邮件时发现了下面这封有趣的邮件： 接触 Kubernetes 也有不短的时间了，也见证了 Kubernetes</description>
+      <description>从发现、使用 Kubernetes Client/Python 这个项目的过程，谈谈 mailing list 在开源项目中的重要性。</description>
     </item>
     
   </channel>

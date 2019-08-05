@@ -17,7 +17,7 @@
       <pubDate>Mon, 08 Jul 2019 15:09:56 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/nas-k8s/</guid>
-      <description>前言 今天接到一个将 NAS 数据卷挂载到 Kubernetes 集群的需求，需要将一个 NAS 数据卷挂载到集群中。这一很简单的操作由于好久没有操作了，去翻看了一下官方文档，发现</description>
+      <description>记录在阿里云购买、配置、挂载 NAS 数据卷到 Kubernetes 集群，由于官方文档没有及时更新，可以看做是对官方文档的补充。</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Thu, 25 Apr 2019 22:26:06 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/aliyun-k8s-perfect/</guid>
-      <description>前言 选择阿里云的容器服务，主要原因是公司主要业务基本都在运行在阿里云上。相较自建 kubernetes 集群，容器服务的优势在于部署相对简单，与阿里云 VPC 完美兼容，</description>
+      <description>这里记录了在工作中遇到阿里云容器服务的调优优化方案，帮助您绕过阿里云容器服务中的一些坑，来使用更好更优质的阿里云容器服务。</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Sat, 20 Apr 2019 19:54:50 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</guid>
-      <description>Docker 非常棒！ 它使软件开发者无需担心配置和依赖性，在任何地方打包，发送和运行他们的应用程序。而在与 kubernetes 相结合后，它使应用集群部署和管理变得更方便。</description>
+      <description>Docker 非常棒！ 它使软件开发者无需担心配置和依赖性，在任何地方打包，发送和运行他们的应用程序。而在与 kubernetes 相结合后，它使应用集群部署和管理变得更方便。这使得 Docker 深受软件开发者的喜爱，越来越多的开发者开始使用 Docker。</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       <pubDate>Sun, 31 Mar 2019 11:15:35 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/rancher-update-2.2.1/</guid>
-      <description>Rancher 不仅可以在任何云提供商的任何地方部署 Kubernetes 集群，而且还将它们集中在集中式的身份验证和访问控制之下。由于它与资源的运行位置无关，因此您可以轻松地</description>
+      <description>Rancher 不仅可以在任何云提供商的任何地方部署 Kubernetes 集群，而且还将它们集中在集中式的身份验证和访问控制之下。由于它与资源的运行位置无关，因此您可以轻松地在不同的环境部署你的 kubernetes 集群并操作他们。 Rancher 不是将部署几个独立的 Kubernetes 集群，而是将它们统一为一个单独的托管Kubernetes Cloud。</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@
       <pubDate>Fri, 15 Mar 2019 09:53:02 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/alpine-linux/</guid>
-      <description>简介 Small. Simple. Secure.Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox. Alpine Linux 是一个社区开发的面向安全应用的轻量级Linux发行版。 Alpine 的意思是“高山的”，它采用了musl libc</description>
+      <description>Alpine以其小巧、简单在docker容器中得到了广泛的应用。但是Alpine Linux使用了musl，可能和其他Linux发行版使用的glibc实现会有些不同。这里主要介绍了它的基础用法，但是足以满足日常运维需要。</description>
     </item>
     
     <item>
@@ -62,7 +62,7 @@
       <pubDate>Wed, 06 Mar 2019 14:42:05 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/k8s-ingress-config/</guid>
-      <description>前言 随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外</description>
+      <description>随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外的扎眼。这里就对实践中kubernetes集群中的7层负载均衡器ingress遇到的问题进行总结。</description>
     </item>
     
     <item>
@@ -71,7 +71,7 @@
       <pubDate>Thu, 29 Nov 2018 18:28:13 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/install-rancher/</guid>
-      <description>近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以将部署到阿里云的图中遇到的问题和踩到的坑在这里进行记录。 无法删除n</description>
+      <description>近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以将部署到阿里云的图中遇到的问题和踩到的坑在这里进行记录。</description>
     </item>
     
     <item>
@@ -80,7 +80,7 @@
       <pubDate>Thu, 27 Sep 2018 20:28:13 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/image-size/</guid>
-      <description>精简Docker镜像的好处很多，不仅可以节省存储空间和带宽，还能减少安全隐患。优化镜像大小的手段多种多样，因服务所使用的基础开发语言不同而有</description>
+      <description>精简Docker镜像的好处很多，不仅可以节省存储空间和带宽，还能减少安全隐患。优化镜像大小的手段多种多样，因服务所使用的基础开发语言不同而有差异。本文将介绍精简Docker镜像的几种通用方法。</description>
     </item>
     
     <item>
@@ -89,7 +89,7 @@
       <pubDate>Thu, 27 Sep 2018 19:27:03 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/docker-quit/</guid>
-      <description>现象 启动docker容器 docker run –name [CONTAINER_NAME] [CONTAINER_ID] 查看容器运行状态 docker ps -a 发现刚刚启动的mydocker容器已经退出 原因 docker容器的主线程（do</description>
+      <description>解决容器启动退出问题。</description>
     </item>
     
     <item>
@@ -98,7 +98,7 @@
       <pubDate>Thu, 30 Aug 2018 18:45:22 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/con-ind/</guid>
-      <description>背景 自从微服务（Microservice）的出现，出于业务的需要，IT应用模型不断的变革。开发模式从瀑布式到敏捷开发；开发、运维和测试互相配</description>
+      <description>自从微服务（Microservice）的出现，出于业务的需要，IT应用模型不断的变革。开发模式从瀑布式到敏捷开发；开发、运维和测试互相配合的devops思想；应用程序架构从单体模型到分层模型再到微服务；部署方式也从面向物理机到虚拟键再到容器；应用程序的基础架构从自建机房到托管再到云计算，等等。这些变革使得IT技术应用的效率大大提升，同时却以更低的成本交付更高质量的产品。</description>
     </item>
     
     <item>
@@ -107,7 +107,7 @@
       <pubDate>Tue, 14 Aug 2018 20:07:03 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/install-k8s/</guid>
-      <description>前言 最近由于公司业务发展到了瓶颈，原有的技术架构已经逐渐无法满足业务开发和测试的需求，出现了应用测试环境搭建复杂，有许多套（真的很多很多）应</description>
+      <description>最近由于公司业务发展到了瓶颈，原有的技术架构已经逐渐无法满足业务开发和测试的需求，出现了应用测试环境搭建复杂，有许多套（真的很多很多）应用环境，应用在持续集成/持续交付也遇到了很大的困难，经过讨论研究决定对应用和微服务进行容器化，这就是我首次直面docker和k8s的契机。</description>
     </item>
     
     <item>
@@ -116,7 +116,7 @@
       <pubDate>Tue, 14 Aug 2018 20:05:21 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/install-docker/</guid>
-      <description>前言 在使用centos7，并使用荫安装搬运工的时候，往往不希望安装最新版本的搬运工，而是希望安装与自己熟悉或者当前业务环境需要的版本，例如目</description>
+      <description>在使用CentOS7，并使用荫安装搬运工的时候，往往不希望安装最新版本的搬运工，而是希望安装与自己熟悉或者当前业务环境需要的版本，例如目前Kubernetes支持的最新搬运工版本为v17.03，所以就产生了安装指定版本码头工人的需求。</description>
     </item>
     
   </channel>

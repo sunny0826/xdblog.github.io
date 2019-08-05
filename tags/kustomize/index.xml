@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Kustomize on GuoXD Blog</title>
+    <title>kustomize on GuoXD Blog</title>
     <link>https://blog.maoxianplay.com/tags/kustomize/</link>
-    <description>Recent content in Kustomize on GuoXD Blog</description>
+    <description>Recent content in kustomize on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 03 Jul 2019 15:20:31 +0800</lastBuildDate>
@@ -17,7 +17,7 @@
       <pubDate>Wed, 03 Jul 2019 15:20:31 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kustomize-5/</guid>
-      <description>在以往的 pipeline 中，使用 kubectl 进行部署 Deployment 后无法检查 Deployment 是否部署成功，只能通过使用命令/脚本来手动检查 Deployment 状态，而 kubedog 这个小工具完美解决了这个问题，完善了 CI/CD 流</description>
+      <description>在以往的 pipeline 中，使用 kubectl 进行部署 Deployment 后无法检查 Deployment 是否部署成功，只能通过使用命令/脚本来手动检查 Deployment 状态，而 kubedog 这个小工具完美解决了这个问题，完善了 CI/CD 流水线的最后一步。</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Wed, 03 Jul 2019 13:44:50 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kustomize-err-1/</guid>
-      <description>现象 在日常 CI/CD 流程中，已经将 Kustomize 集成到 pipeline 中使用，但是在对一个项目进行 Kustomize 改造时，将单个 deploy.yaml 拆分为了若干个 patch 以达到灵活 Kubernetes 部署的目的。但是在使用 kubectl apply -k .</description>
+      <description>解决使用 Kustomize 时遇到的报错： error: failed to find an object with apps_v1_Deployment|myapp to apply the patch</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Thu, 23 May 2019 12:50:12 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kustomize-4/</guid>
-      <description>前言 在前面的文章中已经介绍了 kustomize 是什么，以及如何开始使用和如何简单的在 CI/CD 中使用，本篇文章将会介绍 kustomize 的核心文件 kustomization.yam</description>
+      <description>本篇为系列文章第四篇，将简述 kustomize 的核心配置文件 kustomization.yaml</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       <pubDate>Mon, 06 May 2019 16:46:28 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kustomize-3/</guid>
-      <description>前言 首先明确软件版本，我这里使用的是 Jenkins ver. 2.121.3 ，这个版本比较老，其上安装 Kubernetes 插件所使用 kubectl 版本也比较老，无法使用 Kustomize 的 yaml 文件需要的 apiVersion: apps/v1 ，直接使用生成 deploy.yaml</description>
+      <description>本篇为系列文章第三篇，使用 jenkins 发布一个简单的使用 flask 写的 web 项目，来演示在 CI/CD 流程中 Kustomize 的简单使用。</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@
       <pubDate>Fri, 19 Apr 2019 16:05:02 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kustomize-2/</guid>
-      <description>本文介绍使用和维护 Kustomize 的方法及步骤。 定制配置 在这个工作流方式中，所有的配置文件（ YAML 资源）都为用户所有，存在于私有 repo 中。其他人是无法使用的。 创建</description>
+      <description>本篇为系列文章第二篇，手把手教你使用 Kustomize 的两种方式。</description>
     </item>
     
     <item>
@@ -62,7 +62,7 @@
       <pubDate>Mon, 15 Apr 2019 17:23:21 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</guid>
-      <description>作者：Jeff Regan (Google), Phil Wittrock (Google) 2018-05-29 如果你在运行 kubernetes 集群，你可能会拷贝一些包含 kubernetes API 对象的 YAML 文件，并且根据你的需求来修改这些文件，通过这些 YAML 文件来定义你的</description>
+      <description>本文介绍了 Kubernetes 原生的应用管理工具 Kustomize。</description>
     </item>
     
     <item>
@@ -71,7 +71,7 @@
       <pubDate>Mon, 15 Apr 2019 13:32:59 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kustomize-1/</guid>
-      <description>初识 Kustomize 第一次听说 Kustomize 其实是在 kubernetes 1.14 发布时候，它被集成到 kubectl 中，成为了一个子命令，但也只是扫了一眼，并没有深究。真正让我注意到它，并主动开始了解其功</description>
+      <description>本篇为系列文章第一篇，介绍我对 Kustomize 的了解过程以及 Kustomize 是什么，为什么它能解决我的燃眉之急。</description>
     </item>
     
   </channel>

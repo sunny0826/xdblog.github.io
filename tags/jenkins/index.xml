@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Jenkins on GuoXD Blog</title>
+    <title>jenkins on GuoXD Blog</title>
     <link>https://blog.maoxianplay.com/tags/jenkins/</link>
-    <description>Recent content in Jenkins on GuoXD Blog</description>
+    <description>Recent content in jenkins on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 07 Mar 2019 09:14:39 +0800</lastBuildDate>
@@ -17,7 +17,7 @@
       <pubDate>Thu, 07 Mar 2019 09:14:39 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/sonar-pipline/</guid>
-      <description>简介 jenkins pipeline Jenkins Pipeline (或简称为 &amp;ldquo;Pipeline&amp;rdquo; )是一套插件，将持续交付的实现和实施集成到 Jenkins 中。 持续交付Pipeline自动化的表达了这样一种流程：将基于版本控制管</description>
+      <description>在devops理念中，CI/CD毫无疑问是最重要的一环，而代码质量检查则是CI中必不可少的一步。在敏捷开发的思想下，代码的迭代周期变短，交付速度提升，这个时候代码的质量就很难保证，测试只能保证功能完整与可用，而代码的质量纯靠review的话效率又很低，这个时候sonar&amp;hellip;</description>
     </item>
     
   </channel>

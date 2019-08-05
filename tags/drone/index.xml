@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Drone on GuoXD Blog</title>
+    <title>drone on GuoXD Blog</title>
     <link>https://blog.maoxianplay.com/tags/drone/</link>
-    <description>Recent content in Drone on GuoXD Blog</description>
+    <description>Recent content in drone on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Tue, 21 May 2019 08:59:00 +0800</lastBuildDate>
@@ -17,7 +17,7 @@
       <pubDate>Tue, 21 May 2019 08:59:00 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/drone-ci/</guid>
-      <description>前言 公司之前一直在使用 Jenkins 作为 CI/CD 工具， Jenkins 非常强大，它完成了几乎所有 CI/CD 的工作，并且应用于整个团队有好长一段时间了。但是随着公司推荐数字化、智慧化</description>
+      <description>本文介绍一款轻量级的 CI 工具 Drone ，同时也介绍在实践中遇到的一些坑，帮助你快速搭建持续集成流水线。</description>
     </item>
     
   </channel>

@@ -3,8 +3,38 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.maoxianplay.com/categories/</loc>
+    <lastmod>2019-07-25T16:27:57+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.maoxianplay.com/posts/golang-to-homebrew/</loc>
     <lastmod>2019-07-25T16:27:57+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/</loc>
+    <lastmod>2019-07-25T16:27:57+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/tags/</loc>
+    <lastmod>2019-07-25T16:27:57+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/categories/go/</loc>
+    <lastmod>2019-07-25T16:27:57+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/tags/go/</loc>
+    <lastmod>2019-07-25T16:27:57+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -13,8 +43,26 @@
   </url>
   
   <url>
+    <loc>https://blog.maoxianplay.com/tags/kubernetes/</loc>
+    <lastmod>2019-07-14T14:16:56+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.maoxianplay.com/posts/deploying-apps-on-multiple-kubernetes-clusters-with-helm/</loc>
     <lastmod>2019-07-14T14:16:56+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/categories/%E7%BF%BB%E8%AF%91/</loc>
+    <lastmod>2019-07-14T14:16:56+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/tags/%E7%BF%BB%E8%AF%91/</loc>
+    <lastmod>2019-07-14T14:16:56+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -23,8 +71,56 @@
   </url>
   
   <url>
+    <loc>https://blog.maoxianplay.com/categories/devops/</loc>
+    <lastmod>2019-07-11T09:24:17+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/tags/devops/</loc>
+    <lastmod>2019-07-11T09:24:17+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/categories/kubernetes/</loc>
+    <lastmod>2019-07-08T15:09:56+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/tags/%E5%AE%B9%E5%99%A8/</loc>
+    <lastmod>2019-07-08T15:09:56+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
+    <lastmod>2019-07-08T15:09:56+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.maoxianplay.com/posts/nas-k8s/</loc>
     <lastmod>2019-07-08T15:09:56+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/</loc>
+    <lastmod>2019-07-06T09:40:42+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/categories/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2019-07-06T09:40:42+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
+    <lastmod>2019-07-06T09:40:42+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -33,13 +129,43 @@
   </url>
   
   <url>
+    <loc>https://blog.maoxianplay.com/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/</loc>
+    <lastmod>2019-07-06T09:40:42+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.maoxianplay.com/posts/the-childrens-illustrated-guide-to-kubernetes/</loc>
     <lastmod>2019-07-05T09:50:58+08:00</lastmod>
   </url>
   
   <url>
+    <loc>https://blog.maoxianplay.com/categories/kustomize/</loc>
+    <lastmod>2019-07-04T09:16:41+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/tags/python/</loc>
+    <lastmod>2019-07-04T09:16:41+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/tags/%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2019-07-04T09:16:41+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.maoxianplay.com/posts/kubernetes-client-python/</loc>
     <lastmod>2019-07-04T09:16:41+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/tags/kustomize/</loc>
+    <lastmod>2019-07-03T15:20:31+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -58,8 +184,20 @@
   </url>
   
   <url>
+    <loc>https://blog.maoxianplay.com/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%B6%A3%E9%97%BB/</loc>
+    <lastmod>2019-07-02T10:18:18+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.maoxianplay.com/posts/kustomize-4/</loc>
     <lastmod>2019-05-23T12:50:12+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/tags/drone/</loc>
+    <lastmod>2019-05-21T08:59:00+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -108,8 +246,20 @@
   </url>
   
   <url>
+    <loc>https://blog.maoxianplay.com/tags/github/</loc>
+    <lastmod>2019-04-22T09:11:24+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.maoxianplay.com/posts/cant/</loc>
     <lastmod>2019-04-22T09:11:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/tags/docker/</loc>
+    <lastmod>2019-04-20T19:54:50+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -128,6 +278,24 @@
   </url>
   
   <url>
+    <loc>https://blog.maoxianplay.com/tags/prometheus/</loc>
+    <lastmod>2019-04-18T17:46:08+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/tags/rancher/</loc>
+    <lastmod>2019-04-18T17:46:08+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</loc>
+    <lastmod>2019-04-18T17:46:08+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.maoxianplay.com/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</loc>
     <lastmod>2019-04-15T17:23:21+08:00</lastmod>
   </url>
@@ -138,8 +306,20 @@
   </url>
   
   <url>
+    <loc>https://blog.maoxianplay.com/tags/service-mesh/</loc>
+    <lastmod>2019-04-10T14:03:25+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.maoxianplay.com/posts/sidercar-to-servicemesh/</loc>
     <lastmod>2019-04-10T14:03:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</loc>
+    <lastmod>2019-04-10T14:03:25+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -153,6 +333,12 @@
   </url>
   
   <url>
+    <loc>https://blog.maoxianplay.com/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/</loc>
+    <lastmod>2019-03-31T11:15:35+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.maoxianplay.com/posts/whats-a-service-mesh-and-why-do-i-need-one/</loc>
     <lastmod>2019-03-25T18:17:20+08:00</lastmod>
   </url>
@@ -160,6 +346,24 @@
   <url>
     <loc>https://blog.maoxianplay.com/posts/istio-bookinfo-demo/</loc>
     <lastmod>2019-03-21T09:42:18+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/categories/istio/</loc>
+    <lastmod>2019-03-21T09:42:18+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/tags/istio/</loc>
+    <lastmod>2019-03-21T09:42:18+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/tags/%E5%8D%8E%E4%B8%BA%E4%BA%91/</loc>
+    <lastmod>2019-03-21T09:42:18+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -183,6 +387,18 @@
   </url>
   
   <url>
+    <loc>https://blog.maoxianplay.com/tags/linux/</loc>
+    <lastmod>2019-03-15T09:53:02+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/categories/%E7%B3%BB%E7%BB%9F/</loc>
+    <lastmod>2019-03-15T09:53:02+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.maoxianplay.com/posts/istio-demo/</loc>
     <lastmod>2019-03-13T15:45:43+08:00</lastmod>
   </url>
@@ -203,6 +419,18 @@
   </url>
   
   <url>
+    <loc>https://blog.maoxianplay.com/tags/jenkins/</loc>
+    <lastmod>2019-03-07T09:14:39+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/tags/sonar/</loc>
+    <lastmod>2019-03-07T09:14:39+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.maoxianplay.com/posts/k8s-ingress-config/</loc>
     <lastmod>2019-03-06T14:42:05+08:00</lastmod>
   </url>
@@ -210,6 +438,12 @@
   <url>
     <loc>https://blog.maoxianplay.com/posts/k8s-qos/</loc>
     <lastmod>2019-03-04T19:18:13+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/tags/%E6%97%A5%E5%BF%97/</loc>
+    <lastmod>2019-02-14T14:07:06+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -278,240 +512,7 @@
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/devops/</loc>
-    <lastmod>2019-07-11T09:24:17+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/categories/devops/</loc>
-    <lastmod>2019-07-11T09:24:17+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/docker/</loc>
-    <lastmod>2019-04-20T19:54:50+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/drone/</loc>
-    <lastmod>2019-05-21T08:59:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/github/</loc>
-    <lastmod>2019-04-22T09:11:24+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/go/</loc>
-    <lastmod>2019-07-25T16:27:57+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/categories/go/</loc>
-    <lastmod>2019-07-25T16:27:57+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/</loc>
-    <lastmod>2019-07-25T16:27:57+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/istio/</loc>
-    <lastmod>2019-03-21T09:42:18+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/categories/istio/</loc>
-    <lastmod>2019-03-21T09:42:18+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/jenkins/</loc>
-    <lastmod>2019-03-07T09:14:39+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/kubernetes/</loc>
-    <lastmod>2019-07-14T14:16:56+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/categories/kubernetes/</loc>
-    <lastmod>2019-07-08T15:09:56+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/kustomize/</loc>
-    <lastmod>2019-07-03T15:20:31+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/categories/kustomize/</loc>
-    <lastmod>2019-07-04T09:16:41+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/linux/</loc>
-    <lastmod>2019-03-15T09:53:02+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/prometheus/</loc>
-    <lastmod>2019-04-18T17:46:08+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/python/</loc>
-    <lastmod>2019-07-04T09:16:41+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/rancher/</loc>
-    <lastmod>2019-04-18T17:46:08+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/service-mesh/</loc>
-    <lastmod>2019-04-10T14:03:25+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/sonar/</loc>
-    <lastmod>2019-03-07T09:14:39+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/</loc>
-    <lastmod>2019-07-11T09:24:17+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/</loc>
-    <lastmod>2019-07-06T09:40:42+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.maoxianplay.com/contact/</loc>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/%E5%8D%8E%E4%B8%BA%E4%BA%91/</loc>
-    <lastmod>2019-03-21T09:42:18+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/%E5%AE%B9%E5%99%A8/</loc>
-    <lastmod>2019-07-08T15:09:56+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2019-07-04T09:16:41+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/categories/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2019-07-06T09:40:42+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
-    <lastmod>2019-07-06T09:40:42+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/%E6%97%A5%E5%BF%97/</loc>
-    <lastmod>2019-02-14T14:07:06+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</loc>
-    <lastmod>2019-04-10T14:03:25+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%B6%A3%E9%97%BB/</loc>
-    <lastmod>2019-07-02T10:18:18+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/categories/%E7%B3%BB%E7%BB%9F/</loc>
-    <lastmod>2019-03-15T09:53:02+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/%E7%BF%BB%E8%AF%91/</loc>
-    <lastmod>2019-07-14T14:16:56+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/categories/%E7%BF%BB%E8%AF%91/</loc>
-    <lastmod>2019-07-14T14:16:56+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/</loc>
-    <lastmod>2019-07-06T09:40:42+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/</loc>
-    <lastmod>2019-03-31T11:15:35+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</loc>
-    <lastmod>2019-04-18T17:46:08+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
-    <lastmod>2019-07-08T15:09:56+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
 </urlset>

@@ -17,7 +17,7 @@
       <pubDate>Wed, 10 Apr 2019 14:03:25 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/sidercar-to-servicemesh/</guid>
-      <description>所谓边车模式（ Sidecar pattern ），也译作挎斗模式，是分布式架构中云设计模式的一种。因为其非常类似于生活中的边三轮摩托车而得名。该设计模式通过给应用程序加</description>
+      <description>谈谈从边车模式这一分布式架构的设计模式到 Service Mesh 的演变。</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Tue, 19 Mar 2019 16:12:56 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/istio-servicemesh/</guid>
-      <description>本文转自《Istio 服务网格进阶实战》 什么是服务网格？ Service mesh 又译作 “服务网格”，作为服务间通信的基础设施层。Buoyant 公司的 CEO Willian Morgan 在他的这</description>
+      <description>现在Service Mesh很热，但是到底什么事Service Mesh，Service Mesh能为我们做什么，我们为什么要用Service Mesh。</description>
     </item>
     
   </channel>

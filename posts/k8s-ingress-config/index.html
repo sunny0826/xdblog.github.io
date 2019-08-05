@@ -16,7 +16,7 @@
   <meta name="keywords" content="kubernetes, 容器">
   
 
-  <meta name="generator" content="Hugo 0.52" />
+  <meta name="generator" content="Hugo 0.55.5" />
 
   
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -64,7 +64,7 @@
   <meta property="og:title" content="解决kubernetes中ingress-nginx配置问题" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="/posts/k8s-ingress-config//" />
-  <meta property="og:image" content="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" />
+  <meta property="og:image" content="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5ort2b4z5j20ic0i8dgy.jpg" />
   <meta property="og:image:alt" content="ServiceMesher Logo" />
 
   
@@ -105,8 +105,8 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="/">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="解决kubernetes中ingress-nginx配置问题 logo" class="hidden-xs hidden-sm">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="解决kubernetes中ingress-nginx配置问题 logo" class="visible-xs visible-sm">
+                    <img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g5orvxifzvj20w40d0myf.jpg" alt="解决kubernetes中ingress-nginx配置问题 logo" class="hidden-xs hidden-sm">
+                    <img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5ort2b4z5j20ic0i8dgy.jpg" alt="解决kubernetes中ingress-nginx配置问题 logo" class="visible-xs visible-sm">
                     <span class="sr-only">解决kubernetes中ingress-nginx配置问题 - 跳到主页</span>
                 </a>
                 <div class="navbar-buttons">
@@ -341,10 +341,13 @@ $ cat nginx.conf | grep large_client_header_buffers
 
 <p>Using the annotation <code>nginx.ingress.kubernetes.io/server-snippet</code> it is possible to add custom configuration in the server configuration block.</p>
 
+<blockquote>
 <p>该注释是将自定义配置加入nginx的server配置中</p>
-</blockquote></li>
+</blockquote>
 
-<li><p>解决请求超时问题</p>
+<ol>
+<li>解决请求超时问题</li>
+</ol>
 
 <h5 id="现象-1">现象</h5>
 
@@ -360,7 +363,6 @@ $ cat nginx.conf | grep large_client_header_buffers
 <pre><code class="language-nginx">nginx.ingress.kubernetes.io/proxy-read-timeout: 600
 </code></pre>
 
-<blockquote>
 <p>这里需要注意的事该注释的value需要时number类型，不能加s，否则将不生效</p>
 </blockquote></li>
 
@@ -383,8 +385,7 @@ $ cat nginx.conf | grep large_client_header_buffers
 <pre><code class="language-nginx">nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/24
 </code></pre>
 
-<p>如果想全局适用，可以在阿里云 SLB 里操作，也可以将该配置加入到 <code>NGINX ConfigMap</code> 中。</p></li>
-</ol>
+<p>如果想全局适用，可以在阿里云 SLB 里操作，也可以将该配置加入到 <code>NGINX ConfigMap</code> 中。</p>
 
 <hr />
 
@@ -392,7 +393,8 @@ $ cat nginx.conf | grep large_client_header_buffers
 
 <h3 id="总结">总结</h3>
 
-<p>使用NGINX ingress controller的好处就是对于nginx配置相对比较熟悉，性能也不差。相关nginx配置的对应的ingress可以在 <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/">https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/</a> 上查到。</p>
+<p>使用NGINX ingress controller的好处就是对于nginx配置相对比较熟悉，性能也不差。相关nginx配置的对应的ingress可以在 <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/">https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/</a> 上查到。</p></li>
+</ol>
 
                           
                           

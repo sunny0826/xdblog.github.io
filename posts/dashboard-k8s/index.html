@@ -16,7 +16,7 @@
   <meta name="keywords" content="阿里云, 日志, kubernetes">
   
 
-  <meta name="generator" content="Hugo 0.52" />
+  <meta name="generator" content="Hugo 0.55.5" />
 
   
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -64,7 +64,7 @@
   <meta property="og:title" content="阿里云日志服务采集k8s日志并实现livetail功能" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="/posts/dashboard-k8s//" />
-  <meta property="og:image" content="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" />
+  <meta property="og:image" content="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5ort2b4z5j20ic0i8dgy.jpg" />
   <meta property="og:image:alt" content="ServiceMesher Logo" />
 
   
@@ -105,8 +105,8 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="/">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="阿里云日志服务采集k8s日志并实现livetail功能 logo" class="hidden-xs hidden-sm">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="阿里云日志服务采集k8s日志并实现livetail功能 logo" class="visible-xs visible-sm">
+                    <img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g5orvxifzvj20w40d0myf.jpg" alt="阿里云日志服务采集k8s日志并实现livetail功能 logo" class="hidden-xs hidden-sm">
+                    <img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5ort2b4z5j20ic0i8dgy.jpg" alt="阿里云日志服务采集k8s日志并实现livetail功能 logo" class="visible-xs visible-sm">
                     <span class="sr-only">阿里云日志服务采集k8s日志并实现livetail功能 - 跳到主页</span>
                 </a>
                 <div class="navbar-buttons">
@@ -312,10 +312,11 @@ autocomplete('#aa-search-input',
 
 <ul>
 <li>Project k8s-log-${your_k8s_cluster_id}下会自动创建名为config-operation-log的Logstore，用于存储alibaba-log-controller的运行日志。请勿删除此Logstore，否则无法为alibaba-log-controller排查问题。</li>
-<li>若您需要将日志采集到已有的Project，请执行安装命令sh ./alicloud-log-k8s-install.sh${your_k8s_cluster_id} ${your_project_name} ，并确保日志服务Project和您的Kubernetes集群在同一地域。</li>
-</ul></li>
 
-<li><p>该条命令其实就是执行了一个shell脚本，使用helm安装了采集kubernetes集群日志的组件</p>
+<li><p>若您需要将日志采集到已有的Project，请执行安装命令sh ./alicloud-log-k8s-install.sh${your_k8s_cluster_id} ${your_project_name} ，并确保日志服务Project和您的Kubernetes集群在同一地域。</p></li>
+
+<li><p>该条命令其实就是执行了一个shell脚本，使用helm安装了采集kubernetes集群日志的组件</p></li>
+</ul>
 
 <pre><code class="language-vim">#!/bin/bash
 
@@ -424,8 +425,7 @@ logtail-ds-wwmhg                         1/1    Running  0         6d
 logtail-ds-xbp4j                         1/1    Running  0         6d
 logtail-ds-zpld9                         1/1    Running  0         6d
 alibaba-log-controller-85f8fbb498-nzhc8  1/1    Running  0         6d
-</code></pre></li>
-</ul>
+</code></pre>
 
 <h1 id="配置日志组件展示">配置日志组件展示</h1>
 
@@ -476,7 +476,8 @@ alibaba-log-controller-85f8fbb498-nzhc8  1/1    Running  0         6d
 <img src="/images/source/log-10.png" alt="image" /></p></li>
 </ul>
 
-<p><strong>以上就是阿里云livetail日志服务功能</strong></p>
+<p><strong>以上就是阿里云livetail日志服务功能</strong></p></li>
+</ul>
 
                           
                           

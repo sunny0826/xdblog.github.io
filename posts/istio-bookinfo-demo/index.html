@@ -16,7 +16,7 @@
   <meta name="keywords" content="istio, service mesh, 阿里云, 华为云">
   
 
-  <meta name="generator" content="Hugo 0.52" />
+  <meta name="generator" content="Hugo 0.55.5" />
 
   
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -64,7 +64,7 @@
   <meta property="og:title" content="Istio初探之Bookinfo样例部署" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="/posts/istio-bookinfo-demo//" />
-  <meta property="og:image" content="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" />
+  <meta property="og:image" content="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5ort2b4z5j20ic0i8dgy.jpg" />
   <meta property="og:image:alt" content="ServiceMesher Logo" />
 
   
@@ -105,8 +105,8 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="/">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="Istio初探之Bookinfo样例部署 logo" class="hidden-xs hidden-sm">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="Istio初探之Bookinfo样例部署 logo" class="visible-xs visible-sm">
+                    <img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g5orvxifzvj20w40d0myf.jpg" alt="Istio初探之Bookinfo样例部署 logo" class="hidden-xs hidden-sm">
+                    <img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5ort2b4z5j20ic0i8dgy.jpg" alt="Istio初探之Bookinfo样例部署 logo" class="visible-xs visible-sm">
                     <span class="sr-only">Istio初探之Bookinfo样例部署 - 跳到主页</span>
                 </a>
                 <div class="navbar-buttons">
@@ -344,9 +344,11 @@ autocomplete('#aa-search-input',
 
 <pre><code class="language-bash">$ kubectl label namespace {inject-namespace} istio-injection=enabled
 $ kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
-</code></pre></li>
+</code></pre>
 
-<li><p>手工注入</p>
+<ul>
+<li>手工注入</li>
+</ul>
 
 <p>需要使用 istioctl 命令生成注入后应用的配置，然后在部署应用</p>
 
@@ -392,9 +394,11 @@ reviews              ClusterIP   10.11.162.37    &lt;none&gt;        9080/TCP   
 <li><p>为为应用程序定义入口网关：</p>
 
 <pre><code class="language-bash">$ kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
-</code></pre></li>
+</code></pre>
 
-<li><p>确认网关创建完成</p>
+<ol>
+<li>确认网关创建完成</li>
+</ol>
 
 <pre><code class="language-bash">$ kubectl get gateway
 NAME               AGE
@@ -406,8 +410,7 @@ bookinfo-gateway   1h
 <pre><code class="language-bash">$ kubectl get svc istio-ingressgateway -n istio-system
 NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP       PORT(S)                  AGE
 istio-ingressgateway   LoadBalancer   10.11.18.83   xxx.xxx.xxx.xxx   80:xxx/TCP,443:xxx/TCP   2h
-</code></pre></li>
-</ol>
+</code></pre>
 
 <h3 id="查看效果">查看效果</h3>
 
@@ -424,11 +427,14 @@ istio-ingressgateway   LoadBalancer   10.11.18.83   xxx.xxx.xxx.xxx   80:xxx/TCP
 <p>运行以下命令为 Bookinfo 服务创建的默认的目标规则：</p>
 
 <ul>
-<li><p>如果不需要启用双向TLS，请执行以下命令：</p>
+<li>如果不需要启用双向TLS，请执行以下命令：</li>
+</ul>
 
 <pre><code class="language-bash">$ kubectl apply -f samples/bookinfo/networking/destination-rule-all.yaml
 </code></pre></li>
+</ol>
 
+<ul>
 <li><p>如果需要启用双向 TLS，请执行以下命令：</p>
 
 <pre><code class="language-bash">$ kubectl apply -f samples/bookinfo/networking/destination-rule-all-mtls.yaml

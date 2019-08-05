@@ -17,7 +17,7 @@
       <pubDate>Sun, 14 Jul 2019 14:16:56 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/deploying-apps-on-multiple-kubernetes-clusters-with-helm/</guid>
-      <description>Dailymotion 在生产环境使用 Kubernetes 已经3年了，但是也面临着多集群部署应用的挑战，这也是在过去的几年中我一直努力优化工具和改进工作流的原因。 前言 本文将重点介绍</description>
+      <description>本文将重点介绍我们如何在全球多个 Kubernetes 集群上部署我们的应用程序。为了将应用一次部署到多个 Kubernetes 集群，我们使用了 Helm ，并将所有 chart 存储在一个 git 仓库中。</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Fri, 05 Jul 2019 09:50:58 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/the-childrens-illustrated-guide-to-kubernetes/</guid>
-      <description>转自掘金社区，原文地址：https://juejin.im/post/5d1b2a656fb9a07edc0b7058 Kubernetes 儿童插图指南 献给所有</description>
+      <description>献给所有试图向孩子们解释软件工程的家长。</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Thu, 09 May 2019 09:55:11 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/all-about-devops-fundamentalsyou-ever-wanted-to-know/</guid>
-      <description>在当前的 IT 实践中，为了支持高效和快捷的软件开发，出现了巨大的转变：在单体应用的软件架构正在逐渐被微服务架构取代的情况下，开发、 QA 和运维团队为</description>
+      <description>在当前的 IT 实践中，为了支持高效和快捷的软件开发，已经出现了伟大的转变&amp;ndash;在传统的软件架构正在逐渐被微服务架构取代的情况下，开发、 QA 和运维团队为了摆脱了之前相互孤立的状况，开始将开发与运维相互关联并融合统一，我们将其称为DevOps。</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       <pubDate>Tue, 30 Apr 2019 13:38:12 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/an-8-minute-introduction-to-k8s/</guid>
-      <description>读完 Kubernetes: Up and Running 后，我写下了这篇文章。旨在为那些认为文章 TL;DR 的人进行一些总结，这同时也是一种强迫自己检查所阅读内容的好方法。 基于 Google Borg 的开源系统 K8S( Kubernetes</description>
+      <description>8分钟快速了解 Kubernetes 基本概念，快速入门 K8S。</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@
       <pubDate>Wed, 24 Apr 2019 10:18:46 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kubernetes-is-hard/</guid>
-      <description>虽然 Kubernetes 赢得了容器之站，但是其仍然很难使用并且时长引起事故。 我想我应该给这篇文章做一点序言。 kubernetes 为许多应用程序提供新的 runtime ，如果使用得当，它可以成</description>
+      <description>虽然 Kubernetes 赢得了容器战争，但是其仍然很难使用并且引起很多事故。</description>
     </item>
     
     <item>
@@ -62,7 +62,7 @@
       <pubDate>Sat, 20 Apr 2019 19:54:50 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</guid>
-      <description>Docker 非常棒！ 它使软件开发者无需担心配置和依赖性，在任何地方打包，发送和运行他们的应用程序。而在与 kubernetes 相结合后，它使应用集群部署和管理变得更方便。</description>
+      <description>Docker 非常棒！ 它使软件开发者无需担心配置和依赖性，在任何地方打包，发送和运行他们的应用程序。而在与 kubernetes 相结合后，它使应用集群部署和管理变得更方便。这使得 Docker 深受软件开发者的喜爱，越来越多的开发者开始使用 Docker。</description>
     </item>
     
     <item>
@@ -71,7 +71,7 @@
       <pubDate>Mon, 15 Apr 2019 17:23:21 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</guid>
-      <description>作者：Jeff Regan (Google), Phil Wittrock (Google) 2018-05-29 如果你在运行 kubernetes 集群，你可能会拷贝一些包含 kubernetes API 对象的 YAML 文件，并且根据你的需求来修改这些文件，通过这些 YAML 文件来定义你的</description>
+      <description>本文介绍了 Kubernetes 原生的应用管理工具 Kustomize。</description>
     </item>
     
     <item>
@@ -80,7 +80,7 @@
       <pubDate>Tue, 09 Apr 2019 13:21:56 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/devops-tutorial/</guid>
-      <description>DevOps 是什么？ “DevOps” 这个词是 development 和 operations 这两个词的组合。它是一种促进开发和运维团队之间的协作，以自动化和可重复的方式更快地将代码部署到生产中</description>
+      <description>“DevOps”这个词是 “development” 和 “operations”这两个词的组合。它是一种促进开发和运维团队之间的协作，以自动化和可重复的方式更快地将代码部署到生产中的文化。</description>
     </item>
     
     <item>
@@ -89,7 +89,7 @@
       <pubDate>Mon, 25 Mar 2019 18:17:20 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/whats-a-service-mesh-and-why-do-i-need-one/</guid>
-      <description>作者：William Morgan 发表于2017年4月25日，2018年11月26日有所修改。 Service Mesh 是一个专门使服务与服务之间的通信变得安全、快速和可靠的</description>
+      <description>Service Mesh 是一个专门用于使服务与服务之间的通信变得安全、快速和可靠的的基础设施。如果你正在在构建一个云原生（ Cloud Native ）应用，那么 Service Mesh 是你需要的。</description>
     </item>
     
   </channel>

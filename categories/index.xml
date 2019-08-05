@@ -6,88 +6,17 @@
     <description>Recent content in Categories on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
+    <lastBuildDate>Thu, 25 Jul 2019 16:27:57 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Devops</title>
-      <link>https://blog.maoxianplay.com/categories/devops/</link>
-      <pubDate>Thu, 11 Jul 2019 09:24:17 +0800</pubDate>
-      
-      <guid>https://blog.maoxianplay.com/categories/devops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
+      <title>go</title>
       <link>https://blog.maoxianplay.com/categories/go/</link>
       <pubDate>Thu, 25 Jul 2019 16:27:57 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/categories/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Istio</title>
-      <link>https://blog.maoxianplay.com/categories/istio/</link>
-      <pubDate>Thu, 21 Mar 2019 09:42:18 +0800</pubDate>
-      
-      <guid>https://blog.maoxianplay.com/categories/istio/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Kubernetes</title>
-      <link>https://blog.maoxianplay.com/categories/kubernetes/</link>
-      <pubDate>Mon, 08 Jul 2019 15:09:56 +0800</pubDate>
-      
-      <guid>https://blog.maoxianplay.com/categories/kubernetes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Kustomize</title>
-      <link>https://blog.maoxianplay.com/categories/kustomize/</link>
-      <pubDate>Thu, 04 Jul 2019 09:16:41 +0800</pubDate>
-      
-      <guid>https://blog.maoxianplay.com/categories/kustomize/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>应用程序开发</title>
-      <link>https://blog.maoxianplay.com/categories/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/</link>
-      <pubDate>Sat, 06 Jul 2019 09:40:42 +0800</pubDate>
-      
-      <guid>https://blog.maoxianplay.com/categories/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>服务网格</title>
-      <link>https://blog.maoxianplay.com/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</link>
-      <pubDate>Wed, 10 Apr 2019 14:03:25 +0800</pubDate>
-      
-      <guid>https://blog.maoxianplay.com/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>程序员趣闻</title>
-      <link>https://blog.maoxianplay.com/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%B6%A3%E9%97%BB/</link>
-      <pubDate>Tue, 02 Jul 2019 10:18:18 +0800</pubDate>
-      
-      <guid>https://blog.maoxianplay.com/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%B6%A3%E9%97%BB/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>系统</title>
-      <link>https://blog.maoxianplay.com/categories/%E7%B3%BB%E7%BB%9F/</link>
-      <pubDate>Fri, 15 Mar 2019 09:53:02 +0800</pubDate>
-      
-      <guid>https://blog.maoxianplay.com/categories/%E7%B3%BB%E7%BB%9F/</guid>
       <description></description>
     </item>
     
@@ -101,11 +30,47 @@
     </item>
     
     <item>
-      <title>部署安装</title>
-      <link>https://blog.maoxianplay.com/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/</link>
-      <pubDate>Sun, 31 Mar 2019 11:15:35 +0800</pubDate>
+      <title>devops</title>
+      <link>https://blog.maoxianplay.com/categories/devops/</link>
+      <pubDate>Thu, 11 Jul 2019 09:24:17 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/</guid>
+      <guid>https://blog.maoxianplay.com/categories/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://blog.maoxianplay.com/categories/kubernetes/</link>
+      <pubDate>Mon, 08 Jul 2019 15:09:56 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/categories/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>应用程序开发</title>
+      <link>https://blog.maoxianplay.com/categories/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Sat, 06 Jul 2019 09:40:42 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/categories/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kustomize</title>
+      <link>https://blog.maoxianplay.com/categories/kustomize/</link>
+      <pubDate>Thu, 04 Jul 2019 09:16:41 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/categories/kustomize/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>程序员趣闻</title>
+      <link>https://blog.maoxianplay.com/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%B6%A3%E9%97%BB/</link>
+      <pubDate>Tue, 02 Jul 2019 10:18:18 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%B6%A3%E9%97%BB/</guid>
       <description></description>
     </item>
     
@@ -115,6 +80,42 @@
       <pubDate>Thu, 18 Apr 2019 17:46:08 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>服务网格</title>
+      <link>https://blog.maoxianplay.com/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</link>
+      <pubDate>Wed, 10 Apr 2019 14:03:25 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>部署安装</title>
+      <link>https://blog.maoxianplay.com/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Sun, 31 Mar 2019 11:15:35 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>istio</title>
+      <link>https://blog.maoxianplay.com/categories/istio/</link>
+      <pubDate>Thu, 21 Mar 2019 09:42:18 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/categories/istio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>系统</title>
+      <link>https://blog.maoxianplay.com/categories/%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Fri, 15 Mar 2019 09:53:02 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/categories/%E7%B3%BB%E7%BB%9F/</guid>
       <description></description>
     </item>
     

@@ -16,7 +16,7 @@
   <meta name="keywords" content="容器, kubernetes">
   
 
-  <meta name="generator" content="Hugo 0.52" />
+  <meta name="generator" content="Hugo 0.55.5" />
 
   
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -64,7 +64,7 @@
   <meta property="og:title" content="centos7.2 安装k8s v1.11.0" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="/posts/install-k8s//" />
-  <meta property="og:image" content="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" />
+  <meta property="og:image" content="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5ort2b4z5j20ic0i8dgy.jpg" />
   <meta property="og:image:alt" content="ServiceMesher Logo" />
 
   
@@ -105,8 +105,8 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="/">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="centos7.2 安装k8s v1.11.0 logo" class="hidden-xs hidden-sm">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="centos7.2 安装k8s v1.11.0 logo" class="visible-xs visible-sm">
+                    <img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g5orvxifzvj20w40d0myf.jpg" alt="centos7.2 安装k8s v1.11.0 logo" class="hidden-xs hidden-sm">
+                    <img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5ort2b4z5j20ic0i8dgy.jpg" alt="centos7.2 安装k8s v1.11.0 logo" class="visible-xs visible-sm">
                     <span class="sr-only">centos7.2 安装k8s v1.11.0 - 跳到主页</span>
                 </a>
                 <div class="navbar-buttons">
@@ -396,8 +396,7 @@ EOF
 sysctl --system
 </code></pre>
 
-<p><strong>这里就完成了k8s集群搭建的准备工作，集群搭建的话以上操作结束后将操作完的系统制作成系统镜像，方便集群搭建</strong></p></li>
-</ol>
+<p><strong>这里就完成了k8s集群搭建的准备工作，集群搭建的话以上操作结束后将操作完的系统制作成系统镜像，方便集群搭建</strong></p>
 
 <h1 id="正式安装">正式安装</h1>
 
@@ -406,7 +405,8 @@ sysctl --system
 <p><strong>初始化镜像</strong></p>
 
 <pre><code class="language-bash">kubeadm init --kubernetes-version=v1.11.0 --pod-network-cidr=10.10.0.0/16  #这里填写集群所在网段
-</code></pre>
+</code></pre></li>
+</ol>
 
 <p><strong>之后的输出会是这样：</strong></p>
 

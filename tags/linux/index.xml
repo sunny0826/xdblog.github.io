@@ -17,7 +17,7 @@
       <pubDate>Fri, 15 Mar 2019 09:53:02 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/alpine-linux/</guid>
-      <description>简介 Small. Simple. Secure.Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox. Alpine Linux 是一个社区开发的面向安全应用的轻量级Linux发行版。 Alpine 的意思是“高山的”，它采用了musl libc</description>
+      <description>Alpine以其小巧、简单在docker容器中得到了广泛的应用。但是Alpine Linux使用了musl，可能和其他Linux发行版使用的glibc实现会有些不同。这里主要介绍了它的基础用法，但是足以满足日常运维需要。</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Thu, 27 Sep 2018 19:27:03 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/docker-quit/</guid>
-      <description>现象 启动docker容器 docker run –name [CONTAINER_NAME] [CONTAINER_ID] 查看容器运行状态 docker ps -a 发现刚刚启动的mydocker容器已经退出 原因 docker容器的主线程（do</description>
+      <description>解决容器启动退出问题。</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Tue, 14 Aug 2018 20:05:21 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/install-docker/</guid>
-      <description>前言 在使用centos7，并使用荫安装搬运工的时候，往往不希望安装最新版本的搬运工，而是希望安装与自己熟悉或者当前业务环境需要的版本，例如目</description>
+      <description>在使用CentOS7，并使用荫安装搬运工的时候，往往不希望安装最新版本的搬运工，而是希望安装与自己熟悉或者当前业务环境需要的版本，例如目前Kubernetes支持的最新搬运工版本为v17.03，所以就产生了安装指定版本码头工人的需求。</description>
     </item>
     
   </channel>

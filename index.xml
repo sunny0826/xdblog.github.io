@@ -17,7 +17,7 @@
       <pubDate>Thu, 25 Jul 2019 16:27:57 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/golang-to-homebrew/</guid>
-      <description>前言 经过上篇文章，我们已经可以在 GitHub 上构建一个看上去正经的 Golang 项目了，但这并不是结束。一个真正的用 Golang 构建的可执行文件是可以在全平台运行的，前文中</description>
+      <description>本文介绍如何在 Homebrew 上发布 Golang 项目。</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Fri, 19 Jul 2019 10:38:26 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/golang-project/</guid>
-      <description>前言 接触 golang 时间很长，但是真正动手开始写 golang 也就是在最近。虽然写的不多，但是见过的 golang 项目可是不计其数，从 Kubernetes 和 istio 到亲身参与的 kustomize 再到 Kubernetes 生态圈的众多小</description>
+      <description>接触 golang 时间很长，但是真正动手开始写 golang 也就是在最近。跟着我在 GitHub 上构建一个看上去正规的 Golang 项目。</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Sun, 14 Jul 2019 14:16:56 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/deploying-apps-on-multiple-kubernetes-clusters-with-helm/</guid>
-      <description>Dailymotion 在生产环境使用 Kubernetes 已经3年了，但是也面临着多集群部署应用的挑战，这也是在过去的几年中我一直努力优化工具和改进工作流的原因。 前言 本文将重点介绍</description>
+      <description>本文将重点介绍我们如何在全球多个 Kubernetes 集群上部署我们的应用程序。为了将应用一次部署到多个 Kubernetes 集群，我们使用了 Helm ，并将所有 chart 存储在一个 git 仓库中。</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       <pubDate>Thu, 11 Jul 2019 09:24:17 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/gitops-and-chatops/</guid>
-      <description>前言 说到 GitOps 和 ChatOps ，那就不得不谈到 DevOps 。 DevOps 作为一种文化，旨在促进开发、测试和运维人员之间的沟通与协作。而促进合作的方式，往往是使用一系列工具，完成</description>
+      <description>本文介绍 GitOps 和 ChatOps 这两种 DevOps 实践，通过版本控制软件 Git 和实时聊天软件来达到提升交付速度和研发效率的目的。</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@
       <pubDate>Mon, 08 Jul 2019 15:09:56 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/nas-k8s/</guid>
-      <description>前言 今天接到一个将 NAS 数据卷挂载到 Kubernetes 集群的需求，需要将一个 NAS 数据卷挂载到集群中。这一很简单的操作由于好久没有操作了，去翻看了一下官方文档，发现</description>
+      <description>记录在阿里云购买、配置、挂载 NAS 数据卷到 Kubernetes 集群，由于官方文档没有及时更新，可以看做是对官方文档的补充。</description>
     </item>
     
     <item>
@@ -62,7 +62,7 @@
       <pubDate>Sat, 06 Jul 2019 09:40:42 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/semver/</guid>
-      <description>原文地址：https://semver.org/lang/zh-CN/ 语义化版本 2.0.0 提供多种语言，语义化版本控制的规范是由 Gravatars 创办者兼 GitHub 共同创办</description>
+      <description>语义化的版本控制，在这套约定下，版本号及其更新方式包含了相邻版本间的底层代码和修改内容的信息。</description>
     </item>
     
     <item>
@@ -71,7 +71,7 @@
       <pubDate>Fri, 05 Jul 2019 09:50:58 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/the-childrens-illustrated-guide-to-kubernetes/</guid>
-      <description>转自掘金社区，原文地址：https://juejin.im/post/5d1b2a656fb9a07edc0b7058 Kubernetes 儿童插图指南 献给所有</description>
+      <description>献给所有试图向孩子们解释软件工程的家长。</description>
     </item>
     
     <item>
@@ -80,7 +80,7 @@
       <pubDate>Thu, 04 Jul 2019 09:16:41 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kubernetes-client-python/</guid>
-      <description>只要仔细找，想要的轮子总会有的。 &amp;mdash; 某不知名 DevOps 工程师 感谢 kubernetes-dev 的 Mailing List ！早上在浏览邮件时发现了下面这封有趣的邮件： 接触 Kubernetes 也有不短的时间了，也见证了 Kubernetes</description>
+      <description>从发现、使用 Kubernetes Client/Python 这个项目的过程，谈谈 mailing list 在开源项目中的重要性。</description>
     </item>
     
     <item>
@@ -89,7 +89,7 @@
       <pubDate>Wed, 03 Jul 2019 15:20:31 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kustomize-5/</guid>
-      <description>在以往的 pipeline 中，使用 kubectl 进行部署 Deployment 后无法检查 Deployment 是否部署成功，只能通过使用命令/脚本来手动检查 Deployment 状态，而 kubedog 这个小工具完美解决了这个问题，完善了 CI/CD 流</description>
+      <description>在以往的 pipeline 中，使用 kubectl 进行部署 Deployment 后无法检查 Deployment 是否部署成功，只能通过使用命令/脚本来手动检查 Deployment 状态，而 kubedog 这个小工具完美解决了这个问题，完善了 CI/CD 流水线的最后一步。</description>
     </item>
     
     <item>
@@ -98,7 +98,7 @@
       <pubDate>Wed, 03 Jul 2019 13:44:50 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kustomize-err-1/</guid>
-      <description>现象 在日常 CI/CD 流程中，已经将 Kustomize 集成到 pipeline 中使用，但是在对一个项目进行 Kustomize 改造时，将单个 deploy.yaml 拆分为了若干个 patch 以达到灵活 Kubernetes 部署的目的。但是在使用 kubectl apply -k .</description>
+      <description>解决使用 Kustomize 时遇到的报错： error: failed to find an object with apps_v1_Deployment|myapp to apply the patch</description>
     </item>
     
     <item>
@@ -107,7 +107,7 @@
       <pubDate>Tue, 02 Jul 2019 10:18:18 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kubecon-2019/</guid>
-      <description>前言 2019年6月24-26日，KubeCon + CloudNativeCon + Open Source Summit大会在上海世博中心举行。本次大会规模空前，预计有超过40个国家，3500</description>
+      <description>2019年6月24-26日，KubeCon + CloudNativeCon + Open Source Summit大会在上海世博中心举行。本次大会规模空前，预计有超过40个国家，3500多名云原生、开源领域的开发者参加，门票更是早早售罄。作为一名云原生应用的使用者与开发者，我也报名参与了这次大会。</description>
     </item>
     
     <item>
@@ -116,7 +116,7 @@
       <pubDate>Thu, 23 May 2019 12:50:12 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kustomize-4/</guid>
-      <description>前言 在前面的文章中已经介绍了 kustomize 是什么，以及如何开始使用和如何简单的在 CI/CD 中使用，本篇文章将会介绍 kustomize 的核心文件 kustomization.yam</description>
+      <description>本篇为系列文章第四篇，将简述 kustomize 的核心配置文件 kustomization.yaml</description>
     </item>
     
     <item>
@@ -125,7 +125,7 @@
       <pubDate>Tue, 21 May 2019 08:59:00 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/drone-ci/</guid>
-      <description>前言 公司之前一直在使用 Jenkins 作为 CI/CD 工具， Jenkins 非常强大，它完成了几乎所有 CI/CD 的工作，并且应用于整个团队有好长一段时间了。但是随着公司推荐数字化、智慧化</description>
+      <description>本文介绍一款轻量级的 CI 工具 Drone ，同时也介绍在实践中遇到的一些坑，帮助你快速搭建持续集成流水线。</description>
     </item>
     
     <item>
@@ -134,7 +134,7 @@
       <pubDate>Thu, 09 May 2019 09:55:11 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/all-about-devops-fundamentalsyou-ever-wanted-to-know/</guid>
-      <description>在当前的 IT 实践中，为了支持高效和快捷的软件开发，出现了巨大的转变：在单体应用的软件架构正在逐渐被微服务架构取代的情况下，开发、 QA 和运维团队为</description>
+      <description>在当前的 IT 实践中，为了支持高效和快捷的软件开发，已经出现了伟大的转变&amp;ndash;在传统的软件架构正在逐渐被微服务架构取代的情况下，开发、 QA 和运维团队为了摆脱了之前相互孤立的状况，开始将开发与运维相互关联并融合统一，我们将其称为DevOps。</description>
     </item>
     
     <item>
@@ -143,7 +143,7 @@
       <pubDate>Mon, 06 May 2019 16:46:28 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kustomize-3/</guid>
-      <description>前言 首先明确软件版本，我这里使用的是 Jenkins ver. 2.121.3 ，这个版本比较老，其上安装 Kubernetes 插件所使用 kubectl 版本也比较老，无法使用 Kustomize 的 yaml 文件需要的 apiVersion: apps/v1 ，直接使用生成 deploy.yaml</description>
+      <description>本篇为系列文章第三篇，使用 jenkins 发布一个简单的使用 flask 写的 web 项目，来演示在 CI/CD 流程中 Kustomize 的简单使用。</description>
     </item>
     
     <item>
@@ -152,7 +152,7 @@
       <pubDate>Fri, 03 May 2019 14:37:14 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/what-is-devsecops/</guid>
-      <description>DevOps 不仅仅是开发和运营团队。如果您想要充分发挥出 DevOps 方法的敏捷性和响应力，则必须在应用的整个生命周期内同时兼顾 IT 安全性。 为什么？以往，安全性会在</description>
+      <description>DevOps 不仅仅是开发和运营团队。如果您想要充分发挥出 DevOps 方法的敏捷性和响应力，则必须在应用的整个生命周期内同时兼顾 IT 安全性。</description>
     </item>
     
     <item>
@@ -161,7 +161,7 @@
       <pubDate>Tue, 30 Apr 2019 18:46:24 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/aliyun-share/</guid>
-      <description>该PPT 为 2019年4月26日 在云栖社区分享使用，这里留作展示和记录，下载地址可以参考下方链接。 由于图片资源位于 GitHub 上，国内访问可能会有些慢，</description>
+      <description>该PPT 为 2019年4月26日 在云栖社区分享使用，这里留作展示和记录。</description>
     </item>
     
     <item>
@@ -170,7 +170,7 @@
       <pubDate>Tue, 30 Apr 2019 13:38:12 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/an-8-minute-introduction-to-k8s/</guid>
-      <description>读完 Kubernetes: Up and Running 后，我写下了这篇文章。旨在为那些认为文章 TL;DR 的人进行一些总结，这同时也是一种强迫自己检查所阅读内容的好方法。 基于 Google Borg 的开源系统 K8S( Kubernetes</description>
+      <description>8分钟快速了解 Kubernetes 基本概念，快速入门 K8S。</description>
     </item>
     
     <item>
@@ -179,7 +179,7 @@
       <pubDate>Mon, 29 Apr 2019 11:55:47 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/edex-ui/</guid>
-      <description>马上就是五一假期了，而且今年的五一假期有4天！想必大家已经安排好是在家写代码还是出门去冒险了。不过在五一假期之前，我这里推荐一个好玩的又好用</description>
+      <description>eDEX-UI 是一个全屏且跨平台、可定制的终端模拟器，具有先进的监控和触摸屏支持。它的外观类似科幻的计算机界面。在保持未来感的外观和感觉的同时，它努力保持一定的功能水平并可用于现实场景，其更大的目标是将科幻用户体验纳入主流。</description>
     </item>
     
     <item>
@@ -188,7 +188,7 @@
       <pubDate>Thu, 25 Apr 2019 22:26:06 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/aliyun-k8s-perfect/</guid>
-      <description>前言 选择阿里云的容器服务，主要原因是公司主要业务基本都在运行在阿里云上。相较自建 kubernetes 集群，容器服务的优势在于部署相对简单，与阿里云 VPC 完美兼容，</description>
+      <description>这里记录了在工作中遇到阿里云容器服务的调优优化方案，帮助您绕过阿里云容器服务中的一些坑，来使用更好更优质的阿里云容器服务。</description>
     </item>
     
     <item>
@@ -197,7 +197,7 @@
       <pubDate>Wed, 24 Apr 2019 10:18:46 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kubernetes-is-hard/</guid>
-      <description>虽然 Kubernetes 赢得了容器之站，但是其仍然很难使用并且时长引起事故。 我想我应该给这篇文章做一点序言。 kubernetes 为许多应用程序提供新的 runtime ，如果使用得当，它可以成</description>
+      <description>虽然 Kubernetes 赢得了容器战争，但是其仍然很难使用并且引起很多事故。</description>
     </item>
     
     <item>
@@ -206,7 +206,7 @@
       <pubDate>Mon, 22 Apr 2019 09:11:24 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/cant/</guid>
-      <description>这里的黑话，其实就是 GitHub 上的一些迷之缩写，这些歪果老司机们在 GitHub 上肆无忌惮的使用着他们的“黑话”，让我们这些非英语母语国家的新司机在 code review 时经常是</description>
+      <description>这里总结了一些在 GitHub 上常见的&amp;lt;黑话&amp;gt;，这些乱七八糟的缩写着实给很多新司机带来了许多困扰 :)</description>
     </item>
     
     <item>
@@ -215,7 +215,7 @@
       <pubDate>Sat, 20 Apr 2019 19:54:50 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</guid>
-      <description>Docker 非常棒！ 它使软件开发者无需担心配置和依赖性，在任何地方打包，发送和运行他们的应用程序。而在与 kubernetes 相结合后，它使应用集群部署和管理变得更方便。</description>
+      <description>Docker 非常棒！ 它使软件开发者无需担心配置和依赖性，在任何地方打包，发送和运行他们的应用程序。而在与 kubernetes 相结合后，它使应用集群部署和管理变得更方便。这使得 Docker 深受软件开发者的喜爱，越来越多的开发者开始使用 Docker。</description>
     </item>
     
     <item>
@@ -224,7 +224,7 @@
       <pubDate>Fri, 19 Apr 2019 16:05:02 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kustomize-2/</guid>
-      <description>本文介绍使用和维护 Kustomize 的方法及步骤。 定制配置 在这个工作流方式中，所有的配置文件（ YAML 资源）都为用户所有，存在于私有 repo 中。其他人是无法使用的。 创建</description>
+      <description>本篇为系列文章第二篇，手把手教你使用 Kustomize 的两种方式。</description>
     </item>
     
     <item>
@@ -233,7 +233,7 @@
       <pubDate>Thu, 18 Apr 2019 17:46:08 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/rancher-prometheus-fix-question/</guid>
-      <description>前言 Rancher 2.2.X 版本于3月底正式GA，新版本处理其他部分的优化以外，最大亮点莫过于本身集成了 Prometheus ，可以通过 Rancher 自带 UI 或者 Grafana 查看集群的实时监控，对所有监控</description>
+      <description>记一次在 Rancher 官方小哥帮助下解决 Rancher 问题的过程。</description>
     </item>
     
     <item>
@@ -242,7 +242,7 @@
       <pubDate>Mon, 15 Apr 2019 17:23:21 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</guid>
-      <description>作者：Jeff Regan (Google), Phil Wittrock (Google) 2018-05-29 如果你在运行 kubernetes 集群，你可能会拷贝一些包含 kubernetes API 对象的 YAML 文件，并且根据你的需求来修改这些文件，通过这些 YAML 文件来定义你的</description>
+      <description>本文介绍了 Kubernetes 原生的应用管理工具 Kustomize。</description>
     </item>
     
     <item>
@@ -251,7 +251,7 @@
       <pubDate>Mon, 15 Apr 2019 13:32:59 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kustomize-1/</guid>
-      <description>初识 Kustomize 第一次听说 Kustomize 其实是在 kubernetes 1.14 发布时候，它被集成到 kubectl 中，成为了一个子命令，但也只是扫了一眼，并没有深究。真正让我注意到它，并主动开始了解其功</description>
+      <description>本篇为系列文章第一篇，介绍我对 Kustomize 的了解过程以及 Kustomize 是什么，为什么它能解决我的燃眉之急。</description>
     </item>
     
     <item>
@@ -260,7 +260,7 @@
       <pubDate>Wed, 10 Apr 2019 14:03:25 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/sidercar-to-servicemesh/</guid>
-      <description>所谓边车模式（ Sidecar pattern ），也译作挎斗模式，是分布式架构中云设计模式的一种。因为其非常类似于生活中的边三轮摩托车而得名。该设计模式通过给应用程序加</description>
+      <description>谈谈从边车模式这一分布式架构的设计模式到 Service Mesh 的演变。</description>
     </item>
     
     <item>
@@ -269,7 +269,7 @@
       <pubDate>Tue, 09 Apr 2019 13:21:56 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/devops-tutorial/</guid>
-      <description>DevOps 是什么？ “DevOps” 这个词是 development 和 operations 这两个词的组合。它是一种促进开发和运维团队之间的协作，以自动化和可重复的方式更快地将代码部署到生产中</description>
+      <description>“DevOps”这个词是 “development” 和 “operations”这两个词的组合。它是一种促进开发和运维团队之间的协作，以自动化和可重复的方式更快地将代码部署到生产中的文化。</description>
     </item>
     
     <item>
@@ -278,7 +278,7 @@
       <pubDate>Sun, 31 Mar 2019 11:15:35 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/rancher-update-2.2.1/</guid>
-      <description>Rancher 不仅可以在任何云提供商的任何地方部署 Kubernetes 集群，而且还将它们集中在集中式的身份验证和访问控制之下。由于它与资源的运行位置无关，因此您可以轻松地</description>
+      <description>Rancher 不仅可以在任何云提供商的任何地方部署 Kubernetes 集群，而且还将它们集中在集中式的身份验证和访问控制之下。由于它与资源的运行位置无关，因此您可以轻松地在不同的环境部署你的 kubernetes 集群并操作他们。 Rancher 不是将部署几个独立的 Kubernetes 集群，而是将它们统一为一个单独的托管Kubernetes Cloud。</description>
     </item>
     
     <item>
@@ -287,7 +287,7 @@
       <pubDate>Mon, 25 Mar 2019 18:17:20 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/whats-a-service-mesh-and-why-do-i-need-one/</guid>
-      <description>作者：William Morgan 发表于2017年4月25日，2018年11月26日有所修改。 Service Mesh 是一个专门使服务与服务之间的通信变得安全、快速和可靠的</description>
+      <description>Service Mesh 是一个专门用于使服务与服务之间的通信变得安全、快速和可靠的的基础设施。如果你正在在构建一个云原生（ Cloud Native ）应用，那么 Service Mesh 是你需要的。</description>
     </item>
     
     <item>
@@ -296,7 +296,7 @@
       <pubDate>Thu, 21 Mar 2019 09:42:18 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/istio-bookinfo-demo/</guid>
-      <description>前言 之前介绍了 Istio 和 Service Mesh 能给我们带来什么，我们为什么要用 Istio ，但大家对 Istio 的认识可能还没有那么深刻。正如Linux 的创始人 Linus Torvalds 的那句话：Talk is</description>
+      <description>正如Linux 的创始人 Linus Torvalds 的那句话：Talk is cheap. Show me the code. 这里我们部署一个demo，由四个单独的微服务构成（注意这里的四个微服务是由不同的语言编写的），用来演示多种 Istio 特性。</description>
     </item>
     
     <item>
@@ -305,7 +305,7 @@
       <pubDate>Wed, 20 Mar 2019 09:12:28 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/istio-share/</guid>
-      <description>前言 公司于18年10月正式确认服务容器化，到18年12月4日第一个服务正式部署到生产环境kubernetes集群，再到如今已有23个服务完成</description>
+      <description>在云原生架构下，容器的使用给予了异构应用程序的更多可行性，Kubernetes 增强了应用的横向扩容能力，用户可以快速的编排出复杂环境、复杂依赖关系的应用程序，Istio可以使开发者又无须过分关心应用程序的监控、扩展性、服务发现和分布式追踪这些繁琐的事情而专注于程序开发，赋予开发者更多的创造性。</description>
     </item>
     
     <item>
@@ -314,7 +314,7 @@
       <pubDate>Tue, 19 Mar 2019 16:12:56 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/istio-servicemesh/</guid>
-      <description>本文转自《Istio 服务网格进阶实战》 什么是服务网格？ Service mesh 又译作 “服务网格”，作为服务间通信的基础设施层。Buoyant 公司的 CEO Willian Morgan 在他的这</description>
+      <description>现在Service Mesh很热，但是到底什么事Service Mesh，Service Mesh能为我们做什么，我们为什么要用Service Mesh。</description>
     </item>
     
     <item>
@@ -323,7 +323,7 @@
       <pubDate>Sun, 17 Mar 2019 10:45:02 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/merge-kubeconfig/</guid>
-      <description>前言 随着微服务和容器化的深入人心，以及kubernetes已经成为容器编排领域的事实标准，越来越多的公司将自己的服务迁移到kubernete</description>
+      <description>随着kubernetes集群的增加，集群管理的问题就凸显出来，不同的环境存在不同的集群，不同的业务线不同的集群，甚至有些开发人员都有自己的集群。这里介绍一款工具来自动合并Kubeconfig，实现多k8s集群切换。</description>
     </item>
     
     <item>
@@ -332,7 +332,7 @@
       <pubDate>Fri, 15 Mar 2019 09:53:02 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/alpine-linux/</guid>
-      <description>简介 Small. Simple. Secure.Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox. Alpine Linux 是一个社区开发的面向安全应用的轻量级Linux发行版。 Alpine 的意思是“高山的”，它采用了musl libc</description>
+      <description>Alpine以其小巧、简单在docker容器中得到了广泛的应用。但是Alpine Linux使用了musl，可能和其他Linux发行版使用的glibc实现会有些不同。这里主要介绍了它的基础用法，但是足以满足日常运维需要。</description>
     </item>
     
     <item>
@@ -341,7 +341,7 @@
       <pubDate>Wed, 13 Mar 2019 15:45:43 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/istio-demo/</guid>
-      <description>istio应用部署样例 该实例为一套istio服务上线流程：注入-&amp;gt;部署-&amp;gt;创建目标规则-&amp;gt;创建默认路由。就大多数istio</description>
+      <description>极简的istio样例部署，可以帮助新手快速入门，相较官方提供的Bookinfo应用更容易上手。</description>
     </item>
     
     <item>
@@ -368,7 +368,7 @@
       <pubDate>Thu, 07 Mar 2019 09:14:39 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/sonar-pipline/</guid>
-      <description>简介 jenkins pipeline Jenkins Pipeline (或简称为 &amp;ldquo;Pipeline&amp;rdquo; )是一套插件，将持续交付的实现和实施集成到 Jenkins 中。 持续交付Pipeline自动化的表达了这样一种流程：将基于版本控制管</description>
+      <description>在devops理念中，CI/CD毫无疑问是最重要的一环，而代码质量检查则是CI中必不可少的一步。在敏捷开发的思想下，代码的迭代周期变短，交付速度提升，这个时候代码的质量就很难保证，测试只能保证功能完整与可用，而代码的质量纯靠review的话效率又很低，这个时候sonar&amp;hellip;</description>
     </item>
     
     <item>
@@ -377,7 +377,7 @@
       <pubDate>Wed, 06 Mar 2019 14:42:05 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/k8s-ingress-config/</guid>
-      <description>前言 随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外</description>
+      <description>随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外的扎眼。这里就对实践中kubernetes集群中的7层负载均衡器ingress遇到的问题进行总结。</description>
     </item>
     
     <item>
@@ -386,7 +386,7 @@
       <pubDate>Mon, 04 Mar 2019 19:18:13 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/k8s-qos/</guid>
-      <description>根据Pod对象的requests和limits属性，kubernetes将Pod对象归类到BestEffort、Burstable和Guar</description>
+      <description>根据Pod对象的requests和limits属性，kubernetes将Pod对象归类到BestEffort、Burstable和Guaranteed三个服务质量（Quality of Service，QoS）类别。</description>
     </item>
     
     <item>
@@ -395,7 +395,7 @@
       <pubDate>Thu, 14 Feb 2019 14:07:06 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/12-factor/</guid>
-      <description>背景 为了更好的拥抱云原生架构，同时提高软件交付质量，开发人员必须改变他们的编码方式，并未开发者和应用程序所运行的基础架构之间创造一个新的协议</description>
+      <description>为了更好的拥抱云原生架构，同时提高软件交付质量，开发人员必须改变他们的编码方式，并未开发者和应用程序所运行的基础架构之间创造一个新的协议，十二要素应用宣言应运而生。</description>
     </item>
     
     <item>
@@ -404,7 +404,7 @@
       <pubDate>Thu, 14 Feb 2019 14:07:06 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/dashboard-k8s/</guid>
-      <description>前言 目前的项目日志都是通过Logtail直接采集，投递到OSS持久化，同时可以通过阿里云日志服务、devops自建平台进行查看（虽然大部分人</description>
+      <description>阿里云日志服务采集k8s日志和livetail功能调研</description>
     </item>
     
     <item>
@@ -413,7 +413,7 @@
       <pubDate>Wed, 30 Jan 2019 20:18:13 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/pod-timezone/</guid>
-      <description>新版监控大屏于18年最后一天正式上线，之后陆续进行了几次优化和修改，最近发现一个比较大的bug，就是监控显示的时间轴不对，显示的就是和目前的</description>
+      <description>解决容器中时区问题。</description>
     </item>
     
     <item>
@@ -422,7 +422,7 @@
       <pubDate>Sat, 29 Dec 2018 21:28:13 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/https-ingress/</guid>
-      <description>devops平台率先在公司内使用kubernetes集群提供后端服务，但是由于之前一直处于探索阶段，所以使用的事http的方式提供后端服务，</description>
+      <description>devops平台率先在公司内使用kubernetes集群提供后端服务，但是由于之前一直处于探索阶段，所以使用的事http的方式提供后端服务，但是在开发统一入口后，出现了访问HTTPS页面的跨域问题，由此引出了后端服务配置SSL证书的问题。</description>
     </item>
     
     <item>
@@ -431,7 +431,7 @@
       <pubDate>Thu, 29 Nov 2018 18:28:13 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/install-rancher/</guid>
-      <description>近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以将部署到阿里云的图中遇到的问题和踩到的坑在这里进行记录。 无法删除n</description>
+      <description>近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以将部署到阿里云的图中遇到的问题和踩到的坑在这里进行记录。</description>
     </item>
     
     <item>
@@ -440,7 +440,7 @@
       <pubDate>Fri, 16 Nov 2018 18:18:13 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/k8s-d-n/</guid>
-      <description>近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以需要将原有Rancher依赖的namespace（cattle-s</description>
+      <description>kubernetes解决删除的namespace一直处于Terminating状态的情况。</description>
     </item>
     
     <item>
@@ -449,7 +449,7 @@
       <pubDate>Wed, 03 Oct 2018 12:18:13 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/k8s-topo/</guid>
-      <description>随着2017年AWS，Azure和阿里云相继在其原有容器服务上新增了对kubernetes的支持，而Docker官网也在同年10月宣布同时支</description>
+      <description>随着2017年AWS，Azure和阿里云相继在其原有容器服务上新增了对kubernetes的支持，而Docker官网也在同年10月宣布同时支持Swarm好kubernetes容器编排系统。kubernetes俨然已成为容器编排领域事实上的标准，而2018年更是各大公司相继将服务迁移到kubernetes上，而kubernetes则以惊人更新速度，保持着每个季度发布一个大版本的速度高速发展着。</description>
     </item>
     
     <item>
@@ -458,7 +458,7 @@
       <pubDate>Thu, 27 Sep 2018 20:28:13 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/image-size/</guid>
-      <description>精简Docker镜像的好处很多，不仅可以节省存储空间和带宽，还能减少安全隐患。优化镜像大小的手段多种多样，因服务所使用的基础开发语言不同而有</description>
+      <description>精简Docker镜像的好处很多，不仅可以节省存储空间和带宽，还能减少安全隐患。优化镜像大小的手段多种多样，因服务所使用的基础开发语言不同而有差异。本文将介绍精简Docker镜像的几种通用方法。</description>
     </item>
     
     <item>
@@ -467,7 +467,7 @@
       <pubDate>Thu, 27 Sep 2018 19:27:03 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/docker-quit/</guid>
-      <description>现象 启动docker容器 docker run –name [CONTAINER_NAME] [CONTAINER_ID] 查看容器运行状态 docker ps -a 发现刚刚启动的mydocker容器已经退出 原因 docker容器的主线程（do</description>
+      <description>解决容器启动退出问题。</description>
     </item>
     
     <item>
@@ -476,7 +476,7 @@
       <pubDate>Thu, 30 Aug 2018 18:45:22 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/con-ind/</guid>
-      <description>背景 自从微服务（Microservice）的出现，出于业务的需要，IT应用模型不断的变革。开发模式从瀑布式到敏捷开发；开发、运维和测试互相配</description>
+      <description>自从微服务（Microservice）的出现，出于业务的需要，IT应用模型不断的变革。开发模式从瀑布式到敏捷开发；开发、运维和测试互相配合的devops思想；应用程序架构从单体模型到分层模型再到微服务；部署方式也从面向物理机到虚拟键再到容器；应用程序的基础架构从自建机房到托管再到云计算，等等。这些变革使得IT技术应用的效率大大提升，同时却以更低的成本交付更高质量的产品。</description>
     </item>
     
     <item>
@@ -485,7 +485,7 @@
       <pubDate>Tue, 14 Aug 2018 20:07:03 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/install-k8s/</guid>
-      <description>前言 最近由于公司业务发展到了瓶颈，原有的技术架构已经逐渐无法满足业务开发和测试的需求，出现了应用测试环境搭建复杂，有许多套（真的很多很多）应</description>
+      <description>最近由于公司业务发展到了瓶颈，原有的技术架构已经逐渐无法满足业务开发和测试的需求，出现了应用测试环境搭建复杂，有许多套（真的很多很多）应用环境，应用在持续集成/持续交付也遇到了很大的困难，经过讨论研究决定对应用和微服务进行容器化，这就是我首次直面docker和k8s的契机。</description>
     </item>
     
     <item>
@@ -494,7 +494,7 @@
       <pubDate>Tue, 14 Aug 2018 20:05:21 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/install-docker/</guid>
-      <description>前言 在使用centos7，并使用荫安装搬运工的时候，往往不希望安装最新版本的搬运工，而是希望安装与自己熟悉或者当前业务环境需要的版本，例如目</description>
+      <description>在使用CentOS7，并使用荫安装搬运工的时候，往往不希望安装最新版本的搬运工，而是希望安装与自己熟悉或者当前业务环境需要的版本，例如目前Kubernetes支持的最新搬运工版本为v17.03，所以就产生了安装指定版本码头工人的需求。</description>
     </item>
     
     <item>

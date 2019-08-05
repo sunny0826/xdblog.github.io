@@ -16,7 +16,7 @@
   <meta name="keywords" content="kubernetes, kustomize, 工具">
   
 
-  <meta name="generator" content="Hugo 0.52" />
+  <meta name="generator" content="Hugo 0.55.5" />
 
   
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -64,7 +64,7 @@
   <meta property="og:title" content="使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="/posts/kustomize-2//" />
-  <meta property="og:image" content="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" />
+  <meta property="og:image" content="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5ort2b4z5j20ic0i8dgy.jpg" />
   <meta property="og:image:alt" content="ServiceMesher Logo" />
 
   
@@ -105,8 +105,8 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="/">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法 logo" class="hidden-xs hidden-sm">
-                    <img src="https://wx4.sinaimg.cn/bmiddle/ad5fbf65ly1g0sxmvpmhwj209x041q33.jpg" alt="使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法 logo" class="visible-xs visible-sm">
+                    <img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g5orvxifzvj20w40d0myf.jpg" alt="使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法 logo" class="hidden-xs hidden-sm">
+                    <img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5ort2b4z5j20ic0i8dgy.jpg" alt="使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法 logo" class="visible-xs visible-sm">
                     <span class="sr-only">使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法 - 跳到主页</span>
                 </a>
                 <div class="navbar-buttons">
@@ -298,9 +298,11 @@ autocomplete('#aa-search-input',
 这里使用 <code>git</code> 进行版本控制。</p>
 
 <pre><code class="language-bash">git init ~/ldap
-</code></pre></li>
+</code></pre>
 
-<li><p>创建一个 <code>base</code></p>
+<ol>
+<li>创建一个 <code>base</code></li>
+</ol>
 
 <pre><code class="language-bash">mkdir -p ~/ldap/base
 </code></pre>
@@ -315,15 +317,15 @@ mkdir -p ~/ldap/overlays/production
 
 <p>每个目录都需要一个 <code>kustomization.yaml</code> 文件以及一个或多个 <code>patch</code> ，例如 <code>healthcheck_patch.yaml</code> <code>memorylimit_patch.yaml</code> 等。。</p>
 
-<p><code>staging</code> 目录可能会使用一个 <code>patch</code> ，用于在 <code>configmap</code> 增加一个实验配置。</p>
+<pre><code class="language-staging```">
+```production``` 目录则可能会在 ```deployment``` 中增加在副本数。
 
-<p><code>production</code> 目录则可能会在 <code>deployment</code> 中增加在副本数。</p></li>
+4. 生成 ```variants```
 
-<li><p>生成 <code>variants</code></p>
+运行 ```kustomize``` ，将生成的配置用于 kubernetes 应用部署
 
-<p>运行 <code>kustomize</code> ，将生成的配置用于 kubernetes 应用部署</p>
-
-<pre><code class="language-bash">kustomize build ~/ldap/overlays/staging | kubectl apply -f -
+```bash
+kustomize build ~/ldap/overlays/staging | kubectl apply -f -
 kustomize build ~/ldap/overlays/production | kubectl apply -f -
 </code></pre>
 
@@ -331,8 +333,7 @@ kustomize build ~/ldap/overlays/production | kubectl apply -f -
 
 <pre><code class="language-bash">kubectl apply -k ~/ldap/overlays/staging
 kubectl apply -k ~/ldap/overlays/production
-</code></pre></li>
-</ol>
+</code></pre>
 
 <h2 id="使用现成的配置">使用现成的配置</h2>
 
@@ -343,7 +344,8 @@ kubectl apply -k ~/ldap/overlays/production
 <ol>
 <li><p>通过 fork/modify/rebase 等方式获得配置</p></li>
 
-<li><p>将其克隆为你自己的 <code>base</code></p>
+<li><p>将其克隆为你自己的 <code>base</code></p></li>
+</ol>
 
 <p>在这个 <code>bash</code> 目录维护在一个 repo 中，在这个例子使用 <code>ladp</code> 的 repo</p>
 
@@ -361,9 +363,11 @@ git remote add upstream git@github.com:$USER/ldap
 mkdir -p ~/ldap/overlays/production
 </code></pre>
 
-<p>用户可以将 <code>overlays</code> 维护在不同的 repo 中</p></li>
+<p>用户可以将 <code>overlays</code> 维护在不同的 repo 中</p>
 
-<li><p>生成 <code>variants</code></p>
+<ol>
+<li>生成 <code>variants</code></li>
+</ol>
 
 <pre><code class="language-bash">kustomize build ~/ldap/overlays/staging | kubectl apply -f -
 kustomize build ~/ldap/overlays/production | kubectl apply -f -
@@ -373,10 +377,12 @@ kustomize build ~/ldap/overlays/production | kubectl apply -f -
 
 <pre><code class="language-bash">kubectl apply -k ~/ldap/overlays/staging
 kubectl apply -k ~/ldap/overlays/production
-</code></pre></li>
+</code></pre>
 
-<li><p>（可选）更新 <code>base</code>
-用户可以定期从上游 repo 中 <code>rebase</code> 他们的 <code>base</code> 以保证及时更新</p>
+<ol>
+<li>（可选）更新 <code>base</code>
+用户可以定期从上游 repo 中 <code>rebase</code> 他们的 <code>base</code> 以保证及时更新</li>
+</ol>
 
 <pre><code class="language-bash">cd ~/ldap/base
 git fetch upstream

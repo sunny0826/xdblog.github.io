@@ -17,7 +17,7 @@
       <pubDate>Sat, 06 Jul 2019 09:40:42 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/semver/</guid>
-      <description>原文地址：https://semver.org/lang/zh-CN/ 语义化版本 2.0.0 提供多种语言，语义化版本控制的规范是由 Gravatars 创办者兼 GitHub 共同创办</description>
+      <description>语义化的版本控制，在这套约定下，版本号及其更新方式包含了相邻版本间的底层代码和修改内容的信息。</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Tue, 02 Jul 2019 10:18:18 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/kubecon-2019/</guid>
-      <description>前言 2019年6月24-26日，KubeCon + CloudNativeCon + Open Source Summit大会在上海世博中心举行。本次大会规模空前，预计有超过40个国家，3500</description>
+      <description>2019年6月24-26日，KubeCon + CloudNativeCon + Open Source Summit大会在上海世博中心举行。本次大会规模空前，预计有超过40个国家，3500多名云原生、开源领域的开发者参加，门票更是早早售罄。作为一名云原生应用的使用者与开发者，我也报名参与了这次大会。</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Thu, 14 Feb 2019 14:07:06 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/12-factor/</guid>
-      <description>背景 为了更好的拥抱云原生架构，同时提高软件交付质量，开发人员必须改变他们的编码方式，并未开发者和应用程序所运行的基础架构之间创造一个新的协议</description>
+      <description>为了更好的拥抱云原生架构，同时提高软件交付质量，开发人员必须改变他们的编码方式，并未开发者和应用程序所运行的基础架构之间创造一个新的协议，十二要素应用宣言应运而生。</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       <pubDate>Thu, 30 Aug 2018 18:45:22 +0800</pubDate>
       
       <guid>https://blog.maoxianplay.com/posts/con-ind/</guid>
-      <description>背景 自从微服务（Microservice）的出现，出于业务的需要，IT应用模型不断的变革。开发模式从瀑布式到敏捷开发；开发、运维和测试互相配</description>
+      <description>自从微服务（Microservice）的出现，出于业务的需要，IT应用模型不断的变革。开发模式从瀑布式到敏捷开发；开发、运维和测试互相配合的devops思想；应用程序架构从单体模型到分层模型再到微服务；部署方式也从面向物理机到虚拟键再到容器；应用程序的基础架构从自建机房到托管再到云计算，等等。这些变革使得IT技术应用的效率大大提升，同时却以更低的成本交付更高质量的产品。</description>
     </item>
     
   </channel>
