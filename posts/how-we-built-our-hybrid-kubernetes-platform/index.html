@@ -9,11 +9,11 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <title>Kustomize: 无需模板定制你的 kubernetes 配置 · 郭旭东的博客</title>
+  <title>如何构建混合Kubernetes平台 · 郭旭东的博客</title>
   <meta name="author" content="郭旭东" />
 
   
-  <meta name="keywords" content="翻译, kustomize, kubernetes, 工具">
+  <meta name="keywords" content="翻译, kubernetes">
   
 
   <meta name="generator" content="Hugo 0.55.5" />
@@ -61,17 +61,17 @@
   <link rel="stylesheet" href="/css/share.min.css" />
 
   
-  <meta property="og:title" content="Kustomize: 无需模板定制你的 kubernetes 配置" />
+  <meta property="og:title" content="如何构建混合Kubernetes平台" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes//" />
+  <meta property="og:url" content="/posts/how-we-built-our-hybrid-kubernetes-platform//" />
   <meta property="og:image" content="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5ort2b4z5j20ic0i8dgy.jpg" />
   <meta property="og:image:alt" content="ServiceMesher Logo" />
 
   
-  <meta name="description" content="本文介绍了 Kubernetes 原生的应用管理工具 Kustomize。">
-  <meta property="og:description" content="本文介绍了 Kubernetes 原生的应用管理工具 Kustomize。">
-  <meta name="twitter:description" content="本文介绍了 Kubernetes 原生的应用管理工具 Kustomize。">
-  <meta property="og:description" content="本文介绍了 Kubernetes 原生的应用管理工具 Kustomize。" />
+  <meta name="description" content="随着3年前重构 Dailymotion 核心API的决定，我们希望提供一种更有效的方式来托管应用程序，促进我们的开发和生产工作流程。 最终决定使用容器编排平台来实现这一目标，那么自然就选择了 Kubernetes。">
+  <meta property="og:description" content="随着3年前重构 Dailymotion 核心API的决定，我们希望提供一种更有效的方式来托管应用程序，促进我们的开发和生产工作流程。 最终决定使用容器编排平台来实现这一目标，那么自然就选择了 Kubernetes。">
+  <meta name="twitter:description" content="随着3年前重构 Dailymotion 核心API的决定，我们希望提供一种更有效的方式来托管应用程序，促进我们的开发和生产工作流程。 最终决定使用容器编排平台来实现这一目标，那么自然就选择了 Kubernetes。">
+  <meta property="og:description" content="随着3年前重构 Dailymotion 核心API的决定，我们希望提供一种更有效的方式来托管应用程序，促进我们的开发和生产工作流程。 最终决定使用容器编排平台来实现这一目标，那么自然就选择了 Kubernetes。" />
 
   
   
@@ -105,9 +105,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="/">
-                    <img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g5orvxifzvj20w40d0myf.jpg" alt="Kustomize: 无需模板定制你的 kubernetes 配置 logo" class="hidden-xs hidden-sm">
-                    <img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5ort2b4z5j20ic0i8dgy.jpg" alt="Kustomize: 无需模板定制你的 kubernetes 配置 logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Kustomize: 无需模板定制你的 kubernetes 配置 - 跳到主页</span>
+                    <img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g5orvxifzvj20w40d0myf.jpg" alt="如何构建混合Kubernetes平台 logo" class="hidden-xs hidden-sm">
+                    <img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5ort2b4z5j20ic0i8dgy.jpg" alt="如何构建混合Kubernetes平台 logo" class="visible-xs visible-sm">
+                    <span class="sr-only">如何构建混合Kubernetes平台 - 跳到主页</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -228,7 +228,7 @@ autocomplete('#aa-search-input',
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Kustomize: 无需模板定制你的 kubernetes 配置</h1>
+                <h1>如何构建混合Kubernetes平台</h1>
             </div>
         </div>
     </div>
@@ -246,20 +246,25 @@ autocomplete('#aa-search-input',
                         <div class="well">
                             <div class="author-category">
                             <i class="fa fa-calendar-o">
-                            2019年4月15日
+                            2019年8月6日
                             </i>
                             |
                             
-                            作者 <a href="https://github.com/sunny0826">郭旭东</a>
+                            作者 <a href="https://medium.com/@david.donchez">David Donchez</a>
                             
+                            
+                            | 译者 <a href="https://github.com/sunny0826">郭旭东</a>
                             
                             
                             |
-                            1900字 | 阅读大约需要4分钟
+                            2200字 | 阅读大约需要5分钟
                             </div>
                             
                             
                             <div class="author-category">
+                            
+                            <a href="https://medium.com/dailymotion/how-we-built-our-hybrid-kubernetes-platform-d121ea9cb0bc">查看原文</a>
+                            |
                             
                             
                             归档于 <a href="/categories/%e7%bf%bb%e8%af%91">翻译</a>
@@ -272,11 +277,7 @@ autocomplete('#aa-search-input',
                             
                             <a style="text-transform:capitalize" href="/tags/%E7%BF%BB%E8%AF%91/"><i>#翻译</i></a>
                             
-                            <a style="text-transform:capitalize" href="/tags/kustomize/"><i>#kustomize</i></a>
-                            
                             <a style="text-transform:capitalize" href="/tags/kubernetes/"><i>#kubernetes</i></a>
-                            
-                            <a style="text-transform:capitalize" href="/tags/%E5%B7%A5%E5%85%B7/"><i>#工具</i></a>
                             
                             </div>
                             
@@ -286,119 +287,102 @@ autocomplete('#aa-search-input',
                           
 
 <blockquote>
-<p>作者：Jeff Regan (Google), Phil Wittrock (Google) 2018-05-29</p>
+<p>随着3年前重构 <a href="https://www.dailymotion.com/">Dailymotion</a> 核心API的决定，我们希望提供一种更有效的方式来托管应用程序，<a href="https://medium.com/dailymotion/deploying-apps-on-multiple-kubernetes-clusters-with-helm-19ee2b06179e">促进我们的开发和生产工作流程</a>。 最终决定使用容器编排平台来实现这一目标，那么自然就选择了 Kubernetes。</p>
 </blockquote>
 
-<p>如果你在运行 kubernetes 集群，你可能会拷贝一些包含 kubernetes API 对象的 YAML 文件，并且根据你的需求来修改这些文件，通过这些 YAML 文件来定义你的 kubernetes 配置。</p>
+<p>那么为什么要建立自己的Kubernetes平台？</p>
 
-<p>但是这种方法存在很难找到配置的源头并对其进行改进。今天 Google 宣布推出 <strong>Kustomize</strong> ，一个作为 <a href="https://github.com/kubernetes/community/tree/master/sig-cli">SIG-CLI</a> 子项目的命令行工具。这个工具提供了一个全新的、纯粹的声明式的方法来定制 kubernetes 配置，遵循并利用我们熟悉且精心设计的 Kubernetes API。</p>
+<h2 id="借由-google-cloud-快速推动的-api-投入生产">借由 Google Cloud 快速推动的 API 投入生产</h2>
 
-<p>有这样一个常见的场景，在互联网上可以看到别人的 CMS（content management system，内容管理系统）的 kubernetes 配置，这个配置是一组包括 Kubernetes API 对象的 YAML 描述文件。然后，在您自己公司的某个角落，您找到一个你非常了解的数据库，希望用它来该 CMS 的数据。</p>
+<blockquote>
+<p>2016年夏</p>
+</blockquote>
 
-<p>你希望同时使用它们，此外，你希望自定义配置文件以便你的资源实例在集群中显示，并通过添加一个标签来区分在同一集群中做同样事情的其他资源。同时也希望为其配置适当的 CPU 、内存和副本数。</p>
+<p>三年前，在 <a href="https://www.vivendi.com/">Vivendi</a> 收购 Dailymotion 之后，所有开发团队都专注于一个目标：提供全新的 Dailymotion 产品。</p>
 
-<p>此外，你还想要配置整个配置的多种变化：一个专门用于测试和实验的小服务实例（就计算资源而言），或更大的用于对外提供服务的生产级别的服务实例。同时，其他的团队也希望拥有他们自己的服务实例。</p>
+<p>根据对容器、编排解决方案和以前的经验的分析，使我们确信 Kubernetes 是正确的选择。许多开发人员已经掌握了这一概念并知道如何使用 Kubernetes ，这对我们的基础设施转型来说是一个巨大的优势。在基础架构方面，我们需要一个强大而灵活的平台来托管这些新型的云原生应用程序。而公有云为我们提供了极大的便利，于是我们决定在 Google Kubernetes Engine 上部署我们的应用程序，即使之后我们也会在自己的数据中心中进行混合部署。</p>
 
-<h2 id="定制就是复用">定制就是复用</h2>
+<h3 id="为何选择-gke">为何选择 GKE ？</h3>
 
-<p>kubernetes 的配置并不是代码（是使用 YAML 描述的 API 对象，严格来说应该是数据），但是配置的生命周期与代码的生命周期有许多相似之处。</p>
+<p>我们做出这个选择主要是出于技术原因，但也因为我们需要快速提供基础设施来满足 Dailymotion 的业务需求。并且对托管的应用程序（如地理分布，可伸缩性和弹性）有一些要求。</p>
 
-<p>你需要在版本控制中保留配置。所有者的配置不必与使用者的配置相同。配置可以作为整体的一部分。而用户希望为在不同的情况下复用这些配置。</p>
+<p><img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g5py1vm2k2j20hd0bbjtq.jpg" alt="" />
+<center>Dailymotion 的 GKE 集群</center></p>
 
-<p>与代码复用相同，一种复用配置的方法是简单的全部拷贝并进行自定义。像代码一样，切断与源代码的联系使得从改进变的十分困难。许多团队和环境都使用这种方法，每个团队和环境都拥有自己的配置，这使得简单的升级变得十分棘手。</p>
+<p>Dailymotion 作为一个全球性的视频平台，需要通过减少延迟来改善用户体验。之前我们仅在巴黎提供 <a href="https://developer.dailymotion.com/">API</a> ，但这样并非最佳，我们希望能够在欧洲、亚洲以及美国托管我们的应用程序。</p>
 
-<p>另一种复用方法是将源代码抽象为参数化模板。使用一个通过执行脚本来替换所需参数的模板处理工具生成配置，通过为同一模板设置不同的值来达到复用的目的。而这种方式面临的问题是模板和参数文件并不在 kubernetes API 资源的规范中，这种方式必定是一种包装了 kubernetes API 的新东西、新语言。虽然这种方式很强大，但是也带来了学习成本和安装工具的成本。不同的团队需要不同的更改，因此几乎所有可以包含在 YAML 文件中的规范都会需要抽象成参数。</p>
+<p>这种延迟限制意味着我们在平台的网络设计方面面临着巨大的挑战。大多数云供应商要求我们在每个地区创建一个网络，并将所有这些网络通过 VPN 与托管服务互连，但 Google Cloud 允许我们在所有 Google 地区创建一个完全路由的单一网络，该网络在运营方面提供了便利并提高了效率。</p>
 
-<h2 id="自定义配置的新选择">自定义配置的新选择</h2>
+<p>此外，Google Cloud 的网络和负载均衡服务非常棒。它可以将我们的用户路由到最近的集群，并且在发生故障的情况下，流量会自动路由到另一个区域而无需任何人为干预。</p>
 
-<p><strong>kustomize</strong> 中工具的声明与规范是由名为 <code>kustomization.yaml</code> 的文件定义。</p>
+<p><img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g5pytelbwnj20jg0avq4x.jpg" alt="" />
+<center>Google 负载均衡监控</center></p>
 
-<p><strong>kustomize</strong> 将会读取声明文件和 Kubernetes API 资源文件，将其组合然后将完整的资源进行标准化的输出。输出的文本可以被其他工具进一步处理，或者直接通过 <strong>kubectl</strong> 应用于集群。</p>
+<p>我们的平台同样需要使用 GPU，而 Google Cloud 允许我们以非常有效的方式直接在我们的 Kubernetes 集群中使用它们。</p>
 
-<p>例如，如果 <code>kustomization.yaml</code> 文件包括：</p>
+<p>所有这一切使我们在启动后6个月开始接入 Google Cloud 基础架构上的生产流量。</p>
 
-<pre><code class="language-yaml">commonLabels:
-  app: hello
-resources:
-- deployment.yaml
-- configMap.yaml
-- service.yaml
-</code></pre>
+<p>但是，尽管具有整体优势，但使用共有云服务还是要花费不少成本。这就是为什么我们要评估采取的每项托管服务，以便将来将其内部化。事实上，我们在2016年底开始构建我们的本地集群，并启动了我们的混合策略。</p>
 
-<p>确保这三个文件与 <code>kustomization.yaml</code> 位于同一目录下，然后运行：</p>
+<h2 id="在-dailymotion-的内部构建容器编排平台">在 Dailymotion 的内部构建容器编排平台</h2>
 
-<pre><code class="language-bash">kustomize build
-</code></pre>
+<blockquote>
+<p>2016年秋</p>
+</blockquote>
 
-<p>将创建包含三个资源的 YAML 流，其中 <code>app: hello</code> 为每个资源共同的标签。</p>
+<p>看到整个技术栈已经准备好在生产环境中应用，但<a href="https://tartiflette.io/">API仍在开发中</a>，这使得我们有时间专注搭建我们的本地集群。</p>
 
-<p>同样的，你可以使用 <strong><em>commonAnnotations</em></strong> 字段给所有资源添加注释， <strong><em>namePrefix</em></strong> 字段为所有的资源添加共同的前缀名。这些琐碎而有常见的定制只是一个开始。</p>
+<p>Dailymotion 多年来在全球拥有自己的内容分发网络，每月有超过30亿的视频播放量。显然，我们希望利用现有的优势并在我们现有的数据中心部署自己的 Kubernetes 集群。</p>
 
-<p>一个更常见的例子是，你需要为一组相同资源设置不同的参数。例如：开发、演示和生产的参数。</p>
+<p>我的目前拥有6个数据中心的2500多台服务器。所有这些都使用 Saltstack 进行配置，我们开始准备所有需要的公式来创建主节点、工作节点以及 Etcd 集群。</p>
 
-<p>为此，<strong>Kustomize</strong> 允许用户以一个应用描述文件 （YAML 文件）为基础（Base YAML），然后通过 Overlay 的方式生成最终部署应用所需的描述文件。两者都是由 kustomization 文件表示。基础（Base）声明了共享的内容（资源和常见的资源配置），Overlay 则声明了差异。</p>
+<p><img src="https://wx2.sinaimg.cn/large/ad5fbf65gy1g5pzm4m985j20jg06tgm7.jpg" alt="" /></p>
 
-<p>这里是一个目录树，用于管理集群应用程序的 <strong><em>演示</em></strong> 和 <strong><em>生产</em></strong> 配置参数：</p>
+<h3 id="网络部分">网络部分</h3>
 
-<pre><code class="language-bash">someapp/
-├── base/
-│   ├── kustomization.yaml
-│   ├── deployment.yaml
-│   ├── configMap.yaml
-│   └── service.yaml
-└── overlays/
-    ├── production/
-    │   └── kustomization.yaml
-    │   ├── replica_count.yaml
-    └── staging/
-        ├── kustomization.yaml
-        └── cpu_count.yaml
-</code></pre>
+<p>我们的网络是一个完全路由的网络。每个服务器使用Exabgp通过网络广播自己的IP。我们比较了几个网络插件， <a href="https://www.projectcalico.org/">Calico</a> 使用的是三层网络，因此这是唯一满足我们需求的网络插件。</p>
 
-<p><strong><code>someapp/base/kustomization.yaml</code> 文件指定了公共资源和常见自定义配置（例如，它们一些相同的标签，名称前缀和注释）。</strong></p>
+<p>由于我们想要重用基础架构中的所有现有工具，首先要解决的问题是插入一个自制网络工具（我们所有服务器都使用它），通过我们的 Kubernetes 节点通过网络广播 IP 范围。我们让 Calico 为 pod 分配 IP，但不使用它与我们的网络设备进行BGP会话。路由实际上是由Exabgp处理的，它宣布了Calico使用的子网。这使我们可以从内部网络访问任何pod，尤其是来自我们的负载均衡器。</p>
 
-<p><strong><code>someapp/overlays/production/kustomization.yaml</code> 文件的内容可能是：</strong></p>
+<h3 id="我们如何管理入口流量">我们如何管理入口流量</h3>
 
-<pre><code class="language-yaml">commonLabels:
-  env: production
-bases:
-- ../../base
-patches:
-- replica_count.yaml
-</code></pre>
+<p>为了将传入的请求路由到正确的服务，我们希望使用 Ingress Controllers 与 Kubernetes 的入口资源集成。</p>
 
-<p>这个 kustomization 指定了一个 <strong><em>patch</em></strong> 文件 <code>replica_count.yaml</code> ，其内容可能是：</p>
+<p>3年前，nginx-ingress-controller 是最成熟的控制器 ，并且 Nginx 已经使用多年，并以其稳定性和性能而闻名。</p>
 
-<pre><code class="language-yaml">apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: the-deployment
-spec:
-  replicas: 100
-</code></pre>
+<p>在我们的设计中，我们决定在专用的 10Gbps 刀片服务器上托管我们的控制器。每个控制器都插入其所属集群的 kube-apiserver 端点。在这些服务器上，我们还使用Exabgp来广播公共或私有IP。我们的网络拓扑允许我们使用来自这些控制器的BGP将所有流量直接路由到我们的pod，而无需使用NodePort服务类型。这样可以避免节点之间的水平流量，从而提高效率。</p>
 
-<p><strong><em>patch</em></strong> 是部分的资源声明，在这个例子中是 Deployment 的补丁 <code>someapp/base/deployment.yaml</code> ，仅修改了副本数用以处理生产流量。</p>
+<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5q05ex27bj20in0fbt9q.jpg" alt="" />
+<center>从 Internet 到 pods 的流量</center></p>
 
-<p>该补丁不仅仅是一个无上下文 {parameter name，value} 元组。其作为部分 deployment spec，可以通过验证，即使与其余配置隔离读取，也具有明确的上下文和用途。</p>
+<p>现在我们已经看到了我们如何构建混合平台，我们可以深入了解流量迁移本身。</p>
 
-<p>要为生产环境创建资源，请运行：</p>
+<h2 id="将流量从-google-cloud-迁移到-dailymotions-基础架构">将流量从 Google Cloud 迁移到 Dailymotions 基础架构</h2>
 
-<pre><code class="language-bash">kustomize build someapp/overlays/production
-</code></pre>
+<blockquote>
+<p>2018年秋</p>
+</blockquote>
 
-<p>运行结果将作为一组完整资源打印到标准输出，并准备应用于集群。可以用类似的命令定义演示环境的配置。</p>
+<p>经过近2年的构建、测试和微调，我们发现自己拥有完整的 Kubernetes 技术栈，可以接收部分流量。</p>
 
-<h2 id="综上所述">综上所述</h2>
+<p><img src="https://wx2.sinaimg.cn/large/ad5fbf65gy1g5q0b3o8laj20jg06sq36.jpg" alt="" /></p>
 
-<p>使用 <strong>kustomize</strong> ，您可以仅使用 Kubernetes API 资源文件就可以管理任意数量的 Kubernetes 定制配置。kustomize 的每个产物都是纯 YAML 的，每个都可以进行验证和运行的。<strong>kustomize</strong> 鼓励通过 fork/modify/rebase 这样的<a href="https://github.com/kubernetes-sigs/kustomize/blob/master/docs/workflows.md">工作流</a>来管理海量的应用描述文件。</p>
+<p>目前，我们的路由策略非常简单，但足以解决我们的问题。除了我们的公共IP（Google Cloud和Dailymotion）之外，我们还使用AWS Route 53 来定义策略并将终端用户流量引入我们选择的集群。</p>
 
-<p>尝试<a href="https://github.com/kubernetes-sigs/kustomize/tree/master/examples/helloWorld">hello world</a>示例，开始使用 <strong>kustomize</strong> 吧！有关的反馈与讨论，可以通过加入<a href="https://groups.google.com/forum/#!forum/kustomize">邮件列表</a>或提 <a href="https://github.com/kubernetes-sigs/kustomize/issues/new">issue</a>，欢迎提交PR。</p>
+<p><img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g5q0ds3spjj20jg07a0tk.jpg" alt="" />
+<center>使用Route 53的路由策略示例</center></p>
 
-<h2 id="译者按">译者按</h2>
+<p>在 Google Cloud 上很简单，因为我们为所有群集使用唯一的IP，并且用户被路由到他最近的 GKE 群集。对于我们来说，我们不使用相同的技术，因此我们每个群集都有不同的IP。</p>
 
-<p>随着 kubernetes 1.14 的发布，kustomize 被集成到 <code>kubectl</code> 中，用户可以利用 <code>kubectl apply -k dir/</code> 将指定目录的 <code>kustomization.yaml</code> 提交到集群中。</p>
+<p>在此次迁移过程中，我们将目标国家逐步纳入我们的集群并分析其收益。</p>
 
-<p><strong>原文链接</strong> <a href="https://kubernetes.io/blog/2018/05/29/introducing-kustomize-template-free-configuration-customization-for-kubernetes/">https://kubernetes.io/blog/2018/05/29/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</a></p>
+<p>由于我们的GKE集群配置了自动调节自定义指标，因此它们会根据传入流量进行扩展/缩小。</p>
+
+<p>在正常模式下，区域的所有流量都路由到我们的内部部署集群，而GKE集群则使用Route 53提供的运行状况检查作为故障转移。</p>
+
+<h2 id="结语">结语</h2>
+
+<p>我们接下来的步骤是完全自动化我们的路由策略，以实现自动混合策略，不断增强我们的用户体验。在效益方面，我们大大降低了云的成本，甚至改善了API响应时间。我们相信我们的云平台足以在需要时处理更多流量。</p>
 
                           
                           
@@ -476,13 +460,9 @@ spec:
                         <ul class="pager blog-pager">
                         
                         <li class="previous">
-                        <a href="https://blog.maoxianplay.com/posts/kustomize-1/" data-toggle="tooltip" data-placement="top" title="使用 Kustomize 帮你管理 kubernetes 应用（一）：什么是 Kustomize ？">&larr; 更旧</a>
+                        <a href="https://blog.maoxianplay.com/posts/golang-to-homebrew/" data-toggle="tooltip" data-placement="top" title="Golang 装逼指南 Ⅱ：在 Homwebrew 上发布 Golang 项目">&larr; 更旧</a>
                         </li>
                          
-                        <li class="next">
-                        <a href="https://blog.maoxianplay.com/posts/rancher-prometheus-fix-question/" data-toggle="tooltip" data-placement="top" title="Rancher 2.2.1 解决工作负载监控为空问题">更新 &rarr;</a>
-                        </li>
-                        
                         </ul>
 
                     </div>
@@ -504,15 +484,15 @@ spec:
     <div class="panel-body">
      <ul class="nav nav-pills nav-stacked">
         
-        <li><a href="/posts/kustomize-1/"><i class="fa fa-link"></i>使用 Kustomize 帮你管理 kubernetes 应用（一）：什么是 Kustomize ？</a></li>
+        <li><a href="/posts/deploying-apps-on-multiple-kubernetes-clusters-with-helm/"><i class="fa fa-link"></i>使用 Helm 在多集群部署应用</a></li>
          
-        <li><a href="/posts/merge-kubeconfig/"><i class="fa fa-link"></i>自动合并Kubeconfig，实现多k8s集群切换</a></li>
+        <li><a href="/posts/the-childrens-illustrated-guide-to-kubernetes/"><i class="fa fa-link"></i>【转】Kubernetes 儿童插图指南</a></li>
          
-        <li><a href="/posts/devops-tutorial/"><i class="fa fa-link"></i>Devops入门手册</a></li>
+        <li><a href="/posts/an-8-minute-introduction-to-k8s/"><i class="fa fa-link"></i>8分钟入门 K8S</a></li>
          
-        <li><a href="/posts/rancher-update-2.2.1/"><i class="fa fa-link"></i>单节点版rancher升级指南</a></li>
+        <li><a href="/posts/kubernetes-is-hard/"><i class="fa fa-link"></i>困难的 Kubernetes</a></li>
          
-        <li><a href="/posts/whats-a-service-mesh-and-why-do-i-need-one/"><i class="fa fa-link"></i>Service Mesh是什么，我们又为什么需要它</a></li>
+        <li><a href="/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/"><i class="fa fa-link"></i>Kustomize: 无需模板定制你的 kubernetes 配置</a></li>
          
      </ul>
     </div>

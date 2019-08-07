@@ -406,7 +406,7 @@
         ]
     },
     {
-        "title": "Golang 装逼指南 Ⅱ：在 Homwbrew 上发布 Golang 项目",
+        "title": "Golang 装逼指南 Ⅱ：在 Homwebrew 上发布 Golang 项目",
         "uri": "posts/golang-to-homebrew",
         "content": "GitHub             Golang                    Golang                            goreleaser            release       release                                                        Homebrew        Golang                   brew            Homebrew      macOS       Homebrew             CentOS   yum   Ubuntu   apt get   Homebrew      Max Howell   Ruby    OS X               GitHub    Homebrew             The missing package manager OS X           macOS                   Homebrew                     Homebrew                      Homebrew                          Formula    rb            Tap         Formula      release       macOS   Darwin                 Formula brew create https   github com sunny0826 kubecm releases download v0 0 1 kubecm0 0 1Darwinx8664 tar gz        brew         kubecm rb       usr local Homebrew Library Taps homebrew homebrew core Formula         rb               kubecm rb       Documentation  https   github com Homebrew brew blob master share doc homebrew Formula Cookbook md http   www rubydoc info github Homebrew brew master Formula PLEASE REMOVE GENERATED COMMENTS SUBMITTING PULL REQUEST  class OtfccMac64  build depends_on  x11   formula requires X11 XQuartz components def install ENV deparallelize   formula fails when building parallel Remove unrecognized options warned configure system    configure      disable debug      disable dependency tracking      disable silent rules      prefix   prefix   system  cmake         stdcmakeargs system  make    install    fails  try separate make make install steps end test test will create  run delete temporary directory  test will fail won t accept that  It s enough just replace  false  main program formula installs  it d nice thorough  Run test brew test otfcc win32  Options passed brew install   HEAD need provided brew test  installed folder not path  so use entire path executables tested  system    bin  program    do    something   system  false  end end                       class Kubecm  build def install bin install  kubecm  end end      desc   homepage  url              darwin         install     bin install  kubecm                     brew install kubecm            Updating Homebrew    Fast forwarded master origin master  Fast forwarded master origin master    Auto updated Homebrew  Updated 2 taps  sunny0826 tap  homebrew cask     Updated Formulae sunny0826 tap kubecm   Downloading https   github com sunny0826 kubecm releases download v0 0 1 kubecm0 0 1Darwinx8664 tar gz Already downloaded   Users guoxudong Library Caches Homebrew kubecm 86 64 tar gz     usr local Cellar kubecm 86 64  5 files  5 4MB  built 1 second                 Tap                          GitHub         homebrew tap   repo     repo     homebrew                   kubecm rb         repo          brew                                                       brew uninstall kubecm Uninstalling  usr local Cellar kubecm 86 64     5 files  5 4MB       brew tap sunny0826 tap    brew install kubecm    brew install sunny0826 tap kubecm                     Homebrew         Golang              Golang                            rb                                Golang           kubecm            python            kubeconfig                kubeconfig      kubeconfig   context          Homebrew",
         "objectID": "posts/golang-to-homebrew",
@@ -426,6 +426,32 @@
             "go",
             "golang",
             "homebrew"
+        ]
+    },
+    {
+        "title": "如何构建混合Kubernetes平台",
+        "uri": "posts/how-we-built-our-hybrid-kubernetes-platform",
+        "content": "3     Dailymotion   API                                                                       Kubernetes             Kubernetes       Google Cloud       API        2016         Vivendi    Dailymotion                         Dailymotion                                 Kubernetes                               Kubernetes                                                                                      Google Kubernetes Engine                                          GKE                                         Dailymotion                                       Dailymotion   GKE    Dailymotion                                         API                                                                                                     VPN           Google Cloud         Google                                         Google Cloud                                                                     Google                    GPU   Google Cloud                    Kubernetes                      6       Google Cloud                                                                                 2016                             Dailymotion               2016                         API                           Dailymotion                        30                                       Kubernetes           6      2500              Saltstack                                 Etcd                                 Exabgp         IP              Calico                                                                                         Kubernetes          IP        Calico   pod    IP                BGP          Exabgp        Calico                     pod                                                   Ingress Controllers   Kubernetes          3   nginx ingress controller              Nginx                                       10Gbps                               kube apiserver                 Exabgp        IP                      BGP             pod      NodePort                               Internet   pods                                              Google Cloud     Dailymotions        2018      2                       Kubernetes                                                IP Google Cloud Dailymotion         AWS Route 53                           Route 53          Google Cloud                    IP              GKE                                   IP                                        GKE                                                                GKE     Route 53                                                                                       API",
+        "objectID": "posts/how-we-built-our-hybrid-kubernetes-platform",
+        "date": "2019-08-06T06:01:30.000Z",
+        "draft": false,
+        "banner": "https://wx2.sinaimg.cn/large/ad5fbf65gy1g5q0b3o8laj20jg06sq36.jpg",
+        "author": "David Donchez",
+        "authorlink": "https://medium.com/@david.donchez",
+        "translator": "郭旭东",
+        "translatorlink": "https://github.com/sunny0826",
+        "originallink": "https://medium.com/dailymotion/how-we-built-our-hybrid-kubernetes-platform-d121ea9cb0bc",
+        "summary": "随着3年前重构 Dailymotion 核心API的决定，我们希望提供一种更有效的方式来托管应用程序，促进我们的开发和生产工作流程。 最终决定使用容器编排平台来实现这一目标，那么自然就选择了 Kubernetes。",
+        "tags": [
+            "翻译",
+            "kubernetes"
+        ],
+        "categories": [
+            "翻译"
+        ],
+        "keywords": [
+            "翻译",
+            "kubernetes"
         ]
     },
     {
