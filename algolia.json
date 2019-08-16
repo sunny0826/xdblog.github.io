@@ -722,7 +722,7 @@
         "objectID": "posts/k8s-ingress-config",
         "date": "2019-03-06T06:42:05.000Z",
         "draft": false,
-        "banner": "https://images.pexels.com/photos/1194713/pexels-photo-1194713.jpeg",
+        "banner": "https://ws4.sinaimg.cn/large/ad5fbf65gy1g61hrqctjnj20dw099aa9.jpg",
         "author": "郭旭东",
         "authorlink": "https://github.com/sunny0826",
         "summary": "随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外的扎眼。这里就对实践中kubernetes集群中的7层负载均衡器ingress遇到的问题进行总结。",
