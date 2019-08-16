@@ -9,11 +9,11 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <title>使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法 · 郭旭东的博客</title>
+  <title>解决 Nginx-Ingress 重定向失败问题 · 郭旭东的博客</title>
   <meta name="author" content="郭旭东" />
 
   
-  <meta name="keywords" content="kubernetes, kustomize, 工具">
+  <meta name="keywords" content="kubernetes, 容器, ingress, nginx-ingress-controller">
   
 
   <meta name="generator" content="Hugo 0.55.5" />
@@ -61,17 +61,17 @@
   <link rel="stylesheet" href="/css/share.min.css" />
 
   
-  <meta property="og:title" content="使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法" />
+  <meta property="og:title" content="解决 Nginx-Ingress 重定向失败问题" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/posts/kustomize-2//" />
+  <meta property="og:url" content="/posts/nginx-ingress-error//" />
   <meta property="og:image" content="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5ort2b4z5j20ic0i8dgy.jpg" />
   <meta property="og:image:alt" content="ServiceMesher Logo" />
 
   
-  <meta name="description" content="本篇为系列文章第二篇，手把手教你使用 Kustomize 的两种方式。">
-  <meta property="og:description" content="本篇为系列文章第二篇，手把手教你使用 Kustomize 的两种方式。">
-  <meta name="twitter:description" content="本篇为系列文章第二篇，手把手教你使用 Kustomize 的两种方式。">
-  <meta property="og:description" content="本篇为系列文章第二篇，手把手教你使用 Kustomize 的两种方式。" />
+  <meta name="description" content="记录 Nginx-Ingress 重定向失败问题的解决过程。">
+  <meta property="og:description" content="记录 Nginx-Ingress 重定向失败问题的解决过程。">
+  <meta name="twitter:description" content="记录 Nginx-Ingress 重定向失败问题的解决过程。">
+  <meta property="og:description" content="记录 Nginx-Ingress 重定向失败问题的解决过程。" />
 
   
   
@@ -105,9 +105,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="/">
-                    <img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g5orvxifzvj20w40d0myf.jpg" alt="使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法 logo" class="hidden-xs hidden-sm">
-                    <img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5ort2b4z5j20ic0i8dgy.jpg" alt="使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法 logo" class="visible-xs visible-sm">
-                    <span class="sr-only">使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法 - 跳到主页</span>
+                    <img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g5orvxifzvj20w40d0myf.jpg" alt="解决 Nginx-Ingress 重定向失败问题 logo" class="hidden-xs hidden-sm">
+                    <img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5ort2b4z5j20ic0i8dgy.jpg" alt="解决 Nginx-Ingress 重定向失败问题 logo" class="visible-xs visible-sm">
+                    <span class="sr-only">解决 Nginx-Ingress 重定向失败问题 - 跳到主页</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -228,7 +228,7 @@ autocomplete('#aa-search-input',
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法</h1>
+                <h1>解决 Nginx-Ingress 重定向失败问题</h1>
             </div>
         </div>
     </div>
@@ -246,7 +246,7 @@ autocomplete('#aa-search-input',
                         <div class="well">
                             <div class="author-category">
                             <i class="fa fa-calendar-o">
-                            2019年4月19日
+                            2019年8月16日
                             </i>
                             |
                             
@@ -255,14 +255,14 @@ autocomplete('#aa-search-input',
                             
                             
                             |
-                            600字 | 阅读大约需要2分钟
+                            700字 | 阅读大约需要2分钟
                             </div>
                             
                             
                             <div class="author-category">
                             
                             
-                            归档于 <a href="/categories/kustomize">kustomize</a>
+                            归档于 <a href="/categories/kubernetes">kubernetes</a>
                             
                             |
                             
@@ -272,9 +272,7 @@ autocomplete('#aa-search-input',
                             
                             <a style="text-transform:capitalize" href="/tags/kubernetes/"><i>#kubernetes</i></a>
                             
-                            <a style="text-transform:capitalize" href="/tags/kustomize/"><i>#kustomize</i></a>
-                            
-                            <a style="text-transform:capitalize" href="/tags/%E5%B7%A5%E5%85%B7/"><i>#工具</i></a>
+                            <a style="text-transform:capitalize" href="/tags/%E5%AE%B9%E5%99%A8/"><i>#容器</i></a>
                             
                             </div>
                             
@@ -283,118 +281,63 @@ autocomplete('#aa-search-input',
                         <div id="post-content">
                           
 
-<p>本文介绍使用和维护 Kustomize 的方法及步骤。</p>
+<h2 id="前言">前言</h2>
 
-<h2 id="定制配置">定制配置</h2>
+<p>最近对公司 Kubernetes 集群的 <code>nginx-ingress-controller</code> 进行了升级，但是升级后却出现了大问题，之前所有采用 <code>nginx.ingress.kubernetes.io/rewrite-target: /</code> 注释进行重定向的 Ingress 路由全部失效了，但是那些直接解析了域名，没有进行重定向的却没有发生这个问题。</p>
 
-<p>在这个工作流方式中，所有的配置文件（ YAML 资源）都为用户所有，存在于私有 repo 中。其他人是无法使用的。</p>
-
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g2813d1ia7j20qo0f0dgk.jpg" alt="" /></p>
+<h2 id="问题分析">问题分析</h2>
 
 <ol>
-<li><p>创建一个目录用于版本控制</p>
-
-<p>我们希望将一个名为 <strong><em>ldap</em></strong> 的 Kubernetes 集群应用的配置保存在自己的 repo 中。
-这里使用 <code>git</code> 进行版本控制。</p>
-
-<pre><code class="language-bash">git init ~/ldap
-</code></pre>
-
-<ol>
-<li>创建一个 <code>base</code></li>
+<li>首先检查对应服务健康状态，发现所有出问题的服务的状态均正常，同时受影响的之后 http 调用，而 RPC 调用却不受影响，这时问题就定位到了 ingress。</li>
+<li>然后检查 nginx-ingress-controller ，发现 nginx-ingress-controller 的状态也是正常的，路由也是正常的。</li>
+<li>最后发现受影响的只有添加了重定向策略的 ingress 。</li>
 </ol>
 
-<pre><code class="language-bash">mkdir -p ~/ldap/base
+<h2 id="问题解决">问题解决</h2>
+
+<p>问题已经定位，接下来就是着手解决问题，这时候值得注意的就是之前进行了什么变更：升级了 nginx-ingress-controller 版本！看来问题就出现在新版本上，那么就打开官方文档：<a href="https://kubernetes.github.io/ingress-nginx/examples/rewrite/">https://kubernetes.github.io/ingress-nginx/examples/rewrite/</a> 看一下吧。</p>
+
+<h3 id="attention">Attention</h3>
+
+<blockquote>
+<p>Starting in Version 0.22.0, ingress definitions using the annotation <code>nginx.ingress.kubernetes.io/rewrite-target</code> are not backwards compatible with previous versions. In Version 0.22.0 and beyond, any substrings within the request URI that need to be passed to the rewritten path must explicitly be defined in a <a href="https://www.regular-expressions.info/refcapture.html">capture group</a>.</p>
+</blockquote>
+
+<p>文档上给出了非常明显的警告⚠️：从 V0.22.0 版本开始将不再兼容之前的入口定义，再查看一下我的 nginx-ingress-controller 版本，果然问题出现来这里。</p>
+
+<h3 id="note">Note</h3>
+
+<blockquote>
+<p><a href="https://www.regular-expressions.info/refcapture.html">Captured groups</a> are saved in numbered placeholders, chronologically, in the form <code>$1</code>, <code>$2</code> &hellip; <code>$n</code>. These placeholders can be used as parameters in the <code>rewrite-target</code> annotation.</p>
+</blockquote>
+
+<h3 id="示例">示例</h3>
+
+<p>到这里问题已经解决了，在更新了 ingress 的配置之后，之前所有无法重定向的服务现在都已经可以正常访问了。修改见如下示例：</p>
+
+<pre><code class="language-bash">$ echo '
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  name: rewrite
+  namespace: default
+spec:
+  rules:
+  - host: rewrite.bar.com
+    http:
+      paths:
+      - backend:
+          serviceName: http-svc
+          servicePort: 80
+        path: /something(/|$)(.*)
+' | kubectl create -f -
 </code></pre>
 
-<p>在这个目录中创建并提交 <code>kustomization.yaml</code> 文件和一组资源，例如 <code>deployment.yaml</code> <code>service.yaml</code> 等。</p></li>
+<h2 id="结语">结语</h2>
 
-<li><p>创建 <code>overlays</code></p>
-
-<pre><code class="language-bash">mkdir -p ~/ldap/overlays/staging
-mkdir -p ~/ldap/overlays/production
-</code></pre>
-
-<p>每个目录都需要一个 <code>kustomization.yaml</code> 文件以及一个或多个 <code>patch</code> ，例如 <code>healthcheck_patch.yaml</code> <code>memorylimit_patch.yaml</code> 等。。</p>
-
-<pre><code class="language-staging```">
-```production``` 目录则可能会在 ```deployment``` 中增加在副本数。
-
-4. 生成 ```variants```
-
-运行 ```kustomize``` ，将生成的配置用于 kubernetes 应用部署
-
-```bash
-kustomize build ~/ldap/overlays/staging | kubectl apply -f -
-kustomize build ~/ldap/overlays/production | kubectl apply -f -
-</code></pre>
-
-<p>在 kubernetes 1.14 版本， <code>kustomize</code> 已经集成到 <code>kubectl</code> 命令中，成为了其一个子命令，可使用 <code>kubectl</code> 来进行部署</p>
-
-<pre><code class="language-bash">kubectl apply -k ~/ldap/overlays/staging
-kubectl apply -k ~/ldap/overlays/production
-</code></pre>
-
-<h2 id="使用现成的配置">使用现成的配置</h2>
-
-<p>在这个工作流方式中，可从别人的 repo 中 fork kustomize 配置，并根据自己的需求来配置。</p>
-
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g281xyfebej20qo0f0dgr.jpg" alt="" /></p>
-
-<ol>
-<li><p>通过 fork/modify/rebase 等方式获得配置</p></li>
-
-<li><p>将其克隆为你自己的 <code>base</code></p></li>
-</ol>
-
-<p>在这个 <code>bash</code> 目录维护在一个 repo 中，在这个例子使用 <code>ladp</code> 的 repo</p>
-
-<pre><code class="language-bash">mkdir ~/ldap
-git clone https://github.com/$USER/ldap ~/ldap/base
-cd ~/ldap/base
-git remote add upstream git@github.com:$USER/ldap
-</code></pre></li>
-
-<li><p>创建 <code>overlays</code></p>
-
-<p>如上面的案例一样，创建并完善 <code>overlays</code> 目录中的内容</p>
-
-<pre><code class="language-bash">mkdir -p ~/ldap/overlays/staging
-mkdir -p ~/ldap/overlays/production
-</code></pre>
-
-<p>用户可以将 <code>overlays</code> 维护在不同的 repo 中</p>
-
-<ol>
-<li>生成 <code>variants</code></li>
-</ol>
-
-<pre><code class="language-bash">kustomize build ~/ldap/overlays/staging | kubectl apply -f -
-kustomize build ~/ldap/overlays/production | kubectl apply -f -
-</code></pre>
-
-<p>在 kubernetes 1.14 版本， <code>kustomize</code> 已经集成到 <code>kubectl</code> 命令中，成为了其一个子命令，可使用 <code>kubectl</code> 来进行部署</p>
-
-<pre><code class="language-bash">kubectl apply -k ~/ldap/overlays/staging
-kubectl apply -k ~/ldap/overlays/production
-</code></pre>
-
-<ol>
-<li>（可选）更新 <code>base</code>
-用户可以定期从上游 repo 中 <code>rebase</code> 他们的 <code>base</code> 以保证及时更新</li>
-</ol>
-
-<pre><code class="language-bash">cd ~/ldap/base
-git fetch upstream
-git rebase upstream/master
-</code></pre></li>
-</ol>
-
-<h2 id="参考">参考</h2>
-
-<ul>
-<li><a href="https://github.com/kubernetes-sigs/kustomize/blob/master/docs/workflows.md">kustomize workflows - github.com</a></li>
-</ul>
+<p>解决这个问题的实际时间虽然不长，但是着实让人出了一身冷汗，同时也给了我警示：变更有风险，升级需谨慎。在升级之前需要先浏览新版本的升级信息，同时需要制定完善的回滚策略，确保万无一失。</p>
 
                           
                           
@@ -472,13 +415,9 @@ git rebase upstream/master
                         <ul class="pager blog-pager">
                         
                         <li class="previous">
-                        <a href="https://blog.maoxianplay.com/posts/rancher-prometheus-fix-question/" data-toggle="tooltip" data-placement="top" title="Rancher 2.2.1 解决工作负载监控为空问题">&larr; 更旧</a>
+                        <a href="https://blog.maoxianplay.com/posts/how-we-built-our-hybrid-kubernetes-platform/" data-toggle="tooltip" data-placement="top" title="如何构建混合Kubernetes平台">&larr; 更旧</a>
                         </li>
                          
-                        <li class="next">
-                        <a href="https://blog.maoxianplay.com/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/" data-toggle="tooltip" data-placement="top" title="什么的容器？Docker 工作原理及容器化简易指南">更新 &rarr;</a>
-                        </li>
-                        
                         </ul>
 
                     </div>
@@ -500,15 +439,15 @@ git rebase upstream/master
     <div class="panel-body">
      <ul class="nav nav-pills nav-stacked">
         
-        <li><a href="/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/"><i class="fa fa-link"></i>Kustomize: 无需模板定制你的 kubernetes 配置</a></li>
+        <li><a href="/posts/nas-k8s/"><i class="fa fa-link"></i>阿里云 ACK 挂载 NAS 数据卷</a></li>
          
-        <li><a href="/posts/kustomize-1/"><i class="fa fa-link"></i>使用 Kustomize 帮你管理 kubernetes 应用（一）：什么是 Kustomize ？</a></li>
-         
-        <li><a href="/posts/merge-kubeconfig/"><i class="fa fa-link"></i>自动合并Kubeconfig，实现多k8s集群切换</a></li>
-         
-        <li><a href="/posts/rancher-prometheus-fix-question/"><i class="fa fa-link"></i>Rancher 2.2.1 解决工作负载监控为空问题</a></li>
+        <li><a href="/posts/aliyun-k8s-perfect/"><i class="fa fa-link"></i>阿里云容器服务新建集群优化方案(更新版)</a></li>
          
         <li><a href="/posts/rancher-update-2.2.1/"><i class="fa fa-link"></i>单节点版rancher升级指南</a></li>
+         
+        <li><a href="/posts/k8s-ingress-config/"><i class="fa fa-link"></i>解决kubernetes中ingress-nginx配置问题</a></li>
+         
+        <li><a href="/posts/install-k8s/"><i class="fa fa-link"></i>centos7.2 安装k8s v1.11.0</a></li>
          
      </ul>
     </div>

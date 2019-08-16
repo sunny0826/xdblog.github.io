@@ -1050,6 +1050,31 @@
         ]
     },
     {
+        "title": "解决 Nginx-Ingress 重定向失败问题",
+        "uri": "posts/nginx-ingress-error",
+        "content": "Kubernetes     nginx ingress controller                           nginx ingress kubernetes io rewrite target             Ingress                                                                                    http      RPC                   ingress       nginx ingress controller     nginx ingress controller                                       ingress                                                   nginx ingress controller                           https   kubernetes github io ingress nginx examples rewrite        Attention  Starting Version 0 22 0  ingress definitions using annotation nginx ingress kubernetes io rewrite target not backwards compatible previous versions  Version 0 22 0 beyond  substrings within request URI need passed rewritten path explicitly defined capture group                    V0 22 0                          nginx ingress controller               Note  Captured groups saved numbered placeholders  chronologically  form  1   2      n  placeholders used parameters rewrite target annotation                     ingress                                           echo   apiVersion  extensions v1beta1 kind  Ingress metadata  annotations  nginx ingress kubernetes io rewrite target    2 name  rewrite namespace  default spec  rules  host  rewrite bar com http  paths  backend  serviceName  http svc servicePort  80 path   something              kubectl create  f",
+        "objectID": "posts/nginx-ingress-error",
+        "date": "2019-08-16T03:15:37.000Z",
+        "draft": false,
+        "banner": "https://wx2.sinaimg.cn/large/ad5fbf65gy1g61duu66q4j20dw08ft8w.jpg",
+        "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
+        "summary": "记录 Nginx-Ingress 重定向失败问题的解决过程。",
+        "tags": [
+            "kubernetes",
+            "容器"
+        ],
+        "categories": [
+            "kubernetes"
+        ],
+        "keywords": [
+            "kubernetes",
+            "容器",
+            "ingress",
+            "nginx-ingress-controller"
+        ]
+    },
+    {
         "title": "kubernetes中pod同步时区问题",
         "uri": "posts/pod-timezone",
         "content": "18                                   bug                           8        docker                    K8S                  UTC0                UTC0    UTC8                                               K8S  Docker                                                                                    Docker                   etc localtime       pod                                                     yaml     pod      apiVersion  extensions v1beta1 kind  Deployment metadata  name  myweb spec  replicas  2 template  metadata  labels  app  myweb spec  containers  name  myweb image  nginx apline ports  containerPort  80     pod  volumeMounts  name  host time mountPath   etc localtime                 volumes  name  host time hostPath  path   etc localtime",
