@@ -21,13 +21,13 @@
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/tags/kubernetes/</loc>
+    <loc>https://blog.maoxianplay.com/categories/kubernetes/</loc>
     <lastmod>2019-08-16T11:15:37+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/categories/kubernetes/</loc>
+    <loc>https://blog.maoxianplay.com/tags/kubernetes/</loc>
     <lastmod>2019-08-16T11:15:37+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -49,13 +49,13 @@
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/tags/%E7%BF%BB%E8%AF%91/</loc>
+    <loc>https://blog.maoxianplay.com/categories/%E7%BF%BB%E8%AF%91/</loc>
     <lastmod>2019-08-06T14:01:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/categories/%E7%BF%BB%E8%AF%91/</loc>
+    <loc>https://blog.maoxianplay.com/tags/%E7%BF%BB%E8%AF%91/</loc>
     <lastmod>2019-08-06T14:01:30+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -66,13 +66,13 @@
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/tags/go/</loc>
+    <loc>https://blog.maoxianplay.com/categories/go/</loc>
     <lastmod>2019-07-25T16:27:57+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/categories/go/</loc>
+    <loc>https://blog.maoxianplay.com/tags/go/</loc>
     <lastmod>2019-07-25T16:27:57+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -93,13 +93,13 @@
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/tags/devops/</loc>
+    <loc>https://blog.maoxianplay.com/categories/devops/</loc>
     <lastmod>2019-07-11T09:24:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/categories/devops/</loc>
+    <loc>https://blog.maoxianplay.com/tags/devops/</loc>
     <lastmod>2019-07-11T09:24:17+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -359,13 +359,13 @@
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/tags/istio/</loc>
+    <loc>https://blog.maoxianplay.com/categories/istio/</loc>
     <lastmod>2019-03-21T09:42:18+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/categories/istio/</loc>
+    <loc>https://blog.maoxianplay.com/tags/istio/</loc>
     <lastmod>2019-03-21T09:42:18+08:00</lastmod>
     <priority>0</priority>
   </url>
