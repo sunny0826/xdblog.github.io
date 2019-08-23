@@ -6,10 +6,19 @@
     <description>Recent content in 部署安装 on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 31 Mar 2019 11:15:35 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 23 Aug 2019 09:36:55 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.maoxianplay.com/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GitHub/Gitee 静态页托管页部署SSL证书</title>
+      <link>https://blog.maoxianplay.com/posts/aliyun-ssl/</link>
+      <pubDate>Fri, 23 Aug 2019 09:36:55 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/posts/aliyun-ssl/</guid>
+      <description>本文档介绍了在 Github/Gitee 的静态页托管Pages服务部署SSL证书，配置HTTPS安全访问的操作说明。</description>
+    </item>
     
     <item>
       <title>单节点版rancher升级指南</title>
