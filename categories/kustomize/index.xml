@@ -2,75 +2,75 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>kustomize on GuoXD Blog</title>
-    <link>https://blog.maoxianplay.com/categories/kustomize/</link>
+    <link>https://guoxudong.io/categories/kustomize/</link>
     <description>Recent content in kustomize on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 04 Jul 2019 09:16:41 +0800</lastBuildDate>
     
-	<atom:link href="https://blog.maoxianplay.com/categories/kustomize/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://guoxudong.io/categories/kustomize/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>由一封邮件看 Mailing List 在开源项目中的重要性</title>
-      <link>https://blog.maoxianplay.com/posts/kubernetes-client-python/</link>
+      <link>https://guoxudong.io/posts/kubernetes-client-python/</link>
       <pubDate>Thu, 04 Jul 2019 09:16:41 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/kubernetes-client-python/</guid>
+      <guid>https://guoxudong.io/posts/kubernetes-client-python/</guid>
       <description>从发现、使用 Kubernetes Client/Python 这个项目的过程，谈谈 mailing list 在开源项目中的重要性。</description>
     </item>
     
     <item>
       <title>使用 Kustomize 帮你管理 kubernetes 应用（五）：配合 kubedog 完善 CI/CD 的最后一步</title>
-      <link>https://blog.maoxianplay.com/posts/kustomize-5/</link>
+      <link>https://guoxudong.io/posts/kustomize-5/</link>
       <pubDate>Wed, 03 Jul 2019 15:20:31 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/kustomize-5/</guid>
+      <guid>https://guoxudong.io/posts/kustomize-5/</guid>
       <description>在以往的 pipeline 中，使用 kubectl 进行部署 Deployment 后无法检查 Deployment 是否部署成功，只能通过使用命令/脚本来手动检查 Deployment 状态，而 kubedog 这个小工具完美解决了这个问题，完善了 CI/CD 流水线的最后一步。</description>
     </item>
     
     <item>
       <title>记一次使用 Kustomize 时遇到的愚蠢问题</title>
-      <link>https://blog.maoxianplay.com/posts/kustomize-err-1/</link>
+      <link>https://guoxudong.io/posts/kustomize-err-1/</link>
       <pubDate>Wed, 03 Jul 2019 13:44:50 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/kustomize-err-1/</guid>
+      <guid>https://guoxudong.io/posts/kustomize-err-1/</guid>
       <description>解决使用 Kustomize 时遇到的报错： error: failed to find an object with apps_v1_Deployment|myapp to apply the patch</description>
     </item>
     
     <item>
       <title>使用 Kustomize 帮你管理 kubernetes 应用（四）：简述核心配置 kustomization.yaml</title>
-      <link>https://blog.maoxianplay.com/posts/kustomize-4/</link>
+      <link>https://guoxudong.io/posts/kustomize-4/</link>
       <pubDate>Thu, 23 May 2019 12:50:12 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/kustomize-4/</guid>
+      <guid>https://guoxudong.io/posts/kustomize-4/</guid>
       <description>本篇为系列文章第四篇，将简述 kustomize 的核心配置文件 kustomization.yaml</description>
     </item>
     
     <item>
       <title>使用 Kustomize 帮你管理 kubernetes 应用（三）：将 Kustomize 应用于 CI/CD</title>
-      <link>https://blog.maoxianplay.com/posts/kustomize-3/</link>
+      <link>https://guoxudong.io/posts/kustomize-3/</link>
       <pubDate>Mon, 06 May 2019 16:46:28 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/kustomize-3/</guid>
+      <guid>https://guoxudong.io/posts/kustomize-3/</guid>
       <description>本篇为系列文章第三篇，使用 jenkins 发布一个简单的使用 flask 写的 web 项目，来演示在 CI/CD 流程中 Kustomize 的简单使用。</description>
     </item>
     
     <item>
       <title>使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法</title>
-      <link>https://blog.maoxianplay.com/posts/kustomize-2/</link>
+      <link>https://guoxudong.io/posts/kustomize-2/</link>
       <pubDate>Fri, 19 Apr 2019 16:05:02 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/kustomize-2/</guid>
+      <guid>https://guoxudong.io/posts/kustomize-2/</guid>
       <description>本篇为系列文章第二篇，手把手教你使用 Kustomize 的两种方式。</description>
     </item>
     
     <item>
       <title>使用 Kustomize 帮你管理 kubernetes 应用（一）：什么是 Kustomize ？</title>
-      <link>https://blog.maoxianplay.com/posts/kustomize-1/</link>
+      <link>https://guoxudong.io/posts/kustomize-1/</link>
       <pubDate>Mon, 15 Apr 2019 13:32:59 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/kustomize-1/</guid>
+      <guid>https://guoxudong.io/posts/kustomize-1/</guid>
       <description>本篇为系列文章第一篇，介绍我对 Kustomize 的了解过程以及 Kustomize 是什么，为什么它能解决我的燃眉之急。</description>
     </item>
     

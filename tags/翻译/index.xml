@@ -2,102 +2,102 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>翻译 on GuoXD Blog</title>
-    <link>https://blog.maoxianplay.com/tags/%E7%BF%BB%E8%AF%91/</link>
+    <link>https://guoxudong.io/tags/%E7%BF%BB%E8%AF%91/</link>
     <description>Recent content in 翻译 on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Tue, 06 Aug 2019 14:01:30 +0800</lastBuildDate>
     
-	<atom:link href="https://blog.maoxianplay.com/tags/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://guoxudong.io/tags/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>如何构建混合Kubernetes平台</title>
-      <link>https://blog.maoxianplay.com/posts/how-we-built-our-hybrid-kubernetes-platform/</link>
+      <link>https://guoxudong.io/posts/how-we-built-our-hybrid-kubernetes-platform/</link>
       <pubDate>Tue, 06 Aug 2019 14:01:30 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/how-we-built-our-hybrid-kubernetes-platform/</guid>
+      <guid>https://guoxudong.io/posts/how-we-built-our-hybrid-kubernetes-platform/</guid>
       <description>随着3年前重构 Dailymotion 核心API的决定，我们希望提供一种更有效的方式来托管应用程序，促进我们的开发和生产工作流程。 最终决定使用容器编排平台来实现这一目标，那么自然就选择了 Kubernetes。</description>
     </item>
     
     <item>
       <title>使用 Helm 在多集群部署应用</title>
-      <link>https://blog.maoxianplay.com/posts/deploying-apps-on-multiple-kubernetes-clusters-with-helm/</link>
+      <link>https://guoxudong.io/posts/deploying-apps-on-multiple-kubernetes-clusters-with-helm/</link>
       <pubDate>Sun, 14 Jul 2019 14:16:56 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/deploying-apps-on-multiple-kubernetes-clusters-with-helm/</guid>
+      <guid>https://guoxudong.io/posts/deploying-apps-on-multiple-kubernetes-clusters-with-helm/</guid>
       <description>本文将重点介绍我们如何在全球多个 Kubernetes 集群上部署我们的应用程序。为了将应用一次部署到多个 Kubernetes 集群，我们使用了 Helm ，并将所有 chart 存储在一个 git 仓库中。</description>
     </item>
     
     <item>
       <title>【转】Kubernetes 儿童插图指南</title>
-      <link>https://blog.maoxianplay.com/posts/the-childrens-illustrated-guide-to-kubernetes/</link>
+      <link>https://guoxudong.io/posts/the-childrens-illustrated-guide-to-kubernetes/</link>
       <pubDate>Fri, 05 Jul 2019 09:50:58 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/the-childrens-illustrated-guide-to-kubernetes/</guid>
+      <guid>https://guoxudong.io/posts/the-childrens-illustrated-guide-to-kubernetes/</guid>
       <description>献给所有试图向孩子们解释软件工程的家长。</description>
     </item>
     
     <item>
       <title>8分钟入门 K8S</title>
-      <link>https://blog.maoxianplay.com/posts/an-8-minute-introduction-to-k8s/</link>
+      <link>https://guoxudong.io/posts/an-8-minute-introduction-to-k8s/</link>
       <pubDate>Tue, 30 Apr 2019 13:38:12 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/an-8-minute-introduction-to-k8s/</guid>
+      <guid>https://guoxudong.io/posts/an-8-minute-introduction-to-k8s/</guid>
       <description>8分钟快速了解 Kubernetes 基本概念，快速入门 K8S。</description>
     </item>
     
     <item>
       <title>困难的 Kubernetes</title>
-      <link>https://blog.maoxianplay.com/posts/kubernetes-is-hard/</link>
+      <link>https://guoxudong.io/posts/kubernetes-is-hard/</link>
       <pubDate>Wed, 24 Apr 2019 10:18:46 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/kubernetes-is-hard/</guid>
+      <guid>https://guoxudong.io/posts/kubernetes-is-hard/</guid>
       <description>虽然 Kubernetes 赢得了容器战争，但是其仍然很难使用并且引起很多事故。</description>
     </item>
     
     <item>
       <title>GitHub 黑话指南</title>
-      <link>https://blog.maoxianplay.com/posts/cant/</link>
+      <link>https://guoxudong.io/posts/cant/</link>
       <pubDate>Mon, 22 Apr 2019 09:11:24 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/cant/</guid>
+      <guid>https://guoxudong.io/posts/cant/</guid>
       <description>这里总结了一些在 GitHub 上常见的&amp;lt;黑话&amp;gt;，这些乱七八糟的缩写着实给很多新司机带来了许多困扰 :)</description>
     </item>
     
     <item>
       <title>什么的容器？Docker 工作原理及容器化简易指南</title>
-      <link>https://blog.maoxianplay.com/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</link>
+      <link>https://guoxudong.io/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</link>
       <pubDate>Sat, 20 Apr 2019 19:54:50 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</guid>
+      <guid>https://guoxudong.io/posts/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</guid>
       <description>Docker 非常棒！ 它使软件开发者无需担心配置和依赖性，在任何地方打包，发送和运行他们的应用程序。而在与 kubernetes 相结合后，它使应用集群部署和管理变得更方便。这使得 Docker 深受软件开发者的喜爱，越来越多的开发者开始使用 Docker。</description>
     </item>
     
     <item>
       <title>Kustomize: 无需模板定制你的 kubernetes 配置</title>
-      <link>https://blog.maoxianplay.com/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</link>
+      <link>https://guoxudong.io/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</link>
       <pubDate>Mon, 15 Apr 2019 17:23:21 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</guid>
+      <guid>https://guoxudong.io/posts/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</guid>
       <description>本文介绍了 Kubernetes 原生的应用管理工具 Kustomize。</description>
     </item>
     
     <item>
       <title>Devops入门手册</title>
-      <link>https://blog.maoxianplay.com/posts/devops-tutorial/</link>
+      <link>https://guoxudong.io/posts/devops-tutorial/</link>
       <pubDate>Tue, 09 Apr 2019 13:21:56 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/devops-tutorial/</guid>
+      <guid>https://guoxudong.io/posts/devops-tutorial/</guid>
       <description>“DevOps”这个词是 “development” 和 “operations”这两个词的组合。它是一种促进开发和运维团队之间的协作，以自动化和可重复的方式更快地将代码部署到生产中的文化。</description>
     </item>
     
     <item>
       <title>Service Mesh是什么，我们又为什么需要它</title>
-      <link>https://blog.maoxianplay.com/posts/whats-a-service-mesh-and-why-do-i-need-one/</link>
+      <link>https://guoxudong.io/posts/whats-a-service-mesh-and-why-do-i-need-one/</link>
       <pubDate>Mon, 25 Mar 2019 18:17:20 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/whats-a-service-mesh-and-why-do-i-need-one/</guid>
+      <guid>https://guoxudong.io/posts/whats-a-service-mesh-and-why-do-i-need-one/</guid>
       <description>Service Mesh 是一个专门用于使服务与服务之间的通信变得安全、快速和可靠的的基础设施。如果你正在在构建一个云原生（ Cloud Native ）应用，那么 Service Mesh 是你需要的。</description>
     </item>
     

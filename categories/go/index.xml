@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>go on GuoXD Blog</title>
-    <link>https://blog.maoxianplay.com/categories/go/</link>
+    <link>https://guoxudong.io/categories/go/</link>
     <description>Recent content in go on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 25 Jul 2019 16:27:57 +0800</lastBuildDate>
     
-	<atom:link href="https://blog.maoxianplay.com/categories/go/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://guoxudong.io/categories/go/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Golang 装逼指南 Ⅱ：在 Homwebrew 上发布 Golang 项目</title>
-      <link>https://blog.maoxianplay.com/posts/golang-to-homebrew/</link>
+      <link>https://guoxudong.io/posts/golang-to-homebrew/</link>
       <pubDate>Thu, 25 Jul 2019 16:27:57 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/golang-to-homebrew/</guid>
+      <guid>https://guoxudong.io/posts/golang-to-homebrew/</guid>
       <description>本文介绍如何在 Homebrew 上发布 Golang 项目。</description>
     </item>
     
     <item>
       <title>Golang 装逼指南：在 GitHub 上构建一个看上去正规的 Golang 项目</title>
-      <link>https://blog.maoxianplay.com/posts/golang-project/</link>
+      <link>https://guoxudong.io/posts/golang-project/</link>
       <pubDate>Fri, 19 Jul 2019 10:38:26 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/golang-project/</guid>
+      <guid>https://guoxudong.io/posts/golang-project/</guid>
       <description>接触 golang 时间很长，但是真正动手开始写 golang 也就是在最近。跟着我在 GitHub 上构建一个看上去正规的 Golang 项目。</description>
     </item>
     

@@ -2,57 +2,57 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>部署安装 on GuoXD Blog</title>
-    <link>https://blog.maoxianplay.com/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/</link>
+    <link>https://guoxudong.io/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/</link>
     <description>Recent content in 部署安装 on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Fri, 23 Aug 2019 09:36:55 +0800</lastBuildDate>
     
-	<atom:link href="https://blog.maoxianplay.com/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://guoxudong.io/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>GitHub/Gitee 静态页托管页部署SSL证书</title>
-      <link>https://blog.maoxianplay.com/posts/aliyun-ssl/</link>
+      <link>https://guoxudong.io/posts/aliyun-ssl/</link>
       <pubDate>Fri, 23 Aug 2019 09:36:55 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/aliyun-ssl/</guid>
+      <guid>https://guoxudong.io/posts/aliyun-ssl/</guid>
       <description>本文档介绍了在 Github/Gitee 的静态页托管Pages服务部署SSL证书，配置HTTPS安全访问的操作说明。</description>
     </item>
     
     <item>
       <title>单节点版rancher升级指南</title>
-      <link>https://blog.maoxianplay.com/posts/rancher-update-2.2.1/</link>
+      <link>https://guoxudong.io/posts/rancher-update-2.2.1/</link>
       <pubDate>Sun, 31 Mar 2019 11:15:35 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/rancher-update-2.2.1/</guid>
+      <guid>https://guoxudong.io/posts/rancher-update-2.2.1/</guid>
       <description>Rancher 不仅可以在任何云提供商的任何地方部署 Kubernetes 集群，而且还将它们集中在集中式的身份验证和访问控制之下。由于它与资源的运行位置无关，因此您可以轻松地在不同的环境部署你的 kubernetes 集群并操作他们。 Rancher 不是将部署几个独立的 Kubernetes 集群，而是将它们统一为一个单独的托管Kubernetes Cloud。</description>
     </item>
     
     <item>
       <title>阿里云日志服务采集k8s日志并实现livetail功能</title>
-      <link>https://blog.maoxianplay.com/posts/dashboard-k8s/</link>
+      <link>https://guoxudong.io/posts/dashboard-k8s/</link>
       <pubDate>Thu, 14 Feb 2019 14:07:06 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/dashboard-k8s/</guid>
+      <guid>https://guoxudong.io/posts/dashboard-k8s/</guid>
       <description>阿里云日志服务采集k8s日志和livetail功能调研</description>
     </item>
     
     <item>
       <title>centos7.2 安装k8s v1.11.0</title>
-      <link>https://blog.maoxianplay.com/posts/install-k8s/</link>
+      <link>https://guoxudong.io/posts/install-k8s/</link>
       <pubDate>Tue, 14 Aug 2018 20:07:03 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/install-k8s/</guid>
+      <guid>https://guoxudong.io/posts/install-k8s/</guid>
       <description>最近由于公司业务发展到了瓶颈，原有的技术架构已经逐渐无法满足业务开发和测试的需求，出现了应用测试环境搭建复杂，有许多套（真的很多很多）应用环境，应用在持续集成/持续交付也遇到了很大的困难，经过讨论研究决定对应用和微服务进行容器化，这就是我首次直面docker和k8s的契机。</description>
     </item>
     
     <item>
       <title>centos7安装指定版本的docker</title>
-      <link>https://blog.maoxianplay.com/posts/install-docker/</link>
+      <link>https://guoxudong.io/posts/install-docker/</link>
       <pubDate>Tue, 14 Aug 2018 20:05:21 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/install-docker/</guid>
+      <guid>https://guoxudong.io/posts/install-docker/</guid>
       <description>在使用CentOS7，并使用荫安装搬运工的时候，往往不希望安装最新版本的搬运工，而是希望安装与自己熟悉或者当前业务环境需要的版本，例如目前Kubernetes支持的最新搬运工版本为v17.03，所以就产生了安装指定版本码头工人的需求。</description>
     </item>
     

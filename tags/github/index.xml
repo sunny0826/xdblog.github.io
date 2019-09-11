@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>GitHub on GuoXD Blog</title>
-    <link>https://blog.maoxianplay.com/tags/github/</link>
+    <link>https://guoxudong.io/tags/github/</link>
     <description>Recent content in GitHub on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Mon, 22 Apr 2019 09:11:24 +0800</lastBuildDate>
     
-	<atom:link href="https://blog.maoxianplay.com/tags/github/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://guoxudong.io/tags/github/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>GitHub 黑话指南</title>
-      <link>https://blog.maoxianplay.com/posts/cant/</link>
+      <link>https://guoxudong.io/posts/cant/</link>
       <pubDate>Mon, 22 Apr 2019 09:11:24 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/cant/</guid>
+      <guid>https://guoxudong.io/posts/cant/</guid>
       <description>这里总结了一些在 GitHub 上常见的&amp;lt;黑话&amp;gt;，这些乱七八糟的缩写着实给很多新司机带来了许多困扰 :)</description>
     </item>
     

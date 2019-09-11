@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on GuoXD Blog</title>
-    <link>https://blog.maoxianplay.com/tags/linux/</link>
+    <link>https://guoxudong.io/tags/linux/</link>
     <description>Recent content in Linux on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Fri, 15 Mar 2019 09:53:02 +0800</lastBuildDate>
     
-	<atom:link href="https://blog.maoxianplay.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://guoxudong.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Alpine Linux详解</title>
-      <link>https://blog.maoxianplay.com/posts/alpine-linux/</link>
+      <link>https://guoxudong.io/posts/alpine-linux/</link>
       <pubDate>Fri, 15 Mar 2019 09:53:02 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/alpine-linux/</guid>
+      <guid>https://guoxudong.io/posts/alpine-linux/</guid>
       <description>Alpine以其小巧、简单在docker容器中得到了广泛的应用。但是Alpine Linux使用了musl，可能和其他Linux发行版使用的glibc实现会有些不同。这里主要介绍了它的基础用法，但是足以满足日常运维需要。</description>
     </item>
     
     <item>
       <title>Docker容器启动退出解决方案</title>
-      <link>https://blog.maoxianplay.com/posts/docker-quit/</link>
+      <link>https://guoxudong.io/posts/docker-quit/</link>
       <pubDate>Thu, 27 Sep 2018 19:27:03 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/docker-quit/</guid>
+      <guid>https://guoxudong.io/posts/docker-quit/</guid>
       <description>解决容器启动退出问题。</description>
     </item>
     
     <item>
       <title>centos7安装指定版本的docker</title>
-      <link>https://blog.maoxianplay.com/posts/install-docker/</link>
+      <link>https://guoxudong.io/posts/install-docker/</link>
       <pubDate>Tue, 14 Aug 2018 20:05:21 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/install-docker/</guid>
+      <guid>https://guoxudong.io/posts/install-docker/</guid>
       <description>在使用CentOS7，并使用荫安装搬运工的时候，往往不希望安装最新版本的搬运工，而是希望安装与自己熟悉或者当前业务环境需要的版本，例如目前Kubernetes支持的最新搬运工版本为v17.03，所以就产生了安装指定版本码头工人的需求。</description>
     </item>
     

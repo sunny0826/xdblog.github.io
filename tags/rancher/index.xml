@@ -2,48 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>rancher on GuoXD Blog</title>
-    <link>https://blog.maoxianplay.com/tags/rancher/</link>
+    <link>https://guoxudong.io/tags/rancher/</link>
     <description>Recent content in rancher on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 18 Apr 2019 17:46:08 +0800</lastBuildDate>
     
-	<atom:link href="https://blog.maoxianplay.com/tags/rancher/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://guoxudong.io/tags/rancher/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Rancher 2.2.1 解决工作负载监控为空问题</title>
-      <link>https://blog.maoxianplay.com/posts/rancher-prometheus-fix-question/</link>
+      <link>https://guoxudong.io/posts/rancher-prometheus-fix-question/</link>
       <pubDate>Thu, 18 Apr 2019 17:46:08 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/rancher-prometheus-fix-question/</guid>
+      <guid>https://guoxudong.io/posts/rancher-prometheus-fix-question/</guid>
       <description>记一次在 Rancher 官方小哥帮助下解决 Rancher 问题的过程。</description>
     </item>
     
     <item>
       <title>单节点版rancher升级指南</title>
-      <link>https://blog.maoxianplay.com/posts/rancher-update-2.2.1/</link>
+      <link>https://guoxudong.io/posts/rancher-update-2.2.1/</link>
       <pubDate>Sun, 31 Mar 2019 11:15:35 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/rancher-update-2.2.1/</guid>
+      <guid>https://guoxudong.io/posts/rancher-update-2.2.1/</guid>
       <description>Rancher 不仅可以在任何云提供商的任何地方部署 Kubernetes 集群，而且还将它们集中在集中式的身份验证和访问控制之下。由于它与资源的运行位置无关，因此您可以轻松地在不同的环境部署你的 kubernetes 集群并操作他们。 Rancher 不是将部署几个独立的 Kubernetes 集群，而是将它们统一为一个单独的托管Kubernetes Cloud。</description>
     </item>
     
     <item>
       <title>为ingress配置SSL证书，实现HTTPS访问</title>
-      <link>https://blog.maoxianplay.com/posts/https-ingress/</link>
+      <link>https://guoxudong.io/posts/https-ingress/</link>
       <pubDate>Sat, 29 Dec 2018 21:28:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/https-ingress/</guid>
+      <guid>https://guoxudong.io/posts/https-ingress/</guid>
       <description>devops平台率先在公司内使用kubernetes集群提供后端服务，但是由于之前一直处于探索阶段，所以使用的事http的方式提供后端服务，但是在开发统一入口后，出现了访问HTTPS页面的跨域问题，由此引出了后端服务配置SSL证书的问题。</description>
     </item>
     
     <item>
       <title>阿里云部署rancher2.1采坑记</title>
-      <link>https://blog.maoxianplay.com/posts/install-rancher/</link>
+      <link>https://guoxudong.io/posts/install-rancher/</link>
       <pubDate>Thu, 29 Nov 2018 18:28:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/install-rancher/</guid>
+      <guid>https://guoxudong.io/posts/install-rancher/</guid>
       <description>近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以将部署到阿里云的图中遇到的问题和踩到的坑在这里进行记录。</description>
     </item>
     

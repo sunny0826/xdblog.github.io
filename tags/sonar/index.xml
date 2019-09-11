@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>sonar on GuoXD Blog</title>
-    <link>https://blog.maoxianplay.com/tags/sonar/</link>
+    <link>https://guoxudong.io/tags/sonar/</link>
     <description>Recent content in sonar on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 07 Mar 2019 09:14:39 +0800</lastBuildDate>
     
-	<atom:link href="https://blog.maoxianplay.com/tags/sonar/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://guoxudong.io/tags/sonar/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Jenkins Pipeline集成Sonar进行代码质量检测</title>
-      <link>https://blog.maoxianplay.com/posts/sonar-pipline/</link>
+      <link>https://guoxudong.io/posts/sonar-pipline/</link>
       <pubDate>Thu, 07 Mar 2019 09:14:39 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/sonar-pipline/</guid>
+      <guid>https://guoxudong.io/posts/sonar-pipline/</guid>
       <description>在devops理念中，CI/CD毫无疑问是最重要的一环，而代码质量检查则是CI中必不可少的一步。在敏捷开发的思想下，代码的迭代周期变短，交付速度提升，这个时候代码的质量就很难保证，测试只能保证功能完整与可用，而代码的质量纯靠review的话效率又很低，这个时候sonar&amp;hellip;</description>
     </item>
     

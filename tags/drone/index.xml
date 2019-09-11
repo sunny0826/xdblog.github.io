@@ -2,21 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>drone on GuoXD Blog</title>
-    <link>https://blog.maoxianplay.com/tags/drone/</link>
+    <link>https://guoxudong.io/tags/drone/</link>
     <description>Recent content in drone on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 21 May 2019 08:59:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 11 Sep 2019 13:53:09 +0800</lastBuildDate>
     
-	<atom:link href="https://blog.maoxianplay.com/tags/drone/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://guoxudong.io/tags/drone/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>玩转 Drone CI</title>
+      <link>https://guoxudong.io/posts/drone-optimize/</link>
+      <pubDate>Wed, 11 Sep 2019 13:53:09 +0800</pubDate>
+      
+      <guid>https://guoxudong.io/posts/drone-optimize/</guid>
+      <description>通过这篇文章总结一下目前我们对 drone 进行了一些定制化开发以及使用技巧，由于 drone 官方的文档不是很详细，所以也希望通过这种方法来和其他使用 drone 的用户分享和交流使用经验。</description>
+    </item>
+    
+    <item>
       <title>轻量快速的 CI 工具 Drone</title>
-      <link>https://blog.maoxianplay.com/posts/drone-ci/</link>
+      <link>https://guoxudong.io/posts/drone-ci/</link>
       <pubDate>Tue, 21 May 2019 08:59:00 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/drone-ci/</guid>
+      <guid>https://guoxudong.io/posts/drone-ci/</guid>
       <description>本文介绍一款轻量级的 CI 工具 Drone ，同时也介绍在实践中遇到的一些坑，帮助你快速搭建持续集成流水线。</description>
     </item>
     

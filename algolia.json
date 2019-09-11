@@ -363,6 +363,31 @@
         ]
     },
     {
+        "title": "玩转 Drone CI",
+        "uri": "posts/drone-optimize",
+        "content": "drone CI               CI     jenkins   drone                                                drone CI         devops                      drone                     drone                              drone                           drone                        repo                                                    repo        Java          vue      maven     npm        maven          docker             docker          k8s             vue          k8s                                                                                                    k8s             drone yml    kind   pipeline  name   default  steps  name   Maven    image   guoxudongdocker drone maven  commands   mvn clean install  depends_on     clone    name         image   guoxudongdocker drone docker  settings  username  fromsecret   dockeruser  password  fromsecret   dockerpass  dockerfile   Dockerfile  repo   registry vpc cn shanghai aliyuncs com guoxudong test  registry   registry vpc cn shanghai aliyuncs com  tags     DRONEBUILDNUMBER   depends_on     Maven      name   Kubernetes     image   guoxudongdocker kubectl  settings  config   deploy overlays uat  timeout  300 check  false depends_on             name         image   guoxudongdocker node drone  commands   npm install   npm run build  depends_on     clone    name         image   guoxudongdocker node drone  commands   do something  depends_on            Kubernetes       name         image   guoxudongdocker drone dingtalk  settings  token  from_secret   dingding  type   markdown  message_color  true message_pic  true sha_link  true depends_on            Kubernetes       when  status   failure   success             drone                         repo                  k8s              drone yml                                                            drone                                                             CI                                            tag                     tag         test1     test1 v0 0 1   tag                                     Kubernetes            Kubernetes            Kubernetes                            Kubernetes              drone   Kubernetes            kubectl  kustomize kubedog         Kubernetes    step      drone yml steps  name  Kubernetes    image  guoxudongdocker kubectl volumes  name  kube path   root  kube settings  check  false                 config  deploy overlays uat        kustomize           https   github com kubernetes sigs kustomize timeout  300   kubedog       name   your deployment name                            volumes  name  kube host  path   tmp cache  kube   kubeconfig      trigger  branch  master      CI                          docker    tag   DRONEBUILDNUMBER          git tag         docker    tag   DRONE_TAG       kubectl apply  k             kubedog                     step                 step                      drone                dockerhub                                                                      Java  Python    Node js   drone                CI        drone",
+        "objectID": "posts/drone-optimize",
+        "date": "2019-09-11T05:53:09.000Z",
+        "draft": false,
+        "banner": "https://wx1.sinaimg.cn/large/ad5fbf65gy1g6vnfwh6a2j21hc120dpl.jpg",
+        "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
+        "summary": "通过这篇文章总结一下目前我们对 drone 进行了一些定制化开发以及使用技巧，由于 drone 官方的文档不是很详细，所以也希望通过这种方法来和其他使用 drone 的用户分享和交流使用经验。",
+        "tags": [
+            "devops",
+            "drone",
+            "工具"
+        ],
+        "categories": [
+            "devops"
+        ],
+        "keywords": [
+            "devops",
+            "drone",
+            "工具"
+        ]
+    },
+    {
         "title": "炫酷的终端软件 eDEX-UI",
         "uri": "posts/eDEX-UI",
         "content": "4                                                                            4                                                                                                                                                                                eDEX UI eDEX UI                                                                                                                                           curses     curses            CPU RAM        GeoIP                                      CWD                            CSS                                                          tron disrupted                                      shell             eDEX UI      settings json                shell                  settings json   Mac          Users guoxudong Library Application Support eDEX UI                             zsh   tron disrupted                                                              pad                   CPU          CPU",

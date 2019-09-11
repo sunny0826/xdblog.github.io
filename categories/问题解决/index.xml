@@ -2,66 +2,66 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>问题解决 on GuoXD Blog</title>
-    <link>https://blog.maoxianplay.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</link>
+    <link>https://guoxudong.io/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</link>
     <description>Recent content in 问题解决 on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 18 Apr 2019 17:46:08 +0800</lastBuildDate>
     
-	<atom:link href="https://blog.maoxianplay.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://guoxudong.io/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Rancher 2.2.1 解决工作负载监控为空问题</title>
-      <link>https://blog.maoxianplay.com/posts/rancher-prometheus-fix-question/</link>
+      <link>https://guoxudong.io/posts/rancher-prometheus-fix-question/</link>
       <pubDate>Thu, 18 Apr 2019 17:46:08 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/rancher-prometheus-fix-question/</guid>
+      <guid>https://guoxudong.io/posts/rancher-prometheus-fix-question/</guid>
       <description>记一次在 Rancher 官方小哥帮助下解决 Rancher 问题的过程。</description>
     </item>
     
     <item>
       <title>kubernetes中pod同步时区问题</title>
-      <link>https://blog.maoxianplay.com/posts/pod-timezone/</link>
+      <link>https://guoxudong.io/posts/pod-timezone/</link>
       <pubDate>Wed, 30 Jan 2019 20:18:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/pod-timezone/</guid>
+      <guid>https://guoxudong.io/posts/pod-timezone/</guid>
       <description>解决容器中时区问题。</description>
     </item>
     
     <item>
       <title>阿里云部署rancher2.1采坑记</title>
-      <link>https://blog.maoxianplay.com/posts/install-rancher/</link>
+      <link>https://guoxudong.io/posts/install-rancher/</link>
       <pubDate>Thu, 29 Nov 2018 18:28:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/install-rancher/</guid>
+      <guid>https://guoxudong.io/posts/install-rancher/</guid>
       <description>近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以将部署到阿里云的图中遇到的问题和踩到的坑在这里进行记录。</description>
     </item>
     
     <item>
       <title>Kubernetes删除一直处于Terminating状态的namespace</title>
-      <link>https://blog.maoxianplay.com/posts/k8s-d-n/</link>
+      <link>https://guoxudong.io/posts/k8s-d-n/</link>
       <pubDate>Fri, 16 Nov 2018 18:18:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/k8s-d-n/</guid>
+      <guid>https://guoxudong.io/posts/k8s-d-n/</guid>
       <description>kubernetes解决删除的namespace一直处于Terminating状态的情况。</description>
     </item>
     
     <item>
       <title>精简docker镜像</title>
-      <link>https://blog.maoxianplay.com/posts/image-size/</link>
+      <link>https://guoxudong.io/posts/image-size/</link>
       <pubDate>Thu, 27 Sep 2018 20:28:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/image-size/</guid>
+      <guid>https://guoxudong.io/posts/image-size/</guid>
       <description>精简Docker镜像的好处很多，不仅可以节省存储空间和带宽，还能减少安全隐患。优化镜像大小的手段多种多样，因服务所使用的基础开发语言不同而有差异。本文将介绍精简Docker镜像的几种通用方法。</description>
     </item>
     
     <item>
       <title>Docker容器启动退出解决方案</title>
-      <link>https://blog.maoxianplay.com/posts/docker-quit/</link>
+      <link>https://guoxudong.io/posts/docker-quit/</link>
       <pubDate>Thu, 27 Sep 2018 19:27:03 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/docker-quit/</guid>
+      <guid>https://guoxudong.io/posts/docker-quit/</guid>
       <description>解决容器启动退出问题。</description>
     </item>
     

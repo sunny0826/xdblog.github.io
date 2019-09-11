@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>服务网格 on GuoXD Blog</title>
-    <link>https://blog.maoxianplay.com/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</link>
+    <link>https://guoxudong.io/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</link>
     <description>Recent content in 服务网格 on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 10 Apr 2019 14:03:25 +0800</lastBuildDate>
     
-	<atom:link href="https://blog.maoxianplay.com/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://guoxudong.io/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>从边车模式到 Service Mesh</title>
-      <link>https://blog.maoxianplay.com/posts/sidercar-to-servicemesh/</link>
+      <link>https://guoxudong.io/posts/sidercar-to-servicemesh/</link>
       <pubDate>Wed, 10 Apr 2019 14:03:25 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/sidercar-to-servicemesh/</guid>
+      <guid>https://guoxudong.io/posts/sidercar-to-servicemesh/</guid>
       <description>谈谈从边车模式这一分布式架构的设计模式到 Service Mesh 的演变。</description>
     </item>
     
     <item>
       <title>Service Mesh是什么</title>
-      <link>https://blog.maoxianplay.com/posts/istio-servicemesh/</link>
+      <link>https://guoxudong.io/posts/istio-servicemesh/</link>
       <pubDate>Tue, 19 Mar 2019 16:12:56 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/posts/istio-servicemesh/</guid>
+      <guid>https://guoxudong.io/posts/istio-servicemesh/</guid>
       <description>现在Service Mesh很热，但是到底什么事Service Mesh，Service Mesh能为我们做什么，我们为什么要用Service Mesh。</description>
     </item>
     
