@@ -6,10 +6,19 @@
     <description>Recent content on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 11 Sep 2019 13:53:09 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 29 Sep 2019 09:52:11 +0800</lastBuildDate>
     
 	<atom:link href="https://guoxudong.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>当码农遇见公益</title>
+      <link>https://guoxudong.io/posts/alibaba-public-welfare/</link>
+      <pubDate>Sun, 29 Sep 2019 09:52:11 +0800</pubDate>
+      
+      <guid>https://guoxudong.io/posts/alibaba-public-welfare/</guid>
+      <description>9月25日下午参加阿里巴巴技术公益专场记录与感想。</description>
+    </item>
     
     <item>
       <title>玩转 Drone CI</title>

@@ -49,6 +49,28 @@
         ]
     },
     {
+        "title": "当码农遇见公益",
+        "uri": "posts/alibaba-public-welfare",
+        "content": "9 25                                                                                               devops                    UI                                                                                                                                                                                                                                                                                                                                                                                                                                          Michael HERMANN                                                                              Michael                                                                                                                                                                                                                                                AI",
+        "objectID": "posts/alibaba-public-welfare",
+        "date": "2019-09-29T01:52:11.000Z",
+        "draft": false,
+        "banner": "https://tvax1.sinaimg.cn/large/ad5fbf65gy1g7gejyynd0j21hc0zkwr2.jpg",
+        "author": "郭旭东",
+        "authorlink": "https://github.com/sunny0826",
+        "summary": "9月25日下午参加阿里巴巴技术公益专场记录与感想。",
+        "tags": [
+            "公益"
+        ],
+        "categories": [
+            "公益"
+        ],
+        "keywords": [
+            "公益",
+            "码上公益"
+        ]
+    },
+    {
         "title": "阿里云容器服务新建集群优化方案(更新版)",
         "uri": "posts/aliyun-k8s-perfect",
         "content": "VPC                     2  SLB     3       SLB    VPC          IP                 IP    API Server          SLB       Ingress           IP                                                                    Node                                                      Node                                                                                    SLB                3  SLB                2        VPC      IP               ingress     SLB                                              1       SLB            SLB                 SLB         SLB       IP             SLB     k8s       VPC                     SLB   ID 2                    nginx ingress service apiVersion  v1 kind  Service metadata  name  nginx ingress lb  new name  namespace  kube system labels  app  nginx ingress lb  new name  annotations  set loadbalancer specified slb id service beta kubernetes io alicloud loadbalancer id   SLB ID  set loadbalancer address type intranet using private slb instance  service beta kubernetes io alicloud loadbalancer address type  intranet service beta kubernetes io alicloud loadbalancer force override listeners   true   service beta kubernetes io alicloud loadbalancer backend label  node role kubernetes io ingress true spec  type  LoadBalancer not route traffic nodes reserve client ip upstream externalTrafficPolicy   Local  ports  port  80 name  http targetPort  80 port  443 name  https targetPort  443 selector  select app ingress nginx pods app  ingress nginx            SLB           3           IP    SLB                      SLB           IP               2M   IP 4                  ingress    SLB                       k8s             ingress                       SLB      IP                              1                                                 2           SLB         SLB        3           IP      4                       SLB                     SLB                   API Server  SLB                                                                                     kubernetes         ECS          kubernetes                                        master",
