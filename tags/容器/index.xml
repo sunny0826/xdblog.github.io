@@ -6,10 +6,19 @@
     <description>Recent content in 容器 on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 16 Aug 2019 11:15:37 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 30 Sep 2019 09:32:35 +0800</lastBuildDate>
     
 	<atom:link href="https://guoxudong.io/tags/%E5%AE%B9%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>阿里云产品夜谈-容器服务交流</title>
+      <link>https://guoxudong.io/posts/aliyun-product-meetup/</link>
+      <pubDate>Mon, 30 Sep 2019 09:32:35 +0800</pubDate>
+      
+      <guid>https://guoxudong.io/posts/aliyun-product-meetup/</guid>
+      <description>9月25日晚受邀来到阿里云飞天园区参加阿里云MVP产品夜谈，在会上遇到了容器服务团队的负责人易立，并就容器服务进行了交流。</description>
+    </item>
     
     <item>
       <title>解决 Nginx-Ingress 重定向失败问题</title>

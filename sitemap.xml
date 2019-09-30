@@ -4,20 +4,43 @@
   
   <url>
     <loc>https://guoxudong.io/categories/</loc>
-    <lastmod>2019-09-29T09:52:11+08:00</lastmod>
+    <lastmod>2019-09-30T09:32:35+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://guoxudong.io/</loc>
-    <lastmod>2019-09-29T09:52:11+08:00</lastmod>
+    <lastmod>2019-09-30T09:32:35+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://guoxudong.io/tags/</loc>
-    <lastmod>2019-09-29T09:52:11+08:00</lastmod>
+    <lastmod>2019-09-30T09:32:35+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/categories/kubernetes/</loc>
+    <lastmod>2019-09-30T09:32:35+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/tags/%E5%AE%B9%E5%99%A8/</loc>
+    <lastmod>2019-09-30T09:32:35+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
+    <lastmod>2019-09-30T09:32:35+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/posts/aliyun-product-meetup/</loc>
+    <lastmod>2019-09-30T09:32:35+08:00</lastmod>
   </url>
   
   <url>
@@ -78,25 +101,7 @@
   </url>
   
   <url>
-    <loc>https://guoxudong.io/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
-    <lastmod>2019-08-23T09:36:55+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://guoxudong.io/categories/kubernetes/</loc>
-    <lastmod>2019-08-16T11:15:37+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://guoxudong.io/tags/kubernetes/</loc>
-    <lastmod>2019-08-16T11:15:37+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://guoxudong.io/tags/%E5%AE%B9%E5%99%A8/</loc>
     <lastmod>2019-08-16T11:15:37+08:00</lastmod>
     <priority>0</priority>
   </url>
