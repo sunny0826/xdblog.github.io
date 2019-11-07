@@ -16,7 +16,7 @@
   <meta name="keywords" content="kubernetes, kustomize, 工具">
   
 
-  <meta name="generator" content="Hugo 0.55.5" />
+  <meta name="generator" content="Hugo 0.58.3" />
 
   
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -298,11 +298,9 @@ autocomplete('#aa-search-input',
 这里使用 <code>git</code> 进行版本控制。</p>
 
 <pre><code class="language-bash">git init ~/ldap
-</code></pre>
+</code></pre></li>
 
-<ol>
-<li>创建一个 <code>base</code></li>
-</ol>
+<li><p>创建一个 <code>base</code></p>
 
 <pre><code class="language-bash">mkdir -p ~/ldap/base
 </code></pre>
@@ -318,14 +316,15 @@ mkdir -p ~/ldap/overlays/production
 <p>每个目录都需要一个 <code>kustomization.yaml</code> 文件以及一个或多个 <code>patch</code> ，例如 <code>healthcheck_patch.yaml</code> <code>memorylimit_patch.yaml</code> 等。。</p>
 
 <pre><code class="language-staging```">
-```production``` 目录则可能会在 ```deployment``` 中增加在副本数。
+</code></pre>
 
-4. 生成 ```variants```
+<p>production<code>目录则可能会在</code>deployment``` 中增加在副本数。</p></li>
 
-运行 ```kustomize``` ，将生成的配置用于 kubernetes 应用部署
+<li><p>生成 <code>variants</code></p>
 
-```bash
-kustomize build ~/ldap/overlays/staging | kubectl apply -f -
+<p>运行 <code>kustomize</code> ，将生成的配置用于 kubernetes 应用部署</p>
+
+<pre><code class="language-bash">kustomize build ~/ldap/overlays/staging | kubectl apply -f -
 kustomize build ~/ldap/overlays/production | kubectl apply -f -
 </code></pre>
 
@@ -333,7 +332,8 @@ kustomize build ~/ldap/overlays/production | kubectl apply -f -
 
 <pre><code class="language-bash">kubectl apply -k ~/ldap/overlays/staging
 kubectl apply -k ~/ldap/overlays/production
-</code></pre>
+</code></pre></li>
+</ol>
 
 <h2 id="使用现成的配置">使用现成的配置</h2>
 
@@ -344,8 +344,7 @@ kubectl apply -k ~/ldap/overlays/production
 <ol>
 <li><p>通过 fork/modify/rebase 等方式获得配置</p></li>
 
-<li><p>将其克隆为你自己的 <code>base</code></p></li>
-</ol>
+<li><p>将其克隆为你自己的 <code>base</code></p>
 
 <p>在这个 <code>bash</code> 目录维护在一个 repo 中，在这个例子使用 <code>ladp</code> 的 repo</p>
 
@@ -363,11 +362,9 @@ git remote add upstream git@github.com:$USER/ldap
 mkdir -p ~/ldap/overlays/production
 </code></pre>
 
-<p>用户可以将 <code>overlays</code> 维护在不同的 repo 中</p>
+<p>用户可以将 <code>overlays</code> 维护在不同的 repo 中</p></li>
 
-<ol>
-<li>生成 <code>variants</code></li>
-</ol>
+<li><p>生成 <code>variants</code></p>
 
 <pre><code class="language-bash">kustomize build ~/ldap/overlays/staging | kubectl apply -f -
 kustomize build ~/ldap/overlays/production | kubectl apply -f -
@@ -377,12 +374,10 @@ kustomize build ~/ldap/overlays/production | kubectl apply -f -
 
 <pre><code class="language-bash">kubectl apply -k ~/ldap/overlays/staging
 kubectl apply -k ~/ldap/overlays/production
-</code></pre>
+</code></pre></li>
 
-<ol>
-<li>（可选）更新 <code>base</code>
-用户可以定期从上游 repo 中 <code>rebase</code> 他们的 <code>base</code> 以保证及时更新</li>
-</ol>
+<li><p>（可选）更新 <code>base</code>
+用户可以定期从上游 repo 中 <code>rebase</code> 他们的 <code>base</code> 以保证及时更新</p>
 
 <pre><code class="language-bash">cd ~/ldap/base
 git fetch upstream
@@ -537,7 +532,7 @@ git rebase upstream/master
             <li><a href="/categories/istio"><i class="fa fa-navicon"></i>istio (3)</a>
             </li>
             
-            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (11)</a>
+            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (12)</a>
             </li>
             
             <li><a href="/categories/kustomize"><i class="fa fa-navicon"></i>kustomize (7)</a>
@@ -599,6 +594,9 @@ git rebase upstream/master
             </li>
             
             <li><a href="/tags/go"><i class="fa fa-tags"></i> go</a>
+            </li>
+            
+            <li><a href="/tags/grafana"><i class="fa fa-tags"></i> grafana</a>
             </li>
             
             <li><a href="/tags/istio"><i class="fa fa-tags"></i> istio</a>
@@ -709,6 +707,19 @@ git rebase upstream/master
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
+                        <a href="/posts/aliyun-cms-grafana/">
+                          
+                          <img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1g8piqjask7j21y014swo7.jpg" class="img-responsive" alt="使用 Grafana 展示阿里云监控指标">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/aliyun-cms-grafana/">使用 Grafana 展示阿里云监控指标</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
                         <a href="/posts/aliyun-product-meetup/">
                           
                           <img src="https://tva1.sinaimg.cn/large/ad5fbf65gy1g7he2xumccj21qi15on6r.jpg" class="img-responsive" alt="阿里云产品夜谈-容器服务交流">
@@ -730,19 +741,6 @@ git rebase upstream/master
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="/posts/alibaba-public-welfare/">当码农遇见公益</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
-                        <a href="/posts/drone-optimize/">
-                          
-                          <img src="https://wx1.sinaimg.cn/large/ad5fbf65gy1g6vnfwh6a2j21hc120dpl.jpg" class="img-responsive" alt="玩转 Drone CI">
-                          
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="/posts/drone-optimize/">玩转 Drone CI</a></h5>
                     </div>
                 </div>
                 

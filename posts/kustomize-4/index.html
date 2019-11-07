@@ -16,7 +16,7 @@
   <meta name="keywords" content="kubernetes, kustomize, 工具">
   
 
-  <meta name="generator" content="Hugo 0.55.5" />
+  <meta name="generator" content="Hugo 0.58.3" />
 
   
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -419,22 +419,21 @@ spec:
 <p>这里可以看到配置分为了 <code>base</code> 和 <code>overlays</code>， <code>overlays</code> 则是继承了 <code>base</code> 的配置，同时添加了诸如 healthcheck 和 memorylimit 等不同的配置，那么我们分别看一下 <code>base</code> 和 <code>overlays</code> 中 <code>kustomization.yaml</code> 的内容</p>
 
 <ul>
-<li>base</li>
-</ul>
+<li><p>base</p>
 
 <pre><code class="language-YAML">commonLabels:
-  app: test-cicd
+app: test-cicd
 
 resources:
 - service.yaml
 - deployment.yaml
-</code></pre>
+</code></pre></li>
+</ul>
 
 <p><code>base</code> 中的 <code>kustomization.yaml</code> 中定义了一些基础配置</p>
 
 <ul>
-<li>overlays</li>
-</ul>
+<li><p>overlays</p>
 
 <pre><code class="language-YAML">bases:
 - ../../base
@@ -442,7 +441,8 @@ patchesStrategicMerge:
 - healthcheck_patch.yaml
 - memorylimit_patch.yaml
 namespace: devops-dev
-</code></pre>
+</code></pre></li>
+</ul>
 
 <p><code>overlays</code> 中的 <code>kustomization.yaml</code> 则是基于 <code>base</code> 新增了一些个性化的配置，来达到生成不同环境的目的。</p>
 
@@ -677,7 +677,7 @@ spec:
             <li><a href="/categories/istio"><i class="fa fa-navicon"></i>istio (3)</a>
             </li>
             
-            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (11)</a>
+            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (12)</a>
             </li>
             
             <li><a href="/categories/kustomize"><i class="fa fa-navicon"></i>kustomize (7)</a>
@@ -739,6 +739,9 @@ spec:
             </li>
             
             <li><a href="/tags/go"><i class="fa fa-tags"></i> go</a>
+            </li>
+            
+            <li><a href="/tags/grafana"><i class="fa fa-tags"></i> grafana</a>
             </li>
             
             <li><a href="/tags/istio"><i class="fa fa-tags"></i> istio</a>
@@ -849,6 +852,19 @@ spec:
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
+                        <a href="/posts/aliyun-cms-grafana/">
+                          
+                          <img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1g8piqjask7j21y014swo7.jpg" class="img-responsive" alt="使用 Grafana 展示阿里云监控指标">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/aliyun-cms-grafana/">使用 Grafana 展示阿里云监控指标</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
                         <a href="/posts/aliyun-product-meetup/">
                           
                           <img src="https://tva1.sinaimg.cn/large/ad5fbf65gy1g7he2xumccj21qi15on6r.jpg" class="img-responsive" alt="阿里云产品夜谈-容器服务交流">
@@ -870,19 +886,6 @@ spec:
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="/posts/alibaba-public-welfare/">当码农遇见公益</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
-                        <a href="/posts/drone-optimize/">
-                          
-                          <img src="https://wx1.sinaimg.cn/large/ad5fbf65gy1g6vnfwh6a2j21hc120dpl.jpg" class="img-responsive" alt="玩转 Drone CI">
-                          
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="/posts/drone-optimize/">玩转 Drone CI</a></h5>
                     </div>
                 </div>
                 

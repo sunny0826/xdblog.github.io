@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
+  <meta name="baidu-site-verification" content="A85okozwVV" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="never">
+  <title>使用 Grafana 展示阿里云监控指标 · 郭旭东的博客</title>
+  <meta name="author" content="郭旭东" />
+
+  
+  <meta name="keywords" content="阿里云, kubernetes, grafana">
+  
+
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  
+  <link href="/css/animate.css" rel="stylesheet">
+
+  
+  
+  <link href="/css/style.violet.css" rel="stylesheet" id="theme-stylesheet">
+  
+
+
+  
+  <link rel="stylesheet" type="text/css" href="/css/donate.css">
+
+  
+  <link href="/css/custom.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/search.css" />
+
+  
+  
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+
+  
+  <link href="/css/owl.carousel.css" rel="stylesheet">
+  <link href="/css/owl.theme.css" rel="stylesheet">
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="GuoXD Blog">
+
+  
+  <link rel="stylesheet" href="/css/prism.css" />
+  
+  <link rel="stylesheet" href="/css/share.min.css" />
+
+  
+  <meta property="og:title" content="使用 Grafana 展示阿里云监控指标" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/posts/aliyun-cms-grafana//" />
+  <meta property="og:image" content="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5ort2b4z5j20ic0i8dgy.jpg" />
+  <meta property="og:image:alt" content="ServiceMesher Logo" />
+
+  
+  <meta name="description" content="本文介绍使用 Grafana 展示阿里云监控指标的方法，并提供了使用 helm chart 一键部署包含阿里云监控 dashboard 的 Grafana-Server。">
+  <meta property="og:description" content="本文介绍使用 Grafana 展示阿里云监控指标的方法，并提供了使用 helm chart 一键部署包含阿里云监控 dashboard 的 Grafana-Server。">
+  <meta name="twitter:description" content="本文介绍使用 Grafana 展示阿里云监控指标的方法，并提供了使用 helm chart 一键部署包含阿里云监控 dashboard 的 Grafana-Server。">
+  <meta property="og:description" content="本文介绍使用 Grafana 展示阿里云监控指标的方法，并提供了使用 helm chart 一键部署包含阿里云监控 dashboard 的 Grafana-Server。" />
+
+  
+  
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?86f8ba05a3c18723f9672cc23a880558";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+  
+  
+
+</head>
+
+
+  <body>
+
+    <div id="all">
+
+        <header>
+
+          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="/">
+                    <img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g5orvxifzvj20w40d0myf.jpg" alt="使用 Grafana 展示阿里云监控指标 logo" class="hidden-xs hidden-sm">
+                    <img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5ort2b4z5j20ic0i8dgy.jpg" alt="使用 Grafana 展示阿里云监控指标 logo" class="visible-xs visible-sm">
+                    <span class="sr-only">使用 Grafana 展示阿里云监控指标 - 跳到主页</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">切换导航</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/">主页</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/posts/">博客</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">小助手写真 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      
+                        <li><a href="/maoxian/">毛线</a></li>
+                      
+                        <li><a href="/sunny/">Sunny</a></li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="/contact/">关于</a>
+                    
+                  </li>
+                  
+                  
+                    <li>
+                        <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+                        <span class="hidden-sm hidden-md hidden-lg">搜索</span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+                    </a>
+                    </li>
+                  
+                </ul>
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+<div id="modalSearch" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">博客搜索</h4>
+      </div>
+      <div class="modal-body">
+          
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="输入文章标题或摘要" name="search" autocomplete="off" autofocus="autofocus"/>
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+<script src="/js/algoliasearch.min.js"></script>
+<script src="/js/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("BE80MGWD9D", "77ca6abe5531ce66ff7c3b2486222d85");
+var index = client.initIndex("gxd-blog");
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            baseURL="https:\/\/guoxudong.io\//"
+            baseURL=baseURL.substring(0,baseURL.length-1)
+            return '<span>' + '<a href="' + baseURL + suggestion.uri+ '">' +
+                suggestion._highlightResult.title.value + '</a></span>'+
+                '<span>'+suggestion._highlightResult.summary.value+'</span>';
+        }
+    }
+});
+</script>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        </header>
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>使用 Grafana 展示阿里云监控指标</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+                        <div class="well">
+                            <div class="author-category">
+                            <i class="fa fa-calendar-o">
+                            2019年11月7日
+                            </i>
+                            |
+                            
+                            作者 <a href="https://github.com/sunny0826">郭旭东</a>
+                            
+                            
+                            
+                            |
+                            2100字 | 阅读大约需要5分钟
+                            </div>
+                            
+                            
+                            <div class="author-category">
+                            
+                            
+                            归档于 <a href="/categories/kubernetes">kubernetes</a>
+                            
+                            |
+                            
+                            
+                            
+                            标签
+                            
+                            <a style="text-transform:capitalize" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/"><i>#阿里云</i></a>
+                            
+                            <a style="text-transform:capitalize" href="/tags/kubernetes/"><i>#kubernetes</i></a>
+                            
+                            <a style="text-transform:capitalize" href="/tags/grafana/"><i>#grafana</i></a>
+                            
+                            </div>
+                            
+                            
+                        </div>
+                        <div id="post-content">
+                          
+
+<h2 id="前言">前言</h2>
+
+<p>对于阿里云用户来说，阿里云监控是一个很不错的产品，首先它在配额内使用是免费的！免费的！免费的！重要的事情说三遍。他的功能类似于 zabbix，但是比 zabbix 提供了更多的监控项，基本上在云上使用的资源都可以通过云监控来实时监控。而它提供的开箱即用方式，天然集成云资源，并提供多种告警方式，免去了监控与告警系统搭建与维护的繁琐，并且减少了资源的消耗，比购买 ECS 自己搭建 zabbix 要少消耗很多资源。同时阿里云监控和阿里云其他服务一样，也提供了比较完整的 OpenApi 以及各种语言的 sdk，可以基于阿里云的 OpenApi 将其与自己的系统集成。我们之前也是这么做的，但是随着监控项的增加，以及经常需要在办公场地监控投屏的专项监控页，光凭我们的运维开发工程师使用 vue 写速度明显跟不上，而且页面的美观程度也差很多。</p>
+
+<h3 id="手写前端-vs-grafana">手写前端 VS Grafana</h3>
+
+<p>手写前端虽然可定制化程度更高，但是需要消耗大量精力进行调试，对于运维人员，哪怕是运维开发也是吃不消的（前端小哥哥和小姐姐是不会来帮你的，下图就是我去年拿 vue 写的伪 Grafana 展示页面，花费了大约一周时间在调整这些前端元素）。
+<img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1g8pfrw1licj22ye1gg4qp.jpg" alt="image" /></p>
+
+<p>Grafana 则标准化程度很高，展示也更加符合大众审美，某些定制化需求可以通过自定义 DataSource 或者 AJAX 插件的 iframe 模式完成。开发后端 DataSource 肯定就没有前端调整 css 那么痛苦和耗时了，整体配置开发一个这样的页面可能只消耗一人天就能完成。而在新产品上线时，构建一个专项监控展示页面速度就更快了，几分钟内就能完成。
+<img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1g8pfvp0keej22yc1g2khm.jpg" alt="image" /></p>
+
+<h2 id="关于阿里云监控">关于阿里云监控</h2>
+
+<p>云监控（CloudMonitor）是一项针对阿里云资源和互联网应用进行监控的服务。</p>
+
+<p>云监控为云上用户提供开箱即用的企业级开放型一站式监控解决方案。涵盖 IT 设施基础监控，外网网络质量拨测监控，基于事件、自定义指标、日志的业务监控。为您全方位提供更高效、更全面、更省钱的监控服务。通过提供跨产品、跨地域的应用分组管理模型和报警模板，帮助您快速构建支持几十种云产品、管理数万实例的高效监控报警管理体系。通过提供 Dashboard，帮助您快速构建自定义业务监控大盘。使用云监控，不但可以帮助您提升您的系统服务可用时长，还可以降低企业 IT 运维监控成本。</p>
+
+<p>云监控服务可用于收集获取阿里云资源的监控指标或用户自定义的监控指标，探测服务可用性，以及针对指标设置警报。使您全面了解阿里云上的资源使用情况、业务的运行状况和健康度，并及时收到异常报警做出反应，保证应用程序顺畅运行。</p>
+
+<h2 id="关于-grafana">关于 Grafana</h2>
+
+<p>Grafana 是一个跨平台的开源的度量分析和可视化工具，可以通过将采集的数据查询然后可视化的展示，并及时通知。由于云监控的 Grafana 还没有支持告警，所以我们这里只用了 Grafana 的可视化功能，而告警本身就是云监控自带的，所以也不需要依赖 Grafana 来实现。而我们的 Prometheus 也使用了 Grafana 进行数据可视化，所以有现成的 Grafana-Server 使用。</p>
+
+<h2 id="阿里云监控对接-grafana">阿里云监控对接 Grafana</h2>
+
+<p>首先 Grafana 服务的部署方式这里就不做介绍了，请使用较新版本的 Grafana，最好是 5.5.0+。后文中也有我开源的基于阿里云云监控的 Grafana 的 helm chart，可以使用 helm 安装，并会直接导入云监控的指标，这个会在后文中介绍。</p>
+
+<h3 id="安装阿里云监控插件">安装阿里云监控插件</h3>
+
+<p>进入插件目录进行安装</p>
+
+<pre><code class="language-bash">cd /var/lib/grafana/plugins/
+git clone https://github.com/aliyun/aliyun-cms-grafana.git 
+service grafana-server restart
+</code></pre>
+
+<p>如果是使用 docker 或者部署在 k8s 集群，这里也可以使用环境变量在 Grafana 部署的时候进行安装</p>
+
+<pre><code class="language-yaml">...
+spec:
+  containers:
+  - env:
+    - name: GF_INSTALL_PLUGINS  # 多个插件请使用,隔开
+      value: grafana-simple-json-datasource,https://github.com/aliyun/aliyun-cms-grafana/archive/master.zip;aliyun-cms-grafana
+...
+</code></pre>
+
+<p>您也可以下载 aliyun-cms-grafana.zip 插件解压后，上传服务器的 Grafana 的 plugins 目录下，重启 grafana-server 即可。</p>
+
+<h3 id="配置云监控-datasource">配置云监控 DataSource</h3>
+
+<ol>
+<li>Grafana 启动后，进入 <code>Configuration</code> 页面，选择 <code>DataSource</code> Tab 页，单击右上方的<code>Add data source</code>，添加数据源。</li>
+<li>选中<code>CMS Grafana Service</code>，单击<code>select</code>。
+<img src="https://tvax2.sinaimg.cn/large/ad5fbf65gy1g8ph0ukr0pj21nm0jk76m.jpg" alt="image" /></li>
+<li>填写配置项，URL 根据云监控所在地域填写，并且填写阿里云账号的 accessKeyId 和 accessSecret，完成后单击<code>Save&amp;Test</code>。
+<img src="https://tvax3.sinaimg.cn/large/ad5fbf65gy1g8ph4bg2bij218m194n9f.jpg" alt="image" /></li>
+</ol>
+
+<h3 id="创建-dashboard">创建 Dashboard</h3>
+
+<ol>
+<li>单击 <code>Create</code> -&gt; <code>Dashboard</code> -&gt; <code>Add Query</code></li>
+<li>配置图标，数据源选择之前添加的 <code>CMS Grafana Service</code>，然后文档中的配置项填入指标即可（这里要注意的是，云监控 API 给返回的只有实例 ID，并没有自定义的实例名称，这里需要手动将其填入 <code>Y - column describe</code> 中；而且只支持输入单个 Dimension，若输入多个，默认选第一个，由于这些问题才有了后续我开发的 <code>cms-grafana-builder</code> 的动机）。
+<img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1g8phck0irbj22ye13in79.jpg" alt="image" /></li>
+<li>配置参考 <a href="https://help.aliyun.com/document_detail/28619.html">云产品监控项</a>，
+<img src="https://tva2.sinaimg.cn/large/ad5fbf65gy1g8phg832uvj21a40vo793.jpg" alt="image" /></li>
+</ol>
+
+<h2 id="使用-helm-chart-的方式部署-grafana">使用 helm chart 的方式部署 Grafana</h2>
+
+<p>项目地址：<a href="https://github.com/sunny0826/cms-grafana-builder">https://github.com/sunny0826/cms-grafana-builder</a></p>
+
+<h3 id="cms-grafana-builder">cms-grafana-builder</h3>
+
+<p>由于上文中的问题，我们需要手动选择每个实例 ID 到 Dimension 中，并且还要讲该实例的名称键入 <code>Y - column describe</code> 中，十分的繁琐，根本不可能大批量的输入。</p>
+
+<p>这就是我开发这个 Grafana 指标参数生成器的原因，起初只是一个 python 脚本，用来将我们要监控的指标组装成一个 Grafana 可以使用 json 文件，之后结合 Grafana 的容器化部署方法，将其做成了一个 helm chart。可以在启动的时候自动将需要的参数生成，并且每日会对所有指标进行更新，这样就不用每次新购或者释放掉资源后还需要再跑一遍脚本。</p>
+
+<h3 id="部署">部署</h3>
+
+<p>只需要将项目拉取下来运行 <code>helm install</code> 命令</p>
+
+<pre><code class="language-bash">helm install my-release kk-grafana-cms \
+--namespace {your_namespace} \
+--set access_key_id={your_access_key_id} \
+--set access_secret={your_access_secret} \
+--set region_id={your_aliyun_region_id} \
+--set password={admin_password}
+</code></pre>
+
+<p>更多详情见 <a href="https://github.com/sunny0826/cms-grafana-builder">github README</a>，欢迎提 issue 交流。</p>
+
+<h3 id="指标选择">指标选择</h3>
+
+<p>在部署成功后，可修改 ConfigMap：<code>grafana-cms-metric</code>，然后修改对应的监控指标项。</p>
+
+<h3 id="效果">效果</h3>
+
+<p>ECS:
+<img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1g8pi9toh3dj21gv0pldyf.jpg" alt="" /></p>
+
+<p>RDS:
+<img src="https://tva2.sinaimg.cn/large/ad5fbf65gy1g8pi9o91ejj21h80q316p.jpg" alt="" /></p>
+
+<p>EIP:
+<img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1g8pi9i9if3j21h70q3aif.jpg" alt="" /></p>
+
+<p>Redis:
+<img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1g8pi8ss733j21h30pz7b6.jpg" alt="" /></p>
+
+<h2 id="后记">后记</h2>
+
+<p>为了满足公司需求，后续还开发 DataSource 定制部分，用于公司监控大屏的展示，这部分是另一个项目，不在这个项目里，就不细说了，之后有机会总结后再进行分享。</p>
+
+                          
+                          
+<div class="entry-shang text-center">
+    <p>「一键投喂 小鱼干/小骨头」</p>
+    <button class="zs show-zs btn btn-bred">投喂</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+    <div class="zs-modal-head">
+        <button type="button" class="close">×</button>
+        <p class="author">
+            <a href="https://blog.maoxianplay.com">
+                <img src="https://wx3.sinaimg.cn/square/ad5fbf65gy1g2o621gcs6j20m80m8gng.jpg"/>
+            小助手毛线</a>
+        </p>
+        <p class="tip"><i></i><span>感谢投喂 <a href="/maoxian">毛线</a> & <a href="/sunny">Sunny</a> </span></p>
+    </div>
+    <div class="zs-modal-body">
+        <div class="zs-modal-btns">
+            <button class="btn btn-blink" data-num="2">2元</button>
+            <button class="btn btn-blink" data-num="5">5元</button>
+            <button class="btn btn-blink" data-num="10">10元</button>
+            <button class="btn btn-blink" data-num="50">50元</button>
+            <button class="btn btn-blink" data-num="100">100元</button>
+            <button class="btn btn-blink" data-num="any">任意金额</button>
+        </div>
+        <div class="zs-modal-pay">
+            <button class="btn btn-bred" id="pay-text">2元</button>
+            <p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+            <img id="pay-image" src="/images/alipay-2.png">
+        </div>
+    </div>
+    <div class="zs-modal-footer">
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="alipay" class="zs-type" checked="checked" style="float: left;">
+            <span class="zs-alipay">
+                <img src="/images/alipay-btn.png">
+            </span>
+        </label>
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="wechat" class="zs-type" style="float: left;">
+            <span class="zs-wechat">
+                <img src="/images/wechat-btn.png">
+            </span>
+        </label>
+    </div>
+</div>
+<script type="text/javascript" src="/js/jquery.min.js"></script> 
+<script type="text/javascript" src="/js/zanshang.js"></script> 
+
+                          
+                          <div class="social-share" data-initialized="true" data-wechat-qrcode-title="分享更快乐">
+    <hr>
+    <center>
+    <font style="font-size:18px;color:darkcyan;">分享到：</font>
+    <a href="#" class="social-share-icon icon-weibo"></a>
+    <a href="#" class="social-share-icon icon-wechat"></a>
+    <a href="#" class="social-share-icon icon-twitter"></a>
+    <a href="#" class="social-share-icon icon-linkedin"></a>
+    <a href="#" class="social-share-icon icon-facebook"></a>
+    <a href="#" class="social-share-icon icon-qq"></a>
+    <a href="#" class="social-share-icon icon-qzone"></a>
+    </center>
+</div>
+
+
+<script src="/js/social-share.min.js"></script>
+
+                        </div>
+                        
+                        
+                        
+                        
+                        <ul class="pager blog-pager">
+                        
+                        <li class="previous">
+                        <a href="https://guoxudong.io/posts/aliyun-product-meetup/" data-toggle="tooltip" data-placement="top" title="阿里云产品夜谈-容器服务交流">&larr; 更旧</a>
+                        </li>
+                         
+                        </ul>
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        <div class="panel panel-default sidebar-menu">
+     
+    <div class="panel-heading">
+     <h3 class="panel-title">相关文章</h3>
+    </div>
+    <div class="panel-body">
+     <ul class="nav nav-pills nav-stacked">
+        
+        <li><a href="/posts/nas-k8s/"><i class="fa fa-link"></i>阿里云 ACK 挂载 NAS 数据卷</a></li>
+         
+        <li><a href="/posts/aliyun-k8s-perfect/"><i class="fa fa-link"></i>阿里云容器服务新建集群优化方案(更新版)</a></li>
+         
+        <li><a href="/posts/dashboard-k8s/"><i class="fa fa-link"></i>阿里云日志服务采集k8s日志并实现livetail功能</a></li>
+         
+        <li><a href="/posts/https-ingress/"><i class="fa fa-link"></i>为ingress配置SSL证书，实现HTTPS访问</a></li>
+         
+        <li><a href="/posts/aliyun-product-meetup/"><i class="fa fa-link"></i>阿里云产品夜谈-容器服务交流</a></li>
+         
+     </ul>
+    </div>
+     
+</div>
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">分类</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            <li><a href="/categories/devops"><i class="fa fa-navicon"></i>devops (5)</a>
+            </li>
+            
+            <li><a href="/categories/go"><i class="fa fa-navicon"></i>go (2)</a>
+            </li>
+            
+            <li><a href="/categories/istio"><i class="fa fa-navicon"></i>istio (3)</a>
+            </li>
+            
+            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (12)</a>
+            </li>
+            
+            <li><a href="/categories/kustomize"><i class="fa fa-navicon"></i>kustomize (7)</a>
+            </li>
+            
+            <li><a href="/categories/%e5%85%ac%e7%9b%8a"><i class="fa fa-navicon"></i>公益 (1)</a>
+            </li>
+            
+            <li><a href="/categories/%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f%e5%bc%80%e5%8f%91"><i class="fa fa-navicon"></i>应用程序开发 (2)</a>
+            </li>
+            
+            <li><a href="/categories/%e6%9c%8d%e5%8a%a1%e7%bd%91%e6%a0%bc"><i class="fa fa-navicon"></i>服务网格 (2)</a>
+            </li>
+            
+            <li><a href="/categories/%e7%a8%8b%e5%ba%8f%e5%91%98%e8%b6%a3%e9%97%bb"><i class="fa fa-navicon"></i>程序员趣闻 (3)</a>
+            </li>
+            
+            <li><a href="/categories/%e7%b3%bb%e7%bb%9f"><i class="fa fa-navicon"></i>系统 (1)</a>
+            </li>
+            
+            <li><a href="/categories/%e7%bf%bb%e8%af%91"><i class="fa fa-navicon"></i>翻译 (10)</a>
+            </li>
+            
+            <li><a href="/categories/%e9%83%a8%e7%bd%b2%e5%ae%89%e8%a3%85"><i class="fa fa-navicon"></i>部署安装 (5)</a>
+            </li>
+            
+            <li><a href="/categories/%e9%97%ae%e9%a2%98%e8%a7%a3%e5%86%b3"><i class="fa fa-navicon"></i>问题解决 (6)</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+    <div class="panel-heading">
+      <h3 class="panel-title">标签</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="/tags/devops"><i class="fa fa-tags"></i> devops</a>
+            </li>
+            
+            <li><a href="/tags/docker"><i class="fa fa-tags"></i> docker</a>
+            </li>
+            
+            <li><a href="/tags/drone"><i class="fa fa-tags"></i> drone</a>
+            </li>
+            
+            <li><a href="/tags/github"><i class="fa fa-tags"></i> github</a>
+            </li>
+            
+            <li><a href="/tags/go"><i class="fa fa-tags"></i> go</a>
+            </li>
+            
+            <li><a href="/tags/grafana"><i class="fa fa-tags"></i> grafana</a>
+            </li>
+            
+            <li><a href="/tags/istio"><i class="fa fa-tags"></i> istio</a>
+            </li>
+            
+            <li><a href="/tags/jenkins"><i class="fa fa-tags"></i> jenkins</a>
+            </li>
+            
+            <li><a href="/tags/kubernetes"><i class="fa fa-tags"></i> kubernetes</a>
+            </li>
+            
+            <li><a href="/tags/kustomize"><i class="fa fa-tags"></i> kustomize</a>
+            </li>
+            
+            <li><a href="/tags/linux"><i class="fa fa-tags"></i> linux</a>
+            </li>
+            
+            <li><a href="/tags/prometheus"><i class="fa fa-tags"></i> prometheus</a>
+            </li>
+            
+            <li><a href="/tags/python"><i class="fa fa-tags"></i> python</a>
+            </li>
+            
+            <li><a href="/tags/rancher"><i class="fa fa-tags"></i> rancher</a>
+            </li>
+            
+            <li><a href="/tags/service-mesh"><i class="fa fa-tags"></i> service-mesh</a>
+            </li>
+            
+            <li><a href="/tags/sonar"><i class="fa fa-tags"></i> sonar</a>
+            </li>
+            
+            <li><a href="/tags/%e4%ba%91%e5%8e%9f%e7%94%9f"><i class="fa fa-tags"></i> 云原生</a>
+            </li>
+            
+            <li><a href="/tags/%e5%85%ac%e7%9b%8a"><i class="fa fa-tags"></i> 公益</a>
+            </li>
+            
+            <li><a href="/tags/%e5%8d%8e%e4%b8%ba%e4%ba%91"><i class="fa fa-tags"></i> 华为云</a>
+            </li>
+            
+            <li><a href="/tags/%e5%ae%b9%e5%99%a8"><i class="fa fa-tags"></i> 容器</a>
+            </li>
+            
+            <li><a href="/tags/%e5%b7%a5%e5%85%b7"><i class="fa fa-tags"></i> 工具</a>
+            </li>
+            
+            <li><a href="/tags/%e5%be%ae%e6%9c%8d%e5%8a%a1"><i class="fa fa-tags"></i> 微服务</a>
+            </li>
+            
+            <li><a href="/tags/%e6%97%a5%e5%bf%97"><i class="fa fa-tags"></i> 日志</a>
+            </li>
+            
+            <li><a href="/tags/%e7%bf%bb%e8%af%91"><i class="fa fa-tags"></i> 翻译</a>
+            </li>
+            
+            <li><a href="/tags/%e8%bd%af%e4%bb%b6%e8%ae%be%e8%ae%a1"><i class="fa fa-tags"></i> 软件设计</a>
+            </li>
+            
+            <li><a href="/tags/%e9%98%bf%e9%87%8c%e4%ba%91"><i class="fa fa-tags"></i> 阿里云</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+            </div>
+            
+        </div>
+        
+
+        <footer id="footer">
+    <div class="container">
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>微信公众号</h4>
+
+            <p><p>云原生之路</p><img src=https://ws1.sinaimg.cn/thumb150/ad5fbf65gy1g6vjyb8jd9j20nw0nw0vc.jpg></p>
+
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+             
+            <h4>最新博客</h4>
+
+            <div class="blog-entries">
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/posts/aliyun-cms-grafana/">
+                          
+                          <img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1g8piqjask7j21y014swo7.jpg" class="img-responsive" alt="使用 Grafana 展示阿里云监控指标">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/aliyun-cms-grafana/">使用 Grafana 展示阿里云监控指标</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/posts/aliyun-product-meetup/">
+                          
+                          <img src="https://tva1.sinaimg.cn/large/ad5fbf65gy1g7he2xumccj21qi15on6r.jpg" class="img-responsive" alt="阿里云产品夜谈-容器服务交流">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/aliyun-product-meetup/">阿里云产品夜谈-容器服务交流</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="/posts/alibaba-public-welfare/">
+                          
+                          <img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1g7gejyynd0j21hc0zkwr2.jpg" class="img-responsive" alt="当码农遇见公益">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/alibaba-public-welfare/">当码农遇见公益</a></h5>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr class="hidden-md hidden-lg">
+             
+
+        </div>
+        
+
+        
+        <div class="col-md-4 col-sm-6">
+
+          <h4>联系</h4>
+
+            <p>加我微信（请备注姓名-公司）</p><p><img src="https://ws1.sinaimg.cn/thumb150/ad5fbf65ly1g0szrz7jd6j20ah0ahjtd.jpg"></p>
+      
+
+
+            <a href="/contact" class="btn btn-small btn-template-main">跳到联系页面</a>
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Hugo模板来自</p>
+            
+            
+            <p class="pull-left">&nbsp;<a href="http://www.miibeian.gov.cn/"> <a href="https://www.servicemesher.com/">ServiceMesher社区<a/></a></p>
+            
+            <p class="pull-right">
+              模板来自 <a href="http://bootstrapious.com/free-templates">Bootstrapious</a>.
+              
+              移植到 Hugo 来自 <a href="https://github.com/devcows/hugo-universal-theme">DevCows</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    </div>
+    
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+<script src="/js/front.js"></script>
+
+
+<script src="/js/owl.carousel.min.js"></script>
+
+<script src="/js/prism.js"></script>
+
+
+<script src="/js/algoliasearch.min.js"></script>
+<script src="/js/autocomplete.min.js"></script>
+
+
+  </body>
+</html>

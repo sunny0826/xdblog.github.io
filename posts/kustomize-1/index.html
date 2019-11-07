@@ -16,7 +16,7 @@
   <meta name="keywords" content="kubernetes, kustomize, 工具">
   
 
-  <meta name="generator" content="Hugo 0.55.5" />
+  <meta name="generator" content="Hugo 0.58.3" />
 
   
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -303,9 +303,9 @@ autocomplete('#aa-search-input',
 <h4 id="kubernetes-native-configuration-management">Kubernetes native configuration management</h4>
 
 <p>Kustomize introduces a template-free way to customize application configuration that simplifies the use of off-the-shelf applications. Now, built into <code>kubectl</code> as <code>apply -k</code>.</p>
-</blockquote>
 
 <p><code>kustomize</code>  允许用户以一个应用描述文件 （YAML 文件）为基础（Base YAML），然后通过 Overlay 的方式生成最终部署应用所需的描述文件。而其他用户可以完全不受影响的使用任何一个 Base YAML 或者任何一层生成出来的 YAML 。这使得每一个用户都可以通过类似fork/modify/rebase 这样 Git 风格的流程来管理海量的应用描述文件。这种 PATCH 的思想跟 Docker 镜像是非常相似的，它可以规避“字符替换”对应用描述文件的入侵，也不需要用户学习额外的 DSL 语法（比如 Lua）。</p>
+</blockquote>
 
 <p>而其成为 <code>kubectl</code> 子命令则代表这 <code>kubectl</code> 本身的插件机制的成熟，未来可能有更多的工具命令集成到 <code>kubectl</code> 中。拿张磊大神的这张图不难看出，在 kubernetes 原生应用管理系统中，应用描述文件在整个应用管理体系中占据核心位置，通过应用描述文件可以组合和编排多种 kubernetes API 资源，kubernetes 通过控制器来保证集群中的资源与应用状态与描述文件完全一致。</p>
 
@@ -462,7 +462,7 @@ autocomplete('#aa-search-input',
             <li><a href="/categories/istio"><i class="fa fa-navicon"></i>istio (3)</a>
             </li>
             
-            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (11)</a>
+            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (12)</a>
             </li>
             
             <li><a href="/categories/kustomize"><i class="fa fa-navicon"></i>kustomize (7)</a>
@@ -524,6 +524,9 @@ autocomplete('#aa-search-input',
             </li>
             
             <li><a href="/tags/go"><i class="fa fa-tags"></i> go</a>
+            </li>
+            
+            <li><a href="/tags/grafana"><i class="fa fa-tags"></i> grafana</a>
             </li>
             
             <li><a href="/tags/istio"><i class="fa fa-tags"></i> istio</a>
@@ -634,6 +637,19 @@ autocomplete('#aa-search-input',
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
+                        <a href="/posts/aliyun-cms-grafana/">
+                          
+                          <img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1g8piqjask7j21y014swo7.jpg" class="img-responsive" alt="使用 Grafana 展示阿里云监控指标">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/aliyun-cms-grafana/">使用 Grafana 展示阿里云监控指标</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
                         <a href="/posts/aliyun-product-meetup/">
                           
                           <img src="https://tva1.sinaimg.cn/large/ad5fbf65gy1g7he2xumccj21qi15on6r.jpg" class="img-responsive" alt="阿里云产品夜谈-容器服务交流">
@@ -655,19 +671,6 @@ autocomplete('#aa-search-input',
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="/posts/alibaba-public-welfare/">当码农遇见公益</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
-                        <a href="/posts/drone-optimize/">
-                          
-                          <img src="https://wx1.sinaimg.cn/large/ad5fbf65gy1g6vnfwh6a2j21hc120dpl.jpg" class="img-responsive" alt="玩转 Drone CI">
-                          
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="/posts/drone-optimize/">玩转 Drone CI</a></h5>
                     </div>
                 </div>
                 

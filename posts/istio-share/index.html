@@ -16,7 +16,7 @@
   <meta name="keywords" content="istio, service mesh">
   
 
-  <meta name="generator" content="Hugo 0.55.5" />
+  <meta name="generator" content="Hugo 0.58.3" />
 
   
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -255,7 +255,7 @@ autocomplete('#aa-search-input',
                             
                             
                             |
-                            2700字 | 阅读大约需要6分钟
+                            2600字 | 阅读大约需要6分钟
                             </div>
                             
                             
@@ -285,54 +285,50 @@ autocomplete('#aa-search-input',
 
 <blockquote>
 <p>公司于<strong>18年10月</strong>正式确认服务容器化，到<strong>18年12月4日</strong>第一个服务正式部署到生产环境kubernetes集群，再到<strong>如今</strong>已有<strong>23</strong>个服务完成了生产环境容器化的切换，更多的服务在测试环境容器化部署随时可以切换到生产环境。目前新项目的开发，大部分都直接在测试环境容器化部署，不再需要新购ECS搭建测试环境。随着容器化的深入，服务间的通信和联系变的更加复杂，其中通信的可视化、流量的控制和服务质量的评估问题日益凸显，成为了微服务方案的短板。这个时候<code>Service mesh</code>就进入了我们的视野。</p>
-</blockquote>
 
 <h2 id="service-mesh是什么">Service mesh是什么</h2>
 
-<p><code>Service mesh</code> 又译作 “服务网格”，作为服务间通信的基础设施层。随着规模和复杂性的增长，服务网格越来越难以理解和管理。它的需求包括服务发现、负载均衡、故障恢复、指标收集和监控以及通常更加复杂的运维需求，例如 A/B 测试、金丝雀发布、限流、访问控制和端到端认证等。它负责通过包含现代云原生应用程序的复杂服务拓扑来可靠地传递请求。实际上，服务网格通常通过一组轻量级网络代理来实现，这些代理与应用程序代码一起部署，而不需要感知应用程序本身。</p>
+<pre><code class="language-Service">
+**这里注意：**```istio```只是```Service mesh```服务网格的一种。
 
-<p><strong>这里注意：</strong><code>istio</code>只是<code>Service mesh</code>服务网格的一种。</p>
+### 服务网格的特点
 
-<h3 id="服务网格的特点">服务网格的特点</h3>
+服务网格有如下几个特点：
 
-<p>服务网格有如下几个特点：</p>
+- 应用程序间通讯的中间层
+- 轻量级网络代理
+- 应用程序无感知
+- 解耦应用程序的重试/超时、监控、追踪和服务发现
 
-<ul>
-<li>应用程序间通讯的中间层</li>
-<li>轻量级网络代理</li>
-<li>应用程序无感知</li>
-<li>解耦应用程序的重试/超时、监控、追踪和服务发现</li>
-</ul>
+目前两款流行的服务网格开源软件 [Linkerd](https://linkerd.io) 和 [Istio](https://Istio.io) 都可以直接在 Kubernetes 中集成，其中 Linkerd 已经成为 CNCF 成员，Istio 在 2018年7月31日宣布 [1.0](https://istio.io/zh/blog/2018/announcing-1.0/)。
 
-<p>目前两款流行的服务网格开源软件 <a href="https://linkerd.io">Linkerd</a> 和 <a href="https://Istio.io">Istio</a> 都可以直接在 Kubernetes 中集成，其中 Linkerd 已经成为 CNCF 成员，Istio 在 2018年7月31日宣布 <a href="https://istio.io/zh/blog/2018/announcing-1.0/">1.0</a>。</p>
+### 服务网格的发展历史
 
-<h3 id="服务网格的发展历史">服务网格的发展历史</h3>
+* Spring Cloud
 
-<ul>
-<li><p>Spring Cloud</p>
+    Spring Cloud 诞生于2015年，Spring Cloud 最早在功能层面为微服务治理定义了一系列标准特性，比如：智能路由、服务熔断、服务注册于发现等这些名词我最早看到都是在 Sprint Cloud 相关文章中。同时也有一些缺点，比如：需要在代码级别对诸多组件进行控制，并且都依赖于 Java 的实现，这与微服务的多语言协作背道而驰；没有对资源的调度、devops等提供相关支持，需要借助平台来完成；众所周知的Eureka闭源等。
 
-<p>Spring Cloud 诞生于2015年，Spring Cloud 最早在功能层面为微服务治理定义了一系列标准特性，比如：智能路由、服务熔断、服务注册于发现等这些名词我最早看到都是在 Sprint Cloud 相关文章中。同时也有一些缺点，比如：需要在代码级别对诸多组件进行控制，并且都依赖于 Java 的实现，这与微服务的多语言协作背道而驰；没有对资源的调度、devops等提供相关支持，需要借助平台来完成；众所周知的Eureka闭源等。</p></li>
+* Linkerd
 
-<li><p>Linkerd</p>
+    Service mesh 这个命名就是来源于Linkerd。Linkerd 很好地结合了 kubernetes 所提供的功能，于2017年加入CNCF。
 
-<p>Service mesh 这个命名就是来源于Linkerd。Linkerd 很好地结合了 kubernetes 所提供的功能，于2017年加入CNCF。</p></li>
+* Istio
 
-<li><p>Istio</p>
+    2017年5月， Google、 IBM 和 Lyft 宣布了Istio的诞生。一经发布，便立即获得Red Hat、F5等大厂响应，社区活跃度高涨，很快超越了 Linkerd，成为了 Service mesh 的代表产品。
 
-<p>2017年5月， Google、 IBM 和 Lyft 宣布了Istio的诞生。一经发布，便立即获得Red Hat、F5等大厂响应，社区活跃度高涨，很快超越了 Linkerd，成为了 Service mesh 的代表产品。</p></li>
+* 国内服务网格
 
-<li><p>国内服务网格</p>
+    这里不得不提的是国内服务网格的兴起，在 Service mesh 概念具体定义以前，国内的许多厂商就已经开始了微服务进程，同时在做自己的微服务治理产品。而在 Service mesh 概念普及之后，厂商意识到了自己产品也具有 Service mesh 的特点，将自己的服务治理平台进行了改造和完善，推出了自己的 Service mesh 产品。例如，微博、腾讯和华为都有自己的服务网格产品，华为更是已经将产品投入到公有云中进行商业应用。蚂蚁金服的 SOFAMesh 则是针对大流量的生产场景，在 Istio 的架构基础上进行修改并推广。
 
-<p>这里不得不提的是国内服务网格的兴起，在 Service mesh 概念具体定义以前，国内的许多厂商就已经开始了微服务进程，同时在做自己的微服务治理产品。而在 Service mesh 概念普及之后，厂商意识到了自己产品也具有 Service mesh 的特点，将自己的服务治理平台进行了改造和完善，推出了自己的 Service mesh 产品。例如，微博、腾讯和华为都有自己的服务网格产品，华为更是已经将产品投入到公有云中进行商业应用。蚂蚁金服的 SOFAMesh 则是针对大流量的生产场景，在 Istio 的架构基础上进行修改并推广。</p></li>
-</ul>
+## Istio又是什么
+</code></pre>
 
-<h2 id="istio又是什么">Istio又是什么</h2>
-
-<p><code>Istio</code> 提供了一个完整的解决方案，通过为整个服务网格提供行为洞察和操作控制来满足微服务应用程序的多样化需求。Istio 允许您连接、保护、控制和观测服务。在较高的层次上，Istio 有助于降低这些部署的复杂性，并减轻开发团队的压力。它是一个完全开源的服务网格，可以透明地分层到现有的分布式应用程序上。它也是一个平台，包括允许它集成到任何日志记录平台、遥测或策略系统的 API。Istio 的多样化功能集使您能够成功高效地运行分布式微服务架构，并提供保护、连接和监控微服务的统一方法。</p>
+<p>Istio``` 提供了一个完整的解决方案，通过为整个服务网格提供行为洞察和操作控制来满足微服务应用程序的多样化需求。Istio 允许您连接、保护、控制和观测服务。在较高的层次上，Istio 有助于降低这些部署的复杂性，并减轻开发团队的压力。它是一个完全开源的服务网格，可以透明地分层到现有的分布式应用程序上。它也是一个平台，包括允许它集成到任何日志记录平台、遥测或策略系统的 API。Istio 的多样化功能集使您能够成功高效地运行分布式微服务架构，并提供保护、连接和监控微服务的统一方法。</p>
 
 <h3 id="istio的架构">Istio的架构</h3>
 
 <p><code>Istio</code>总的来说由两部分组成：<strong>控制平面</strong>和<strong>数据平面</strong></p>
+</blockquote>
 
 <ul>
 <li>数据平面由一组以 sidecar 方式部署的智能代理（Envoy）组成。sidecar通过注入的方式和业务容器共存于一个 Pod 中，会劫业务容器的流量，接受控制面组件的控制，可以调节和控制微服务及 Mixer 之间所有的网络通信。</li>
@@ -527,7 +523,7 @@ autocomplete('#aa-search-input',
             <li><a href="/categories/istio"><i class="fa fa-navicon"></i>istio (3)</a>
             </li>
             
-            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (11)</a>
+            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (12)</a>
             </li>
             
             <li><a href="/categories/kustomize"><i class="fa fa-navicon"></i>kustomize (7)</a>
@@ -589,6 +585,9 @@ autocomplete('#aa-search-input',
             </li>
             
             <li><a href="/tags/go"><i class="fa fa-tags"></i> go</a>
+            </li>
+            
+            <li><a href="/tags/grafana"><i class="fa fa-tags"></i> grafana</a>
             </li>
             
             <li><a href="/tags/istio"><i class="fa fa-tags"></i> istio</a>
@@ -699,6 +698,19 @@ autocomplete('#aa-search-input',
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
+                        <a href="/posts/aliyun-cms-grafana/">
+                          
+                          <img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1g8piqjask7j21y014swo7.jpg" class="img-responsive" alt="使用 Grafana 展示阿里云监控指标">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/aliyun-cms-grafana/">使用 Grafana 展示阿里云监控指标</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
                         <a href="/posts/aliyun-product-meetup/">
                           
                           <img src="https://tva1.sinaimg.cn/large/ad5fbf65gy1g7he2xumccj21qi15on6r.jpg" class="img-responsive" alt="阿里云产品夜谈-容器服务交流">
@@ -720,19 +732,6 @@ autocomplete('#aa-search-input',
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="/posts/alibaba-public-welfare/">当码农遇见公益</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
-                        <a href="/posts/drone-optimize/">
-                          
-                          <img src="https://wx1.sinaimg.cn/large/ad5fbf65gy1g6vnfwh6a2j21hc120dpl.jpg" class="img-responsive" alt="玩转 Drone CI">
-                          
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="/posts/drone-optimize/">玩转 Drone CI</a></h5>
                     </div>
                 </div>
                 

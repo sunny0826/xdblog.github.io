@@ -6,10 +6,37 @@
     <description>Recent content in Tags on GuoXD Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 30 Sep 2019 09:32:35 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 07 Nov 2019 11:08:36 +0800</lastBuildDate>
     
 	<atom:link href="https://guoxudong.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>grafana</title>
+      <link>https://guoxudong.io/tags/grafana/</link>
+      <pubDate>Thu, 07 Nov 2019 11:08:36 +0800</pubDate>
+      
+      <guid>https://guoxudong.io/tags/grafana/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>https://guoxudong.io/tags/kubernetes/</link>
+      <pubDate>Thu, 07 Nov 2019 11:08:36 +0800</pubDate>
+      
+      <guid>https://guoxudong.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>阿里云</title>
+      <link>https://guoxudong.io/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</link>
+      <pubDate>Thu, 07 Nov 2019 11:08:36 +0800</pubDate>
+      
+      <guid>https://guoxudong.io/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>容器</title>
@@ -17,15 +44,6 @@
       <pubDate>Mon, 30 Sep 2019 09:32:35 +0800</pubDate>
       
       <guid>https://guoxudong.io/tags/%E5%AE%B9%E5%99%A8/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>阿里云</title>
-      <link>https://guoxudong.io/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</link>
-      <pubDate>Mon, 30 Sep 2019 09:32:35 +0800</pubDate>
-      
-      <guid>https://guoxudong.io/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</guid>
       <description></description>
     </item>
     
@@ -62,15 +80,6 @@
       <pubDate>Wed, 11 Sep 2019 13:53:09 +0800</pubDate>
       
       <guid>https://guoxudong.io/tags/%E5%B7%A5%E5%85%B7/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kubernetes</title>
-      <link>https://guoxudong.io/tags/kubernetes/</link>
-      <pubDate>Fri, 16 Aug 2019 11:15:37 +0800</pubDate>
-      
-      <guid>https://guoxudong.io/tags/kubernetes/</guid>
       <description></description>
     </item>
     

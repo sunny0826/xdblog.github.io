@@ -16,7 +16,7 @@
   <meta name="keywords" content="kubernetes, kustomize, 工具">
   
 
-  <meta name="generator" content="Hugo 0.55.5" />
+  <meta name="generator" content="Hugo 0.58.3" />
 
   
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -319,15 +319,19 @@ autocomplete('#aa-search-input',
 
 <ul>
 <li>Jenkins ：本篇使用 Jenkins 演示 CI/CD ，安装 Jenkins 就不在赘述，可以使用多种方法安装 Jenkins ，详细方法见<a href="https://jenkins.io">官网</a>。同时。 CI/CD 的工具有很多，这里为了省事使用笔者现有的 Jenkins 进行演示，<strong>不推荐</strong>使用同笔者一样的版本，请使用较新的版本；同时也可以使用其他 CI/CD 工具，这里推荐使用 <a href="https://drone.io/">drone</a>。如果有更好的方案，欢迎交流，可以在<a href="https://blog.maoxianplay.com/contact/">关于</a>中找到我的联系方式。</li>
-<li><code>kubectl</code> &amp; <code>kustomize</code> ：上文中提到了由于 Jenkins 版本比较老，所以这里笔者自己制作了包含二者的 docker 镜像，已上传 dockerhub ，需要自取： <a href="https://hub.docker.com/r/guoxudongdocker/kubectl"><code>guoxudongdocker/kubectl</code></a></li>
-<li>Web 应用：这里使用 flask 写了一个简单的 web 应用，用于演示，同样以上传 dockerhub <a href="https://hub.docker.com/r/guoxudongdocker/flask-python"><code>guoxudongdocker/flask-python</code></a></li>
+
+<li><pre><code class="language-kubectl```">- Web 应用：这里使用 flask 写了一个简单的 web 应用，用于演示，同样以上传 dockerhub [```guoxudongdocker/flask-python```](https://hub.docker.com/r/guoxudongdocker/flask-python)
+
+## 目录结构
+
+首先看一下目录结构，目录中包括 ```Dockerfile``` 、 ```Jenkinsfile``` 、 Kustomize 要使用的 ```deploy``` 目录以及 web 应用目录。
+
+</code></pre>
+
+<p>bush</p></li>
 </ul>
 
-<h2 id="目录结构">目录结构</h2>
-
-<p>首先看一下目录结构，目录中包括 <code>Dockerfile</code> 、 <code>Jenkinsfile</code> 、 Kustomize 要使用的 <code>deploy</code> 目录以及 web 应用目录。</p>
-
-<pre><code class="language-bush">.
+<p>.
 ├── Dockerfile
 ├── Jenkinsfile
 ├── app
@@ -346,172 +350,178 @@ autocomplete('#aa-search-input',
         └── prod
             ├── healthcheck_patch.yaml
             ├── kustomization.yaml
-            └── memorylimit_patch.yaml
+            └── memorylimit_patch.yaml</p>
+
+<pre><code>
+这里可以看到 overlays 总共有两个子目录 `dev` 和 `prod` ，分别代表不同环境，在不同的环境中，应用不同的配置。
+
+## Jenkins 配置
+
+Jenkins 的配置相对简单，只需要新建一个 pipeline 类型的 job
+
+![WX20190506-180159](https://wx4.sinaimg.cn/large/ad5fbf65gy1g2rr57oixbj20tn0ogq6v.jpg)
+
+增加参数化构建，**注**：参数化构建需要安装 Jenkins 插件
+
+![WX20190506-180918](https://ws4.sinaimg.cn/large/ad5fbf65gy1g2rrcb5ic9j21470q7mz8.jpg)
+
+然后配置代码仓库即可
+
+![WX20190507-094958](https://ws3.sinaimg.cn/large/ad5fbf65gy1g2sij1xlb2j214w0nw0uw.jpg)
+
+## Pipeline 
+
 </code></pre>
 
-<p>这里可以看到 overlays 总共有两个子目录 <code>dev</code> 和 <code>prod</code> ，分别代表不同环境，在不同的环境中，应用不同的配置。</p>
-
-<h2 id="jenkins-配置">Jenkins 配置</h2>
-
-<p>Jenkins 的配置相对简单，只需要新建一个 pipeline 类型的 job</p>
-
-<p><img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g2rr57oixbj20tn0ogq6v.jpg" alt="WX20190506-180159" /></p>
-
-<p>增加参数化构建，<strong>注</strong>：参数化构建需要安装 Jenkins 插件</p>
-
-<p><img src="https://ws4.sinaimg.cn/large/ad5fbf65gy1g2rrcb5ic9j21470q7mz8.jpg" alt="WX20190506-180918" /></p>
-
-<p>然后配置代码仓库即可</p>
-
-<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g2sij1xlb2j214w0nw0uw.jpg" alt="WX20190507-094958" /></p>
-
-<h2 id="pipeline">Pipeline</h2>
-
-<pre><code class="language-groovy">podTemplate(label: 'jnlp-slave', cloud: 'kubernetes',
+<p>groovy
+podTemplate(label: &lsquo;jnlp-slave&rsquo;, cloud: &lsquo;kubernetes&rsquo;,
   containers: [
     containerTemplate(
-        name: 'jnlp',
-        image: 'guoxudongdocker/jenkins-slave',
+        name: &lsquo;jnlp&rsquo;,
+        image: &lsquo;guoxudongdocker/jenkins-slave&rsquo;,
         alwaysPullImage: true
     ),
-    containerTemplate(name: 'kubectl', image: 'guoxudongdocker/kubectl:v1.14.1', command: 'cat', ttyEnabled: true),
+    containerTemplate(name: &lsquo;kubectl&rsquo;, image: &lsquo;guoxudongdocker/kubectl:v1.14.1&rsquo;, command: &lsquo;cat&rsquo;, ttyEnabled: true),
   ],
-  nodeSelector:'ci=jenkins',
+  nodeSelector:&lsquo;ci=jenkins&rsquo;,
   volumes: [
-    hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
-    hostPathVolume(mountPath: '/usr/bin/docker', hostPath: '/usr/bin/docker'),
-    hostPathVolume(mountPath: '/usr/local/jdk', hostPath: '/usr/local/jdk'),
-    hostPathVolume(mountPath: '/usr/local/maven', hostPath: '/usr/local/maven'),
-    secretVolume(mountPath: '/home/jenkins/.kube', secretName: 'devops-ctl'),
+    hostPathVolume(mountPath: &lsquo;/var/run/docker.sock&rsquo;, hostPath: &lsquo;/var/run/docker.sock&rsquo;),
+    hostPathVolume(mountPath: &lsquo;/usr/bin/docker&rsquo;, hostPath: &lsquo;/usr/bin/docker&rsquo;),
+    hostPathVolume(mountPath: &lsquo;/usr/local/jdk&rsquo;, hostPath: &lsquo;/usr/local/jdk&rsquo;),
+    hostPathVolume(mountPath: &lsquo;/usr/local/maven&rsquo;, hostPath: &lsquo;/usr/local/maven&rsquo;),
+    secretVolume(mountPath: &lsquo;/home/jenkins/.kube&rsquo;, secretName: &lsquo;devops-ctl&rsquo;),
   ],
 )
 {
-    node(&quot;jnlp-slave&quot;){
-        stage('Git Checkout'){
-            git branch: '${branch}', url: 'https://github.com/sunny0826/flask-python.git'
+    node(&ldquo;jnlp-slave&rdquo;){
+        stage(&lsquo;Git Checkout&rsquo;){
+            git branch: &lsquo;${branch}&rsquo;, url: &lsquo;<a href="https://github.com/sunny0826/flask-python.git'">https://github.com/sunny0826/flask-python.git'</a>
         }
-        stage('Build and Push Image'){
-            withCredentials([usernamePassword(credentialsId: 'docker-register', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUser')]) {
-                sh '''
+        stage(&lsquo;Build and Push Image&rsquo;){
+            withCredentials([usernamePassword(credentialsId: &lsquo;docker-register&rsquo;, passwordVariable: &lsquo;dockerPassword&rsquo;, usernameVariable: &lsquo;dockerUser&rsquo;)]) {
+                sh &ldquo;&rsquo;
                 docker login -u ${dockerUser} -p ${dockerPassword}
                 docker build -t guoxudongdocker/flask-python:${Tag} .
                 docker push guoxudongdocker/flask-python:${Tag}
-                '''
+                &ldquo;&rsquo;
             }
         }
-        stage('Deploy to K8s'){
-            if ('true' == &quot;${deploy}&quot;) {
-                container('kubectl') {
-                    sh '''
+        stage(&lsquo;Deploy to K8s&rsquo;){
+            if (&lsquo;true&rsquo; == &ldquo;${deploy}&rdquo;) {
+                container(&lsquo;kubectl&rsquo;) {
+                    sh &ldquo;&rsquo;
                     cd deploy/base
                     kustomize edit set image guoxudongdocker/flask-python:${Tag}
-                    '''
-                    echo &quot;部署到 Kubernetes&quot;
-                    if ('prod' == &quot;${ENV}&quot;) {
-                        sh '''
+                    &ldquo;&rsquo;
+                    echo &ldquo;部署到 Kubernetes&rdquo;
+                    if (&lsquo;prod&rsquo; == &ldquo;${ENV}&rdquo;) {
+                        sh &ldquo;&rsquo;
                         # kustomize build deploy/overlays/prod | kubectl apply -f -
                         kubectl applt -k deploy/overlays/prod
-                        '''
+                        &ldquo;&rsquo;
                     }else {
-                        sh '''
+                        sh &ldquo;&rsquo;
                         # kustomize build deploy/overlays/dev | kubectl apply -f -
                         kubectl applt -k deploy/overlays/dev
-                        '''
+                        &ldquo;&rsquo;
                     }	
                 }
             }else{
-                echo &quot;跳过Deploy to K8s&quot;
-            }
+                echo &ldquo;跳过Deploy to K8s&rdquo;
+            }</p>
 
-        }
-    }
+<pre><code>    }
 }
+</code></pre>
 
+<p>}</p>
+
+<pre><code>
+这里要注意几点：
+
+- 拉取 git 中的代码需要在 jenkins 中配置凭据。
+- 笔者的 jenkins 部署在 Kubernetes 上，要操作集群的话，需要将 kubeconfig 以 Secret 的形式挂载到 jenkins 所在 namespace。
+- `jenkins-slave` 需要 Java 环境运行，所以要将宿主机的 `jdk` 挂载到 `jenkins-slave` 中。
+- 同样的，宿主机中需要事先安装 `docker`。
+- `docker-register` 为 dockerhub 的登录凭证，需要在 jenkins 中添加相应的凭证。
+
+## 演示
+
+---
+
+### 开始构建
+
+这里选择环境、分支，填入版本即可开始构建，**注意：**这里的版本将已 tag 的形式标记 docker 镜像。
+
+![WX20190507-095142](https://ws2.sinaimg.cn/large/ad5fbf65gy1g2sikst7tuj20ob0evabw.jpg)
+
+这里就可以看到构建成功了
+
+![WX20190507-103721](https://ws2.sinaimg.cn/large/ad5fbf65ly1g2sjw9w22ej20v80km0w3.jpg)
+
+### 查看结果
+
+这里为了方便（其实就是懒），我就不给这个服务添加 ingress 来从外部访问了，这里使用 [KT](https://yq.aliyun.com/articles/690519) 打通本地和 k8s 集群网络来进行调试。
+
+&gt;为了简化在Kubernetes下进行联调测试的复杂度，云效在SSH隧道网络的基础上并结合Kubernetes特性构建了一款面向开发者的辅助工具kt
+
+这里看到这个服务正常启动了
+
+![WX20190507-104154](https://ws2.sinaimg.cn/large/ad5fbf65ly1g2sk11dnzxj20av027jrn.jpg)
+
+### 发布新版本
+
+更新 web 服务并提交
+
+![WX20190507-104936](https://ws4.sinaimg.cn/large/ad5fbf65gy1g2sk94v1c5j209702vwej.jpg)
+
+
+按照上面步骤在 jenkins 中重新构建，当然也可以配置钩子，每次代码提交后自动构建
+
+### 查看查看新版本
+
+同上面一样，在构建成功后查看服务是否更新
+
+![WX20190507-105539](https://wx4.sinaimg.cn/large/ad5fbf65gy1g2skfczaz4j20by01smx7.jpg)
+
+可以看到，版本已经更新了
+
+### 发布生产环境
+
+这里模拟一下发布生产环境，假设生产环境是在 `devops-prod` 的 namespace 中，这里只做演示之用，真正的生产环境中，可能存在不止一个 k8s 集群，这时需要修改 Jenkinsfile 中的 `secretVolume` 来挂载不同 k8s 的 kubeconfig 来达到发布到不同集群的目的。当然，一般发布生产环境只需选择测试通过的镜像来发布即可，不需要在进行构建打包。
+
+![WX20190507-110730](https://ws3.sinaimg.cn/large/ad5fbf65gy1g2skrnbjyuj20fc0bjmxp.jpg)
+
+### 查看生产版本
+
+![WX20190507-110850](https://ws1.sinaimg.cn/large/ad5fbf65ly1g2skt3rp4yj20aq010glj.jpg)
+
+### 总结
+
+上面的这些步骤简单的演示了使用 jenkins 进行 CI/CD 的流程，流程十分简单，这里仅供参考
+
+## Kustomize 的作用
+
+那么， Kustomize 在整个流程中又扮演了一个什么角色呢？
+
+### 更新镜像
+
+在 `jenkinsfile` 中可以看到， kustomize 更新了基础配置的镜像版本，这里我们之前一直是使用 `sed -i &quot;s/#Tag/${Tag}/g&quot; deploy.yaml` 来进行替换了，但是不同环境存在比较多的差异，需要替换的越来越多，导致 Jekninsfile 也越来越臃肿和难以维护。 kustomize 解决了这个问题。
 
 </code></pre>
 
-<p>这里要注意几点：</p>
+<p>bash
+kustomize edit set image guoxudongdocker/flask-python:${Tag}</p>
 
-<ul>
-<li>拉取 git 中的代码需要在 jenkins 中配置凭据。</li>
-<li>笔者的 jenkins 部署在 Kubernetes 上，要操作集群的话，需要将 kubeconfig 以 Secret 的形式挂载到 jenkins 所在 namespace。</li>
-<li><code>jenkins-slave</code> 需要 Java 环境运行，所以要将宿主机的 <code>jdk</code> 挂载到 <code>jenkins-slave</code> 中。</li>
-<li>同样的，宿主机中需要事先安装 <code>docker</code>。</li>
-<li><code>docker-register</code> 为 dockerhub 的登录凭证，需要在 jenkins 中添加相应的凭证。</li>
-</ul>
+<pre><code>
+### 环境区分
 
-<h2 id="演示">演示</h2>
+上面也提到了，不同的环境我们存在这许多差异，虽然看上去大致类似，但是很多细节都需要修改。这时 kustomize 就起到了很大的作用，不同环境相同的配置都放在 `base` 中，而差异就可以在 `overlays` 中实现。
 
-<hr />
-
-<h3 id="开始构建">开始构建</h3>
-
-<p>这里选择环境、分支，填入版本即可开始构建，<strong>注意：</strong>这里的版本将已 tag 的形式标记 docker 镜像。</p>
-
-<p><img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g2sikst7tuj20ob0evabw.jpg" alt="WX20190507-095142" /></p>
-
-<p>这里就可以看到构建成功了</p>
-
-<p><img src="https://ws2.sinaimg.cn/large/ad5fbf65ly1g2sjw9w22ej20v80km0w3.jpg" alt="WX20190507-103721" /></p>
-
-<h3 id="查看结果">查看结果</h3>
-
-<p>这里为了方便（其实就是懒），我就不给这个服务添加 ingress 来从外部访问了，这里使用 <a href="https://yq.aliyun.com/articles/690519">KT</a> 打通本地和 k8s 集群网络来进行调试。</p>
-
-<blockquote>
-<p>为了简化在Kubernetes下进行联调测试的复杂度，云效在SSH隧道网络的基础上并结合Kubernetes特性构建了一款面向开发者的辅助工具kt</p>
-</blockquote>
-
-<p>这里看到这个服务正常启动了</p>
-
-<p><img src="https://ws2.sinaimg.cn/large/ad5fbf65ly1g2sk11dnzxj20av027jrn.jpg" alt="WX20190507-104154" /></p>
-
-<h3 id="发布新版本">发布新版本</h3>
-
-<p>更新 web 服务并提交</p>
-
-<p><img src="https://ws4.sinaimg.cn/large/ad5fbf65gy1g2sk94v1c5j209702vwej.jpg" alt="WX20190507-104936" /></p>
-
-<p>按照上面步骤在 jenkins 中重新构建，当然也可以配置钩子，每次代码提交后自动构建</p>
-
-<h3 id="查看查看新版本">查看查看新版本</h3>
-
-<p>同上面一样，在构建成功后查看服务是否更新</p>
-
-<p><img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g2skfczaz4j20by01smx7.jpg" alt="WX20190507-105539" /></p>
-
-<p>可以看到，版本已经更新了</p>
-
-<h3 id="发布生产环境">发布生产环境</h3>
-
-<p>这里模拟一下发布生产环境，假设生产环境是在 <code>devops-prod</code> 的 namespace 中，这里只做演示之用，真正的生产环境中，可能存在不止一个 k8s 集群，这时需要修改 Jenkinsfile 中的 <code>secretVolume</code> 来挂载不同 k8s 的 kubeconfig 来达到发布到不同集群的目的。当然，一般发布生产环境只需选择测试通过的镜像来发布即可，不需要在进行构建打包。</p>
-
-<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g2skrnbjyuj20fc0bjmxp.jpg" alt="WX20190507-110730" /></p>
-
-<h3 id="查看生产版本">查看生产版本</h3>
-
-<p><img src="https://ws1.sinaimg.cn/large/ad5fbf65ly1g2skt3rp4yj20aq010glj.jpg" alt="WX20190507-110850" /></p>
-
-<h3 id="总结">总结</h3>
-
-<p>上面的这些步骤简单的演示了使用 jenkins 进行 CI/CD 的流程，流程十分简单，这里仅供参考</p>
-
-<h2 id="kustomize-的作用">Kustomize 的作用</h2>
-
-<p>那么， Kustomize 在整个流程中又扮演了一个什么角色呢？</p>
-
-<h3 id="更新镜像">更新镜像</h3>
-
-<p>在 <code>jenkinsfile</code> 中可以看到， kustomize 更新了基础配置的镜像版本，这里我们之前一直是使用 <code>sed -i &quot;s/#Tag/${Tag}/g&quot; deploy.yaml</code> 来进行替换了，但是不同环境存在比较多的差异，需要替换的越来越多，导致 Jekninsfile 也越来越臃肿和难以维护。 kustomize 解决了这个问题。</p>
-
-<pre><code class="language-bash">kustomize edit set image guoxudongdocker/flask-python:${Tag}
 </code></pre>
 
-<h3 id="环境区分">环境区分</h3>
-
-<p>上面也提到了，不同的环境我们存在这许多差异，虽然看上去大致类似，但是很多细节都需要修改。这时 kustomize 就起到了很大的作用，不同环境相同的配置都放在 <code>base</code> 中，而差异就可以在 <code>overlays</code> 中实现。</p>
-
-<pre><code class="language-bash">.
+<p>bash
+.
 ├── base
 │   ├── deployment.yaml
 │   ├── kustomization.yaml
@@ -524,18 +534,22 @@ autocomplete('#aa-search-input',
     └── prod
         ├── healthcheck_patch.yaml
         ├── kustomization.yaml
-        └── memorylimit_patch.yaml
+        └── memorylimit_patch.yaml</p>
+
+<pre><code>可以看到， `base` 中维护了项目共同的基础配置，如果有镜像版本等基础配置需要修改，可以使用 `kustomize edit set image ...` 来直接修改基础配置，而真正不同环境，或者不同使用情况的配置则在 `overlays` 中 以 patch 的形式添加配置。这里我的配置是 prod 环境部署的副本为2，同时给到的资源也更多，详情可以在 [Github](https://github.com/sunny0826/flask-python) 上查看。
+
+### 与 kubectl 的集成
+
+在 jenkinsfile 中可以看到
+
 </code></pre>
 
-<p>可以看到， <code>base</code> 中维护了项目共同的基础配置，如果有镜像版本等基础配置需要修改，可以使用 <code>kustomize edit set image ...</code> 来直接修改基础配置，而真正不同环境，或者不同使用情况的配置则在 <code>overlays</code> 中 以 patch 的形式添加配置。这里我的配置是 prod 环境部署的副本为2，同时给到的资源也更多，详情可以在 <a href="https://github.com/sunny0826/flask-python">Github</a> 上查看。</p>
+<p>bash</p>
 
-<h3 id="与-kubectl-的集成">与 kubectl 的集成</h3>
+<h1 id="kustomize-build-deploy-overlays-dev-kubectl-apply-f">kustomize build deploy/overlays/dev | kubectl apply -f -</h1>
 
-<p>在 jenkinsfile 中可以看到</p>
-
-<pre><code class="language-bash"># kustomize build deploy/overlays/dev | kubectl apply -f -
-kubectl apply -k deploy/overlays/dev
-</code></pre>
+<p>kubectl apply -k deploy/overlays/dev
+```</p>
 
 <p>这两条命令的执行效果是一样的，在 <code>kubectl v1.14.0</code> 以上的版本中，已经集成了 kustomize ，可以直接使用 <code>kubectl</code> 进行部署。</p>
 
@@ -684,7 +698,7 @@ kubectl apply -k deploy/overlays/dev
             <li><a href="/categories/istio"><i class="fa fa-navicon"></i>istio (3)</a>
             </li>
             
-            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (11)</a>
+            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (12)</a>
             </li>
             
             <li><a href="/categories/kustomize"><i class="fa fa-navicon"></i>kustomize (7)</a>
@@ -746,6 +760,9 @@ kubectl apply -k deploy/overlays/dev
             </li>
             
             <li><a href="/tags/go"><i class="fa fa-tags"></i> go</a>
+            </li>
+            
+            <li><a href="/tags/grafana"><i class="fa fa-tags"></i> grafana</a>
             </li>
             
             <li><a href="/tags/istio"><i class="fa fa-tags"></i> istio</a>
@@ -856,6 +873,19 @@ kubectl apply -k deploy/overlays/dev
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
+                        <a href="/posts/aliyun-cms-grafana/">
+                          
+                          <img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1g8piqjask7j21y014swo7.jpg" class="img-responsive" alt="使用 Grafana 展示阿里云监控指标">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/aliyun-cms-grafana/">使用 Grafana 展示阿里云监控指标</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
                         <a href="/posts/aliyun-product-meetup/">
                           
                           <img src="https://tva1.sinaimg.cn/large/ad5fbf65gy1g7he2xumccj21qi15on6r.jpg" class="img-responsive" alt="阿里云产品夜谈-容器服务交流">
@@ -877,19 +907,6 @@ kubectl apply -k deploy/overlays/dev
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="/posts/alibaba-public-welfare/">当码农遇见公益</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
-                        <a href="/posts/drone-optimize/">
-                          
-                          <img src="https://wx1.sinaimg.cn/large/ad5fbf65gy1g6vnfwh6a2j21hc120dpl.jpg" class="img-responsive" alt="玩转 Drone CI">
-                          
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="/posts/drone-optimize/">玩转 Drone CI</a></h5>
                     </div>
                 </div>
                 

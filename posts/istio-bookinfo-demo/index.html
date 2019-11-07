@@ -16,7 +16,7 @@
   <meta name="keywords" content="istio, service mesh, 阿里云, 华为云">
   
 
-  <meta name="generator" content="Hugo 0.55.5" />
+  <meta name="generator" content="Hugo 0.58.3" />
 
   
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -255,7 +255,7 @@ autocomplete('#aa-search-input',
                             
                             
                             |
-                            3200字 | 阅读大约需要7分钟
+                            3400字 | 阅读大约需要7分钟
                             </div>
                             
                             
@@ -294,72 +294,73 @@ autocomplete('#aa-search-input',
 <p>Bookinfo 应用分为四个单独的微服务：</p>
 
 <ul>
-<li><code>productpage</code> ：<code>productpage</code> 微服务会调用 <code>details</code> 和 <code>reviews</code> 两个微服务，用来生成页面。</li>
-<li><code>details</code> ：这个微服务包含了书籍的信息。</li>
-<li><code>reviews</code> ：这个微服务包含了书籍相关的评论。它还会调用 ratings 微服务。</li>
-<li><code>ratings</code> ：ratings 微服务中包含了由书籍评价组成的评级信息。</li>
-</ul>
+<li><pre><code class="language-productpage```">- ```details``` ：这个微服务包含了书籍的信息。
+- ```reviews``` ：这个微服务包含了书籍相关的评论。它还会调用 ratings 微服务。
+- ```ratings``` ：ratings 微服务中包含了由书籍评价组成的评级信息。
 
-<p>这里主要使用<code>reviews</code>来演示 Istio 特性，<code>reviews</code> 微服务有 3 个版本：</p>
+这里主要使用```reviews```来演示 Istio 特性，```reviews``` 微服务有 3 个版本：
 
-<ul>
-<li>v1 版本不会调用 <code>ratings</code> 服务。</li>
-<li>v2 版本会调用 <code>ratings</code> 服务，并使用 1 到 5 个黑色星形图标来显示评分信息。</li>
-<li>v3 版本会调用 <code>ratings</code> 服务，并使用 1 到 5 个红色星形图标来显示评分信息。</li>
-</ul>
+- v1 版本不会调用 ```ratings``` 服务。
+- v2 版本会调用 ```ratings``` 服务，并使用 1 到 5 个黑色星形图标来显示评分信息。
+- v3 版本会调用 ```ratings``` 服务，并使用 1 到 5 个红色星形图标来显示评分信息。
 
-<p>下图展示了这个应用的端到端架构。
-<img src="https://istio.io/docs/examples/bookinfo/noistio.svg" alt="Istio 注入之前的 Bookinfo 应用" />
-<center>Istio 注入之前的 Bookinfo 应用</center></p>
+下图展示了这个应用的端到端架构。
+![Istio 注入之前的 Bookinfo 应用](https://istio.io/docs/examples/bookinfo/noistio.svg)
+&lt;center&gt;Istio 注入之前的 Bookinfo 应用&lt;/center&gt;
 
-<p>Bookinfo 是一个异构应用，几个微服务是由不同的语言编写的。这些服务对 Istio <strong>并无依赖</strong>，但是构成了一个有代表性的服务网格的例子：它由多个服务、多个语言构成，并且 reviews 服务具有多个版本。</p>
+Bookinfo 是一个异构应用，几个微服务是由不同的语言编写的。这些服务对 Istio **并无依赖**，但是构成了一个有代表性的服务网格的例子：它由多个服务、多个语言构成，并且 reviews 服务具有多个版本。
 
-<h2 id="部署应用">部署应用</h2>
+## 部署应用
+这里 Istio 的安装部署就不在赘述了。
 
-<p>这里 Istio 的安装部署就不在赘述了。</p>
+值得注意的是：如果使用的是**阿里云**容器服务安装的 Istio ，需要在 ```容器服务```-```市场```-```应用目录``` 中选择 ```gateway``` 进行安装，这里提供了多种 ```gateway``` ，我们选择 ```istio-ingressgateway```，选择直接安装的话会默认创建 ```LoadBalancer``` 类型的Service，会自动创建一个经典网络SLB，这里是可以调整的，会在后续的文章中进行详细讲解，这里不做赘述。
 
-<p>值得注意的是：如果使用的是<strong>阿里云</strong>容器服务安装的 Istio ，需要在 <code>容器服务</code>-<code>市场</code>-<code>应用目录</code> 中选择 <code>gateway</code> 进行安装，这里提供了多种 <code>gateway</code> ，我们选择 <code>istio-ingressgateway</code>，选择直接安装的话会默认创建 <code>LoadBalancer</code> 类型的Service，会自动创建一个经典网络SLB，这里是可以调整的，会在后续的文章中进行详细讲解，这里不做赘述。</p>
+在 Istio 中运行这一应用，无需对应用自身做出任何改变。我们只要简单的在 Istio 环境中对服务进行配置和运行，具体一点说就是把 Envoy sidecar 注入到每个服务之中。这个过程所需的具体命令和配置方法由运行时环境决定，而部署结果较为一致，如下图所示：
 
-<p>在 Istio 中运行这一应用，无需对应用自身做出任何改变。我们只要简单的在 Istio 环境中对服务进行配置和运行，具体一点说就是把 Envoy sidecar 注入到每个服务之中。这个过程所需的具体命令和配置方法由运行时环境决定，而部署结果较为一致，如下图所示：</p>
+![Bookinfo 应用](https://istio.io/docs/examples/bookinfo/withistio.svg)
+&lt;center&gt;Bookinfo 应用&lt;/center&gt;
 
-<p><img src="https://istio.io/docs/examples/bookinfo/withistio.svg" alt="Bookinfo 应用" />
-<center>Bookinfo 应用</center></p>
+所有的微服务都和 Envoy sidecar 集成在一起，被集成服务所有的出入流量都被 sidecar 所劫持，这样就为外部控制准备了所需的 Hook，然后就可以利用 Istio 控制平面为应用提供服务路由、遥测数据收集以及策略实施等功能。
 
-<p>所有的微服务都和 Envoy sidecar 集成在一起，被集成服务所有的出入流量都被 sidecar 所劫持，这样就为外部控制准备了所需的 Hook，然后就可以利用 Istio 控制平面为应用提供服务路由、遥测数据收集以及策略实施等功能。</p>
+### 下载安装
+到 GitHub 中 istio 的 [release](https://github.com/istio/istio/releases) 中下载相应版本的 istio 包，下载后将 ```bin``` 目录配置到环境变量 ```PATH``` 中 ```export PATH=&quot;/istio/bin:$PATH&quot;``` ，这里我们使用的是 ```istio 1.0.5``` 版本
 
-<h3 id="下载安装">下载安装</h3>
+Bookinfo 这个应用就在 ```samples/```目录下
 
-<p>到 GitHub 中 istio 的 <a href="https://github.com/istio/istio/releases">release</a> 中下载相应版本的 istio 包，下载后将 <code>bin</code> 目录配置到环境变量 <code>PATH</code> 中 <code>export PATH=&quot;/istio/bin:$PATH&quot;</code> ，这里我们使用的是 <code>istio 1.0.5</code> 版本</p>
+## 在 阿里云容器服务（kubernetes） 中运行
 
-<p>Bookinfo 这个应用就在 <code>samples/</code>目录下</p>
+启动应用容器，这里提供两种注入方法：**手工注入**和**自动注入**
 
-<h2 id="在-阿里云容器服务-kubernetes-中运行">在 阿里云容器服务（kubernetes） 中运行</h2>
+- 自动注入
 
-<p>启动应用容器，这里提供两种注入方法：<strong>手工注入</strong>和<strong>自动注入</strong></p>
+需要修改 namespace ，为其添加 label 标签，这样所以在这个 namespace 中创建的应用都会被自动注入 sidecar 
 
-<ul>
-<li><p>自动注入</p>
-
-<p>需要修改 namespace ，为其添加 label 标签，这样所以在这个 namespace 中创建的应用都会被自动注入 sidecar</p>
-
-<pre><code class="language-bash">$ kubectl label namespace {inject-namespace} istio-injection=enabled
-$ kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
 </code></pre>
 
-<ul>
-<li>手工注入</li>
+<p>bash
+$ kubectl label namespace {inject-namespace} istio-injection=enabled
+$ kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml</p>
+
+<pre><code>
+- 手工注入
+
+需要使用 istioctl 命令生成注入后应用的配置，然后在部署应用
+
+</code></pre>
+
+<p>bash
+$ istioctl kube-inject -f samples/bookinfo/platform/kube/bookinfo.yaml | kubectl apply -f -</p>
+
+<pre><code>
+由于是测试，这里我们使用手工注入的方法。
+上面的命令会启动全部的四个服务，其中也包括了 ```reviews``` 服务的三个版本（```v1```、```v2``` 以及 ```v3```）
+
+</code></pre>
+
+<p>bash</p></li>
 </ul>
 
-<p>需要使用 istioctl 命令生成注入后应用的配置，然后在部署应用</p>
-
-<pre><code class="language-bash">$ istioctl kube-inject -f samples/bookinfo/platform/kube/bookinfo.yaml | kubectl apply -f -
-</code></pre></li>
-</ul>
-
-<p>由于是测试，这里我们使用手工注入的方法。
-上面的命令会启动全部的四个服务，其中也包括了 <code>reviews</code> 服务的三个版本（<code>v1</code>、<code>v2</code> 以及 <code>v3</code>）</p>
-
-<pre><code class="language-bash">$ istioctl kube-inject -f bookinfo.yaml | kubectl apply -f -
+<p>$ istioctl kube-inject -f bookinfo.yaml | kubectl apply -f -
 service/details created
 deployment.extensions/details-v1 configured
 service/ratings created
@@ -372,139 +373,148 @@ service/productpage created
 deployment.extensions/productpage-v1 created
 $ kubectl get po
 NAME                              READY   STATUS    RESTARTS   AGE
-details-v1-8685d68cf9-8fwdb       2/2     Running   0          1h
-productpage-v1-5fd9fddc97-tx88z   2/2     Running   0          1h
-ratings-v1-7c4d756c55-cn76d       2/2     Running   0          1h
-reviews-v1-5d868db586-w28q5       2/2     Running   0          1h
-reviews-v2-787647c7d9-7sc52       2/2     Running   0          1h
-reviews-v3-6964c86584-8728m       2/2     Running   0          1h
+details-v1-8685d68cf9-8fwdb       <sup>2</sup>&frasl;<sub>2</sub>     Running   0          1h
+productpage-v1-5fd9fddc97-tx88z   <sup>2</sup>&frasl;<sub>2</sub>     Running   0          1h
+ratings-v1-7c4d756c55-cn76d       <sup>2</sup>&frasl;<sub>2</sub>     Running   0          1h
+reviews-v1-5d868db586-w28q5       <sup>2</sup>&frasl;<sub>2</sub>     Running   0          1h
+reviews-v2-787647c7d9-7sc52       <sup>2</sup>&frasl;<sub>2</sub>     Running   0          1h
+reviews-v3-6964c86584-8728m       <sup>2</sup>&frasl;<sub>2</sub>     Running   0          1h
 $ kubectl get svc
 NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)            AGE
-details              ClusterIP   10.11.224.17    &lt;none&gt;        9080/TCP           1h
-productpage          ClusterIP   10.11.16.86     &lt;none&gt;        9080/TCP           1h
-ratings              ClusterIP   10.11.244.59    &lt;none&gt;        9080/TCP           1h
-reviews              ClusterIP   10.11.162.37    &lt;none&gt;        9080/TCP           1h
+details              ClusterIP   10.11.224.17    <none>        9080/TCP           1h
+productpage          ClusterIP   10.11.16.86     <none>        9080/TCP           1h
+ratings              ClusterIP   10.11.244.59    <none>        9080/TCP           1h
+reviews              ClusterIP   10.11.162.37    <none>        9080/TCP           1h</p>
+
+<pre><code>
+可以看到 Bookinfo 应用已经正常运行
+
+### 指定 ingress 和 IP 的端口
+
+1. 为为应用程序定义入口网关：
+
+    ```bash
+    $ kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
+    ```
+
+2. 确认网关创建完成
+
+    ```bash
+    $ kubectl get gateway
+    NAME               AGE
+    bookinfo-gateway   1h
+    ```
+
+3. 快速查询访问地址，这里的是之前在阿里云上创建的 ```LoadBalancer``` 类型的 Service
+
+    ```bash
+    $ kubectl get svc istio-ingressgateway -n istio-system
+    NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP       PORT(S)                  AGE
+    istio-ingressgateway   LoadBalancer   10.11.18.83   xxx.xxx.xxx.xxx   80:xxx/TCP,443:xxx/TCP   2h
+    ```
+
+### 查看效果
+访问 http://{EXTERNAL-IP}/productpage 注意：这里最后不能有/，否则将找不到页面
+![image](http://wx4.sinaimg.cn/large/ad5fbf65ly1g1ad2jg6p3j21g90mxgo7.jpg)
+多次刷新浏览器，将在 ```productpage``` 中看到评论的不同的版本，它们会按照 round robin（红星、黑星、没有星星）的方式展现，这三个展示分来来自```v1```、```v2```和```v3```版本，因为还没有使用 Istio 来控制版本的路由，所以这里显示的是以轮询的负载均衡算法进行展示。
+
+### 请求路由
+BookInfo示例部署了三个版本的reviews服务，因此需要设置一个缺省路由。否则当多次访问该应用程序时，会发现有时输出会包含带星级的评价内容，有时又没有。出现该现象的原因是当没有为应用显式指定缺省路由时，Istio会将请求随机路由到该服务的所有可用版本上。
+
+在使用 Istio 控制 Bookinfo 版本路由之前，你需要在目标规则中定义好可用的版本 。
+
+运行以下命令为 Bookinfo 服务创建的默认的目标规则：
+
+- 如果不需要启用双向TLS，请执行以下命令：
+
+    ```bash
+    $ kubectl apply -f samples/bookinfo/networking/destination-rule-all.yaml
+    ```
+
+- 如果需要启用双向 TLS，请执行以下命令：
+
+    ```bash
+    $ kubectl apply -f samples/bookinfo/networking/destination-rule-all-mtls.yaml
+    ```
+
+    等待几秒钟，等待目标规则生效。你可以使用以下命令查看目标规则：
+
+    ```bash
+    kubectl get destinationrules
+    NAME          AGE
+    details       28s
+    productpage   28s
+    ratings       28s
+    reviews       28s
+    ```
+
+### 将所有微服务的缺省版本设置为v1
+通过运行如下命令，将所有微服务的缺省版本设置为v1：
+
 </code></pre>
 
-<p>可以看到 Bookinfo 应用已经正常运行</p>
+<p>bash
+$ kubectl apply -f samples/bookinfo/networking/virtual-service-all-v1.yaml</p>
 
-<h3 id="指定-ingress-和-ip-的端口">指定 ingress 和 IP 的端口</h3>
+<pre><code>
+可以通过下面的命令来显示所有已创建的路由规则：
 
-<ol>
-<li><p>为为应用程序定义入口网关：</p>
-
-<pre><code class="language-bash">$ kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
 </code></pre>
 
-<ol>
-<li>确认网关创建完成</li>
-</ol>
-
-<pre><code class="language-bash">$ kubectl get gateway
-NAME               AGE
-bookinfo-gateway   1h
-</code></pre></li>
-
-<li><p>快速查询访问地址，这里的是之前在阿里云上创建的 <code>LoadBalancer</code> 类型的 Service</p>
-
-<pre><code class="language-bash">$ kubectl get svc istio-ingressgateway -n istio-system
-NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP       PORT(S)                  AGE
-istio-ingressgateway   LoadBalancer   10.11.18.83   xxx.xxx.xxx.xxx   80:xxx/TCP,443:xxx/TCP   2h
-</code></pre>
-
-<h3 id="查看效果">查看效果</h3>
-
-<p>访问 http://{EXTERNAL-IP}/productpage 注意：这里最后不能有/，否则将找不到页面
-<img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1ad2jg6p3j21g90mxgo7.jpg" alt="image" />
-多次刷新浏览器，将在 <code>productpage</code> 中看到评论的不同的版本，它们会按照 round robin（红星、黑星、没有星星）的方式展现，这三个展示分来来自<code>v1</code>、<code>v2</code>和<code>v3</code>版本，因为还没有使用 Istio 来控制版本的路由，所以这里显示的是以轮询的负载均衡算法进行展示。</p>
-
-<h3 id="请求路由">请求路由</h3>
-
-<p>BookInfo示例部署了三个版本的reviews服务，因此需要设置一个缺省路由。否则当多次访问该应用程序时，会发现有时输出会包含带星级的评价内容，有时又没有。出现该现象的原因是当没有为应用显式指定缺省路由时，Istio会将请求随机路由到该服务的所有可用版本上。</p>
-
-<p>在使用 Istio 控制 Bookinfo 版本路由之前，你需要在目标规则中定义好可用的版本 。</p>
-
-<p>运行以下命令为 Bookinfo 服务创建的默认的目标规则：</p>
-
-<ul>
-<li>如果不需要启用双向TLS，请执行以下命令：</li>
-</ul>
-
-<pre><code class="language-bash">$ kubectl apply -f samples/bookinfo/networking/destination-rule-all.yaml
-</code></pre></li>
-</ol>
-
-<ul>
-<li><p>如果需要启用双向 TLS，请执行以下命令：</p>
-
-<pre><code class="language-bash">$ kubectl apply -f samples/bookinfo/networking/destination-rule-all-mtls.yaml
-</code></pre>
-
-<p>等待几秒钟，等待目标规则生效。你可以使用以下命令查看目标规则：</p>
-
-<pre><code class="language-bash">kubectl get destinationrules
-NAME          AGE
-details       28s
-productpage   28s
-ratings       28s
-reviews       28s
-</code></pre></li>
-</ul>
-
-<h3 id="将所有微服务的缺省版本设置为v1">将所有微服务的缺省版本设置为v1</h3>
-
-<p>通过运行如下命令，将所有微服务的缺省版本设置为v1：</p>
-
-<pre><code class="language-bash">$ kubectl apply -f samples/bookinfo/networking/virtual-service-all-v1.yaml
-</code></pre>
-
-<p>可以通过下面的命令来显示所有已创建的路由规则：</p>
-
-<pre><code class="language-bash">$ kubectl get virtualservices
+<p>bash
+$ kubectl get virtualservices
 NAME       AGE
 bookinfo      33m
 details       8s
 productpage   8s
 ratings       8s
-reviews       8s
+reviews       8s</p>
+
+<pre><code>
+显示已创建的详细路由规划：
+
 </code></pre>
 
-<p>显示已创建的详细路由规划：</p>
+<p>bash
+$ kubectl get virtualservices -o yaml</p>
 
-<pre><code class="language-bash">$ kubectl get virtualservices -o yaml
+<pre><code>
+由于路由规则是通过异步方式分发到代理的，过一段时间后规则才会同步到所有pod上。因此需要等几秒钟后再尝试访问应用。
+
+在浏览器中打开 Bookinfo 应用程序的URL: http://{EXTERNAL-IP}/productpage。
+
+![image](http://wx4.sinaimg.cn/large/ad5fbf65ly1g1adqyf9dej21g70oitbd.jpg)
+
+可以看到 Bookinfo 应用程序的 ```productpage``` 页面，显示的内容中不包含带星的评价信息，这是因为 ```reviews:v1``` 服务不会访问ratings服务。
+
+### 将来自特定用户的请求路由到reviews:v2
+本例中，首先使用 Istio 将100%的请求流量都路由到了 Bookinfo 服务的```v1```版本；然后再设置了一条路由规则，路由规则基于请求的 header（例如一个用户cookie）选择性地将特定的流量路由到了 ```reviews``` 服务的```v2```版本。
+
+通过运行如下命令，把来自测试用户&quot;jason&quot;的请求路由到 ```reviews:v2 ```，以启用ratings服务。
+
 </code></pre>
 
-<p>由于路由规则是通过异步方式分发到代理的，过一段时间后规则才会同步到所有pod上。因此需要等几秒钟后再尝试访问应用。</p>
+<p>bash
+$ kubectl apply -f samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml</p>
 
-<p>在浏览器中打开 Bookinfo 应用程序的URL: http://{EXTERNAL-IP}/productpage。</p>
+<pre><code>
+通过如下命令确认规则是否创建：
 
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1adqyf9dej21g70oitbd.jpg" alt="image" /></p>
-
-<p>可以看到 Bookinfo 应用程序的 <code>productpage</code> 页面，显示的内容中不包含带星的评价信息，这是因为 <code>reviews:v1</code> 服务不会访问ratings服务。</p>
-
-<h3 id="将来自特定用户的请求路由到reviews-v2">将来自特定用户的请求路由到reviews:v2</h3>
-
-<p>本例中，首先使用 Istio 将100%的请求流量都路由到了 Bookinfo 服务的<code>v1</code>版本；然后再设置了一条路由规则，路由规则基于请求的 header（例如一个用户cookie）选择性地将特定的流量路由到了 <code>reviews</code> 服务的<code>v2</code>版本。</p>
-
-<p>通过运行如下命令，把来自测试用户&rdquo;jason&rdquo;的请求路由到 <code>reviews:v2</code>，以启用ratings服务。</p>
-
-<pre><code class="language-bash">$ kubectl apply -f samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml
 </code></pre>
 
-<p>通过如下命令确认规则是否创建：</p>
-
-<pre><code class="language-bash">$ kubectl get virtualservice reviews -o yaml
+<p>bash
+$ kubectl get virtualservice reviews -o yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
 annotations:
     kubectl.kubernetes.io/last-applied-configuration: |
-    {&quot;apiVersion&quot;:&quot;networking.istio.io/v1alpha3&quot;,&quot;kind&quot;:&quot;VirtualService&quot;,&quot;metadata&quot;:{&quot;annotations&quot;:{},&quot;name&quot;:&quot;reviews&quot;,&quot;namespace&quot;:&quot;default&quot;},&quot;spec&quot;:{&quot;hosts&quot;:[&quot;reviews&quot;],&quot;http&quot;:[{&quot;match&quot;:[{&quot;headers&quot;:{&quot;end-user&quot;:{&quot;exact&quot;:&quot;jason&quot;}}}],&quot;route&quot;:[{&quot;destination&quot;:{&quot;host&quot;:&quot;reviews&quot;,&quot;subset&quot;:&quot;v2&quot;}}]},{&quot;route&quot;:[{&quot;destination&quot;:{&quot;host&quot;:&quot;reviews&quot;,&quot;subset&quot;:&quot;v1&quot;}}]}]}}
-creationTimestamp: &quot;2019-03-21T06:01:10Z&quot;
+    {&ldquo;apiVersion&rdquo;:&ldquo;networking.istio.io/v1alpha3&rdquo;,&ldquo;kind&rdquo;:&ldquo;VirtualService&rdquo;,&ldquo;metadata&rdquo;:{&ldquo;annotations&rdquo;:{},&ldquo;name&rdquo;:&ldquo;reviews&rdquo;,&ldquo;namespace&rdquo;:&ldquo;default&rdquo;},&ldquo;spec&rdquo;:{&ldquo;hosts&rdquo;:[&ldquo;reviews&rdquo;],&ldquo;http&rdquo;:[{&ldquo;match&rdquo;:[{&ldquo;headers&rdquo;:{&ldquo;end-user&rdquo;:{&ldquo;exact&rdquo;:&ldquo;jason&rdquo;}}}],&ldquo;route&rdquo;:[{&ldquo;destination&rdquo;:{&ldquo;host&rdquo;:&ldquo;reviews&rdquo;,&ldquo;subset&rdquo;:&ldquo;v2&rdquo;}}]},{&ldquo;route&rdquo;:[{&ldquo;destination&rdquo;:{&ldquo;host&rdquo;:&ldquo;reviews&rdquo;,&ldquo;subset&rdquo;:&ldquo;v1&rdquo;}}]}]}}
+creationTimestamp: &ldquo;2019-03-21T06:01:10Z&rdquo;
 generation: 1
 name: reviews
 namespace: default
-resourceVersion: &quot;62486214&quot;
+resourceVersion: &ldquo;62486214&rdquo;
 selfLink: /apis/networking.istio.io/v1alpha3/namespaces/default/virtualservices/reviews
 uid: b9e41681-4b9e-11e9-a679-00163e045478
 spec:
@@ -522,39 +532,47 @@ http:
 - route:
     - destination:
         host: reviews
-        subset: v1
+        subset: v1</p>
+
+<pre><code>
+确认规则已创建之后，在浏览器中打开BookInfo应用程序的URL: http://{EXTERNAL-IP}/productpage。
+
+以&quot;jason&quot;用户登录 ```productpage``` 页面，您可以在每条评价后面看到星级信息。
+
+这里登录用户名为 ```jason``` ，密码随便输入即可
+
+![image](http://wx4.sinaimg.cn/large/ad5fbf65ly1g1adtjugp3j21gb0iygoa.jpg)
+
+### 流量转移
+除了基于内容的路由，Istio还支持基于权重的路由规则。
+
+首先，将所有微服务的缺省版本设置为v1：
+
 </code></pre>
 
-<p>确认规则已创建之后，在浏览器中打开BookInfo应用程序的URL: http://{EXTERNAL-IP}/productpage。</p>
+<p>bash
+$ kubectl replace -f samples/bookinfo/networking/virtual-service-all-v1.yaml</p>
 
-<p>以&rdquo;jason&rdquo;用户登录 <code>productpage</code> 页面，您可以在每条评价后面看到星级信息。</p>
+<pre><code>
+其次，使用下面的命令把50%的流量从reviews:v1转移到reviews:v3:
 
-<p>这里登录用户名为 <code>jason</code> ，密码随便输入即可</p>
-
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1adtjugp3j21gb0iygoa.jpg" alt="image" /></p>
-
-<h3 id="流量转移">流量转移</h3>
-
-<p>除了基于内容的路由，Istio还支持基于权重的路由规则。</p>
-
-<p>首先，将所有微服务的缺省版本设置为v1：</p>
-
-<pre><code class="language-bash">$ kubectl replace -f samples/bookinfo/networking/virtual-service-all-v1.yaml
 </code></pre>
 
-<p>其次，使用下面的命令把50%的流量从reviews:v1转移到reviews:v3:</p>
+<p>bash
+$ kubectl replace -f samples/bookinfo/networking/virtual-service-reviews-50-v3.yaml</p>
 
-<pre><code class="language-bash">$ kubectl replace -f samples/bookinfo/networking/virtual-service-reviews-50-v3.yaml
+<pre><code>
+在浏览器中多次刷新productpage页面，大约有50%的几率会看到页面中出现带红星的评价内容。
+
+说明： 注意该方式和使用容器编排平台的部署特性来进行版本迁移是完全不同的。容器编排平台使用了实例scaling来对流量进行管理。而通过Istio，两个版本的reviews服务可以独立地进行扩容和缩容，并不会影响这两个版本服务之间的流量分发。
+
+如果觉得 ```reviews：v3``` 微服务已经稳定，你可以通过以下命令， 将 ```virtual service``` 100％的流量路由到 ```reviews：v3```，从而实现一个灰度发布的功能。
+
 </code></pre>
 
-<p>在浏览器中多次刷新productpage页面，大约有50%的几率会看到页面中出现带红星的评价内容。</p>
-
-<p>说明： 注意该方式和使用容器编排平台的部署特性来进行版本迁移是完全不同的。容器编排平台使用了实例scaling来对流量进行管理。而通过Istio，两个版本的reviews服务可以独立地进行扩容和缩容，并不会影响这两个版本服务之间的流量分发。</p>
-
-<p>如果觉得 <code>reviews：v3</code> 微服务已经稳定，你可以通过以下命令， 将 <code>virtual service</code> 100％的流量路由到 <code>reviews：v3</code>，从而实现一个灰度发布的功能。</p>
-
-<pre><code class="language-bash">$ kubectl replace -f samples/bookinfo/networking/virtual-service-reviews-v3.yaml
-</code></pre>
+<p>bash
+$ kubectl replace -f samples/bookinfo/networking/virtual-service-reviews-v3.yaml
+```</p>
 
 <h2 id="在华为云-cce-上运行">在华为云（CCE）上运行</h2>
 
@@ -735,7 +753,7 @@ http:
             <li><a href="/categories/istio"><i class="fa fa-navicon"></i>istio (3)</a>
             </li>
             
-            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (11)</a>
+            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (12)</a>
             </li>
             
             <li><a href="/categories/kustomize"><i class="fa fa-navicon"></i>kustomize (7)</a>
@@ -797,6 +815,9 @@ http:
             </li>
             
             <li><a href="/tags/go"><i class="fa fa-tags"></i> go</a>
+            </li>
+            
+            <li><a href="/tags/grafana"><i class="fa fa-tags"></i> grafana</a>
             </li>
             
             <li><a href="/tags/istio"><i class="fa fa-tags"></i> istio</a>
@@ -907,6 +928,19 @@ http:
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
+                        <a href="/posts/aliyun-cms-grafana/">
+                          
+                          <img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1g8piqjask7j21y014swo7.jpg" class="img-responsive" alt="使用 Grafana 展示阿里云监控指标">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/aliyun-cms-grafana/">使用 Grafana 展示阿里云监控指标</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
                         <a href="/posts/aliyun-product-meetup/">
                           
                           <img src="https://tva1.sinaimg.cn/large/ad5fbf65gy1g7he2xumccj21qi15on6r.jpg" class="img-responsive" alt="阿里云产品夜谈-容器服务交流">
@@ -928,19 +962,6 @@ http:
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="/posts/alibaba-public-welfare/">当码农遇见公益</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
-                        <a href="/posts/drone-optimize/">
-                          
-                          <img src="https://wx1.sinaimg.cn/large/ad5fbf65gy1g6vnfwh6a2j21hc120dpl.jpg" class="img-responsive" alt="玩转 Drone CI">
-                          
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="/posts/drone-optimize/">玩转 Drone CI</a></h5>
                     </div>
                 </div>
                 

@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>使用 Grafana 展示阿里云监控指标</title>
+      <link>https://guoxudong.io/posts/aliyun-cms-grafana/</link>
+      <pubDate>Thu, 07 Nov 2019 11:08:36 +0800</pubDate>
+      
+      <guid>https://guoxudong.io/posts/aliyun-cms-grafana/</guid>
+      <description>本文介绍使用 Grafana 展示阿里云监控指标的方法，并提供了使用 helm chart 一键部署包含阿里云监控 dashboard 的 Grafana-Server。</description>
+    </item>
+    
+    <item>
       <title>阿里云产品夜谈-容器服务交流</title>
       <link>https://guoxudong.io/posts/aliyun-product-meetup/</link>
       <pubDate>Mon, 30 Sep 2019 09:32:35 +0800</pubDate>

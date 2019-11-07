@@ -16,7 +16,7 @@
   <meta name="keywords" content="devops, jenkins, sonar">
   
 
-  <meta name="generator" content="Hugo 0.55.5" />
+  <meta name="generator" content="Hugo 0.58.3" />
 
   
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -339,11 +339,9 @@ autocomplete('#aa-search-input',
 <pre><code class="language-Java">[INFO] Dependency-Check XML report does not exists. Please check property sonar.dependencyCheck.reportPath:/data/jenkinsHome/workspace/xxx/${WORKSPACE}/dependency-check-report.xml
 </code></pre>
 
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g0yvjjcvdaj211b0jhgod.jpg" alt="image" /></p>
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g0yvjjcvdaj211b0jhgod.jpg" alt="image" /></p></li>
 
-<ol>
-<li>在pom.xml文件中添加</li>
-</ol>
+<li><p>在pom.xml文件中添加</p>
 
 <pre><code class="language-xml">&lt;plugin&gt;
     &lt;groupId&gt;org.sonarsource.scanner.maven&lt;/groupId&gt;
@@ -411,7 +409,8 @@ stage('静态代码检查') {
 <li>sonar.exclusions：排除的扫描的文件路径</li>
 <li>sonar.host.url：SonarQube地址</li>
 <li>sonar.login：SonarQube生成的token</li>
-</ul>
+</ul></li>
+</ol>
 
 <h2 id="运行">运行</h2>
 
@@ -434,98 +433,97 @@ stage('静态代码检查') {
 
 <pre><code class="language-Java">hudson.remoting.ProxyException: hudson.AbortException: SonarQube installation defined in this job (sonar) does not match any configured installation. Number of installations that can be configured: 1.
 If you want to reassign jobs to a different SonarQube installation, check the documentation under https://redirect.sonarsource.com/plugins/jenkins.html
-at hudson.plugins.sonar.SonarInstallation.checkValid(SonarInstallation.java:94)
-at hudson.plugins.sonar.SonarBuildWrapper.setUp(SonarBuildWrapper.java:67)
-at org.jenkinsci.plugins.workflow.steps.CoreWrapperStep$Execution.start(CoreWrapperStep.java:80)
-at org.jenkinsci.plugins.workflow.cps.DSL.invokeStep(DSL.java:268)
+    at hudson.plugins.sonar.SonarInstallation.checkValid(SonarInstallation.java:94)
+    at hudson.plugins.sonar.SonarBuildWrapper.setUp(SonarBuildWrapper.java:67)
+    at org.jenkinsci.plugins.workflow.steps.CoreWrapperStep$Execution.start(CoreWrapperStep.java:80)
+    at org.jenkinsci.plugins.workflow.cps.DSL.invokeStep(DSL.java:268)
 Caused: hudson.remoting.ProxyException: org.codehaus.groovy.runtime.InvokerInvocationException: hudson.AbortException: SonarQube installation defined in this job (sonar) does not match any configured installation. Number of installations that can be configured: 1.
 If you want to reassign jobs to a different SonarQube installation, check the documentation under https://redirect.sonarsource.com/plugins/jenkins.html
-at org.jenkinsci.plugins.workflow.cps.CpsStepContext.replay(CpsStepContext.java:499)
-at org.jenkinsci.plugins.workflow.cps.DSL.invokeStep(DSL.java:295)
-at org.jenkinsci.plugins.workflow.cps.DSL.invokeStep(DSL.java:207)
-at org.jenkinsci.plugins.workflow.cps.DSL.invokeDescribable(DSL.java:395)
-at org.jenkinsci.plugins.workflow.cps.DSL.invokeMethod(DSL.java:179)
-at org.jenkinsci.plugins.workflow.cps.CpsScript.invokeMethod(CpsScript.java:122)
-at sun.reflect.GeneratedMethodAccessor1200.invoke(Unknown Source)
-at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.lang.reflect.Method.invoke(Method.java:498)
-at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
-at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
-at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
-at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1022)
-at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:42)
-at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
-at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
-at org.kohsuke.groovy.sandbox.impl.Checker$1.call(Checker.java:157)
-at org.kohsuke.groovy.sandbox.GroovyInterceptor.onMethodCall(GroovyInterceptor.java:23)
-at org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.SandboxInterceptor.onMethodCall(SandboxInterceptor.java:155)
-at org.kohsuke.groovy.sandbox.impl.Checker$1.call(Checker.java:155)
-at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:159)
-at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
-at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
-at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
-at com.cloudbees.groovy.cps.sandbox.SandboxInvoker.methodCall(SandboxInvoker.java:17)
+    at org.jenkinsci.plugins.workflow.cps.CpsStepContext.replay(CpsStepContext.java:499)
+    at org.jenkinsci.plugins.workflow.cps.DSL.invokeStep(DSL.java:295)
+    at org.jenkinsci.plugins.workflow.cps.DSL.invokeStep(DSL.java:207)
+    at org.jenkinsci.plugins.workflow.cps.DSL.invokeDescribable(DSL.java:395)
+    at org.jenkinsci.plugins.workflow.cps.DSL.invokeMethod(DSL.java:179)
+    at org.jenkinsci.plugins.workflow.cps.CpsScript.invokeMethod(CpsScript.java:122)
+    at sun.reflect.GeneratedMethodAccessor1200.invoke(Unknown Source)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:498)
+    at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+    at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+    at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
+    at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1022)
+    at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:42)
+    at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+    at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+    at org.kohsuke.groovy.sandbox.impl.Checker$1.call(Checker.java:157)
+    at org.kohsuke.groovy.sandbox.GroovyInterceptor.onMethodCall(GroovyInterceptor.java:23)
+    at org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.SandboxInterceptor.onMethodCall(SandboxInterceptor.java:155)
+    at org.kohsuke.groovy.sandbox.impl.Checker$1.call(Checker.java:155)
+    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:159)
+    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
+    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
+    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
+    at com.cloudbees.groovy.cps.sandbox.SandboxInvoker.methodCall(SandboxInvoker.java:17)
 Caused: hudson.remoting.ProxyException: java.lang.IllegalArgumentException: Failed to prepare withSonarQubeEnv step
-at org.jenkinsci.plugins.workflow.cps.DSL.invokeDescribable(DSL.java:397)
-at org.jenkinsci.plugins.workflow.cps.DSL.invokeMethod(DSL.java:179)
-at org.jenkinsci.plugins.workflow.cps.CpsScript.invokeMethod(CpsScript.java:122)
-at sun.reflect.GeneratedMethodAccessor1200.invoke(Unknown Source)
-at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.lang.reflect.Method.invoke(Method.java:498)
-at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
-at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
-at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
-at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1022)
-at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:42)
-at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
-at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
-at org.kohsuke.groovy.sandbox.impl.Checker$1.call(Checker.java:157)
-at org.kohsuke.groovy.sandbox.GroovyInterceptor.onMethodCall(GroovyInterceptor.java:23)
-at org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.SandboxInterceptor.onMethodCall(SandboxInterceptor.java:155)
-at org.kohsuke.groovy.sandbox.impl.Checker$1.call(Checker.java:155)
-at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:159)
-at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
-at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
-at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
-at com.cloudbees.groovy.cps.sandbox.SandboxInvoker.methodCall(SandboxInvoker.java:17)
-at WorkflowScript.run(WorkflowScript:27)
-at ___cps.transform___(Native Method)
-at com.cloudbees.groovy.cps.impl.ContinuationGroup.methodCall(ContinuationGroup.java:57)
-at com.cloudbees.groovy.cps.impl.FunctionCallBlock$ContinuationImpl.dispatchOrArg(FunctionCallBlock.java:109)
-at com.cloudbees.groovy.cps.impl.FunctionCallBlock$ContinuationImpl.fixArg(FunctionCallBlock.java:82)
-at sun.reflect.GeneratedMethodAccessor249.invoke(Unknown Source)
-at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.lang.reflect.Method.invoke(Method.java:498)
-at com.cloudbees.groovy.cps.impl.ContinuationPtr$ContinuationImpl.receive(ContinuationPtr.java:72)
-at com.cloudbees.groovy.cps.impl.ClosureBlock.eval(ClosureBlock.java:46)
-at com.cloudbees.groovy.cps.Next.step(Next.java:83)
-at com.cloudbees.groovy.cps.Continuable$1.call(Continuable.java:174)
-at com.cloudbees.groovy.cps.Continuable$1.call(Continuable.java:163)
-at org.codehaus.groovy.runtime.GroovyCategorySupport$ThreadCategoryInfo.use(GroovyCategorySupport.java:122)
-at org.codehaus.groovy.runtime.GroovyCategorySupport.use(GroovyCategorySupport.java:261)
-at com.cloudbees.groovy.cps.Continuable.run0(Continuable.java:163)
-at org.jenkinsci.plugins.workflow.cps.SandboxContinuable.access$101(SandboxContinuable.java:34)
-at org.jenkinsci.plugins.workflow.cps.SandboxContinuable.lambda$run0$0(SandboxContinuable.java:59)
-at org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.GroovySandbox.runInSandbox(GroovySandbox.java:121)
-at org.jenkinsci.plugins.workflow.cps.SandboxContinuable.run0(SandboxContinuable.java:58)
-at org.jenkinsci.plugins.workflow.cps.CpsThread.runNextChunk(CpsThread.java:182)
-at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup.run(CpsThreadGroup.java:332)
-at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup.access$200(CpsThreadGroup.java:83)
-at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup$2.call(CpsThreadGroup.java:244)
-at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup$2.call(CpsThreadGroup.java:232)
-at org.jenkinsci.plugins.workflow.cps.CpsVmExecutorService$2.call(CpsVmExecutorService.java:64)
-at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-at hudson.remoting.SingleLaneExecutorService$1.run(SingleLaneExecutorService.java:131)
-at jenkins.util.ContextResettingExecutorService$1.run(ContextResettingExecutorService.java:28)
-at jenkins.security.ImpersonatingExecutorService$1.run(ImpersonatingExecutorService.java:59)
-at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-at java.lang.Thread.run(Thread.java:748)
+    at org.jenkinsci.plugins.workflow.cps.DSL.invokeDescribable(DSL.java:397)
+    at org.jenkinsci.plugins.workflow.cps.DSL.invokeMethod(DSL.java:179)
+    at org.jenkinsci.plugins.workflow.cps.CpsScript.invokeMethod(CpsScript.java:122)
+    at sun.reflect.GeneratedMethodAccessor1200.invoke(Unknown Source)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:498)
+    at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+    at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+    at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
+    at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1022)
+    at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:42)
+    at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+    at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+    at org.kohsuke.groovy.sandbox.impl.Checker$1.call(Checker.java:157)
+    at org.kohsuke.groovy.sandbox.GroovyInterceptor.onMethodCall(GroovyInterceptor.java:23)
+    at org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.SandboxInterceptor.onMethodCall(SandboxInterceptor.java:155)
+    at org.kohsuke.groovy.sandbox.impl.Checker$1.call(Checker.java:155)
+    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:159)
+    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
+    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
+    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
+    at com.cloudbees.groovy.cps.sandbox.SandboxInvoker.methodCall(SandboxInvoker.java:17)
+    at WorkflowScript.run(WorkflowScript:27)
+    at ___cps.transform___(Native Method)
+    at com.cloudbees.groovy.cps.impl.ContinuationGroup.methodCall(ContinuationGroup.java:57)
+    at com.cloudbees.groovy.cps.impl.FunctionCallBlock$ContinuationImpl.dispatchOrArg(FunctionCallBlock.java:109)
+    at com.cloudbees.groovy.cps.impl.FunctionCallBlock$ContinuationImpl.fixArg(FunctionCallBlock.java:82)
+    at sun.reflect.GeneratedMethodAccessor249.invoke(Unknown Source)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:498)
+    at com.cloudbees.groovy.cps.impl.ContinuationPtr$ContinuationImpl.receive(ContinuationPtr.java:72)
+    at com.cloudbees.groovy.cps.impl.ClosureBlock.eval(ClosureBlock.java:46)
+    at com.cloudbees.groovy.cps.Next.step(Next.java:83)
+    at com.cloudbees.groovy.cps.Continuable$1.call(Continuable.java:174)
+    at com.cloudbees.groovy.cps.Continuable$1.call(Continuable.java:163)
+    at org.codehaus.groovy.runtime.GroovyCategorySupport$ThreadCategoryInfo.use(GroovyCategorySupport.java:122)
+    at org.codehaus.groovy.runtime.GroovyCategorySupport.use(GroovyCategorySupport.java:261)
+    at com.cloudbees.groovy.cps.Continuable.run0(Continuable.java:163)
+    at org.jenkinsci.plugins.workflow.cps.SandboxContinuable.access$101(SandboxContinuable.java:34)
+    at org.jenkinsci.plugins.workflow.cps.SandboxContinuable.lambda$run0$0(SandboxContinuable.java:59)
+    at org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.GroovySandbox.runInSandbox(GroovySandbox.java:121)
+    at org.jenkinsci.plugins.workflow.cps.SandboxContinuable.run0(SandboxContinuable.java:58)
+    at org.jenkinsci.plugins.workflow.cps.CpsThread.runNextChunk(CpsThread.java:182)
+    at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup.run(CpsThreadGroup.java:332)
+    at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup.access$200(CpsThreadGroup.java:83)
+    at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup$2.call(CpsThreadGroup.java:244)
+    at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup$2.call(CpsThreadGroup.java:232)
+    at org.jenkinsci.plugins.workflow.cps.CpsVmExecutorService$2.call(CpsVmExecutorService.java:64)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at hudson.remoting.SingleLaneExecutorService$1.run(SingleLaneExecutorService.java:131)
+    at jenkins.util.ContextResettingExecutorService$1.run(ContextResettingExecutorService.java:28)
+    at jenkins.security.ImpersonatingExecutorService$1.run(ImpersonatingExecutorService.java:59)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+    at java.lang.Thread.run(Thread.java:748)
 Finished: FAILURE
-</code></pre></li>
-</ol>
+</code></pre>
 
 <p>原因：withSonarQubeEnv()中的参数与之前SonarQube servers中Name的配置不同，导致没有找到找到SonarQube</p>
 
@@ -702,7 +700,7 @@ Cancelling nested steps due to timeout
             <li><a href="/categories/istio"><i class="fa fa-navicon"></i>istio (3)</a>
             </li>
             
-            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (11)</a>
+            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (12)</a>
             </li>
             
             <li><a href="/categories/kustomize"><i class="fa fa-navicon"></i>kustomize (7)</a>
@@ -764,6 +762,9 @@ Cancelling nested steps due to timeout
             </li>
             
             <li><a href="/tags/go"><i class="fa fa-tags"></i> go</a>
+            </li>
+            
+            <li><a href="/tags/grafana"><i class="fa fa-tags"></i> grafana</a>
             </li>
             
             <li><a href="/tags/istio"><i class="fa fa-tags"></i> istio</a>
@@ -874,6 +875,19 @@ Cancelling nested steps due to timeout
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
+                        <a href="/posts/aliyun-cms-grafana/">
+                          
+                          <img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1g8piqjask7j21y014swo7.jpg" class="img-responsive" alt="使用 Grafana 展示阿里云监控指标">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/aliyun-cms-grafana/">使用 Grafana 展示阿里云监控指标</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
                         <a href="/posts/aliyun-product-meetup/">
                           
                           <img src="https://tva1.sinaimg.cn/large/ad5fbf65gy1g7he2xumccj21qi15on6r.jpg" class="img-responsive" alt="阿里云产品夜谈-容器服务交流">
@@ -895,19 +909,6 @@ Cancelling nested steps due to timeout
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="/posts/alibaba-public-welfare/">当码农遇见公益</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
-                        <a href="/posts/drone-optimize/">
-                          
-                          <img src="https://wx1.sinaimg.cn/large/ad5fbf65gy1g6vnfwh6a2j21hc120dpl.jpg" class="img-responsive" alt="玩转 Drone CI">
-                          
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="/posts/drone-optimize/">玩转 Drone CI</a></h5>
                     </div>
                 </div>
                 

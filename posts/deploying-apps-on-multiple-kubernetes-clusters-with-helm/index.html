@@ -16,7 +16,7 @@
   <meta name="keywords" content="翻译, kubernetes">
   
 
-  <meta name="generator" content="Hugo 0.55.5" />
+  <meta name="generator" content="Hugo 0.58.3" />
 
   
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -456,22 +456,23 @@ foo.world:                # Release name
 <li>定义将 Secrets 写入 Vault 时要遵循的通用规则。</li>
 <li>如果 Secrets 有特定的上下文/集群，则必须添加特定条目。</li>
 <li>否则，将使用默认值。</li>
-<li>对于此列表中的每个项目，将在 Kubernetes Secrets 中插入一个 key/value 。这样我们 chart 中的 Secrets 模板非常简单。</li>
-</ul>
+
+<li><p>对于此列表中的每个项目，将在 Kubernetes Secrets 中插入一个 key/value 。这样我们 chart 中的 Secrets 模板非常简单。</p>
 
 <pre><code class="language-yaml">apiVersion: v1
 data:
 {{- range $key,$value := .Values.secrets }}
-  {{ $key }}: {{ $value | b64enc | quote }}
+{{ $key }}: {{ $value | b64enc | quote }}
 {{ end }}
 kind: Secret
 metadata:
-  name: &quot;{{ .Chart.Name }}&quot;
-  labels:
-    chartVersion: &quot;{{ .Chart.Version }}&quot;
-    tillerVersion: &quot;{{ .Capabilities.TillerVersion.SemVer }}&quot;
+name: &quot;{{ .Chart.Name }}&quot;
+labels:
+chartVersion: &quot;{{ .Chart.Version }}&quot;
+tillerVersion: &quot;{{ .Capabilities.TillerVersion.SemVer }}&quot;
 type: Opaque
-</code></pre>
+</code></pre></li>
+</ul>
 
 <h2 id="警告与限制">警告与限制</h2>
 
@@ -526,41 +527,40 @@ type: Opaque
 <p>第一步很简单：</p>
 
 <ul>
-<li>我们将保留一个类似的结构来配置我们的应用程序部署，但是在名为 “DailymotionRelease” 的单个对象中</li>
-</ul>
+<li><p>我们将保留一个类似的结构来配置我们的应用程序部署，但是在名为 “DailymotionRelease” 的单个对象中</p>
 
 <pre><code class="language-yaml">apiVersion: &quot;v1&quot;
 kind: &quot;DailymotionRelease&quot;
 metadata:
-  name: &quot;app1.ns1&quot;
-  environment: &quot;dev&quot;
-  branch: &quot;mybranch&quot;
+name: &quot;app1.ns1&quot;
+environment: &quot;dev&quot;
+branch: &quot;mybranch&quot;
 spec:
-  slack_channel: &quot;#admin&quot;
-  chart_name: &quot;app1&quot;
-  scaling:
-    - context: &quot;dev-us-central1-0&quot;
-      replicas:
-        - name: &quot;hermes&quot;
-          count: 2
-    - context: &quot;dev-europe-west1-0&quot;
-      replicas:
-        - name: &quot;app1-deploy&quot;
-          count: 2
-  secrets:
-    - secret_id: &quot;app1&quot;
-      contexts:
-        - name: &quot;default&quot;
-          vaultPath: &quot;/kv/dev/ns1/app1/test&quot;
-          vaultKey: &quot;password&quot;
-        - name: &quot;dev-europe-west1-0&quot;
-          vaultPath: &quot;/kv/dev/ns1/app1/test&quot;
-          vaultKey: &quot;password&quot;
-</code></pre>
+slack_channel: &quot;#admin&quot;
+chart_name: &quot;app1&quot;
+scaling:
+- context: &quot;dev-us-central1-0&quot;
+  replicas:
+    - name: &quot;hermes&quot;
+      count: 2
+- context: &quot;dev-europe-west1-0&quot;
+  replicas:
+    - name: &quot;app1-deploy&quot;
+      count: 2
+secrets:
+- secret_id: &quot;app1&quot;
+  contexts:
+    - name: &quot;default&quot;
+      vaultPath: &quot;/kv/dev/ns1/app1/test&quot;
+      vaultKey: &quot;password&quot;
+    - name: &quot;dev-europe-west1-0&quot;
+      vaultPath: &quot;/kv/dev/ns1/app1/test&quot;
+      vaultKey: &quot;password&quot;
+</code></pre></li>
 
-<ul>
-<li>每个应用程序一个版本（不再使用 umbrella charts ）</li>
-<li>将 chart 加入应用程序 git 存储库中</li>
+<li><p>每个应用程序一个版本（不再使用 umbrella charts ）</p></li>
+
+<li><p>将 chart 加入应用程序 git 存储库中</p></li>
 </ul>
 
 <p>我们已经开始向所有开发人员科普这个词，并且迁移过程已经开始。第一步仍然使用 CI 平台进行控制。我将在短期内撰写另一篇博文，介绍第二步：我们如何通过 <a href="https://github.com/weaveworks/flux">Flux</a> 实现向 GitOps 工作流程的迁移。将描述我们的设置和面临的挑战（多个存储库，Secrets 等）。 敬请期待！</p>
@@ -706,7 +706,7 @@ spec:
             <li><a href="/categories/istio"><i class="fa fa-navicon"></i>istio (3)</a>
             </li>
             
-            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (11)</a>
+            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (12)</a>
             </li>
             
             <li><a href="/categories/kustomize"><i class="fa fa-navicon"></i>kustomize (7)</a>
@@ -768,6 +768,9 @@ spec:
             </li>
             
             <li><a href="/tags/go"><i class="fa fa-tags"></i> go</a>
+            </li>
+            
+            <li><a href="/tags/grafana"><i class="fa fa-tags"></i> grafana</a>
             </li>
             
             <li><a href="/tags/istio"><i class="fa fa-tags"></i> istio</a>
@@ -878,6 +881,19 @@ spec:
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
+                        <a href="/posts/aliyun-cms-grafana/">
+                          
+                          <img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1g8piqjask7j21y014swo7.jpg" class="img-responsive" alt="使用 Grafana 展示阿里云监控指标">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/aliyun-cms-grafana/">使用 Grafana 展示阿里云监控指标</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
                         <a href="/posts/aliyun-product-meetup/">
                           
                           <img src="https://tva1.sinaimg.cn/large/ad5fbf65gy1g7he2xumccj21qi15on6r.jpg" class="img-responsive" alt="阿里云产品夜谈-容器服务交流">
@@ -899,19 +915,6 @@ spec:
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="/posts/alibaba-public-welfare/">当码农遇见公益</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
-                        <a href="/posts/drone-optimize/">
-                          
-                          <img src="https://wx1.sinaimg.cn/large/ad5fbf65gy1g6vnfwh6a2j21hc120dpl.jpg" class="img-responsive" alt="玩转 Drone CI">
-                          
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="/posts/drone-optimize/">玩转 Drone CI</a></h5>
                     </div>
                 </div>
                 

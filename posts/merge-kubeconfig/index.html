@@ -16,7 +16,7 @@
   <meta name="keywords" content="kubernetes, 工具">
   
 
-  <meta name="generator" content="Hugo 0.55.5" />
+  <meta name="generator" content="Hugo 0.58.3" />
 
   
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -255,7 +255,7 @@ autocomplete('#aa-search-input',
                             
                             
                             |
-                            2000字 | 阅读大约需要4分钟
+                            1700字 | 阅读大约需要4分钟
                             </div>
                             
                             
@@ -285,19 +285,18 @@ autocomplete('#aa-search-input',
 
 <blockquote>
 <p>随着微服务和容器化的深入人心，以及kubernetes已经成为容器编排领域的事实标准，越来越多的公司将自己的服务迁移到kubernetes集群中。而随着kubernetes集群的增加，集群管理的问题就凸显出来，不同的环境存在不同的集群，不同的业务线不同的集群，甚至有些开发人员都有自己的集群。诚然，如果集群是使用公有云如阿里云或华为云的容器服务，可以登录其控制台进行集群管理；或者使用rancher这用的多集群管理工具进行统一的管理。但是在想操作<code>istio</code>特有的容器资源，或者想使用<code>istioctl</code>的时候，或者像我一样就是想使用<code>kubectl</code>命令的同学，这个时候多集群的切换就显的十分重要了。</p>
-</blockquote>
 
 <h2 id="简介">简介</h2>
 
-<p><code>kubectl</code>命令行工具通过<code>kubeconfig</code>文件的配置来选择集群以及集群的API Server通信的所有信息。<code>kubeconfig</code>用来保存关于集群，用户，名称空间和身份验证机制的信息。默认情况下<code>kubectl</code>使用的配置文件名称是在<code>$HOME/.kube</code>目录下的<code>config</code>文件，可以通过设置环境变量KUBECONFIG或者&ndash;kubeconfig指定其他的配置文件。详情可看官方文档<a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/">https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/</a></p>
+<pre><code class="language-kubectl```命令行工具通过```kubeconfig```文件的配置来选择集群以及集群的API">
+## 原理
+使用```kubeconfig```文件，您可以组织您的群集，用户和名称空间。 还可以定义上下文以快速轻松地在群集和名称空间之间切换。
 
-<h2 id="原理">原理</h2>
+### 上下文(Context) 
+</code></pre>
 
-<p>使用<code>kubeconfig</code>文件，您可以组织您的群集，用户和名称空间。 还可以定义上下文以快速轻松地在群集和名称空间之间切换。</p>
-
-<h3 id="上下文-context">上下文(Context)</h3>
-
-<p><code>kubeconfig</code>文件中的上下文元素用于以方便的名称对访问参数进行分组。 每个上下文有三个参数：集群，命名空间和用户。 默认情况下，kubectl命令行工具使用当前上下文中的参数与集群进行通信。可以使用下面的命令设置上下文：</p>
+<p>kubeconfig```文件中的上下文元素用于以方便的名称对访问参数进行分组。 每个上下文有三个参数：集群，命名空间和用户。 默认情况下，kubectl命令行工具使用当前上下文中的参数与集群进行通信。可以使用下面的命令设置上下文：</p>
+</blockquote>
 
 <pre><code>kubectl config use-context
 </code></pre>
@@ -553,7 +552,7 @@ current-context: {context-name}
             <li><a href="/categories/istio"><i class="fa fa-navicon"></i>istio (3)</a>
             </li>
             
-            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (11)</a>
+            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (12)</a>
             </li>
             
             <li><a href="/categories/kustomize"><i class="fa fa-navicon"></i>kustomize (7)</a>
@@ -615,6 +614,9 @@ current-context: {context-name}
             </li>
             
             <li><a href="/tags/go"><i class="fa fa-tags"></i> go</a>
+            </li>
+            
+            <li><a href="/tags/grafana"><i class="fa fa-tags"></i> grafana</a>
             </li>
             
             <li><a href="/tags/istio"><i class="fa fa-tags"></i> istio</a>
@@ -725,6 +727,19 @@ current-context: {context-name}
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
+                        <a href="/posts/aliyun-cms-grafana/">
+                          
+                          <img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1g8piqjask7j21y014swo7.jpg" class="img-responsive" alt="使用 Grafana 展示阿里云监控指标">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/aliyun-cms-grafana/">使用 Grafana 展示阿里云监控指标</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
                         <a href="/posts/aliyun-product-meetup/">
                           
                           <img src="https://tva1.sinaimg.cn/large/ad5fbf65gy1g7he2xumccj21qi15on6r.jpg" class="img-responsive" alt="阿里云产品夜谈-容器服务交流">
@@ -746,19 +761,6 @@ current-context: {context-name}
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="/posts/alibaba-public-welfare/">当码农遇见公益</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
-                        <a href="/posts/drone-optimize/">
-                          
-                          <img src="https://wx1.sinaimg.cn/large/ad5fbf65gy1g6vnfwh6a2j21hc120dpl.jpg" class="img-responsive" alt="玩转 Drone CI">
-                          
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="/posts/drone-optimize/">玩转 Drone CI</a></h5>
                     </div>
                 </div>
                 

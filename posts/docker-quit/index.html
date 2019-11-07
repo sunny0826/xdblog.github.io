@@ -16,7 +16,7 @@
   <meta name="keywords" content="容器, Linux">
   
 
-  <meta name="generator" content="Hugo 0.55.5" />
+  <meta name="generator" content="Hugo 0.58.3" />
 
   
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -305,11 +305,9 @@ autocomplete('#aa-search-input',
 <li><p>可以使用交互式启动</p>
 
 <pre><code class="language-bash">docker run -i [CONTAINER_NAME or CONTAINER_ID]
-</code></pre>
+</code></pre></li>
 
-<ol>
-<li>上面的不太友好，建议使用后台模式和tty选项</li>
-</ol>
+<li><p>上面的不太友好，建议使用后台模式和tty选项</p>
 
 <pre><code class="language-bash">docker run -dit [CONTAINER_NAME or CONTAINER_ID]
 </code></pre></li>
@@ -317,10 +315,9 @@ autocomplete('#aa-search-input',
 <li><p>Docker 容器在后台以守护态（Daemonized）形式运行，可以通过添加 -d 参数来实现</p>
 
 <pre><code class="language-bash">$ sudo docker run -d ubuntu:14.04 /bin/sh -c &quot;while true; do echo hello world; sleep 1; done&quot;
-</code></pre>
+</code></pre></li>
 
-<ol>
-<li>在脚本最后一行添加<strong>tail -f /dev/null</strong>，这个命令永远完成不了，所以该脚本一直不会执行完，所以该容器永远不会退出。</li>
+<li><p>在脚本最后一行添加<strong>tail -f /dev/null</strong>，这个命令永远完成不了，所以该脚本一直不会执行完，所以该容器永远不会退出。</p></li>
 </ol>
 
 <blockquote>
@@ -329,8 +326,7 @@ autocomplete('#aa-search-input',
 <p>如下命令，会在指定容器中执行指定命令， <code>[ctrl+D]</code> 退出后不会终止容器运行</p>
 
 <p>docker默认会把容器内部pid=1的作为默认的程序</p>
-</blockquote></li>
-</ol>
+</blockquote>
 
                           
                           
@@ -469,7 +465,7 @@ autocomplete('#aa-search-input',
             <li><a href="/categories/istio"><i class="fa fa-navicon"></i>istio (3)</a>
             </li>
             
-            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (11)</a>
+            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (12)</a>
             </li>
             
             <li><a href="/categories/kustomize"><i class="fa fa-navicon"></i>kustomize (7)</a>
@@ -531,6 +527,9 @@ autocomplete('#aa-search-input',
             </li>
             
             <li><a href="/tags/go"><i class="fa fa-tags"></i> go</a>
+            </li>
+            
+            <li><a href="/tags/grafana"><i class="fa fa-tags"></i> grafana</a>
             </li>
             
             <li><a href="/tags/istio"><i class="fa fa-tags"></i> istio</a>
@@ -641,6 +640,19 @@ autocomplete('#aa-search-input',
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
+                        <a href="/posts/aliyun-cms-grafana/">
+                          
+                          <img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1g8piqjask7j21y014swo7.jpg" class="img-responsive" alt="使用 Grafana 展示阿里云监控指标">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/aliyun-cms-grafana/">使用 Grafana 展示阿里云监控指标</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
                         <a href="/posts/aliyun-product-meetup/">
                           
                           <img src="https://tva1.sinaimg.cn/large/ad5fbf65gy1g7he2xumccj21qi15on6r.jpg" class="img-responsive" alt="阿里云产品夜谈-容器服务交流">
@@ -662,19 +674,6 @@ autocomplete('#aa-search-input',
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="/posts/alibaba-public-welfare/">当码农遇见公益</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
-                        <a href="/posts/drone-optimize/">
-                          
-                          <img src="https://wx1.sinaimg.cn/large/ad5fbf65gy1g6vnfwh6a2j21hc120dpl.jpg" class="img-responsive" alt="玩转 Drone CI">
-                          
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="/posts/drone-optimize/">玩转 Drone CI</a></h5>
                     </div>
                 </div>
                 

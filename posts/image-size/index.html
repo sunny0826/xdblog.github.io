@@ -16,7 +16,7 @@
   <meta name="keywords" content="容器">
   
 
-  <meta name="generator" content="Hugo 0.55.5" />
+  <meta name="generator" content="Hugo 0.58.3" />
 
   
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -326,13 +326,12 @@ ADD bin/pause-${ARCH} /pause
 ENTRYPOINT [&quot;/pause&quot;]
 </code></pre>
 
-<p>Google pause镜像使用了scratch作为基础镜像，这个镜像本身是不占空间的，使用它构建的镜像大小几乎和二进制文件本身一样大，所以镜像非常小。当然在我们的Golang程序中也会使用。对于一些Golang/C程序，可能会依赖一些动态库，你可以使用自动提取动态库工具，比如ldd、linuxdeployqt等提取所有动态库，然后将二进制文件和依赖动态库一起打包到镜像中。</p>
+<p>Google pause镜像使用了scratch作为基础镜像，这个镜像本身是不占空间的，使用它构建的镜像大小几乎和二进制文件本身一样大，所以镜像非常小。当然在我们的Golang程序中也会使用。对于一些Golang/C程序，可能会依赖一些动态库，你可以使用自动提取动态库工具，比如ldd、linuxdeployqt等提取所有动态库，然后将二进制文件和依赖动态库一起打包到镜像中。</p></li>
 
-<ol>
-<li>busybox镜像</li>
+<li><p>busybox镜像</p>
+
+<p>scratch是个空镜像，如果希望镜像里可以包含一些常用的Linux工具，busybox镜像是个不错选择，镜像本身只有1.16M，非常便于构建小镜像。</p></li>
 </ol>
-
-<p>scratch是个空镜像，如果希望镜像里可以包含一些常用的Linux工具，busybox镜像是个不错选择，镜像本身只有1.16M，非常便于构建小镜像。</p>
 
 <h1 id="二-串联-dockerfile-指令">二、串联 Dockerfile 指令</h1>
 
@@ -359,8 +358,7 @@ RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/*  /redis-$VER 
 #...
 CMD [&quot;redis-server&quot;]
-</code></pre></li>
-</ol>
+</code></pre>
 
 <p>构建镜像，名称叫 <code>test/test:0.1</code>。</p>
 
@@ -439,11 +437,9 @@ CMD [&quot;/root/k8s-monitor&quot;]
 <li><p>在Dockerfile所在目录，解压缩maven生成的jar包</p>
 
 <pre><code class="language-bash">$ unzip &lt;path-to-app-jar&gt;.jar -d app
-</code></pre>
+</code></pre></li>
 
-<ol>
-<li>Dockerfile 我们把应用的内容分成4个部分COPY到镜像里面：其中前面3个基本不变，第4个是经常变化的自有代码。最后一行是解压缩后，启动spring boot应用的方式。</li>
-</ol>
+<li><p>Dockerfile 我们把应用的内容分成4个部分COPY到镜像里面：其中前面3个基本不变，第4个是经常变化的自有代码。最后一行是解压缩后，启动spring boot应用的方式。</p>
 
 <pre><code class="language-docker">FROM openjdk:8-jre-alpine
 LABEL maintainer &quot;opl-xws@xiaomi.com&quot;
@@ -641,7 +637,7 @@ root@k8s-master:/tmp/iops#
             <li><a href="/categories/istio"><i class="fa fa-navicon"></i>istio (3)</a>
             </li>
             
-            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (11)</a>
+            <li><a href="/categories/kubernetes"><i class="fa fa-navicon"></i>kubernetes (12)</a>
             </li>
             
             <li><a href="/categories/kustomize"><i class="fa fa-navicon"></i>kustomize (7)</a>
@@ -703,6 +699,9 @@ root@k8s-master:/tmp/iops#
             </li>
             
             <li><a href="/tags/go"><i class="fa fa-tags"></i> go</a>
+            </li>
+            
+            <li><a href="/tags/grafana"><i class="fa fa-tags"></i> grafana</a>
             </li>
             
             <li><a href="/tags/istio"><i class="fa fa-tags"></i> istio</a>
@@ -813,6 +812,19 @@ root@k8s-master:/tmp/iops#
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
+                        <a href="/posts/aliyun-cms-grafana/">
+                          
+                          <img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1g8piqjask7j21y014swo7.jpg" class="img-responsive" alt="使用 Grafana 展示阿里云监控指标">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="/posts/aliyun-cms-grafana/">使用 Grafana 展示阿里云监控指标</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
                         <a href="/posts/aliyun-product-meetup/">
                           
                           <img src="https://tva1.sinaimg.cn/large/ad5fbf65gy1g7he2xumccj21qi15on6r.jpg" class="img-responsive" alt="阿里云产品夜谈-容器服务交流">
@@ -834,19 +846,6 @@ root@k8s-master:/tmp/iops#
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="/posts/alibaba-public-welfare/">当码农遇见公益</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
-                        <a href="/posts/drone-optimize/">
-                          
-                          <img src="https://wx1.sinaimg.cn/large/ad5fbf65gy1g6vnfwh6a2j21hc120dpl.jpg" class="img-responsive" alt="玩转 Drone CI">
-                          
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="/posts/drone-optimize/">玩转 Drone CI</a></h5>
                     </div>
                 </div>
                 
