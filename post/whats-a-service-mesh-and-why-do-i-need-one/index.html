@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academia 4.3.1">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
+  <meta name="baidu-site-verification" content="A85okozwVV" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="never">
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="郭旭东">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Service Mesh 是一个专门用于使服务与服务之间的通信变得安全、快速和可靠的的基础设施。如果你正在在构建一个云原生（ Cloud Native ）应用，那么 Service Mesh 是你需要的。">
+
+  
+  <link rel="alternate" hreflang="en" href="https://academia-hugo.netlify.com/en/post/whats-a-service-mesh-and-why-do-i-need-one/">
+  
+  <link rel="alternate" hreflang="zh-Hans" href="https://academia-hugo.netlify.com/post/whats-a-service-mesh-and-why-do-i-need-one/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#fc6f5c">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.9.0/instantsearch.min.css" integrity="sha256-ZtmLe16p4jS4/2wPwwH6NzJt460SJzgLmhKrYo5yn7g=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch-theme-algolia.min.css" integrity="sha256-uL8LUd3zkI/lXvc/Hv/oOu8ld6RJcOZiUY/8c+I+3/o=" crossorigin="anonymous">
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academia.min.9be1772e7ca3b9e5f31014835ca21e99.css">
+
+  
+    
+    
+    
+    
+      
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academia.ef74575f38e28c5c9feae541be1f6e36.css">
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://academia-hugo.netlify.com/post/whats-a-service-mesh-and-why-do-i-need-one/">
+
+  
+  
+  
+  
+    
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@GuoXudong2">
+  <meta property="twitter:creator" content="@GuoXudong2">
+  
+  <meta property="og:site_name" content="GuoXD Blog·郭旭东的博客">
+  <meta property="og:url" content="https://academia-hugo.netlify.com/post/whats-a-service-mesh-and-why-do-i-need-one/">
+  <meta property="og:title" content="Service Mesh是什么，我们又为什么需要它 | GuoXD Blog·郭旭东的博客">
+  <meta property="og:description" content="Service Mesh 是一个专门用于使服务与服务之间的通信变得安全、快速和可靠的的基础设施。如果你正在在构建一个云原生（ Cloud Native ）应用，那么 Service Mesh 是你需要的。"><meta property="og:image" content="https://academia-hugo.netlify.com/post/whats-a-service-mesh-and-why-do-i-need-one/featured.jpg">
+  <meta property="twitter:image" content="https://academia-hugo.netlify.com/post/whats-a-service-mesh-and-why-do-i-need-one/featured.jpg"><meta property="og:locale" content="zh-Hans">
+  
+  <meta property="article:published_time" content="2019-03-25T18:17:20&#43;08:00">
+  
+  <meta property="article:modified_time" content="2019-03-25T18:17:20&#43;08:00">
+  
+
+  
+
+
+  
+
+
+
+
+
+  <title>Service Mesh是什么，我们又为什么需要它 | GuoXD Blog·郭旭东的博客</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/"><img src="/img/logo.png" alt="GuoXD Blog·郭旭东的博客"></a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航"><span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#slider"><span>主页</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>博客</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>关于</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <span>中文 (简体)</span>
+          </a>
+          <ul class="dropdown-menu">
+            
+            <li class="dropdown-item my-0 py-0 mx-0 px-0">
+              <a href="https://academia-hugo.netlify.com/en/post/whats-a-service-mesh-and-why-do-i-need-one/">
+                <span>English</span>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        
+
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article py-5" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container split-header">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+        <img class="img-fluid w-100" src="/post/whats-a-service-mesh-and-why-do-i-need-one/featured_hu22a60bc9d31b72624bb6bd12dd39791e_173687_680x500_fill_q90_lanczos_smart1.jpg" itemprop="image" alt="">
+        <span
+          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+    </div>
+    <div class="col-lg-8">
+      <h1 itemprop="name">Service Mesh是什么，我们又为什么需要它</h1>
+
+      
+
+      
+
+
+
+<meta content="2019-03-25 18:17:20 &#43;0800 CST" itemprop="datePublished">
+<meta content="2019-03-25 18:17:20 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2019-03-25</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    6 分钟阅读时间
+  </span>
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="">翻译</a></span>
+  
+
+  
+    
+<br>
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://academia-hugo.netlify.com/post/whats-a-service-mesh-and-why-do-i-need-one/&amp;text=Service%20Mesh%e6%98%af%e4%bb%80%e4%b9%88%ef%bc%8c%e6%88%91%e4%bb%ac%e5%8f%88%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e5%ae%83" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://academia-hugo.netlify.com/post/whats-a-service-mesh-and-why-do-i-need-one/&amp;t=Service%20Mesh%e6%98%af%e4%bb%80%e4%b9%88%ef%bc%8c%e6%88%91%e4%bb%ac%e5%8f%88%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e5%ae%83" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Service%20Mesh%e6%98%af%e4%bb%80%e4%b9%88%ef%bc%8c%e6%88%91%e4%bb%ac%e5%8f%88%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e5%ae%83&amp;body=https://academia-hugo.netlify.com/post/whats-a-service-mesh-and-why-do-i-need-one/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://academia-hugo.netlify.com/post/whats-a-service-mesh-and-why-do-i-need-one/&amp;title=Service%20Mesh%e6%98%af%e4%bb%80%e4%b9%88%ef%bc%8c%e6%88%91%e4%bb%ac%e5%8f%88%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e5%ae%83" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Service%20Mesh%e6%98%af%e4%bb%80%e4%b9%88%ef%bc%8c%e6%88%91%e4%bb%ac%e5%8f%88%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e5%ae%83%20https://academia-hugo.netlify.com/post/whats-a-service-mesh-and-why-do-i-need-one/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://academia-hugo.netlify.com/post/whats-a-service-mesh-and-why-do-i-need-one/&amp;title=Service%20Mesh%e6%98%af%e4%bb%80%e4%b9%88%ef%bc%8c%e6%88%91%e4%bb%ac%e5%8f%88%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e5%ae%83" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://academia-hugo.netlify.com/post/whats-a-service-mesh-and-why-do-i-need-one/&amp;title=Service%20Mesh%e6%98%af%e4%bb%80%e4%b9%88%ef%bc%8c%e6%88%91%e4%bb%ac%e5%8f%88%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e5%ae%83" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    
+    </div>
+  </div>
+</div>
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<blockquote>
+<p>作者：William Morgan 发表于2017年4月25日，2018年11月26日有所修改。</p>
+</blockquote>
+
+<p>Service Mesh 是一个专门使服务与服务之间的通信变得安全、快速和可靠的的基础设施。如果你正在在构建一个云原生（ Cloud Native ）应用，那么你一定需要 Service Mesh 。</p>
+
+<p>在过去的一年中， Service Mesh 成为了云原生技术栈的关键组件。像 Paypal ,  Ticketmaster 和 Credit Karma 这样的大厂，已经将 Service Mesh 加入到他们的全部应用中。并且在2017年1月，开源的 Service Mesh 软件 Linkerd 加入云原生基金会（ CNCF ），成为云原生基金会（ CNCF ）的官方项目。但是什么是真正的 Service Mesh ？它又为何突然变的如此重要？</p>
+
+<p>在这篇文章，我会讲解 Service Mesh 的定义，并通过应用服务架构过去十年的发展追溯其起源。并将 Service Mesh 与其他相似的概念（包括 API 网关，边缘代理以及 ESB （enterprise service bus））进行区分。最终，将会描述 Service Mesh 的发展方向，以及随着云原生概念的普及，Service Mesh 发生的变化。</p>
+
+<h2 id="什么是-service-mesh">什么是 Service Mesh</h2>
+
+<p>Service Mesh 这个服务网络专注于处理服务和服务间的通讯。其主要负责构造一个稳定可靠的服务通讯的基础设施，并让整个架构更为的先进和 Cloud Native。在工程中，Service Mesh 基本来说是一组轻量级的服务代理和应用逻辑的服务在一起，并且对于应用服务是透明的。</p>
+
+<p>Service Mesh 作为独立层的概念与云原生应用的兴起有关。在云原生模式，单个应用可能有数百个服务组成，每个服务又可能有上千个实例，而每个实例都有可能被像 kubernetes 这样的服务调度器不断调度从而不断变化状态。而这些复杂的通信又普遍是服务运行时行为的一部分，这时确保端到端的通信的性能和可靠性就变的至关重要。</p>
+
+<h2 id="service-mesh-就是一个网络模型吗">Service Mesh 就是一个网络模型吗？</h2>
+
+<p>Service Mesh 是一个位于 TCP/IP 上的抽象层的网络模型。它假定底层 L3/L4 网络存在并且能够从一点向另一点传输数据。（它还假定这个网络和环境的其他方面一样不可靠，所以 Service Mesh 也必须能够处理网络故障。）</p>
+
+<p>在某些方面，Service Mesh 就像是网络七层模型中的第四层 TCP 协议。其把底层的那些非常难控制的网络通讯方面的控制面的东西都管了（比如：丢包重传、拥塞控制、流量控制），而更为上面的应用层的协议，只需要关心自己业务应用层上的事了。</p>
+
+<p>与 TCP 不同的是， Service Mesh 想要达成的目的不仅仅是正常的网络通讯。它为应用提供了统一的，可视化的以及可控制的控制平面。Service Mesh 是要将服务间的通信从无法发现和控制的基础设施中分离出来，并对其进行监控、管理和控制。</p>
+
+<h2 id="service-mesh-实际上做了什么">Service Mesh 实际上做了什么？</h2>
+
+<p>在云原生应用中传递可靠的请求是十分复杂的。而 <a href="https://linkerd.io/#_ga=2.114183109.310878331.1553762133-1927878916.1553476024" target="_blank">Linkerd</a> 提供了服务熔断、重试、负载均衡、熔断降级等功能，通过其强大的功能来管理那些必须运行在复杂环境中的服务。</p>
+
+<p>这里列举一个通过 Linkerd 向服务发出请求的简单流程：</p>
+
+<ol>
+<li>通过 Linkerd 的动态路由规则来确定打算连接哪个服务。这个请求是要路由到生产环境还是演示环境？是请求本地数据中心的服务还是云上的服务？是请求正在测试的最新版的服务还是已经在生产中经过验证的老版本？所有的这些路由规则都是动态配置的，可以全局应用也可以部分应用。</li>
+<li>找到正确的目的服务后， Linkerd 从一个或几个相关的服务发现端点检索实例池。如果这些信息与 Linkerd 的服务发现信息不同， Linkerd 会决定信任哪些信息来源。</li>
+<li>Linkerd 会根据观察到的最近的响应延迟来选择速度最快的实例。</li>
+<li>Linkerd 发送请求给这个实例，记录延迟和响应类型。</li>
+<li>如果这个实例挂了、无响应或者无法处理请求， Linkerd 会再另一个实例上重试这个请求。（但只有在请求是幂等的时候）</li>
+<li>如果一个实例一直请求失败， Linkerd 会将其移出定时重试的负载均衡池。</li>
+<li>如果请求超时， Linkerd 会主动将请求失效，而不是进一步重试从而增加负载。</li>
+<li>Linkerd 会记录指标和分布式的追踪上述行为的各个方面，将他们保存在集中的指标系统中。</li>
+</ol>
+
+<p>以上只是简化版的介绍， Linkerd 还可以启动和重试 TLS ，执行协议升级，动态切换流量，甚至在故障之后数据中心的切换。
+<img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1in1q1jnuj20sg0gbt99.jpg" alt="image" /></p>
+
+<p>值得注意的是，这些功能旨在为每个实例和应用程序提供弹性伸缩。而大规模的分布式系统（无论是如何构建的）都有一个共同特点：都会因为许多小的故障，而升级为全系统灾难性的故障。Service Mesh 则被设计为通过快速的失效和减少负载来保护整个系统免受这样灾难性的故障。</p>
+
+<h2 id="为什么-service-mesh-是必要的">为什么 Service Mesh 是必要的？</h2>
+
+<p>Service Mesh 本质上并不是什么新技术，而是功能所在位置的转变。Web 应用需要管理复杂的服务通信，Service Mesh 模式的起源和演变过程可以追溯到15年前。</p>
+
+<p>参考2000年左右中型 Web 应用的典型三层架构，在这个架构中，应用被分为三层：应用逻辑、web 服务逻辑、存储逻辑。层之间的通信虽然复杂，但是毕竟范围有限，最多只有2跳。这里并不是 “Mesh” 的，但在每层中处理跳转的代码是存在通信逻辑的。</p>
+
+<p>当这种架构向更大规模发展的时候，这种通信方式就无以为继了。像 Google , Netflix , 和 Twitte ，在面临巨大的请求流量的时候，他们的实现了云原生应用的前身：应用被分割成了许多服务（现在称作“微服务”），这些服务组成了一种网格结构。在这些系统中，通用通信层突然兴起，表现为“胖客户端”的形式 - Twitter 的 Finagle, Netflix 的 Hystrix 和 Google 的 Stubby 都是很典型的例子。</p>
+
+<p>现在看来，像 Finagle 、Stubby 和 Hystrix 这样的库就是最早的 Service Mesh。虽然它们是为特定环境、语言和框架定制了，但都是作为基础设施专门用于管理服务间的通信，并（在 Finagle 和 Hystrix 开源的情况下）在其他公司的应用中被使用。</p>
+
+<p>这三个组件都有应用自适应机制，以便在负载中进行拓展，并处理在云环境中的部分故障。但是对于数百个服务或数千个实例，以及不时需要重新调度的业务层实例，单个请求通过的调用链可能变的非常复杂，而且服务可能由不同的语言编写，这时基于库的解决方案可能就不再适用了。</p>
+
+<p>服务通信的复杂性和重要性导致我们急需一个专门的基础设施层来处理服务间的通信，该层需要与业务代码解耦，并且具有捕获底层环境的动态机制。这就是 Service Mesh 。</p>
+
+<h2 id="service-mesh-的未来">Service Mesh 的未来</h2>
+
+<p>Service Mesh 在云生态下迅速的成长，并且有着令人激动的未来等待探索。对无服务器计算（Serverless， 例如 Amazon 的 <a href="https://aws.amazon.com/lambda/" target="_blank">Lambda</a>）适用的 Service Mesh 网络模型，在云生态系统中角色的自然拓展。Service Mesh 可能成为服务身份和访问策略这些在云原生领域还是比较新的技术的基础。最后，Service Mesh ，如之前的TCP / IP，将推进加入到底层的基础架构中。就像 Linkerd 是由像 Finagle 这样的系统发展而来，Service Mesh 将作为单独的用户空间代理添加到云原生技术栈中继续发展。</p>
+
+<h2 id="结语">结语</h2>
+
+<p>Service Mesh 是云原生技术栈的关键技术。Linkerd 成立仅1年就成为了云原生基金会（CNCF）的一部分，拥有蓬勃发展的社区和贡献者。使用者从像 Monzo 这样颠覆英国银行业的创业公司，到像 Paypal、 Ticketmaster 和 Credit Karma 这样的互联网大厂，再到像 Houghton Mifflin Harcourt 这样经营了数百年的公司。</p>
+
+<p>使用者和贡献者每天都在 Linkerd 社区展示 Service Mesh 创造的价值。我们将致力于打造这一令人惊叹的产品，并继续发展壮大我们的社区，<a href="https://linkerd.io/#_ga=2.40265824.310878331.1553762133-1927878916.1553476024" target="_blank">加入我们吧</a>！</p>
+
+<p><strong>原文链接</strong> <a href="https://buoyant.io/2017/04/25/whats-a-service-mesh-and-why-do-i-need-one/" target="_blank">https://buoyant.io/2017/04/25/whats-a-service-mesh-and-why-do-i-need-one/</a></p>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/%e7%bf%bb%e8%af%91">翻译</a>
+  
+  <a class="badge badge-light" href="/tags/service%20mesh">service mesh</a>
+  
+</div>
+
+
+
+     
+     
+<div class="entry-shang text-center">
+    <p>「一键投喂 小鱼干/小骨头」</p>
+    <button class="zs show-zs btn btn-primary">投喂</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+    <div class="zs-modal-head">
+        <button type="button" class="close">×</button>
+        <p class="author">
+            <a href="https://blog.maoxianplay.com">
+                <img src="https://wx3.sinaimg.cn/square/ad5fbf65gy1g2o621gcs6j20m80m8gng.jpg"/>
+            小助手毛线</a>
+        </p>
+        <p class="tip"><i></i><span>感谢投喂 <a href="/maoxian">毛线</a> & <a href="/sunny">Sunny</a> </span></p>
+    </div>
+    <div class="zs-modal-body">
+        <div class="zs-modal-btns">
+            <button class="btn btn-blink" data-num="2">2元</button>
+            <button class="btn btn-blink" data-num="5">5元</button>
+            <button class="btn btn-blink" data-num="10">10元</button>
+            <button class="btn btn-blink" data-num="50">50元</button>
+            <button class="btn btn-blink" data-num="100">100元</button>
+            <button class="btn btn-blink" data-num="any">任意金额</button>
+        </div>
+        <div class="zs-modal-pay">
+            <button class="btn btn-bred" id="pay-text">2元</button>
+            <p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+            <img id="pay-image" src="/img/alipay-2.png">
+        </div>
+    </div>
+    <div class="zs-modal-footer">
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="alipay" class="zs-type" checked="checked" style="float: left;">
+            <span class="zs-alipay">
+                <img src="/img/alipay-btn.png">
+            </span>
+        </label>
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="wechat" class="zs-type" style="float: left;">
+            <span class="zs-wechat">
+                <img src="/img/wechat-btn.png">
+            </span>
+        </label>
+    </div>
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="https://academia-hugo.netlify.com/">郭旭东</a></h5>
+      <h6 class="card-subtitle">运维负责人</h6>
+      <p class="card-text" itemprop="description">云原生爱好者，分享云原生和 DevOps 技术实践，倡导开源运动，传播开源思想。</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          <li>
+            <a itemprop="sameAs" href="mailto:sunnydog0826@gmail.com" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/publication/wx_contact/" >
+              <i class="fab fa-weixin"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/sunny0826" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>相关</h3>
+        <ul>
+          
+          <li><a href="/post/istio-bookinfo-demo/">Istio初探之Bookinfo样例部署</a></li>
+          
+          <li><a href="/post/istio-share/">浅析ServiceMesh &amp; Istio</a></li>
+          
+          <li><a href="/post/istio-demo/">阿里云环境Istio初探</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+      <script async defer src="//maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.min.js" integrity="sha256-7vjlAeb8OaTrCXZkCNun9djzuB2owUsaO72kXaFDBJs=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-algolia-template" type="text/html">
+      <div class="search-hit">
+        <div class="search-hit-content">
+          <div class="search-hit-name">
+            <a href="{{relpermalink}}">{{{_highlightResult.title.value}}}</a>
+          </div>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{{_highlightResult.summary.value}}}</p>
+        </div>
+      </div>
+    </script>
+    
+
+    
+    
+
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch.min.js" integrity="sha256-gFCtPk/sonctyfwYOgjrPoWApQ0rqB6ezBBZ7p32yGc=" crossorigin="anonymous"></script>
+    
+    <script>
+      const algoliaConfig = {
+        appId: "BE80MGWD9D",
+        apiKey: "77ca6abe5531ce66ff7c3b2486222d85",
+        indexName: "gxd-blog",
+        poweredBy:  true 
+      };
+    </script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+      
+    
+    
+    
+    <script src="/js/academia.min.6ee120363d4a313a6fd39ad7c46e63f8.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        
+        <p>
+          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          Powered by
+          <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-inline network-icon text-right">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="mailto:sunnydog0826@gmail.com"  title="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="/publication/wx_contact/"  title="Chat on Keybase"><i class="fab fa-weixin" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/sunny0826" target="_blank" rel="noopener" title="Discuss on Forum"><i class="fab fa-github" aria-hidden="true"></i></a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

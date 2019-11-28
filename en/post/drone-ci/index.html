@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academia 4.3.1">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
+  <meta name="baidu-site-verification" content="A85okozwVV" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="never">
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="郭旭东">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="本文介绍一款轻量级的 CI 工具 Drone ，同时也介绍在实践中遇到的一些坑，帮助你快速搭建持续集成流水线。">
+
+  
+  <link rel="alternate" hreflang="zh" href="https://academia-hugo.netlify.com/post/drone-ci/">
+  
+  <link rel="alternate" hreflang="en-us" href="https://academia-hugo.netlify.com/en/post/drone-ci/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#fc6f5c">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.9.0/instantsearch.min.css" integrity="sha256-ZtmLe16p4jS4/2wPwwH6NzJt460SJzgLmhKrYo5yn7g=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch-theme-algolia.min.css" integrity="sha256-uL8LUd3zkI/lXvc/Hv/oOu8ld6RJcOZiUY/8c+I+3/o=" crossorigin="anonymous">
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academia.min.9be1772e7ca3b9e5f31014835ca21e99.css">
+
+  
+    
+    
+    
+    
+      
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academia.ef74575f38e28c5c9feae541be1f6e36.css">
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://academia-hugo.netlify.com/en/post/drone-ci/">
+
+  
+  
+  
+  
+    
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@GuoXudong2">
+  <meta property="twitter:creator" content="@GuoXudong2">
+  
+  <meta property="og:site_name" content="GuoXD Blog">
+  <meta property="og:url" content="https://academia-hugo.netlify.com/en/post/drone-ci/">
+  <meta property="og:title" content="轻量快速的 CI 工具 Drone | GuoXD Blog">
+  <meta property="og:description" content="本文介绍一款轻量级的 CI 工具 Drone ，同时也介绍在实践中遇到的一些坑，帮助你快速搭建持续集成流水线。"><meta property="og:image" content="https://academia-hugo.netlify.com/en/post/drone-ci/featured.jpg">
+  <meta property="twitter:image" content="https://academia-hugo.netlify.com/en/post/drone-ci/featured.jpg"><meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2019-05-21T08:59:00&#43;08:00">
+  
+  <meta property="article:modified_time" content="2019-05-21T08:59:00&#43;08:00">
+  
+
+  
+
+
+  
+
+
+
+
+
+  <title>轻量快速的 CI 工具 Drone | GuoXD Blog</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/en/"><img src="/img/logo.png" alt="GuoXD Blog"></a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/en/#slider"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/en/#posts"><span>Blog</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/en/#about"><span>About</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <span>English</span>
+          </a>
+          <ul class="dropdown-menu">
+            
+            <li class="dropdown-item my-0 py-0 mx-0 px-0">
+              <a href="https://academia-hugo.netlify.com/post/drone-ci/">
+                <span>中文 (简体)</span>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        
+
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article py-5" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container split-header">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+        <img class="img-fluid w-100" src="/en/post/drone-ci/featured_hu765d035bfecc6a76c3134bcb6c700fed_92702_680x500_fill_q90_lanczos_smart1.jpg" itemprop="image" alt="">
+        <span
+          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+    </div>
+    <div class="col-lg-8">
+      <h1 itemprop="name">轻量快速的 CI 工具 Drone</h1>
+
+      
+
+      
+
+
+
+<meta content="2019-05-21 08:59:00 &#43;0800 CST" itemprop="datePublished">
+<meta content="2019-05-21 08:59:00 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2019-05-21</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    5 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/en/categories/devops/">devops</a></span>
+  
+
+  
+    
+<br>
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://academia-hugo.netlify.com/en/post/drone-ci/&amp;text=%e8%bd%bb%e9%87%8f%e5%bf%ab%e9%80%9f%e7%9a%84%20CI%20%e5%b7%a5%e5%85%b7%20Drone" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://academia-hugo.netlify.com/en/post/drone-ci/&amp;t=%e8%bd%bb%e9%87%8f%e5%bf%ab%e9%80%9f%e7%9a%84%20CI%20%e5%b7%a5%e5%85%b7%20Drone" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%e8%bd%bb%e9%87%8f%e5%bf%ab%e9%80%9f%e7%9a%84%20CI%20%e5%b7%a5%e5%85%b7%20Drone&amp;body=https://academia-hugo.netlify.com/en/post/drone-ci/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://academia-hugo.netlify.com/en/post/drone-ci/&amp;title=%e8%bd%bb%e9%87%8f%e5%bf%ab%e9%80%9f%e7%9a%84%20CI%20%e5%b7%a5%e5%85%b7%20Drone" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=%e8%bd%bb%e9%87%8f%e5%bf%ab%e9%80%9f%e7%9a%84%20CI%20%e5%b7%a5%e5%85%b7%20Drone%20https://academia-hugo.netlify.com/en/post/drone-ci/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://academia-hugo.netlify.com/en/post/drone-ci/&amp;title=%e8%bd%bb%e9%87%8f%e5%bf%ab%e9%80%9f%e7%9a%84%20CI%20%e5%b7%a5%e5%85%b7%20Drone" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://academia-hugo.netlify.com/en/post/drone-ci/&amp;title=%e8%bd%bb%e9%87%8f%e5%bf%ab%e9%80%9f%e7%9a%84%20CI%20%e5%b7%a5%e5%85%b7%20Drone" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    
+    </div>
+  </div>
+</div>
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<h2 id="前言">前言</h2>
+
+<p>公司之前一直在使用 Jenkins 作为 CI/CD 工具， Jenkins 非常强大，它完成了几乎所有 CI/CD 的工作，并且应用于整个团队有好长一段时间了。但是随着公司推荐数字化、智慧化，以及服务容器化的推进， Jenkins 的一些弊端也凸显了出来：</p>
+
+<ul>
+<li><strong>重量级：</strong> Jenkins 功能十分齐全，几乎可以做所有的事情。但是这也是他的一个弊端，过于重量级，有时候往往一个小的修改需要改动许多地方，升级\下载插件后需要进行重启等。</li>
+<li><strong>升级不易：</strong> 在一些安全 Jenkins 相关的安全漏洞被公开后，我们会对 Jenkins 进行升级，但这也不是一件容易的事。之前就出现过升级\重启后，所有 job 丢失，虽然我们所有项目配置都是以 Jenkinsfile 的形式统一存储，但是每个 job 都需要重新重新创建，包括每个 job 的权限&hellip;.._(´ཀ`」 ∠)_</li>
+<li><strong>权限控制复杂：</strong> 这其实也是 Jenkins 的一大优势，可以精确控制每个用户的权限，但是需要花费更多时间去配置，时间长了也会出现权限混乱的问题。</li>
+<li><strong>UI 界面：</strong> 这个其实是吐槽最多的部分，虽然有诸如：Blue Ocean 这样的插件来展示 pipeline ，但是还是没有从根本改变它简陋的 UI 界面。</li>
+</ul>
+
+<p>那么为什么选择使用 Drone 呢？</p>
+
+<p>其实在 GitHub 上提交 PR 后，大部分开源项目都会使用 <a href="http://travis-ci.org/" target="_blank">travis-ci</a> 对提交的代码进行 CI 及检查，而如果是 Kubernetes 相关的项目，则会使用 <a href="https://github.com/k8s-ci-robot" target="_blank">prow</a> 进行 CI。但是 <a href="http://travis-ci.org/" target="_blank">travis-ci</a> 只能用于 GitHub ，在寻找类似项目的时候， Drone 进入了我的视野。</p>
+
+<p>大道至简。和 Jenkins 相比， Drone 就轻量的多了，从应用本身的安装部署到流水线的构建都简洁的多。由于是和源码管理系统相集成，所以 Drone 天生就省去了各种账户\权限的配置，直接与 gitlab 、 github 、 Bitbucket 这样的源码管理系统操作源代码的权限一致。正如它官网上写的那样：</p>
+
+<blockquote>
+<p><strong>Any Source Code Manager</strong></p>
+
+<p>Drone integrates seamlessly with multiple source code management systems, including GitHub, GitHubEnterprise, Bitbucket, and GitLab.</p>
+
+<p><strong>Any Platform</strong></p>
+
+<p>Drone natively supports multiple operating systems and architectures, including Linux x64, ARM, ARM64 and Windows x64.</p>
+
+<p><strong>Any Language</strong></p>
+
+<p>Drone works with any language, database or service that runs inside a Docker container. Choose from thousands of public Docker images or provide your own.</p>
+</blockquote>
+
+<p>Drone 天生支持任何源码管理工具、任何平台和任何语言。</p>
+
+<p><strong>而写这篇文章的目的，并不是要吹捧这个工具有多么的好用，而是要总结在搭建 drone 和使用时候需要的各种坑，帮助读者绕过这些坑。</strong></p>
+
+<h2 id="声明">声明</h2>
+
+<p>鉴于在使用 Drone CI 中，遇到的各种坑都和 Drone 的版本有关，这里首先声明我使用的 Drone 版本为<code>1.1</code>，使用<code>0.8</code>版本的同学请绕道。</p>
+
+<h2 id="搭建-drone">搭建 Drone</h2>
+
+<p>这里要说的就是在使用 drone 中遇到的第一个坑，在最初正准备搭建 drone 的时候 Google 了很多相关的 blog ，大部分 blog （包括某些 <a href="https://medium.com/" target="_blank">medium.com</a> 上面近期的英文 blog） 推荐的安装方式都是使用 <code>docker-compose</code>，而无一例外的都失败了&hellip;走投无路之下，我回到了<a href="https://docs.drone.io/installation/" target="_blank">官网的文档</a>，发现<code>1.0</code>之后许多参数都发生了变化，并且官方推荐使用 docker 的方式运行 Drone。</p>
+
+<p><strong>所以在使用任何开源软件之前都要去阅读它的文档，不要跟着一篇 blog 就开始了（包括我的），这样会少踩很多坑！！！</strong></p>
+
+<p>这里以 gitlab 为例，展示网上版本启动参数和实际参数的不同：</p>
+
+<table>
+<thead>
+<tr>
+<th>作用</th>
+<th>各种blog</th>
+<th>官网文档</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>设置 Drone 的管理员</td>
+<td>DRONE_ADMIN=admin</td>
+<td>DRONE_USER_CREATE=username:admin,admin:true</td>
+</tr>
+
+<tr>
+<td>设置GitLab的域名</td>
+<td>DRONE_GITLAB_URL</td>
+<td>DRONE_SERVER_HOST</td>
+</tr>
+
+<tr>
+<td>GitLab的Application中的key</td>
+<td>DRONE_GITLAB_CLIENT</td>
+<td>DRONE_GITLAB_CLIENT_ID</td>
+</tr>
+
+<tr>
+<td>GitLab的Application中的secret</td>
+<td>DRONE_GITLAB_SECRET</td>
+<td>DRONE_GITLAB_CLIENT_SECRET</td>
+</tr>
+
+<tr>
+<td>Drone 域名</td>
+<td>DRONE_HOST</td>
+<td>DRONE_GITLAB_SERVER</td>
+</tr>
+</tbody>
+</table>
+
+<p>上面只是列举了部分官方文档和网上流产版本的不同，所以在使用之前一定要仔细阅读官方文档。下附运行 drone 的命令：</p>
+
+<pre><code class="language-bash">docker run \
+  --volume=/var/run/docker.sock:/var/run/docker.sock \
+  --volume=/var/lib/drone:/data \
+  --env=DRONE_GIT_ALWAYS_AUTH=false \
+  --env=DRONE_GITLAB_SERVER={your-gitlab-url} \  # gitlab 的 URL
+  --env=DRONE_GITLAB_CLIENT_ID={your-gitlab-applications-id} \  #GitLab的Application中的id
+  --env=DRONE_GITLAB_CLIENT_SECRET={your-gitlab-applicati-secret} \ #GitLab的Application中的secret
+  --env=DRONE_SERVER_HOST={your-drone-url} \    # drone 的URl
+  --env=DRONE_SERVER_PROTO=http \
+  --env=DRONE_TLS_AUTOCERT=false \
+  --env=DRONE_USER_CREATE=username:{your-admin-username},admin:true \   # Drone的管理员
+  --publish=8000:80 \
+  --publish=443:443 \
+  --restart=always \
+  --detach=true \
+  --name=drone \
+  drone/drone:1.1
+</code></pre>
+
+<p>关于 <code>gitlab Application</code> 的配置和 Drone 其他参数含义请参考<a href="https://docs.drone.io/installation/gitlab/single-machine/" target="_blank">官方文档</a>，这里只展示单节点办的运行方式。</p>
+
+<h2 id="核心文件-drone-yml">核心文件 <code>.drone.yml</code></h2>
+
+<p>要使用 Drone 只需在项目根创建一个 <code>.drone.yml</code> 文件即可，这个是 Drone 构建脚本的配置文件，它随项目一块进行版本管理，开发者不需要额外再去维护一个配置脚本。其实现代 CI 程序都是这么做了，这个主要是相对于 Jekins 来说的。虽然 Jekins 也有插件支持，但毕竟还是需要配置。</p>
+
+<blockquote>
+<p>值得注意的事这个文件时 <code>.drone.yml</code>，由于 Kubernetes 使用的多了，第一次创建了一个 <code>.drone.yaml</code> 文件，导致怎么都获取不到配置&hellip;_(´ཀ`」 ∠)_&hellip; YAML 工程师石锤了&hellip;</p>
+</blockquote>
+
+<p>这里放一个 Java 的 .drone.yml ，这个项目是 fork 别人的项目用作演示，记得要修改 <code>deployment.yaml</code> 中的镜像仓库地址修改为自己的私有仓库。</p>
+
+<p>示例项目源码：<a href="https://github.com/sunny0826/pipeline-example-maven" target="_blank">https://github.com/sunny0826/pipeline-example-maven</a></p>
+
+<pre><code class="language-YAML">kind: pipeline
+name: pipeline-example-maven
+
+steps:
+- name: Maven编译
+  image: maven:3-jdk-7
+  volumes:
+  - name: cache
+    path: /root/.m2
+  commands:
+    - mvn clean install
+
+- name: 构建镜像  
+  image: plugins/docker
+  volumes:
+  - name: docker
+    path: /var/run/docker.sock
+  settings:
+    username: 
+      from_secret: docker_user
+    password: 
+      from_secret: docker_pass
+    repo: {your-repo}
+    registry: {your-registry}
+    tags: ${DRONE_BUILD_NUMBER}
+
+- name: Kubernetes 部署
+  image: guoxudongdocker/kubectl:v1.14.1 
+  volumes:
+  - name: kube
+    path: /root/.kube
+  commands:
+    - sed -i &quot;s/#Tag/${DRONE_BUILD_NUMBER}/g&quot; deployment.yaml
+    - kubectl apply -f deployment.yaml
+
+- name: 钉钉通知
+  image: guoxudongdocker/drone-dingtalk 
+  settings:
+    token: 
+      from_secret: dingding
+    type: markdown
+    message_color: true
+    message_pic: true
+    sha_link: true
+  when:
+    status: [failure, success]
+
+volumes:
+- name: cache
+  host:
+    path: /tmp/cache/.m2
+- name: kube
+  host:
+    path: /tmp/cache/.kube/.test_kube
+- name: docker
+  host:
+    path: /var/run/docker.sock
+
+trigger:
+  branch:
+  - master
+</code></pre>
+
+<p>值得注意的事：上面的这个 <code>.drone.yml</code> 文件将本地的<code>.m2</code>文件、kubeconfig文件、<code>docker.sock</code> 文件挂载到 pipeline 中以实现 maven 打包缓存，k8s 部署、docker 缓存的作用，以提高 CI 速度。而是用挂载需要管理员在项目 settings 中勾选 <code>Trusted</code> ，这个操作只能管理员进行，普通用户是看不到这个选项的。而管理员就是在docker运行时候 <code>--env=DRONE_USER_CREATE=username:{your-admin-username},admin:true</code> 设置的。</p>
+
+<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g38qvifxwij21d40tk76s.jpg" alt="WX20190521-104717@2x" /></p>
+
+<p>而上传镜像和钉钉同时需要在 settings 设置中添加 secret</p>
+
+<ul>
+<li>docker_user：docker 仓库用户名</li>
+<li>docker_pass：docker 仓库密码</li>
+<li>dingding： 钉钉机器人 token</li>
+</ul>
+
+<blockquote>
+<p>注意这里的钉钉 token 是 webhook 中 <code>https://oapi.dingtalk.com/robot/send?access_token=</code> 后这部分
+<img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g38r1mkoztj20iy0ezgmg.jpg" alt="WX20190521-105337" /></p>
+</blockquote>
+
+<p><img src="https://ws1.sinaimg.cn/large/ad5fbf65gy1g38qxizsg1j21ia0tujtb.jpg" alt="WX20190521-104942@2x" /></p>
+
+<h2 id="构建结果">构建结果</h2>
+
+<p>添加 <code>.drone.yml</code> 文件后，向 master 分支提交代码即可出发 CI 构建</p>
+
+<p><img src="https://wx3.sinaimg.cn/large/ad5fbf65gy1g38r68yb8pj21l40sawit.jpg" alt="WX20190521-105809@2x" /></p>
+
+<p>CI 结束后，会在钉钉机器人所在群收到通知</p>
+
+<p><img src="https://ws4.sinaimg.cn/large/ad5fbf65gy1g38r8cttcrj20e90bzacr.jpg" alt="WX20190521-110009" /></p>
+
+<h2 id="插件支持">插件支持</h2>
+
+<p>可以看到，每一步的镜像都是一个镜像，上面 pipeline 中的 Kubernetes 及钉钉通知插件就是我开发的，具体开发方法可以参考<a href="https://docs.drone.io/" target="_blank">官方文档</a>，而官方也提供了许多<a href="http://plugins.drone.io/" target="_blank">官方插件</a>。</p>
+
+<ul>
+<li>构建后部署：<a href="http://plugins.drone.io/mactynow/drone-kubernetes/" target="_blank">Kubernetes</a>、<a href="http://plugins.drone.io/ipedrazas/drone-helm/" target="_blank">helm</a>、<a href="http://plugins.drone.io/appleboy/drone-scp/" target="_blank">scp</a></li>
+<li>构建后通知：<a href="http://plugins.drone.io/lddsb/drone-dingtalk-message/" target="_blank">钉钉</a> 、<a href="http://plugins.drone.io/drillster/drone-email/" target="_blank">Email</a>、<a href="http://plugins.drone.io/drone-plugins/drone-slack/" target="_blank">Slack</a>、<a href="http://plugins.drone.io/lizheming/drone-wechat/" target="_blank">微信</a></li>
+</ul>
+
+<h2 id="后记">后记</h2>
+
+<p>Drone 整体用起来还是很方便的，搭建、上手速度都很快，但是官方文档给的不够详实，而网上充斥着各种各样0.8版本的的实例，但是其实官网早就发布了1.0版本，而官方并没有 <code>example</code> 这样的示例项目，这样就又把本来降下来的学习曲线拉高了。许多坑都需要自己去趟，我在测试 drone 的时候，就构构建了上百次，不停的修改 <code>.drone.yml</code> ， commit 信息看起来是很恐怖的。后续抽空会向官方贡献 <code>example</code> 这样的 PR。</p>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/devops">devops</a>
+  
+  <a class="badge badge-light" href="/tags/drone">drone</a>
+  
+  <a class="badge badge-light" href="/tags/%e5%b7%a5%e5%85%b7">工具</a>
+  
+</div>
+
+
+
+     
+     
+<div class="entry-shang text-center">
+    <p>「一键投喂 小鱼干/小骨头」</p>
+    <button class="zs show-zs btn btn-primary">投喂</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+    <div class="zs-modal-head">
+        <button type="button" class="close">×</button>
+        <p class="author">
+            <a href="https://blog.maoxianplay.com">
+                <img src="https://wx3.sinaimg.cn/square/ad5fbf65gy1g2o621gcs6j20m80m8gng.jpg"/>
+            小助手毛线</a>
+        </p>
+        <p class="tip"><i></i><span>感谢投喂 <a href="/maoxian">毛线</a> & <a href="/sunny">Sunny</a> </span></p>
+    </div>
+    <div class="zs-modal-body">
+        <div class="zs-modal-btns">
+            <button class="btn btn-blink" data-num="2">2元</button>
+            <button class="btn btn-blink" data-num="5">5元</button>
+            <button class="btn btn-blink" data-num="10">10元</button>
+            <button class="btn btn-blink" data-num="50">50元</button>
+            <button class="btn btn-blink" data-num="100">100元</button>
+            <button class="btn btn-blink" data-num="any">任意金额</button>
+        </div>
+        <div class="zs-modal-pay">
+            <button class="btn btn-bred" id="pay-text">2元</button>
+            <p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+            <img id="pay-image" src="/img/alipay-2.png">
+        </div>
+    </div>
+    <div class="zs-modal-footer">
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="alipay" class="zs-type" checked="checked" style="float: left;">
+            <span class="zs-alipay">
+                <img src="/img/alipay-btn.png">
+            </span>
+        </label>
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="wechat" class="zs-type" style="float: left;">
+            <span class="zs-wechat">
+                <img src="/img/wechat-btn.png">
+            </span>
+        </label>
+    </div>
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="https://academia-hugo.netlify.com/">郭旭东</a></h5>
+      <h6 class="card-subtitle">运维负责人</h6>
+      <p class="card-text" itemprop="description">云原生爱好者，分享云原生和 DevOps 技术实践，倡导开源运动，传播开源思想。</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          <li>
+            <a itemprop="sameAs" href="mailto:sunnydog0826@gmail.com" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/en/publication/wx_contact/" >
+              <i class="fab fa-weixin"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/sunny0826" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>Related</h3>
+        <ul>
+          
+          <li><a href="/en/post/all-about-devops-fundamentalsyou-ever-wanted-to-know/">什么是 DevOps ？DevOps 是如何工作的？</a></li>
+          
+          <li><a href="/en/post/kustomize-3/">使用 Kustomize 帮你管理 kubernetes 应用（三）：将 Kustomize 应用于 CI/CD</a></li>
+          
+          <li><a href="/en/post/what-is-devsecops/">什么是 DevSecOps ?</a></li>
+          
+          <li><a href="/en/post/edex-ui/">炫酷的终端软件 eDEX-UI</a></li>
+          
+          <li><a href="/en/post/kustomize-2/">使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+      <script async defer src="//maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.min.js" integrity="sha256-7vjlAeb8OaTrCXZkCNun9djzuB2owUsaO72kXaFDBJs=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/en/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-algolia-template" type="text/html">
+      <div class="search-hit">
+        <div class="search-hit-content">
+          <div class="search-hit-name">
+            <a href="{{relpermalink}}">{{{_highlightResult.title.value}}}</a>
+          </div>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{{_highlightResult.summary.value}}}</p>
+        </div>
+      </div>
+    </script>
+    
+
+    
+    
+
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch.min.js" integrity="sha256-gFCtPk/sonctyfwYOgjrPoWApQ0rqB6ezBBZ7p32yGc=" crossorigin="anonymous"></script>
+    
+    <script>
+      const algoliaConfig = {
+        appId: "BE80MGWD9D",
+        apiKey: "77ca6abe5531ce66ff7c3b2486222d85",
+        indexName: "gxd-blog",
+        poweredBy:  true 
+      };
+    </script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+      
+    
+    
+    
+    <script src="/js/academia.min.6ee120363d4a313a6fd39ad7c46e63f8.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        
+        <p>
+          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          Powered by
+          <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-inline network-icon text-right">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="mailto:sunnydog0826@gmail.com"  title="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="/en/publication/wx_contact/"  title="Chat on Keybase"><i class="fab fa-weixin" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/sunny0826" target="_blank" rel="noopener" title="Discuss on Forum"><i class="fab fa-github" aria-hidden="true"></i></a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

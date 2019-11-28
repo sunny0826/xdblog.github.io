@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academia 4.3.1">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
+  <meta name="baidu-site-verification" content="A85okozwVV" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="never">
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="郭旭东">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="这里记录了在工作中遇到阿里云容器服务的调优优化方案，帮助您绕过阿里云容器服务中的一些坑，来使用更好更优质的阿里云容器服务。">
+
+  
+  <link rel="alternate" hreflang="en" href="https://academia-hugo.netlify.com/en/post/aliyun-k8s-perfect/">
+  
+  <link rel="alternate" hreflang="zh-Hans" href="https://academia-hugo.netlify.com/post/aliyun-k8s-perfect/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#fc6f5c">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.9.0/instantsearch.min.css" integrity="sha256-ZtmLe16p4jS4/2wPwwH6NzJt460SJzgLmhKrYo5yn7g=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch-theme-algolia.min.css" integrity="sha256-uL8LUd3zkI/lXvc/Hv/oOu8ld6RJcOZiUY/8c+I+3/o=" crossorigin="anonymous">
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academia.min.9be1772e7ca3b9e5f31014835ca21e99.css">
+
+  
+    
+    
+    
+    
+      
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academia.ef74575f38e28c5c9feae541be1f6e36.css">
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://academia-hugo.netlify.com/post/aliyun-k8s-perfect/">
+
+  
+  
+  
+  
+    
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@GuoXudong2">
+  <meta property="twitter:creator" content="@GuoXudong2">
+  
+  <meta property="og:site_name" content="GuoXD Blog·郭旭东的博客">
+  <meta property="og:url" content="https://academia-hugo.netlify.com/post/aliyun-k8s-perfect/">
+  <meta property="og:title" content="阿里云容器服务新建集群优化方案(更新版) | GuoXD Blog·郭旭东的博客">
+  <meta property="og:description" content="这里记录了在工作中遇到阿里云容器服务的调优优化方案，帮助您绕过阿里云容器服务中的一些坑，来使用更好更优质的阿里云容器服务。"><meta property="og:image" content="https://academia-hugo.netlify.com/post/aliyun-k8s-perfect/featured.jpg">
+  <meta property="twitter:image" content="https://academia-hugo.netlify.com/post/aliyun-k8s-perfect/featured.jpg"><meta property="og:locale" content="zh-Hans">
+  
+  <meta property="article:published_time" content="2019-04-25T22:26:06&#43;08:00">
+  
+  <meta property="article:modified_time" content="2019-04-25T22:26:06&#43;08:00">
+  
+
+  
+
+
+  
+
+
+
+
+
+  <title>阿里云容器服务新建集群优化方案(更新版) | GuoXD Blog·郭旭东的博客</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/"><img src="/img/logo.png" alt="GuoXD Blog·郭旭东的博客"></a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航"><span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#slider"><span>主页</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>博客</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>关于</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <span>中文 (简体)</span>
+          </a>
+          <ul class="dropdown-menu">
+            
+            <li class="dropdown-item my-0 py-0 mx-0 px-0">
+              <a href="https://academia-hugo.netlify.com/en/post/aliyun-k8s-perfect/">
+                <span>English</span>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        
+
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article py-5" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container split-header">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+        <img class="img-fluid w-100" src="/post/aliyun-k8s-perfect/featured_hu01ec8db54fd6bce0de7baa9013c1684b_78639_680x500_fill_q90_lanczos_smart1.jpg" itemprop="image" alt="">
+        <span
+          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+    </div>
+    <div class="col-lg-8">
+      <h1 itemprop="name">阿里云容器服务新建集群优化方案(更新版)</h1>
+
+      
+
+      
+
+
+
+<meta content="2019-04-25 22:26:06 &#43;0800 CST" itemprop="datePublished">
+<meta content="2019-04-25 22:26:06 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2019-04-25</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    4 分钟阅读时间
+  </span>
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/categories/kubernetes/">kubernetes</a></span>
+  
+
+  
+    
+<br>
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://academia-hugo.netlify.com/post/aliyun-k8s-perfect/&amp;text=%e9%98%bf%e9%87%8c%e4%ba%91%e5%ae%b9%e5%99%a8%e6%9c%8d%e5%8a%a1%e6%96%b0%e5%bb%ba%e9%9b%86%e7%be%a4%e4%bc%98%e5%8c%96%e6%96%b9%e6%a1%88%28%e6%9b%b4%e6%96%b0%e7%89%88%29" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://academia-hugo.netlify.com/post/aliyun-k8s-perfect/&amp;t=%e9%98%bf%e9%87%8c%e4%ba%91%e5%ae%b9%e5%99%a8%e6%9c%8d%e5%8a%a1%e6%96%b0%e5%bb%ba%e9%9b%86%e7%be%a4%e4%bc%98%e5%8c%96%e6%96%b9%e6%a1%88%28%e6%9b%b4%e6%96%b0%e7%89%88%29" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%e9%98%bf%e9%87%8c%e4%ba%91%e5%ae%b9%e5%99%a8%e6%9c%8d%e5%8a%a1%e6%96%b0%e5%bb%ba%e9%9b%86%e7%be%a4%e4%bc%98%e5%8c%96%e6%96%b9%e6%a1%88%28%e6%9b%b4%e6%96%b0%e7%89%88%29&amp;body=https://academia-hugo.netlify.com/post/aliyun-k8s-perfect/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://academia-hugo.netlify.com/post/aliyun-k8s-perfect/&amp;title=%e9%98%bf%e9%87%8c%e4%ba%91%e5%ae%b9%e5%99%a8%e6%9c%8d%e5%8a%a1%e6%96%b0%e5%bb%ba%e9%9b%86%e7%be%a4%e4%bc%98%e5%8c%96%e6%96%b9%e6%a1%88%28%e6%9b%b4%e6%96%b0%e7%89%88%29" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=%e9%98%bf%e9%87%8c%e4%ba%91%e5%ae%b9%e5%99%a8%e6%9c%8d%e5%8a%a1%e6%96%b0%e5%bb%ba%e9%9b%86%e7%be%a4%e4%bc%98%e5%8c%96%e6%96%b9%e6%a1%88%28%e6%9b%b4%e6%96%b0%e7%89%88%29%20https://academia-hugo.netlify.com/post/aliyun-k8s-perfect/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://academia-hugo.netlify.com/post/aliyun-k8s-perfect/&amp;title=%e9%98%bf%e9%87%8c%e4%ba%91%e5%ae%b9%e5%99%a8%e6%9c%8d%e5%8a%a1%e6%96%b0%e5%bb%ba%e9%9b%86%e7%be%a4%e4%bc%98%e5%8c%96%e6%96%b9%e6%a1%88%28%e6%9b%b4%e6%96%b0%e7%89%88%29" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://academia-hugo.netlify.com/post/aliyun-k8s-perfect/&amp;title=%e9%98%bf%e9%87%8c%e4%ba%91%e5%ae%b9%e5%99%a8%e6%9c%8d%e5%8a%a1%e6%96%b0%e5%bb%ba%e9%9b%86%e7%be%a4%e4%bc%98%e5%8c%96%e6%96%b9%e6%a1%88%28%e6%9b%b4%e6%96%b0%e7%89%88%29" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    
+    </div>
+  </div>
+</div>
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<h2 id="前言">前言</h2>
+
+<p>选择阿里云的<code>容器服务</code>，主要原因是公司主要业务基本都在运行在阿里云上。相较自建 kubernetes 集群，容器服务的优势在于部署相对简单，与阿里云 VPC 完美兼容，网络的配置相对简单，而如果使用 <code>kubeadm</code> 安装部署 kubernetes 集群，除了众所周知的科学上网的问题，还有一系列的问题，包括 <code>etcd</code> 、 <code>Scheduler</code> 和 <code>Controller-Manager</code> 的高可用问题等。并且如果使用托管版的阿里云 kubernetes 容器服务，还会省掉3台 master 节点的钱，并且可能将 master 节点的运维问题丢给阿里云解决，并且其提供的 master 节点性能肯定会比自购的配置好，这点是阿里云容器服务的研发小哥在来我司交流时专门强调的。</p>
+
+<h2 id="问题">问题</h2>
+
+<p>前面吹了阿里云容器服务的优势，那这里就说说在实践中遇到的容器服务的问题：</p>
+
+<ul>
+<li><p>在新建集群的时候需要选择相应的 VPC 并选择 <code>Pod</code> 和 <code>Service</code> 所在的网段，这两个网段不能和 Node 节点存在于同一网段，但是如果您在阿里云中存在不止一个 VPC （VPC的网段可以是 10.0.0.0/8，172.16-31.0.0/12-16，192.168.0.0/16 ），如果网段设置不对的话，就可能会使原本存在该网段的 ECS 失联，需要删除集群重新创建。如果删除失败的话，还需要手动删除路由表中的记录（<strong>别问我是怎么知道的</strong>）。</p></li>
+
+<li><p>在使用容器服务创建集群后，会创建2个 SLB （之前是3个），一个是 SLB 是在 VPC 上并且绑定一个弹性IP（需要在创建的时候手动勾选创建弹性IP）用于 API Server，一个是经典网络的 SLB 使用提供给 Ingress 使用。但是这两个外网IP创建后的规格都是默认最大带宽、按流量收费，这个并不符合我们的要求，需要手动修改，<del>然而这个修改都会在第二天才能生效</del>。</p></li>
+
+<li><p>容器服务创建集群后，Node 节点的名称会使<code>{region-id}.{ECS-id}</code>的形式，这个命名方式在集群监控，使用 <code>kubectl</code> 操作集群方面就显得比较反人类了，每次都要去查 <code>ECS id</code> 才能确定是哪个节点，而这个 Node 节点名称是不能修改的！</p></li>
+</ul>
+
+<h2 id="网段问题解决">网段问题解决</h2>
+
+<p>这个比较好解决，甚至可以说不用解决，只要把网段规划好，不要出现网段冲突就好</p>
+
+<h2 id="node-节点名称无法修改问题解决">Node 节点名称无法修改问题解决</h2>
+
+<p>这个功能之前已有人在阿里聆听平台提出这个问题了，咨询了容器服务的研发小哥，得到的反馈是该功能已经在灰度测试了，相信很快就可以上线了。</p>
+
+<h2 id="创建-slb-规格问题解决">创建 SLB 规格问题解决</h2>
+
+<p>相较之前自动创建3个 SLB 的方式，目前的版本只会自动创建2个并且有一个是 VPC 内网+弹性IP的方式，已经进行了优化，但是 ingress 绑定的 SLB 还是经典网络类型，无法接入云防火墙并且规格也是不合适的。这里给出解决方案：</p>
+
+<h3 id="方法一-使用-kubectl-配置">方法一：使用 <code>kubectl</code> 配置</h3>
+
+<h4 id="1-创建新的-slb">1. 创建新的 SLB</h4>
+
+<ul>
+<li>这里需要创建一个新的 SLB 用来代替自动创建的不符合要求的 SLB。这里可以先私网 SLB 先不绑定弹性IP。<strong><em>这里要注意的事，新建的 SLB 需要与 k8s集群处于同一 VPC 内，否则在后续会绑定失败</em></strong>。
+<img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g1ma5lxgvdj21ws0s6qa5.jpg" alt="image" /></li>
+<li>查看新购买 SLB 的 ID
+<img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g1ma8zuq1gj20sa0hoq4b.jpg" alt="image" /></li>
+</ul>
+
+<h4 id="2-在创建集群后重新绑定-ingress-controller-的-service">2. 在创建集群后重新绑定 <code>ingress-controller</code> 的 <code>Service</code></h4>
+
+<p>首先需要使用 <code>kubectl</code> 或者直接在阿里云控制台操作，创建新的 <code>nginx-ingress-svc</code></p>
+
+<pre><code class="language-yaml"># nginx ingress service
+apiVersion: v1
+kind: Service
+metadata:
+name: nginx-ingress-lb-{new-name}
+namespace: kube-system
+labels:
+    app: nginx-ingress-lb-{new-name}
+annotations:
+    # set loadbalancer to the specified slb id
+    service.beta.kubernetes.io/alicloud-loadbalancer-id: {SLB-ID}
+    # set loadbalancer address type to intranet if using private slb instance
+    #service.beta.kubernetes.io/alicloud-loadbalancer-address-type: intranet
+    service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners: 'true'
+    #service.beta.kubernetes.io/alicloud-loadbalancer-backend-label: node-role.kubernetes.io/ingress=true
+spec:
+type: LoadBalancer
+# do not route traffic to other nodes
+# and reserve client ip for upstream
+externalTrafficPolicy: &quot;Local&quot;
+ports:
+- port: 80
+    name: http
+    targetPort: 80
+- port: 443
+    name: https
+    targetPort: 443
+selector:
+    # select app=ingress-nginx pods
+    app: ingress-nginx
+</code></pre>
+
+<p>创建成功后，可以进到 SLB 页面查看，可以看到 <code>80</code> 和 <code>443</code> 端口的监听已经被添加了
+    <img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g1maej57c1j21ru0rwq8b.jpg" alt="image" /></p>
+
+<h4 id="3-绑定符合要求的弹性ip">3. 绑定符合要求的弹性IP</h4>
+
+<p>确定 SLB 创建成功并且已经成功监听后，这里就可以为 SLB 绑定符合您需求的弹性IP了，这里我们绑定一个按宽带计费2M的弹性IP</p>
+
+<p><img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g1mak2r0p3j207k07mq33.jpg" alt="image" /></p>
+
+<h4 id="4-验证连通性">4. 验证连通性</h4>
+
+<p>到上面这步，我们的 ingress 入口 SLB 已经创建完成，这里我们验证一下是否联通。</p>
+
+<ul>
+<li><p>在k8s集群中部署一个 <code>nginx</code> ，直接在阿里云容器服务控制台操作即可
+<img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g1mant7ec6j21s40qegpr.jpg" alt="image" />
+这里创建 ingress 路由，<strong>注意：这里的域名需要解析到刚才创建的 SLB 绑定的弹性IP</strong>
+<img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g1maqf7gdjj21ns0kymz8.jpg" alt="image" /></p></li>
+
+<li><p>访问该域名，显示 <code>nginx</code> 欢迎页，则证明修改成功
+<img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g1mat8srhnj21ak0hmact.jpg" alt="image" /></p></li>
+</ul>
+
+<h3 id="方法二-使用阿里云容器服务控制台配置">方法二： 使用阿里云容器服务控制台配置</h3>
+
+<h4 id="1-阿里云容器控制台创建新-service">1. 阿里云容器控制台创建新 <code>service</code></h4>
+
+<ul>
+<li>在阿里云容器服务控制台：<code>路由与负载均衡</code> &ndash;&gt; <code>服务</code> 点击<code>创建</code></li>
+<li>选择 <code>kube-system</code> 命名空间</li>
+<li>类型选中<code>负载均衡</code> - <code>内网访问</code></li>
+<li>关联 <code>nginx-ingress-controller</code></li>
+<li>并添加端口映射</li>
+<li>点击创建</li>
+</ul>
+
+<p><img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g2g4fwfgevj20i50hsgmp.jpg" alt="image" /></p>
+
+<h4 id="2-进入负载均衡查看-slb-是否创建">2. 进入负载均衡查看 SLB 是否创建</h4>
+
+<p>可见 SLB 已经成功创建</p>
+
+<p><img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g2g4pb1d45j215303c74r.jpg" alt="image" /></p>
+
+<h4 id="3-绑定符合要求的弹性ip-1">3. 绑定符合要求的弹性IP</h4>
+
+<p>同方法一</p>
+
+<h4 id="4-验证连通性-1">4.验证连通性</h4>
+
+<p>同方法一</p>
+
+<h3 id="后续操作">后续操作</h3>
+
+<ul>
+<li>在确定新的 SLB 创建成功后，就可以将容器服务自动创建的 SLB 释放了</li>
+<li>删除 <code>kube-system</code> 中原本绑定的 <code>Service</code> <strong>（目前版本已经可以关联删除绑定的 SLB 了，不用分开操作）</strong></li>
+<li><strong>这里别忘了，自动创建给API Server 的SLB还是按流量付费的，记得降配</strong></li>
+</ul>
+
+<h2 id="后记">后记</h2>
+
+<p>上面的这些问题和解决方案都属于临时方案，已在阿里的聆听平台提出了上面的问题，相信很快就会有所改进。总的来说，阿里云容器服务在提供优质的 kubernetes 功能，并且只收 ECS 的钱，对于想学习 kubernetes 又没有太多资金的同学也比较友好，直接买按量付费实例，测试完释放即可，不用购买 master 节点，十分良心！</p>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/%e9%98%bf%e9%87%8c%e4%ba%91">阿里云</a>
+  
+  <a class="badge badge-light" href="/tags/kubernetes">kubernetes</a>
+  
+  <a class="badge badge-light" href="/tags/%e5%ae%b9%e5%99%a8">容器</a>
+  
+</div>
+
+
+
+     
+     
+<div class="entry-shang text-center">
+    <p>「一键投喂 小鱼干/小骨头」</p>
+    <button class="zs show-zs btn btn-primary">投喂</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+    <div class="zs-modal-head">
+        <button type="button" class="close">×</button>
+        <p class="author">
+            <a href="https://blog.maoxianplay.com">
+                <img src="https://wx3.sinaimg.cn/square/ad5fbf65gy1g2o621gcs6j20m80m8gng.jpg"/>
+            小助手毛线</a>
+        </p>
+        <p class="tip"><i></i><span>感谢投喂 <a href="/maoxian">毛线</a> & <a href="/sunny">Sunny</a> </span></p>
+    </div>
+    <div class="zs-modal-body">
+        <div class="zs-modal-btns">
+            <button class="btn btn-blink" data-num="2">2元</button>
+            <button class="btn btn-blink" data-num="5">5元</button>
+            <button class="btn btn-blink" data-num="10">10元</button>
+            <button class="btn btn-blink" data-num="50">50元</button>
+            <button class="btn btn-blink" data-num="100">100元</button>
+            <button class="btn btn-blink" data-num="any">任意金额</button>
+        </div>
+        <div class="zs-modal-pay">
+            <button class="btn btn-bred" id="pay-text">2元</button>
+            <p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+            <img id="pay-image" src="/img/alipay-2.png">
+        </div>
+    </div>
+    <div class="zs-modal-footer">
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="alipay" class="zs-type" checked="checked" style="float: left;">
+            <span class="zs-alipay">
+                <img src="/img/alipay-btn.png">
+            </span>
+        </label>
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="wechat" class="zs-type" style="float: left;">
+            <span class="zs-wechat">
+                <img src="/img/wechat-btn.png">
+            </span>
+        </label>
+    </div>
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="https://academia-hugo.netlify.com/">郭旭东</a></h5>
+      <h6 class="card-subtitle">运维负责人</h6>
+      <p class="card-text" itemprop="description">云原生爱好者，分享云原生和 DevOps 技术实践，倡导开源运动，传播开源思想。</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          <li>
+            <a itemprop="sameAs" href="mailto:sunnydog0826@gmail.com" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/publication/wx_contact/" >
+              <i class="fab fa-weixin"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/sunny0826" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>相关</h3>
+        <ul>
+          
+          <li><a href="/post/rancher-update-2.2.1/">单节点版rancher升级指南</a></li>
+          
+          <li><a href="/post/k8s-ingress-config/">解决kubernetes中ingress-nginx配置问题</a></li>
+          
+          <li><a href="/post/dashboard-k8s/">阿里云日志服务采集k8s日志并实现livetail功能</a></li>
+          
+          <li><a href="/post/https-ingress/">为ingress配置SSL证书，实现HTTPS访问</a></li>
+          
+          <li><a href="/post/install-rancher/">阿里云部署rancher2.1采坑记</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+      <script async defer src="//maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.min.js" integrity="sha256-7vjlAeb8OaTrCXZkCNun9djzuB2owUsaO72kXaFDBJs=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-algolia-template" type="text/html">
+      <div class="search-hit">
+        <div class="search-hit-content">
+          <div class="search-hit-name">
+            <a href="{{relpermalink}}">{{{_highlightResult.title.value}}}</a>
+          </div>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{{_highlightResult.summary.value}}}</p>
+        </div>
+      </div>
+    </script>
+    
+
+    
+    
+
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch.min.js" integrity="sha256-gFCtPk/sonctyfwYOgjrPoWApQ0rqB6ezBBZ7p32yGc=" crossorigin="anonymous"></script>
+    
+    <script>
+      const algoliaConfig = {
+        appId: "BE80MGWD9D",
+        apiKey: "77ca6abe5531ce66ff7c3b2486222d85",
+        indexName: "gxd-blog",
+        poweredBy:  true 
+      };
+    </script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+      
+    
+    
+    
+    <script src="/js/academia.min.6ee120363d4a313a6fd39ad7c46e63f8.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        
+        <p>
+          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          Powered by
+          <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-inline network-icon text-right">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="mailto:sunnydog0826@gmail.com"  title="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="/publication/wx_contact/"  title="Chat on Keybase"><i class="fab fa-weixin" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/sunny0826" target="_blank" rel="noopener" title="Discuss on Forum"><i class="fab fa-github" aria-hidden="true"></i></a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

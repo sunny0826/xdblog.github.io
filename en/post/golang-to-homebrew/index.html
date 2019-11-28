@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academia 4.3.1">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
+  <meta name="baidu-site-verification" content="A85okozwVV" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="never">
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="郭旭东">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="本文介绍如何在 Homebrew 上发布 Golang 项目。">
+
+  
+  <link rel="alternate" hreflang="zh" href="https://academia-hugo.netlify.com/post/golang-to-homebrew/">
+  
+  <link rel="alternate" hreflang="en-us" href="https://academia-hugo.netlify.com/en/post/golang-to-homebrew/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#fc6f5c">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.9.0/instantsearch.min.css" integrity="sha256-ZtmLe16p4jS4/2wPwwH6NzJt460SJzgLmhKrYo5yn7g=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch-theme-algolia.min.css" integrity="sha256-uL8LUd3zkI/lXvc/Hv/oOu8ld6RJcOZiUY/8c+I+3/o=" crossorigin="anonymous">
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academia.min.9be1772e7ca3b9e5f31014835ca21e99.css">
+
+  
+    
+    
+    
+    
+      
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academia.ef74575f38e28c5c9feae541be1f6e36.css">
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://academia-hugo.netlify.com/en/post/golang-to-homebrew/">
+
+  
+  
+  
+  
+    
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@GuoXudong2">
+  <meta property="twitter:creator" content="@GuoXudong2">
+  
+  <meta property="og:site_name" content="GuoXD Blog">
+  <meta property="og:url" content="https://academia-hugo.netlify.com/en/post/golang-to-homebrew/">
+  <meta property="og:title" content="Golang 装逼指南 Ⅱ：在 Homwebrew 上发布 Golang 项目 | GuoXD Blog">
+  <meta property="og:description" content="本文介绍如何在 Homebrew 上发布 Golang 项目。"><meta property="og:image" content="https://academia-hugo.netlify.com/en/post/golang-to-homebrew/featured.jpg">
+  <meta property="twitter:image" content="https://academia-hugo.netlify.com/en/post/golang-to-homebrew/featured.jpg"><meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2019-07-25T16:27:57&#43;08:00">
+  
+  <meta property="article:modified_time" content="2019-07-25T16:27:57&#43;08:00">
+  
+
+  
+
+
+  
+
+
+
+
+
+  <title>Golang 装逼指南 Ⅱ：在 Homwebrew 上发布 Golang 项目 | GuoXD Blog</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/en/"><img src="/img/logo.png" alt="GuoXD Blog"></a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/en/#slider"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/en/#posts"><span>Blog</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/en/#about"><span>About</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <span>English</span>
+          </a>
+          <ul class="dropdown-menu">
+            
+            <li class="dropdown-item my-0 py-0 mx-0 px-0">
+              <a href="https://academia-hugo.netlify.com/post/golang-to-homebrew/">
+                <span>中文 (简体)</span>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        
+
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article py-5" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container split-header">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+        <img class="img-fluid w-100" src="/en/post/golang-to-homebrew/featured_hu9a9057a4c1e057eb9c914f896f53767c_147273_680x500_fill_q90_lanczos_smart1.jpg" itemprop="image" alt="">
+        <span
+          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+    </div>
+    <div class="col-lg-8">
+      <h1 itemprop="name">Golang 装逼指南 Ⅱ：在 Homwebrew 上发布 Golang 项目</h1>
+
+      
+
+      
+
+
+
+<meta content="2019-07-25 16:27:57 &#43;0800 CST" itemprop="datePublished">
+<meta content="2019-07-25 16:27:57 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2019-07-25</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/en/categories/go/">go</a></span>
+  
+
+  
+    
+<br>
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://academia-hugo.netlify.com/en/post/golang-to-homebrew/&amp;text=Golang%20%e8%a3%85%e9%80%bc%e6%8c%87%e5%8d%97%20%e2%85%a1%ef%bc%9a%e5%9c%a8%20Homwebrew%20%e4%b8%8a%e5%8f%91%e5%b8%83%20Golang%20%e9%a1%b9%e7%9b%ae" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://academia-hugo.netlify.com/en/post/golang-to-homebrew/&amp;t=Golang%20%e8%a3%85%e9%80%bc%e6%8c%87%e5%8d%97%20%e2%85%a1%ef%bc%9a%e5%9c%a8%20Homwebrew%20%e4%b8%8a%e5%8f%91%e5%b8%83%20Golang%20%e9%a1%b9%e7%9b%ae" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Golang%20%e8%a3%85%e9%80%bc%e6%8c%87%e5%8d%97%20%e2%85%a1%ef%bc%9a%e5%9c%a8%20Homwebrew%20%e4%b8%8a%e5%8f%91%e5%b8%83%20Golang%20%e9%a1%b9%e7%9b%ae&amp;body=https://academia-hugo.netlify.com/en/post/golang-to-homebrew/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://academia-hugo.netlify.com/en/post/golang-to-homebrew/&amp;title=Golang%20%e8%a3%85%e9%80%bc%e6%8c%87%e5%8d%97%20%e2%85%a1%ef%bc%9a%e5%9c%a8%20Homwebrew%20%e4%b8%8a%e5%8f%91%e5%b8%83%20Golang%20%e9%a1%b9%e7%9b%ae" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Golang%20%e8%a3%85%e9%80%bc%e6%8c%87%e5%8d%97%20%e2%85%a1%ef%bc%9a%e5%9c%a8%20Homwebrew%20%e4%b8%8a%e5%8f%91%e5%b8%83%20Golang%20%e9%a1%b9%e7%9b%ae%20https://academia-hugo.netlify.com/en/post/golang-to-homebrew/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://academia-hugo.netlify.com/en/post/golang-to-homebrew/&amp;title=Golang%20%e8%a3%85%e9%80%bc%e6%8c%87%e5%8d%97%20%e2%85%a1%ef%bc%9a%e5%9c%a8%20Homwebrew%20%e4%b8%8a%e5%8f%91%e5%b8%83%20Golang%20%e9%a1%b9%e7%9b%ae" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://academia-hugo.netlify.com/en/post/golang-to-homebrew/&amp;title=Golang%20%e8%a3%85%e9%80%bc%e6%8c%87%e5%8d%97%20%e2%85%a1%ef%bc%9a%e5%9c%a8%20Homwebrew%20%e4%b8%8a%e5%8f%91%e5%b8%83%20Golang%20%e9%a1%b9%e7%9b%ae" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    
+    </div>
+  </div>
+</div>
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<h2 id="前言">前言</h2>
+
+<p>经过上篇文章，我们已经可以在 GitHub 上构建一个看上去正经的 Golang 项目了，但这并不是结束。一个真正的用 Golang 构建的可执行文件是可以在全平台运行的，前文中我们使用 <code>goreleaser</code> 发布了一个非常漂亮的 release 页面，并在 release 页面上提供多平台的可执行文件下载。但是如果只是拿着可执行文件到处拷贝执行，总归不够优雅，所以这里就介绍如何在 Homebrew 上发布自己的 Golang 应用，如何像各种牛逼的项目那样使用 <code>brew</code> 一键安装自己的项目。</p>
+
+<h2 id="homebrew">Homebrew</h2>
+
+<p>对于使用 macOS 的用户来说，Homebrew 一点也不陌生，它类似于 CentOS 的 <code>yum</code> 和 Ubuntu 的 <code>apt-get</code> 。</p>
+
+<p><a href="https://brew.sh/" target="_blank">Homebrew</a> 是最初由 Max Howell 用 Ruby 写的 OS X 软件管理系统，其代码开源在 <a href="https://github.com/Homebrew/brew/" target="_blank">GitHub</a> 上。</p>
+
+<p>Homebrew 给自己贴了个一句话简介：The missing package manager for OS X。翻译过来成中文就是：macOS 缺失的软件包的管理器。名副其实地是，Homebrew 真的很好用。安装、升级、卸载等操作，在 Homebrew 的生态下，都只需要一条命令就可以了。并且 Homebrew 会自动为你解决软件包的依赖问题。</p>
+
+<h2 id="发布步骤">发布步骤</h2>
+
+<ul>
+<li>创建 Formula</li>
+<li>修改 rb 脚本</li>
+<li>本地测试</li>
+<li>创建 Tap</li>
+<li>实际安装</li>
+</ul>
+
+<h3 id="创建-formula">创建 Formula</h3>
+
+<p>首先进入 release 页面，拷贝 macOS 的 Darwin 包地址</p>
+
+<p><img src="https://ws4.sinaimg.cn/large/ad5fbf65gy1g5c7b4mi5fj21lq0se4ck.jpg" alt="image" /></p>
+
+<p>然后通过命令在本地创建 Formula</p>
+
+<pre><code class="language-bash">brew create https://github.com/sunny0826/kubecm/releases/download/v0.0.1/kubecm_0.0.1_Darwin_x86_64.tar.gz
+</code></pre>
+
+<p>通过这个命令，<code>brew</code> 会创建一个名为 <code>kubecm.rb</code> 的文件在 <code>/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/</code> 目录。</p>
+
+<h3 id="修改-rb-脚本">修改 rb 脚本</h3>
+
+<p>然后在该目录可以看到 <code>kubecm.rb</code> 这个脚本：</p>
+
+<pre><code class="language-Ruby"># Documentation: https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Formula-Cookbook.md
+#                http://www.rubydoc.info/github/Homebrew/brew/master/Formula
+# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
+
+class OtfccMac64 &lt; Formula
+  desc &quot;&quot;
+  homepage &quot;&quot;
+  url &quot;https://github.com/sunny0826/kubecm/releases/download/v0.0.1/kubecm_0.0.1_Darwin_x86_64.tar.gz&quot;
+  version &quot;0.0.1&quot;
+  sha256 &quot;f393b14f9c42c890b8a60949b13a8f9b5c3f814daa8b18901656ccc3b866f646&quot;
+
+  # depends_on &quot;cmake&quot; =&gt; :build
+  depends_on :x11 # if your formula requires any X11/XQuartz components
+
+  def install
+    # ENV.deparallelize  # if your formula fails when building in parallel
+
+    # Remove unrecognized options if warned by configure
+    system &quot;./configure&quot;, &quot;--disable-debug&quot;,
+                          &quot;--disable-dependency-tracking&quot;,
+                          &quot;--disable-silent-rules&quot;,
+                          &quot;--prefix=#{prefix}&quot;
+    # system &quot;cmake&quot;, &quot;.&quot;, *std_cmake_args
+    system &quot;make&quot;, &quot;install&quot; # if this fails, try separate make/make install steps
+  end
+
+  test do
+    # `test do` will create, run in and delete a temporary directory.
+    #
+    # This test will fail and we won't accept that! It's enough to just replace
+    # &quot;false&quot; with the main program this formula installs, but it'd be nice if you
+    # were more thorough. Run the test with `brew test otfcc-win32`. Options passed
+    # to `brew install` such as `--HEAD` also need to be provided to `brew test`.
+    #
+    # The installed folder is not in the path, so use the entire path to any
+    # executables being tested: `system &quot;#{bin}/program&quot;, &quot;do&quot;, &quot;something&quot;`.
+    system &quot;false&quot;
+  end
+end
+</code></pre>
+
+<p>默认提供的脚本并不适合我们，修改这个脚本：</p>
+
+<pre><code class="language-Ruby">class Kubecm &lt; Formula
+  desc &quot;Merge multiple kubeconfig&quot;
+  homepage &quot;https://github.com/sunny0826/kubecm&quot;
+  url &quot;https://github.com/sunny0826/kubecm/releases/download/v0.0.1/kubecm_0.0.1_Darwin_x86_64.tar.gz&quot;
+  version &quot;0.0.1&quot;
+  sha256 &quot;8c2766e7720049ba0ce9e3d20b7511796a6ba224ce1386cd1d4ef8cc6e1315cd&quot;
+  # depends_on &quot;cmake&quot; =&gt; :build
+
+  def install
+    bin.install &quot;kubecm&quot;
+  end
+end
+</code></pre>
+
+<p>分布填上 <code>desc</code> 、 <code>homepage</code> 、<code>url</code> 等信息，由于这里下载的是 darwin 包，所以直接在 <code>install</code> 中填上 <code>bin.install &quot;kubecm&quot;</code> 即可。</p>
+
+<h3 id="本地测试">本地测试</h3>
+
+<p>保存脚本，然后使用 <code>brew install kubecm</code> 进行测试，查看结果：</p>
+
+<pre><code class="language-bash">Updating Homebrew...
+Fast-forwarded master to origin/master.
+Fast-forwarded master to origin/master.
+==&gt; Auto-updated Homebrew!
+Updated 2 taps (sunny0826/tap, homebrew/cask).
+==&gt; Updated Formulae
+sunny0826/tap/kubecm
+
+==&gt; Downloading https://github.com/sunny0826/kubecm/releases/download/v0.0.1/kubecm_0.0.1_Darwin_x86_64.tar.gz
+Already downloaded: /Users/guoxudong/Library/Caches/Homebrew/kubecm-86.64.tar.gz
+🍺  /usr/local/Cellar/kubecm/86.64: 5 files, 5.4MB, built in 1 second
+</code></pre>
+
+<p>可以看到已经安装成功了！</p>
+
+<h3 id="创建-tap">创建 Tap</h3>
+
+<p>在本地测试成功之后，就可以把他发布了。这里需要在 GitHub 上创建一个名为 <code>homebrew-tap</code> 的 repo 注意该 repo 需要以 <code>homebrew-</code> 为前缀，像是<a href="https://github.com/sunny0826/homebrew-tap" target="_blank">这样</a>。</p>
+
+<p>然后将刚才的 <code>kubecm.rb</code> 脚本上传到这个 repo ，然后就可以通过 <code>brew</code> 的方式安装了。</p>
+
+<h3 id="实际测试">实际测试</h3>
+
+<p>发布好之后，就可以测试发布成功没有了。</p>
+
+<p>首先卸载之前使用本地脚本安装的应用：</p>
+
+<pre><code class="language-bash">$ brew uninstall kubecm
+Uninstalling /usr/local/Cellar/kubecm/86.64... (5 files, 5.4MB)
+</code></pre>
+
+<p>然后使用</p>
+
+<pre><code class="language-bash">brew tap sunny0826/tap &amp;&amp; brew install kubecm
+</code></pre>
+
+<p>或者</p>
+
+<pre><code class="language-bash">brew install sunny0826/tap/kubecm
+</code></pre>
+
+<p>来进行安装。</p>
+
+<h2 id="结语">结语</h2>
+
+<p>到这我们就成功的在 Homebrew 上发布了自己的 Golang 应用，本篇中的方法仅适合 Golang 开发的二进制可执行文件的发布，其他语言的发布需要在 <code>.rb</code> 脚本上有所修改，更多内容请参考<a href="https://docs.brew.sh/" target="_blank">官方文档</a>。这里要再介绍一下我用 Golang 开发的另一个小工具 <a href="https://github.com/sunny0826/kubecm" target="_blank">kubecm</a> ，该项目之前我是使用 python 开发的，用于合并多个 kubeconfig 文件，本次重写新增了查看所有 kubeconfig 和 删除 kubeconfig 中 context 等功能，同时也在 Homebrew 上发布，欢迎拍砖。</p>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/go">go</a>
+  
+</div>
+
+
+
+     
+     
+<div class="entry-shang text-center">
+    <p>「一键投喂 小鱼干/小骨头」</p>
+    <button class="zs show-zs btn btn-primary">投喂</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+    <div class="zs-modal-head">
+        <button type="button" class="close">×</button>
+        <p class="author">
+            <a href="https://blog.maoxianplay.com">
+                <img src="https://wx3.sinaimg.cn/square/ad5fbf65gy1g2o621gcs6j20m80m8gng.jpg"/>
+            小助手毛线</a>
+        </p>
+        <p class="tip"><i></i><span>感谢投喂 <a href="/maoxian">毛线</a> & <a href="/sunny">Sunny</a> </span></p>
+    </div>
+    <div class="zs-modal-body">
+        <div class="zs-modal-btns">
+            <button class="btn btn-blink" data-num="2">2元</button>
+            <button class="btn btn-blink" data-num="5">5元</button>
+            <button class="btn btn-blink" data-num="10">10元</button>
+            <button class="btn btn-blink" data-num="50">50元</button>
+            <button class="btn btn-blink" data-num="100">100元</button>
+            <button class="btn btn-blink" data-num="any">任意金额</button>
+        </div>
+        <div class="zs-modal-pay">
+            <button class="btn btn-bred" id="pay-text">2元</button>
+            <p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+            <img id="pay-image" src="/img/alipay-2.png">
+        </div>
+    </div>
+    <div class="zs-modal-footer">
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="alipay" class="zs-type" checked="checked" style="float: left;">
+            <span class="zs-alipay">
+                <img src="/img/alipay-btn.png">
+            </span>
+        </label>
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="wechat" class="zs-type" style="float: left;">
+            <span class="zs-wechat">
+                <img src="/img/wechat-btn.png">
+            </span>
+        </label>
+    </div>
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="https://academia-hugo.netlify.com/">郭旭东</a></h5>
+      <h6 class="card-subtitle">运维负责人</h6>
+      <p class="card-text" itemprop="description">云原生爱好者，分享云原生和 DevOps 技术实践，倡导开源运动，传播开源思想。</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          <li>
+            <a itemprop="sameAs" href="mailto:sunnydog0826@gmail.com" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/en/publication/wx_contact/" >
+              <i class="fab fa-weixin"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/sunny0826" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>Related</h3>
+        <ul>
+          
+          <li><a href="/en/post/golang-project/">Golang 装逼指南：在 GitHub 上构建一个看上去正规的 Golang 项目</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+      <script async defer src="//maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.min.js" integrity="sha256-7vjlAeb8OaTrCXZkCNun9djzuB2owUsaO72kXaFDBJs=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/en/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-algolia-template" type="text/html">
+      <div class="search-hit">
+        <div class="search-hit-content">
+          <div class="search-hit-name">
+            <a href="{{relpermalink}}">{{{_highlightResult.title.value}}}</a>
+          </div>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{{_highlightResult.summary.value}}}</p>
+        </div>
+      </div>
+    </script>
+    
+
+    
+    
+
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch.min.js" integrity="sha256-gFCtPk/sonctyfwYOgjrPoWApQ0rqB6ezBBZ7p32yGc=" crossorigin="anonymous"></script>
+    
+    <script>
+      const algoliaConfig = {
+        appId: "BE80MGWD9D",
+        apiKey: "77ca6abe5531ce66ff7c3b2486222d85",
+        indexName: "gxd-blog",
+        poweredBy:  true 
+      };
+    </script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+      
+    
+    
+    
+    <script src="/js/academia.min.6ee120363d4a313a6fd39ad7c46e63f8.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        
+        <p>
+          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          Powered by
+          <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-inline network-icon text-right">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="mailto:sunnydog0826@gmail.com"  title="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="/en/publication/wx_contact/"  title="Chat on Keybase"><i class="fab fa-weixin" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/sunny0826" target="_blank" rel="noopener" title="Discuss on Forum"><i class="fab fa-github" aria-hidden="true"></i></a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

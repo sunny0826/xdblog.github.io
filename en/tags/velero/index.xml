@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>velero on GuoXD Blog</title>
+    <link>https://academia-hugo.netlify.com/en/tags/velero/</link>
+    <description>Recent content in velero on GuoXD Blog</description>
+    <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
+    <lastBuildDate>Wed, 13 Nov 2019 09:13:22 +0800</lastBuildDate>
+    
+	    <atom:link href="https://academia-hugo.netlify.com/en/tags/velero/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用 Velero 进行集群备份与迁移</title>
+      <link>https://academia-hugo.netlify.com/en/post/aliyun-velero/</link>
+      <pubDate>Wed, 13 Nov 2019 09:13:22 +0800</pubDate>
+      
+      <guid>https://academia-hugo.netlify.com/en/post/aliyun-velero/</guid>
+      <description>
+
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;在近日的一个风和日丽的下午，正在快乐的写 bug 时，突然间钉钉就被 call 爆了，原来是 k8s 测试集群的一个 namespace 突然不见了。这个 namespace 里面有 60 多个服务，瞬间全部没有了……虽然得益于我们的 CI/CD 系统，这些服务很快都重新部署并正常运行了，但是如果在生产环境，那后果就是不可想象的了。在排查这个问题发生的原因的同时，集群资源的灾备和恢复功能就提上日程了，这时 Velero 就出现了。&lt;/p&gt;
+
+&lt;h2 id=&#34;velero&#34;&gt;Velero&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/vmware-tanzu/velero&#34; target=&#34;_blank&#34;&gt;Velero&lt;/a&gt; 是 VMWare 开源的 k8s 集群备份、迁移工具。可以帮助我们完成 k8s 的例行备份工作，以便在出现上面问题的时候可以快速进行恢复。同时也提供了集群迁移功能，可以将 k8s 资源迁移到其他 k8s 集群的功能。Velero 将集群资源保存在对象存储中，默认情况下可以使用 &lt;a href=&#34;https://velero.io/docs/v1.1.0/aws-config&#34; target=&#34;_blank&#34;&gt;AWS&lt;/a&gt;、&lt;a href=&#34;https://velero.io/docs/v1.1.0/azure-config&#34; target=&#34;_blank&#34;&gt;Azure&lt;/a&gt;、&lt;a href=&#34;https://velero.io/docs/v1.1.0/gcp-config&#34; target=&#34;_blank&#34;&gt;GCP&lt;/a&gt; 的对象存储，同时也给出了插件功能用来拓展其他平台的存储，这里我们用到的就是阿里云的对象存储 OSS，阿里云也提供了 Velero 的插件，用于将备份存储到 OSS 中。下面我就介绍一下如何在阿里云容器服务 ACK 使用 Velero 完成备份和迁移。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Velero 地址：&lt;a href=&#34;https://github.com/vmware-tanzu/velero&#34; target=&#34;_blank&#34;&gt;https://github.com/vmware-tanzu/velero&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;ACK 插件地址：&lt;a href=&#34;https://github.com/AliyunContainerService/velero-plugin&#34; target=&#34;_blank&#34;&gt;https://github.com/AliyunContainerService/velero-plugin&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;下载-velero-客户端&#34;&gt;下载 Velero 客户端&lt;/h3&gt;
+
+&lt;p&gt;Velero 由客户端和服务端组成，服务器部署在目标 k8s 集群上，而客户端则是运行在本地的命令行工具。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;前往 &lt;a href=&#34;https://github.com/vmware-tanzu/velero/releases&#34; target=&#34;_blank&#34;&gt;Velero 的 Release 页面&lt;/a&gt; 下载客户端，直接在 GitHub 上下载即可&lt;/li&gt;
+&lt;li&gt;解压 release 包&lt;/li&gt;
+&lt;li&gt;将 release 包中的二进制文件 &lt;code&gt;velero&lt;/code&gt; 移动到 &lt;code&gt;$PATH&lt;/code&gt; 中的某个目录下&lt;/li&gt;
+&lt;li&gt;执行 &lt;code&gt;velero -h&lt;/code&gt; 测试&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;创建-oss-bucket&#34;&gt;创建 OSS bucket&lt;/h3&gt;
+
+&lt;p&gt;创建一个 OSS bucket 用于存储备份文件，这里也可以用已有的 bucket，之后会在 bucket 中创建 &lt;code&gt;backups&lt;/code&gt;、&lt;code&gt;metadata&lt;/code&gt;、&lt;code&gt;restores&lt;/code&gt;三个目录，这里建议在已有的 bucket 中创建一个子目录用于存储备份文件。&lt;/p&gt;
+
+&lt;p&gt;创建 OSS 的时候一定要选对区域，要和 ACK 集群在同一个区域，存储类型和读写权限选择&lt;strong&gt;标准存储&lt;/strong&gt;和&lt;strong&gt;私有&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tva3.sinaimg.cn/wap720/ad5fbf65gy1g8w7t8c4xbj21021d8thq.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;创建阿里云-ram-用户&#34;&gt;创建阿里云 RAM 用户&lt;/h3&gt;
+
+&lt;p&gt;这里需要创建一个阿里云 RAM 的用户，用于操作 OSS 以及 ACK 资源。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;新建权限策略&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tvax4.sinaimg.cn/large/ad5fbf65gy1g8w80cjiv2j21uo18cag8.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;策略内容：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;Version&amp;quot;: &amp;quot;1&amp;quot;,
+    &amp;quot;Statement&amp;quot;: [
+        {
+            &amp;quot;Action&amp;quot;: [
+                &amp;quot;ecs:DescribeSnapshots&amp;quot;,
+                &amp;quot;ecs:CreateSnapshot&amp;quot;,
+                &amp;quot;ecs:DeleteSnapshot&amp;quot;,
+                &amp;quot;ecs:DescribeDisks&amp;quot;,
+                &amp;quot;ecs:CreateDisk&amp;quot;,
+                &amp;quot;ecs:Addtags&amp;quot;,
+                &amp;quot;oss:PutObject&amp;quot;,
+                &amp;quot;oss:GetObject&amp;quot;,
+                &amp;quot;oss:DeleteObject&amp;quot;,
+                &amp;quot;oss:GetBucket&amp;quot;,
+                &amp;quot;oss:ListObjects&amp;quot;
+            ],
+            &amp;quot;Resource&amp;quot;: [
+                &amp;quot;*&amp;quot;
+            ],
+            &amp;quot;Effect&amp;quot;: &amp;quot;Allow&amp;quot;
+        }
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;新建用户&lt;/p&gt;
+
+&lt;p&gt;在新建用户的时候要选择 &lt;code&gt;编程访问&lt;/code&gt;，来获取 &lt;code&gt;AccessKeyID&lt;/code&gt; 和 &lt;code&gt;AccessKeySecret&lt;/code&gt;，这里请创建一个新用于用于备份，不要使用老用户的 AK 和 AS。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tvax2.sinaimg.cn/large/ad5fbf65gy1g8w8h4ek4uj21h40ue785.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;部署服务端&#34;&gt;部署服务端&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;拉取 &lt;a href=&#34;https://github.com/AliyunContainerService/velero-plugin&#34; target=&#34;_blank&#34;&gt;Velero 插件&lt;/a&gt; 到本地&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git clone https://github.com/AliyunContainerService/velero-plugin
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;配置修改&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;修改 &lt;code&gt;install/credentials-velero&lt;/code&gt; 文件，将新建用户中获得的 &lt;code&gt;AccessKeyID&lt;/code&gt; 和 &lt;code&gt;AccessKeySecret&lt;/code&gt; 填入，这里的 OSS EndPoint 为之前 OSS 的访问域名（&lt;strong&gt;注：这里需要选择外网访问的 EndPoint。&lt;/strong&gt;）：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tvax2.sinaimg.cn/large/ad5fbf65gy1g8w8xd1sgzj21c20cm75z.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ALIBABA_CLOUD_ACCESS_KEY_ID=&amp;lt;ALIBABA_CLOUD_ACCESS_KEY_ID&amp;gt;
+ALIBABA_CLOUD_ACCESS_KEY_SECRET=&amp;lt;ALIBABA_CLOUD_ACCESS_KEY_SECRET&amp;gt;
+ALIBABA_CLOUD_OSS_ENDPOINT=&amp;lt;ALIBABA_CLOUD_OSS_ENDPOINT&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;修改 &lt;code&gt;install/01-velero.yaml&lt;/code&gt;，将 OSS 配置填入：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;---
+apiVersion: velero.io/v1
+kind: BackupStorageLocation
+metadata:
+labels:
+    component: velero
+name: default
+namespace: velero
+spec:
+config: {}
+objectStorage:
+    bucket: &amp;lt;ALIBABA_CLOUD_OSS_BUCKET&amp;gt;  # OSS bucket 名称
+    prefix: &amp;lt;OSS_PREFIX&amp;gt;    # bucket 子目录
+provider: alibabacloud
+---
+apiVersion: velero.io/v1
+kind: VolumeSnapshotLocation
+metadata:
+labels:
+    component: velero
+name: default
+namespace: velero
+spec:
+config:
+    region: &amp;lt;REGION&amp;gt;    # 地域，如果是华东2（上海），则为 cn-shanghai
+provider: alibabacloud
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;k8s 部署 Velero 服务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 新建 namespace
+kubectl create namespace velero
+# 部署 credentials-velero 的 secret
+kubectl create secret generic cloud-credentials --namespace velero --from-file cloud=install/credentials-velero
+# 部署 CRD
+kubectl apply -f install/00-crds.yaml
+# 部署 Velero
+kubectl apply -f install/01-velero.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;测试 Velero 状态&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ velero version
+Client:
+    Version: v1.1.0
+    Git commit: a357f21aec6b39a8244dd23e469cc4519f1fe608
+Server:
+    Version: v1.1.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看到 Velero 的客户端和服务端已经部署成功。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;服务端清理&lt;/p&gt;
+
+&lt;p&gt;在完成测试或者需要重新安装时，执行如下命令进行清理：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;kubectl delete namespace/velero clusterrolebinding/velero
+kubectl delete crds -l component=velero
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;备份测试&#34;&gt;备份测试&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;velero-plugin&lt;/code&gt; 项目中已经给出 &lt;code&gt;example&lt;/code&gt; 用于测试备份。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;部署测试服务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;kubectl apply -f examples/base.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;对 &lt;code&gt;nginx-example&lt;/code&gt; 所在的 namespace 进行备份&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;velero backup create nginx-backup --include-namespaces nginx-example --wait
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;模拟 namespace 被误删&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;kubectl delete namespaces nginx-example
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;使用 Velero 进行恢复&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;velero restore create --from-backup nginx-backup --wait
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;集群迁移&#34;&gt;集群迁移&lt;/h3&gt;
+
+&lt;p&gt;迁移方法同备份，在备份后切换集群，在新集群恢复备份即可。&lt;/p&gt;
+
+&lt;h3 id=&#34;高级用法&#34;&gt;高级用法&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;定时备份&lt;/p&gt;
+
+&lt;p&gt;对集群资源进行定时备份，则可在发生意外的情况下，进行恢复（默认情况下，备份保留 30 天）。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 每日1点进行备份
+velero create schedule &amp;lt;SCHEDULE NAME&amp;gt; --schedule=&amp;quot;0 1 * * *&amp;quot;
+# 每日1点进行备份，备份保留48小时
+velero create schedule &amp;lt;SCHEDULE NAME&amp;gt; --schedule=&amp;quot;0 1 * * *&amp;quot; --ttl 48h
+# 每6小时进行一次备份
+velero create schedule &amp;lt;SCHEDULE NAME&amp;gt; --schedule=&amp;quot;@every 6h&amp;quot;
+# 每日对 web namespace 进行一次备份
+velero create schedule &amp;lt;SCHEDULE NAME&amp;gt; --schedule=&amp;quot;@every 24h&amp;quot; --include-namespaces web
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;定时备份的名称为：&lt;code&gt;&amp;lt;SCHEDULE NAME&amp;gt;-&amp;lt;TIMESTAMP&amp;gt;&lt;/code&gt;，恢复命令为：&lt;code&gt;velero restore create --from-backup &amp;lt;SCHEDULE NAME&amp;gt;-&amp;lt;TIMESTAMP&amp;gt;&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;备份删除&lt;/p&gt;
+
+&lt;p&gt;直接执行命令进行删除&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;velero delete backups &amp;lt;BACKUP_NAME&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;备份资源查看&lt;/p&gt;
+
+&lt;p&gt;备份查看&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;velero backup get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;查看定时备份&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;velero schedule get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;查看可恢复备份&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;velero restore get
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;备份排除项目&lt;/p&gt;
+
+&lt;p&gt;可为资源添加指定标签，添加标签的资源在备份的时候被排除。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 添加标签
+kubectl label -n &amp;lt;ITEM_NAMESPACE&amp;gt; &amp;lt;RESOURCE&amp;gt;/&amp;lt;NAME&amp;gt; velero.io/exclude-from-backup=true
+# 为 default namespace 添加标签
+kubectl label -n default namespace/default velero.io/exclude-from-backup=true
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;问题汇总&#34;&gt;问题汇总&lt;/h3&gt;
+
+&lt;h4 id=&#34;时区问题&#34;&gt;时区问题&lt;/h4&gt;
+
+&lt;p&gt;进行定时备份时，发现备份使用的事 UTC 时间，并不是本地时间，经过排查后发现是 &lt;code&gt;velero&lt;/code&gt; 镜像的时区问题，在调整后就会正常定时备份了，这里我重新调整了时区，直接调整镜像就好，修改 &lt;code&gt;install/01-velero.yaml&lt;/code&gt; 文件，将镜像替换为 &lt;code&gt;registry-vpc.cn-shanghai.aliyuncs.com/keking/velero:latest&lt;/code&gt;。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;image:
+  caption: &amp;quot;Image from: [**Pexels**](https://www.pexels.com)&amp;quot;
+  focal_point: &amp;quot;&amp;quot;
+  preview_only: false
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: velero
+  namespace: velero
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deploy: velero
+  template:
+    metadata:
+      annotations:
+        prometheus.io/path: /metrics
+        prometheus.io/port: &amp;quot;8085&amp;quot;
+        prometheus.io/scrape: &amp;quot;true&amp;quot;
+      labels:
+        component: velero
+        deploy: velero
+    spec:
+      serviceAccountName: velero
+      containers:
+      - name: velero
+        # sync from gcr.io/heptio-images/velero:latest
+        image: registry-vpc.cn-shanghai.aliyuncs.com/keking/velero:latest   # 修复时区后的镜像
+        imagePullPolicy: IfNotPresent
+        command:
+          - /velero
+        args:
+          - server
+          - --default-volume-snapshot-locations=alibabacloud:default
+        env:
+          - name: VELERO_SCRATCH_DIR
+            value: /scratch
+          - name: ALIBABA_CLOUD_CREDENTIALS_FILE
+            value: /credentials/cloud
+        volumeMounts:
+          - mountPath: /plugins
+            name: plugins
+          - mountPath: /scratch
+            name: scratch
+          - mountPath: /credentials
+            name: cloud-credentials
+      initContainers:
+      - image: registry.cn-hangzhou.aliyuncs.com/acs/velero-plugin-alibabacloud:v1.2
+        imagePullPolicy: IfNotPresent
+        name: velero-plugin-alibabacloud
+        volumeMounts:
+        - mountPath: /target
+          name: plugins
+      volumes:
+        - emptyDir: {}
+          name: plugins
+        - emptyDir: {}
+          name: scratch
+        - name: cloud-credentials
+          secret:
+            secretName: cloud-credentials
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;版本问题&#34;&gt;版本问题&lt;/h4&gt;
+
+&lt;p&gt;截止发稿时，Velero 已经发布了 v1.2.0 版本，目前 ACK 的 Velero 的插件还未升级。&lt;/p&gt;
+
+&lt;h2 id=&#34;结语&#34;&gt;结语&lt;/h2&gt;
+
+&lt;p&gt;近日正好有 k8s 集群服务迁移服务的需求，使用 Velero 完成了服务的迁移，同时也每日进行集群资源备份，其能力可以满足容器服务的灾备和迁移场景，实测可用，现已运行在所有的 k8s 集群。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

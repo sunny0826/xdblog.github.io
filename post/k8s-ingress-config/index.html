@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academia 4.3.1">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
+  <meta name="baidu-site-verification" content="A85okozwVV" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="never">
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="郭旭东">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外的扎眼。这里就对实践中kubernetes集群中的7层负载均衡器ingress遇到的问题进行总结。">
+
+  
+  <link rel="alternate" hreflang="en" href="https://academia-hugo.netlify.com/en/post/k8s-ingress-config/">
+  
+  <link rel="alternate" hreflang="zh-Hans" href="https://academia-hugo.netlify.com/post/k8s-ingress-config/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#fc6f5c">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.9.0/instantsearch.min.css" integrity="sha256-ZtmLe16p4jS4/2wPwwH6NzJt460SJzgLmhKrYo5yn7g=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch-theme-algolia.min.css" integrity="sha256-uL8LUd3zkI/lXvc/Hv/oOu8ld6RJcOZiUY/8c+I+3/o=" crossorigin="anonymous">
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academia.min.9be1772e7ca3b9e5f31014835ca21e99.css">
+
+  
+    
+    
+    
+    
+      
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academia.ef74575f38e28c5c9feae541be1f6e36.css">
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://academia-hugo.netlify.com/post/k8s-ingress-config/">
+
+  
+  
+  
+  
+    
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@GuoXudong2">
+  <meta property="twitter:creator" content="@GuoXudong2">
+  
+  <meta property="og:site_name" content="GuoXD Blog·郭旭东的博客">
+  <meta property="og:url" content="https://academia-hugo.netlify.com/post/k8s-ingress-config/">
+  <meta property="og:title" content="解决kubernetes中ingress-nginx配置问题 | GuoXD Blog·郭旭东的博客">
+  <meta property="og:description" content="随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外的扎眼。这里就对实践中kubernetes集群中的7层负载均衡器ingress遇到的问题进行总结。"><meta property="og:image" content="https://academia-hugo.netlify.com/post/k8s-ingress-config/featured.jpg">
+  <meta property="twitter:image" content="https://academia-hugo.netlify.com/post/k8s-ingress-config/featured.jpg"><meta property="og:locale" content="zh-Hans">
+  
+  <meta property="article:published_time" content="2019-03-06T14:42:05&#43;08:00">
+  
+  <meta property="article:modified_time" content="2019-03-06T14:42:05&#43;08:00">
+  
+
+  
+
+
+  
+
+
+
+
+
+  <title>解决kubernetes中ingress-nginx配置问题 | GuoXD Blog·郭旭东的博客</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/"><img src="/img/logo.png" alt="GuoXD Blog·郭旭东的博客"></a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航"><span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#slider"><span>主页</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>博客</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>关于</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <span>中文 (简体)</span>
+          </a>
+          <ul class="dropdown-menu">
+            
+            <li class="dropdown-item my-0 py-0 mx-0 px-0">
+              <a href="https://academia-hugo.netlify.com/en/post/k8s-ingress-config/">
+                <span>English</span>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        
+
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article py-5" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container split-header">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+        <img class="img-fluid w-100" src="/post/k8s-ingress-config/featured_hu840e44a411a883e56c052b7c17e9e164_17735_680x500_fill_q90_lanczos_smart1.jpg" itemprop="image" alt="">
+        <span
+          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+    </div>
+    <div class="col-lg-8">
+      <h1 itemprop="name">解决kubernetes中ingress-nginx配置问题</h1>
+
+      
+
+      
+
+
+
+<meta content="2019-03-06 14:42:05 &#43;0800 CST" itemprop="datePublished">
+<meta content="2019-03-06 14:42:05 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2019-03-06</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 分钟阅读时间
+  </span>
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/categories/kubernetes/">kubernetes</a></span>
+  
+
+  
+    
+<br>
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://academia-hugo.netlify.com/post/k8s-ingress-config/&amp;text=%e8%a7%a3%e5%86%b3kubernetes%e4%b8%adingress-nginx%e9%85%8d%e7%bd%ae%e9%97%ae%e9%a2%98" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://academia-hugo.netlify.com/post/k8s-ingress-config/&amp;t=%e8%a7%a3%e5%86%b3kubernetes%e4%b8%adingress-nginx%e9%85%8d%e7%bd%ae%e9%97%ae%e9%a2%98" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%e8%a7%a3%e5%86%b3kubernetes%e4%b8%adingress-nginx%e9%85%8d%e7%bd%ae%e9%97%ae%e9%a2%98&amp;body=https://academia-hugo.netlify.com/post/k8s-ingress-config/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://academia-hugo.netlify.com/post/k8s-ingress-config/&amp;title=%e8%a7%a3%e5%86%b3kubernetes%e4%b8%adingress-nginx%e9%85%8d%e7%bd%ae%e9%97%ae%e9%a2%98" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=%e8%a7%a3%e5%86%b3kubernetes%e4%b8%adingress-nginx%e9%85%8d%e7%bd%ae%e9%97%ae%e9%a2%98%20https://academia-hugo.netlify.com/post/k8s-ingress-config/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://academia-hugo.netlify.com/post/k8s-ingress-config/&amp;title=%e8%a7%a3%e5%86%b3kubernetes%e4%b8%adingress-nginx%e9%85%8d%e7%bd%ae%e9%97%ae%e9%a2%98" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://academia-hugo.netlify.com/post/k8s-ingress-config/&amp;title=%e8%a7%a3%e5%86%b3kubernetes%e4%b8%adingress-nginx%e9%85%8d%e7%bd%ae%e9%97%ae%e9%a2%98" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    
+    </div>
+  </div>
+</div>
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<h2 id="前言">前言</h2>
+
+<p>随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外的扎眼。这里就对实践中kubernetes集群中的7层负载均衡器ingress遇到的问题进行总结。</p>
+
+<h2 id="http-s-负载均衡器-ingress">HTTP(S)负载均衡器-ingress</h2>
+
+<p>Ingress是kubernetes API的标准资源类型之一，其本质就是一组基于DNS名称(host)或URL路径把请求转发至指定的Service资源的规则，<strong>用于将集群外的请求流量转发至集群内部完成服务发布</strong>。</p>
+
+<p>Ingress控制器(Ingress Controller)可以由任何具有反向代理(HTTP/HTTPS)功能的服务程序实现，如Nginx、Envoy、HAProxy、Vulcand和Traefik等。Ingress控制器本身也作为Pod对象与被代理的运行为Pod资源的应用运行于同一网络中。我们在这里选择了NGINX Ingress Controller，由于对NGINX的配置较为熟悉，同时我们使用的kubernetes是阿里云的容器服务，构建集群的时候，容器服务会自带NGINX Ingress Controller。</p>
+
+<p><img src="http://wx2.sinaimg.cn/large/ad5fbf65ly1g0t3yj7wecj20w50doab9.jpg" alt="image" /></p>
+
+<h2 id="根据实际情况ingress调优">根据实际情况Ingress调优</h2>
+
+<h3 id="1-解决400-request-header-or-cookie-too-large问题">1. 解决400 Request Header Or Cookie Too Large问题</h3>
+
+<p>image:
+  caption: &ldquo;Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a>&ldquo;
+  focal_point: &ldquo;&rdquo;</p>
+
+<h2 id="preview-only-false">preview_only: false</h2>
+
+<h4 id="现象">现象</h4>
+
+<p>微信小程序需要调用后端接口，需要在header中传一段很长的token参数，直接使用浏览器访问该端口可以访问通，但是在加上token访问之后，会报“400 Request Header Or Cookie Too Large”</p>
+
+<pre><code class="language-html">&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;400 Request Header Or Cookie Too Large&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;center&gt;
+            &lt;h1&gt;400 Bad Request&lt;/h1&gt;
+        &lt;/center&gt;
+        &lt;center&gt;Request Header Or Cookie Too Large&lt;/center&gt;
+        &lt;hr&gt;
+        &lt;center&gt;nginx/1.15.6&lt;/center&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h4 id="问题定位">问题定位</h4>
+
+<p>直接修改Service使用nodeport的形式访问，则没有报错，初步定位需要在ingress中nginx配置客户端的请求头，进入Ingress Controller的Pod查询配置，果然是请求头空间不足。</p>
+
+<pre><code class="language-bash">$ cat nginx.conf | grep client_header_buffer_size
+    client_header_buffer_size       1k;
+$ cat nginx.conf | grep large_client_header_buffers
+    large_client_header_buffers     4 8k;
+</code></pre>
+
+<h4 id="解决方法">解决方法</h4>
+
+<p>在ingress中添加注释</p>
+
+<pre><code class="language-nginx">nginx.ingress.kubernetes.io/server-snippet: client_header_buffer_size 2046k;
+</code></pre>
+
+<p>image:
+  caption: &ldquo;Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a>&ldquo;
+  focal_point: &ldquo;&rdquo;</p>
+
+<h2 id="preview-only-false-1">preview_only: false</h2>
+
+<p><strong>Server snippet</strong><br>Using the annotation <code>nginx.ingress.kubernetes.io/server-snippet</code> it is possible to add custom configuration in the server configuration block.
+<br>该注释是将自定义配置加入nginx的server配置中</p>
+
+<p>image:
+  caption: &ldquo;Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a>&ldquo;
+  focal_point: &ldquo;&rdquo;</p>
+
+<h2 id="preview-only-false-2">preview_only: false</h2>
+
+<h3 id="2-解决请求超时问题">2. 解决请求超时问题</h3>
+
+<h4 id="现象-1">现象</h4>
+
+<p>有一个数据导出功能，需要将大量数据进行处理，然后以Excel格式返回，在导出一个大约3W条数据的时候，出现访问超时情况。</p>
+
+<p><img src="https://ws2.sinaimg.cn/mw690/ad5fbf65ly1g0ubdwwzo5j21b30bjaat.jpg" alt="image" /></p>
+
+<h4 id="解决方法-1">解决方法</h4>
+
+<p>调整proxy_read_timeout，连接成功后_等候后端服务器响应时间_其实已经进入后端的排队之中等候处理
+在ingress中添加注释</p>
+
+<pre><code class="language-nginx">nginx.ingress.kubernetes.io/proxy-read-timeout: 600
+</code></pre>
+
+<blockquote>
+<p>这里需要注意的事该注释的value需要时number类型，不能加s，否则将不生效</p>
+</blockquote>
+
+<h3 id="3-增加白名单">3. 增加白名单</h3>
+
+<h4 id="现象-2">现象</h4>
+
+<p>在实际的使用中，会有一部分应用需要设置只可以在办公场地的网络使用，之前使用阿里云 SLB 的时候可以针对端口进行访问控制，但是现在走 ingress ，都是从80 or 443端口进，所以需要在 ingress 设置</p>
+
+<h4 id="解决方法-2">解决方法</h4>
+
+<blockquote>
+<p><strong>Whitelist source range</strong></p>
+
+<p>You can specify allowed client IP source ranges through the nginx.ingress.kubernetes.io/whitelist-source-range annotation. The value is a comma separated list of CIDRs, e.g. 10.0.0.0/24,172.10.0.1.</p>
+</blockquote>
+
+<p>在 ingress 里配置 <code>nginx.ingress.kubernetes.io/whitelist-source-range</code> ，如有多个ip段，用逗号分隔即可</p>
+
+<pre><code class="language-nginx">nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/24
+</code></pre>
+
+<p>如果想全局适用，可以在阿里云 SLB 里操作，也可以将该配置加入到 <code>NGINX ConfigMap</code> 中。</p>
+
+<p>image:
+  caption: &ldquo;Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a>&ldquo;
+  focal_point: &ldquo;&rdquo;</p>
+
+<h2 id="preview-only-false-3">preview_only: false</h2>
+
+<p>根据工作中遇到的实际问题，持续更新中&hellip;</p>
+
+<h2 id="总结">总结</h2>
+
+<p>使用NGINX ingress controller的好处就是对于nginx配置相对比较熟悉，性能也不差。相关nginx配置的对应的ingress可以在 <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/" target="_blank">https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/</a> 上查到。</p>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/kubernetes">kubernetes</a>
+  
+  <a class="badge badge-light" href="/tags/%e5%ae%b9%e5%99%a8">容器</a>
+  
+</div>
+
+
+
+     
+     
+<div class="entry-shang text-center">
+    <p>「一键投喂 小鱼干/小骨头」</p>
+    <button class="zs show-zs btn btn-primary">投喂</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+    <div class="zs-modal-head">
+        <button type="button" class="close">×</button>
+        <p class="author">
+            <a href="https://blog.maoxianplay.com">
+                <img src="https://wx3.sinaimg.cn/square/ad5fbf65gy1g2o621gcs6j20m80m8gng.jpg"/>
+            小助手毛线</a>
+        </p>
+        <p class="tip"><i></i><span>感谢投喂 <a href="/maoxian">毛线</a> & <a href="/sunny">Sunny</a> </span></p>
+    </div>
+    <div class="zs-modal-body">
+        <div class="zs-modal-btns">
+            <button class="btn btn-blink" data-num="2">2元</button>
+            <button class="btn btn-blink" data-num="5">5元</button>
+            <button class="btn btn-blink" data-num="10">10元</button>
+            <button class="btn btn-blink" data-num="50">50元</button>
+            <button class="btn btn-blink" data-num="100">100元</button>
+            <button class="btn btn-blink" data-num="any">任意金额</button>
+        </div>
+        <div class="zs-modal-pay">
+            <button class="btn btn-bred" id="pay-text">2元</button>
+            <p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+            <img id="pay-image" src="/img/alipay-2.png">
+        </div>
+    </div>
+    <div class="zs-modal-footer">
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="alipay" class="zs-type" checked="checked" style="float: left;">
+            <span class="zs-alipay">
+                <img src="/img/alipay-btn.png">
+            </span>
+        </label>
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="wechat" class="zs-type" style="float: left;">
+            <span class="zs-wechat">
+                <img src="/img/wechat-btn.png">
+            </span>
+        </label>
+    </div>
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="https://academia-hugo.netlify.com/">郭旭东</a></h5>
+      <h6 class="card-subtitle">运维负责人</h6>
+      <p class="card-text" itemprop="description">云原生爱好者，分享云原生和 DevOps 技术实践，倡导开源运动，传播开源思想。</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          <li>
+            <a itemprop="sameAs" href="mailto:sunnydog0826@gmail.com" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/publication/wx_contact/" >
+              <i class="fab fa-weixin"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/sunny0826" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>相关</h3>
+        <ul>
+          
+          <li><a href="/post/install-k8s/">centos7.2 安装k8s v1.11.0</a></li>
+          
+          <li><a href="/post/k8s-qos/">Pod质量服务类别(QoS)</a></li>
+          
+          <li><a href="/post/pod-timezone/">kubernetes中pod同步时区问题</a></li>
+          
+          <li><a href="/post/install-rancher/">阿里云部署rancher2.1采坑记</a></li>
+          
+          <li><a href="/post/k8s-d-n/">Kubernetes删除一直处于Terminating状态的namespace</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+      <script async defer src="//maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.min.js" integrity="sha256-7vjlAeb8OaTrCXZkCNun9djzuB2owUsaO72kXaFDBJs=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-algolia-template" type="text/html">
+      <div class="search-hit">
+        <div class="search-hit-content">
+          <div class="search-hit-name">
+            <a href="{{relpermalink}}">{{{_highlightResult.title.value}}}</a>
+          </div>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{{_highlightResult.summary.value}}}</p>
+        </div>
+      </div>
+    </script>
+    
+
+    
+    
+
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch.min.js" integrity="sha256-gFCtPk/sonctyfwYOgjrPoWApQ0rqB6ezBBZ7p32yGc=" crossorigin="anonymous"></script>
+    
+    <script>
+      const algoliaConfig = {
+        appId: "BE80MGWD9D",
+        apiKey: "77ca6abe5531ce66ff7c3b2486222d85",
+        indexName: "gxd-blog",
+        poweredBy:  true 
+      };
+    </script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+      
+    
+    
+    
+    <script src="/js/academia.min.6ee120363d4a313a6fd39ad7c46e63f8.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        
+        <p>
+          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          Powered by
+          <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-inline network-icon text-right">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="mailto:sunnydog0826@gmail.com"  title="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="/publication/wx_contact/"  title="Chat on Keybase"><i class="fab fa-weixin" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/sunny0826" target="_blank" rel="noopener" title="Discuss on Forum"><i class="fab fa-github" aria-hidden="true"></i></a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

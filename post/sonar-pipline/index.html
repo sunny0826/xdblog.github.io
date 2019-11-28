@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academia 4.3.1">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
+  <meta name="baidu-site-verification" content="A85okozwVV" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="never">
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="郭旭东">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="在devops理念中，CI/CD毫无疑问是最重要的一环，而代码质量检查则是CI中必不可少的一步。在敏捷开发的思想下，代码的迭代周期变短，交付速度提升，这个时候代码的质量就很难保证，测试只能保证功能完整与可用，而代码的质量纯靠review的话效率又很低，这个时候sonar...">
+
+  
+  <link rel="alternate" hreflang="en" href="https://academia-hugo.netlify.com/en/post/sonar-pipline/">
+  
+  <link rel="alternate" hreflang="zh-Hans" href="https://academia-hugo.netlify.com/post/sonar-pipline/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#fc6f5c">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.9.0/instantsearch.min.css" integrity="sha256-ZtmLe16p4jS4/2wPwwH6NzJt460SJzgLmhKrYo5yn7g=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch-theme-algolia.min.css" integrity="sha256-uL8LUd3zkI/lXvc/Hv/oOu8ld6RJcOZiUY/8c+I+3/o=" crossorigin="anonymous">
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academia.min.9be1772e7ca3b9e5f31014835ca21e99.css">
+
+  
+    
+    
+    
+    
+      
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academia.ef74575f38e28c5c9feae541be1f6e36.css">
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://academia-hugo.netlify.com/post/sonar-pipline/">
+
+  
+  
+  
+  
+    
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@GuoXudong2">
+  <meta property="twitter:creator" content="@GuoXudong2">
+  
+  <meta property="og:site_name" content="GuoXD Blog·郭旭东的博客">
+  <meta property="og:url" content="https://academia-hugo.netlify.com/post/sonar-pipline/">
+  <meta property="og:title" content="Jenkins Pipeline集成Sonar进行代码质量检测 | GuoXD Blog·郭旭东的博客">
+  <meta property="og:description" content="在devops理念中，CI/CD毫无疑问是最重要的一环，而代码质量检查则是CI中必不可少的一步。在敏捷开发的思想下，代码的迭代周期变短，交付速度提升，这个时候代码的质量就很难保证，测试只能保证功能完整与可用，而代码的质量纯靠review的话效率又很低，这个时候sonar..."><meta property="og:image" content="https://academia-hugo.netlify.com/post/sonar-pipline/featured.jpg">
+  <meta property="twitter:image" content="https://academia-hugo.netlify.com/post/sonar-pipline/featured.jpg"><meta property="og:locale" content="zh-Hans">
+  
+  <meta property="article:published_time" content="2019-03-07T09:14:39&#43;08:00">
+  
+  <meta property="article:modified_time" content="2019-03-07T09:14:39&#43;08:00">
+  
+
+  
+
+
+  
+
+
+
+
+
+  <title>Jenkins Pipeline集成Sonar进行代码质量检测 | GuoXD Blog·郭旭东的博客</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/"><img src="/img/logo.png" alt="GuoXD Blog·郭旭东的博客"></a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航"><span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#slider"><span>主页</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>博客</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>关于</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <span>中文 (简体)</span>
+          </a>
+          <ul class="dropdown-menu">
+            
+            <li class="dropdown-item my-0 py-0 mx-0 px-0">
+              <a href="https://academia-hugo.netlify.com/en/post/sonar-pipline/">
+                <span>English</span>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        
+
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article py-5" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container split-header">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+        <img class="img-fluid w-100" src="/post/sonar-pipline/featured_hubbe372b2d50226db5571f957d2b7e5e2_784521_680x500_fill_q90_lanczos_smart1.jpg" itemprop="image" alt="">
+        <span
+          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+    </div>
+    <div class="col-lg-8">
+      <h1 itemprop="name">Jenkins Pipeline集成Sonar进行代码质量检测</h1>
+
+      
+
+      
+
+
+
+<meta content="2019-03-07 09:14:39 &#43;0800 CST" itemprop="datePublished">
+<meta content="2019-03-07 09:14:39 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2019-03-07</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    7 分钟阅读时间
+  </span>
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/categories/devops/">devops</a></span>
+  
+
+  
+    
+<br>
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://academia-hugo.netlify.com/post/sonar-pipline/&amp;text=Jenkins%20Pipeline%e9%9b%86%e6%88%90Sonar%e8%bf%9b%e8%a1%8c%e4%bb%a3%e7%a0%81%e8%b4%a8%e9%87%8f%e6%a3%80%e6%b5%8b" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://academia-hugo.netlify.com/post/sonar-pipline/&amp;t=Jenkins%20Pipeline%e9%9b%86%e6%88%90Sonar%e8%bf%9b%e8%a1%8c%e4%bb%a3%e7%a0%81%e8%b4%a8%e9%87%8f%e6%a3%80%e6%b5%8b" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Jenkins%20Pipeline%e9%9b%86%e6%88%90Sonar%e8%bf%9b%e8%a1%8c%e4%bb%a3%e7%a0%81%e8%b4%a8%e9%87%8f%e6%a3%80%e6%b5%8b&amp;body=https://academia-hugo.netlify.com/post/sonar-pipline/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://academia-hugo.netlify.com/post/sonar-pipline/&amp;title=Jenkins%20Pipeline%e9%9b%86%e6%88%90Sonar%e8%bf%9b%e8%a1%8c%e4%bb%a3%e7%a0%81%e8%b4%a8%e9%87%8f%e6%a3%80%e6%b5%8b" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Jenkins%20Pipeline%e9%9b%86%e6%88%90Sonar%e8%bf%9b%e8%a1%8c%e4%bb%a3%e7%a0%81%e8%b4%a8%e9%87%8f%e6%a3%80%e6%b5%8b%20https://academia-hugo.netlify.com/post/sonar-pipline/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://academia-hugo.netlify.com/post/sonar-pipline/&amp;title=Jenkins%20Pipeline%e9%9b%86%e6%88%90Sonar%e8%bf%9b%e8%a1%8c%e4%bb%a3%e7%a0%81%e8%b4%a8%e9%87%8f%e6%a3%80%e6%b5%8b" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://academia-hugo.netlify.com/post/sonar-pipline/&amp;title=Jenkins%20Pipeline%e9%9b%86%e6%88%90Sonar%e8%bf%9b%e8%a1%8c%e4%bb%a3%e7%a0%81%e8%b4%a8%e9%87%8f%e6%a3%80%e6%b5%8b" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    
+    </div>
+  </div>
+</div>
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<h2 id="简介">简介</h2>
+
+<p>image:
+  caption: &ldquo;Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a>&ldquo;
+  focal_point: &ldquo;&rdquo;</p>
+
+<h2 id="preview-only-false">preview_only: false</h2>
+
+<h3 id="jenkins-pipeline">jenkins pipeline</h3>
+
+<p>Jenkins Pipeline (或简称为 &ldquo;Pipeline&rdquo; )是一套插件，将持续交付的实现和实施集成到 Jenkins 中。</p>
+
+<p>持续交付Pipeline自动化的表达了这样一种流程：将基于版本控制管理的软件持续的交付到您的用户和消费者手中。</p>
+
+<p>Jenkins Pipeline 提供了一套可扩展的工具，用于将“简单到复杂”的交付流程实现为“持续交付即代码”。 Jenkins Pipeline 的定义通常被写入到一个文本文件（称为 <code>Jenkinsfile</code> ）中，该文件可以被检入到项目的源代码控制库中。</p>
+
+<p>摘自<a href="https://jenkins.io/zh/" target="_blank">Jenkins官方文档</a></p>
+
+<h3 id="sonarqube">SonarQube</h3>
+
+<p>SonarQube is an open source platform to perform automatic reviews with static analysis of code to detect bugs, code smells and security vulnerabilities on 25+ programming languages including Java, C#, JavaScript, TypeScript, C/C++, COBOL and more.</p>
+
+<p>SonarQube是一个开源的平台，以执行与代码的静态分析，自动审查，可以检测在25+的编程语言如Java，C＃，JavaScript，TypeScript，C/C++，COBOL等的代码缺陷和安全漏洞。</p>
+
+<h3 id="owasp">OWASP</h3>
+
+<p>OWASP，全称是：Open Web Application Security Project，翻译为中文就是：开放式Web应用程序安全项目，是一个非营利组织，不附属于任何企业或财团，这也是该组织可以不受商业控制地进行安全开发及安全普及的重要原因，<a href="https://en.wikipedia.org/wiki/OWASP/" target="_blank">详细介绍</a>。OWASP Dependency-Check，它识别项目依赖关系，并检查是否存在任何已知的、公开的、漏洞，基于OWASP Top 10 2013。</p>
+
+<h2 id="场景">场景</h2>
+
+<p>在devops理念中，CI/CD毫无疑问是最重要的一环，而代码质量检查则是CI中必不可少的一步。在敏捷开发的思想下，代码的迭代周期变短，交付速度提升，这个时候代码的质量就很难保证，测试只能保证功能完整与可用，而代码的质量纯靠review的话效率又很低，这个时候sonar就可以很好的帮助开发自动化检测代码质量，降低bug数量，也可以根据扫描结果养成良好的编程习惯，同时也可以减少测试的工作量，真正提升整个团队效率，实现devops理念。</p>
+
+<h2 id="前提">前提</h2>
+
+<p>jenkins、sonarqube服务已经搭建完成，jenkins安装sonar插件<code>SonarQube Scanner for Jenkins</code>，jenkins、sonarqube安装Dependency-Check插件<code>OWASP Dependency-Check Plugin</code></p>
+
+<p>版本：jenkins2.166，sonarqube6.7.6</p>
+
+<h2 id="配置">配置</h2>
+
+<ol>
+<li><p>下载安装jenkins插件</p>
+
+<p><strong>[系统管理]</strong>-<strong>[插件管理]</strong>-<strong>[可选插件]</strong>-<strong>[SonarQube Scanner for Jenkins]</strong></p>
+
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g0u4q3ae1bj20t90233yt.jpg" alt="image" /></p></li>
+
+<li><p>SonarQube生成token，<strong>这个token不会显示第二次，所以一定要记住</strong></p>
+
+<p><img src="https://ws1.sinaimg.cn/mw690/ad5fbf65ly1g0u5902q6nj213f0hgwgn.jpg" alt="image" /></p></li>
+
+<li><p>SonarQube配置Dependency-Check</p>
+
+<p><strong>[配置]</strong>-<strong>[Dependency-Check]</strong></p>
+
+<p><strong>[注意：]</strong>这里去掉 <code>${WORKSPACE}/</code>，否则将报</p>
+
+<pre><code class="language-Java">[INFO] Dependency-Check XML report does not exists. Please check property sonar.dependencyCheck.reportPath:/data/jenkinsHome/workspace/xxx/${WORKSPACE}/dependency-check-report.xml
+</code></pre>
+
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g0yvjjcvdaj211b0jhgod.jpg" alt="image" /></p></li>
+
+<li><p>在pom.xml文件中添加</p>
+
+<pre><code class="language-xml">&lt;plugin&gt;
+    &lt;groupId&gt;org.sonarsource.scanner.maven&lt;/groupId&gt;
+    &lt;artifactId&gt;sonar-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;3.6.0.1398&lt;/version&gt;
+&lt;/plugin&gt;
+</code></pre></li>
+
+<li><p>配置jenkins</p>
+
+<p><strong>[系统管理]</strong>-<strong>[系统设置]</strong>-<strong>[SonarQube servers]</strong></p>
+
+<p><img src="http://wx3.sinaimg.cn/large/ad5fbf65ly1g0u50l8q4lj215o0b3myw.jpg" alt="image" /></p></li>
+
+<li><p>sonar添加webhook</p>
+
+<p>在代码扫描成功后，扫描结果需要回调jenkins，添加的Jenkins的webhook结构为：http://[jenkins_url]/sonarqube-webhook/</p>
+
+<p><strong>[配置]</strong>-<strong>[web回调接口]</strong>-<strong>[URL]</strong></p>
+
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g0v4m590vhj212k0pw0vo.jpg" alt="image" /></p></li>
+
+<li><p>编辑jenkins pipeline</p>
+
+<p>在jenkinsfile文件中添加配置</p>
+
+<pre><code class="language-Groovy">stage('依赖安全检查') {
+    steps{
+        dependencyCheckAnalyzer datadir: '', hintsFile: '', includeCsvReports: false, includeHtmlReports: true, includeJsonReports: false, includeVulnReports: true, isAutoupdateDisabled: false, outdir: '', scanpath: '', skipOnScmChange: false, skipOnUpstreamChange: false, suppressionFile: '', zipExtensions: ''
+    }
+}
+
+stage('静态代码检查') {
+    steps {
+        echo &quot;starting codeAnalyze with SonarQube......&quot;
+        withSonarQubeEnv('sonar') {
+            //注意这里withSonarQubeEnv()中的参数要与之前SonarQube servers中Name的配置相同
+            withMaven(maven: 'M3') {
+                sh &quot;mvn clean package -Dmaven.test.skip=true sonar:sonar -Dsonar.projectKey={项目key} -Dsonar.projectName={项目名称} -Dsonar.projectVersion={项目版本} -Dsonar.sourceEncoding=UTF-8 -Dsonar.exclusions=src/test/** -Dsonar.sources=src/ -Dsonar.java.binaries=target/classes -Dsonar.host.url={SonarQube地址} -Dsonar.login={SonarQube的token}&quot;
+            }
+        }
+        script {
+            timeout(1) {
+                //这里设置超时时间1分钟，不会出现一直卡在检查状态
+                //利用sonar webhook功能通知pipeline代码检测结果，未通过质量阈，pipeline将会fail
+                def qg = waitForQualityGate('sonar')
+                //注意：这里waitForQualityGate()中的参数也要与之前SonarQube servers中Name的配置相同
+                if (qg.status != 'OK') {
+                    error &quot;未通过Sonarqube的代码质量阈检查，请及时修改！failure: ${qg.status}&quot;
+                }
+            }
+        }
+    }
+}
+</code></pre>
+
+<p><strong>参数解释：</strong></p>
+
+<ul>
+<li>sonar.projectKey：项目key (必填项)</li>
+<li>sonar.projectName：项目名称（必填项）</li>
+<li>sonar.projectVersion：项目版本（必填项）</li>
+<li>sonar.sources：源码位置(相对路径）</li>
+<li>sonar.java.binaries：编译后的class位置（必填项，相对路径同上）</li>
+<li>sonar.exclusions：排除的扫描的文件路径</li>
+<li>sonar.host.url：SonarQube地址</li>
+<li>sonar.login：SonarQube生成的token</li>
+</ul></li>
+</ol>
+
+<h2 id="运行">运行</h2>
+
+<p>执行jenkins构建，构建成功后会显示如下，则证明sonar代码扫描成功且通过代码质量阈检查
+<img src="https://wx1.sinaimg.cn/mw690/ad5fbf65ly1g0u6qrh8qrj21fu0q2dmw.jpg" alt="image" /></p>
+
+<p>查看sonar报告，这里有两种方式</p>
+
+<ul>
+<li><p>可直接登录SonarQube查看报告
+<img src="https://ws1.sinaimg.cn/mw690/ad5fbf65ly1g0u6vbspv5j21260myadw.jpg" alt="image" /></p></li>
+
+<li><p>也可直接在jenkins页面点击SonarQube图标进入，点击以下标记均可进去
+<img src="https://ws2.sinaimg.cn/mw690/ad5fbf65ly1g0u6xzcryhj21fn0q7wkm.jpg" alt="image" /></p></li>
+</ul>
+
+<h2 id="其他">其他</h2>
+
+<h3 id="问题一-无法扫描代码-错误提示">问题一：无法扫描代码，错误提示</h3>
+
+<pre><code class="language-Java">hudson.remoting.ProxyException: hudson.AbortException: SonarQube installation defined in this job (sonar) does not match any configured installation. Number of installations that can be configured: 1.
+If you want to reassign jobs to a different SonarQube installation, check the documentation under https://redirect.sonarsource.com/plugins/jenkins.html
+    at hudson.plugins.sonar.SonarInstallation.checkValid(SonarInstallation.java:94)
+    at hudson.plugins.sonar.SonarBuildWrapper.setUp(SonarBuildWrapper.java:67)
+    at org.jenkinsci.plugins.workflow.steps.CoreWrapperStep$Execution.start(CoreWrapperStep.java:80)
+    at org.jenkinsci.plugins.workflow.cps.DSL.invokeStep(DSL.java:268)
+Caused: hudson.remoting.ProxyException: org.codehaus.groovy.runtime.InvokerInvocationException: hudson.AbortException: SonarQube installation defined in this job (sonar) does not match any configured installation. Number of installations that can be configured: 1.
+If you want to reassign jobs to a different SonarQube installation, check the documentation under https://redirect.sonarsource.com/plugins/jenkins.html
+    at org.jenkinsci.plugins.workflow.cps.CpsStepContext.replay(CpsStepContext.java:499)
+    at org.jenkinsci.plugins.workflow.cps.DSL.invokeStep(DSL.java:295)
+    at org.jenkinsci.plugins.workflow.cps.DSL.invokeStep(DSL.java:207)
+    at org.jenkinsci.plugins.workflow.cps.DSL.invokeDescribable(DSL.java:395)
+    at org.jenkinsci.plugins.workflow.cps.DSL.invokeMethod(DSL.java:179)
+    at org.jenkinsci.plugins.workflow.cps.CpsScript.invokeMethod(CpsScript.java:122)
+    at sun.reflect.GeneratedMethodAccessor1200.invoke(Unknown Source)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:498)
+    at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+    at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+    at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
+    at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1022)
+    at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:42)
+    at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+    at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+    at org.kohsuke.groovy.sandbox.impl.Checker$1.call(Checker.java:157)
+    at org.kohsuke.groovy.sandbox.GroovyInterceptor.onMethodCall(GroovyInterceptor.java:23)
+    at org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.SandboxInterceptor.onMethodCall(SandboxInterceptor.java:155)
+    at org.kohsuke.groovy.sandbox.impl.Checker$1.call(Checker.java:155)
+    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:159)
+    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
+    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
+    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
+    at com.cloudbees.groovy.cps.sandbox.SandboxInvoker.methodCall(SandboxInvoker.java:17)
+Caused: hudson.remoting.ProxyException: java.lang.IllegalArgumentException: Failed to prepare withSonarQubeEnv step
+    at org.jenkinsci.plugins.workflow.cps.DSL.invokeDescribable(DSL.java:397)
+    at org.jenkinsci.plugins.workflow.cps.DSL.invokeMethod(DSL.java:179)
+    at org.jenkinsci.plugins.workflow.cps.CpsScript.invokeMethod(CpsScript.java:122)
+    at sun.reflect.GeneratedMethodAccessor1200.invoke(Unknown Source)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:498)
+    at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+    at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+    at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
+    at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1022)
+    at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:42)
+    at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
+    at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
+    at org.kohsuke.groovy.sandbox.impl.Checker$1.call(Checker.java:157)
+    at org.kohsuke.groovy.sandbox.GroovyInterceptor.onMethodCall(GroovyInterceptor.java:23)
+    at org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.SandboxInterceptor.onMethodCall(SandboxInterceptor.java:155)
+    at org.kohsuke.groovy.sandbox.impl.Checker$1.call(Checker.java:155)
+    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:159)
+    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
+    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
+    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
+    at com.cloudbees.groovy.cps.sandbox.SandboxInvoker.methodCall(SandboxInvoker.java:17)
+    at WorkflowScript.run(WorkflowScript:27)
+    at ___cps.transform___(Native Method)
+    at com.cloudbees.groovy.cps.impl.ContinuationGroup.methodCall(ContinuationGroup.java:57)
+    at com.cloudbees.groovy.cps.impl.FunctionCallBlock$ContinuationImpl.dispatchOrArg(FunctionCallBlock.java:109)
+    at com.cloudbees.groovy.cps.impl.FunctionCallBlock$ContinuationImpl.fixArg(FunctionCallBlock.java:82)
+    at sun.reflect.GeneratedMethodAccessor249.invoke(Unknown Source)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:498)
+    at com.cloudbees.groovy.cps.impl.ContinuationPtr$ContinuationImpl.receive(ContinuationPtr.java:72)
+    at com.cloudbees.groovy.cps.impl.ClosureBlock.eval(ClosureBlock.java:46)
+    at com.cloudbees.groovy.cps.Next.step(Next.java:83)
+    at com.cloudbees.groovy.cps.Continuable$1.call(Continuable.java:174)
+    at com.cloudbees.groovy.cps.Continuable$1.call(Continuable.java:163)
+    at org.codehaus.groovy.runtime.GroovyCategorySupport$ThreadCategoryInfo.use(GroovyCategorySupport.java:122)
+    at org.codehaus.groovy.runtime.GroovyCategorySupport.use(GroovyCategorySupport.java:261)
+    at com.cloudbees.groovy.cps.Continuable.run0(Continuable.java:163)
+    at org.jenkinsci.plugins.workflow.cps.SandboxContinuable.access$101(SandboxContinuable.java:34)
+    at org.jenkinsci.plugins.workflow.cps.SandboxContinuable.lambda$run0$0(SandboxContinuable.java:59)
+    at org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.GroovySandbox.runInSandbox(GroovySandbox.java:121)
+    at org.jenkinsci.plugins.workflow.cps.SandboxContinuable.run0(SandboxContinuable.java:58)
+    at org.jenkinsci.plugins.workflow.cps.CpsThread.runNextChunk(CpsThread.java:182)
+    at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup.run(CpsThreadGroup.java:332)
+    at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup.access$200(CpsThreadGroup.java:83)
+    at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup$2.call(CpsThreadGroup.java:244)
+    at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup$2.call(CpsThreadGroup.java:232)
+    at org.jenkinsci.plugins.workflow.cps.CpsVmExecutorService$2.call(CpsVmExecutorService.java:64)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at hudson.remoting.SingleLaneExecutorService$1.run(SingleLaneExecutorService.java:131)
+    at jenkins.util.ContextResettingExecutorService$1.run(ContextResettingExecutorService.java:28)
+    at jenkins.security.ImpersonatingExecutorService$1.run(ImpersonatingExecutorService.java:59)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+    at java.lang.Thread.run(Thread.java:748)
+Finished: FAILURE
+</code></pre>
+
+<p>原因：withSonarQubeEnv()中的参数与之前SonarQube servers中Name的配置不同，导致没有找到找到SonarQube</p>
+
+<h3 id="问题二-sonarqube的token配置不对-导致无法连接sonar">问题二：SonarQube的token配置不对，导致无法连接sonar</h3>
+
+<pre><code class="language-Java">[ERROR] Failed to execute goal org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar (default-cli) on project callcenter: Not authorized. Please check the properties sonar.login and sonar.password. -&gt; [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+[Pipeline] }
+[withMaven] artifactsPublisher - Archive artifact pom.xml under cn/keking/callcenter/callcenter/0.0.1-SNAPSHOT/callcenter-0.0.1-SNAPSHOT.pom
+[withMaven] artifactsPublisher - Archive artifact target/callcenter-0.0.1-SNAPSHOT.jar under cn/keking/callcenter/callcenter/0.0.1-SNAPSHOT/callcenter-0.0.1-SNAPSHOT.jar
+[withMaven] artifactsPublisher - Archive artifact target/callcenter-0.0.1-SNAPSHOT-api.jar under cn/keking/callcenter/callcenter/0.0.1-SNAPSHOT/callcenter-0.0.1-SNAPSHOT-api.jar
+[withMaven] junitPublisher - Archive test results for Maven artifact cn.keking.callcenter:callcenter:jar:0.0.1-SNAPSHOT generated by maven-surefire-plugin:test (default-test): target/surefire-reports/*.xml
+[withMaven] junitPublisher - Jenkins JUnit Attachments Plugin not found, can't publish test attachments.Recording test results
+None of the test reports contained any result
+[withMaven] Jenkins Task Scanner Plugin not found, don't display results of source code scanning for 'TODO' and 'FIXME' in pipeline screen.
+[withMaven] Publishers: Pipeline Graph Publisher: 1 ms, Generated Artifacts Publisher: 891 ms, Junit Publisher: 4 ms, Dependencies Fingerprint Publisher: 5 ms
+[Pipeline] // withMaven
+[Pipeline] }
+WARN: Unable to locate 'report-task.txt' in the workspace. Did the SonarScanner succedeed?
+</code></pre>
+
+<p>原因：sonar.login的token配置不正确或者没有配置</p>
+
+<h3 id="问题三-jenkins-pipeline在sonarqube回调时显示超时">问题三：jenkins pipeline在SonarQube回调时显示超时</h3>
+
+<pre><code class="language-Java">[Pipeline] waitForQualityGate
+Checking status of SonarQube task 'AWlX97LSgWqXn-z33SO5' on server 'sonar'
+SonarQube task 'AWlX97LSgWqXn-z33SO5' status is 'IN_PROGRESS'
+Cancelling nested steps due to timeout
+</code></pre>
+
+<p>原因：SonarQube没有配置webhook回调，导致请求超时，按照步骤4配置webhook即可解决</p>
+
+<h3 id="问题四-sonar找不到dependency-check-xml">问题四：sonar找不到Dependency-Check XML</h3>
+
+<pre><code class="language-Java">[INFO] Sensor Dependency-Check [dependencycheck]
+[INFO] Process Dependency-Check report
+[INFO] Dependency-Check XML report does not exists. Please check property sonar.dependencyCheck.reportPath:/data/jenkinsHome/workspace/xxx/${WORKSPACE}/dependency-check-report.xml
+[INFO] Analysis skipped/aborted due to missing report file
+[INFO] Dependency-Check HTML report does not exists. Please check property sonar.dependencyCheck.htmlReportPath:/data/jenkinsHome/workspace/xxx/${WORKSPACE}/dependency-check-report.html
+[INFO] HTML-Dependency-Check report does not exist.
+</code></pre>
+
+<p>原因：SonarQube配置Dependency-Check插件有误，按照上文配置即可</p>
+
+<h2 id="结语">结语</h2>
+
+<p>sonar与jenkins集成的方式还有很多，不止pipeline+maven这一种，还有配置在jenkins构建任务中、直接使用sonar脚本等方法。采用这样方法，一方面是配置相对简单，不需要每个构建任务都进行配置，只需要将jenkinsfile中拷入相应代码并修改几个参数即可。同时可以在静态代码扫描期间完整maven打包，减少持续集成的时间。</p>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/devops">devops</a>
+  
+  <a class="badge badge-light" href="/tags/jenkins">jenkins</a>
+  
+  <a class="badge badge-light" href="/tags/sonar">sonar</a>
+  
+</div>
+
+
+
+     
+     
+<div class="entry-shang text-center">
+    <p>「一键投喂 小鱼干/小骨头」</p>
+    <button class="zs show-zs btn btn-primary">投喂</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+    <div class="zs-modal-head">
+        <button type="button" class="close">×</button>
+        <p class="author">
+            <a href="https://blog.maoxianplay.com">
+                <img src="https://wx3.sinaimg.cn/square/ad5fbf65gy1g2o621gcs6j20m80m8gng.jpg"/>
+            小助手毛线</a>
+        </p>
+        <p class="tip"><i></i><span>感谢投喂 <a href="/maoxian">毛线</a> & <a href="/sunny">Sunny</a> </span></p>
+    </div>
+    <div class="zs-modal-body">
+        <div class="zs-modal-btns">
+            <button class="btn btn-blink" data-num="2">2元</button>
+            <button class="btn btn-blink" data-num="5">5元</button>
+            <button class="btn btn-blink" data-num="10">10元</button>
+            <button class="btn btn-blink" data-num="50">50元</button>
+            <button class="btn btn-blink" data-num="100">100元</button>
+            <button class="btn btn-blink" data-num="any">任意金额</button>
+        </div>
+        <div class="zs-modal-pay">
+            <button class="btn btn-bred" id="pay-text">2元</button>
+            <p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+            <img id="pay-image" src="/img/alipay-2.png">
+        </div>
+    </div>
+    <div class="zs-modal-footer">
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="alipay" class="zs-type" checked="checked" style="float: left;">
+            <span class="zs-alipay">
+                <img src="/img/alipay-btn.png">
+            </span>
+        </label>
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="wechat" class="zs-type" style="float: left;">
+            <span class="zs-wechat">
+                <img src="/img/wechat-btn.png">
+            </span>
+        </label>
+    </div>
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="https://academia-hugo.netlify.com/">郭旭东</a></h5>
+      <h6 class="card-subtitle">运维负责人</h6>
+      <p class="card-text" itemprop="description">云原生爱好者，分享云原生和 DevOps 技术实践，倡导开源运动，传播开源思想。</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          <li>
+            <a itemprop="sameAs" href="mailto:sunnydog0826@gmail.com" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/publication/wx_contact/" >
+              <i class="fab fa-weixin"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/sunny0826" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+      <script async defer src="//maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.min.js" integrity="sha256-7vjlAeb8OaTrCXZkCNun9djzuB2owUsaO72kXaFDBJs=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-algolia-template" type="text/html">
+      <div class="search-hit">
+        <div class="search-hit-content">
+          <div class="search-hit-name">
+            <a href="{{relpermalink}}">{{{_highlightResult.title.value}}}</a>
+          </div>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{{_highlightResult.summary.value}}}</p>
+        </div>
+      </div>
+    </script>
+    
+
+    
+    
+
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch.min.js" integrity="sha256-gFCtPk/sonctyfwYOgjrPoWApQ0rqB6ezBBZ7p32yGc=" crossorigin="anonymous"></script>
+    
+    <script>
+      const algoliaConfig = {
+        appId: "BE80MGWD9D",
+        apiKey: "77ca6abe5531ce66ff7c3b2486222d85",
+        indexName: "gxd-blog",
+        poweredBy:  true 
+      };
+    </script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+      
+    
+    
+    
+    <script src="/js/academia.min.6ee120363d4a313a6fd39ad7c46e63f8.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        
+        <p>
+          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          Powered by
+          <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-inline network-icon text-right">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="mailto:sunnydog0826@gmail.com"  title="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="/publication/wx_contact/"  title="Chat on Keybase"><i class="fab fa-weixin" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/sunny0826" target="_blank" rel="noopener" title="Discuss on Forum"><i class="fab fa-github" aria-hidden="true"></i></a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

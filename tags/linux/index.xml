@@ -1,41 +1,339 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linux on GuoXD Blog</title>
-    <link>https://guoxudong.io/tags/linux/</link>
-    <description>Recent content in Linux on GuoXD Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh</language>
+    <title>Linux on GuoXD Blog·郭旭东的博客</title>
+    <link>https://academia-hugo.netlify.com/tags/linux/</link>
+    <description>Recent content in Linux on GuoXD Blog·郭旭东的博客</description>
+    <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
     <lastBuildDate>Fri, 15 Mar 2019 09:53:02 +0800</lastBuildDate>
     
-	<atom:link href="https://guoxudong.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="https://academia-hugo.netlify.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Alpine Linux详解</title>
-      <link>https://guoxudong.io/posts/alpine-linux/</link>
+      <link>https://academia-hugo.netlify.com/post/alpine-linux/</link>
       <pubDate>Fri, 15 Mar 2019 09:53:02 +0800</pubDate>
       
-      <guid>https://guoxudong.io/posts/alpine-linux/</guid>
-      <description>Alpine以其小巧、简单在docker容器中得到了广泛的应用。但是Alpine Linux使用了musl，可能和其他Linux发行版使用的glibc实现会有些不同。这里主要介绍了它的基础用法，但是足以满足日常运维需要。</description>
+      <guid>https://academia-hugo.netlify.com/post/alpine-linux/</guid>
+      <description>
+
+&lt;h3 id=&#34;简介&#34;&gt;简介&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Small. Simple. Secure.Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox.&lt;/p&gt;
+
+&lt;p&gt;Alpine Linux 是一个社区开发的面向安全应用的轻量级Linux发行版。 Alpine 的意思是“高山的”，它采用了musl libc和busybox以减小系统的体积和运行时资源消耗，同时还提供了自己的包管理工具apk。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;适用环境&#34;&gt;适用环境&lt;/h3&gt;
+
+&lt;p&gt;由于其小巧、安全、简单以及功能完备的特点，被广泛应用于众多Docker容器中。我司目前使用的基础镜像均是基于该系统，&lt;a href=&#34;https://hub.docker.com/_/alpine&#34; target=&#34;_blank&#34;&gt;dockerhub&lt;/a&gt;上有提供各种语言的基础镜像.如：&lt;code&gt;node:8-alpine&lt;/code&gt;、&lt;code&gt;python:3.6-alpine&lt;/code&gt;，同时也可以基于alpine镜像制作符合自己需求的基础镜像。&lt;/p&gt;
+
+&lt;h3 id=&#34;简单的镜像构建示例&#34;&gt;简单的镜像构建示例&lt;/h3&gt;
+
+&lt;p&gt;这里提供一个python3的基础镜像的&lt;code&gt;Dockerfile&lt;/code&gt;，&lt;a href=&#34;https://pip.pypa.io/en/latest/installing/&#34; target=&#34;_blank&#34;&gt;get-pip.py&lt;/a&gt;可在 &lt;a href=&#34;https://pip.pypa.io/en/latest/installing/&#34; target=&#34;_blank&#34;&gt;https://pip.pypa.io/en/latest/installing/&lt;/a&gt; 下载。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-docker&#34;&gt;FROM alpine
+
+MAINTAINER guoxudong@keking.cn
+
+# 拷贝安装pip的脚本
+COPY get-pip.py /get-pip.py
+
+# 设置alpine的镜像地址为阿里云的地址
+RUN echo &amp;quot;https://mirrors.aliyun.com/alpine/v3.6/main/&amp;quot; &amp;gt; /etc/apk/repositories \
+    # 安装依赖包
+    &amp;amp;&amp;amp; apk update \
+    &amp;amp;&amp;amp; apk add --no-cache bash \
+    # libevent-dev libxml2-dev  libffi libxml2 libxslt libxslt-dev  \
+    python3 gcc g++ python3-dev python-dev linux-headers libffi-dev openssl-dev \
+    # 由于通过apk安装的pip总是基于python2.7的版本，不符合项目要求，此处使用get-pip.py的方式
+    #安装基于python3.6的pip
+    &amp;amp;&amp;amp; python3 /get-pip.py \
+    # 删除不必要的脚本
+    &amp;amp;&amp;amp; cd .. \
+    &amp;amp;&amp;amp; rm -f /get-pip.py \
+    # 此环境专用做运行django项目，因此移除不必要的工具，减少空间
+    #    &amp;amp;&amp;amp; pip uninstall -y pip setuptools wheel \
+    # 最后清空apk安装时产生的无用文件
+    &amp;amp;&amp;amp; rm -rf /var/cache/apk/*
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;对比&lt;/strong&gt;：同样版本的python，对比镜像大小，可见使用alpine的优势&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;~ docker images | grep python
+python                                  3.4                 ccbffa0d70d9        2 months ago        922MB
+alpine-python3                          latest              69e41b673a50        2 months ago        297MB
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;apk包管理&#34;&gt;apk包管理&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;镜像源配置&lt;/p&gt;
+
+&lt;p&gt;官方镜像源列表：&lt;a href=&#34;http://dl-cdn.alpinelinux.org/alpine/MIRRORS.txt&#34; target=&#34;_blank&#34;&gt;http://dl-cdn.alpinelinux.org/alpine/MIRRORS.txt&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;MIRRORS.txt中是当前Alpine官方提供的镜像源（Alpine安装的时候系统自动选择最佳镜像源）&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;国内镜像源&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;清华TUNA镜像源：&lt;a href=&#34;https://mirror.tuna.tsinghua.edu.cn/alpine/&#34; target=&#34;_blank&#34;&gt;https://mirror.tuna.tsinghua.edu.cn/alpine/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;中科大镜像源：&lt;a href=&#34;http://mirrors.ustc.edu.cn/alpine/&#34; target=&#34;_blank&#34;&gt;http://mirrors.ustc.edu.cn/alpine/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;阿里云镜像源：&lt;a href=&#34;http://mirrors.aliyun.com/alpine/&#34; target=&#34;_blank&#34;&gt;http://mirrors.aliyun.com/alpine/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;镜像源配置&lt;/p&gt;
+
+&lt;p&gt;这里推荐使用阿里云镜像源，由于公司应用都是部署在阿里云上，使用阿里云镜像源会快很多&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ vi /etc/apk/repositories
+# 将这两行插入到repositories文件开头
+http://mirrors.aliyun.com/alpine/v3.9/main
+http://mirrors.aliyun.com/alpine/v3.9/community
+# 后面是原有的默认配置
+http://dl-cdn.alpinelinux.org/alpine/v3.8/main
+http://dl-cdn.alpinelinux.org/alpine/v3.8/community
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;apk包管理命令&lt;/p&gt;
+
+&lt;p&gt;这里介绍一些常用的操作apk包管理命令&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;pre&gt;&lt;code class=&#34;language-apk&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;bash&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;bash-4.3# apk &amp;ndash;help
+apk-tools 2.10.0, compiled for x86_64.&lt;/p&gt;
+
+&lt;p&gt;Installing and removing packages:
+add       Add PACKAGEs to &amp;lsquo;world&amp;rsquo; and install (or upgrade) them, while ensuring that all dependencies are met
+del       Remove PACKAGEs from &amp;lsquo;world&amp;rsquo; and uninstall them&lt;/p&gt;
+
+&lt;p&gt;System maintenance:
+fix       Repair package or upgrade it without modifying main dependencies
+update    Update repository indexes from all remote repositories
+upgrade   Upgrade currently installed packages to match repositories
+cache     Download missing PACKAGEs to cache and/or delete unneeded files from cache&lt;/p&gt;
+
+&lt;p&gt;Querying information about packages:
+info      Give detailed information about PACKAGEs or repositories
+list      List packages by PATTERN and other criteria
+dot       Generate graphviz graphs
+policy    Show repository policy for packages&lt;/p&gt;
+
+&lt;p&gt;Repository maintenance:
+index     Create repository index file from FILEs
+fetch     Download PACKAGEs from global repositories to a local directory
+verify    Verify package integrity and signature
+manifest  Show checksums of package contents&lt;/p&gt;
+
+&lt;p&gt;Use apk &lt;command&gt; &amp;ndash;help for command-specific help.
+Use apk &amp;ndash;help &amp;ndash;verbose for a full command listing.&lt;/p&gt;
+
+&lt;p&gt;This apk has coffee making abilities.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+- ```apk info``` 列出所有已安装的软件包
+- ```apk apk update``` 更新最新本地镜像源
+- ```apk upgrade``` 升级软件
+- ```apk search``` 搜索可用软件包，**搜索之前最好先更新镜像源**
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;bash
+$ apk search #查找所以可用软件包
+$ apk search -v #查找所以可用软件包及其描述内容
+$ apk search -v &amp;lsquo;acf*&amp;rsquo; #通过软件包名称查找软件包
+$ apk search -v -d &amp;lsquo;docker&amp;rsquo; #通过描述文件查找特定的软件包&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+- ```apk add``` 从仓库中安装最新软件包，并自动安装必须的依赖包,也可以从第三方仓库添加软件包
+    
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;bash
+$ apk add curl busybox-extras       #软件以空格分开这里，这里列举我们用的最多的curl和telnet
+bash-4.3# apk add &amp;ndash;no-cache curl
+bash-4.3# apk add mongodb &amp;ndash;update-cache &amp;ndash;repository &lt;a href=&#34;http://mirrors.ustc.edu.cn/alpine/v3.6/main/&#34; target=&#34;_blank&#34;&gt;http://mirrors.ustc.edu.cn/alpine/v3.6/main/&lt;/a&gt; &amp;ndash;allow-untrusted    #从指定镜像源拉取&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+安装指定版本软件包
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;bash
+bash-4.3# apk add mongodb=4.0.5-r0
+bash-4.3# apk add &amp;lsquo;mongodb&lt;4.0.5&#39;
+bash-4.3# apk add &#39;mongodb&gt;4.0.5&amp;rsquo;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+升级指定软件包
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;bash
+bash-4.3# apk add &amp;ndash;upgrade busybox #升级指定软件包
+```&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;：安装之前最好修改本地镜像源，更新镜像源，搜索软件包是否存在，选择合适岸本在进行安装。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;apk del&lt;/code&gt; 卸载并删除指定软件包&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;结语&#34;&gt;结语&lt;/h3&gt;
+
+&lt;p&gt;Alpine以其小巧、简单在docker容器中得到了广泛的应用。但是Alpine Linux使用了musl，可能和其他Linux发行版使用的glibc实现会有些不同。这里主要介绍了它的基础用法，但是足以满足日常运维需要。毕竟在kubernetes集群中操作容器内环境较直接在虚拟机或者物理机上操作更为复杂，由于缩减的容器的大小，导致和CentOS或Ubuntu相比缺少许多功能。而缺少的这些功能又不想在基础镜像中安装导致容器变大，这个时候就可以在容器运行后，根据实际需要安装即可。&lt;/p&gt;
+
+&lt;h3 id=&#34;参考文档&#34;&gt;参考文档&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://wiki.alpinelinux.org/wiki/Alpine_Linux_package_management&#34; target=&#34;_blank&#34;&gt;https://wiki.alpinelinux.org/wiki/Alpine_Linux_package_management&lt;/a&gt;&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Docker容器启动退出解决方案</title>
-      <link>https://guoxudong.io/posts/docker-quit/</link>
+      <link>https://academia-hugo.netlify.com/post/docker-quit/</link>
       <pubDate>Thu, 27 Sep 2018 19:27:03 +0800</pubDate>
       
-      <guid>https://guoxudong.io/posts/docker-quit/</guid>
-      <description>解决容器启动退出问题。</description>
+      <guid>https://academia-hugo.netlify.com/post/docker-quit/</guid>
+      <description>
+
+&lt;h1 id=&#34;现象&#34;&gt;现象&lt;/h1&gt;
+
+&lt;p&gt;启动docker容器&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker run –name [CONTAINER_NAME] [CONTAINER_ID] 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;查看容器运行状态&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker ps -a 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;发现刚刚启动的mydocker容器已经退出&lt;/p&gt;
+
+&lt;h1 id=&#34;原因&#34;&gt;原因&lt;/h1&gt;
+
+&lt;p&gt;docker容器的主线程（dockfile中CMD执行的命令）结束，容器会退出&lt;/p&gt;
+
+&lt;h1 id=&#34;解决办法&#34;&gt;解决办法&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;可以使用交互式启动&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker run -i [CONTAINER_NAME or CONTAINER_ID]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;上面的不太友好，建议使用后台模式和tty选项&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker run -dit [CONTAINER_NAME or CONTAINER_ID]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Docker 容器在后台以守护态（Daemonized）形式运行，可以通过添加 -d 参数来实现&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo docker run -d ubuntu:14.04 /bin/sh -c &amp;quot;while true; do echo hello world; sleep 1; done&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;在脚本最后一行添加&lt;strong&gt;tail -f /dev/null&lt;/strong&gt;，这个命令永远完成不了，所以该脚本一直不会执行完，所以该容器永远不会退出。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;TIPs&lt;/strong&gt;:退出时，使用&lt;code&gt;[ctrl + D]&lt;/code&gt;，这样会结束docker当前线程，容器结束，可以使用 &lt;code&gt;[ctrl + P]&lt;/code&gt; &lt;code&gt;[ctrl + Q]&lt;/code&gt; 退出而不终止容器运行&lt;/p&gt;
+
+&lt;p&gt;如下命令，会在指定容器中执行指定命令， &lt;code&gt;[ctrl+D]&lt;/code&gt; 退出后不会终止容器运行&lt;/p&gt;
+
+&lt;p&gt;docker默认会把容器内部pid=1的作为默认的程序&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
     </item>
     
     <item>
       <title>centos7安装指定版本的docker</title>
-      <link>https://guoxudong.io/posts/install-docker/</link>
+      <link>https://academia-hugo.netlify.com/post/install-docker/</link>
       <pubDate>Tue, 14 Aug 2018 20:05:21 +0800</pubDate>
       
-      <guid>https://guoxudong.io/posts/install-docker/</guid>
-      <description>在使用CentOS7，并使用荫安装搬运工的时候，往往不希望安装最新版本的搬运工，而是希望安装与自己熟悉或者当前业务环境需要的版本，例如目前Kubernetes支持的最新搬运工版本为v17.03，所以就产生了安装指定版本码头工人的需求。</description>
+      <guid>https://academia-hugo.netlify.com/post/install-docker/</guid>
+      <description>
+
+&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;在使用&lt;strong&gt;centos7&lt;/strong&gt;，并使用荫安装搬运工的时候，往往不希望安装最新版本的搬运工，而是希望安装与自己熟悉或者当前业务环境需要的版本，例如目前Kubernetes支持的最新搬运工版本为v17.03，所以就产生了安装指定版本码头工人的需求。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&#34;安装步骤&#34;&gt;安装步骤&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 安装依赖包
+yum install -y yum-utils device-mapper-persistent-data lvm2
+
+# 添加Docker软件包源
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+#关闭测试版本list（只显示稳定版）
+sudo yum-config-manager --enable docker-ce-edge
+sudo yum-config-manager --enable docker-ce-test
+
+# 更新yum包索引
+yum makecache fast
+
+#NO.1 直接安装Docker CE （will always install the highest  possible version，可能不符合你的需求）
+yum install docker-ce
+
+#NO.2 指定版本安装
+yum list docker-ce --showduplicates|sort -r 
+#找到需要安装的
+yum install docker-ce-17.09.0.ce -y
+#启动docker
+systemctl start docker &amp;amp; systemctl enable docker
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;采坑指南&#34;&gt;采坑指南&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;当然本着万事皆有坑的原则，这里也是有坑的，在安装中也是会遇到如下的问题&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;在执行一下命令的时候：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;yum install docker-ce-17.03.0.ce -y
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;会出现如下的报错：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;--&amp;gt; Finished Dependency Resolution
+Error: Package: docker-ce-17.03.0.ce-1.el7.centos.x86_64 (docker-ce-stable)
+        Requires: docker-ce-selinux &amp;gt;= 17.03.0.ce-1.el7.centos
+        Available: docker-ce-selinux-17.03.0.ce-1.el7.centos.noarch (docker-ce-stable)
+            docker-ce-selinux = 17.03.0.ce-1.el7.centos
+        Available: docker-ce-selinux-17.03.1.ce-1.el7.centos.noarch (docker-ce-stable)
+            docker-ce-selinux = 17.03.1.ce-1.el7.centos
+        Available: docker-ce-selinux-17.03.2.ce-1.el7.centos.noarch (docker-ce-stable)
+            docker-ce-selinux = 17.03.2.ce-1.el7.centos
+You could try using --skip-broken to work around the problem
+You could try running: rpm -Va --nofiles --nodigest
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在出现这个问题之后，需要执行以下命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#要先安装docker-ce-selinux-17.03.2.ce，否则安装docker-ce会报错
+yum install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-selinux-17.03.2.ce-1.el7.centos.noarch.rpm
+
+#然后再安装 docker-ce-17.03.2.ce，就能正常安装
+yum install docker-ce-17.03.2.ce-1.el7.centos
+&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
   </channel>

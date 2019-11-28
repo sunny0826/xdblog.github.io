@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GuoXD Blog</title>
+    <link>https://academia-hugo.netlify.com/en/authors/admin/</link>
+    <description>Recent content on GuoXD Blog</description>
+    <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 01 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	    <atom:link href="https://academia-hugo.netlify.com/en/authors/admin/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>扫码关注</title>
+      <link>https://academia-hugo.netlify.com/en/publication/wx_contact/</link>
+      <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://academia-hugo.netlify.com/en/publication/wx_contact/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;qr_no.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>联系方式</title>
+      <link>https://academia-hugo.netlify.com/en/publication/contact_me/</link>
+      <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://academia-hugo.netlify.com/en/publication/contact_me/</guid>
+      <description>
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;微信&#34;&gt;微信&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;wechat_me.jpg&#34; alt=&#34;郭旭东&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;要添加微信，请注明姓名-公司信息&lt;/center&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;github&#34;&gt;GitHub&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;github.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&#34;https://github.com/sunny0826&#34; target=&#34;_blank&#34;&gt;https://github.com/sunny0826&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;邮箱&#34;&gt;邮箱&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;email.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&#34;mailto:sunnydog0826@gmail.com&#34; target=&#34;_blank&#34;&gt;sunnydog0826@gmail.com&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;凯京技术团队&#34;&gt;凯京技术团队&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;keking.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&#34;https://my.oschina.net/keking&#34; target=&#34;_blank&#34;&gt;https://my.oschina.net/keking&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;微信公众号&#34;&gt;微信公众号&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;qr_weixin.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;扫码关注&lt;/center&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

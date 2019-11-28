@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academia 4.3.1">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
+  <meta name="baidu-site-verification" content="A85okozwVV" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="never">
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="郭旭东">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="精简Docker镜像的好处很多，不仅可以节省存储空间和带宽，还能减少安全隐患。优化镜像大小的手段多种多样，因服务所使用的基础开发语言不同而有差异。本文将介绍精简Docker镜像的几种通用方法。">
+
+  
+  <link rel="alternate" hreflang="en" href="https://academia-hugo.netlify.com/en/post/image-size/">
+  
+  <link rel="alternate" hreflang="zh-Hans" href="https://academia-hugo.netlify.com/post/image-size/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#fc6f5c">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.9.0/instantsearch.min.css" integrity="sha256-ZtmLe16p4jS4/2wPwwH6NzJt460SJzgLmhKrYo5yn7g=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch-theme-algolia.min.css" integrity="sha256-uL8LUd3zkI/lXvc/Hv/oOu8ld6RJcOZiUY/8c+I+3/o=" crossorigin="anonymous">
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academia.min.9be1772e7ca3b9e5f31014835ca21e99.css">
+
+  
+    
+    
+    
+    
+      
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academia.ef74575f38e28c5c9feae541be1f6e36.css">
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://academia-hugo.netlify.com/post/image-size/">
+
+  
+  
+  
+  
+    
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@GuoXudong2">
+  <meta property="twitter:creator" content="@GuoXudong2">
+  
+  <meta property="og:site_name" content="GuoXD Blog·郭旭东的博客">
+  <meta property="og:url" content="https://academia-hugo.netlify.com/post/image-size/">
+  <meta property="og:title" content="精简docker镜像 | GuoXD Blog·郭旭东的博客">
+  <meta property="og:description" content="精简Docker镜像的好处很多，不仅可以节省存储空间和带宽，还能减少安全隐患。优化镜像大小的手段多种多样，因服务所使用的基础开发语言不同而有差异。本文将介绍精简Docker镜像的几种通用方法。"><meta property="og:image" content="https://academia-hugo.netlify.com/post/image-size/featured.jpg">
+  <meta property="twitter:image" content="https://academia-hugo.netlify.com/post/image-size/featured.jpg"><meta property="og:locale" content="zh-Hans">
+  
+  <meta property="article:published_time" content="2018-09-27T20:28:13&#43;08:00">
+  
+  <meta property="article:modified_time" content="2018-09-27T20:28:13&#43;08:00">
+  
+
+  
+
+
+  
+
+
+
+
+
+  <title>精简docker镜像 | GuoXD Blog·郭旭东的博客</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/"><img src="/img/logo.png" alt="GuoXD Blog·郭旭东的博客"></a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航"><span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#slider"><span>主页</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>博客</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>关于</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <span>中文 (简体)</span>
+          </a>
+          <ul class="dropdown-menu">
+            
+            <li class="dropdown-item my-0 py-0 mx-0 px-0">
+              <a href="https://academia-hugo.netlify.com/en/post/image-size/">
+                <span>English</span>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        
+
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article py-5" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container split-header">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+        <img class="img-fluid w-100" src="/post/image-size/featured_hu04406fbff7ea1c190a4e30b6615892b6_230883_680x500_fill_q90_lanczos_smart1.jpg" itemprop="image" alt="">
+        <span
+          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+    </div>
+    <div class="col-lg-8">
+      <h1 itemprop="name">精简docker镜像</h1>
+
+      
+
+      
+
+
+
+<meta content="2018-09-27 20:28:13 &#43;0800 CST" itemprop="datePublished">
+<meta content="2018-09-27 20:28:13 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2018-09-27</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    7 分钟阅读时间
+  </span>
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="">问题解决</a></span>
+  
+
+  
+    
+<br>
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://academia-hugo.netlify.com/post/image-size/&amp;text=%e7%b2%be%e7%ae%80docker%e9%95%9c%e5%83%8f" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://academia-hugo.netlify.com/post/image-size/&amp;t=%e7%b2%be%e7%ae%80docker%e9%95%9c%e5%83%8f" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%e7%b2%be%e7%ae%80docker%e9%95%9c%e5%83%8f&amp;body=https://academia-hugo.netlify.com/post/image-size/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://academia-hugo.netlify.com/post/image-size/&amp;title=%e7%b2%be%e7%ae%80docker%e9%95%9c%e5%83%8f" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=%e7%b2%be%e7%ae%80docker%e9%95%9c%e5%83%8f%20https://academia-hugo.netlify.com/post/image-size/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://academia-hugo.netlify.com/post/image-size/&amp;title=%e7%b2%be%e7%ae%80docker%e9%95%9c%e5%83%8f" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://academia-hugo.netlify.com/post/image-size/&amp;title=%e7%b2%be%e7%ae%80docker%e9%95%9c%e5%83%8f" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    
+    </div>
+  </div>
+</div>
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<blockquote>
+<p>精简Docker镜像的好处很多，不仅可以节省存储空间和带宽，还能减少安全隐患。优化镜像大小的手段多种多样，因服务所使用的基础开发语言不同而有差异。本文将介绍精简Docker镜像的几种通用方法。</p>
+</blockquote>
+
+<h1 id="精简docker镜像大小的必要性">精简Docker镜像大小的必要性</h1>
+
+<p>Docker镜像由很多镜像层（Layers）组成（最多127层），镜像层依赖于一系列的底层技术，比如文件系统(filesystems)、写时复制(copy-on-write)、联合挂载(union mounts)等技术，你可以查看Docker社区文档以了解更多有关Docker存储驱动的内容，这里就不再赘述技术细节。总的来说，Dockerfile中的每条指令都会创建一个镜像层，继而会增加整体镜像的尺寸。</p>
+
+<p>下面是精简Docker镜像尺寸的好处：</p>
+
+<ol>
+<li>减少构建时间</li>
+<li>减少磁盘使用量</li>
+<li>减少下载时间</li>
+<li>因为包含文件少，攻击面减小，提高了安全性</li>
+<li>提高部署速度</li>
+</ol>
+
+<p><strong>五点建议减小Docker镜像尺寸</strong></p>
+
+<h1 id="一-优化基础镜像">一、优化基础镜像</h1>
+
+<p>优化基础镜像的方法就是选用合适的更小的基础镜像，常用的 Linux 系统镜像一般有 Ubuntu、CentOs、Alpine，其中Alpine更推荐使用。大小对比如下：</p>
+
+<pre><code class="language-bash">guoxudong@ubuntu ~/s&gt; docker images
+REPOSITORY         TAG             IMAGE ID            CREATED             SIZE
+ubuntu             latest        74f8760a2a8b        8 days ago          82.4MB
+alpine             latest        11cd0b38bc3c        2 weeks ago         4.41MB
+centos               7           49f7960eb7e4        7 weeks ago         200MB
+debian             latest        3bbb526d2608        8 days ago          101MB
+guoxudong@ubuntu ~/s&gt;
+</code></pre>
+
+<p>Alpine是一个高度精简又包含了基本工具的轻量级Linux发行版，基础镜像只有4.41M，各开发语言和框架都有基于Alpine制作的基础镜像，强烈推荐使用它。Alpine镜像各个语言和框架支持情况，可以参考《优化Docker镜像、加速应用部署》。
+查看上面的镜像尺寸对比结果，你会发现最小的镜像也有4.41M，那么有办法构建更小的镜像吗？答案是肯定的，例如 gcr.io/google_containers/pause-amd64:3.1 镜像仅有742KB。为什么这个镜像能这么小？在为大家解密之前，再推荐两个基础镜像：</p>
+
+<ol>
+<li><p>scratch镜像</p>
+
+<p>scratch是一个空镜像，只能用于构建其他镜像，比如你要运行一个包含所有依赖的二进制文件，如Golang程序，可以直接使用scratch作为基础镜像。现在给大家展示一下上文提到的Google pause镜像Dockerfile：</p>
+
+<pre><code class="language-docker">FROM scratch
+ARG ARCH
+ADD bin/pause-${ARCH} /pause
+ENTRYPOINT [&quot;/pause&quot;]
+</code></pre>
+
+<p>Google pause镜像使用了scratch作为基础镜像，这个镜像本身是不占空间的，使用它构建的镜像大小几乎和二进制文件本身一样大，所以镜像非常小。当然在我们的Golang程序中也会使用。对于一些Golang/C程序，可能会依赖一些动态库，你可以使用自动提取动态库工具，比如ldd、linuxdeployqt等提取所有动态库，然后将二进制文件和依赖动态库一起打包到镜像中。</p></li>
+
+<li><p>busybox镜像</p>
+
+<p>scratch是个空镜像，如果希望镜像里可以包含一些常用的Linux工具，busybox镜像是个不错选择，镜像本身只有1.16M，非常便于构建小镜像。</p></li>
+</ol>
+
+<h1 id="二-串联-dockerfile-指令">二、串联 Dockerfile 指令</h1>
+
+<p>大家在定义Dockerfile时，如果太多的使用RUN指令，经常会导致镜像有特别多的层，镜像很臃肿，而且甚至会碰到超出最大层数（127层）限制的问题，遵循 Dockerfile 最佳实践，我们应该把多个命令串联合并为一个 RUN（通过运算符&amp;&amp;和/ 来实现），每一个 RUN 要精心设计，确保安装构建最后进行清理，这样才可以降低镜像体积，以及最大化的利用构建缓存。</p>
+
+<p>下面是一个优化前Dockerfile：</p>
+
+<pre><code class="language-docker">FROM ubuntu
+ENV VER     3.0.0 
+ENV TARBALL http://download.redis.io/releases/redis-$VER.tar.gz 
+# ==&gt; Install curl and helper tools...
+RUN apt-get update 
+RUN apt-get install -y  curl make gcc 
+# ==&gt; Download, compile, and install...
+RUN curl -L $TARBALL | tar zxv 
+WORKDIR  redis-$VER 
+RUN make 
+RUN make install 
+#...
+# ==&gt; Clean up...
+WORKDIR / 
+RUN apt-get remove -y --auto-remove curl make gcc 
+RUN apt-get clean 
+RUN rm -rf /var/lib/apt/lists/*  /redis-$VER 
+#...
+CMD [&quot;redis-server&quot;]
+</code></pre>
+
+<p>构建镜像，名称叫 <code>test/test:0.1</code>。</p>
+
+<p>我们对Dockerfile做优化，优化后Dockerfile：</p>
+
+<pre><code class="language-docker">FROM ubuntu
+ENV VER     3.0.0 
+ENV TARBALL http://download.redis.io/releases/redis-$VER.tar.gz
+RUN echo &quot;==&gt; Install curl and helper tools...&quot;  &amp;&amp; \ 
+apt-get update                      &amp;&amp; \
+apt-get install -y  curl make gcc   &amp;&amp; \
+echo &quot;==&gt; Download, compile, and install...&quot;  &amp;&amp; \
+curl -L $TARBALL | tar zxv  &amp;&amp; \
+cd redis-$VER               &amp;&amp; \
+make                        &amp;&amp; \
+make install                &amp;&amp; \
+echo &quot;==&gt; Clean up...&quot;  &amp;&amp; \
+apt-get remove -y --auto-remove curl make gcc  &amp;&amp; \
+apt-get clean                                  &amp;&amp; \
+rm -rf /var/lib/apt/lists/*  /redis-$VER
+#...
+CMD [&quot;redis-server&quot;]
+</code></pre>
+
+<p>构建镜像，名称叫 <code>test/test:0.2</code>。</p>
+
+<p>对比两个镜像大小：</p>
+
+<pre><code class="language-bash">root@k8s-master:/tmp/iops# docker images
+REPOSITORY       TAG           IMAGE ID            CREATED             SIZE
+test/test        0.2         58468c0222ed        2 minutes ago       98.1MB
+test/test        0.1         e496cf7243f2        6 minutes ago       307MB
+root@k8s-master:/tmp/iops#
+</code></pre>
+
+<p>可以看到，将多条RUN命令串联起来构建的镜像大小是每条命令分别RUN的三分之一。</p>
+
+<p><strong>提示：</strong>为了应对镜像中存在太多镜像层，Docker 1.13版本以后，提供了一个压扁镜像功能，即将 Dockerfile 中所有的操作压缩为一层。这个特性还处于实验阶段，Docker默认没有开启，如果要开启，需要在启动Docker时添加-experimental 选项，并在Docker build 构建镜像时候添加 &ndash;squash 。我们不推荐使用这个办法，请在撰写 Dockerfile 时遵循最佳实践编写，不要试图用这种办法去压缩镜像。</p>
+
+<h1 id="三-使用多阶段构建">三、使用多阶段构建</h1>
+
+<p>Dockerfile中每条指令都会为镜像增加一个镜像层，并且你需要在移动到下一个镜像层之前清理不需要的组件。实际上，有一个Dockerfile用于开发（其中包含构建应用程序所需的所有内容）以及一个用于生产的瘦客户端，它只包含你的应用程序以及运行它所需的内容。这被称为“建造者模式”。Docker 17.05.0-ce版本以后支持多阶段构建。使用多阶段构建，你可以在Dockerfile中使用多个FROM语句，每条FROM指令可以使用不同的基础镜像，这样您可以选择性地将服务组件从一个阶段COPY到另一个阶段，在最终镜像中只保留需要的内容。</p>
+
+<p>下面是一个使用 <code>COPY --from</code> 和 <code>FROM ... AS ...</code> 的Dockerfile：</p>
+
+<pre><code class="language-docker"># Compile
+FROM golang:1.9.0 AS builder
+WORKDIR /go/src/v9.git...com/.../k8s-monitor
+COPY . .
+WORKDIR /go/src/v9.git...com/.../k8s-monitor
+RUN make build
+RUN mv k8s-monitor /root
+# Package
+# Use scratch image
+FROM scratch
+WORKDIR /root/
+COPY --from=builder /root .
+EXPOSE 8080
+CMD [&quot;/root/k8s-monitor&quot;]
+</code></pre>
+
+<p>构建镜像，你会发现生成的镜像只有上面COPY 指令指定的内容，镜像大小只有2M。这样在以前使用两个Dockerfile（一个Dockerfile用于开发和一个用于生产的瘦客户端），现在使用多阶段构建就可以搞定。</p>
+
+<h1 id="四-构建业务服务镜像技巧">四、构建业务服务镜像技巧</h1>
+
+<p>Docker在build镜像的时候，如果某个命令相关的内容没有变化，会使用上一次缓存（cache）的文件层，在构建业务镜像的时候可以注意下面两点：</p>
+
+<ul>
+<li>不变或者变化很少的体积较大的依赖库和经常修改的自有代码分开；</li>
+<li>因为cache缓存在运行Docker build命令的本地机器上，建议固定使用某台机器来进行Docker build，以便利用cache。</li>
+</ul>
+
+<p>下面是构建Spring Boot应用镜像的例子，用来说明如何分层。其他类型的应用，比如Java WAR包，Nodejs的npm 模块等，可以采取类似的方式。</p>
+
+<ol>
+<li><p>在Dockerfile所在目录，解压缩maven生成的jar包</p>
+
+<pre><code class="language-bash">$ unzip &lt;path-to-app-jar&gt;.jar -d app
+</code></pre></li>
+
+<li><p>Dockerfile 我们把应用的内容分成4个部分COPY到镜像里面：其中前面3个基本不变，第4个是经常变化的自有代码。最后一行是解压缩后，启动spring boot应用的方式。</p>
+
+<pre><code class="language-docker">FROM openjdk:8-jre-alpine
+LABEL maintainer &quot;opl-xws@xiaomi.com&quot;
+COPY app/BOOT-INF/lib/ /app/BOOT-INF/lib/
+COPY app/org /app/org
+COPY app/META-INF /app/META-INF
+COPY app/BOOT-INF/classes /app/BOOT-INF/classes
+EXPOSE 8080
+CMD [&quot;/usr/bin/java&quot;, &quot;-cp&quot;, &quot;/app&quot;, &quot;org.springframework.boot.loader.JarLauncher&quot;]
+</code></pre></li>
+</ol>
+
+<p>这样在构建镜像时候可大大提高构建速度。</p>
+
+<h1 id="五-其他优化办法">五、其他优化办法</h1>
+
+<ol>
+<li><p>RUN命令中执行apt、apk或者yum类工具技巧，如果在RUN命令中执行apt、apk或者yum类工具，可以借助这些工具提供的一些小技巧来减少镜像层数量及镜像大小。举几个例子：</p>
+
+<ol>
+<li>在执行apt-get install -y 时增加选项— no-install-recommends ，可以不用安装建议性（非必须）的依赖，也可以在执行apk add 时添加选项&ndash;no-cache 达到同样效果；</li>
+<li>执行yum install -y 时候， 可以同时安装多个工具，比如yum install -y gcc gcc-c++ make &hellip;。将所有yum install 任务放在一条RUN命令上执行，从而减少镜像层的数量；</li>
+<li>组件的安装和清理要串联在一条指令里面，如 apk &ndash;update add php7 &amp;&amp; rm -rf /var/cache/apk/* ，因为Dockerfile的每条指令都会产生一个文件层，如果将apk add &hellip;和 rm -rf &hellip; 命令分开，清理无法减小apk命令产生的文件层的大小。 Ubuntu或Debian可以使用 rm -rf /<strong>var</strong>/lib/apt/lists/* 清理镜像中缓存文件；CentOS等系统使用yum clean all 命令清理。</li>
+</ol></li>
+
+<li><p>压缩镜像</p></li>
+</ol>
+
+<p>Docker 自带的一些命令还能协助压缩镜像，比如 export 和 import</p>
+
+<pre><code class="language-bash">docker run -d test/test:0.2
+$ docker export 747dc0e72d13 | docker import - test/test:0.3
+</code></pre>
+
+<p>使用这种方式需要先将容器运行起来，而且这个过程中会丢失镜像原有的一些信息，比如：导出端口，环境变量，默认指令。</p>
+
+<p>查看这两个镜像history信息，如下，可以看到test/test:0.3 丢失了所有的镜像层信息：</p>
+
+<pre><code class="language-bash">root@k8s-master:/tmp/iops# docker history test/test:0.3
+IMAGE               CREATED             CREATED BY          SIZE                COMMENT
+6fb3f00b7a72        15 seconds ago                          84.7MB              Imported from -
+root@k8s-master:/tmp/iops# docker history test/test:0.2
+IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+58468c0222ed        2 hours ago         /bin/sh -c #(nop)  CMD [&quot;redis-server&quot;]         0B     
+1af7ffe3d163        2 hours ago         /bin/sh -c echo &quot;==&gt; Install curl and helper...   15.7MB 
+8bac6e733d54        2 hours ago         /bin/sh -c #(nop)  ENV TARBALL=http://downlo...   0B     
+793282f3ef7a        2 hours ago         /bin/sh -c #(nop)  ENV VER=3.0.0                0B     
+74f8760a2a8b        8 days ago          /bin/sh -c #(nop)  CMD [&quot;/bin/bash&quot;]            0B     
+&lt;missing&gt;           8 days ago          /bin/sh -c mkdir -p /run/systemd &amp;&amp; echo 'do...   7B
+&lt;missing&gt;           8 days ago          /bin/sh -c sed -i 's/^#\s*\(deb.*universe\)$...   2.76kB
+&lt;missing&gt;           8 days ago          /bin/sh -c rm -rf /var/lib/apt/lists/*          0B
+&lt;missing&gt;           8 days ago          /bin/sh -c set -xe   &amp;&amp; echo '#!/bin/sh' &gt; /...   745B   
+&lt;missing&gt;           8 days ago          /bin/sh -c #(nop) ADD file:5fabb77ea8d61e02d...   82.4MB 
+root@k8s-master:/tmp/iops#
+</code></pre>
+
+<p>社区里还有很多压缩工具，比如Docker-squash ，用起来更简单方便，并且不会丢失原有镜像的自带信息，大家有兴趣可以试试。</p>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/%e5%ae%b9%e5%99%a8">容器</a>
+  
+</div>
+
+
+
+     
+     
+<div class="entry-shang text-center">
+    <p>「一键投喂 小鱼干/小骨头」</p>
+    <button class="zs show-zs btn btn-primary">投喂</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+    <div class="zs-modal-head">
+        <button type="button" class="close">×</button>
+        <p class="author">
+            <a href="https://blog.maoxianplay.com">
+                <img src="https://wx3.sinaimg.cn/square/ad5fbf65gy1g2o621gcs6j20m80m8gng.jpg"/>
+            小助手毛线</a>
+        </p>
+        <p class="tip"><i></i><span>感谢投喂 <a href="/maoxian">毛线</a> & <a href="/sunny">Sunny</a> </span></p>
+    </div>
+    <div class="zs-modal-body">
+        <div class="zs-modal-btns">
+            <button class="btn btn-blink" data-num="2">2元</button>
+            <button class="btn btn-blink" data-num="5">5元</button>
+            <button class="btn btn-blink" data-num="10">10元</button>
+            <button class="btn btn-blink" data-num="50">50元</button>
+            <button class="btn btn-blink" data-num="100">100元</button>
+            <button class="btn btn-blink" data-num="any">任意金额</button>
+        </div>
+        <div class="zs-modal-pay">
+            <button class="btn btn-bred" id="pay-text">2元</button>
+            <p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+            <img id="pay-image" src="/img/alipay-2.png">
+        </div>
+    </div>
+    <div class="zs-modal-footer">
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="alipay" class="zs-type" checked="checked" style="float: left;">
+            <span class="zs-alipay">
+                <img src="/img/alipay-btn.png">
+            </span>
+        </label>
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="wechat" class="zs-type" style="float: left;">
+            <span class="zs-wechat">
+                <img src="/img/wechat-btn.png">
+            </span>
+        </label>
+    </div>
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="https://academia-hugo.netlify.com/">郭旭东</a></h5>
+      <h6 class="card-subtitle">运维负责人</h6>
+      <p class="card-text" itemprop="description">云原生爱好者，分享云原生和 DevOps 技术实践，倡导开源运动，传播开源思想。</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          <li>
+            <a itemprop="sameAs" href="mailto:sunnydog0826@gmail.com" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/publication/wx_contact/" >
+              <i class="fab fa-weixin"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/sunny0826" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>相关</h3>
+        <ul>
+          
+          <li><a href="/post/docker-quit/">Docker容器启动退出解决方案</a></li>
+          
+          <li><a href="/post/con-in/">容器技术概述</a></li>
+          
+          <li><a href="/post/install-k8s/">centos7.2 安装k8s v1.11.0</a></li>
+          
+          <li><a href="/post/install-docker/">centos7安装指定版本的docker</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+      <script async defer src="//maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.min.js" integrity="sha256-7vjlAeb8OaTrCXZkCNun9djzuB2owUsaO72kXaFDBJs=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-algolia-template" type="text/html">
+      <div class="search-hit">
+        <div class="search-hit-content">
+          <div class="search-hit-name">
+            <a href="{{relpermalink}}">{{{_highlightResult.title.value}}}</a>
+          </div>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{{_highlightResult.summary.value}}}</p>
+        </div>
+      </div>
+    </script>
+    
+
+    
+    
+
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch.min.js" integrity="sha256-gFCtPk/sonctyfwYOgjrPoWApQ0rqB6ezBBZ7p32yGc=" crossorigin="anonymous"></script>
+    
+    <script>
+      const algoliaConfig = {
+        appId: "BE80MGWD9D",
+        apiKey: "77ca6abe5531ce66ff7c3b2486222d85",
+        indexName: "gxd-blog",
+        poweredBy:  true 
+      };
+    </script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+      
+    
+    
+    
+    <script src="/js/academia.min.6ee120363d4a313a6fd39ad7c46e63f8.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        
+        <p>
+          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          Powered by
+          <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-inline network-icon text-right">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="mailto:sunnydog0826@gmail.com"  title="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="/publication/wx_contact/"  title="Chat on Keybase"><i class="fab fa-weixin" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/sunny0826" target="_blank" rel="noopener" title="Discuss on Forum"><i class="fab fa-github" aria-hidden="true"></i></a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

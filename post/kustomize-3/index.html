@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academia 4.3.1">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
+  <meta name="baidu-site-verification" content="A85okozwVV" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="never">
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="郭旭东">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="本篇为系列文章第三篇，使用 jenkins 发布一个简单的使用 flask 写的 web 项目，来演示在 CI/CD 流程中 Kustomize 的简单使用。">
+
+  
+  <link rel="alternate" hreflang="en" href="https://academia-hugo.netlify.com/en/post/kustomize-3/">
+  
+  <link rel="alternate" hreflang="zh-Hans" href="https://academia-hugo.netlify.com/post/kustomize-3/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#fc6f5c">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.9.0/instantsearch.min.css" integrity="sha256-ZtmLe16p4jS4/2wPwwH6NzJt460SJzgLmhKrYo5yn7g=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch-theme-algolia.min.css" integrity="sha256-uL8LUd3zkI/lXvc/Hv/oOu8ld6RJcOZiUY/8c+I+3/o=" crossorigin="anonymous">
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academia.min.9be1772e7ca3b9e5f31014835ca21e99.css">
+
+  
+    
+    
+    
+    
+      
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academia.ef74575f38e28c5c9feae541be1f6e36.css">
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://academia-hugo.netlify.com/post/kustomize-3/">
+
+  
+  
+  
+  
+    
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@GuoXudong2">
+  <meta property="twitter:creator" content="@GuoXudong2">
+  
+  <meta property="og:site_name" content="GuoXD Blog·郭旭东的博客">
+  <meta property="og:url" content="https://academia-hugo.netlify.com/post/kustomize-3/">
+  <meta property="og:title" content="使用 Kustomize 帮你管理 kubernetes 应用（三）：将 Kustomize 应用于 CI/CD | GuoXD Blog·郭旭东的博客">
+  <meta property="og:description" content="本篇为系列文章第三篇，使用 jenkins 发布一个简单的使用 flask 写的 web 项目，来演示在 CI/CD 流程中 Kustomize 的简单使用。"><meta property="og:image" content="https://academia-hugo.netlify.com/post/kustomize-3/featured.jpg">
+  <meta property="twitter:image" content="https://academia-hugo.netlify.com/post/kustomize-3/featured.jpg"><meta property="og:locale" content="zh-Hans">
+  
+  <meta property="article:published_time" content="2019-05-06T16:46:28&#43;08:00">
+  
+  <meta property="article:modified_time" content="2019-05-06T16:46:28&#43;08:00">
+  
+
+  
+
+
+  
+
+
+
+
+
+  <title>使用 Kustomize 帮你管理 kubernetes 应用（三）：将 Kustomize 应用于 CI/CD | GuoXD Blog·郭旭东的博客</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/"><img src="/img/logo.png" alt="GuoXD Blog·郭旭东的博客"></a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航"><span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#slider"><span>主页</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>博客</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>关于</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <span>中文 (简体)</span>
+          </a>
+          <ul class="dropdown-menu">
+            
+            <li class="dropdown-item my-0 py-0 mx-0 px-0">
+              <a href="https://academia-hugo.netlify.com/en/post/kustomize-3/">
+                <span>English</span>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        
+
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article py-5" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container split-header">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+        <img class="img-fluid w-100" src="/post/kustomize-3/featured_huff50670738208a742a7b90415df2ebaa_269540_680x500_fill_q90_lanczos_smart1.jpg" itemprop="image" alt="">
+        <span
+          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+    </div>
+    <div class="col-lg-8">
+      <h1 itemprop="name">使用 Kustomize 帮你管理 kubernetes 应用（三）：将 Kustomize 应用于 CI/CD</h1>
+
+      
+
+      
+
+
+
+<meta content="2019-05-06 16:46:28 &#43;0800 CST" itemprop="datePublished">
+<meta content="2019-05-06 16:46:28 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2019-05-06</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    4 分钟阅读时间
+  </span>
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/categories/kustomize/">kustomize</a></span>
+  
+
+  
+    
+<br>
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://academia-hugo.netlify.com/post/kustomize-3/&amp;text=%e4%bd%bf%e7%94%a8%20Kustomize%20%e5%b8%ae%e4%bd%a0%e7%ae%a1%e7%90%86%20kubernetes%20%e5%ba%94%e7%94%a8%ef%bc%88%e4%b8%89%ef%bc%89%ef%bc%9a%e5%b0%86%20Kustomize%20%e5%ba%94%e7%94%a8%e4%ba%8e%20CI/CD" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://academia-hugo.netlify.com/post/kustomize-3/&amp;t=%e4%bd%bf%e7%94%a8%20Kustomize%20%e5%b8%ae%e4%bd%a0%e7%ae%a1%e7%90%86%20kubernetes%20%e5%ba%94%e7%94%a8%ef%bc%88%e4%b8%89%ef%bc%89%ef%bc%9a%e5%b0%86%20Kustomize%20%e5%ba%94%e7%94%a8%e4%ba%8e%20CI/CD" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%e4%bd%bf%e7%94%a8%20Kustomize%20%e5%b8%ae%e4%bd%a0%e7%ae%a1%e7%90%86%20kubernetes%20%e5%ba%94%e7%94%a8%ef%bc%88%e4%b8%89%ef%bc%89%ef%bc%9a%e5%b0%86%20Kustomize%20%e5%ba%94%e7%94%a8%e4%ba%8e%20CI/CD&amp;body=https://academia-hugo.netlify.com/post/kustomize-3/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://academia-hugo.netlify.com/post/kustomize-3/&amp;title=%e4%bd%bf%e7%94%a8%20Kustomize%20%e5%b8%ae%e4%bd%a0%e7%ae%a1%e7%90%86%20kubernetes%20%e5%ba%94%e7%94%a8%ef%bc%88%e4%b8%89%ef%bc%89%ef%bc%9a%e5%b0%86%20Kustomize%20%e5%ba%94%e7%94%a8%e4%ba%8e%20CI/CD" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=%e4%bd%bf%e7%94%a8%20Kustomize%20%e5%b8%ae%e4%bd%a0%e7%ae%a1%e7%90%86%20kubernetes%20%e5%ba%94%e7%94%a8%ef%bc%88%e4%b8%89%ef%bc%89%ef%bc%9a%e5%b0%86%20Kustomize%20%e5%ba%94%e7%94%a8%e4%ba%8e%20CI/CD%20https://academia-hugo.netlify.com/post/kustomize-3/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://academia-hugo.netlify.com/post/kustomize-3/&amp;title=%e4%bd%bf%e7%94%a8%20Kustomize%20%e5%b8%ae%e4%bd%a0%e7%ae%a1%e7%90%86%20kubernetes%20%e5%ba%94%e7%94%a8%ef%bc%88%e4%b8%89%ef%bc%89%ef%bc%9a%e5%b0%86%20Kustomize%20%e5%ba%94%e7%94%a8%e4%ba%8e%20CI/CD" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://academia-hugo.netlify.com/post/kustomize-3/&amp;title=%e4%bd%bf%e7%94%a8%20Kustomize%20%e5%b8%ae%e4%bd%a0%e7%ae%a1%e7%90%86%20kubernetes%20%e5%ba%94%e7%94%a8%ef%bc%88%e4%b8%89%ef%bc%89%ef%bc%9a%e5%b0%86%20Kustomize%20%e5%ba%94%e7%94%a8%e4%ba%8e%20CI/CD" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    
+    </div>
+  </div>
+</div>
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<h2 id="前言">前言</h2>
+
+<p>首先明确软件版本，我这里使用的是 <code>Jenkins ver. 2.121.3</code> ，这个版本比较老，其上安装 Kubernetes 插件所使用 <code>kubectl</code> 版本也比较老，<strong>无法使用</strong> Kustomize 的 yaml 文件需要的 <code>apiVersion: apps/v1</code> ，直接使用生成 <code>deploy.yaml</code> 文件会报错，所以这里选择了自己构建一个包含 <code>kubectl</code> 和 <code>kustomize</code> 的镜像，在镜像中使用 Kustomize 生成所需 yaml 文件并在 Kubernetes 上部署。</p>
+
+<h2 id="软件版本">软件版本</h2>
+
+<table>
+<thead>
+<tr>
+<th>软件</th>
+<th>版本</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Jenkins</td>
+<td><a href="https://jenkins.io/" target="_blank">2.121.3</a></td>
+</tr>
+
+<tr>
+<td>kubectl</td>
+<td><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" target="_blank">v1.14.1</a></td>
+</tr>
+
+<tr>
+<td>kustomize</td>
+<td><a href="https://github.com/kubernetes-sigs/kustomize/releases" target="_blank">v2.0.3</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="前期准备">前期准备</h2>
+
+<ul>
+<li>Jenkins ：本篇使用 Jenkins 演示 CI/CD ，安装 Jenkins 就不在赘述，可以使用多种方法安装 Jenkins ，详细方法见<a href="https://jenkins.io" target="_blank">官网</a>。同时。 CI/CD 的工具有很多，这里为了省事使用笔者现有的 Jenkins 进行演示，<strong>不推荐</strong>使用同笔者一样的版本，请使用较新的版本；同时也可以使用其他 CI/CD 工具，这里推荐使用 <a href="https://drone.io/" target="_blank">drone</a>。如果有更好的方案，欢迎交流，可以在<a href="https://blog.maoxianplay.com/contact/" target="_blank">关于</a>中找到我的联系方式。</li>
+
+<li><pre><code class="language-kubectl```">- Web 应用：这里使用 flask 写了一个简单的 web 应用，用于演示，同样以上传 dockerhub [```guoxudongdocker/flask-python```](https://hub.docker.com/r/guoxudongdocker/flask-python)
+
+## 目录结构
+
+首先看一下目录结构，目录中包括 ```Dockerfile``` 、 ```Jenkinsfile``` 、 Kustomize 要使用的 ```deploy``` 目录以及 web 应用目录。
+
+</code></pre>
+
+<p>bush</p></li>
+</ul>
+
+<p>.
+├── Dockerfile
+├── Jenkinsfile
+├── app
+│   ├── main.py
+│   └── uwsgi.ini
+└── deploy
+    ├── base
+    │   ├── deployment.yaml
+    │   ├── kustomization.yaml
+    │   └── service.yaml
+    └── overlays
+        ├── dev
+        │   ├── healthcheck_patch.yaml
+        │   ├── kustomization.yaml
+        │   └── memorylimit_patch.yaml
+        └── prod
+            ├── healthcheck_patch.yaml
+            ├── kustomization.yaml
+            └── memorylimit_patch.yaml</p>
+
+<pre><code>
+这里可以看到 overlays 总共有两个子目录 `dev` 和 `prod` ，分别代表不同环境，在不同的环境中，应用不同的配置。
+
+## Jenkins 配置
+
+Jenkins 的配置相对简单，只需要新建一个 pipeline 类型的 job
+
+![WX20190506-180159](https://wx4.sinaimg.cn/large/ad5fbf65gy1g2rr57oixbj20tn0ogq6v.jpg)
+
+增加参数化构建，**注**：参数化构建需要安装 Jenkins 插件
+
+![WX20190506-180918](https://ws4.sinaimg.cn/large/ad5fbf65gy1g2rrcb5ic9j21470q7mz8.jpg)
+
+然后配置代码仓库即可
+
+![WX20190507-094958](https://ws3.sinaimg.cn/large/ad5fbf65gy1g2sij1xlb2j214w0nw0uw.jpg)
+
+## Pipeline 
+
+</code></pre>
+
+<p>groovy
+podTemplate(label: &lsquo;jnlp-slave&rsquo;, cloud: &lsquo;kubernetes&rsquo;,
+  containers: [
+    containerTemplate(
+        name: &lsquo;jnlp&rsquo;,
+        image: &lsquo;guoxudongdocker/jenkins-slave&rsquo;,
+        alwaysPullImage: true
+    ),
+    containerTemplate(name: &lsquo;kubectl&rsquo;, image: &lsquo;guoxudongdocker/kubectl:v1.14.1&rsquo;, command: &lsquo;cat&rsquo;, ttyEnabled: true),
+  ],
+  nodeSelector:&lsquo;ci=jenkins&rsquo;,
+  volumes: [
+    hostPathVolume(mountPath: &lsquo;/var/run/docker.sock&rsquo;, hostPath: &lsquo;/var/run/docker.sock&rsquo;),
+    hostPathVolume(mountPath: &lsquo;/usr/bin/docker&rsquo;, hostPath: &lsquo;/usr/bin/docker&rsquo;),
+    hostPathVolume(mountPath: &lsquo;/usr/local/jdk&rsquo;, hostPath: &lsquo;/usr/local/jdk&rsquo;),
+    hostPathVolume(mountPath: &lsquo;/usr/local/maven&rsquo;, hostPath: &lsquo;/usr/local/maven&rsquo;),
+    secretVolume(mountPath: &lsquo;/home/jenkins/.kube&rsquo;, secretName: &lsquo;devops-ctl&rsquo;),
+  ],
+)
+{
+    node(&ldquo;jnlp-slave&rdquo;){
+        stage(&lsquo;Git Checkout&rsquo;){
+            git branch: &lsquo;${branch}&rsquo;, url: &lsquo;<a href="https://github.com/sunny0826/flask-python.git'" target="_blank">https://github.com/sunny0826/flask-python.git'</a>
+        }
+        stage(&lsquo;Build and Push Image&rsquo;){
+            withCredentials([usernamePassword(credentialsId: &lsquo;docker-register&rsquo;, passwordVariable: &lsquo;dockerPassword&rsquo;, usernameVariable: &lsquo;dockerUser&rsquo;)]) {
+                sh &ldquo;&rsquo;
+                docker login -u ${dockerUser} -p ${dockerPassword}
+                docker build -t guoxudongdocker/flask-python:${Tag} .
+                docker push guoxudongdocker/flask-python:${Tag}
+                &ldquo;&rsquo;
+            }
+        }
+        stage(&lsquo;Deploy to K8s&rsquo;){
+            if (&lsquo;true&rsquo; == &ldquo;${deploy}&rdquo;) {
+                container(&lsquo;kubectl&rsquo;) {
+                    sh &ldquo;&rsquo;
+                    cd deploy/base
+                    kustomize edit set image guoxudongdocker/flask-python:${Tag}
+                    &ldquo;&rsquo;
+                    echo &ldquo;部署到 Kubernetes&rdquo;
+                    if (&lsquo;prod&rsquo; == &ldquo;${ENV}&rdquo;) {
+                        sh &ldquo;&rsquo;
+                        # kustomize build deploy/overlays/prod | kubectl apply -f -
+                        kubectl applt -k deploy/overlays/prod
+                        &ldquo;&rsquo;
+                    }else {
+                        sh &ldquo;&rsquo;
+                        # kustomize build deploy/overlays/dev | kubectl apply -f -
+                        kubectl applt -k deploy/overlays/dev
+                        &ldquo;&rsquo;
+                    }	
+                }
+            }else{
+                echo &ldquo;跳过Deploy to K8s&rdquo;
+            }</p>
+
+<pre><code>    }
+}
+</code></pre>
+
+<p>}</p>
+
+<pre><code>
+这里要注意几点：
+
+- 拉取 git 中的代码需要在 jenkins 中配置凭据。
+- 笔者的 jenkins 部署在 Kubernetes 上，要操作集群的话，需要将 kubeconfig 以 Secret 的形式挂载到 jenkins 所在 namespace。
+- `jenkins-slave` 需要 Java 环境运行，所以要将宿主机的 `jdk` 挂载到 `jenkins-slave` 中。
+- 同样的，宿主机中需要事先安装 `docker`。
+- `docker-register` 为 dockerhub 的登录凭证，需要在 jenkins 中添加相应的凭证。
+
+## 演示
+
+image:
+  caption: &quot;Image from: [**Pexels**](https://www.pexels.com)&quot;
+  focal_point: &quot;&quot;
+  preview_only: false
+---
+
+### 开始构建
+
+这里选择环境、分支，填入版本即可开始构建，**注意：**这里的版本将已 tag 的形式标记 docker 镜像。
+
+![WX20190507-095142](https://ws2.sinaimg.cn/large/ad5fbf65gy1g2sikst7tuj20ob0evabw.jpg)
+
+这里就可以看到构建成功了
+
+![WX20190507-103721](https://ws2.sinaimg.cn/large/ad5fbf65ly1g2sjw9w22ej20v80km0w3.jpg)
+
+### 查看结果
+
+这里为了方便（其实就是懒），我就不给这个服务添加 ingress 来从外部访问了，这里使用 [KT](https://yq.aliyun.com/articles/690519) 打通本地和 k8s 集群网络来进行调试。
+
+&gt;为了简化在Kubernetes下进行联调测试的复杂度，云效在SSH隧道网络的基础上并结合Kubernetes特性构建了一款面向开发者的辅助工具kt
+
+这里看到这个服务正常启动了
+
+![WX20190507-104154](https://ws2.sinaimg.cn/large/ad5fbf65ly1g2sk11dnzxj20av027jrn.jpg)
+
+### 发布新版本
+
+更新 web 服务并提交
+
+![WX20190507-104936](https://ws4.sinaimg.cn/large/ad5fbf65gy1g2sk94v1c5j209702vwej.jpg)
+
+
+按照上面步骤在 jenkins 中重新构建，当然也可以配置钩子，每次代码提交后自动构建
+
+### 查看查看新版本
+
+同上面一样，在构建成功后查看服务是否更新
+
+![WX20190507-105539](https://wx4.sinaimg.cn/large/ad5fbf65gy1g2skfczaz4j20by01smx7.jpg)
+
+可以看到，版本已经更新了
+
+### 发布生产环境
+
+这里模拟一下发布生产环境，假设生产环境是在 `devops-prod` 的 namespace 中，这里只做演示之用，真正的生产环境中，可能存在不止一个 k8s 集群，这时需要修改 Jenkinsfile 中的 `secretVolume` 来挂载不同 k8s 的 kubeconfig 来达到发布到不同集群的目的。当然，一般发布生产环境只需选择测试通过的镜像来发布即可，不需要在进行构建打包。
+
+![WX20190507-110730](https://ws3.sinaimg.cn/large/ad5fbf65gy1g2skrnbjyuj20fc0bjmxp.jpg)
+
+### 查看生产版本
+
+![WX20190507-110850](https://ws1.sinaimg.cn/large/ad5fbf65ly1g2skt3rp4yj20aq010glj.jpg)
+
+### 总结
+
+上面的这些步骤简单的演示了使用 jenkins 进行 CI/CD 的流程，流程十分简单，这里仅供参考
+
+## Kustomize 的作用
+
+那么， Kustomize 在整个流程中又扮演了一个什么角色呢？
+
+### 更新镜像
+
+在 `jenkinsfile` 中可以看到， kustomize 更新了基础配置的镜像版本，这里我们之前一直是使用 `sed -i &quot;s/#Tag/${Tag}/g&quot; deploy.yaml` 来进行替换了，但是不同环境存在比较多的差异，需要替换的越来越多，导致 Jekninsfile 也越来越臃肿和难以维护。 kustomize 解决了这个问题。
+
+</code></pre>
+
+<p>bash
+kustomize edit set image guoxudongdocker/flask-python:${Tag}</p>
+
+<pre><code>
+### 环境区分
+
+上面也提到了，不同的环境我们存在这许多差异，虽然看上去大致类似，但是很多细节都需要修改。这时 kustomize 就起到了很大的作用，不同环境相同的配置都放在 `base` 中，而差异就可以在 `overlays` 中实现。
+
+</code></pre>
+
+<p>bash
+.
+├── base
+│   ├── deployment.yaml
+│   ├── kustomization.yaml
+│   └── service.yaml
+└── overlays
+    ├── dev
+    │   ├── healthcheck_patch.yaml
+    │   ├── kustomization.yaml
+    │   └── memorylimit_patch.yaml
+    └── prod
+        ├── healthcheck_patch.yaml
+        ├── kustomization.yaml
+        └── memorylimit_patch.yaml</p>
+
+<pre><code>可以看到， `base` 中维护了项目共同的基础配置，如果有镜像版本等基础配置需要修改，可以使用 `kustomize edit set image ...` 来直接修改基础配置，而真正不同环境，或者不同使用情况的配置则在 `overlays` 中 以 patch 的形式添加配置。这里我的配置是 prod 环境部署的副本为2，同时给到的资源也更多，详情可以在 [Github](https://github.com/sunny0826/flask-python) 上查看。
+
+### 与 kubectl 的集成
+
+在 jenkinsfile 中可以看到
+
+</code></pre>
+
+<p>bash</p>
+
+<h1 id="kustomize-build-deploy-overlays-dev-kubectl-apply-f">kustomize build deploy/overlays/dev | kubectl apply -f -</h1>
+
+<p>kubectl apply -k deploy/overlays/dev
+```</p>
+
+<p>这两条命令的执行效果是一样的，在 <code>kubectl v1.14.0</code> 以上的版本中，已经集成了 kustomize ，可以直接使用 <code>kubectl</code> 进行部署。</p>
+
+<h2 id="结语">结语</h2>
+
+<p>这里只是对 kustomize 在 CI/CD 中简单应用的展示，只是一种比较简单和基础的使用，真正的 CI 流程要比这个复杂的多，这里只是为了演示 kustomize 的使用而临时搭建的。而 kustomize 还有很多黑科技的用法，将会在后续的文章中介绍。</p>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/kubernetes">kubernetes</a>
+  
+  <a class="badge badge-light" href="/tags/kustomize">kustomize</a>
+  
+  <a class="badge badge-light" href="/tags/%e5%b7%a5%e5%85%b7">工具</a>
+  
+</div>
+
+
+
+     
+     
+<div class="entry-shang text-center">
+    <p>「一键投喂 小鱼干/小骨头」</p>
+    <button class="zs show-zs btn btn-primary">投喂</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+    <div class="zs-modal-head">
+        <button type="button" class="close">×</button>
+        <p class="author">
+            <a href="https://blog.maoxianplay.com">
+                <img src="https://wx3.sinaimg.cn/square/ad5fbf65gy1g2o621gcs6j20m80m8gng.jpg"/>
+            小助手毛线</a>
+        </p>
+        <p class="tip"><i></i><span>感谢投喂 <a href="/maoxian">毛线</a> & <a href="/sunny">Sunny</a> </span></p>
+    </div>
+    <div class="zs-modal-body">
+        <div class="zs-modal-btns">
+            <button class="btn btn-blink" data-num="2">2元</button>
+            <button class="btn btn-blink" data-num="5">5元</button>
+            <button class="btn btn-blink" data-num="10">10元</button>
+            <button class="btn btn-blink" data-num="50">50元</button>
+            <button class="btn btn-blink" data-num="100">100元</button>
+            <button class="btn btn-blink" data-num="any">任意金额</button>
+        </div>
+        <div class="zs-modal-pay">
+            <button class="btn btn-bred" id="pay-text">2元</button>
+            <p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+            <img id="pay-image" src="/img/alipay-2.png">
+        </div>
+    </div>
+    <div class="zs-modal-footer">
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="alipay" class="zs-type" checked="checked" style="float: left;">
+            <span class="zs-alipay">
+                <img src="/img/alipay-btn.png">
+            </span>
+        </label>
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="wechat" class="zs-type" style="float: left;">
+            <span class="zs-wechat">
+                <img src="/img/wechat-btn.png">
+            </span>
+        </label>
+    </div>
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="https://academia-hugo.netlify.com/">郭旭东</a></h5>
+      <h6 class="card-subtitle">运维负责人</h6>
+      <p class="card-text" itemprop="description">云原生爱好者，分享云原生和 DevOps 技术实践，倡导开源运动，传播开源思想。</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          <li>
+            <a itemprop="sameAs" href="mailto:sunnydog0826@gmail.com" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/publication/wx_contact/" >
+              <i class="fab fa-weixin"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/sunny0826" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>相关</h3>
+        <ul>
+          
+          <li><a href="/post/kustomize-2/">使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法</a></li>
+          
+          <li><a href="/post/introducing-kustomize-template-free-configuration-customization-for-kubernetes/">Kustomize: 无需模板定制你的 kubernetes 配置</a></li>
+          
+          <li><a href="/post/kustomize-1/">使用 Kustomize 帮你管理 kubernetes 应用（一）：什么是 Kustomize ？</a></li>
+          
+          <li><a href="/post/merge-kubeconfig/">自动合并Kubeconfig，实现多k8s集群切换</a></li>
+          
+          <li><a href="/post/an-8-minute-introduction-to-k8s/">8分钟入门 K8S</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+      <script async defer src="//maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.min.js" integrity="sha256-7vjlAeb8OaTrCXZkCNun9djzuB2owUsaO72kXaFDBJs=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-algolia-template" type="text/html">
+      <div class="search-hit">
+        <div class="search-hit-content">
+          <div class="search-hit-name">
+            <a href="{{relpermalink}}">{{{_highlightResult.title.value}}}</a>
+          </div>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{{_highlightResult.summary.value}}}</p>
+        </div>
+      </div>
+    </script>
+    
+
+    
+    
+
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch.min.js" integrity="sha256-gFCtPk/sonctyfwYOgjrPoWApQ0rqB6ezBBZ7p32yGc=" crossorigin="anonymous"></script>
+    
+    <script>
+      const algoliaConfig = {
+        appId: "BE80MGWD9D",
+        apiKey: "77ca6abe5531ce66ff7c3b2486222d85",
+        indexName: "gxd-blog",
+        poweredBy:  true 
+      };
+    </script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+      
+    
+    
+    
+    <script src="/js/academia.min.6ee120363d4a313a6fd39ad7c46e63f8.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        
+        <p>
+          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          Powered by
+          <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-inline network-icon text-right">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="mailto:sunnydog0826@gmail.com"  title="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="/publication/wx_contact/"  title="Chat on Keybase"><i class="fab fa-weixin" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/sunny0826" target="_blank" rel="noopener" title="Discuss on Forum"><i class="fab fa-github" aria-hidden="true"></i></a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

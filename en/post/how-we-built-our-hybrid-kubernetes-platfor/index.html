@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academia 4.3.1">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
+  <meta name="baidu-site-verification" content="A85okozwVV" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="never">
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="郭旭东">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="随着3年前重构 Dailymotion 核心API的决定，我们希望提供一种更有效的方式来托管应用程序，促进我们的开发和生产工作流程。 最终决定使用容器编排平台来实现这一目标，那么自然就选择了 Kubernetes。">
+
+  
+  <link rel="alternate" hreflang="zh" href="https://academia-hugo.netlify.com/post/how-we-built-our-hybrid-kubernetes-platfor/">
+  
+  <link rel="alternate" hreflang="en-us" href="https://academia-hugo.netlify.com/en/post/how-we-built-our-hybrid-kubernetes-platfor/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#fc6f5c">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.9.0/instantsearch.min.css" integrity="sha256-ZtmLe16p4jS4/2wPwwH6NzJt460SJzgLmhKrYo5yn7g=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch-theme-algolia.min.css" integrity="sha256-uL8LUd3zkI/lXvc/Hv/oOu8ld6RJcOZiUY/8c+I+3/o=" crossorigin="anonymous">
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academia.min.9be1772e7ca3b9e5f31014835ca21e99.css">
+
+  
+    
+    
+    
+    
+      
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academia.ef74575f38e28c5c9feae541be1f6e36.css">
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://academia-hugo.netlify.com/en/post/how-we-built-our-hybrid-kubernetes-platfor/">
+
+  
+  
+  
+  
+    
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@GuoXudong2">
+  <meta property="twitter:creator" content="@GuoXudong2">
+  
+  <meta property="og:site_name" content="GuoXD Blog">
+  <meta property="og:url" content="https://academia-hugo.netlify.com/en/post/how-we-built-our-hybrid-kubernetes-platfor/">
+  <meta property="og:title" content="如何构建混合Kubernetes平台 | GuoXD Blog">
+  <meta property="og:description" content="随着3年前重构 Dailymotion 核心API的决定，我们希望提供一种更有效的方式来托管应用程序，促进我们的开发和生产工作流程。 最终决定使用容器编排平台来实现这一目标，那么自然就选择了 Kubernetes。"><meta property="og:image" content="https://academia-hugo.netlify.com/en/post/how-we-built-our-hybrid-kubernetes-platfor/featured.jpg">
+  <meta property="twitter:image" content="https://academia-hugo.netlify.com/en/post/how-we-built-our-hybrid-kubernetes-platfor/featured.jpg"><meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2019-08-06T14:01:30&#43;08:00">
+  
+  <meta property="article:modified_time" content="2019-08-06T14:01:30&#43;08:00">
+  
+
+  
+
+
+  
+
+
+
+
+
+  <title>如何构建混合Kubernetes平台 | GuoXD Blog</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/en/"><img src="/img/logo.png" alt="GuoXD Blog"></a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/en/#slider"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/en/#posts"><span>Blog</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/en/#about"><span>About</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <span>English</span>
+          </a>
+          <ul class="dropdown-menu">
+            
+            <li class="dropdown-item my-0 py-0 mx-0 px-0">
+              <a href="https://academia-hugo.netlify.com/post/how-we-built-our-hybrid-kubernetes-platfor/">
+                <span>中文 (简体)</span>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        
+
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article py-5" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container split-header">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+        <img class="img-fluid w-100" src="/en/post/how-we-built-our-hybrid-kubernetes-platfor/featured_hu909f5b48d3ea45fa4e038988eefba47b_19242_680x500_fill_q90_lanczos_smart1.jpg" itemprop="image" alt="">
+        <span
+          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+    </div>
+    <div class="col-lg-8">
+      <h1 itemprop="name">如何构建混合Kubernetes平台</h1>
+
+      
+
+      
+
+
+
+<meta content="2019-08-06 14:01:30 &#43;0800 CST" itemprop="datePublished">
+<meta content="2019-08-06 14:01:30 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2019-08-06</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    5 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="">翻译</a></span>
+  
+
+  
+    
+<br>
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://academia-hugo.netlify.com/en/post/how-we-built-our-hybrid-kubernetes-platfor/&amp;text=%e5%a6%82%e4%bd%95%e6%9e%84%e5%bb%ba%e6%b7%b7%e5%90%88Kubernetes%e5%b9%b3%e5%8f%b0" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://academia-hugo.netlify.com/en/post/how-we-built-our-hybrid-kubernetes-platfor/&amp;t=%e5%a6%82%e4%bd%95%e6%9e%84%e5%bb%ba%e6%b7%b7%e5%90%88Kubernetes%e5%b9%b3%e5%8f%b0" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%e5%a6%82%e4%bd%95%e6%9e%84%e5%bb%ba%e6%b7%b7%e5%90%88Kubernetes%e5%b9%b3%e5%8f%b0&amp;body=https://academia-hugo.netlify.com/en/post/how-we-built-our-hybrid-kubernetes-platfor/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://academia-hugo.netlify.com/en/post/how-we-built-our-hybrid-kubernetes-platfor/&amp;title=%e5%a6%82%e4%bd%95%e6%9e%84%e5%bb%ba%e6%b7%b7%e5%90%88Kubernetes%e5%b9%b3%e5%8f%b0" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=%e5%a6%82%e4%bd%95%e6%9e%84%e5%bb%ba%e6%b7%b7%e5%90%88Kubernetes%e5%b9%b3%e5%8f%b0%20https://academia-hugo.netlify.com/en/post/how-we-built-our-hybrid-kubernetes-platfor/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://academia-hugo.netlify.com/en/post/how-we-built-our-hybrid-kubernetes-platfor/&amp;title=%e5%a6%82%e4%bd%95%e6%9e%84%e5%bb%ba%e6%b7%b7%e5%90%88Kubernetes%e5%b9%b3%e5%8f%b0" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://academia-hugo.netlify.com/en/post/how-we-built-our-hybrid-kubernetes-platfor/&amp;title=%e5%a6%82%e4%bd%95%e6%9e%84%e5%bb%ba%e6%b7%b7%e5%90%88Kubernetes%e5%b9%b3%e5%8f%b0" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    
+    </div>
+  </div>
+</div>
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<blockquote>
+<p>随着3年前重构 <a href="https://www.dailymotion.com/" target="_blank">Dailymotion</a> 核心API的决定，我们希望提供一种更有效的方式来托管应用程序，<a href="https://medium.com/dailymotion/deploying-apps-on-multiple-kubernetes-clusters-with-helm-19ee2b06179e" target="_blank">促进我们的开发和生产工作流程</a>。 最终决定使用容器编排平台来实现这一目标，那么自然就选择了 Kubernetes。</p>
+</blockquote>
+
+<p>那么为什么要建立自己的Kubernetes平台？</p>
+
+<h2 id="借由-google-cloud-快速推动的-api-投入生产">借由 Google Cloud 快速推动的 API 投入生产</h2>
+
+<blockquote>
+<p>2016年夏</p>
+</blockquote>
+
+<p>三年前，在 <a href="https://www.vivendi.com/" target="_blank">Vivendi</a> 收购 Dailymotion 之后，所有开发团队都专注于一个目标：提供全新的 Dailymotion 产品。</p>
+
+<p>根据对容器、编排解决方案和以前的经验的分析，使我们确信 Kubernetes 是正确的选择。许多开发人员已经掌握了这一概念并知道如何使用 Kubernetes ，这对我们的基础设施转型来说是一个巨大的优势。在基础架构方面，我们需要一个强大而灵活的平台来托管这些新型的云原生应用程序。而公有云为我们提供了极大的便利，于是我们决定在 Google Kubernetes Engine 上部署我们的应用程序，即使之后我们也会在自己的数据中心中进行混合部署。</p>
+
+<h3 id="为何选择-gke">为何选择 GKE ？</h3>
+
+<p>我们做出这个选择主要是出于技术原因，但也因为我们需要快速提供基础设施来满足 Dailymotion 的业务需求。并且对托管的应用程序（如地理分布，可伸缩性和弹性）有一些要求。</p>
+
+<p><img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g5py1vm2k2j20hd0bbjtq.jpg" alt="" />
+<center>Dailymotion 的 GKE 集群</center></p>
+
+<p>Dailymotion 作为一个全球性的视频平台，需要通过减少延迟来改善用户体验。之前我们仅在巴黎提供 <a href="https://developer.dailymotion.com/" target="_blank">API</a> ，但这样并非最佳，我们希望能够在欧洲、亚洲以及美国托管我们的应用程序。</p>
+
+<p>这种延迟限制意味着我们在平台的网络设计方面面临着巨大的挑战。大多数云供应商要求我们在每个地区创建一个网络，并将所有这些网络通过 VPN 与托管服务互连，但 Google Cloud 允许我们在所有 Google 地区创建一个完全路由的单一网络，该网络在运营方面提供了便利并提高了效率。</p>
+
+<p>此外，Google Cloud 的网络和负载均衡服务非常棒。它可以将我们的用户路由到最近的集群，并且在发生故障的情况下，流量会自动路由到另一个区域而无需任何人为干预。</p>
+
+<p><img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g5pytelbwnj20jg0avq4x.jpg" alt="" />
+<center>Google 负载均衡监控</center></p>
+
+<p>我们的平台同样需要使用 GPU，而 Google Cloud 允许我们以非常有效的方式直接在我们的 Kubernetes 集群中使用它们。</p>
+
+<p>所有这一切使我们在启动后6个月开始接入 Google Cloud 基础架构上的生产流量。</p>
+
+<p>但是，尽管具有整体优势，但使用共有云服务还是要花费不少成本。这就是为什么我们要评估采取的每项托管服务，以便将来将其内部化。事实上，我们在2016年底开始构建我们的本地集群，并启动了我们的混合策略。</p>
+
+<h2 id="在-dailymotion-的内部构建容器编排平台">在 Dailymotion 的内部构建容器编排平台</h2>
+
+<blockquote>
+<p>2016年秋</p>
+</blockquote>
+
+<p>看到整个技术栈已经准备好在生产环境中应用，但<a href="https://tartiflette.io/" target="_blank">API仍在开发中</a>，这使得我们有时间专注搭建我们的本地集群。</p>
+
+<p>Dailymotion 多年来在全球拥有自己的内容分发网络，每月有超过30亿的视频播放量。显然，我们希望利用现有的优势并在我们现有的数据中心部署自己的 Kubernetes 集群。</p>
+
+<p>我的目前拥有6个数据中心的2500多台服务器。所有这些都使用 Saltstack 进行配置，我们开始准备所有需要的公式来创建主节点、工作节点以及 Etcd 集群。</p>
+
+<p><img src="https://wx2.sinaimg.cn/large/ad5fbf65gy1g5pzm4m985j20jg06tgm7.jpg" alt="" /></p>
+
+<h3 id="网络部分">网络部分</h3>
+
+<p>我们的网络是一个完全路由的网络。每个服务器使用Exabgp通过网络广播自己的IP。我们比较了几个网络插件， <a href="https://www.projectcalico.org/" target="_blank">Calico</a> 使用的是三层网络，因此这是唯一满足我们需求的网络插件。</p>
+
+<p>由于我们想要重用基础架构中的所有现有工具，首先要解决的问题是插入一个自制网络工具（我们所有服务器都使用它），通过我们的 Kubernetes 节点通过网络广播 IP 范围。我们让 Calico 为 pod 分配 IP，但不使用它与我们的网络设备进行BGP会话。路由实际上是由Exabgp处理的，它宣布了Calico使用的子网。这使我们可以从内部网络访问任何pod，尤其是来自我们的负载均衡器。</p>
+
+<h3 id="我们如何管理入口流量">我们如何管理入口流量</h3>
+
+<p>为了将传入的请求路由到正确的服务，我们希望使用 Ingress Controllers 与 Kubernetes 的入口资源集成。</p>
+
+<p>3年前，nginx-ingress-controller 是最成熟的控制器 ，并且 Nginx 已经使用多年，并以其稳定性和性能而闻名。</p>
+
+<p>在我们的设计中，我们决定在专用的 10Gbps 刀片服务器上托管我们的控制器。每个控制器都插入其所属集群的 kube-apiserver 端点。在这些服务器上，我们还使用Exabgp来广播公共或私有IP。我们的网络拓扑允许我们使用来自这些控制器的BGP将所有流量直接路由到我们的pod，而无需使用NodePort服务类型。这样可以避免节点之间的水平流量，从而提高效率。</p>
+
+<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g5q05ex27bj20in0fbt9q.jpg" alt="" />
+<center>从 Internet 到 pods 的流量</center></p>
+
+<p>现在我们已经看到了我们如何构建混合平台，我们可以深入了解流量迁移本身。</p>
+
+<h2 id="将流量从-google-cloud-迁移到-dailymotions-基础架构">将流量从 Google Cloud 迁移到 Dailymotions 基础架构</h2>
+
+<blockquote>
+<p>2018年秋</p>
+</blockquote>
+
+<p>经过近2年的构建、测试和微调，我们发现自己拥有完整的 Kubernetes 技术栈，可以接收部分流量。</p>
+
+<p><img src="https://wx2.sinaimg.cn/large/ad5fbf65gy1g5q0b3o8laj20jg06sq36.jpg" alt="" /></p>
+
+<p>目前，我们的路由策略非常简单，但足以解决我们的问题。除了我们的公共IP（Google Cloud和Dailymotion）之外，我们还使用AWS Route 53 来定义策略并将终端用户流量引入我们选择的集群。</p>
+
+<p><img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g5q0ds3spjj20jg07a0tk.jpg" alt="" />
+<center>使用Route 53的路由策略示例</center></p>
+
+<p>在 Google Cloud 上很简单，因为我们为所有群集使用唯一的IP，并且用户被路由到他最近的 GKE 群集。对于我们来说，我们不使用相同的技术，因此我们每个群集都有不同的IP。</p>
+
+<p>在此次迁移过程中，我们将目标国家逐步纳入我们的集群并分析其收益。</p>
+
+<p>由于我们的GKE集群配置了自动调节自定义指标，因此它们会根据传入流量进行扩展/缩小。</p>
+
+<p>在正常模式下，区域的所有流量都路由到我们的内部部署集群，而GKE集群则使用Route 53提供的运行状况检查作为故障转移。</p>
+
+<h2 id="结语">结语</h2>
+
+<p>我们接下来的步骤是完全自动化我们的路由策略，以实现自动混合策略，不断增强我们的用户体验。在效益方面，我们大大降低了云的成本，甚至改善了API响应时间。我们相信我们的云平台足以在需要时处理更多流量。</p>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/%e7%bf%bb%e8%af%91">翻译</a>
+  
+  <a class="badge badge-light" href="/tags/kubernetes">kubernetes</a>
+  
+</div>
+
+
+
+     
+     
+<div class="entry-shang text-center">
+    <p>「一键投喂 小鱼干/小骨头」</p>
+    <button class="zs show-zs btn btn-primary">投喂</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+    <div class="zs-modal-head">
+        <button type="button" class="close">×</button>
+        <p class="author">
+            <a href="https://blog.maoxianplay.com">
+                <img src="https://wx3.sinaimg.cn/square/ad5fbf65gy1g2o621gcs6j20m80m8gng.jpg"/>
+            小助手毛线</a>
+        </p>
+        <p class="tip"><i></i><span>感谢投喂 <a href="/maoxian">毛线</a> & <a href="/sunny">Sunny</a> </span></p>
+    </div>
+    <div class="zs-modal-body">
+        <div class="zs-modal-btns">
+            <button class="btn btn-blink" data-num="2">2元</button>
+            <button class="btn btn-blink" data-num="5">5元</button>
+            <button class="btn btn-blink" data-num="10">10元</button>
+            <button class="btn btn-blink" data-num="50">50元</button>
+            <button class="btn btn-blink" data-num="100">100元</button>
+            <button class="btn btn-blink" data-num="any">任意金额</button>
+        </div>
+        <div class="zs-modal-pay">
+            <button class="btn btn-bred" id="pay-text">2元</button>
+            <p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+            <img id="pay-image" src="/img/alipay-2.png">
+        </div>
+    </div>
+    <div class="zs-modal-footer">
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="alipay" class="zs-type" checked="checked" style="float: left;">
+            <span class="zs-alipay">
+                <img src="/img/alipay-btn.png">
+            </span>
+        </label>
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="wechat" class="zs-type" style="float: left;">
+            <span class="zs-wechat">
+                <img src="/img/wechat-btn.png">
+            </span>
+        </label>
+    </div>
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="https://academia-hugo.netlify.com/">郭旭东</a></h5>
+      <h6 class="card-subtitle">运维负责人</h6>
+      <p class="card-text" itemprop="description">云原生爱好者，分享云原生和 DevOps 技术实践，倡导开源运动，传播开源思想。</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          <li>
+            <a itemprop="sameAs" href="mailto:sunnydog0826@gmail.com" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/en/publication/wx_contact/" >
+              <i class="fab fa-weixin"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/sunny0826" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>Related</h3>
+        <ul>
+          
+          <li><a href="/en/post/deploying-apps-on-multiple-kubernetes-clusters-with-hel/">使用 Helm 在多集群部署应用</a></li>
+          
+          <li><a href="/en/post/the-childrens-illustrated-guide-to-kubernetes/">【转】Kubernetes 儿童插图指南</a></li>
+          
+          <li><a href="/en/post/an-8-minute-introduction-to-k8s/">8分钟入门 K8S</a></li>
+          
+          <li><a href="/en/post/kubernetes-is-har/">困难的 Kubernetes</a></li>
+          
+          <li><a href="/en/post/introducing-kustomize-template-free-configuration-customization-for-kubernetes/">Kustomize: 无需模板定制你的 kubernetes 配置</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+      <script async defer src="//maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.min.js" integrity="sha256-7vjlAeb8OaTrCXZkCNun9djzuB2owUsaO72kXaFDBJs=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/en/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-algolia-template" type="text/html">
+      <div class="search-hit">
+        <div class="search-hit-content">
+          <div class="search-hit-name">
+            <a href="{{relpermalink}}">{{{_highlightResult.title.value}}}</a>
+          </div>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{{_highlightResult.summary.value}}}</p>
+        </div>
+      </div>
+    </script>
+    
+
+    
+    
+
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch.min.js" integrity="sha256-gFCtPk/sonctyfwYOgjrPoWApQ0rqB6ezBBZ7p32yGc=" crossorigin="anonymous"></script>
+    
+    <script>
+      const algoliaConfig = {
+        appId: "BE80MGWD9D",
+        apiKey: "77ca6abe5531ce66ff7c3b2486222d85",
+        indexName: "gxd-blog",
+        poweredBy:  true 
+      };
+    </script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+      
+    
+    
+    
+    <script src="/js/academia.min.6ee120363d4a313a6fd39ad7c46e63f8.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        
+        <p>
+          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          Powered by
+          <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-inline network-icon text-right">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="mailto:sunnydog0826@gmail.com"  title="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="/en/publication/wx_contact/"  title="Chat on Keybase"><i class="fab fa-weixin" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/sunny0826" target="_blank" rel="noopener" title="Discuss on Forum"><i class="fab fa-github" aria-hidden="true"></i></a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

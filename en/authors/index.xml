@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Authors on GuoXD Blog</title>
+    <link>https://academia-hugo.netlify.com/en/authors/</link>
+    <description>Recent content in Authors on GuoXD Blog</description>
+    <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 01 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	    <atom:link href="https://academia-hugo.netlify.com/en/authors/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>https://academia-hugo.netlify.com/en/authors/admin/</link>
+      <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://academia-hugo.netlify.com/en/authors/admin/</guid>
+      <description>
+
+&lt;p&gt;郭旭东，2018年4月加入凯京科技。曾任高级研发和运维开发工程师、&lt;a href=&#34;https://mvp.aliyun.com/mvp/detail/426&#34; target=&#34;_blank&#34;&gt;阿里云MVP&lt;/a&gt;、CCF 会员，现任凯京科技研发中心架构&amp;amp;运维部运维负责人，负责公司运维团队建设。热爱开源，致力于推行devops理念及相关技术，提升开发效率，提高交付质量与速度，专注于云平台的容器化实践，探索更高效的运维系统架构。&lt;/p&gt;
+
+&lt;h2 id=&#34;关于我们&#34;&gt;关于我们&lt;/h2&gt;
+
+&lt;p&gt;凯京科技致力于推动物流行业的数字化和智慧化，为小微物流企业和车主提供线上化的开放平台，探索解决物流行业运输成本高、融资门槛高等痛点，为物流行业降本增效。
+凯京科技拥有蚂蚁金服、红杉资本、中航信托、德邦证券等知名股东。凯京科技联合优质股东资源，共同打造最懂小微物流企业和车主的数据、科技和普惠金融服务，通过凯京物流云线上化平台，将广大物流人日常经营所需的货物运输管理、车辆管理、资金结算管理、金融服务管理等全面线上化、数字化，让物流人生意更好做。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

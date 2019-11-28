@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academia 4.3.1">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
+  <meta name="baidu-site-verification" content="A85okozwVV" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="never">
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="郭旭东">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="正如Linux 的创始人 Linus Torvalds 的那句话：Talk is cheap. Show me the code. 这里我们部署一个demo，由四个单独的微服务构成（注意这里的四个微服务是由不同的语言编写的），用来演示多种 Istio 特性。">
+
+  
+  <link rel="alternate" hreflang="en" href="https://academia-hugo.netlify.com/en/post/istio-bookinfo-demo/">
+  
+  <link rel="alternate" hreflang="zh-Hans" href="https://academia-hugo.netlify.com/post/istio-bookinfo-demo/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#fc6f5c">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.9.0/instantsearch.min.css" integrity="sha256-ZtmLe16p4jS4/2wPwwH6NzJt460SJzgLmhKrYo5yn7g=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch-theme-algolia.min.css" integrity="sha256-uL8LUd3zkI/lXvc/Hv/oOu8ld6RJcOZiUY/8c+I+3/o=" crossorigin="anonymous">
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academia.min.9be1772e7ca3b9e5f31014835ca21e99.css">
+
+  
+    
+    
+    
+    
+      
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academia.ef74575f38e28c5c9feae541be1f6e36.css">
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://academia-hugo.netlify.com/post/istio-bookinfo-demo/">
+
+  
+  
+  
+  
+    
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@GuoXudong2">
+  <meta property="twitter:creator" content="@GuoXudong2">
+  
+  <meta property="og:site_name" content="GuoXD Blog·郭旭东的博客">
+  <meta property="og:url" content="https://academia-hugo.netlify.com/post/istio-bookinfo-demo/">
+  <meta property="og:title" content="Istio初探之Bookinfo样例部署 | GuoXD Blog·郭旭东的博客">
+  <meta property="og:description" content="正如Linux 的创始人 Linus Torvalds 的那句话：Talk is cheap. Show me the code. 这里我们部署一个demo，由四个单独的微服务构成（注意这里的四个微服务是由不同的语言编写的），用来演示多种 Istio 特性。"><meta property="og:image" content="https://academia-hugo.netlify.com/post/istio-bookinfo-demo/featured.jpg">
+  <meta property="twitter:image" content="https://academia-hugo.netlify.com/post/istio-bookinfo-demo/featured.jpg"><meta property="og:locale" content="zh-Hans">
+  
+  <meta property="article:published_time" content="2019-03-21T09:42:18&#43;08:00">
+  
+  <meta property="article:modified_time" content="2019-03-21T09:42:18&#43;08:00">
+  
+
+  
+
+
+  
+
+
+
+
+
+  <title>Istio初探之Bookinfo样例部署 | GuoXD Blog·郭旭东的博客</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/"><img src="/img/logo.png" alt="GuoXD Blog·郭旭东的博客"></a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航"><span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#slider"><span>主页</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>博客</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>关于</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <span>中文 (简体)</span>
+          </a>
+          <ul class="dropdown-menu">
+            
+            <li class="dropdown-item my-0 py-0 mx-0 px-0">
+              <a href="https://academia-hugo.netlify.com/en/post/istio-bookinfo-demo/">
+                <span>English</span>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        
+
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article py-5" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container split-header">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+        <img class="img-fluid w-100" src="/post/istio-bookinfo-demo/featured_hu77800994202bb6783de0ef2714c68bcb_268749_680x500_fill_q90_lanczos_smart1.jpg" itemprop="image" alt="">
+        <span
+          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+    </div>
+    <div class="col-lg-8">
+      <h1 itemprop="name">Istio初探之Bookinfo样例部署</h1>
+
+      
+
+      
+
+
+
+<meta content="2019-03-21 09:42:18 &#43;0800 CST" itemprop="datePublished">
+<meta content="2019-03-21 09:42:18 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2019-03-21</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    7 分钟阅读时间
+  </span>
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/categories/istio/">istio</a></span>
+  
+
+  
+    
+<br>
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://academia-hugo.netlify.com/post/istio-bookinfo-demo/&amp;text=Istio%e5%88%9d%e6%8e%a2%e4%b9%8bBookinfo%e6%a0%b7%e4%be%8b%e9%83%a8%e7%bd%b2" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://academia-hugo.netlify.com/post/istio-bookinfo-demo/&amp;t=Istio%e5%88%9d%e6%8e%a2%e4%b9%8bBookinfo%e6%a0%b7%e4%be%8b%e9%83%a8%e7%bd%b2" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Istio%e5%88%9d%e6%8e%a2%e4%b9%8bBookinfo%e6%a0%b7%e4%be%8b%e9%83%a8%e7%bd%b2&amp;body=https://academia-hugo.netlify.com/post/istio-bookinfo-demo/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://academia-hugo.netlify.com/post/istio-bookinfo-demo/&amp;title=Istio%e5%88%9d%e6%8e%a2%e4%b9%8bBookinfo%e6%a0%b7%e4%be%8b%e9%83%a8%e7%bd%b2" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Istio%e5%88%9d%e6%8e%a2%e4%b9%8bBookinfo%e6%a0%b7%e4%be%8b%e9%83%a8%e7%bd%b2%20https://academia-hugo.netlify.com/post/istio-bookinfo-demo/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://academia-hugo.netlify.com/post/istio-bookinfo-demo/&amp;title=Istio%e5%88%9d%e6%8e%a2%e4%b9%8bBookinfo%e6%a0%b7%e4%be%8b%e9%83%a8%e7%bd%b2" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://academia-hugo.netlify.com/post/istio-bookinfo-demo/&amp;title=Istio%e5%88%9d%e6%8e%a2%e4%b9%8bBookinfo%e6%a0%b7%e4%be%8b%e9%83%a8%e7%bd%b2" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    
+    </div>
+  </div>
+</div>
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<h2 id="前言">前言</h2>
+
+<p>之前介绍了 Istio 和 Service Mesh 能给我们带来什么，我们为什么要用 Istio ，但大家对 Istio 的认识可能还没有那么深刻。正如Linux 的创始人 <a href="https://en.wikipedia.org/wiki/Linus_Torvalds" target="_blank">Linus Torvalds</a> 的那句话：<strong>Talk is cheap. Show me the code.</strong> 这里我们部署一个demo，由四个单独的微服务构成<strong>（注意这里的四个微服务是由不同的语言编写的）</strong>，用来演示多种 Istio 特性。这个应用模仿在线书店的一个分类，显示一本书的信息。页面上会显示一本书的描述，书籍的细节（ISBN、页数等），以及关于这本书的一些评论。</p>
+
+<h2 id="bookinfo-应用">Bookinfo 应用</h2>
+
+<p>Bookinfo 应用分为四个单独的微服务：</p>
+
+<ul>
+<li><pre><code class="language-productpage```">- ```details``` ：这个微服务包含了书籍的信息。
+- ```reviews``` ：这个微服务包含了书籍相关的评论。它还会调用 ratings 微服务。
+- ```ratings``` ：ratings 微服务中包含了由书籍评价组成的评级信息。
+
+这里主要使用```reviews```来演示 Istio 特性，```reviews``` 微服务有 3 个版本：
+
+- v1 版本不会调用 ```ratings``` 服务。
+- v2 版本会调用 ```ratings``` 服务，并使用 1 到 5 个黑色星形图标来显示评分信息。
+- v3 版本会调用 ```ratings``` 服务，并使用 1 到 5 个红色星形图标来显示评分信息。
+
+下图展示了这个应用的端到端架构。
+![Istio 注入之前的 Bookinfo 应用](https://istio.io/docs/examples/bookinfo/noistio.svg)
+&lt;center&gt;Istio 注入之前的 Bookinfo 应用&lt;/center&gt;
+
+Bookinfo 是一个异构应用，几个微服务是由不同的语言编写的。这些服务对 Istio **并无依赖**，但是构成了一个有代表性的服务网格的例子：它由多个服务、多个语言构成，并且 reviews 服务具有多个版本。
+
+## 部署应用
+这里 Istio 的安装部署就不在赘述了。
+
+值得注意的是：如果使用的是**阿里云**容器服务安装的 Istio ，需要在 ```容器服务```-```市场```-```应用目录``` 中选择 ```gateway``` 进行安装，这里提供了多种 ```gateway``` ，我们选择 ```istio-ingressgateway```，选择直接安装的话会默认创建 ```LoadBalancer``` 类型的Service，会自动创建一个经典网络SLB，这里是可以调整的，会在后续的文章中进行详细讲解，这里不做赘述。
+
+在 Istio 中运行这一应用，无需对应用自身做出任何改变。我们只要简单的在 Istio 环境中对服务进行配置和运行，具体一点说就是把 Envoy sidecar 注入到每个服务之中。这个过程所需的具体命令和配置方法由运行时环境决定，而部署结果较为一致，如下图所示：
+
+![Bookinfo 应用](https://istio.io/docs/examples/bookinfo/withistio.svg)
+&lt;center&gt;Bookinfo 应用&lt;/center&gt;
+
+所有的微服务都和 Envoy sidecar 集成在一起，被集成服务所有的出入流量都被 sidecar 所劫持，这样就为外部控制准备了所需的 Hook，然后就可以利用 Istio 控制平面为应用提供服务路由、遥测数据收集以及策略实施等功能。
+
+### 下载安装
+到 GitHub 中 istio 的 [release](https://github.com/istio/istio/releases) 中下载相应版本的 istio 包，下载后将 ```bin``` 目录配置到环境变量 ```PATH``` 中 ```export PATH=&quot;/istio/bin:$PATH&quot;``` ，这里我们使用的是 ```istio 1.0.5``` 版本
+
+Bookinfo 这个应用就在 ```samples/```目录下
+
+## 在 阿里云容器服务（kubernetes） 中运行
+
+启动应用容器，这里提供两种注入方法：**手工注入**和**自动注入**
+
+- 自动注入
+
+需要修改 namespace ，为其添加 label 标签，这样所以在这个 namespace 中创建的应用都会被自动注入 sidecar 
+
+</code></pre>
+
+<p>bash
+$ kubectl label namespace {inject-namespace} istio-injection=enabled
+$ kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml</p>
+
+<pre><code>
+- 手工注入
+
+需要使用 istioctl 命令生成注入后应用的配置，然后在部署应用
+
+</code></pre>
+
+<p>bash
+$ istioctl kube-inject -f samples/bookinfo/platform/kube/bookinfo.yaml | kubectl apply -f -</p>
+
+<pre><code>
+由于是测试，这里我们使用手工注入的方法。
+上面的命令会启动全部的四个服务，其中也包括了 ```reviews``` 服务的三个版本（```v1```、```v2``` 以及 ```v3```）
+
+</code></pre>
+
+<p>bash</p></li>
+</ul>
+
+<p>$ istioctl kube-inject -f bookinfo.yaml | kubectl apply -f -
+service/details created
+deployment.extensions/details-v1 configured
+service/ratings created
+deployment.extensions/ratings-v1 created
+service/reviews created
+deployment.extensions/reviews-v1 created
+deployment.extensions/reviews-v2 created
+deployment.extensions/reviews-v3 created
+service/productpage created
+deployment.extensions/productpage-v1 created
+$ kubectl get po
+NAME                              READY   STATUS    RESTARTS   AGE
+details-v1-8685d68cf9-8fwdb       <sup>2</sup>&frasl;<sub>2</sub>     Running   0          1h
+productpage-v1-5fd9fddc97-tx88z   <sup>2</sup>&frasl;<sub>2</sub>     Running   0          1h
+ratings-v1-7c4d756c55-cn76d       <sup>2</sup>&frasl;<sub>2</sub>     Running   0          1h
+reviews-v1-5d868db586-w28q5       <sup>2</sup>&frasl;<sub>2</sub>     Running   0          1h
+reviews-v2-787647c7d9-7sc52       <sup>2</sup>&frasl;<sub>2</sub>     Running   0          1h
+reviews-v3-6964c86584-8728m       <sup>2</sup>&frasl;<sub>2</sub>     Running   0          1h
+$ kubectl get svc
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)            AGE
+details              ClusterIP   10.11.224.17    <none>        9080/TCP           1h
+productpage          ClusterIP   10.11.16.86     <none>        9080/TCP           1h
+ratings              ClusterIP   10.11.244.59    <none>        9080/TCP           1h
+reviews              ClusterIP   10.11.162.37    <none>        9080/TCP           1h</p>
+
+<pre><code>
+可以看到 Bookinfo 应用已经正常运行
+
+### 指定 ingress 和 IP 的端口
+
+1. 为为应用程序定义入口网关：
+
+    ```bash
+    $ kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
+    ```
+
+2. 确认网关创建完成
+
+    ```bash
+    $ kubectl get gateway
+    NAME               AGE
+    bookinfo-gateway   1h
+    ```
+
+3. 快速查询访问地址，这里的是之前在阿里云上创建的 ```LoadBalancer``` 类型的 Service
+
+    ```bash
+    $ kubectl get svc istio-ingressgateway -n istio-system
+    NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP       PORT(S)                  AGE
+    istio-ingressgateway   LoadBalancer   10.11.18.83   xxx.xxx.xxx.xxx   80:xxx/TCP,443:xxx/TCP   2h
+    ```
+
+### 查看效果
+访问 http://{EXTERNAL-IP}/productpage 注意：这里最后不能有/，否则将找不到页面
+![image](http://wx4.sinaimg.cn/large/ad5fbf65ly1g1ad2jg6p3j21g90mxgo7.jpg)
+多次刷新浏览器，将在 ```productpage``` 中看到评论的不同的版本，它们会按照 round robin（红星、黑星、没有星星）的方式展现，这三个展示分来来自```v1```、```v2```和```v3```版本，因为还没有使用 Istio 来控制版本的路由，所以这里显示的是以轮询的负载均衡算法进行展示。
+
+### 请求路由
+BookInfo示例部署了三个版本的reviews服务，因此需要设置一个缺省路由。否则当多次访问该应用程序时，会发现有时输出会包含带星级的评价内容，有时又没有。出现该现象的原因是当没有为应用显式指定缺省路由时，Istio会将请求随机路由到该服务的所有可用版本上。
+
+在使用 Istio 控制 Bookinfo 版本路由之前，你需要在目标规则中定义好可用的版本 。
+
+运行以下命令为 Bookinfo 服务创建的默认的目标规则：
+
+- 如果不需要启用双向TLS，请执行以下命令：
+
+    ```bash
+    $ kubectl apply -f samples/bookinfo/networking/destination-rule-all.yaml
+    ```
+
+- 如果需要启用双向 TLS，请执行以下命令：
+
+    ```bash
+    $ kubectl apply -f samples/bookinfo/networking/destination-rule-all-mtls.yaml
+    ```
+
+    等待几秒钟，等待目标规则生效。你可以使用以下命令查看目标规则：
+
+    ```bash
+    kubectl get destinationrules
+    NAME          AGE
+    details       28s
+    productpage   28s
+    ratings       28s
+    reviews       28s
+    ```
+
+### 将所有微服务的缺省版本设置为v1
+通过运行如下命令，将所有微服务的缺省版本设置为v1：
+
+</code></pre>
+
+<p>bash
+$ kubectl apply -f samples/bookinfo/networking/virtual-service-all-v1.yaml</p>
+
+<pre><code>
+可以通过下面的命令来显示所有已创建的路由规则：
+
+</code></pre>
+
+<p>bash
+$ kubectl get virtualservices
+NAME       AGE
+bookinfo      33m
+details       8s
+productpage   8s
+ratings       8s
+reviews       8s</p>
+
+<pre><code>
+显示已创建的详细路由规划：
+
+</code></pre>
+
+<p>bash
+$ kubectl get virtualservices -o yaml</p>
+
+<pre><code>
+由于路由规则是通过异步方式分发到代理的，过一段时间后规则才会同步到所有pod上。因此需要等几秒钟后再尝试访问应用。
+
+在浏览器中打开 Bookinfo 应用程序的URL: http://{EXTERNAL-IP}/productpage。
+
+![image](http://wx4.sinaimg.cn/large/ad5fbf65ly1g1adqyf9dej21g70oitbd.jpg)
+
+可以看到 Bookinfo 应用程序的 ```productpage``` 页面，显示的内容中不包含带星的评价信息，这是因为 ```reviews:v1``` 服务不会访问ratings服务。
+
+### 将来自特定用户的请求路由到reviews:v2
+本例中，首先使用 Istio 将100%的请求流量都路由到了 Bookinfo 服务的```v1```版本；然后再设置了一条路由规则，路由规则基于请求的 header（例如一个用户cookie）选择性地将特定的流量路由到了 ```reviews``` 服务的```v2```版本。
+
+通过运行如下命令，把来自测试用户&quot;jason&quot;的请求路由到 ```reviews:v2 ```，以启用ratings服务。
+
+</code></pre>
+
+<p>bash
+$ kubectl apply -f samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml</p>
+
+<pre><code>
+通过如下命令确认规则是否创建：
+
+</code></pre>
+
+<p>bash
+$ kubectl get virtualservice reviews -o yaml
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+    {&ldquo;apiVersion&rdquo;:&ldquo;networking.istio.io/v1alpha3&rdquo;,&ldquo;kind&rdquo;:&ldquo;VirtualService&rdquo;,&ldquo;metadata&rdquo;:{&ldquo;annotations&rdquo;:{},&ldquo;name&rdquo;:&ldquo;reviews&rdquo;,&ldquo;namespace&rdquo;:&ldquo;default&rdquo;},&ldquo;spec&rdquo;:{&ldquo;hosts&rdquo;:[&ldquo;reviews&rdquo;],&ldquo;http&rdquo;:[{&ldquo;match&rdquo;:[{&ldquo;headers&rdquo;:{&ldquo;end-user&rdquo;:{&ldquo;exact&rdquo;:&ldquo;jason&rdquo;}}}],&ldquo;route&rdquo;:[{&ldquo;destination&rdquo;:{&ldquo;host&rdquo;:&ldquo;reviews&rdquo;,&ldquo;subset&rdquo;:&ldquo;v2&rdquo;}}]},{&ldquo;route&rdquo;:[{&ldquo;destination&rdquo;:{&ldquo;host&rdquo;:&ldquo;reviews&rdquo;,&ldquo;subset&rdquo;:&ldquo;v1&rdquo;}}]}]}}
+creationTimestamp: &ldquo;2019-03-21T06:01:10Z&rdquo;
+generation: 1
+name: reviews
+namespace: default
+resourceVersion: &ldquo;62486214&rdquo;
+selfLink: /apis/networking.istio.io/v1alpha3/namespaces/default/virtualservices/reviews
+uid: b9e41681-4b9e-11e9-a679-00163e045478
+spec:
+hosts:
+- reviews
+http:
+- match:
+    - headers:
+        end-user:
+        exact: jason
+    route:
+    - destination:
+        host: reviews
+        subset: v2
+- route:
+    - destination:
+        host: reviews
+        subset: v1</p>
+
+<pre><code>
+确认规则已创建之后，在浏览器中打开BookInfo应用程序的URL: http://{EXTERNAL-IP}/productpage。
+
+以&quot;jason&quot;用户登录 ```productpage``` 页面，您可以在每条评价后面看到星级信息。
+
+这里登录用户名为 ```jason``` ，密码随便输入即可
+
+![image](http://wx4.sinaimg.cn/large/ad5fbf65ly1g1adtjugp3j21gb0iygoa.jpg)
+
+### 流量转移
+除了基于内容的路由，Istio还支持基于权重的路由规则。
+
+首先，将所有微服务的缺省版本设置为v1：
+
+</code></pre>
+
+<p>bash
+$ kubectl replace -f samples/bookinfo/networking/virtual-service-all-v1.yaml</p>
+
+<pre><code>
+其次，使用下面的命令把50%的流量从reviews:v1转移到reviews:v3:
+
+</code></pre>
+
+<p>bash
+$ kubectl replace -f samples/bookinfo/networking/virtual-service-reviews-50-v3.yaml</p>
+
+<pre><code>
+在浏览器中多次刷新productpage页面，大约有50%的几率会看到页面中出现带红星的评价内容。
+
+说明： 注意该方式和使用容器编排平台的部署特性来进行版本迁移是完全不同的。容器编排平台使用了实例scaling来对流量进行管理。而通过Istio，两个版本的reviews服务可以独立地进行扩容和缩容，并不会影响这两个版本服务之间的流量分发。
+
+如果觉得 ```reviews：v3``` 微服务已经稳定，你可以通过以下命令， 将 ```virtual service``` 100％的流量路由到 ```reviews：v3```，从而实现一个灰度发布的功能。
+
+</code></pre>
+
+<p>bash
+$ kubectl replace -f samples/bookinfo/networking/virtual-service-reviews-v3.yaml
+```</p>
+
+<h2 id="在华为云-cce-上运行">在华为云（CCE）上运行</h2>
+
+<p>华为云率先将 Istio 作为产品投入到公有云中进行商业应用，开通方式十分简单，只要在华为云CCE上创建集群，然后申请 Istio 公测即可。</p>
+
+<p>为了方便测试 Bookinfo 应用在华为云上提供了一键体验应用，点击即可省去刚刚那一系列的 <code>kubectl</code> 操作</p>
+
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1afbs7oq4j21g90id0vv.jpg" alt="image" />
+<center>一键创建体验应用</center></p>
+
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1afgth1cgj219b0a7tb1.jpg" alt="image" />
+<center>点击灰度发布即可</center></p>
+
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1afjc5hvgj21fv0o1q6q.jpg" alt="image" />
+<center>创建金丝雀发布</center></p>
+
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1afnqyqlhj20ze0o00vl.jpg" alt="image" />
+<center>选择灰度发布的组件</center></p>
+
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1afp1c5ltj20zk0le765.jpg" alt="image" />
+<center>填写版本号</center></p>
+
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1afq846bjj20z80nowgl.jpg" alt="image" />
+<center>选择镜像版本</center></p>
+
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1afra8rmhj21050mfgpb.jpg" alt="image" />
+<center>版本创建完成后配置灰度策略</center></p>
+
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g1afwpan6qj21090mste1.jpg" alt="image" />
+<center>选择相应策略，策略下发即可</center></p>
+
+<p>总的来说，华为云的 Istio 确实已经是商业化应用，这里只是展示了部分灰度发布的功能。其他比如流量治理，流量监控等功能还没展示，这些功能做的十分细致，值得尝试。</p>
+
+<h2 id="参考">参考</h2>
+
+<p><a href="https://help.aliyun.com/document_detail/90563.html?spm=a2c4g.11186623.6.759.5dbd1f5fSB2m9T" target="_blank">在Kubernetes上基于Istio实现Service Mesh智能路由</a></p>
+
+<p><a href="https://support.huaweicloud.com/bestpractice-cce/cce_bestpractice_0012.html" target="_blank">基于ISTIO服务网格的灰度发布</a></p>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/istio">istio</a>
+  
+  <a class="badge badge-light" href="/tags/service%20mesh">service mesh</a>
+  
+  <a class="badge badge-light" href="/tags/%e9%98%bf%e9%87%8c%e4%ba%91">阿里云</a>
+  
+  <a class="badge badge-light" href="/tags/%e5%8d%8e%e4%b8%ba%e4%ba%91">华为云</a>
+  
+</div>
+
+
+
+     
+     
+<div class="entry-shang text-center">
+    <p>「一键投喂 小鱼干/小骨头」</p>
+    <button class="zs show-zs btn btn-primary">投喂</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+    <div class="zs-modal-head">
+        <button type="button" class="close">×</button>
+        <p class="author">
+            <a href="https://blog.maoxianplay.com">
+                <img src="https://wx3.sinaimg.cn/square/ad5fbf65gy1g2o621gcs6j20m80m8gng.jpg"/>
+            小助手毛线</a>
+        </p>
+        <p class="tip"><i></i><span>感谢投喂 <a href="/maoxian">毛线</a> & <a href="/sunny">Sunny</a> </span></p>
+    </div>
+    <div class="zs-modal-body">
+        <div class="zs-modal-btns">
+            <button class="btn btn-blink" data-num="2">2元</button>
+            <button class="btn btn-blink" data-num="5">5元</button>
+            <button class="btn btn-blink" data-num="10">10元</button>
+            <button class="btn btn-blink" data-num="50">50元</button>
+            <button class="btn btn-blink" data-num="100">100元</button>
+            <button class="btn btn-blink" data-num="any">任意金额</button>
+        </div>
+        <div class="zs-modal-pay">
+            <button class="btn btn-bred" id="pay-text">2元</button>
+            <p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+            <img id="pay-image" src="/img/alipay-2.png">
+        </div>
+    </div>
+    <div class="zs-modal-footer">
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="alipay" class="zs-type" checked="checked" style="float: left;">
+            <span class="zs-alipay">
+                <img src="/img/alipay-btn.png">
+            </span>
+        </label>
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="wechat" class="zs-type" style="float: left;">
+            <span class="zs-wechat">
+                <img src="/img/wechat-btn.png">
+            </span>
+        </label>
+    </div>
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="https://academia-hugo.netlify.com/">郭旭东</a></h5>
+      <h6 class="card-subtitle">运维负责人</h6>
+      <p class="card-text" itemprop="description">云原生爱好者，分享云原生和 DevOps 技术实践，倡导开源运动，传播开源思想。</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          <li>
+            <a itemprop="sameAs" href="mailto:sunnydog0826@gmail.com" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/publication/wx_contact/" >
+              <i class="fab fa-weixin"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/sunny0826" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>相关</h3>
+        <ul>
+          
+          <li><a href="/post/istio-demo/">阿里云环境Istio初探</a></li>
+          
+          <li><a href="/post/istio-share/">浅析ServiceMesh &amp; Istio</a></li>
+          
+          <li><a href="/post/dashboard-k8s/">阿里云日志服务采集k8s日志并实现livetail功能</a></li>
+          
+          <li><a href="/post/https-ingress/">为ingress配置SSL证书，实现HTTPS访问</a></li>
+          
+          <li><a href="/post/install-rancher/">阿里云部署rancher2.1采坑记</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+      <script async defer src="//maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.min.js" integrity="sha256-7vjlAeb8OaTrCXZkCNun9djzuB2owUsaO72kXaFDBJs=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-algolia-template" type="text/html">
+      <div class="search-hit">
+        <div class="search-hit-content">
+          <div class="search-hit-name">
+            <a href="{{relpermalink}}">{{{_highlightResult.title.value}}}</a>
+          </div>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{{_highlightResult.summary.value}}}</p>
+        </div>
+      </div>
+    </script>
+    
+
+    
+    
+
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch.min.js" integrity="sha256-gFCtPk/sonctyfwYOgjrPoWApQ0rqB6ezBBZ7p32yGc=" crossorigin="anonymous"></script>
+    
+    <script>
+      const algoliaConfig = {
+        appId: "BE80MGWD9D",
+        apiKey: "77ca6abe5531ce66ff7c3b2486222d85",
+        indexName: "gxd-blog",
+        poweredBy:  true 
+      };
+    </script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+      
+    
+    
+    
+    <script src="/js/academia.min.6ee120363d4a313a6fd39ad7c46e63f8.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        
+        <p>
+          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          Powered by
+          <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-inline network-icon text-right">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="mailto:sunnydog0826@gmail.com"  title="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="/publication/wx_contact/"  title="Chat on Keybase"><i class="fab fa-weixin" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/sunny0826" target="_blank" rel="noopener" title="Discuss on Forum"><i class="fab fa-github" aria-hidden="true"></i></a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
