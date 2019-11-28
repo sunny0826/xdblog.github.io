@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>问题解决 on GuoXD Blog·郭旭东的博客</title>
-    <link>https://academia-hugo.netlify.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</link>
+    <link>https://blog.maoxianplay.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</link>
     <description>Recent content in 问题解决 on GuoXD Blog·郭旭东的博客</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
     <lastBuildDate>Thu, 18 Apr 2019 17:46:08 +0800</lastBuildDate>
     
-	    <atom:link href="https://academia-hugo.netlify.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="https://blog.maoxianplay.com/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Rancher 2.2.1 解决工作负载监控为空问题</title>
-      <link>https://academia-hugo.netlify.com/post/rancher-prometheus-fix-question/</link>
+      <link>https://blog.maoxianplay.com/post/rancher-prometheus-fix-question/</link>
       <pubDate>Thu, 18 Apr 2019 17:46:08 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/rancher-prometheus-fix-question/</guid>
+      <guid>https://blog.maoxianplay.com/post/rancher-prometheus-fix-question/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -66,10 +66,10 @@
     
     <item>
       <title>kubernetes中pod同步时区问题</title>
-      <link>https://academia-hugo.netlify.com/post/pod-timezone/</link>
+      <link>https://blog.maoxianplay.com/post/pod-timezone/</link>
       <pubDate>Wed, 30 Jan 2019 20:18:13 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/pod-timezone/</guid>
+      <guid>https://blog.maoxianplay.com/post/pod-timezone/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -120,20 +120,20 @@ spec:
 
 &lt;h2 id=&#34;修改时区前&#34;&gt;修改时区前&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://academia-hugo.netlify.com/images/source/time-1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.maoxianplay.com/images/source/time-1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;修改时区后&#34;&gt;修改时区后&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://academia-hugo.netlify.com/images/source/time-2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.maoxianplay.com/images/source/time-2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>阿里云部署rancher2.1采坑记</title>
-      <link>https://academia-hugo.netlify.com/post/install-rancher/</link>
+      <link>https://blog.maoxianplay.com/post/install-rancher/</link>
       <pubDate>Thu, 29 Nov 2018 18:28:13 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/install-rancher/</guid>
+      <guid>https://blog.maoxianplay.com/post/install-rancher/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -156,10 +156,10 @@ spec:
 &lt;p&gt;首先根据官方文档使用权威CA机构颁发的证书，这里使用的是本公司自己的证书&lt;/p&gt;
 
 &lt;p&gt;获取证书方法：
-&lt;img src=&#34;https://academia-hugo.netlify.com/images/source/jinrussl.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blog.maoxianplay.com/images/source/jinrussl.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;点击下载证书，选择nginx证书下载
-&lt;img src=&#34;https://academia-hugo.netlify.com/images/source/zhengshu.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blog.maoxianplay.com/images/source/zhengshu.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;之后将下载的证书上传到rancher所在服务器，并配置好数据卷挂载&lt;/p&gt;
 
@@ -192,10 +192,10 @@ rancher/rancher:latest --no-cacerts
 &lt;p&gt;前后端都准备就绪，现在就可以访问rancher了，访问rancher根据页面提示进行基本配置，登录后选择添加集群&lt;/p&gt;
 
 &lt;p&gt;选择导入现有集群
-&lt;img src=&#34;https://academia-hugo.netlify.com/images/source/add.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blog.maoxianplay.com/images/source/add.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;为集群创建一个rancher中的名称，然后根据提示将命令拷贝到k8s集群所在宿主机执行即可，注意：这里由于配置了证书，所以选择有证书，不绕过证书的那个命令执行，之后就可看到集群数据导入中
-&lt;img src=&#34;https://academia-hugo.netlify.com/images/source/wating.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blog.maoxianplay.com/images/source/wating.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;等待几秒即可开心的使用rancher了！&lt;/p&gt;
 
@@ -225,17 +225,17 @@ rancher/rancher:latest --no-cacerts
     
     <item>
       <title>Kubernetes删除一直处于Terminating状态的namespace</title>
-      <link>https://academia-hugo.netlify.com/post/k8s-d-n/</link>
+      <link>https://blog.maoxianplay.com/post/k8s-d-n/</link>
       <pubDate>Fri, 16 Nov 2018 18:18:13 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/k8s-d-n/</guid>
+      <guid>https://blog.maoxianplay.com/post/k8s-d-n/</guid>
       <description>
 
 &lt;blockquote&gt;
 &lt;p&gt;近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以需要将原有Rancher依赖的namespace（cattle-system）删除，但在删除中出现了删除的namespace一直处于Terminating状态的情况&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://academia-hugo.netlify.com/images/source/d-n-1.png&#34; alt=&#34;imgage&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.maoxianplay.com/images/source/d-n-1.png&#34; alt=&#34;imgage&#34; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;解决方案&#34;&gt;解决方案&lt;/h1&gt;
 
@@ -246,22 +246,22 @@ rancher/rancher:latest --no-cacerts
 
 &lt;p&gt;可以看到namespaces的yaml配置：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://academia-hugo.netlify.com/images/source/d-n-2.png&#34; alt=&#34;imgage&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.maoxianplay.com/images/source/d-n-2.png&#34; alt=&#34;imgage&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;将finalizer的value删除，这里将其设置为[]&lt;/p&gt;
 
 &lt;p&gt;保存即可看到该namespace已被删除&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://academia-hugo.netlify.com/images/source/d-n-3.png&#34; alt=&#34;imgage&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.maoxianplay.com/images/source/d-n-3.png&#34; alt=&#34;imgage&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>精简docker镜像</title>
-      <link>https://academia-hugo.netlify.com/post/image-size/</link>
+      <link>https://blog.maoxianplay.com/post/image-size/</link>
       <pubDate>Thu, 27 Sep 2018 20:28:13 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/image-size/</guid>
+      <guid>https://blog.maoxianplay.com/post/image-size/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -487,10 +487,10 @@ root@k8s-master:/tmp/iops#
     
     <item>
       <title>Docker容器启动退出解决方案</title>
-      <link>https://academia-hugo.netlify.com/post/docker-quit/</link>
+      <link>https://blog.maoxianplay.com/post/docker-quit/</link>
       <pubDate>Thu, 27 Sep 2018 19:27:03 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/docker-quit/</guid>
+      <guid>https://blog.maoxianplay.com/post/docker-quit/</guid>
       <description>
 
 &lt;h1 id=&#34;现象&#34;&gt;现象&lt;/h1&gt;

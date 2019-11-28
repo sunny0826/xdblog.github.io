@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>devops on GuoXD Blog·郭旭东的博客</title>
-    <link>https://academia-hugo.netlify.com/tags/devops/</link>
+    <link>https://blog.maoxianplay.com/tags/devops/</link>
     <description>Recent content in devops on GuoXD Blog·郭旭东的博客</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
     <lastBuildDate>Wed, 11 Sep 2019 13:53:09 +0800</lastBuildDate>
     
-	    <atom:link href="https://academia-hugo.netlify.com/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="https://blog.maoxianplay.com/tags/devops/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>玩转 Drone CI</title>
-      <link>https://academia-hugo.netlify.com/post/drone-optimize/</link>
+      <link>https://blog.maoxianplay.com/post/drone-optimize/</link>
       <pubDate>Wed, 11 Sep 2019 13:53:09 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/drone-optimize/</guid>
+      <guid>https://blog.maoxianplay.com/post/drone-optimize/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -164,10 +164,10 @@ trigger:
     
     <item>
       <title>GitOps 与 ChatOps 的落地实践</title>
-      <link>https://academia-hugo.netlify.com/post/gitops-and-chatops/</link>
+      <link>https://blog.maoxianplay.com/post/gitops-and-chatops/</link>
       <pubDate>Thu, 11 Jul 2019 09:24:17 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/gitops-and-chatops/</guid>
+      <guid>https://blog.maoxianplay.com/post/gitops-and-chatops/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -262,10 +262,10 @@ trigger:
     
     <item>
       <title>轻量快速的 CI 工具 Drone</title>
-      <link>https://academia-hugo.netlify.com/post/drone-ci/</link>
+      <link>https://blog.maoxianplay.com/post/drone-ci/</link>
       <pubDate>Tue, 21 May 2019 08:59:00 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/drone-ci/</guid>
+      <guid>https://blog.maoxianplay.com/post/drone-ci/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -501,10 +501,10 @@ trigger:
     
     <item>
       <title>什么是 DevOps ？DevOps 是如何工作的？</title>
-      <link>https://academia-hugo.netlify.com/post/all-about-devops-fundamentalsyou-ever-wanted-to-know/</link>
+      <link>https://blog.maoxianplay.com/post/all-about-devops-fundamentalsyou-ever-wanted-to-know/</link>
       <pubDate>Thu, 09 May 2019 09:55:11 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/all-about-devops-fundamentalsyou-ever-wanted-to-know/</guid>
+      <guid>https://blog.maoxianplay.com/post/all-about-devops-fundamentalsyou-ever-wanted-to-know/</guid>
       <description>
 
 &lt;p&gt;在当前的 IT 实践中，为了支持高效和快捷的软件开发，出现了巨大的转变：在单体应用的软件架构正在逐渐被微服务架构取代的情况下，开发、 QA 和运维团队为了摆脱了之前相互孤立的状况，开始相互关联并融合统一，我们将其称为DevOps。&lt;/p&gt;
@@ -734,10 +734,10 @@ trigger:
     
     <item>
       <title>什么是 DevSecOps ?</title>
-      <link>https://academia-hugo.netlify.com/post/what-is-devsecops/</link>
+      <link>https://blog.maoxianplay.com/post/what-is-devsecops/</link>
       <pubDate>Fri, 03 May 2019 14:37:14 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/what-is-devsecops/</guid>
+      <guid>https://blog.maoxianplay.com/post/what-is-devsecops/</guid>
       <description>
 
 &lt;p&gt;DevOps 不仅仅是开发和运营团队。如果您想要充分发挥出 DevOps 方法的敏捷性和响应力，则必须在应用的整个生命周期内同时兼顾 &lt;a href=&#34;https://www.redhat.com/zh/topics/security&#34; target=&#34;_blank&#34;&gt;IT 安全性&lt;/a&gt;。&lt;/p&gt;
@@ -816,10 +816,10 @@ trigger:
     
     <item>
       <title>Devops入门手册</title>
-      <link>https://academia-hugo.netlify.com/post/devops-tutorial/</link>
+      <link>https://blog.maoxianplay.com/post/devops-tutorial/</link>
       <pubDate>Tue, 09 Apr 2019 13:21:56 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/devops-tutorial/</guid>
+      <guid>https://blog.maoxianplay.com/post/devops-tutorial/</guid>
       <description>
 
 &lt;h1 id=&#34;devops-是什么&#34;&gt;DevOps 是什么？&lt;/h1&gt;
@@ -1171,10 +1171,10 @@ trigger:
     
     <item>
       <title>Jenkins Pipeline集成Sonar进行代码质量检测</title>
-      <link>https://academia-hugo.netlify.com/post/sonar-pipline/</link>
+      <link>https://blog.maoxianplay.com/post/sonar-pipline/</link>
       <pubDate>Thu, 07 Mar 2019 09:14:39 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/sonar-pipline/</guid>
+      <guid>https://blog.maoxianplay.com/post/sonar-pipline/</guid>
       <description>
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;

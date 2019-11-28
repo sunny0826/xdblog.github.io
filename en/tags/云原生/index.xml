@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>云原生 on GuoXD Blog</title>
-    <link>https://academia-hugo.netlify.com/en/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/</link>
+    <link>https://blog.maoxianplay.com/en/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/</link>
     <description>Recent content in 云原生 on GuoXD Blog</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
     <lastBuildDate>Sat, 06 Jul 2019 09:40:42 +0800</lastBuildDate>
     
-	    <atom:link href="https://academia-hugo.netlify.com/en/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="https://blog.maoxianplay.com/en/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>语义化版本控制规范（SemVer）</title>
-      <link>https://academia-hugo.netlify.com/en/post/semver/</link>
+      <link>https://blog.maoxianplay.com/en/post/semver/</link>
       <pubDate>Sat, 06 Jul 2019 09:40:42 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/en/post/semver/</guid>
+      <guid>https://blog.maoxianplay.com/en/post/semver/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -134,10 +134,10 @@
     
     <item>
       <title>Kubecon 2019 见闻：云原生未来可期</title>
-      <link>https://academia-hugo.netlify.com/en/post/kubecon-2019/</link>
+      <link>https://blog.maoxianplay.com/en/post/kubecon-2019/</link>
       <pubDate>Tue, 02 Jul 2019 10:18:18 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/en/post/kubecon-2019/</guid>
+      <guid>https://blog.maoxianplay.com/en/post/kubecon-2019/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -196,10 +196,10 @@
     
     <item>
       <title>容器技术概述</title>
-      <link>https://academia-hugo.netlify.com/en/post/con-in/</link>
+      <link>https://blog.maoxianplay.com/en/post/con-in/</link>
       <pubDate>Thu, 30 Aug 2018 18:45:22 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/en/post/con-in/</guid>
+      <guid>https://blog.maoxianplay.com/en/post/con-in/</guid>
       <description>
 
 &lt;h1 id=&#34;背景&#34;&gt;背景&lt;/h1&gt;
@@ -217,7 +217,7 @@
 &lt;p&gt;容器是一种轻量级、可移植、自包含的软件打包技术，它使得应用程序可以在几乎任何地方以相同的方式运行。&lt;/p&gt;
 
 &lt;p&gt;容器有应用程序本身和它的环境依赖（库和其他应用程序）两部分组成，并在宿主机（Host）操作系统的用户空间中运行，但与操作系统的其他进程互相隔离，他们的实现机制有别于VMWare、KVM、Xen等实现方案的虚拟化技术。容器与虚拟机的对比关系如下图
-&lt;img src=&#34;https://academia-hugo.netlify.com/images/source/vs.png&#34; alt=&#34;image&#34; /&gt;
+&lt;img src=&#34;https://blog.maoxianplay.com/images/source/vs.png&#34; alt=&#34;image&#34; /&gt;
 由于同一个宿主机上的所有容器都共享其底层操作系统（内核空间），这就使得容器在体积上要比传统的虚拟机小很多。另外，启动容器无须启动整个操作系统，所以容器部署和启动的速度更快，开销更小，也更容易迁移。事实上，容器赋予了应用程序超强的可移植能力。&lt;/p&gt;
 
 &lt;h1 id=&#34;容器技术的优势&#34;&gt;容器技术的优势&lt;/h1&gt;

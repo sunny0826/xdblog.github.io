@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>sonar on GuoXD Blog</title>
-    <link>https://academia-hugo.netlify.com/en/tags/sonar/</link>
+    <link>https://blog.maoxianplay.com/en/tags/sonar/</link>
     <description>Recent content in sonar on GuoXD Blog</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
     <lastBuildDate>Thu, 07 Mar 2019 09:14:39 +0800</lastBuildDate>
     
-	    <atom:link href="https://academia-hugo.netlify.com/en/tags/sonar/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="https://blog.maoxianplay.com/en/tags/sonar/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Jenkins Pipeline集成Sonar进行代码质量检测</title>
-      <link>https://academia-hugo.netlify.com/en/post/sonar-pipline/</link>
+      <link>https://blog.maoxianplay.com/en/post/sonar-pipline/</link>
       <pubDate>Thu, 07 Mar 2019 09:14:39 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/en/post/sonar-pipline/</guid>
+      <guid>https://blog.maoxianplay.com/en/post/sonar-pipline/</guid>
       <description>
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;

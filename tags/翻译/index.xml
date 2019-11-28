@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>翻译 on GuoXD Blog·郭旭东的博客</title>
-    <link>https://academia-hugo.netlify.com/tags/%E7%BF%BB%E8%AF%91/</link>
+    <link>https://blog.maoxianplay.com/tags/%E7%BF%BB%E8%AF%91/</link>
     <description>Recent content in 翻译 on GuoXD Blog·郭旭东的博客</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
     <lastBuildDate>Tue, 06 Aug 2019 14:01:30 +0800</lastBuildDate>
     
-	    <atom:link href="https://academia-hugo.netlify.com/tags/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="https://blog.maoxianplay.com/tags/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>如何构建混合Kubernetes平台</title>
-      <link>https://academia-hugo.netlify.com/post/how-we-built-our-hybrid-kubernetes-platfor/</link>
+      <link>https://blog.maoxianplay.com/post/how-we-built-our-hybrid-kubernetes-platfor/</link>
       <pubDate>Tue, 06 Aug 2019 14:01:30 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/how-we-built-our-hybrid-kubernetes-platfor/</guid>
+      <guid>https://blog.maoxianplay.com/post/how-we-built-our-hybrid-kubernetes-platfor/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -122,10 +122,10 @@
     
     <item>
       <title>使用 Helm 在多集群部署应用</title>
-      <link>https://academia-hugo.netlify.com/post/deploying-apps-on-multiple-kubernetes-clusters-with-hel/</link>
+      <link>https://blog.maoxianplay.com/post/deploying-apps-on-multiple-kubernetes-clusters-with-hel/</link>
       <pubDate>Sun, 14 Jul 2019 14:16:56 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/deploying-apps-on-multiple-kubernetes-clusters-with-hel/</guid>
+      <guid>https://blog.maoxianplay.com/post/deploying-apps-on-multiple-kubernetes-clusters-with-hel/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -419,10 +419,10 @@ secrets:
     
     <item>
       <title>【转】Kubernetes 儿童插图指南</title>
-      <link>https://academia-hugo.netlify.com/post/the-childrens-illustrated-guide-to-kubernetes/</link>
+      <link>https://blog.maoxianplay.com/post/the-childrens-illustrated-guide-to-kubernetes/</link>
       <pubDate>Fri, 05 Jul 2019 09:50:58 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/the-childrens-illustrated-guide-to-kubernetes/</guid>
+      <guid>https://blog.maoxianplay.com/post/the-childrens-illustrated-guide-to-kubernetes/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -525,10 +525,10 @@ Phippy 与她的新朋友一起乘坐 Kube 船长的巨轮航行于大海之上�
     
     <item>
       <title>8分钟入门 K8S</title>
-      <link>https://academia-hugo.netlify.com/post/an-8-minute-introduction-to-k8s/</link>
+      <link>https://blog.maoxianplay.com/post/an-8-minute-introduction-to-k8s/</link>
       <pubDate>Tue, 30 Apr 2019 13:38:12 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/an-8-minute-introduction-to-k8s/</guid>
+      <guid>https://blog.maoxianplay.com/post/an-8-minute-introduction-to-k8s/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -632,10 +632,10 @@ Phippy 与她的新朋友一起乘坐 Kube 船长的巨轮航行于大海之上�
     
     <item>
       <title>困难的 Kubernetes</title>
-      <link>https://academia-hugo.netlify.com/post/kubernetes-is-har/</link>
+      <link>https://blog.maoxianplay.com/post/kubernetes-is-har/</link>
       <pubDate>Wed, 24 Apr 2019 10:18:46 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/kubernetes-is-har/</guid>
+      <guid>https://blog.maoxianplay.com/post/kubernetes-is-har/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -700,10 +700,10 @@ Phippy 与她的新朋友一起乘坐 Kube 船长的巨轮航行于大海之上�
     
     <item>
       <title>GitHub 黑话指南</title>
-      <link>https://academia-hugo.netlify.com/post/cant/</link>
+      <link>https://blog.maoxianplay.com/post/cant/</link>
       <pubDate>Mon, 22 Apr 2019 09:11:24 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/cant/</guid>
+      <guid>https://blog.maoxianplay.com/post/cant/</guid>
       <description>
 
 &lt;p&gt;这里的&lt;strong&gt;黑话&lt;/strong&gt;，其实就是 GitHub 上的一些&lt;strong&gt;迷之缩写&lt;/strong&gt;，这些歪果老司机们在 GitHub 上肆无忌惮的使用着他们的“黑话”，让我们这些非英语母语国家的新司机在 code review 时经常是一脸懵逼 + 黑人问好&amp;hellip;&lt;/p&gt;
@@ -746,10 +746,10 @@ image:
     
     <item>
       <title>什么的容器？Docker 工作原理及容器化简易指南</title>
-      <link>https://academia-hugo.netlify.com/post/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</link>
+      <link>https://blog.maoxianplay.com/post/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</link>
       <pubDate>Sat, 20 Apr 2019 19:54:50 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</guid>
+      <guid>https://blog.maoxianplay.com/post/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</guid>
       <description>
 
 &lt;p&gt;&lt;strong&gt;Docker 非常棒！&lt;/strong&gt; 它使软件开发者无需担心配置和依赖性，在任何地方打包，发送和运行他们的应用程序。而在与 kubernetes 相结合后，它使应用集群部署和管理变得更方便。这使得 Docker 深受软件开发者的喜爱，越来越多的开发者开始使用 Docker。&lt;/p&gt;
@@ -873,10 +873,10 @@ EXPOSE 8082
     
     <item>
       <title>Kustomize: 无需模板定制你的 kubernetes 配置</title>
-      <link>https://academia-hugo.netlify.com/post/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</link>
+      <link>https://blog.maoxianplay.com/post/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</link>
       <pubDate>Mon, 15 Apr 2019 17:23:21 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</guid>
+      <guid>https://blog.maoxianplay.com/post/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -998,10 +998,10 @@ spec:
     
     <item>
       <title>Devops入门手册</title>
-      <link>https://academia-hugo.netlify.com/post/devops-tutorial/</link>
+      <link>https://blog.maoxianplay.com/post/devops-tutorial/</link>
       <pubDate>Tue, 09 Apr 2019 13:21:56 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/devops-tutorial/</guid>
+      <guid>https://blog.maoxianplay.com/post/devops-tutorial/</guid>
       <description>
 
 &lt;h1 id=&#34;devops-是什么&#34;&gt;DevOps 是什么？&lt;/h1&gt;
@@ -1353,10 +1353,10 @@ spec:
     
     <item>
       <title>Service Mesh是什么，我们又为什么需要它</title>
-      <link>https://academia-hugo.netlify.com/post/whats-a-service-mesh-and-why-do-i-need-one/</link>
+      <link>https://blog.maoxianplay.com/post/whats-a-service-mesh-and-why-do-i-need-one/</link>
       <pubDate>Mon, 25 Mar 2019 18:17:20 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/whats-a-service-mesh-and-why-do-i-need-one/</guid>
+      <guid>https://blog.maoxianplay.com/post/whats-a-service-mesh-and-why-do-i-need-one/</guid>
       <description>
 
 &lt;blockquote&gt;

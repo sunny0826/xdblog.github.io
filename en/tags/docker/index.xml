@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docker on GuoXD Blog</title>
-    <link>https://academia-hugo.netlify.com/en/tags/docker/</link>
+    <link>https://blog.maoxianplay.com/en/tags/docker/</link>
     <description>Recent content in Docker on GuoXD Blog</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
     <lastBuildDate>Sat, 20 Apr 2019 19:54:50 +0800</lastBuildDate>
     
-	    <atom:link href="https://academia-hugo.netlify.com/en/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="https://blog.maoxianplay.com/en/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>什么的容器？Docker 工作原理及容器化简易指南</title>
-      <link>https://academia-hugo.netlify.com/en/post/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</link>
+      <link>https://blog.maoxianplay.com/en/post/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</link>
       <pubDate>Sat, 20 Apr 2019 19:54:50 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/en/post/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</guid>
+      <guid>https://blog.maoxianplay.com/en/post/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</guid>
       <description>
 
 &lt;p&gt;&lt;strong&gt;Docker 非常棒！&lt;/strong&gt; 它使软件开发者无需担心配置和依赖性，在任何地方打包，发送和运行他们的应用程序。而在与 kubernetes 相结合后，它使应用集群部署和管理变得更方便。这使得 Docker 深受软件开发者的喜爱，越来越多的开发者开始使用 Docker。&lt;/p&gt;
@@ -141,10 +141,10 @@ EXPOSE 8082
     
     <item>
       <title>Alpine Linux详解</title>
-      <link>https://academia-hugo.netlify.com/en/post/alpine-linux/</link>
+      <link>https://blog.maoxianplay.com/en/post/alpine-linux/</link>
       <pubDate>Fri, 15 Mar 2019 09:53:02 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/en/post/alpine-linux/</guid>
+      <guid>https://blog.maoxianplay.com/en/post/alpine-linux/</guid>
       <description>
 
 &lt;h3 id=&#34;简介&#34;&gt;简介&lt;/h3&gt;

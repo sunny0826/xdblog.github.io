@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>软件设计 on GuoXD Blog</title>
-    <link>https://academia-hugo.netlify.com/en/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/</link>
+    <link>https://blog.maoxianplay.com/en/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/</link>
     <description>Recent content in 软件设计 on GuoXD Blog</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
     <lastBuildDate>Sat, 06 Jul 2019 09:40:42 +0800</lastBuildDate>
     
-	    <atom:link href="https://academia-hugo.netlify.com/en/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="https://blog.maoxianplay.com/en/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>语义化版本控制规范（SemVer）</title>
-      <link>https://academia-hugo.netlify.com/en/post/semver/</link>
+      <link>https://blog.maoxianplay.com/en/post/semver/</link>
       <pubDate>Sat, 06 Jul 2019 09:40:42 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/en/post/semver/</guid>
+      <guid>https://blog.maoxianplay.com/en/post/semver/</guid>
       <description>
 
 &lt;blockquote&gt;

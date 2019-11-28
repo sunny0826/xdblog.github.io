@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>rancher on GuoXD Blog·郭旭东的博客</title>
-    <link>https://academia-hugo.netlify.com/tags/rancher/</link>
+    <link>https://blog.maoxianplay.com/tags/rancher/</link>
     <description>Recent content in rancher on GuoXD Blog·郭旭东的博客</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
     <lastBuildDate>Thu, 18 Apr 2019 17:46:08 +0800</lastBuildDate>
     
-	    <atom:link href="https://academia-hugo.netlify.com/tags/rancher/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="https://blog.maoxianplay.com/tags/rancher/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Rancher 2.2.1 解决工作负载监控为空问题</title>
-      <link>https://academia-hugo.netlify.com/post/rancher-prometheus-fix-question/</link>
+      <link>https://blog.maoxianplay.com/post/rancher-prometheus-fix-question/</link>
       <pubDate>Thu, 18 Apr 2019 17:46:08 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/rancher-prometheus-fix-question/</guid>
+      <guid>https://blog.maoxianplay.com/post/rancher-prometheus-fix-question/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -66,10 +66,10 @@
     
     <item>
       <title>单节点版rancher升级指南</title>
-      <link>https://academia-hugo.netlify.com/post/rancher-update-2.2.1/</link>
+      <link>https://blog.maoxianplay.com/post/rancher-update-2.2.1/</link>
       <pubDate>Sun, 31 Mar 2019 11:15:35 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/rancher-update-2.2.1/</guid>
+      <guid>https://blog.maoxianplay.com/post/rancher-update-2.2.1/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -161,10 +161,10 @@ PORTS                                       NAMES
     
     <item>
       <title>为ingress配置SSL证书，实现HTTPS访问</title>
-      <link>https://academia-hugo.netlify.com/post/https-ingress/</link>
+      <link>https://blog.maoxianplay.com/post/https-ingress/</link>
       <pubDate>Sat, 29 Dec 2018 21:28:13 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/https-ingress/</guid>
+      <guid>https://blog.maoxianplay.com/post/https-ingress/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -178,7 +178,7 @@ PORTS                                       NAMES
 &lt;p&gt;首先需要获得SSL证书文件，可以直接在阿里云SSL证书管理控制台下载&lt;/p&gt;
 
 &lt;p&gt;选中需要下载证书，选择下载nginx证书
-&lt;img src=&#34;https://academia-hugo.netlify.com/images/source/zhengshu.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blog.maoxianplay.com/images/source/zhengshu.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;将证书上传项目&#34;&gt;将证书上传项目&lt;/h2&gt;
 
@@ -187,9 +187,9 @@ PORTS                                       NAMES
 &lt;h2 id=&#34;将证书上传项目-1&#34;&gt;将证书上传项目&lt;/h2&gt;
 
 &lt;p&gt;打开rancher，选择要使用证书的项目，点击资源中的证书
-&lt;img src=&#34;https://academia-hugo.netlify.com/images/source/https-1.png&#34; alt=&#34;image&#34; /&gt;
+&lt;img src=&#34;https://blog.maoxianplay.com/images/source/https-1.png&#34; alt=&#34;image&#34; /&gt;
 添加证书，点击从文件上传
-&lt;img src=&#34;https://academia-hugo.netlify.com/images/source/https-2.png&#34; alt=&#34;image&#34; /&gt;
+&lt;img src=&#34;https://blog.maoxianplay.com/images/source/https-2.png&#34; alt=&#34;image&#34; /&gt;
 上传证书文件中的秘钥和证书，点击保存即可&lt;/p&gt;
 
 &lt;h1 id=&#34;使用yaml上传证书&#34;&gt;使用yaml上传证书&lt;/h1&gt;
@@ -212,17 +212,17 @@ type: kubernetes.io/tls
 &lt;h1 id=&#34;rancher中证书绑定&#34;&gt;rancher中证书绑定&lt;/h1&gt;
 
 &lt;p&gt;选中需要绑定证书的ingress，点击编辑，选中证书，保存即可（由于ingress-controller中没有绑定默认证书，所以这里不能选中默认）
-&lt;img src=&#34;https://academia-hugo.netlify.com/images/source/https-3.png&#34; alt=&#34;image&#34; /&gt;
+&lt;img src=&#34;https://blog.maoxianplay.com/images/source/https-3.png&#34; alt=&#34;image&#34; /&gt;
 保存完毕，证书即可生效&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>阿里云部署rancher2.1采坑记</title>
-      <link>https://academia-hugo.netlify.com/post/install-rancher/</link>
+      <link>https://blog.maoxianplay.com/post/install-rancher/</link>
       <pubDate>Thu, 29 Nov 2018 18:28:13 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/install-rancher/</guid>
+      <guid>https://blog.maoxianplay.com/post/install-rancher/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -245,10 +245,10 @@ type: kubernetes.io/tls
 &lt;p&gt;首先根据官方文档使用权威CA机构颁发的证书，这里使用的是本公司自己的证书&lt;/p&gt;
 
 &lt;p&gt;获取证书方法：
-&lt;img src=&#34;https://academia-hugo.netlify.com/images/source/jinrussl.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blog.maoxianplay.com/images/source/jinrussl.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;点击下载证书，选择nginx证书下载
-&lt;img src=&#34;https://academia-hugo.netlify.com/images/source/zhengshu.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blog.maoxianplay.com/images/source/zhengshu.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;之后将下载的证书上传到rancher所在服务器，并配置好数据卷挂载&lt;/p&gt;
 
@@ -281,10 +281,10 @@ rancher/rancher:latest --no-cacerts
 &lt;p&gt;前后端都准备就绪，现在就可以访问rancher了，访问rancher根据页面提示进行基本配置，登录后选择添加集群&lt;/p&gt;
 
 &lt;p&gt;选择导入现有集群
-&lt;img src=&#34;https://academia-hugo.netlify.com/images/source/add.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blog.maoxianplay.com/images/source/add.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;为集群创建一个rancher中的名称，然后根据提示将命令拷贝到k8s集群所在宿主机执行即可，注意：这里由于配置了证书，所以选择有证书，不绕过证书的那个命令执行，之后就可看到集群数据导入中
-&lt;img src=&#34;https://academia-hugo.netlify.com/images/source/wating.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blog.maoxianplay.com/images/source/wating.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;等待几秒即可开心的使用rancher了！&lt;/p&gt;
 

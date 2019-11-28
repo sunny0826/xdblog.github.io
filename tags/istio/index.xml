@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>istio on GuoXD Blog·郭旭东的博客</title>
-    <link>https://academia-hugo.netlify.com/tags/istio/</link>
+    <link>https://blog.maoxianplay.com/tags/istio/</link>
     <description>Recent content in istio on GuoXD Blog·郭旭东的博客</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
     <lastBuildDate>Thu, 21 Mar 2019 09:42:18 +0800</lastBuildDate>
     
-	    <atom:link href="https://academia-hugo.netlify.com/tags/istio/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="https://blog.maoxianplay.com/tags/istio/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Istio初探之Bookinfo样例部署</title>
-      <link>https://academia-hugo.netlify.com/post/istio-bookinfo-demo/</link>
+      <link>https://blog.maoxianplay.com/post/istio-bookinfo-demo/</link>
       <pubDate>Thu, 21 Mar 2019 09:42:18 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/istio-bookinfo-demo/</guid>
+      <guid>https://blog.maoxianplay.com/post/istio-bookinfo-demo/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -351,10 +351,10 @@ $ kubectl replace -f samples/bookinfo/networking/virtual-service-reviews-v3.yaml
     
     <item>
       <title>浅析ServiceMesh &amp; Istio</title>
-      <link>https://academia-hugo.netlify.com/post/istio-share/</link>
+      <link>https://blog.maoxianplay.com/post/istio-share/</link>
       <pubDate>Wed, 20 Mar 2019 09:12:28 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/istio-share/</guid>
+      <guid>https://blog.maoxianplay.com/post/istio-share/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -470,10 +470,10 @@ $ kubectl replace -f samples/bookinfo/networking/virtual-service-reviews-v3.yaml
     
     <item>
       <title>阿里云环境Istio初探</title>
-      <link>https://academia-hugo.netlify.com/post/istio-demo/</link>
+      <link>https://blog.maoxianplay.com/post/istio-demo/</link>
       <pubDate>Wed, 13 Mar 2019 15:45:43 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/istio-demo/</guid>
+      <guid>https://blog.maoxianplay.com/post/istio-demo/</guid>
       <description>
 
 &lt;h1 id=&#34;istio应用部署样例&#34;&gt;istio应用部署样例&lt;/h1&gt;

@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on GuoXD Blog·郭旭东的博客</title>
-    <link>https://academia-hugo.netlify.com/tags/linux/</link>
+    <link>https://blog.maoxianplay.com/tags/linux/</link>
     <description>Recent content in Linux on GuoXD Blog·郭旭东的博客</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
     <lastBuildDate>Fri, 15 Mar 2019 09:53:02 +0800</lastBuildDate>
     
-	    <atom:link href="https://academia-hugo.netlify.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="https://blog.maoxianplay.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Alpine Linux详解</title>
-      <link>https://academia-hugo.netlify.com/post/alpine-linux/</link>
+      <link>https://blog.maoxianplay.com/post/alpine-linux/</link>
       <pubDate>Fri, 15 Mar 2019 09:53:02 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/alpine-linux/</guid>
+      <guid>https://blog.maoxianplay.com/post/alpine-linux/</guid>
       <description>
 
 &lt;h3 id=&#34;简介&#34;&gt;简介&lt;/h3&gt;
@@ -204,10 +204,10 @@ bash-4.3# apk add &amp;ndash;upgrade busybox #升级指定软件包
     
     <item>
       <title>Docker容器启动退出解决方案</title>
-      <link>https://academia-hugo.netlify.com/post/docker-quit/</link>
+      <link>https://blog.maoxianplay.com/post/docker-quit/</link>
       <pubDate>Thu, 27 Sep 2018 19:27:03 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/docker-quit/</guid>
+      <guid>https://blog.maoxianplay.com/post/docker-quit/</guid>
       <description>
 
 &lt;h1 id=&#34;现象&#34;&gt;现象&lt;/h1&gt;
@@ -261,10 +261,10 @@ bash-4.3# apk add &amp;ndash;upgrade busybox #升级指定软件包
     
     <item>
       <title>centos7安装指定版本的docker</title>
-      <link>https://academia-hugo.netlify.com/post/install-docker/</link>
+      <link>https://blog.maoxianplay.com/post/install-docker/</link>
       <pubDate>Tue, 14 Aug 2018 20:05:21 +0800</pubDate>
       
-      <guid>https://academia-hugo.netlify.com/post/install-docker/</guid>
+      <guid>https://blog.maoxianplay.com/post/install-docker/</guid>
       <description>
 
 &lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
