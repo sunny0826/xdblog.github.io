@@ -198,21 +198,6 @@
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/en/tags/%E5%85%AC%E7%9B%8A/</loc>
-    <lastmod>2019-09-29T09:52:11+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://blog.maoxianplay.com/tags/%E5%85%AC%E7%9B%8A/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://blog.maoxianplay.com/en/tags/%E5%85%AC%E7%9B%8A/"
-                />
-  </url>
-  
-  <url>
     <loc>https://blog.maoxianplay.com/en/categories/%E5%85%AC%E7%9B%8A/</loc>
     <lastmod>2019-09-29T09:52:11+08:00</lastmod>
     <xhtml:link
@@ -224,6 +209,21 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://blog.maoxianplay.com/en/categories/%E5%85%AC%E7%9B%8A/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/en/tags/%E5%85%AC%E7%9B%8A/</loc>
+    <lastmod>2019-09-29T09:52:11+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://blog.maoxianplay.com/tags/%E5%85%AC%E7%9B%8A/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://blog.maoxianplay.com/en/tags/%E5%85%AC%E7%9B%8A/"
                 />
   </url>
   
