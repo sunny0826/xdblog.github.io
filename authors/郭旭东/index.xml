@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>郭旭东 on GuoXD Blog·郭旭东的博客</title>
+    <link>https://blog.maoxianplay.com/authors/%E9%83%AD%E6%97%AD%E4%B8%9C/</link>
+    <description>Recent content in 郭旭东 on GuoXD Blog·郭旭东的博客</description>
+    <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
+    <lastBuildDate>Wed, 04 Dec 2019 17:09:51 +0800</lastBuildDate>
+    
+	    <atom:link href="https://blog.maoxianplay.com/authors/%E9%83%AD%E6%97%AD%E4%B8%9C/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>小工具介绍：KubeWatch</title>
+      <link>https://blog.maoxianplay.com/post/kubewatch/</link>
+      <pubDate>Wed, 04 Dec 2019 17:09:51 +0800</pubDate>
+      
+      <guid>https://blog.maoxianplay.com/post/kubewatch/</guid>
+      <description>
+
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;这次要介绍一个 Kubernetes 资源观测工具，实时监控 Kubernetes 集群中各种资源的新建、更新和删除，并实时通知到各种协作软件/聊天软件，目前支持的通知渠道有：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;slack&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hipchat&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mattermost&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;flock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;webhook&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;我这边开发了钉钉的通知渠道，但是在上游 &lt;a href=&#34;https://github.com/bitnami-labs/kubewatch/issues/198&#34; target=&#34;_blank&#34;&gt;ISSUE#198&lt;/a&gt; 中提出的贡献请求并没有得到回应，所以这边只能 fork 了代码，然后自己进行了开发，以支持钉钉通知。&lt;/p&gt;
+
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;这里推荐使用 helm 进行安装，快速部署&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;helm install kubewatch stable/kubewatch \
+--set rbac.create=true \
+--set slack.channel=&#39;#YOUR_CHANNEL&#39; \
+--set slack.token=&#39;xoxb-YOUR_TOKEN&#39; \
+--set resourcesToWatch.pod=true \
+--set resourcesToWatch.daemonset=true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果想使用钉钉通知，则可以在 &lt;a href=&#34;https://github.com/sunny0826/kubewatch-chat&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt; 上拉取我的代码，代码中包含 helm chart 包，可直接进行安装&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git clone https://github.com/sunny0826/kubewatch-chat.git
+cd kubewatch-chat
+helm install kubewatch kubewatch \
+--set dingtalk.sign=&amp;quot;XXX&amp;quot; \
+--set dingtalk.token=&amp;quot;XXXX-XXXX-XXXX&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;钉钉配置&#34;&gt;钉钉配置&lt;/h2&gt;
+
+&lt;p&gt;在钉钉中创建 &lt;code&gt;智能群助手&lt;/code&gt; ，之后&lt;/p&gt;
+
+&lt;h3 id=&#34;获取-token&#34;&gt;获取 token&lt;/h3&gt;
+
+&lt;p&gt;复制的 webhook 中 &lt;code&gt;https://oapi.dingtalk.com/robot/send?access_token={YOUR_TOKEN}&lt;/code&gt;, &lt;code&gt;{YOUR_TOKEN}&lt;/code&gt; 就是要填入的 token。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tva4.sinaimg.cn/large/ad5fbf65gy1g9ku2hvs16j20ep05smxk.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;安全设置&#34;&gt;安全设置&lt;/h2&gt;
+
+&lt;p&gt;钉钉智能群助手在更新后新增了安全设置，提供三种验证方式 &lt;code&gt;自定义关键词&lt;/code&gt; &lt;code&gt;加签&lt;/code&gt; &lt;code&gt;IP地址（段）&lt;/code&gt;，这里推荐使用 &lt;code&gt;IP地址（段）的方式&lt;/code&gt;，直接将 Kubernetes 集群的出口 IP 填入设置即可。同时也提供了 &lt;code&gt;加签&lt;/code&gt; 的方式，拷贝秘钥，将其填入 &lt;code&gt;dingtalk.sign&lt;/code&gt; 中。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/ad5fbf65gy1g9ku6qjwy2j20fo077glw.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;项目配置&#34;&gt;项目配置&lt;/h2&gt;
+
+&lt;p&gt;编辑 &lt;code&gt;kubewatch/value.yaml&lt;/code&gt; ，修改配置&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;## Global Docker image parameters
+## Please, note that this will override the image parameters, including dependencies, configured to use the global value
+## Current available global Docker image parameters: imageRegistry and imagePullSecrets
+##
+# global:
+#   imageRegistry: myRegistryName
+#   imagePullSecrets:
+#     - myRegistryKeySecretName
+
+slack:
+  enabled: false
+  channel: &amp;quot;&amp;quot;
+  token: &amp;quot;xoxb&amp;quot;
+
+hipchat:
+  enabled: false
+  # room: &amp;quot;&amp;quot;
+  # token: &amp;quot;&amp;quot;
+  # url: &amp;quot;&amp;quot;
+mattermost:
+  enabled: false
+  # channel: &amp;quot;&amp;quot;
+  # url: &amp;quot;&amp;quot;
+  # username: &amp;quot;&amp;quot;
+flock:
+  enabled: false
+  # url: &amp;quot;&amp;quot;
+webhook:
+  enabled: false
+  # url: &amp;quot;&amp;quot;
+dingtalk:
+  enabled: true
+  token: &amp;quot;&amp;quot;
+  sign: &amp;quot;&amp;quot;
+
+# namespace to watch, leave it empty for watching all.
+namespaceToWatch: &amp;quot;&amp;quot;
+
+# Resources to watch
+resourcesToWatch:
+  deployment: true
+  replicationcontroller: false
+  replicaset: false
+  daemonset: false
+  services: false
+  pod: true
+  job: false
+  persistentvolume: false
+
+image:
+  registry: docker.io
+#  repository: bitnami/kubewatch
+  repository: guoxudongdocker/kubewatch-chart
+#  tag: 0.0.4-debian-9-r405
+  tag: latest
+  pullPolicy: Always
+  ## Optionally specify an array of imagePullSecrets.
+  ## Secrets must be manually created in the namespace.
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  ##
+  # pullSecrets:
+  #   - myRegistryKeySecretName
+
+## String to partially override kubewatch.fullname template (will maintain the release name)
+##
+# nameOverride:
+
+## String to fully override kubewatch.fullname template
+##
+# fullnameOverride:
+
+rbac:
+  # If true, create &amp;amp; use RBAC resources
+  #
+  create: true
+
+serviceAccount:
+  # Specifies whether a ServiceAccount should be created
+  create: true
+  # The name of the ServiceAccount to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 300Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 300Mi
+
+# Affinity for pod assignment
+# Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+# affinity: {}
+
+# Tolerations for pod assignment
+# Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+tolerations: []
+
+# Node labels for pod assignment
+# Ref: https://kubernetes.io/docs/user-guide/node-selection/
+nodeSelector: {}
+
+podAnnotations: {}
+podLabels: {}
+replicaCount: 1
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用 &lt;code&gt;value.yaml&lt;/code&gt; 安装&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git clone https://github.com/sunny0826/kubewatch-chat.git
+cd kubewatch-chat
+helm install my-release -f kubewatch/values.yaml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;slack-配置&#34;&gt;Slack 配置&lt;/h2&gt;
+
+&lt;p&gt;Slack 为 kubewatch 默认的通知软件，这里就不简介 Slack 的安装和注册，直接从创建 APP 开始&lt;/p&gt;
+
+&lt;h3 id=&#34;创建一个-app&#34;&gt;创建一个 APP&lt;/h3&gt;
+
+&lt;p&gt;进去创建 &lt;a href=&#34;https://api.slack.com/apps&#34; target=&#34;_blank&#34;&gt;APP 页面&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/ad5fbf65gy1g9kum3x5npj21h40p6tdx.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;选择 &lt;code&gt;App Name&lt;/code&gt; 和 &lt;code&gt;Development Slack Workspace&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/ad5fbf65gy1g9kupp0av1j210c0uejvj.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;添加-bot-用户&#34;&gt;添加 Bot 用户&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tvax3.sinaimg.cn/large/ad5fbf65gy1g9kuszmgggj21n4156gu2.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;添加-app-到-workspace&#34;&gt;添加 App 到 Workspace&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tva3.sinaimg.cn/large/ad5fbf65gy1g9kuyzwzetj21qu0wmq9n.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;获取-bot-token&#34;&gt;获取 Bot-token&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tvax3.sinaimg.cn/large/ad5fbf65gy1g9kv06dva8j21s60uajxf.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;通知效果&#34;&gt;通知效果&lt;/h2&gt;
+
+&lt;p&gt;在 Slack 中，&lt;code&gt;创建&lt;/code&gt; &lt;code&gt;更新&lt;/code&gt; &lt;code&gt;删除&lt;/code&gt; 分别以绿、黄和红色代表&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tvax1.sinaimg.cn/large/ad5fbf65gy1g9kv23nvmoj213c0mewj4.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在钉钉中，我进行了汉化&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tvax3.sinaimg.cn/large/ad5fbf65gy1g9kv5fppglj20dd08zdgs.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tvax4.sinaimg.cn/large/ad5fbf65gy1g9kv5uuxn4j20ea08fgmk.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;结语&#34;&gt;结语&lt;/h2&gt;
+
+&lt;p&gt;对于 kubewatch 我们这里主要用作监控各种 CronJob 的定时触发状态，已经 ConfigMap 和 Secrets 的状态变化，同时也观察 HPA 触发的弹性伸缩的状态，可以实时观测到业务高峰的到来，是一个不错的小工具。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

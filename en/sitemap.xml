@@ -3,8 +3,23 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.maoxianplay.com/en/authors/</loc>
+    <lastmod>2019-12-04T17:09:51+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://blog.maoxianplay.com/authors/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://blog.maoxianplay.com/en/authors/"
+                />
+  </url>
+  
+  <url>
     <loc>https://blog.maoxianplay.com/en/categories/</loc>
-    <lastmod>2019-11-13T09:13:22+08:00</lastmod>
+    <lastmod>2019-12-04T17:09:51+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -19,7 +34,7 @@
   
   <url>
     <loc>https://blog.maoxianplay.com/en/</loc>
-    <lastmod>2019-11-13T09:13:22+08:00</lastmod>
+    <lastmod>2019-12-04T17:09:51+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -33,23 +48,8 @@
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/en/tags/kubernetes/</loc>
-    <lastmod>2019-11-13T09:13:22+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://blog.maoxianplay.com/tags/kubernetes/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://blog.maoxianplay.com/en/tags/kubernetes/"
-                />
-  </url>
-  
-  <url>
     <loc>https://blog.maoxianplay.com/en/categories/kubernetes/</loc>
-    <lastmod>2019-11-13T09:13:22+08:00</lastmod>
+    <lastmod>2019-12-04T17:09:51+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -63,8 +63,23 @@
   </url>
   
   <url>
+    <loc>https://blog.maoxianplay.com/en/tags/kubernetes/</loc>
+    <lastmod>2019-12-04T17:09:51+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://blog.maoxianplay.com/tags/kubernetes/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://blog.maoxianplay.com/en/tags/kubernetes/"
+                />
+  </url>
+  
+  <url>
     <loc>https://blog.maoxianplay.com/en/post/</loc>
-    <lastmod>2019-11-13T09:13:22+08:00</lastmod>
+    <lastmod>2019-12-04T17:09:51+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -79,7 +94,7 @@
   
   <url>
     <loc>https://blog.maoxianplay.com/en/tags/</loc>
-    <lastmod>2019-11-13T09:13:22+08:00</lastmod>
+    <lastmod>2019-12-04T17:09:51+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -89,6 +104,51 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://blog.maoxianplay.com/en/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/en/tags/%E5%AE%B9%E5%99%A8/</loc>
+    <lastmod>2019-12-04T17:09:51+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://blog.maoxianplay.com/tags/%E5%AE%B9%E5%99%A8/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://blog.maoxianplay.com/en/tags/%E5%AE%B9%E5%99%A8/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/en/post/kubewatch/</loc>
+    <lastmod>2019-12-04T17:09:51+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://blog.maoxianplay.com/post/kubewatch/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://blog.maoxianplay.com/en/post/kubewatch/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/en/authors/%E9%83%AD%E6%97%AD%E4%B8%9C/</loc>
+    <lastmod>2019-12-04T17:09:51+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://blog.maoxianplay.com/authors/%E9%83%AD%E6%97%AD%E4%B8%9C/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://blog.maoxianplay.com/en/authors/%E9%83%AD%E6%97%AD%E4%B8%9C/"
                 />
   </url>
   
@@ -164,21 +224,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://blog.maoxianplay.com/en/post/aliyun-cms-grafana/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://blog.maoxianplay.com/en/tags/%E5%AE%B9%E5%99%A8/</loc>
-    <lastmod>2019-09-30T09:32:35+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://blog.maoxianplay.com/tags/%E5%AE%B9%E5%99%A8/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://blog.maoxianplay.com/en/tags/%E5%AE%B9%E5%99%A8/"
                 />
   </url>
   
@@ -738,21 +783,6 @@
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/en/authors/</loc>
-    <lastmod>2019-07-01T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://blog.maoxianplay.com/authors/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://blog.maoxianplay.com/en/authors/"
-                />
-  </url>
-  
-  <url>
     <loc>https://blog.maoxianplay.com/en/publication/</loc>
     <lastmod>2019-07-01T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -1203,21 +1233,6 @@
   </url>
   
   <url>
-    <loc>https://blog.maoxianplay.com/en/tags/istio/</loc>
-    <lastmod>2019-03-21T09:42:18+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://blog.maoxianplay.com/tags/istio/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://blog.maoxianplay.com/en/tags/istio/"
-                />
-  </url>
-  
-  <url>
     <loc>https://blog.maoxianplay.com/en/categories/istio/</loc>
     <lastmod>2019-03-21T09:42:18+08:00</lastmod>
     <xhtml:link
@@ -1229,6 +1244,21 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://blog.maoxianplay.com/en/categories/istio/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://blog.maoxianplay.com/en/tags/istio/</loc>
+    <lastmod>2019-03-21T09:42:18+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://blog.maoxianplay.com/tags/istio/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://blog.maoxianplay.com/en/tags/istio/"
                 />
   </url>
   
