@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>GuoXD Blog</title>
-    <link>https://blog.maoxianplay.com/en/authors/guoxudong/</link>
+    <link>https://guoxudong.io/en/authors/guoxudong/</link>
     <description>Recent content on GuoXD Blog</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
     <lastBuildDate>Wed, 04 Dec 2019 17:09:51 +0800</lastBuildDate>
     
-	    <atom:link href="https://blog.maoxianplay.com/en/authors/guoxudong/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="https://guoxudong.io/en/authors/guoxudong/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>小工具介绍：KubeWatch</title>
-      <link>https://blog.maoxianplay.com/en/post/kubewatch/</link>
+      <link>https://guoxudong.io/en/post/kubewatch/</link>
       <pubDate>Wed, 04 Dec 2019 17:09:51 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/kubewatch/</guid>
+      <guid>https://guoxudong.io/en/post/kubewatch/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -237,10 +237,10 @@ helm install my-release -f kubewatch/values.yaml
     
     <item>
       <title>使用 Velero 进行集群备份与迁移</title>
-      <link>https://blog.maoxianplay.com/en/post/aliyun-velero/</link>
+      <link>https://guoxudong.io/en/post/aliyun-velero/</link>
       <pubDate>Wed, 13 Nov 2019 09:13:22 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/aliyun-velero/</guid>
+      <guid>https://guoxudong.io/en/post/aliyun-velero/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -572,10 +572,10 @@ spec:
     
     <item>
       <title>使用 Grafana 展示阿里云监控指标</title>
-      <link>https://blog.maoxianplay.com/en/post/aliyun-cms-grafana/</link>
+      <link>https://guoxudong.io/en/post/aliyun-cms-grafana/</link>
       <pubDate>Thu, 07 Nov 2019 11:08:36 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/aliyun-cms-grafana/</guid>
+      <guid>https://guoxudong.io/en/post/aliyun-cms-grafana/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -698,10 +698,10 @@ spec:
     
     <item>
       <title>阿里云产品夜谈-容器服务交流</title>
-      <link>https://blog.maoxianplay.com/en/post/aliyun-product-meetup/</link>
+      <link>https://guoxudong.io/en/post/aliyun-product-meetup/</link>
       <pubDate>Mon, 30 Sep 2019 09:32:35 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/aliyun-product-meetup/</guid>
+      <guid>https://guoxudong.io/en/post/aliyun-product-meetup/</guid>
       <description>
 
 &lt;p&gt;&lt;img src=&#34;https://tvax4.sinaimg.cn/large/ad5fbf65gy1g7hb4iwdpvj213i0vs4qq.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
@@ -737,10 +737,10 @@ spec:
     
     <item>
       <title>当码农遇见公益</title>
-      <link>https://blog.maoxianplay.com/en/post/alibaba-public-welfare/</link>
+      <link>https://guoxudong.io/en/post/alibaba-public-welfare/</link>
       <pubDate>Sun, 29 Sep 2019 09:52:11 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/alibaba-public-welfare/</guid>
+      <guid>https://guoxudong.io/en/post/alibaba-public-welfare/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -772,10 +772,10 @@ spec:
     
     <item>
       <title>玩转 Drone CI</title>
-      <link>https://blog.maoxianplay.com/en/post/drone-optimize/</link>
+      <link>https://guoxudong.io/en/post/drone-optimize/</link>
       <pubDate>Wed, 11 Sep 2019 13:53:09 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/drone-optimize/</guid>
+      <guid>https://guoxudong.io/en/post/drone-optimize/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -922,10 +922,10 @@ trigger:
     
     <item>
       <title>GitHub/Gitee 静态页托管页部署SSL证书</title>
-      <link>https://blog.maoxianplay.com/en/post/aliyun-ssl/</link>
+      <link>https://guoxudong.io/en/post/aliyun-ssl/</link>
       <pubDate>Fri, 23 Aug 2019 09:36:55 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/aliyun-ssl/</guid>
+      <guid>https://guoxudong.io/en/post/aliyun-ssl/</guid>
       <description>
 
 &lt;p&gt;本文档介绍了在 &lt;a href=&#34;https://pages.github.com/&#34; target=&#34;_blank&#34;&gt;Github&lt;/a&gt; / &lt;a href=&#34;https://gitee.com/help/articles/4136&#34; target=&#34;_blank&#34;&gt;Gitee&lt;/a&gt; 的静态页托管Pages服务部署SSL证书，配置HTTPS安全访问的操作说明。&lt;/p&gt;
@@ -1070,10 +1070,10 @@ trigger:
     
     <item>
       <title>解决 Nginx-Ingress 重定向失败问题</title>
-      <link>https://blog.maoxianplay.com/en/post/nginx-ingress-error/</link>
+      <link>https://guoxudong.io/en/post/nginx-ingress-error/</link>
       <pubDate>Fri, 16 Aug 2019 11:15:37 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/nginx-ingress-error/</guid>
+      <guid>https://guoxudong.io/en/post/nginx-ingress-error/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -1138,10 +1138,10 @@ spec:
     
     <item>
       <title>Golang 装逼指南 Ⅱ：在 Homwebrew 上发布 Golang 项目</title>
-      <link>https://blog.maoxianplay.com/en/post/golang-to-homebrew/</link>
+      <link>https://guoxudong.io/en/post/golang-to-homebrew/</link>
       <pubDate>Thu, 25 Jul 2019 16:27:57 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/golang-to-homebrew/</guid>
+      <guid>https://guoxudong.io/en/post/golang-to-homebrew/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -1297,10 +1297,10 @@ Uninstalling /usr/local/Cellar/kubecm/86.64... (5 files, 5.4MB)
     
     <item>
       <title>Golang 装逼指南：在 GitHub 上构建一个看上去正规的 Golang 项目</title>
-      <link>https://blog.maoxianplay.com/en/post/golang-project/</link>
+      <link>https://guoxudong.io/en/post/golang-project/</link>
       <pubDate>Fri, 19 Jul 2019 10:38:26 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/golang-project/</guid>
+      <guid>https://guoxudong.io/en/post/golang-project/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -1476,10 +1476,10 @@ git push origin v0.0.3
     
     <item>
       <title>GitOps 与 ChatOps 的落地实践</title>
-      <link>https://blog.maoxianplay.com/en/post/gitops-and-chatops/</link>
+      <link>https://guoxudong.io/en/post/gitops-and-chatops/</link>
       <pubDate>Thu, 11 Jul 2019 09:24:17 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/gitops-and-chatops/</guid>
+      <guid>https://guoxudong.io/en/post/gitops-and-chatops/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -1574,10 +1574,10 @@ git push origin v0.0.3
     
     <item>
       <title>阿里云 ACK 挂载 NAS 数据卷</title>
-      <link>https://blog.maoxianplay.com/en/post/nas-k8s/</link>
+      <link>https://guoxudong.io/en/post/nas-k8s/</link>
       <pubDate>Mon, 08 Jul 2019 15:09:56 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/nas-k8s/</guid>
+      <guid>https://guoxudong.io/en/post/nas-k8s/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -1681,10 +1681,10 @@ persistentVolumeClaim:
     
     <item>
       <title>语义化版本控制规范（SemVer）</title>
-      <link>https://blog.maoxianplay.com/en/post/semver/</link>
+      <link>https://guoxudong.io/en/post/semver/</link>
       <pubDate>Sat, 06 Jul 2019 09:40:42 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/semver/</guid>
+      <guid>https://guoxudong.io/en/post/semver/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -1801,10 +1801,10 @@ persistentVolumeClaim:
     
     <item>
       <title>由一封邮件看 Mailing List 在开源项目中的重要性</title>
-      <link>https://blog.maoxianplay.com/en/post/kubernetes-client-python/</link>
+      <link>https://guoxudong.io/en/post/kubernetes-client-python/</link>
       <pubDate>Thu, 04 Jul 2019 09:16:41 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/kubernetes-client-python/</guid>
+      <guid>https://guoxudong.io/en/post/kubernetes-client-python/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -2076,10 +2076,10 @@ for i in ret.items:
     
     <item>
       <title>使用 Kustomize 帮你管理 kubernetes 应用（五）：配合 kubedog 完善 CI/CD 的最后一步</title>
-      <link>https://blog.maoxianplay.com/en/post/kustomize-5/</link>
+      <link>https://guoxudong.io/en/post/kustomize-5/</link>
       <pubDate>Wed, 03 Jul 2019 15:20:31 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/kustomize-5/</guid>
+      <guid>https://guoxudong.io/en/post/kustomize-5/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -2180,10 +2180,10 @@ trigger:
     
     <item>
       <title>记一次使用 Kustomize 时遇到的愚蠢问题</title>
-      <link>https://blog.maoxianplay.com/en/post/kustomize-err-1/</link>
+      <link>https://guoxudong.io/en/post/kustomize-err-1/</link>
       <pubDate>Wed, 03 Jul 2019 13:44:50 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/kustomize-err-1/</guid>
+      <guid>https://guoxudong.io/en/post/kustomize-err-1/</guid>
       <description>
 
 &lt;h2 id=&#34;现象&#34;&gt;现象&lt;/h2&gt;
@@ -2217,10 +2217,10 @@ trigger:
     
     <item>
       <title>Kubecon 2019 见闻：云原生未来可期</title>
-      <link>https://blog.maoxianplay.com/en/post/kubecon-2019/</link>
+      <link>https://guoxudong.io/en/post/kubecon-2019/</link>
       <pubDate>Tue, 02 Jul 2019 10:18:18 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/kubecon-2019/</guid>
+      <guid>https://guoxudong.io/en/post/kubecon-2019/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -2279,10 +2279,10 @@ trigger:
     
     <item>
       <title>使用 Kustomize 帮你管理 kubernetes 应用（四）：简述核心配置 kustomization.yaml</title>
-      <link>https://blog.maoxianplay.com/en/post/kustomize-4/</link>
+      <link>https://guoxudong.io/en/post/kustomize-4/</link>
       <pubDate>Thu, 23 May 2019 12:50:12 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/kustomize-4/</guid>
+      <guid>https://guoxudong.io/en/post/kustomize-4/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -2554,10 +2554,10 @@ spec:
     
     <item>
       <title>轻量快速的 CI 工具 Drone</title>
-      <link>https://blog.maoxianplay.com/en/post/drone-ci/</link>
+      <link>https://guoxudong.io/en/post/drone-ci/</link>
       <pubDate>Tue, 21 May 2019 08:59:00 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/drone-ci/</guid>
+      <guid>https://guoxudong.io/en/post/drone-ci/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -2793,10 +2793,10 @@ trigger:
     
     <item>
       <title>使用 Kustomize 帮你管理 kubernetes 应用（三）：将 Kustomize 应用于 CI/CD</title>
-      <link>https://blog.maoxianplay.com/en/post/kustomize-3/</link>
+      <link>https://guoxudong.io/en/post/kustomize-3/</link>
       <pubDate>Mon, 06 May 2019 16:46:28 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/kustomize-3/</guid>
+      <guid>https://guoxudong.io/en/post/kustomize-3/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -3081,13 +3081,13 @@ kustomize edit set image guoxudongdocker/flask-python:${Tag}&lt;/p&gt;
     
     <item>
       <title>4月29日 云栖社区分享PPT -- 阿里云容器服务的优势与调优</title>
-      <link>https://blog.maoxianplay.com/en/post/aliyun-share/</link>
+      <link>https://guoxudong.io/en/post/aliyun-share/</link>
       <pubDate>Tue, 30 Apr 2019 18:46:24 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/aliyun-share/</guid>
+      <guid>https://guoxudong.io/en/post/aliyun-share/</guid>
       <description>&lt;p&gt;该PPT 为 2019年4月26日 在云栖社区分享使用，这里留作展示和记录，下载地址可以参考下方链接。&lt;/p&gt;
 
-&lt;iframe src=&#34;https://blog.maoxianplay.com/aliyun-share/index.html&#34; style=&#34;width: 100%;height:600px;&#34; frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+&lt;iframe src=&#34;https://guoxudong.io/aliyun-share/index.html&#34; style=&#34;width: 100%;height:600px;&#34; frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
 
 &lt;p&gt;由于图片资源位于 GitHub 上，国内访问可能会有些慢，建议下载观看。&lt;/p&gt;
 
@@ -3097,10 +3097,10 @@ kustomize edit set image guoxudongdocker/flask-python:${Tag}&lt;/p&gt;
     
     <item>
       <title>炫酷的终端软件 eDEX-UI</title>
-      <link>https://blog.maoxianplay.com/en/post/edex-ui/</link>
+      <link>https://guoxudong.io/en/post/edex-ui/</link>
       <pubDate>Mon, 29 Apr 2019 11:55:47 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/edex-ui/</guid>
+      <guid>https://guoxudong.io/en/post/edex-ui/</guid>
       <description>
 
 &lt;p&gt;马上就是五一假期了，而且今年的五一假期有4天！想必大家已经安排好是在家写代码还是出门去冒险了。不过在五一假期之前，我这里推荐一个好玩的又好用的软件给大家。&lt;/p&gt;
@@ -3151,10 +3151,10 @@ kustomize edit set image guoxudongdocker/flask-python:${Tag}&lt;/p&gt;
     
     <item>
       <title>阿里云容器服务新建集群优化方案(更新版)</title>
-      <link>https://blog.maoxianplay.com/en/post/aliyun-k8s-perfect/</link>
+      <link>https://guoxudong.io/en/post/aliyun-k8s-perfect/</link>
       <pubDate>Thu, 25 Apr 2019 22:26:06 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/aliyun-k8s-perfect/</guid>
+      <guid>https://guoxudong.io/en/post/aliyun-k8s-perfect/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -3300,10 +3300,10 @@ selector:
     
     <item>
       <title>困难的 Kubernetes</title>
-      <link>https://blog.maoxianplay.com/en/post/kubernetes-is-har/</link>
+      <link>https://guoxudong.io/en/post/kubernetes-is-har/</link>
       <pubDate>Wed, 24 Apr 2019 10:18:46 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/kubernetes-is-har/</guid>
+      <guid>https://guoxudong.io/en/post/kubernetes-is-har/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -3368,10 +3368,10 @@ selector:
     
     <item>
       <title>GitHub 黑话指南</title>
-      <link>https://blog.maoxianplay.com/en/post/cant/</link>
+      <link>https://guoxudong.io/en/post/cant/</link>
       <pubDate>Mon, 22 Apr 2019 09:11:24 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/cant/</guid>
+      <guid>https://guoxudong.io/en/post/cant/</guid>
       <description>
 
 &lt;p&gt;这里的&lt;strong&gt;黑话&lt;/strong&gt;，其实就是 GitHub 上的一些&lt;strong&gt;迷之缩写&lt;/strong&gt;，这些歪果老司机们在 GitHub 上肆无忌惮的使用着他们的“黑话”，让我们这些非英语母语国家的新司机在 code review 时经常是一脸懵逼 + 黑人问好&amp;hellip;&lt;/p&gt;
@@ -3414,10 +3414,10 @@ image:
     
     <item>
       <title>什么的容器？Docker 工作原理及容器化简易指南</title>
-      <link>https://blog.maoxianplay.com/en/post/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</link>
+      <link>https://guoxudong.io/en/post/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</link>
       <pubDate>Sat, 20 Apr 2019 19:54:50 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</guid>
+      <guid>https://guoxudong.io/en/post/what-are-containers-a-simple-guide-to-containerization-and-how-docker-works/</guid>
       <description>
 
 &lt;p&gt;&lt;strong&gt;Docker 非常棒！&lt;/strong&gt; 它使软件开发者无需担心配置和依赖性，在任何地方打包，发送和运行他们的应用程序。而在与 kubernetes 相结合后，它使应用集群部署和管理变得更方便。这使得 Docker 深受软件开发者的喜爱，越来越多的开发者开始使用 Docker。&lt;/p&gt;
@@ -3541,10 +3541,10 @@ EXPOSE 8082
     
     <item>
       <title>使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法</title>
-      <link>https://blog.maoxianplay.com/en/post/kustomize-2/</link>
+      <link>https://guoxudong.io/en/post/kustomize-2/</link>
       <pubDate>Fri, 19 Apr 2019 16:05:02 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/kustomize-2/</guid>
+      <guid>https://guoxudong.io/en/post/kustomize-2/</guid>
       <description>
 
 &lt;p&gt;本文介绍使用和维护 Kustomize 的方法及步骤。&lt;/p&gt;
@@ -3659,10 +3659,10 @@ git rebase upstream/master
     
     <item>
       <title>Rancher 2.2.1 解决工作负载监控为空问题</title>
-      <link>https://blog.maoxianplay.com/en/post/rancher-prometheus-fix-question/</link>
+      <link>https://guoxudong.io/en/post/rancher-prometheus-fix-question/</link>
       <pubDate>Thu, 18 Apr 2019 17:46:08 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/rancher-prometheus-fix-question/</guid>
+      <guid>https://guoxudong.io/en/post/rancher-prometheus-fix-question/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -3711,10 +3711,10 @@ git rebase upstream/master
     
     <item>
       <title>Kustomize: 无需模板定制你的 kubernetes 配置</title>
-      <link>https://blog.maoxianplay.com/en/post/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</link>
+      <link>https://guoxudong.io/en/post/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</link>
       <pubDate>Mon, 15 Apr 2019 17:23:21 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</guid>
+      <guid>https://guoxudong.io/en/post/introducing-kustomize-template-free-configuration-customization-for-kubernetes/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -3836,10 +3836,10 @@ spec:
     
     <item>
       <title>使用 Kustomize 帮你管理 kubernetes 应用（一）：什么是 Kustomize ？</title>
-      <link>https://blog.maoxianplay.com/en/post/kustomize-1/</link>
+      <link>https://guoxudong.io/en/post/kustomize-1/</link>
       <pubDate>Mon, 15 Apr 2019 13:32:59 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/kustomize-1/</guid>
+      <guid>https://guoxudong.io/en/post/kustomize-1/</guid>
       <description>
 
 &lt;h2 id=&#34;初识-kustomize&#34;&gt;初识 Kustomize&lt;/h2&gt;
@@ -3884,10 +3884,10 @@ spec:
     
     <item>
       <title>从边车模式到 Service Mesh</title>
-      <link>https://blog.maoxianplay.com/en/post/sidercar-to-servicemesh/</link>
+      <link>https://guoxudong.io/en/post/sidercar-to-servicemesh/</link>
       <pubDate>Wed, 10 Apr 2019 14:03:25 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/sidercar-to-servicemesh/</guid>
+      <guid>https://guoxudong.io/en/post/sidercar-to-servicemesh/</guid>
       <description>
 
 &lt;p&gt;所谓边车模式（ Sidecar pattern ），也译作挎斗模式，是分布式架构中云设计模式的一种。因为其非常类似于生活中的边三轮摩托车而得名。该设计模式通过给应用程序加上一个“边车”的方式来拓展应用程序现有的功能。这种设计模式出现的很早，实现的方式也多种多样。现在这个模式更是随着微服务的火热与 Service Mesh 的逐渐成熟而进入人们的视野。&lt;/p&gt;
@@ -3989,10 +3989,10 @@ spec:
     
     <item>
       <title>Devops入门手册</title>
-      <link>https://blog.maoxianplay.com/en/post/devops-tutorial/</link>
+      <link>https://guoxudong.io/en/post/devops-tutorial/</link>
       <pubDate>Tue, 09 Apr 2019 13:21:56 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/devops-tutorial/</guid>
+      <guid>https://guoxudong.io/en/post/devops-tutorial/</guid>
       <description>
 
 &lt;h1 id=&#34;devops-是什么&#34;&gt;DevOps 是什么？&lt;/h1&gt;
@@ -4344,10 +4344,10 @@ spec:
     
     <item>
       <title>单节点版rancher升级指南</title>
-      <link>https://blog.maoxianplay.com/en/post/rancher-update-2.2.1/</link>
+      <link>https://guoxudong.io/en/post/rancher-update-2.2.1/</link>
       <pubDate>Sun, 31 Mar 2019 11:15:35 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/rancher-update-2.2.1/</guid>
+      <guid>https://guoxudong.io/en/post/rancher-update-2.2.1/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -4439,10 +4439,10 @@ PORTS                                       NAMES
     
     <item>
       <title>Service Mesh是什么，我们又为什么需要它</title>
-      <link>https://blog.maoxianplay.com/en/post/whats-a-service-mesh-and-why-do-i-need-one/</link>
+      <link>https://guoxudong.io/en/post/whats-a-service-mesh-and-why-do-i-need-one/</link>
       <pubDate>Mon, 25 Mar 2019 18:17:20 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/whats-a-service-mesh-and-why-do-i-need-one/</guid>
+      <guid>https://guoxudong.io/en/post/whats-a-service-mesh-and-why-do-i-need-one/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -4521,10 +4521,10 @@ PORTS                                       NAMES
     
     <item>
       <title>Istio初探之Bookinfo样例部署</title>
-      <link>https://blog.maoxianplay.com/en/post/istio-bookinfo-demo/</link>
+      <link>https://guoxudong.io/en/post/istio-bookinfo-demo/</link>
       <pubDate>Thu, 21 Mar 2019 09:42:18 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/istio-bookinfo-demo/</guid>
+      <guid>https://guoxudong.io/en/post/istio-bookinfo-demo/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -4858,10 +4858,10 @@ $ kubectl replace -f samples/bookinfo/networking/virtual-service-reviews-v3.yaml
     
     <item>
       <title>浅析ServiceMesh &amp; Istio</title>
-      <link>https://blog.maoxianplay.com/en/post/istio-share/</link>
+      <link>https://guoxudong.io/en/post/istio-share/</link>
       <pubDate>Wed, 20 Mar 2019 09:12:28 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/istio-share/</guid>
+      <guid>https://guoxudong.io/en/post/istio-share/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -4977,10 +4977,10 @@ $ kubectl replace -f samples/bookinfo/networking/virtual-service-reviews-v3.yaml
     
     <item>
       <title>Service Mesh是什么</title>
-      <link>https://blog.maoxianplay.com/en/post/istio-servicemesh/</link>
+      <link>https://guoxudong.io/en/post/istio-servicemesh/</link>
       <pubDate>Tue, 19 Mar 2019 16:12:56 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/istio-servicemesh/</guid>
+      <guid>https://guoxudong.io/en/post/istio-servicemesh/</guid>
       <description>
 
 &lt;p&gt;本文转自&lt;a href=&#34;http://www.servicemesher.com/istio-handbook/concepts-and-principle/what-is-service-mesh.html&#34; target=&#34;_blank&#34;&gt;《Istio 服务网格进阶实战》&lt;/a&gt;&lt;/p&gt;
@@ -5071,10 +5071,10 @@ $ kubectl replace -f samples/bookinfo/networking/virtual-service-reviews-v3.yaml
     
     <item>
       <title>自动合并Kubeconfig，实现多k8s集群切换</title>
-      <link>https://blog.maoxianplay.com/en/post/merge-kubeconfig/</link>
+      <link>https://guoxudong.io/en/post/merge-kubeconfig/</link>
       <pubDate>Sun, 17 Mar 2019 10:45:02 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/merge-kubeconfig/</guid>
+      <guid>https://guoxudong.io/en/post/merge-kubeconfig/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -5211,10 +5211,10 @@ current-context: {context-name}
     
     <item>
       <title>Alpine Linux详解</title>
-      <link>https://blog.maoxianplay.com/en/post/alpine-linux/</link>
+      <link>https://guoxudong.io/en/post/alpine-linux/</link>
       <pubDate>Fri, 15 Mar 2019 09:53:02 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/alpine-linux/</guid>
+      <guid>https://guoxudong.io/en/post/alpine-linux/</guid>
       <description>
 
 &lt;h3 id=&#34;简介&#34;&gt;简介&lt;/h3&gt;
@@ -5401,10 +5401,10 @@ bash-4.3# apk add &amp;ndash;upgrade busybox #升级指定软件包
     
     <item>
       <title>阿里云环境Istio初探</title>
-      <link>https://blog.maoxianplay.com/en/post/istio-demo/</link>
+      <link>https://guoxudong.io/en/post/istio-demo/</link>
       <pubDate>Wed, 13 Mar 2019 15:45:43 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/istio-demo/</guid>
+      <guid>https://guoxudong.io/en/post/istio-demo/</guid>
       <description>
 
 &lt;h1 id=&#34;istio应用部署样例&#34;&gt;istio应用部署样例&lt;/h1&gt;
@@ -5675,10 +5675,10 @@ v2
     
     <item>
       <title>Jenkins Pipeline集成Sonar进行代码质量检测</title>
-      <link>https://blog.maoxianplay.com/en/post/sonar-pipline/</link>
+      <link>https://guoxudong.io/en/post/sonar-pipline/</link>
       <pubDate>Thu, 07 Mar 2019 09:14:39 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/sonar-pipline/</guid>
+      <guid>https://guoxudong.io/en/post/sonar-pipline/</guid>
       <description>
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -5984,10 +5984,10 @@ Cancelling nested steps due to timeout
     
     <item>
       <title>解决kubernetes中ingress-nginx配置问题</title>
-      <link>https://blog.maoxianplay.com/en/post/k8s-ingress-config/</link>
+      <link>https://guoxudong.io/en/post/k8s-ingress-config/</link>
       <pubDate>Wed, 06 Mar 2019 14:42:05 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/k8s-ingress-config/</guid>
+      <guid>https://guoxudong.io/en/post/k8s-ingress-config/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -6120,10 +6120,10 @@ $ cat nginx.conf | grep large_client_header_buffers
     
     <item>
       <title>Pod质量服务类别(QoS)</title>
-      <link>https://blog.maoxianplay.com/en/post/k8s-qos/</link>
+      <link>https://guoxudong.io/en/post/k8s-qos/</link>
       <pubDate>Mon, 04 Mar 2019 19:18:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/k8s-qos/</guid>
+      <guid>https://guoxudong.io/en/post/k8s-qos/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;根据Pod对象的requests和limits属性，kubernetes将Pod对象归类到BestEffort、Burstable和Guaranteed三个服务质量（Quality of Service，QoS）类别。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -6158,10 +6158,10 @@ $ cat nginx.conf | grep large_client_header_buffers
     
     <item>
       <title>阿里云日志服务采集k8s日志并实现livetail功能</title>
-      <link>https://blog.maoxianplay.com/en/post/dashboard-k8s/</link>
+      <link>https://guoxudong.io/en/post/dashboard-k8s/</link>
       <pubDate>Thu, 14 Feb 2019 14:07:06 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/dashboard-k8s/</guid>
+      <guid>https://guoxudong.io/en/post/dashboard-k8s/</guid>
       <description>
 
 &lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
@@ -6182,7 +6182,7 @@ $ cat nginx.conf | grep large_client_header_buffers
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;进入阿里云容器服务找到集群id
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log_ser.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log_ser.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;通过ssh登录master节点，或者任意安装了kubectl并配置了该集群kubeconfig的服务器&lt;/p&gt;&lt;/li&gt;
 
@@ -6253,7 +6253,7 @@ fi
 
 &lt;li&gt;&lt;p&gt;命令执行后，会在kubernetes集群中的每个节点运行一个日志采集的pod：logatail-ds，该pod位于kube-system&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log_detail.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;img src=&#34;https://guoxudong.io/images/source/log_detail.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;安装完成后，可使用以下命令来查看pod状态，若状态全部成功后，则表示安装完成&lt;/p&gt;
 
@@ -6312,31 +6312,31 @@ alibaba-log-controller-85f8fbb498-nzhc8  1/1    Running  0         6d
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;在集群内安装好日志组件后，登录阿里云日志服务控制台，就会发现有一个新的project，名称为k8s-log-{集群id}
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log_src_de.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log_src_de.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;创建Logstore
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;数据导入
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;选择数据类型中选择docker标准输出
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-3.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-3.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;数据源配置，这里可以使用默认的
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-4.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-4.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;选择数据源
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-5.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-5.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;配置好之后等待1-2分钟，日志就会进来了
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-6.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-6.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;为了快速查询和过滤，需要配置索引
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-7.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-7.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;添加容器名称、命名空间、pod名称作为索引（后续使用livetail需要）
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-8.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-8.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;这样就完成了一个k8s集群日志采集和展示的基本流程了&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -6351,10 +6351,10 @@ alibaba-log-controller-85f8fbb498-nzhc8  1/1    Running  0         6d
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;这里选择来源类型为kubernetes，命名空间、pod名称、容器名称为上一步新建的3个索引的内容，过滤关键字的功劳与tail命令后加的grep命令是一样的，用于关键词过滤
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-9.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-9.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;点击开启livetail，这时就有实时日志展示出来了
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-10.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-10.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;以上就是阿里云livetail日志服务功能&lt;/strong&gt;&lt;/p&gt;
@@ -6363,10 +6363,10 @@ alibaba-log-controller-85f8fbb498-nzhc8  1/1    Running  0         6d
     
     <item>
       <title>kubernetes中pod同步时区问题</title>
-      <link>https://blog.maoxianplay.com/en/post/pod-timezone/</link>
+      <link>https://guoxudong.io/en/post/pod-timezone/</link>
       <pubDate>Wed, 30 Jan 2019 20:18:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/pod-timezone/</guid>
+      <guid>https://guoxudong.io/en/post/pod-timezone/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -6417,20 +6417,20 @@ spec:
 
 &lt;h2 id=&#34;修改时区前&#34;&gt;修改时区前&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.maoxianplay.com/images/source/time-1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://guoxudong.io/images/source/time-1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;修改时区后&#34;&gt;修改时区后&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.maoxianplay.com/images/source/time-2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://guoxudong.io/images/source/time-2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>为ingress配置SSL证书，实现HTTPS访问</title>
-      <link>https://blog.maoxianplay.com/en/post/https-ingress/</link>
+      <link>https://guoxudong.io/en/post/https-ingress/</link>
       <pubDate>Sat, 29 Dec 2018 21:28:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/https-ingress/</guid>
+      <guid>https://guoxudong.io/en/post/https-ingress/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -6444,7 +6444,7 @@ spec:
 &lt;p&gt;首先需要获得SSL证书文件，可以直接在阿里云SSL证书管理控制台下载&lt;/p&gt;
 
 &lt;p&gt;选中需要下载证书，选择下载nginx证书
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/zhengshu.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/zhengshu.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;将证书上传项目&#34;&gt;将证书上传项目&lt;/h2&gt;
 
@@ -6453,9 +6453,9 @@ spec:
 &lt;h2 id=&#34;将证书上传项目-1&#34;&gt;将证书上传项目&lt;/h2&gt;
 
 &lt;p&gt;打开rancher，选择要使用证书的项目，点击资源中的证书
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/https-1.png&#34; alt=&#34;image&#34; /&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/https-1.png&#34; alt=&#34;image&#34; /&gt;
 添加证书，点击从文件上传
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/https-2.png&#34; alt=&#34;image&#34; /&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/https-2.png&#34; alt=&#34;image&#34; /&gt;
 上传证书文件中的秘钥和证书，点击保存即可&lt;/p&gt;
 
 &lt;h1 id=&#34;使用yaml上传证书&#34;&gt;使用yaml上传证书&lt;/h1&gt;
@@ -6478,17 +6478,17 @@ type: kubernetes.io/tls
 &lt;h1 id=&#34;rancher中证书绑定&#34;&gt;rancher中证书绑定&lt;/h1&gt;
 
 &lt;p&gt;选中需要绑定证书的ingress，点击编辑，选中证书，保存即可（由于ingress-controller中没有绑定默认证书，所以这里不能选中默认）
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/https-3.png&#34; alt=&#34;image&#34; /&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/https-3.png&#34; alt=&#34;image&#34; /&gt;
 保存完毕，证书即可生效&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>阿里云部署rancher2.1采坑记</title>
-      <link>https://blog.maoxianplay.com/en/post/install-rancher/</link>
+      <link>https://guoxudong.io/en/post/install-rancher/</link>
       <pubDate>Thu, 29 Nov 2018 18:28:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/install-rancher/</guid>
+      <guid>https://guoxudong.io/en/post/install-rancher/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -6511,10 +6511,10 @@ type: kubernetes.io/tls
 &lt;p&gt;首先根据官方文档使用权威CA机构颁发的证书，这里使用的是本公司自己的证书&lt;/p&gt;
 
 &lt;p&gt;获取证书方法：
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/jinrussl.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/jinrussl.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;点击下载证书，选择nginx证书下载
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/zhengshu.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/zhengshu.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;之后将下载的证书上传到rancher所在服务器，并配置好数据卷挂载&lt;/p&gt;
 
@@ -6547,10 +6547,10 @@ rancher/rancher:latest --no-cacerts
 &lt;p&gt;前后端都准备就绪，现在就可以访问rancher了，访问rancher根据页面提示进行基本配置，登录后选择添加集群&lt;/p&gt;
 
 &lt;p&gt;选择导入现有集群
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/add.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/add.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;为集群创建一个rancher中的名称，然后根据提示将命令拷贝到k8s集群所在宿主机执行即可，注意：这里由于配置了证书，所以选择有证书，不绕过证书的那个命令执行，之后就可看到集群数据导入中
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/wating.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/wating.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;等待几秒即可开心的使用rancher了！&lt;/p&gt;
 
@@ -6580,17 +6580,17 @@ rancher/rancher:latest --no-cacerts
     
     <item>
       <title>Kubernetes删除一直处于Terminating状态的namespace</title>
-      <link>https://blog.maoxianplay.com/en/post/k8s-d-n/</link>
+      <link>https://guoxudong.io/en/post/k8s-d-n/</link>
       <pubDate>Fri, 16 Nov 2018 18:18:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/k8s-d-n/</guid>
+      <guid>https://guoxudong.io/en/post/k8s-d-n/</guid>
       <description>
 
 &lt;blockquote&gt;
 &lt;p&gt;近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以需要将原有Rancher依赖的namespace（cattle-system）删除，但在删除中出现了删除的namespace一直处于Terminating状态的情况&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.maoxianplay.com/images/source/d-n-1.png&#34; alt=&#34;imgage&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://guoxudong.io/images/source/d-n-1.png&#34; alt=&#34;imgage&#34; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;解决方案&#34;&gt;解决方案&lt;/h1&gt;
 
@@ -6601,22 +6601,22 @@ rancher/rancher:latest --no-cacerts
 
 &lt;p&gt;可以看到namespaces的yaml配置：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.maoxianplay.com/images/source/d-n-2.png&#34; alt=&#34;imgage&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://guoxudong.io/images/source/d-n-2.png&#34; alt=&#34;imgage&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;将finalizer的value删除，这里将其设置为[]&lt;/p&gt;
 
 &lt;p&gt;保存即可看到该namespace已被删除&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.maoxianplay.com/images/source/d-n-3.png&#34; alt=&#34;imgage&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://guoxudong.io/images/source/d-n-3.png&#34; alt=&#34;imgage&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>kubernetes集群概述</title>
-      <link>https://blog.maoxianplay.com/en/post/k8s-topo/</link>
+      <link>https://guoxudong.io/en/post/k8s-topo/</link>
       <pubDate>Wed, 03 Oct 2018 12:18:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/k8s-topo/</guid>
+      <guid>https://guoxudong.io/en/post/k8s-topo/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -6630,7 +6630,7 @@ rancher/rancher:latest --no-cacerts
 &lt;h1 id=&#34;kubernetes组件及网络通信&#34;&gt;kubernetes组件及网络通信&lt;/h1&gt;
 
 &lt;p&gt;kubernetes集群的客户端可以分为两类：API Server客户端和应用程序（运行为Pod中的容器）客户端。
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/kubernetes-topo.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/kubernetes-topo.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;第一类客户端通常包含用户和Pod对象两种，它们通过API Server访问kubernetes集群完成管理任务，例如，管理集群上的各种资源对象。&lt;/li&gt;
@@ -6646,10 +6646,10 @@ rancher/rancher:latest --no-cacerts
     
     <item>
       <title>精简docker镜像</title>
-      <link>https://blog.maoxianplay.com/en/post/image-size/</link>
+      <link>https://guoxudong.io/en/post/image-size/</link>
       <pubDate>Thu, 27 Sep 2018 20:28:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/image-size/</guid>
+      <guid>https://guoxudong.io/en/post/image-size/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -6875,10 +6875,10 @@ root@k8s-master:/tmp/iops#
     
     <item>
       <title>Docker容器启动退出解决方案</title>
-      <link>https://blog.maoxianplay.com/en/post/docker-quit/</link>
+      <link>https://guoxudong.io/en/post/docker-quit/</link>
       <pubDate>Thu, 27 Sep 2018 19:27:03 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/docker-quit/</guid>
+      <guid>https://guoxudong.io/en/post/docker-quit/</guid>
       <description>
 
 &lt;h1 id=&#34;现象&#34;&gt;现象&lt;/h1&gt;
@@ -6932,10 +6932,10 @@ root@k8s-master:/tmp/iops#
     
     <item>
       <title>容器技术概述</title>
-      <link>https://blog.maoxianplay.com/en/post/con-in/</link>
+      <link>https://guoxudong.io/en/post/con-in/</link>
       <pubDate>Thu, 30 Aug 2018 18:45:22 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/con-in/</guid>
+      <guid>https://guoxudong.io/en/post/con-in/</guid>
       <description>
 
 &lt;h1 id=&#34;背景&#34;&gt;背景&lt;/h1&gt;
@@ -6953,7 +6953,7 @@ root@k8s-master:/tmp/iops#
 &lt;p&gt;容器是一种轻量级、可移植、自包含的软件打包技术，它使得应用程序可以在几乎任何地方以相同的方式运行。&lt;/p&gt;
 
 &lt;p&gt;容器有应用程序本身和它的环境依赖（库和其他应用程序）两部分组成，并在宿主机（Host）操作系统的用户空间中运行，但与操作系统的其他进程互相隔离，他们的实现机制有别于VMWare、KVM、Xen等实现方案的虚拟化技术。容器与虚拟机的对比关系如下图
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/vs.png&#34; alt=&#34;image&#34; /&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/vs.png&#34; alt=&#34;image&#34; /&gt;
 由于同一个宿主机上的所有容器都共享其底层操作系统（内核空间），这就使得容器在体积上要比传统的虚拟机小很多。另外，启动容器无须启动整个操作系统，所以容器部署和启动的速度更快，开销更小，也更容易迁移。事实上，容器赋予了应用程序超强的可移植能力。&lt;/p&gt;
 
 &lt;h1 id=&#34;容器技术的优势&#34;&gt;容器技术的优势&lt;/h1&gt;
@@ -6967,10 +6967,10 @@ root@k8s-master:/tmp/iops#
     
     <item>
       <title>centos7.2 安装k8s v1.11.0</title>
-      <link>https://blog.maoxianplay.com/en/post/install-k8s/</link>
+      <link>https://guoxudong.io/en/post/install-k8s/</link>
       <pubDate>Tue, 14 Aug 2018 20:07:03 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/install-k8s/</guid>
+      <guid>https://guoxudong.io/en/post/install-k8s/</guid>
       <description>
 
 &lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
@@ -6997,7 +6997,7 @@ Kubernetes的特点：&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;注：以下操作都是在root权限下执行的&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;安装docker-ce，这里使用docker-ce-17.09.0.c版本，安装方法见&lt;a href=&#34;https://blog.maoxianplay.com/2018/install-docker&#34;&gt;之前的教程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;安装docker-ce，这里使用docker-ce-17.09.0.c版本，安装方法见&lt;a href=&#34;https://guoxudong.io/2018/install-docker&#34;&gt;之前的教程&lt;/a&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;安装Kubeadm&lt;/p&gt;
 
@@ -7452,7 +7452,7 @@ k8s-node2   Ready     &amp;lt;none&amp;gt;    20h       v1.11.0
 
 &lt;h1 id=&#34;kubernetes-dashboard安装&#34;&gt;kubernetes-dashboard安装&lt;/h1&gt;
 
-&lt;p&gt;详见：&lt;a href=&#34;https://blog.maoxianplay.com/2018/dashboard-k8s&#34;&gt;kubernetes安装dashboard&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;详见：&lt;a href=&#34;https://guoxudong.io/2018/dashboard-k8s&#34;&gt;kubernetes安装dashboard&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;采坑指南&#34;&gt;采坑指南&lt;/h1&gt;
 
@@ -7465,10 +7465,10 @@ k8s-node2   Ready     &amp;lt;none&amp;gt;    20h       v1.11.0
     
     <item>
       <title>centos7安装指定版本的docker</title>
-      <link>https://blog.maoxianplay.com/en/post/install-docker/</link>
+      <link>https://guoxudong.io/en/post/install-docker/</link>
       <pubDate>Tue, 14 Aug 2018 20:05:21 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/install-docker/</guid>
+      <guid>https://guoxudong.io/en/post/install-docker/</guid>
       <description>
 
 &lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;

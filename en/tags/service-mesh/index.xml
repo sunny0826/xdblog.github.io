@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>service mesh on GuoXD Blog</title>
-    <link>https://blog.maoxianplay.com/en/tags/service-mesh/</link>
+    <link>https://guoxudong.io/en/tags/service-mesh/</link>
     <description>Recent content in service mesh on GuoXD Blog</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
     <lastBuildDate>Wed, 10 Apr 2019 14:03:25 +0800</lastBuildDate>
     
-	    <atom:link href="https://blog.maoxianplay.com/en/tags/service-mesh/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="https://guoxudong.io/en/tags/service-mesh/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>从边车模式到 Service Mesh</title>
-      <link>https://blog.maoxianplay.com/en/post/sidercar-to-servicemesh/</link>
+      <link>https://guoxudong.io/en/post/sidercar-to-servicemesh/</link>
       <pubDate>Wed, 10 Apr 2019 14:03:25 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/sidercar-to-servicemesh/</guid>
+      <guid>https://guoxudong.io/en/post/sidercar-to-servicemesh/</guid>
       <description>
 
 &lt;p&gt;所谓边车模式（ Sidecar pattern ），也译作挎斗模式，是分布式架构中云设计模式的一种。因为其非常类似于生活中的边三轮摩托车而得名。该设计模式通过给应用程序加上一个“边车”的方式来拓展应用程序现有的功能。这种设计模式出现的很早，实现的方式也多种多样。现在这个模式更是随着微服务的火热与 Service Mesh 的逐渐成熟而进入人们的视野。&lt;/p&gt;
@@ -119,10 +119,10 @@
     
     <item>
       <title>Service Mesh是什么，我们又为什么需要它</title>
-      <link>https://blog.maoxianplay.com/en/post/whats-a-service-mesh-and-why-do-i-need-one/</link>
+      <link>https://guoxudong.io/en/post/whats-a-service-mesh-and-why-do-i-need-one/</link>
       <pubDate>Mon, 25 Mar 2019 18:17:20 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/whats-a-service-mesh-and-why-do-i-need-one/</guid>
+      <guid>https://guoxudong.io/en/post/whats-a-service-mesh-and-why-do-i-need-one/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -201,10 +201,10 @@
     
     <item>
       <title>Istio初探之Bookinfo样例部署</title>
-      <link>https://blog.maoxianplay.com/en/post/istio-bookinfo-demo/</link>
+      <link>https://guoxudong.io/en/post/istio-bookinfo-demo/</link>
       <pubDate>Thu, 21 Mar 2019 09:42:18 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/istio-bookinfo-demo/</guid>
+      <guid>https://guoxudong.io/en/post/istio-bookinfo-demo/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -538,10 +538,10 @@ $ kubectl replace -f samples/bookinfo/networking/virtual-service-reviews-v3.yaml
     
     <item>
       <title>浅析ServiceMesh &amp; Istio</title>
-      <link>https://blog.maoxianplay.com/en/post/istio-share/</link>
+      <link>https://guoxudong.io/en/post/istio-share/</link>
       <pubDate>Wed, 20 Mar 2019 09:12:28 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/istio-share/</guid>
+      <guid>https://guoxudong.io/en/post/istio-share/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -657,10 +657,10 @@ $ kubectl replace -f samples/bookinfo/networking/virtual-service-reviews-v3.yaml
     
     <item>
       <title>Service Mesh是什么</title>
-      <link>https://blog.maoxianplay.com/en/post/istio-servicemesh/</link>
+      <link>https://guoxudong.io/en/post/istio-servicemesh/</link>
       <pubDate>Tue, 19 Mar 2019 16:12:56 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/istio-servicemesh/</guid>
+      <guid>https://guoxudong.io/en/post/istio-servicemesh/</guid>
       <description>
 
 &lt;p&gt;本文转自&lt;a href=&#34;http://www.servicemesher.com/istio-handbook/concepts-and-principle/what-is-service-mesh.html&#34; target=&#34;_blank&#34;&gt;《Istio 服务网格进阶实战》&lt;/a&gt;&lt;/p&gt;
@@ -751,10 +751,10 @@ $ kubectl replace -f samples/bookinfo/networking/virtual-service-reviews-v3.yaml
     
     <item>
       <title>阿里云环境Istio初探</title>
-      <link>https://blog.maoxianplay.com/en/post/istio-demo/</link>
+      <link>https://guoxudong.io/en/post/istio-demo/</link>
       <pubDate>Wed, 13 Mar 2019 15:45:43 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/istio-demo/</guid>
+      <guid>https://guoxudong.io/en/post/istio-demo/</guid>
       <description>
 
 &lt;h1 id=&#34;istio应用部署样例&#34;&gt;istio应用部署样例&lt;/h1&gt;

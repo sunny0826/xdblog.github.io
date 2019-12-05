@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>部署安装 on GuoXD Blog</title>
-    <link>https://blog.maoxianplay.com/en/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/</link>
+    <link>https://guoxudong.io/en/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/</link>
     <description>Recent content in 部署安装 on GuoXD Blog</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
     <lastBuildDate>Fri, 23 Aug 2019 09:36:55 +0800</lastBuildDate>
     
-	    <atom:link href="https://blog.maoxianplay.com/en/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="https://guoxudong.io/en/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>GitHub/Gitee 静态页托管页部署SSL证书</title>
-      <link>https://blog.maoxianplay.com/en/post/aliyun-ssl/</link>
+      <link>https://guoxudong.io/en/post/aliyun-ssl/</link>
       <pubDate>Fri, 23 Aug 2019 09:36:55 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/aliyun-ssl/</guid>
+      <guid>https://guoxudong.io/en/post/aliyun-ssl/</guid>
       <description>
 
 &lt;p&gt;本文档介绍了在 &lt;a href=&#34;https://pages.github.com/&#34; target=&#34;_blank&#34;&gt;Github&lt;/a&gt; / &lt;a href=&#34;https://gitee.com/help/articles/4136&#34; target=&#34;_blank&#34;&gt;Gitee&lt;/a&gt; 的静态页托管Pages服务部署SSL证书，配置HTTPS安全访问的操作说明。&lt;/p&gt;
@@ -162,10 +162,10 @@
     
     <item>
       <title>单节点版rancher升级指南</title>
-      <link>https://blog.maoxianplay.com/en/post/rancher-update-2.2.1/</link>
+      <link>https://guoxudong.io/en/post/rancher-update-2.2.1/</link>
       <pubDate>Sun, 31 Mar 2019 11:15:35 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/rancher-update-2.2.1/</guid>
+      <guid>https://guoxudong.io/en/post/rancher-update-2.2.1/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -257,10 +257,10 @@ PORTS                                       NAMES
     
     <item>
       <title>阿里云日志服务采集k8s日志并实现livetail功能</title>
-      <link>https://blog.maoxianplay.com/en/post/dashboard-k8s/</link>
+      <link>https://guoxudong.io/en/post/dashboard-k8s/</link>
       <pubDate>Thu, 14 Feb 2019 14:07:06 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/dashboard-k8s/</guid>
+      <guid>https://guoxudong.io/en/post/dashboard-k8s/</guid>
       <description>
 
 &lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
@@ -281,7 +281,7 @@ PORTS                                       NAMES
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;进入阿里云容器服务找到集群id
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log_ser.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log_ser.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;通过ssh登录master节点，或者任意安装了kubectl并配置了该集群kubeconfig的服务器&lt;/p&gt;&lt;/li&gt;
 
@@ -352,7 +352,7 @@ fi
 
 &lt;li&gt;&lt;p&gt;命令执行后，会在kubernetes集群中的每个节点运行一个日志采集的pod：logatail-ds，该pod位于kube-system&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log_detail.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;img src=&#34;https://guoxudong.io/images/source/log_detail.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;安装完成后，可使用以下命令来查看pod状态，若状态全部成功后，则表示安装完成&lt;/p&gt;
 
@@ -411,31 +411,31 @@ alibaba-log-controller-85f8fbb498-nzhc8  1/1    Running  0         6d
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;在集群内安装好日志组件后，登录阿里云日志服务控制台，就会发现有一个新的project，名称为k8s-log-{集群id}
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log_src_de.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log_src_de.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;创建Logstore
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;数据导入
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;选择数据类型中选择docker标准输出
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-3.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-3.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;数据源配置，这里可以使用默认的
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-4.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-4.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;选择数据源
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-5.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-5.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;配置好之后等待1-2分钟，日志就会进来了
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-6.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-6.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;为了快速查询和过滤，需要配置索引
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-7.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-7.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;添加容器名称、命名空间、pod名称作为索引（后续使用livetail需要）
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-8.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-8.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;这样就完成了一个k8s集群日志采集和展示的基本流程了&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -450,10 +450,10 @@ alibaba-log-controller-85f8fbb498-nzhc8  1/1    Running  0         6d
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;这里选择来源类型为kubernetes，命名空间、pod名称、容器名称为上一步新建的3个索引的内容，过滤关键字的功劳与tail命令后加的grep命令是一样的，用于关键词过滤
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-9.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-9.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;点击开启livetail，这时就有实时日志展示出来了
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-10.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-10.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;以上就是阿里云livetail日志服务功能&lt;/strong&gt;&lt;/p&gt;
@@ -462,10 +462,10 @@ alibaba-log-controller-85f8fbb498-nzhc8  1/1    Running  0         6d
     
     <item>
       <title>centos7.2 安装k8s v1.11.0</title>
-      <link>https://blog.maoxianplay.com/en/post/install-k8s/</link>
+      <link>https://guoxudong.io/en/post/install-k8s/</link>
       <pubDate>Tue, 14 Aug 2018 20:07:03 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/install-k8s/</guid>
+      <guid>https://guoxudong.io/en/post/install-k8s/</guid>
       <description>
 
 &lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
@@ -492,7 +492,7 @@ Kubernetes的特点：&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;注：以下操作都是在root权限下执行的&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;安装docker-ce，这里使用docker-ce-17.09.0.c版本，安装方法见&lt;a href=&#34;https://blog.maoxianplay.com/2018/install-docker&#34;&gt;之前的教程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;安装docker-ce，这里使用docker-ce-17.09.0.c版本，安装方法见&lt;a href=&#34;https://guoxudong.io/2018/install-docker&#34;&gt;之前的教程&lt;/a&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;安装Kubeadm&lt;/p&gt;
 
@@ -947,7 +947,7 @@ k8s-node2   Ready     &amp;lt;none&amp;gt;    20h       v1.11.0
 
 &lt;h1 id=&#34;kubernetes-dashboard安装&#34;&gt;kubernetes-dashboard安装&lt;/h1&gt;
 
-&lt;p&gt;详见：&lt;a href=&#34;https://blog.maoxianplay.com/2018/dashboard-k8s&#34;&gt;kubernetes安装dashboard&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;详见：&lt;a href=&#34;https://guoxudong.io/2018/dashboard-k8s&#34;&gt;kubernetes安装dashboard&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;采坑指南&#34;&gt;采坑指南&lt;/h1&gt;
 
@@ -960,10 +960,10 @@ k8s-node2   Ready     &amp;lt;none&amp;gt;    20h       v1.11.0
     
     <item>
       <title>centos7安装指定版本的docker</title>
-      <link>https://blog.maoxianplay.com/en/post/install-docker/</link>
+      <link>https://guoxudong.io/en/post/install-docker/</link>
       <pubDate>Tue, 14 Aug 2018 20:05:21 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/install-docker/</guid>
+      <guid>https://guoxudong.io/en/post/install-docker/</guid>
       <description>
 
 &lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;

@@ -2,130 +2,130 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on GuoXD Blog</title>
-    <link>https://blog.maoxianplay.com/en/categories/</link>
+    <link>https://guoxudong.io/en/categories/</link>
     <description>Recent content in Categories on GuoXD Blog</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
     <lastBuildDate>Wed, 04 Dec 2019 17:09:51 +0800</lastBuildDate>
     
-	    <atom:link href="https://blog.maoxianplay.com/en/categories/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="https://guoxudong.io/en/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>kubernetes</title>
-      <link>https://blog.maoxianplay.com/en/categories/kubernetes/</link>
+      <link>https://guoxudong.io/en/categories/kubernetes/</link>
       <pubDate>Wed, 04 Dec 2019 17:09:51 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/categories/kubernetes/</guid>
+      <guid>https://guoxudong.io/en/categories/kubernetes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>公益</title>
-      <link>https://blog.maoxianplay.com/en/categories/%E5%85%AC%E7%9B%8A/</link>
+      <link>https://guoxudong.io/en/categories/%E5%85%AC%E7%9B%8A/</link>
       <pubDate>Sun, 29 Sep 2019 09:52:11 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/categories/%E5%85%AC%E7%9B%8A/</guid>
+      <guid>https://guoxudong.io/en/categories/%E5%85%AC%E7%9B%8A/</guid>
       <description></description>
     </item>
     
     <item>
       <title>devops</title>
-      <link>https://blog.maoxianplay.com/en/categories/devops/</link>
+      <link>https://guoxudong.io/en/categories/devops/</link>
       <pubDate>Wed, 11 Sep 2019 13:53:09 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/categories/devops/</guid>
+      <guid>https://guoxudong.io/en/categories/devops/</guid>
       <description></description>
     </item>
     
     <item>
       <title>部署安装</title>
-      <link>https://blog.maoxianplay.com/en/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/</link>
+      <link>https://guoxudong.io/en/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/</link>
       <pubDate>Fri, 23 Aug 2019 09:36:55 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/</guid>
+      <guid>https://guoxudong.io/en/categories/%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85/</guid>
       <description></description>
     </item>
     
     <item>
       <title>翻译</title>
-      <link>https://blog.maoxianplay.com/en/categories/%E7%BF%BB%E8%AF%91/</link>
+      <link>https://guoxudong.io/en/categories/%E7%BF%BB%E8%AF%91/</link>
       <pubDate>Tue, 06 Aug 2019 14:01:30 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/categories/%E7%BF%BB%E8%AF%91/</guid>
+      <guid>https://guoxudong.io/en/categories/%E7%BF%BB%E8%AF%91/</guid>
       <description></description>
     </item>
     
     <item>
       <title>go</title>
-      <link>https://blog.maoxianplay.com/en/categories/go/</link>
+      <link>https://guoxudong.io/en/categories/go/</link>
       <pubDate>Thu, 25 Jul 2019 16:27:57 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/categories/go/</guid>
+      <guid>https://guoxudong.io/en/categories/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>应用程序开发</title>
-      <link>https://blog.maoxianplay.com/en/categories/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/</link>
+      <link>https://guoxudong.io/en/categories/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/</link>
       <pubDate>Sat, 06 Jul 2019 09:40:42 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/categories/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/</guid>
+      <guid>https://guoxudong.io/en/categories/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/</guid>
       <description></description>
     </item>
     
     <item>
       <title>kustomize</title>
-      <link>https://blog.maoxianplay.com/en/categories/kustomize/</link>
+      <link>https://guoxudong.io/en/categories/kustomize/</link>
       <pubDate>Thu, 04 Jul 2019 09:16:41 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/categories/kustomize/</guid>
+      <guid>https://guoxudong.io/en/categories/kustomize/</guid>
       <description></description>
     </item>
     
     <item>
       <title>程序员趣闻</title>
-      <link>https://blog.maoxianplay.com/en/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%B6%A3%E9%97%BB/</link>
+      <link>https://guoxudong.io/en/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%B6%A3%E9%97%BB/</link>
       <pubDate>Tue, 02 Jul 2019 10:18:18 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%B6%A3%E9%97%BB/</guid>
+      <guid>https://guoxudong.io/en/categories/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%B6%A3%E9%97%BB/</guid>
       <description></description>
     </item>
     
     <item>
       <title>问题解决</title>
-      <link>https://blog.maoxianplay.com/en/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</link>
+      <link>https://guoxudong.io/en/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</link>
       <pubDate>Thu, 18 Apr 2019 17:46:08 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</guid>
+      <guid>https://guoxudong.io/en/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>服务网格</title>
-      <link>https://blog.maoxianplay.com/en/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</link>
+      <link>https://guoxudong.io/en/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</link>
       <pubDate>Wed, 10 Apr 2019 14:03:25 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</guid>
+      <guid>https://guoxudong.io/en/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</guid>
       <description></description>
     </item>
     
     <item>
       <title>istio</title>
-      <link>https://blog.maoxianplay.com/en/categories/istio/</link>
+      <link>https://guoxudong.io/en/categories/istio/</link>
       <pubDate>Thu, 21 Mar 2019 09:42:18 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/categories/istio/</guid>
+      <guid>https://guoxudong.io/en/categories/istio/</guid>
       <description></description>
     </item>
     
     <item>
       <title>系统</title>
-      <link>https://blog.maoxianplay.com/en/categories/%E7%B3%BB%E7%BB%9F/</link>
+      <link>https://guoxudong.io/en/categories/%E7%B3%BB%E7%BB%9F/</link>
       <pubDate>Fri, 15 Mar 2019 09:53:02 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/categories/%E7%B3%BB%E7%BB%9F/</guid>
+      <guid>https://guoxudong.io/en/categories/%E7%B3%BB%E7%BB%9F/</guid>
       <description></description>
     </item>
     

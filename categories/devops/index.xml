@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>devops on GuoXD Blog·郭旭东的博客</title>
-    <link>https://blog.maoxianplay.com/categories/devops/</link>
+    <link>https://guoxudong.io/categories/devops/</link>
     <description>Recent content in devops on GuoXD Blog·郭旭东的博客</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
     <lastBuildDate>Wed, 11 Sep 2019 13:53:09 +0800</lastBuildDate>
     
-	    <atom:link href="https://blog.maoxianplay.com/categories/devops/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="https://guoxudong.io/categories/devops/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>玩转 Drone CI</title>
-      <link>https://blog.maoxianplay.com/post/drone-optimize/</link>
+      <link>https://guoxudong.io/post/drone-optimize/</link>
       <pubDate>Wed, 11 Sep 2019 13:53:09 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/post/drone-optimize/</guid>
+      <guid>https://guoxudong.io/post/drone-optimize/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -164,10 +164,10 @@ trigger:
     
     <item>
       <title>GitOps 与 ChatOps 的落地实践</title>
-      <link>https://blog.maoxianplay.com/post/gitops-and-chatops/</link>
+      <link>https://guoxudong.io/post/gitops-and-chatops/</link>
       <pubDate>Thu, 11 Jul 2019 09:24:17 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/post/gitops-and-chatops/</guid>
+      <guid>https://guoxudong.io/post/gitops-and-chatops/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -262,10 +262,10 @@ trigger:
     
     <item>
       <title>轻量快速的 CI 工具 Drone</title>
-      <link>https://blog.maoxianplay.com/post/drone-ci/</link>
+      <link>https://guoxudong.io/post/drone-ci/</link>
       <pubDate>Tue, 21 May 2019 08:59:00 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/post/drone-ci/</guid>
+      <guid>https://guoxudong.io/post/drone-ci/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -501,10 +501,10 @@ trigger:
     
     <item>
       <title>什么是 DevSecOps ?</title>
-      <link>https://blog.maoxianplay.com/post/what-is-devsecops/</link>
+      <link>https://guoxudong.io/post/what-is-devsecops/</link>
       <pubDate>Fri, 03 May 2019 14:37:14 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/post/what-is-devsecops/</guid>
+      <guid>https://guoxudong.io/post/what-is-devsecops/</guid>
       <description>
 
 &lt;p&gt;DevOps 不仅仅是开发和运营团队。如果您想要充分发挥出 DevOps 方法的敏捷性和响应力，则必须在应用的整个生命周期内同时兼顾 &lt;a href=&#34;https://www.redhat.com/zh/topics/security&#34; target=&#34;_blank&#34;&gt;IT 安全性&lt;/a&gt;。&lt;/p&gt;
@@ -583,10 +583,10 @@ trigger:
     
     <item>
       <title>Jenkins Pipeline集成Sonar进行代码质量检测</title>
-      <link>https://blog.maoxianplay.com/post/sonar-pipline/</link>
+      <link>https://guoxudong.io/post/sonar-pipline/</link>
       <pubDate>Thu, 07 Mar 2019 09:14:39 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/post/sonar-pipline/</guid>
+      <guid>https://guoxudong.io/post/sonar-pipline/</guid>
       <description>
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;

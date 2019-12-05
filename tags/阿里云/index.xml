@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>阿里云 on GuoXD Blog·郭旭东的博客</title>
-    <link>https://blog.maoxianplay.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</link>
+    <link>https://guoxudong.io/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</link>
     <description>Recent content in 阿里云 on GuoXD Blog·郭旭东的博客</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
     <lastBuildDate>Wed, 13 Nov 2019 09:13:22 +0800</lastBuildDate>
     
-	    <atom:link href="https://blog.maoxianplay.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="https://guoxudong.io/tags/%E9%98%BF%E9%87%8C%E4%BA%91/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>使用 Velero 进行集群备份与迁移</title>
-      <link>https://blog.maoxianplay.com/post/aliyun-velero/</link>
+      <link>https://guoxudong.io/post/aliyun-velero/</link>
       <pubDate>Wed, 13 Nov 2019 09:13:22 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/post/aliyun-velero/</guid>
+      <guid>https://guoxudong.io/post/aliyun-velero/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -349,10 +349,10 @@ spec:
     
     <item>
       <title>使用 Grafana 展示阿里云监控指标</title>
-      <link>https://blog.maoxianplay.com/post/aliyun-cms-grafana/</link>
+      <link>https://guoxudong.io/post/aliyun-cms-grafana/</link>
       <pubDate>Thu, 07 Nov 2019 11:08:36 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/post/aliyun-cms-grafana/</guid>
+      <guid>https://guoxudong.io/post/aliyun-cms-grafana/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -475,10 +475,10 @@ spec:
     
     <item>
       <title>阿里云产品夜谈-容器服务交流</title>
-      <link>https://blog.maoxianplay.com/post/aliyun-product-meetup/</link>
+      <link>https://guoxudong.io/post/aliyun-product-meetup/</link>
       <pubDate>Mon, 30 Sep 2019 09:32:35 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/post/aliyun-product-meetup/</guid>
+      <guid>https://guoxudong.io/post/aliyun-product-meetup/</guid>
       <description>
 
 &lt;p&gt;&lt;img src=&#34;https://tvax4.sinaimg.cn/large/ad5fbf65gy1g7hb4iwdpvj213i0vs4qq.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
@@ -514,10 +514,10 @@ spec:
     
     <item>
       <title>GitHub/Gitee 静态页托管页部署SSL证书</title>
-      <link>https://blog.maoxianplay.com/post/aliyun-ssl/</link>
+      <link>https://guoxudong.io/post/aliyun-ssl/</link>
       <pubDate>Fri, 23 Aug 2019 09:36:55 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/post/aliyun-ssl/</guid>
+      <guid>https://guoxudong.io/post/aliyun-ssl/</guid>
       <description>
 
 &lt;p&gt;本文档介绍了在 &lt;a href=&#34;https://pages.github.com/&#34; target=&#34;_blank&#34;&gt;Github&lt;/a&gt; / &lt;a href=&#34;https://gitee.com/help/articles/4136&#34; target=&#34;_blank&#34;&gt;Gitee&lt;/a&gt; 的静态页托管Pages服务部署SSL证书，配置HTTPS安全访问的操作说明。&lt;/p&gt;
@@ -662,10 +662,10 @@ spec:
     
     <item>
       <title>阿里云 ACK 挂载 NAS 数据卷</title>
-      <link>https://blog.maoxianplay.com/post/nas-k8s/</link>
+      <link>https://guoxudong.io/post/nas-k8s/</link>
       <pubDate>Mon, 08 Jul 2019 15:09:56 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/post/nas-k8s/</guid>
+      <guid>https://guoxudong.io/post/nas-k8s/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -769,13 +769,13 @@ persistentVolumeClaim:
     
     <item>
       <title>4月29日 云栖社区分享PPT -- 阿里云容器服务的优势与调优</title>
-      <link>https://blog.maoxianplay.com/post/aliyun-share/</link>
+      <link>https://guoxudong.io/post/aliyun-share/</link>
       <pubDate>Tue, 30 Apr 2019 18:46:24 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/post/aliyun-share/</guid>
+      <guid>https://guoxudong.io/post/aliyun-share/</guid>
       <description>&lt;p&gt;该PPT 为 2019年4月26日 在云栖社区分享使用，这里留作展示和记录，下载地址可以参考下方链接。&lt;/p&gt;
 
-&lt;iframe src=&#34;https://blog.maoxianplay.com/aliyun-share/index.html&#34; style=&#34;width: 100%;height:600px;&#34; frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+&lt;iframe src=&#34;https://guoxudong.io/aliyun-share/index.html&#34; style=&#34;width: 100%;height:600px;&#34; frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
 
 &lt;p&gt;由于图片资源位于 GitHub 上，国内访问可能会有些慢，建议下载观看。&lt;/p&gt;
 
@@ -785,10 +785,10 @@ persistentVolumeClaim:
     
     <item>
       <title>阿里云容器服务新建集群优化方案(更新版)</title>
-      <link>https://blog.maoxianplay.com/post/aliyun-k8s-perfect/</link>
+      <link>https://guoxudong.io/post/aliyun-k8s-perfect/</link>
       <pubDate>Thu, 25 Apr 2019 22:26:06 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/post/aliyun-k8s-perfect/</guid>
+      <guid>https://guoxudong.io/post/aliyun-k8s-perfect/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -934,10 +934,10 @@ selector:
     
     <item>
       <title>Istio初探之Bookinfo样例部署</title>
-      <link>https://blog.maoxianplay.com/post/istio-bookinfo-demo/</link>
+      <link>https://guoxudong.io/post/istio-bookinfo-demo/</link>
       <pubDate>Thu, 21 Mar 2019 09:42:18 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/post/istio-bookinfo-demo/</guid>
+      <guid>https://guoxudong.io/post/istio-bookinfo-demo/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
@@ -1271,10 +1271,10 @@ $ kubectl replace -f samples/bookinfo/networking/virtual-service-reviews-v3.yaml
     
     <item>
       <title>阿里云环境Istio初探</title>
-      <link>https://blog.maoxianplay.com/post/istio-demo/</link>
+      <link>https://guoxudong.io/post/istio-demo/</link>
       <pubDate>Wed, 13 Mar 2019 15:45:43 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/post/istio-demo/</guid>
+      <guid>https://guoxudong.io/post/istio-demo/</guid>
       <description>
 
 &lt;h1 id=&#34;istio应用部署样例&#34;&gt;istio应用部署样例&lt;/h1&gt;
@@ -1545,10 +1545,10 @@ v2
     
     <item>
       <title>阿里云日志服务采集k8s日志并实现livetail功能</title>
-      <link>https://blog.maoxianplay.com/post/dashboard-k8s/</link>
+      <link>https://guoxudong.io/post/dashboard-k8s/</link>
       <pubDate>Thu, 14 Feb 2019 14:07:06 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/post/dashboard-k8s/</guid>
+      <guid>https://guoxudong.io/post/dashboard-k8s/</guid>
       <description>
 
 &lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
@@ -1569,7 +1569,7 @@ v2
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;进入阿里云容器服务找到集群id
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log_ser.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log_ser.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;通过ssh登录master节点，或者任意安装了kubectl并配置了该集群kubeconfig的服务器&lt;/p&gt;&lt;/li&gt;
 
@@ -1640,7 +1640,7 @@ fi
 
 &lt;li&gt;&lt;p&gt;命令执行后，会在kubernetes集群中的每个节点运行一个日志采集的pod：logatail-ds，该pod位于kube-system&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log_detail.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;img src=&#34;https://guoxudong.io/images/source/log_detail.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;安装完成后，可使用以下命令来查看pod状态，若状态全部成功后，则表示安装完成&lt;/p&gt;
 
@@ -1699,31 +1699,31 @@ alibaba-log-controller-85f8fbb498-nzhc8  1/1    Running  0         6d
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;在集群内安装好日志组件后，登录阿里云日志服务控制台，就会发现有一个新的project，名称为k8s-log-{集群id}
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log_src_de.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log_src_de.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;创建Logstore
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;数据导入
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;选择数据类型中选择docker标准输出
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-3.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-3.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;数据源配置，这里可以使用默认的
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-4.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-4.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;选择数据源
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-5.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-5.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;配置好之后等待1-2分钟，日志就会进来了
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-6.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-6.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;为了快速查询和过滤，需要配置索引
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-7.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-7.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;添加容器名称、命名空间、pod名称作为索引（后续使用livetail需要）
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-8.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-8.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;这样就完成了一个k8s集群日志采集和展示的基本流程了&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -1738,10 +1738,10 @@ alibaba-log-controller-85f8fbb498-nzhc8  1/1    Running  0         6d
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;这里选择来源类型为kubernetes，命名空间、pod名称、容器名称为上一步新建的3个索引的内容，过滤关键字的功劳与tail命令后加的grep命令是一样的，用于关键词过滤
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-9.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-9.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;点击开启livetail，这时就有实时日志展示出来了
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/log-10.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/log-10.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;以上就是阿里云livetail日志服务功能&lt;/strong&gt;&lt;/p&gt;
@@ -1750,10 +1750,10 @@ alibaba-log-controller-85f8fbb498-nzhc8  1/1    Running  0         6d
     
     <item>
       <title>为ingress配置SSL证书，实现HTTPS访问</title>
-      <link>https://blog.maoxianplay.com/post/https-ingress/</link>
+      <link>https://guoxudong.io/post/https-ingress/</link>
       <pubDate>Sat, 29 Dec 2018 21:28:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/post/https-ingress/</guid>
+      <guid>https://guoxudong.io/post/https-ingress/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -1767,7 +1767,7 @@ alibaba-log-controller-85f8fbb498-nzhc8  1/1    Running  0         6d
 &lt;p&gt;首先需要获得SSL证书文件，可以直接在阿里云SSL证书管理控制台下载&lt;/p&gt;
 
 &lt;p&gt;选中需要下载证书，选择下载nginx证书
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/zhengshu.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/zhengshu.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;将证书上传项目&#34;&gt;将证书上传项目&lt;/h2&gt;
 
@@ -1776,9 +1776,9 @@ alibaba-log-controller-85f8fbb498-nzhc8  1/1    Running  0         6d
 &lt;h2 id=&#34;将证书上传项目-1&#34;&gt;将证书上传项目&lt;/h2&gt;
 
 &lt;p&gt;打开rancher，选择要使用证书的项目，点击资源中的证书
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/https-1.png&#34; alt=&#34;image&#34; /&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/https-1.png&#34; alt=&#34;image&#34; /&gt;
 添加证书，点击从文件上传
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/https-2.png&#34; alt=&#34;image&#34; /&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/https-2.png&#34; alt=&#34;image&#34; /&gt;
 上传证书文件中的秘钥和证书，点击保存即可&lt;/p&gt;
 
 &lt;h1 id=&#34;使用yaml上传证书&#34;&gt;使用yaml上传证书&lt;/h1&gt;
@@ -1801,17 +1801,17 @@ type: kubernetes.io/tls
 &lt;h1 id=&#34;rancher中证书绑定&#34;&gt;rancher中证书绑定&lt;/h1&gt;
 
 &lt;p&gt;选中需要绑定证书的ingress，点击编辑，选中证书，保存即可（由于ingress-controller中没有绑定默认证书，所以这里不能选中默认）
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/https-3.png&#34; alt=&#34;image&#34; /&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/https-3.png&#34; alt=&#34;image&#34; /&gt;
 保存完毕，证书即可生效&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>阿里云部署rancher2.1采坑记</title>
-      <link>https://blog.maoxianplay.com/post/install-rancher/</link>
+      <link>https://guoxudong.io/post/install-rancher/</link>
       <pubDate>Thu, 29 Nov 2018 18:28:13 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/post/install-rancher/</guid>
+      <guid>https://guoxudong.io/post/install-rancher/</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -1834,10 +1834,10 @@ type: kubernetes.io/tls
 &lt;p&gt;首先根据官方文档使用权威CA机构颁发的证书，这里使用的是本公司自己的证书&lt;/p&gt;
 
 &lt;p&gt;获取证书方法：
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/jinrussl.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/jinrussl.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;点击下载证书，选择nginx证书下载
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/zhengshu.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/zhengshu.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;之后将下载的证书上传到rancher所在服务器，并配置好数据卷挂载&lt;/p&gt;
 
@@ -1870,10 +1870,10 @@ rancher/rancher:latest --no-cacerts
 &lt;p&gt;前后端都准备就绪，现在就可以访问rancher了，访问rancher根据页面提示进行基本配置，登录后选择添加集群&lt;/p&gt;
 
 &lt;p&gt;选择导入现有集群
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/add.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/add.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;为集群创建一个rancher中的名称，然后根据提示将命令拷贝到k8s集群所在宿主机执行即可，注意：这里由于配置了证书，所以选择有证书，不绕过证书的那个命令执行，之后就可看到集群数据导入中
-&lt;img src=&#34;https://blog.maoxianplay.com/images/source/wating.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://guoxudong.io/images/source/wating.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;等待几秒即可开心的使用rancher了！&lt;/p&gt;
 

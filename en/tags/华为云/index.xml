@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>华为云 on GuoXD Blog</title>
-    <link>https://blog.maoxianplay.com/en/tags/%E5%8D%8E%E4%B8%BA%E4%BA%91/</link>
+    <link>https://guoxudong.io/en/tags/%E5%8D%8E%E4%B8%BA%E4%BA%91/</link>
     <description>Recent content in 华为云 on GuoXD Blog</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
     <lastBuildDate>Thu, 21 Mar 2019 09:42:18 +0800</lastBuildDate>
     
-	    <atom:link href="https://blog.maoxianplay.com/en/tags/%E5%8D%8E%E4%B8%BA%E4%BA%91/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="https://guoxudong.io/en/tags/%E5%8D%8E%E4%B8%BA%E4%BA%91/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Istio初探之Bookinfo样例部署</title>
-      <link>https://blog.maoxianplay.com/en/post/istio-bookinfo-demo/</link>
+      <link>https://guoxudong.io/en/post/istio-bookinfo-demo/</link>
       <pubDate>Thu, 21 Mar 2019 09:42:18 +0800</pubDate>
       
-      <guid>https://blog.maoxianplay.com/en/post/istio-bookinfo-demo/</guid>
+      <guid>https://guoxudong.io/en/post/istio-bookinfo-demo/</guid>
       <description>
 
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
