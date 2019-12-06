@@ -423,21 +423,6 @@
   </url>
   
   <url>
-    <loc>https://guoxudong.io/tags/%E7%BF%BB%E8%AF%91/</loc>
-    <lastmod>2019-08-06T14:01:30+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/tags/%E7%BF%BB%E8%AF%91/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/tags/%E7%BF%BB%E8%AF%91/"
-                />
-  </url>
-  
-  <url>
     <loc>https://guoxudong.io/categories/%E7%BF%BB%E8%AF%91/</loc>
     <lastmod>2019-08-06T14:01:30+08:00</lastmod>
     <xhtml:link
@@ -453,17 +438,17 @@
   </url>
   
   <url>
-    <loc>https://guoxudong.io/categories/go/</loc>
-    <lastmod>2019-07-25T16:27:57+08:00</lastmod>
+    <loc>https://guoxudong.io/tags/%E7%BF%BB%E8%AF%91/</loc>
+    <lastmod>2019-08-06T14:01:30+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://guoxudong.io/en/categories/go/"
+                href="https://guoxudong.io/en/tags/%E7%BF%BB%E8%AF%91/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://guoxudong.io/categories/go/"
+                href="https://guoxudong.io/tags/%E7%BF%BB%E8%AF%91/"
                 />
   </url>
   
@@ -479,6 +464,21 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://guoxudong.io/tags/go/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/categories/go/</loc>
+    <lastmod>2019-07-25T16:27:57+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/categories/go/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/categories/go/"
                 />
   </url>
   
