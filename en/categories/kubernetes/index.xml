@@ -7,10 +7,158 @@
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
-    <lastBuildDate>Wed, 04 Dec 2019 17:09:51 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 09 Dec 2019 10:07:46 +0800</lastBuildDate>
     
 	    <atom:link href="https://guoxudong.io/en/categories/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kubecm：管理你的 kubeconfig</title>
+      <link>https://guoxudong.io/en/post/kubecm/</link>
+      <pubDate>Mon, 09 Dec 2019 10:07:46 +0800</pubDate>
+      
+      <guid>https://guoxudong.io/en/post/kubecm/</guid>
+      <description>
+
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;该项目脱胎于 &lt;a href=&#34;https://github.com/sunny0826/mergeKubeConfig&#34; target=&#34;_blank&#34;&gt;mergeKubeConfig&lt;/a&gt; 项目，最早写该项目的目的是在一堆杂乱无章的 kubeconfig 中自由的切换。随着需要操作的 Kubernetes 集群越来越多，在不同的集群之间切换也越来越麻烦，而操作 Kubernetes 集群的本质不过是通过 &lt;code&gt;kubeconfig&lt;/code&gt; 访问 Kubernetes 集群的 API Server，以操作 Kubernetes 的各种资源，而 &lt;code&gt;kubeconfig&lt;/code&gt; 不过是一个 yaml 文件，用来保存访问集群的密钥，最早的 &lt;a href=&#34;https://github.com/sunny0826/mergeKubeConfig&#34; target=&#34;_blank&#34;&gt;mergeKubeConfig&lt;/a&gt; 不过是一个操作 yaml 文件的 Python 脚本。而随着 golang 学习的深入，也就动了重写这个项目的念头，就这样 &lt;a href=&#34;https://github.com/sunny0826/kubecm&#34; target=&#34;_blank&#34;&gt;kubecm&lt;/a&gt; 诞生了。&lt;/p&gt;
+
+&lt;h2 id=&#34;kubecm&#34;&gt;kubecm&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/sunny0826/kubecm&#34; target=&#34;_blank&#34;&gt;kubecm&lt;/a&gt; 由 golang 编写，支持 &lt;code&gt;Mac&lt;/code&gt; &lt;code&gt;Linux&lt;/code&gt; 和 &lt;code&gt;windows&lt;/code&gt; 平台，&lt;code&gt;delete&lt;/code&gt; &lt;code&gt;rename&lt;/code&gt; &lt;code&gt;switch&lt;/code&gt; 提供比较实用的交互式的操作，目前的功能包括：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;add ：添加新的 &lt;code&gt;kubeconfig&lt;/code&gt; 到 &lt;code&gt;$HOME/.kube/config&lt;/code&gt; 中&lt;/li&gt;
+&lt;li&gt;completion ：命令行自动补全功能&lt;/li&gt;
+&lt;li&gt;delete：删除已有的 &lt;code&gt;context&lt;/code&gt; ，提供交互式和指定删除两种方式&lt;/li&gt;
+&lt;li&gt;merge：将指定目录中的 &lt;code&gt;kubeconfig&lt;/code&gt; 合并为一个 &lt;code&gt;kubeconfig&lt;/code&gt; 文件&lt;/li&gt;
+&lt;li&gt;rename：重名指定的 &lt;code&gt;context&lt;/code&gt;，提供交互式和指定重命名两种方式&lt;/li&gt;
+&lt;li&gt;switch：交互式切换 &lt;code&gt;context&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/sunny0826/kubecm&#34; target=&#34;_blank&#34;&gt;kubecm&lt;/a&gt; 支持 &lt;code&gt;Mac&lt;/code&gt; &lt;code&gt;Linux&lt;/code&gt; 和 &lt;code&gt;windows&lt;/code&gt; 平台，安装方式也比较简单：&lt;/p&gt;
+
+&lt;h4 id=&#34;macos&#34;&gt;MacOS&lt;/h4&gt;
+
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    使用 &lt;code&gt;brew&lt;/code&gt; 或者直接下载二进制可执行文件
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;brew install sunny0826/tap/kubecm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;linux&#34;&gt;Linux&lt;/h4&gt;
+
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    下载二进制可执行文件
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# linux x86_64
+curl -Lo kubecm.tar.gz https://github.com/sunny0826/kubecm/releases/download/v${VERSION}/kubecm_${VERSION}_Linux_x86_64.tar.gz
+tar -zxvf kubecm.tar.gz kubecm
+cd kubecm
+sudo mv kubecm /usr/local/bin/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;windows&#34;&gt;Windows&lt;/h4&gt;
+
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    下载二进制可执行文件，并将文件移动到 &lt;code&gt;$PATH&lt;/code&gt; 中即可
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&#34;命令行自动补全&#34;&gt;命令行自动补全&lt;/h2&gt;
+
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;a href=&#34;https://github.com/sunny0826/kubecm&#34; target=&#34;_blank&#34;&gt;kubecm&lt;/a&gt; 提供了和 &lt;a href=&#34;https://github.com/kubernetes/kubectl&#34; target=&#34;_blank&#34;&gt;kubectl&lt;/a&gt; 一样的 completion 命令行自动补全功能（支持 bash/zsh）
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;以 &lt;code&gt;zsh&lt;/code&gt; 为例，在 &lt;code&gt;$HOME/.zshrc&lt;/code&gt; 中添加&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-vim&#34;&gt;source &amp;lt;(kubecm completion zsh)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后使用 &lt;code&gt;source&lt;/code&gt; 命令，使其生效&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;source $HOME/.zshrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;之后，在输入 &lt;code&gt;kubecm&lt;/code&gt; 后按 &lt;kbd&gt;tab&lt;/kbd&gt; 键，就可以看到命令行自动补全的内容&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tva2.sinaimg.cn/large/ad5fbf65gy1g9qa0yy3bvj21co0f2hdt.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;操作-kubeconfig&#34;&gt;操作 kubeconfig&lt;/h2&gt;
+
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;a href=&#34;https://github.com/sunny0826/kubecm&#34; target=&#34;_blank&#34;&gt;kubecm&lt;/a&gt; 可以实现 &lt;code&gt;kubeconfig&lt;/code&gt; 的查看、添加、删除、合并、重命名和切换
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&#34;查看&#34;&gt;查看&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 查看 $HOME/.kube/config 中所有的 context
+kubecm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;添加&#34;&gt;添加&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 添加 example.yaml 到 $HOME/.kube/config.yaml，该方式不会覆盖源 kubeconfig，只会在当前目录中生成一个 config.yaml 文件
+kubecm add -f example.yaml
+
+# 功能同上，但是会将 example.yaml 中的 context 命名为 test
+kubecm add -f example.yaml -n test
+
+# 添加 -c 会覆盖源 kubeconfig
+kubecm add -f example.yaml -c
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;删除&#34;&gt;删除&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 交互式删除
+kubecm delete
+# 删除指定 context
+kubecm delete my-context
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;合并&#34;&gt;合并&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 合并 test 目录中的 kubeconfig,该方式不会覆盖源 kubeconfig，只会在当前目录中生成一个 config.yaml 文件
+kubecm merge -f test 
+
+# 添加 -c 会覆盖源 kubeconfig
+kubecm merge -f test -c
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;重命名&#34;&gt;重命名&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 交互式重命名
+kubecm rename
+# 将 dev 重命名为 test
+kubecm rename -o dev -n test
+# 重命名 current-context 为 dev
+kubecm rename -n dev -c
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;效果展示&#34;&gt;效果展示&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;Interaction.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;结语&#34;&gt;结语&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/sunny0826/kubecm&#34; target=&#34;_blank&#34;&gt;kubecm&lt;/a&gt; 项目的初衷为学习 golang 并熟悉 client-go 的使用，随着使用的深入，断断续续增加了不少功能，开发出了一个看上去还算正规的项目。总的来说都是根据自己的喜好来开发的业余项目，欢迎各位通过 &lt;a href=&#34;https://github.com/sunny0826/kubecm/issues/new&#34; target=&#34;_blank&#34;&gt;ISSUE&lt;/a&gt; 来进行交流和讨论。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>小工具介绍：KubeWatch</title>

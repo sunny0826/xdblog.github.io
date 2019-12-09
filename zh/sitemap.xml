@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://guoxudong.io/authors/guoxudong/</loc>
-    <lastmod>2019-12-04T17:09:51+08:00</lastmod>
+    <lastmod>2019-12-09T10:07:46+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -19,7 +19,7 @@
   
   <url>
     <loc>https://guoxudong.io/authors/</loc>
-    <lastmod>2019-12-04T17:09:51+08:00</lastmod>
+    <lastmod>2019-12-09T10:07:46+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -34,7 +34,7 @@
   
   <url>
     <loc>https://guoxudong.io/categories/</loc>
-    <lastmod>2019-12-04T17:09:51+08:00</lastmod>
+    <lastmod>2019-12-09T10:07:46+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -49,7 +49,7 @@
   
   <url>
     <loc>https://guoxudong.io/</loc>
-    <lastmod>2019-12-04T17:09:51+08:00</lastmod>
+    <lastmod>2019-12-09T10:07:46+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -63,8 +63,23 @@
   </url>
   
   <url>
+    <loc>https://guoxudong.io/post/kubecm/</loc>
+    <lastmod>2019-12-09T10:07:46+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/post/kubecm/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/post/kubecm/"
+                />
+  </url>
+  
+  <url>
     <loc>https://guoxudong.io/tags/kubernetes/</loc>
-    <lastmod>2019-12-04T17:09:51+08:00</lastmod>
+    <lastmod>2019-12-09T10:07:46+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -79,7 +94,7 @@
   
   <url>
     <loc>https://guoxudong.io/categories/kubernetes/</loc>
-    <lastmod>2019-12-04T17:09:51+08:00</lastmod>
+    <lastmod>2019-12-09T10:07:46+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -94,7 +109,7 @@
   
   <url>
     <loc>https://guoxudong.io/tags/</loc>
-    <lastmod>2019-12-04T17:09:51+08:00</lastmod>
+    <lastmod>2019-12-09T10:07:46+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -109,7 +124,7 @@
   
   <url>
     <loc>https://guoxudong.io/post/</loc>
-    <lastmod>2019-12-04T17:09:51+08:00</lastmod>
+    <lastmod>2019-12-09T10:07:46+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -288,21 +303,6 @@
   </url>
   
   <url>
-    <loc>https://guoxudong.io/categories/devops/</loc>
-    <lastmod>2019-09-11T13:53:09+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/categories/devops/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/categories/devops/"
-                />
-  </url>
-  
-  <url>
     <loc>https://guoxudong.io/tags/devops/</loc>
     <lastmod>2019-09-11T13:53:09+08:00</lastmod>
     <xhtml:link
@@ -314,6 +314,21 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://guoxudong.io/tags/devops/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/categories/devops/</loc>
+    <lastmod>2019-09-11T13:53:09+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/categories/devops/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/categories/devops/"
                 />
   </url>
   
@@ -423,21 +438,6 @@
   </url>
   
   <url>
-    <loc>https://guoxudong.io/categories/%E7%BF%BB%E8%AF%91/</loc>
-    <lastmod>2019-08-06T14:01:30+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/categories/%E7%BF%BB%E8%AF%91/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/categories/%E7%BF%BB%E8%AF%91/"
-                />
-  </url>
-  
-  <url>
     <loc>https://guoxudong.io/tags/%E7%BF%BB%E8%AF%91/</loc>
     <lastmod>2019-08-06T14:01:30+08:00</lastmod>
     <xhtml:link
@@ -449,6 +449,21 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://guoxudong.io/tags/%E7%BF%BB%E8%AF%91/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/categories/%E7%BF%BB%E8%AF%91/</loc>
+    <lastmod>2019-08-06T14:01:30+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/categories/%E7%BF%BB%E8%AF%91/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/categories/%E7%BF%BB%E8%AF%91/"
                 />
   </url>
   
@@ -1233,21 +1248,6 @@
   </url>
   
   <url>
-    <loc>https://guoxudong.io/tags/istio/</loc>
-    <lastmod>2019-03-21T09:42:18+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/tags/istio/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/tags/istio/"
-                />
-  </url>
-  
-  <url>
     <loc>https://guoxudong.io/categories/istio/</loc>
     <lastmod>2019-03-21T09:42:18+08:00</lastmod>
     <xhtml:link
@@ -1259,6 +1259,21 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://guoxudong.io/categories/istio/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/tags/istio/</loc>
+    <lastmod>2019-03-21T09:42:18+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/tags/istio/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/tags/istio/"
                 />
   </url>
   
