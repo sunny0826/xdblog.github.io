@@ -90,7 +90,7 @@ sudo mv kubecm /usr/local/bin/
 
 &lt;p&gt;然后使用 &lt;code&gt;source&lt;/code&gt; 命令，使其生效&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;source $HOME/.zshrc
+&lt;pre&gt;&lt;code class=&#34;language-zsh&#34;&gt;source $HOME/.zshrc
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;之后，在输入 &lt;code&gt;kubecm&lt;/code&gt; 后按 &lt;kbd&gt;tab&lt;/kbd&gt; 键，就可以看到命令行自动补全的内容&lt;/p&gt;
