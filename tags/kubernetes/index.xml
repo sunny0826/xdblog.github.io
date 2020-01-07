@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>kubernetes on GuoXD Blog·郭旭东的博客</title>
+    <title>Kubernetes on GuoXD Blog·郭旭东的博客</title>
     <link>https://guoxudong.io/tags/kubernetes/</link>
-    <description>Recent content in kubernetes on GuoXD Blog·郭旭东的博客</description>
+    <description>Recent content in Kubernetes on GuoXD Blog·郭旭东的博客</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
