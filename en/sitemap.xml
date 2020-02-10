@@ -183,21 +183,6 @@
   </url>
   
   <url>
-    <loc>https://guoxudong.io/en/categories/kubernetes/</loc>
-    <lastmod>2019-12-09T10:07:46+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/categories/kubernetes/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/categories/kubernetes/"
-                />
-  </url>
-  
-  <url>
     <loc>https://guoxudong.io/en/tags/kubernetes/</loc>
     <lastmod>2019-12-09T10:07:46+08:00</lastmod>
     <xhtml:link
@@ -209,6 +194,21 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://guoxudong.io/en/tags/kubernetes/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/en/categories/kubernetes/</loc>
+    <lastmod>2019-12-09T10:07:46+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/categories/kubernetes/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/categories/kubernetes/"
                 />
   </url>
   
@@ -378,21 +378,6 @@
   </url>
   
   <url>
-    <loc>https://guoxudong.io/en/tags/devops/</loc>
-    <lastmod>2019-09-11T13:53:09+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/tags/devops/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/tags/devops/"
-                />
-  </url>
-  
-  <url>
     <loc>https://guoxudong.io/en/categories/devops/</loc>
     <lastmod>2019-09-11T13:53:09+08:00</lastmod>
     <xhtml:link
@@ -404,6 +389,21 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://guoxudong.io/en/categories/devops/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/en/tags/devops/</loc>
+    <lastmod>2019-09-11T13:53:09+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/tags/devops/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/tags/devops/"
                 />
   </url>
   
