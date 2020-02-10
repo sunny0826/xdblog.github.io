@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://guoxudong.io/en/authors/guoxudong/</loc>
-    <lastmod>2019-12-09T10:07:46+08:00</lastmod>
+    <lastmod>2020-02-10T10:52:26+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -19,7 +19,7 @@
   
   <url>
     <loc>https://guoxudong.io/en/authors/</loc>
-    <lastmod>2019-12-09T10:07:46+08:00</lastmod>
+    <lastmod>2020-02-10T10:52:26+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -34,7 +34,7 @@
   
   <url>
     <loc>https://guoxudong.io/en/categories/</loc>
-    <lastmod>2019-12-09T10:07:46+08:00</lastmod>
+    <lastmod>2020-02-10T10:52:26+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -49,7 +49,7 @@
   
   <url>
     <loc>https://guoxudong.io/en/</loc>
-    <lastmod>2019-12-09T10:07:46+08:00</lastmod>
+    <lastmod>2020-02-10T10:52:26+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -59,6 +59,111 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://guoxudong.io/en/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/en/post/</loc>
+    <lastmod>2020-02-10T10:52:26+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/post/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/post/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/en/tags/</loc>
+    <lastmod>2020-02-10T10:52:26+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/en/tags/%E5%AE%89%E5%85%A8%E5%8A%9E%E5%85%AC/</loc>
+    <lastmod>2020-02-10T10:52:26+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/tags/%E5%AE%89%E5%85%A8%E5%8A%9E%E5%85%AC/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/tags/%E5%AE%89%E5%85%A8%E5%8A%9E%E5%85%AC/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/en/categories/%E6%95%88%E7%8E%87/</loc>
+    <lastmod>2020-02-10T10:52:26+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/categories/%E6%95%88%E7%8E%87/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/categories/%E6%95%88%E7%8E%87/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/en/post/work-4-home/</loc>
+    <lastmod>2020-02-10T10:52:26+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/post/work-4-home/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/post/work-4-home/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/en/tags/%E8%BF%9C%E7%A8%8B%E5%8A%9E%E5%85%AC/</loc>
+    <lastmod>2020-02-10T10:52:26+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/tags/%E8%BF%9C%E7%A8%8B%E5%8A%9E%E5%85%AC/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/tags/%E8%BF%9C%E7%A8%8B%E5%8A%9E%E5%85%AC/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/en/tags/%E9%AB%98%E6%95%88%E5%8A%9E%E5%85%AC/</loc>
+    <lastmod>2020-02-10T10:52:26+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/tags/%E9%AB%98%E6%95%88%E5%8A%9E%E5%85%AC/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/tags/%E9%AB%98%E6%95%88%E5%8A%9E%E5%85%AC/"
                 />
   </url>
   
@@ -104,36 +209,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://guoxudong.io/en/tags/kubernetes/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://guoxudong.io/en/post/</loc>
-    <lastmod>2019-12-09T10:07:46+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/post/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/post/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://guoxudong.io/en/tags/</loc>
-    <lastmod>2019-12-09T10:07:46+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/tags/"
                 />
   </url>
   
