@@ -306,9 +306,26 @@ kubecm rename -o dev -n test
 kubecm rename -n dev -c
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;h4 id=&#34;切换默认-namespace&#34;&gt;切换默认 namespace&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 交互式切换 namespace
+kubecm namespace
+# 或者
+kubecm ns
+# 切换默认 namespace 为 kube-system
+kubecm ns kube-system
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;h2 id=&#34;效果展示&#34;&gt;效果展示&lt;/h2&gt;
 
 &lt;p&gt;&lt;img src=&#34;Interaction.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;视频介绍&#34;&gt;视频介绍&lt;/h2&gt;
+
+
+&lt;div style=&#34;position: relative; width: 100%; height: 0; padding-bottom: 75%;&#34;&gt;
+    &lt;iframe src=&#34;//player.bilibili.com/player.html?aid=88259938&amp;amp;cid=150776221&amp;amp;page=1&#34; scrolling=&#34;no&#34; border=&#34;0&#34; frameborder=&#34;no&#34; framespacing=&#34;0&#34; allowfullscreen=&#34;true&#34;style=&#34;position: absolute; width: 100%; height: 100%; left: 0; top: 0;&#34;&gt; &lt;/iframe&gt;
+&lt;/div&gt;
 
 &lt;h2 id=&#34;结语&#34;&gt;结语&lt;/h2&gt;
 

@@ -543,21 +543,6 @@
   </url>
   
   <url>
-    <loc>https://guoxudong.io/tags/go/</loc>
-    <lastmod>2019-07-25T16:27:57+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/tags/go/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/tags/go/"
-                />
-  </url>
-  
-  <url>
     <loc>https://guoxudong.io/categories/go/</loc>
     <lastmod>2019-07-25T16:27:57+08:00</lastmod>
     <xhtml:link
@@ -569,6 +554,21 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://guoxudong.io/categories/go/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/tags/go/</loc>
+    <lastmod>2019-07-25T16:27:57+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/tags/go/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/tags/go/"
                 />
   </url>
   
@@ -1323,21 +1323,6 @@
   </url>
   
   <url>
-    <loc>https://guoxudong.io/categories/istio/</loc>
-    <lastmod>2019-03-21T09:42:18+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/categories/istio/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/categories/istio/"
-                />
-  </url>
-  
-  <url>
     <loc>https://guoxudong.io/tags/istio/</loc>
     <lastmod>2019-03-21T09:42:18+08:00</lastmod>
     <xhtml:link
@@ -1349,6 +1334,21 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://guoxudong.io/tags/istio/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/categories/istio/</loc>
+    <lastmod>2019-03-21T09:42:18+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/categories/istio/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/categories/istio/"
                 />
   </url>
   
