@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academia 4.3.1">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
+  <meta name="baidu-site-verification" content="A85okozwVV" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="never">
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="郭旭东">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="使用 k3d 在本地快速搭建轻量级 k8s 集群 - k3s，并使用 kubecm 管理所有集群。">
+
+  
+  <link rel="alternate" hreflang="en" href="https://guoxudong.io/en/post/k3d-k3s-kubecm/">
+  
+  <link rel="alternate" hreflang="zh-Hans" href="https://guoxudong.io/post/k3d-k3s-kubecm/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#fc6f5c">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.9.0/instantsearch.min.css" integrity="sha256-ZtmLe16p4jS4/2wPwwH6NzJt460SJzgLmhKrYo5yn7g=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch-theme-algolia.min.css" integrity="sha256-uL8LUd3zkI/lXvc/Hv/oOu8ld6RJcOZiUY/8c+I+3/o=" crossorigin="anonymous">
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+
+  
+    
+    
+    
+    
+      
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://guoxudong.io/post/k3d-k3s-kubecm/">
+
+  
+  
+  
+  
+    
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@GuoXudong2">
+  <meta property="twitter:creator" content="@GuoXudong2">
+  
+  <meta property="og:site_name" content="GuoXD Blog·郭旭东的博客">
+  <meta property="og:url" content="https://guoxudong.io/post/k3d-k3s-kubecm/">
+  <meta property="og:title" content="K3d&#43;Kubecm 本地开发运维两不误 | GuoXD Blog·郭旭东的博客">
+  <meta property="og:description" content="使用 k3d 在本地快速搭建轻量级 k8s 集群 - k3s，并使用 kubecm 管理所有集群。"><meta property="og:image" content="https://guoxudong.io/post/k3d-k3s-kubecm/featured.jpeg">
+  <meta property="twitter:image" content="https://guoxudong.io/post/k3d-k3s-kubecm/featured.jpeg"><meta property="og:locale" content="zh-Hans">
+  
+  <meta property="article:published_time" content="2020-02-17T11:51:39&#43;08:00">
+  
+  <meta property="article:modified_time" content="2020-02-17T11:51:39&#43;08:00">
+  
+
+  
+
+
+  
+
+
+
+
+
+  <title>K3d&#43;Kubecm 本地开发运维两不误 | GuoXD Blog·郭旭东的博客</title>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4d507f28a1daf58fc7aca939db57093d";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>  
+</head>
+
+
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/"><img src="/img/logo.png" alt="GuoXD Blog·郭旭东的博客"></a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航"><span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#slider"><span>主页</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>博客</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>关于</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" ><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <span>中文 (简体)</span>
+          </a>
+          <ul class="dropdown-menu">
+            
+            <li class="dropdown-item my-0 py-0 mx-0 px-0">
+              <a href="https://guoxudong.io/en/post/k3d-k3s-kubecm/">
+                <span>English</span>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article py-5" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container split-header">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+        <img class="img-fluid w-100" src="/post/k3d-k3s-kubecm/featured_hu1494eed073024837087ec72e9c0d8e7c_192432_680x500_fill_q90_lanczos_center.jpeg" itemprop="image" alt="">
+        
+    </div>
+    <div class="col-lg-8">
+      <h1 itemprop="name">K3d&#43;Kubecm 本地开发运维两不误</h1>
+
+      
+      <p class="page-subtitle">k3d+k3s+kubecm 快速搭建集群并管理</p>
+      
+
+      
+
+
+
+<meta content="2020-02-17 11:51:39 &#43;0800 CST" itemprop="datePublished">
+<meta content="2020-02-17 11:51:39 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+
+
+  <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/guoxudong/">郭旭东</a></span>
+
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2020-02-17</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 分钟阅读时间
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/post/k3d-k3s-kubecm/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="">边缘计算</a></span>
+  
+
+  
+    
+<br>
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://guoxudong.io/post/k3d-k3s-kubecm/&amp;text=K3d&#43;Kubecm%20%e6%9c%ac%e5%9c%b0%e5%bc%80%e5%8f%91%e8%bf%90%e7%bb%b4%e4%b8%a4%e4%b8%8d%e8%af%af" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://guoxudong.io/post/k3d-k3s-kubecm/&amp;t=K3d&#43;Kubecm%20%e6%9c%ac%e5%9c%b0%e5%bc%80%e5%8f%91%e8%bf%90%e7%bb%b4%e4%b8%a4%e4%b8%8d%e8%af%af" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=K3d&#43;Kubecm%20%e6%9c%ac%e5%9c%b0%e5%bc%80%e5%8f%91%e8%bf%90%e7%bb%b4%e4%b8%a4%e4%b8%8d%e8%af%af&amp;body=https://guoxudong.io/post/k3d-k3s-kubecm/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://guoxudong.io/post/k3d-k3s-kubecm/&amp;title=K3d&#43;Kubecm%20%e6%9c%ac%e5%9c%b0%e5%bc%80%e5%8f%91%e8%bf%90%e7%bb%b4%e4%b8%a4%e4%b8%8d%e8%af%af" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=K3d&#43;Kubecm%20%e6%9c%ac%e5%9c%b0%e5%bc%80%e5%8f%91%e8%bf%90%e7%bb%b4%e4%b8%a4%e4%b8%8d%e8%af%af%20https://guoxudong.io/post/k3d-k3s-kubecm/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://guoxudong.io/post/k3d-k3s-kubecm/&amp;title=K3d&#43;Kubecm%20%e6%9c%ac%e5%9c%b0%e5%bc%80%e5%8f%91%e8%bf%90%e7%bb%b4%e4%b8%a4%e4%b8%8d%e8%af%af" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://guoxudong.io/post/k3d-k3s-kubecm/&amp;title=K3d&#43;Kubecm%20%e6%9c%ac%e5%9c%b0%e5%bc%80%e5%8f%91%e8%bf%90%e7%bb%b4%e4%b8%a4%e4%b8%8d%e8%af%af" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="/share?url=https://guoxudong.io/post/k3d-k3s-kubecm/" target="_blank" rel="noopener" class="share-btn-weixin">
+          <i class="fab fa-weixin"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    
+    </div>
+  </div>
+</div>
+
+  <div class="article-container" id="container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<h2 id="前言">前言</h2>
+
+<p>k3s 是由 Rancher Labs 于2019年年初推出的一款轻量级 Kubernetes 发行版，满足在边缘计算环境中运行在 x86、ARM64 和 ARMv7 处理器上的小型、易于管理的 Kubernetes 集群日益增长的需求。</p>
+
+<p>k3s 除了在边缘计算领域的应用外，在研发侧的表现也十分出色。我们可以快速在本地拉起一个轻量级的 k8s 集群，而 k3d 则是 k3s 社区创建的一个小工具，可以在一个 docker 进程中运行整个 k3s 集群，相比直接使用 k3s 运行在本地，更好管理和部署。</p>
+
+<p>在日常工作中，时长要在本地集群和多个远程集群之间切换来完成运维工作，这时使用 <code>kubecm</code> 快速将 k3s 集群的 kubeconfig 与现有集群的 kubeconfig 合并，并可快速切换集群，开发运维两不误。</p>
+
+<h2 id="安装-k3d">安装 k3d</h2>
+
+<p>k3d 提供了多种安装方式，十分方便。</p>
+
+<h3 id="使用脚本安装">使用脚本安装</h3>
+
+<p>直接使用 <code>wget</code> 和 <code>curl</code> 安装</p>
+
+<pre><code class="language-bash">wget -q -O - https://raw.githubusercontent.com/rancher/k3d/master/install.sh | bash
+# 或
+curl -s https://raw.githubusercontent.com/rancher/k3d/master/install.sh | bash
+</code></pre>
+
+<p>安装指定版本</p>
+
+<pre><code class="language-bash">wget -q -O - https://raw.githubusercontent.com/rancher/k3d/master/install.sh | TAG=v1.3.4 bash
+# 或
+curl -s https://raw.githubusercontent.com/rancher/k3d/master/install.sh | TAG=v1.3.4 bash
+</code></pre>
+
+<h3 id="使用-homebrew-安装">使用 Homebrew 安装</h3>
+
+<p>MacOS 或安装了 Homebrew 的 Linux 可以使用 brew 安装：</p>
+
+<pre><code class="language-bash">brew install k3d
+</code></pre>
+
+<h3 id="其他">其他</h3>
+
+<p>还可以直接前往 <a href="https://github.com/rancher/k3d/releases" target="_blank">release 页面</a> 下载二进制可执行文件，或者直接使用 <code>go install github.com/rancher/k3d</code> 安装。</p>
+
+<h2 id="创建-k3s-集群">创建 k3s 集群</h2>
+
+<p>创建 k3s 集群也十分简单，一行命令就可拉起，速度非常快。</p>
+
+<pre><code class="language-go">$ k3d create -n k3s-local
+INFO[0000] Created cluster network with ID facae4a046b169721805f93ec21ba1acb65b9efb8cf35866529178cb0fba75a9
+INFO[0000] Created docker volume  k3d-k3s-local-images
+INFO[0000] Creating cluster [k3s-local]
+INFO[0000] Creating server using docker.io/rancher/k3s:v1.0.1...
+INFO[0000] SUCCESS: created cluster [k3s-local]
+INFO[0000] You can now use the cluster with:
+
+export KUBECONFIG=&quot;$(k3d get-kubeconfig --name='k3s-local')&quot;
+kubectl cluster-info
+</code></pre>
+
+<p>但是一般情况下，如果没有梯子的话，k3s 集群虽然拉起来很快，但因为拉不到镜像，集群组件都无法正常拉起。</p>
+
+<pre><code class="language-go">$ export KUBECONFIG=&quot;$(k3d get-kubeconfig --name='k3s-local')&quot;
+$ kubectl get pod -n kube-system
+NAME                                      READY   STATUS              RESTARTS   AGE
+helm-install-traefik-8wxmr                0/1     ContainerCreating   0          3m30s
+metrics-server-6d684c7b5-j4sc7            0/1     ContainerCreating   0          3m30s
+coredns-d798c9dd-j6lpw                    0/1     ContainerCreating   0          3m30s
+local-path-provisioner-58fb86bdfd-wv7sw   0/1     ContainerCreating   0          3m30s
+$ kubectl describe pod coredns-d798c9dd-j6lpw -n kube-system
+...
+Events:
+  Type     Reason                  Age                 From                           Message
+  ----     ------                  ----                ----                           -------
+  Normal   Scheduled               &lt;unknown&gt;           default-scheduler              Successfully assigned kube-system/coredns-d798c9dd-j6lpw to k3d-k3s-local-server
+  Warning  FailedCreatePodSandBox  7s (x7 over 4m30s)  kubelet, k3d-k3s-local-server  Failed create pod sandbox: rpc error: code = Unknown desc = failed to get sandbox image &quot;k8s.gcr.io/pause:3.1&quot;: failed to pull image &quot;k8s.gcr.io/pause:3.1&quot;: failed to pull and unpack image &quot;k8s.gcr.io/pause:3.1&quot;: failed to resolve reference &quot;k8s.gcr.io/pause:3.1&quot;: failed to do request: Head https://k8s.gcr.io/v2/pause/manifests/3.1: dial tcp 64.233.189.82:443: i/o timeout
+</code></pre>
+
+<h3 id="离线安装">离线安装</h3>
+
+<p>如果没有梯子的话，就只能选择使用离线安装。</p>
+
+<h4 id="下载离线镜像">下载离线镜像</h4>
+
+<p>前往 <a href="https://github.com/rancher/k3s/releases" target="_blank">release 页面</a> 下载指定版本的镜像，这里我们下载最新的 <a href="https://github.com/rancher/k3s/releases/tag/v1.17.2%2Bk3s1" target="_blank">v1.17.2+k3s1</a> 镜像。</p>
+
+<p><img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1gbzdedmqpdj20sh0k776o.jpg" alt="image" /></p>
+
+<p>下载到 <code>~/airgap</code> 目录中，并进行解压，将解压后的目录重命名为 <code>1.17.2</code>。</p>
+
+<h3 id="运行离线镜像">运行离线镜像</h3>
+
+<p>这里再次运行 k3d，部署 k3s 集群。这里要注意的是，挂载离线镜像的话，必须使用 <code>-i</code> flag 来指定镜像版本，这里我们使用的是 <a href="https://github.com/rancher/k3s/releases/tag/v1.17.2%2Bk3s1" target="_blank">v1.17.2+k3s1</a> 版本，而镜像的 tag 则是 <code>v1.17.2-k3s1</code>，如果不确定 tag，可以去 <a href="https://hub.docker.com/r/rancher/k3s/tags" target="_blank">DockerHub</a> 上查看。</p>
+
+<pre><code class="language-go">$ k3d create -n k3s-local -i rancher/k3s:v1.17.2-k3s1  -v $(pwd)/airgap/v1.17.2/:/var/lib/rancher/k3s/agent/images/
+INFO[0000] Created cluster network with ID 10b3fca995fcb491ae1fe1c901672bf6f0a0fd6f51785ba8403947d2773ebd43
+INFO[0000] Created docker volume  k3d-k3s-local-images
+INFO[0000] Creating cluster [k3s-local]
+INFO[0000] Creating server using docker.io/rancher/k3s:v1.17.2-k3s1...
+INFO[0000] SUCCESS: created cluster [k3s-local]
+INFO[0000] You can now use the cluster with:
+
+export KUBECONFIG=&quot;$(k3d get-kubeconfig --name='k3s-local')&quot;
+kubectl cluster-info
+</code></pre>
+
+<p>查看 k3s 集群组件启动状态：</p>
+
+<pre><code class="language-go">$ export KUBECONFIG=&quot;$(k3d get-kubeconfig --name='k3s-local')&quot;
+$ kubectl get pod -A -w
+NAMESPACE     NAME                                      READY   STATUS              RESTARTS   AGE
+kube-system   local-path-provisioner-58fb86bdfd-7jzbw   0/1     ContainerCreating   0          6m35s
+kube-system   coredns-d798c9dd-jhmds                    1/1     Running             0          6m35s
+kube-system   metrics-server-6d684c7b5-4x2cd            1/1     Running             0          6m35s
+kube-system   traefik-6787cddb4b-9v7r4                  0/1     ContainerCreating   0          16s
+kube-system   svclb-traefik-fzrqj                       0/2     ContainerCreating   0          15s
+kube-system   helm-install-traefik-h8k2j                0/1     Completed           0          6m35s
+kube-system   svclb-traefik-fzrqj                       2/2     Running             0          21s
+</code></pre>
+
+<h2 id="使用-kubecm">使用 kubecm</h2>
+
+<p>在 k3s 集群启动成功后，使用 <a href="https://github.com/sunny0826/kubecm" target="_blank"><code>kubecm</code></a>，将 k3s 的 kubeconfig 与现有 kubeconfig 合并。</p>
+
+<pre><code class="language-bash">kubecm add -f $(k3d get-kubeconfig --name='k3s-local') -n k3s -c
+</code></pre>
+
+<p>切换集群，选择 k3s。</p>
+
+<pre><code class="language-go">$ kubecm s
+Use the arrow keys to navigate: ↓ ↑ → ←  and / toggles search
+Select Kube Context
+  😼 k3s(*)
+    prod-tg
+    test
+↓   banma
+
+--------- Info ----------
+Name:           k3s
+Cluster:        cluster-485d6mhcfm
+User:           user-485d6mhcfm
+</code></pre>
+
+<p>现在就可以在本地使用 k3s 集群进行开发工作，而有运维工作的时候，使用 <code>kubecm switch</code> 快速切换集群。</p>
+
+<h2 id="结语">结语</h2>
+
+<p><img src="https://tva3.sinaimg.cn/large/ad5fbf65gy1gbzegsyex5j20x90n70vv.jpg" alt="image" /></p>
+
+<p>k3s 同时支持 <strong>x86_64</strong>、<strong>ARM64</strong> 和 <strong>ARMv7</strong> 架构，它可以十分灵活地跨任何边缘基础架构工作。不提 k3s 在边缘计算领域的应用，与之前使用的 <a href="https://github.com/kubernetes/minikube" target="_blank">minikube</a> 相比，k3s 裁剪掉了许多用不到的功能，并且安装更简单，启动更快，空间占用也更小。相信 k3s 在开发侧的作用也会越来越大，使云原生应用的开发更加的便利。</p>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/k3s">k3s</a>
+  
+  <a class="badge badge-light" href="/tags/k3d">k3d</a>
+  
+  <a class="badge badge-light" href="/tags/kubecm">kubecm</a>
+  
+  <a class="badge badge-light" href="/tags/Kubernetes">Kubernetes</a>
+  
+</div>
+
+
+
+     
+     
+<div class="entry-shang text-center">
+    <p>「一键投喂 小鱼干/小骨头」</p>
+    <button class="zs show-zs btn btn-primary">投喂</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+    <div class="zs-modal-head">
+        <button type="button" class="close">×</button>
+        <p class="author">
+            <a href="https://blog.maoxianplay.com">
+                <img src="https://wx3.sinaimg.cn/square/ad5fbf65gy1g2o621gcs6j20m80m8gng.jpg"/>
+            小助手毛线</a>
+        </p>
+        <p class="tip"><i></i><span>感谢投喂 <a href="/maoxian">毛线</a> & <a href="/sunny">Sunny</a> </span></p>
+    </div>
+    <div class="zs-modal-body">
+        <div class="zs-modal-btns">
+            <button class="btn btn-blink" data-num="2">2元</button>
+            <button class="btn btn-blink" data-num="5">5元</button>
+            <button class="btn btn-blink" data-num="10">10元</button>
+            <button class="btn btn-blink" data-num="50">50元</button>
+            <button class="btn btn-blink" data-num="100">100元</button>
+            <button class="btn btn-blink" data-num="any">任意金额</button>
+        </div>
+        <div class="zs-modal-pay">
+            <button class="btn btn-bred" id="pay-text">2元</button>
+            <p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+            <img id="pay-image" src="/img/alipay-2.png">
+        </div>
+    </div>
+    <div class="zs-modal-footer">
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="alipay" class="zs-type" checked="checked" style="float: left;">
+            <span class="zs-alipay">
+                <img src="/img/alipay-btn.png">
+            </span>
+        </label>
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="wechat" class="zs-type" style="float: left;">
+            <span class="zs-wechat">
+                <img src="/img/wechat-btn.png">
+            </span>
+        </label>
+    </div>
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="https://guoxudong.io/">郭旭东</a></h5>
+      <h6 class="card-subtitle">运维负责人</h6>
+      <p class="card-text" itemprop="description">云原生爱好者，分享云原生和 DevOps 技术实践，倡导开源运动，传播开源思想。</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          <li>
+            <a itemprop="sameAs" href="mailto:sunnydog0826@gmail.com" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/publication/wx_contact/" >
+              <i class="fab fa-weixin"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/sunny0826" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>相关</h3>
+        <ul>
+          
+          <li><a href="/post/aliyun-share/">4月29日 云栖社区分享PPT -- 阿里云容器服务的优势与调优</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "gxd" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+  
+
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+  
+
+  
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+    
+  
+
+  
+  
+
+
+
+
+
+
+
+
+<script id="dsq-count-scr" src="//gxd.disqus.com/count.js" async></script>
+
+
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<script>
+  const search_index_filename = "/index.json";
+  const i18n = {
+    'placeholder': "搜索...",
+    'results': "搜索结果",
+    'no_results': "没有找到结果"
+  };
+  const content_type = {
+    'post': "文章",
+    'project': "项目",
+    'publication' : "出版物",
+    'talk' : "演讲"
+    };
+</script>
+
+
+
+
+
+
+
+<script id="search-hit-algolia-template" type="text/html">
+  <div class="search-hit">
+    <div class="search-hit-content">
+      <div class="search-hit-name">
+        <a href="{{relpermalink}}">{{{_highlightResult.title.value}}}</a>
+      </div>
+      <div class="article-metadata search-hit-type">{{type}}</div>
+      <p class="search-hit-description">{{{_highlightResult.summary.value}}}</p>
+    </div>
+  </div>
+</script>
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch.min.js" integrity="sha256-gFCtPk/sonctyfwYOgjrPoWApQ0rqB6ezBBZ7p32yGc=" crossorigin="anonymous"></script>
+
+<script>
+  const algoliaConfig = {
+    appId: "BE80MGWD9D",
+    apiKey: "77ca6abe5531ce66ff7c3b2486222d85",
+    indexName: "gxd-blog",
+    poweredBy:  false 
+  };
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+  
+
+
+
+<script src="/js/academia.min.6ee120363d4a313a6fd39ad7c46e63f8.js"></script>
+
+
+
+
+
+
+
+<script src="https://my.openwrite.cn/js/readmore.js" type="text/javascript"></script>
+<script>
+  const btw = new BTWPlugin();
+  btw.init({
+      id: 'container',
+      blogId: '18752-1575602900012-529',
+      name: '云原生之路',
+      qrcode: 'https://guoxudong.io/publication/contact_me/qr_weixin.jpg',
+      keyword: 'road',
+  });
+</script>
+<style>
+div#btw-modal img {
+  width: 180px; margin-top: 10px; border: 8px solid rgb(230, 230, 230);margin: auto;
+}
+</style>
+
+  
+  <div class="container">
+    <footer class="site-footer">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        
+        <p>
+          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          Powered by
+          <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-inline network-icon text-right">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="mailto:sunnydog0826@gmail.com"  title="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="/publication/wx_contact/"  title="Chat on Keybase"><i class="fab fa-weixin" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/sunny0826" target="_blank" rel="noopener" title="Discuss on Forum"><i class="fab fa-github" aria-hidden="true"></i></a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
