@@ -258,21 +258,6 @@
   </url>
   
   <url>
-    <loc>https://guoxudong.io/en/tags/%E7%BF%BB%E8%AF%91/</loc>
-    <lastmod>2020-02-18T14:15:42+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/tags/%E7%BF%BB%E8%AF%91/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/tags/%E7%BF%BB%E8%AF%91/"
-                />
-  </url>
-  
-  <url>
     <loc>https://guoxudong.io/en/categories/%E7%BF%BB%E8%AF%91/</loc>
     <lastmod>2020-02-18T14:15:42+08:00</lastmod>
     <xhtml:link
@@ -284,6 +269,21 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://guoxudong.io/en/categories/%E7%BF%BB%E8%AF%91/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/en/tags/%E7%BF%BB%E8%AF%91/</loc>
+    <lastmod>2020-02-18T14:15:42+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/tags/%E7%BF%BB%E8%AF%91/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/tags/%E7%BF%BB%E8%AF%91/"
                 />
   </url>
   
@@ -378,21 +378,6 @@
   </url>
   
   <url>
-    <loc>https://guoxudong.io/en/tags/%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85/</loc>
-    <lastmod>2020-02-14T10:12:52+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/tags/%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/tags/%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85/"
-                />
-  </url>
-  
-  <url>
     <loc>https://guoxudong.io/en/categories/%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85/</loc>
     <lastmod>2020-02-14T10:12:52+08:00</lastmod>
     <xhtml:link
@@ -404,6 +389,21 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://guoxudong.io/en/categories/%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/en/tags/%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85/</loc>
+    <lastmod>2020-02-14T10:12:52+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/tags/%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/tags/%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85/"
                 />
   </url>
   
