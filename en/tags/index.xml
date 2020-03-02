@@ -7,10 +7,37 @@
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 18 Feb 2020 14:15:42 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 02 Mar 2020 15:29:16 +0800</lastBuildDate>
     
 	    <atom:link href="https://guoxudong.io/en/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ingress</title>
+      <link>https://guoxudong.io/en/tags/ingress/</link>
+      <pubDate>Mon, 02 Mar 2020 15:29:16 +0800</pubDate>
+      
+      <guid>https://guoxudong.io/en/tags/ingress/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>日志服务</title>
+      <link>https://guoxudong.io/en/tags/%E6%97%A5%E5%BF%97%E6%9C%8D%E5%8A%A1/</link>
+      <pubDate>Mon, 02 Mar 2020 15:29:16 +0800</pubDate>
+      
+      <guid>https://guoxudong.io/en/tags/%E6%97%A5%E5%BF%97%E6%9C%8D%E5%8A%A1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>阿里云</title>
+      <link>https://guoxudong.io/en/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</link>
+      <pubDate>Mon, 02 Mar 2020 15:29:16 +0800</pubDate>
+      
+      <guid>https://guoxudong.io/en/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Kubernetes</title>
@@ -126,15 +153,6 @@
       <pubDate>Wed, 13 Nov 2019 09:13:22 +0800</pubDate>
       
       <guid>https://guoxudong.io/en/tags/velero/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>阿里云</title>
-      <link>https://guoxudong.io/en/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</link>
-      <pubDate>Wed, 13 Nov 2019 09:13:22 +0800</pubDate>
-      
-      <guid>https://guoxudong.io/en/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</guid>
       <description></description>
     </item>
     
