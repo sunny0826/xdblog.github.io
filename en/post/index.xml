@@ -247,7 +247,7 @@ UP
 &lt;li&gt;Dashboard 功能，管理所以使用 kt 连入集群的用户等等&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;值得一提的是，&lt;code&gt;ktctl run&lt;/code&gt; 功能是我提出该场景并希望能实现，该 &lt;a href=&#34;https://github.com/alibaba/kt-connect/issues/89&#34; target=&#34;_blank&#34;&gt;issue&lt;/a&gt; 提出仅一天就通过并实现了。给高效的开发人员点赞。&lt;/p&gt;
+&lt;p&gt;值得一提的是，&lt;code&gt;ktctl run&lt;/code&gt; 功能是我提出该场景并希望能实现，该 &lt;a href=&#34;https://github.com/alibaba/kt-connect/issues/89&#34; target=&#34;_blank&#34;&gt;issue&lt;/a&gt; 提出仅一天就通过并完成了开发。给高效的开发人员点赞。&lt;/p&gt;
 </description>
     </item>
     

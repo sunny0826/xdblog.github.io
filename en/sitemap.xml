@@ -618,21 +618,6 @@
   </url>
   
   <url>
-    <loc>https://guoxudong.io/en/categories/%E5%85%AC%E7%9B%8A/</loc>
-    <lastmod>2019-09-29T09:52:11+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/categories/%E5%85%AC%E7%9B%8A/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/categories/%E5%85%AC%E7%9B%8A/"
-                />
-  </url>
-  
-  <url>
     <loc>https://guoxudong.io/en/tags/%E5%85%AC%E7%9B%8A/</loc>
     <lastmod>2019-09-29T09:52:11+08:00</lastmod>
     <xhtml:link
@@ -644,6 +629,21 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://guoxudong.io/en/tags/%E5%85%AC%E7%9B%8A/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/en/categories/%E5%85%AC%E7%9B%8A/</loc>
+    <lastmod>2019-09-29T09:52:11+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/categories/%E5%85%AC%E7%9B%8A/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/categories/%E5%85%AC%E7%9B%8A/"
                 />
   </url>
   
@@ -663,21 +663,6 @@
   </url>
   
   <url>
-    <loc>https://guoxudong.io/en/tags/devops/</loc>
-    <lastmod>2019-09-11T13:53:09+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/tags/devops/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/tags/devops/"
-                />
-  </url>
-  
-  <url>
     <loc>https://guoxudong.io/en/categories/devops/</loc>
     <lastmod>2019-09-11T13:53:09+08:00</lastmod>
     <xhtml:link
@@ -689,6 +674,21 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://guoxudong.io/en/categories/devops/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/en/tags/devops/</loc>
+    <lastmod>2019-09-11T13:53:09+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/tags/devops/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/tags/devops/"
                 />
   </url>
   
