@@ -1,16 +1,391 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>kubernetes on GuoXD Blog</title>
+    <title>Kubernetes on GuoXD Blog</title>
     <link>https://guoxudong.io/en/categories/kubernetes/</link>
-    <description>Recent content in kubernetes on GuoXD Blog</description>
+    <description>Recent content in Kubernetes on GuoXD Blog</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 02 Mar 2020 15:29:16 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 27 Mar 2020 15:57:11 +0800</lastBuildDate>
     
 	    <atom:link href="https://guoxudong.io/en/categories/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Katacoda：免费学习 Kubernetes 利器</title>
+      <link>https://guoxudong.io/en/post/katacoda-k8s/</link>
+      <pubDate>Fri, 27 Mar 2020 15:57:11 +0800</pubDate>
+      
+      <guid>https://guoxudong.io/en/post/katacoda-k8s/</guid>
+      <description>
+
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;最近 ServiceMesher 社区重启了&lt;a href=&#34;https://github.com/servicemesher/istio-handbook&#34; target=&#34;_blank&#34;&gt;《Istio 服务网格进阶实战》&lt;/a&gt; 的编写，我也作为编委会成员参与其中。该书的实践项目都基于 Istio 1.5 版本以及 Katacoda 提供的 Kubernetes 环境完成。由于实践部分都要使用 Katacoda，介绍 Katacoda 这章需要先完成，为其他参与编写实践篇的作者提供参考。&lt;/p&gt;
+
+&lt;h2 id=&#34;katacoda&#34;&gt;Katacoda&lt;/h2&gt;
+
+&lt;p&gt;Katacoda 是一个面向软件工程师的交互式学习和培训平台，可在浏览器中使用真实环境学习和测试新技术，帮助开发人员学习，并掌握最佳实践。该平台于 2019 年 11 月被 O&amp;rsquo;Reilly 收购。&lt;/p&gt;
+
+&lt;p&gt;Katacoda 可以快速的提供一套完整的临时环境，并在使用后将其回收。用户可以根据设计好的引导步骤，通过浏览器上的终端界面操作一套完整的环境，一步步的学习和实践。尤其是在学习 Kubernetes 这种复杂的应用时，单单是创建一个集群就要花去不少时间，同时消耗的资源也令一些初学者望而生畏，Katacoda 的出现很好的解决了这些问题。课程设计者可以定制应用程序所需环境，并设计循序渐进的指导路径，旨在确保用户以最佳方式学习。&lt;/p&gt;
+
+&lt;p&gt;在 Katacoda 每个用户都可以免费的学习和创建课程，其中：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Course：课程，可包含一系列的 scenarios。
+
+&lt;ul&gt;
+&lt;li&gt;官方教程入口：&lt;a href=&#34;https://katacoda.com/scenario-examples/scenarios/create-course&#34; target=&#34;_blank&#34;&gt;https://katacoda.com/scenario-examples/scenarios/create-course&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;汉化教程入口：&lt;a href=&#34;https://www.katacoda.com/guoxudong/courses/katacoda-example/create-course&#34; target=&#34;_blank&#34;&gt;https://www.katacoda.com/guoxudong/courses/katacoda-example/create-course&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Scenarios：场景、方案。
+
+&lt;ul&gt;
+&lt;li&gt;官方教程入口：&lt;a href=&#34;https://www.katacoda.com/scenario-examples/scenarios/create-scenario-101&#34; target=&#34;_blank&#34;&gt;https://www.katacoda.com/scenario-examples/scenarios/create-scenario-101&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;汉化教程入口：&lt;a href=&#34;https://www.katacoda.com/guoxudong/courses/katacoda-example/katacoda-create-scenarios&#34; target=&#34;_blank&#34;&gt;https://www.katacoda.com/guoxudong/courses/katacoda-example/katacoda-create-scenarios&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;使用-katacoda-学习&#34;&gt;使用 Katacoda 学习&lt;/h2&gt;
+
+&lt;p&gt;Katacoda 提供了非常便利的学习方式，用户只需要打开相应课程，就可以跟着课程设计者的说明，按照设计好的步骤一步步完成学习。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;介绍会标明课程的难度和需要的时间，帮助用户了解该课程的基本信念：
+&lt;img src=&#34;https://tvax1.sinaimg.cn/large/ad5fbf65gy1gd8k9b4jwoj21ha0q7wha.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;进入课程，左侧是该步骤说明，左侧是一个已经准备好的终端，直接可以使用：
+&lt;img src=&#34;https://tvax2.sinaimg.cn/large/ad5fbf65gy1gd8kdmfr3ej21h90qeq8s.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;之后就是跟着步骤说明，一步步的完成学习即可：
+&lt;img src=&#34;https://tva3.sinaimg.cn/large/ad5fbf65gy1gd8kh1jcs1j21hb0q5do7.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;创建课程&#34;&gt;创建课程&lt;/h2&gt;
+
+&lt;p&gt;既然可以学习别人设计好的课程，那么也可以自己设计课程，以供用户学习。&lt;/p&gt;
+
+&lt;h3 id=&#34;新建仓库&#34;&gt;新建仓库&lt;/h3&gt;
+
+&lt;p&gt;Katacoda 需要注册账号登录，这里直接使用 GitHub 账号登录即可，毕竟之后创建的方案都是存放在 GitHub 上的。&lt;/p&gt;
+
+&lt;p&gt;这里推荐在页面新建仓库，访问 &lt;a href=&#34;https://www.katacoda.com/teach/git-hosted-scenarios&#34; target=&#34;_blank&#34;&gt;https://www.katacoda.com/teach/git-hosted-scenarios&lt;/a&gt; ，点击 &lt;code&gt;Automatically Create and Configure Github Repository&lt;/code&gt; 按钮，Katacoda 会自动在您的 Github 中创建一个名为 &lt;code&gt;katacoda-scenarios&lt;/code&gt; 的仓库，并自动为您配置 Webhook，每次更新该仓库时，都会自动更新您 Katacoda 中课程的内容。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tvax3.sinaimg.cn/large/ad5fbf65gy1gd73rov21ij219q0pl42u.jpg&#34; alt=&#34;katacoda 新建仓库页面&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;创建完成后，就可以在您的 Github 上找到名为 &lt;code&gt;katacoda-scenarios&lt;/code&gt; 的代码仓库。&lt;/p&gt;
+
+&lt;h3 id=&#34;scenarios&#34;&gt;Scenarios&lt;/h3&gt;
+
+&lt;p&gt;Scenarios 即为方案、场景，由一组 Markdown、bash 脚本和一个 JSON 文件组成，这些文件保存了该 Scenarios 的所有配置。&lt;/p&gt;
+
+&lt;p&gt;Katacoda 官方提供了 CLI 工具，帮助您创建 Scenarios。&lt;/p&gt;
+
+&lt;h4 id=&#34;安装-cli&#34;&gt;安装 CLI&lt;/h4&gt;
+
+&lt;p&gt;通过 npm 命令安装 &lt;code&gt;npm i katacoda-cli --global&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;命令遵循语法的是 &lt;code&gt;$ katacoda COMMAND&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;安装完成后，可以通过运行命令 &lt;code&gt;katacoda --help&lt;/code&gt; 查看帮助信息。&lt;/p&gt;
+
+&lt;h4 id=&#34;创建-scenarios-目录&#34;&gt;创建 Scenarios 目录&lt;/h4&gt;
+
+&lt;p&gt;例如，要创建新的方案，可以通过运行命令 &lt;code&gt;katacoda scenarios:create&lt;/code&gt;，CLI 将会提示一些信息，帮助您创建方案：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Friendly URL:&lt;/strong&gt; 此处可输入 &lt;code&gt;test-scenario&lt;/code&gt;，该属性将确定 scenarios 文件夹的名称，以及用来访问他的 URL。因此，该属性不能包括空格，需要是小写字母等。例如，如果您的用户名是 test-username 并且您的方案称为 test-scenario（如建议的那样），用于在平台中指向该方案的URL将为 &lt;a href=&#34;https://katacoda.com/test-username/scenarios/test-scenario/&#34; target=&#34;_blank&#34;&gt;https://katacoda.com/test-username/scenarios/test-scenario/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Title:&lt;/strong&gt; 方案的标题，将会显示在简介上&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Description:&lt;/strong&gt; 方案的描述，将会显示在简介上&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Difficulty level:&lt;/strong&gt; 难度级别，将会显示在简介上&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Estimated time:&lt;/strong&gt; 估计完成的时间，将会显示在简介上&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Number of steps:&lt;/strong&gt; 方案的步骤数。CLI 将会为您的所有步骤创建文件&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Image:&lt;/strong&gt; 确定适用于您的方案的基本软件。例如，如果您需要 docker，java，go 等作为前提条件。更多相关信息，请阅读 &lt;a href=&#34;https://katacoda.com/docs/scenarios/environments&#34; target=&#34;_blank&#34;&gt;https://katacoda.com/docs/scenarios/environments&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Layout:&lt;/strong&gt; 它将确定方案界面元素的配置。例如，如果您只想显示终端，或编辑器+终端等形式，更多相关信息，请阅读 &lt;a href=&#34;https://katacoda.com/docs/scenarios/layouts&#34; target=&#34;_blank&#34;&gt;https://katacoda.com/docs/scenarios/layouts&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;输入这些信息，CLI 将帮您创建一个文件夹，其中引入了 &lt;strong&gt;&lt;em&gt;friendly URL&lt;/em&gt;&lt;/strong&gt; 的名称，并将在该文件夹内创建方案所需的文件。&lt;/p&gt;
+
+&lt;h4 id=&#34;编辑-scenarios&#34;&gt;编辑 Scenarios&lt;/h4&gt;
+
+&lt;p&gt;Scenarios 目录创建好之后，可以看到目录的结构：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;.
+├── finish.md
+├── index.json
+├── intro.md
+├── step1.md
+├── step2.md
+├── step3.md
+├── step4.md
+└── step5.md
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;index.json&lt;/code&gt; ：文件中定义了标题、描述、步骤顺序、UI 布局以及所需环境，内容与您使用 CLI 工具创建时输入的是一致的，如果想对输入的内容进行修改，也可以在这里修改&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;intro.md&lt;/code&gt;：介绍页，用来介绍您这个 Scenarios&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;finish.md&lt;/code&gt; ：结束页&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;step1-setpN.md&lt;/code&gt;：步骤介绍，数目与您使用 CLI 工具创建 Scenarios 时输入的数目相同&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;上传&#34;&gt;上传&lt;/h3&gt;
+
+&lt;p&gt;将创建的 Scenarios 移动到之前创建的 git 项目中。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git add .
+$ git commit -m &amp;quot;New Scenarios&amp;quot;
+$ git push origin master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上传成功后，在 &lt;strong&gt;Your Profile&lt;/strong&gt; 页面就可以看到您上传的课程。&lt;/p&gt;
+
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+
+&lt;p&gt;Katacoda 是一个面向软件工程师的交互式学习和培训平台，开发人员根据产品特色设计学习流程，方便用户的学习；学习者则无需关心环境的搭建与依赖的安装，通过开发人员设计的最佳实践来进行学习，快速又高效。&lt;strong&gt;最重要的是，它是免费的！白嫖的东西又有谁不喜欢呢？&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;同时也欢迎各位朋友一起参与到&lt;a href=&#34;https://github.com/servicemesher/istio-handbook&#34; target=&#34;_blank&#34;&gt;《Istio 服务网格进阶实战》&lt;/a&gt; 的编撰中，和 ServiceMesher 社区的朋友一起完成这部开源书籍。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Kt Connect：研发侧利器，本地连通 Kubernetes 集群内网</title>
+      <link>https://guoxudong.io/en/post/alibaba-kt-connect/</link>
+      <pubDate>Tue, 24 Mar 2020 09:14:06 +0800</pubDate>
+      
+      <guid>https://guoxudong.io/en/post/alibaba-kt-connect/</guid>
+      <description>
+
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;随着 Kubernetes 的普及，越来越多的应用被容器化，并部署到 Kubernetes 上。随之而来的问题是当容器中发生错误时，对错误的定位和调试也变得很复杂。当一个工具给你带来便利时，它也可能给你带来另一些麻烦。&lt;/p&gt;
+
+&lt;p&gt;那么有没有工具可以在本地联通 Kubernetes 集群并进行调试呢？当然是有的，这里就介绍一款研发侧利器：&lt;code&gt;Kt Connect&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;kt-connect&#34;&gt;Kt Connect&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;Kt Connect&lt;/code&gt; 是阿里巴巴开源的一款云原生协同开发测试解决方案，目前的功能包括：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;直接访问 Kubernetes 集群&lt;/li&gt;
+&lt;li&gt;转发集群流量到本地&lt;/li&gt;
+&lt;li&gt;Service Mesh 支持&lt;/li&gt;
+&lt;li&gt;基于 SSH 的轻量级 VPN 网络&lt;/li&gt;
+&lt;li&gt;作为 kubectl 插件，集成到 Kubectl&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;（以上内容来自&lt;a href=&#34;https://alibaba.github.io/kt-connect/#/zh-cn/&#34; target=&#34;_blank&#34;&gt;官方文档&lt;/a&gt;）&lt;/p&gt;
+
+&lt;p&gt;目前使用下来最实用的功能就是&lt;strong&gt;直接连接 Kubernetes 网络&lt;/strong&gt;实现在本地使用 k8s 内网域名调用 Kubernetes 集群内的服务以及&lt;strong&gt;将 Kubernetes 集群中的流量转发到本地&lt;/strong&gt;，作用类似于一个 VPN，将本地网络与 Kubernetes 集群网络连接。
+&lt;img src=&#34;https://tvax1.sinaimg.cn/large/ad5fbf65gy1gd4wu5p3rmj20pb0dl75m.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;Kt Connect&lt;/code&gt; 使用 Go 开发，支持 Mac、Linux 和 Windows，安装方式也很简单&lt;/p&gt;
+
+&lt;p&gt;前往&lt;a href=&#34;https://github.com/alibaba/kt-connect/releases&#34; target=&#34;_blank&#34;&gt;Github Releases&lt;/a&gt; 下载可执行文件&lt;/p&gt;
+
+&lt;h3 id=&#34;mac&#34;&gt;Mac&lt;/h3&gt;
+
+&lt;p&gt;安装sshuttle&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;brew install sshuttle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下载并安装KT&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ curl -OL https://rdc-incubators.oss-cn-beijing.aliyuncs.com/stable/ktctl_darwin_amd64.tar.gz
+$ tar -xzvf ktctl_darwin_amd64.tar.gz
+$ mv ktctl_darwin_amd64 /usr/local/bin/ktctl
+$ ktctl -h
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;linux&#34;&gt;Linux&lt;/h3&gt;
+
+&lt;p&gt;安装sshuttle&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip install sshuttle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下载并安装KT&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ curl -OL https://rdc-incubators.oss-cn-beijing.aliyuncs.com/stable/ktctl_linux_amd64.tar.gz
+$ tar -xzvf ktctl_linux_amd64.tar.gz
+$ mv ktctl_linux_amd64 /usr/local/bin/ktctl
+$ ktctl -h
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;windows&#34;&gt;Windows&lt;/h3&gt;
+
+&lt;p&gt;下载并解压可执行文件，并确保ktctl在PATH路径下&lt;/p&gt;
+
+&lt;h2 id=&#34;本地连接集群&#34;&gt;本地连接集群&lt;/h2&gt;
+
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    以MacOS为例
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;使用 &lt;code&gt;ktctl connect&lt;/code&gt; 命令，启动的时候需要 admin 权限，需要输入密码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ktctl --namespace=default connect
+
+1:51PM INF Connect Start At 69444
+1:51PM INF Client address 192.168.7.121
+1:51PM INF deploy shadow deployment kt-connect-daemon-rcacy in namespace default
+
+1:51PM INF pod label: kt=kt-connect-daemon-rcacy
+1:51PM INF pod: kt-connect-daemon-rcacy-fd4c587f-zmn4z is running,but not ready
+1:51PM INF pod: kt-connect-daemon-rcacy-fd4c587f-zmn4z is running,but not ready
+1:51PM INF Shadow pod: kt-connect-daemon-rcacy-fd4c587f-zmn4z is ready.
+Forwarding from 127.0.0.1:2222 -&amp;gt; 22
+Forwarding from [::1]:2222 -&amp;gt; 22
+1:51PM INF port-forward start at pid: 69445
+[local sudo] Password: 1:51PM INF vpn(sshuttle) start at pid: 69449
+1:51PM INF KT proxy start successful
+# 这里需要输入密码
+Handling connection for 2222
+Warning: Permanently added &#39;[127.0.0.1]:2222&#39; (ECDSA) to the list of known hosts.
+bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
+client: Connected.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这里可以看到在 &lt;code&gt;namespace:default&lt;/code&gt; 中部署了一个 &lt;code&gt;kt-connect-daemon-*&lt;/code&gt; 的 &lt;code&gt;Deployment&lt;/code&gt;，如果这个 &lt;code&gt;Deployment&lt;/code&gt; 启动正常，就可以直接在本地访问 Kubernetes 集群内的服务了。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ kubectl get deploy | grep kt
+
+kt-connect-daemon-rcacy   1/1     1            1           5m35s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;访问集群服务，可以使用 &lt;code&gt;curl&lt;/code&gt; 或者直接在浏览器访问。（这里使用之前文章&lt;a href=&#34;../feiyan-grafana&#34;&gt;《使用 Grafana 展示肺炎疫情动态》&lt;/a&gt;中部署的服务）&lt;/p&gt;
+
+&lt;h3 id=&#34;使用-curl&#34;&gt;使用 &lt;code&gt;curl&lt;/code&gt;&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ curl kk-feiyan
+UP
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;直接使用浏览器&#34;&gt;直接使用浏览器&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tvax3.sinaimg.cn/large/ad5fbf65ly1gd4zc1ddfij20fq03zglp.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;转发集群流量到本地&#34;&gt;转发集群流量到本地&lt;/h2&gt;
+
+&lt;p&gt;使用 &lt;code&gt;ktctl exchange&lt;/code&gt; 命令，这个命令的前提条件是 Kubernetes 集群中必须有已经已经存在的 &lt;code&gt;Deployment&lt;/code&gt;，在运行该命令时，将会起一个 shadow 容器，来代替已存在的 Deployment，调用该容器的流量，都会被转发到本地的指定端口。&lt;/p&gt;
+
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    要注意的是：该命令会将其代替的 Deployment 的 replicas 设置为0，可能会导致业务的暂停，请勿在生产环境中使用！
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;本地启动一个服务&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tvax4.sinaimg.cn/large/ad5fbf65ly1gd4zsl7r14j20eq03r76o.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;运行命令&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ktctl exchange kk-feiyan --expose 8088
+2:13PM INF &#39;KT Connect&#39; is runing, you can access local app from cluster and localhost
+2:13PM INF Client address 192.168.7.121
+2:13PM INF deploy shadow deployment kk-feiyan-kt-yssnq in namespace default
+
+2:13PM INF pod label: kt=kk-feiyan-kt-yssnq
+2:13PM INF pod: kk-feiyan-kt-yssnq-6464bbf74d-smvhc is running,but not ready
+2:13PM INF pod: kk-feiyan-kt-yssnq-6464bbf74d-smvhc is running,but not ready
+2:13PM INF Shadow pod: kk-feiyan-kt-yssnq-6464bbf74d-smvhc is ready.
+2:13PM INF create exchange shadow kk-feiyan-kt-yssnq in namespace default
+2:13PM INF scale deployment kk-feiyan to 0
+
+2:13PM INF  * kk-feiyan (0 replicas) success
+2:13PM INF remote 172.22.1.166 forward to local 8088
+Forwarding from 127.0.0.1:2266 -&amp;gt; 22
+Forwarding from [::1]:2266 -&amp;gt; 22
+2:13PM INF exchange port forward to local start at pid: 70269
+2:13PM INF redirect request from pod 172.22.1.166 22 to 127.0.0.1:2266 starting
+
+Handling connection for 2266
+Warning: Permanently added &#39;[127.0.0.1]:2266&#39; (ECDSA) to the list of known hosts.
+bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
+2:13PM INF ssh remote port-forward start at pid: 70270
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;查看 Deployment&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ kubectl get deploy | grep kk-feiyan
+kk-feiyan                 0/0     0            0           39d    # 原服务
+kk-feiyan-kt-eclcc        1/1     1            1           89s    # 转发流量服务
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样的话，集群内调用 &lt;code&gt;kk-feiyan&lt;/code&gt; 这个服务的流量都会被转发到本地&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;集群内调用：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ curl kk-feiyan
+UP
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;可以看到流量被抓发到了本地&lt;/strong&gt;
+&lt;img src=&#34;https://tvax3.sinaimg.cn/large/ad5fbf65ly1gd4zuym6ofj20eq052n0d.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;将本地服务暴露到-kubernetes-集群&#34;&gt;将本地服务暴露到 Kubernetes 集群&lt;/h2&gt;
+
+&lt;p&gt;有些时候，我们并不想使用 &lt;code&gt;exchange&lt;/code&gt; 来代替已经存在的 Deployment，只想在集群内新建一个服务来将流量转发到本，以完成调试。&lt;/p&gt;
+
+&lt;p&gt;这个时候使用 &lt;code&gt;ktctl run&lt;/code&gt;，就可以满足需求，该命令会在 Kubernetes 集群中新建一个服务，并将访问该服务的流量被转发到本地的指定端口。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ktctl run localservice --port 8088 --expose
+2:33PM INF Client address 192.168.7.121
+2:33PM INF deploy shadow deployment localservice in namespace default
+
+2:33PM INF pod label: kt=localservice
+2:33PM INF pod: localservice-77d565c488-64hpp is running,but not ready
+2:33PM INF pod: localservice-77d565c488-64hpp is running,but not ready
+2:33PM INF Shadow pod: localservice-77d565c488-64hpp is ready.
+2:33PM INF create shadow pod localservice-77d565c488-64hpp ip 172.22.1.74
+2:33PM INF expose deployment localservice to localservice:8088
+2:33PM INF remote 172.22.1.74 forward to local 8088
+Forwarding from 127.0.0.1:2274 -&amp;gt; 22
+Forwarding from [::1]:2274 -&amp;gt; 22
+2:33PM INF exchange port forward to local start at pid: 70899
+2:33PM INF redirect request from pod 172.22.1.74 22 to 127.0.0.1:2274 starting
+
+Handling connection for 2274
+Warning: Permanently added &#39;[127.0.0.1]:2274&#39; (ECDSA) to the list of known hosts.
+bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
+2:33PM INF ssh remote port-forward start at pid: 70903
+2:33PM INF forward remote 172.22.1.74:8088 -&amp;gt; 127.0.0.1:8088
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看到该服务已经被拉起了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ kubectl get deploy localservice
+NAME           READY   UP-TO-DATE   AVAILABLE   AGE
+localservice   1/1     1            1           86s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;访问该服务&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ curl localservice:8088
+UP
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看到流量被转发到了本地
+&lt;img src=&#34;https://tva3.sinaimg.cn/large/ad5fbf65ly1gd50e6lkquj20ff05z782.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+
+&lt;p&gt;本地访问 k8s 内网，将 k8s 流量转发到本地，靠着这两大功能 &lt;code&gt;Kt Connect&lt;/code&gt; 可以称之为研发侧的利器，我们可以轻松的在本地调用集群服务，或者让集群调用本地的服务，这就让开发/测试 k8s 集群中发起调用的服务，在本地断点 debug 成为了现实，非常好用。同时还有其他一些没有介绍的功能，比如：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Service Mesh 支持，可以支持用户可以基于Service Mesh的能力做更多自定义的流量规则定义&lt;/li&gt;
+&lt;li&gt;Dashboard 功能，管理所以使用 kt 连入集群的用户等等&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;值得一提的是，&lt;code&gt;ktctl run&lt;/code&gt; 功能是我提出该场景并希望能实现，该 &lt;a href=&#34;https://github.com/alibaba/kt-connect/issues/89&#34; target=&#34;_blank&#34;&gt;issue&lt;/a&gt; 提出仅一天就通过并完成了开发。给高效的开发人员点赞。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>修改 Nginx Ingress 日志打印格式</title>

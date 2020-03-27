@@ -7,10 +7,19 @@
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 02 Mar 2020 15:29:16 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 27 Mar 2020 15:57:11 +0800</lastBuildDate>
     
 	    <atom:link href="https://guoxudong.io/en/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>https://guoxudong.io/en/tags/kubernetes/</link>
+      <pubDate>Fri, 27 Mar 2020 15:57:11 +0800</pubDate>
+      
+      <guid>https://guoxudong.io/en/tags/kubernetes/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>ingress</title>
@@ -36,15 +45,6 @@
       <pubDate>Mon, 02 Mar 2020 15:29:16 +0800</pubDate>
       
       <guid>https://guoxudong.io/en/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Kubernetes</title>
-      <link>https://guoxudong.io/en/tags/kubernetes/</link>
-      <pubDate>Tue, 18 Feb 2020 14:15:42 +0800</pubDate>
-      
-      <guid>https://guoxudong.io/en/tags/kubernetes/</guid>
       <description></description>
     </item>
     

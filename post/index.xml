@@ -7,10 +7,146 @@
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 24 Mar 2020 09:14:06 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 27 Mar 2020 15:57:11 +0800</lastBuildDate>
     
 	    <atom:link href="https://guoxudong.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Katacoda：免费学习 Kubernetes 利器</title>
+      <link>https://guoxudong.io/post/katacoda-k8s/</link>
+      <pubDate>Fri, 27 Mar 2020 15:57:11 +0800</pubDate>
+      
+      <guid>https://guoxudong.io/post/katacoda-k8s/</guid>
+      <description>
+
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;最近 ServiceMesher 社区重启了&lt;a href=&#34;https://github.com/servicemesher/istio-handbook&#34; target=&#34;_blank&#34;&gt;《Istio 服务网格进阶实战》&lt;/a&gt; 的编写，我也作为编委会成员参与其中。该书的实践项目都基于 Istio 1.5 版本以及 Katacoda 提供的 Kubernetes 环境完成。由于实践部分都要使用 Katacoda，介绍 Katacoda 这章需要先完成，为其他参与编写实践篇的作者提供参考。&lt;/p&gt;
+
+&lt;h2 id=&#34;katacoda&#34;&gt;Katacoda&lt;/h2&gt;
+
+&lt;p&gt;Katacoda 是一个面向软件工程师的交互式学习和培训平台，可在浏览器中使用真实环境学习和测试新技术，帮助开发人员学习，并掌握最佳实践。该平台于 2019 年 11 月被 O&amp;rsquo;Reilly 收购。&lt;/p&gt;
+
+&lt;p&gt;Katacoda 可以快速的提供一套完整的临时环境，并在使用后将其回收。用户可以根据设计好的引导步骤，通过浏览器上的终端界面操作一套完整的环境，一步步的学习和实践。尤其是在学习 Kubernetes 这种复杂的应用时，单单是创建一个集群就要花去不少时间，同时消耗的资源也令一些初学者望而生畏，Katacoda 的出现很好的解决了这些问题。课程设计者可以定制应用程序所需环境，并设计循序渐进的指导路径，旨在确保用户以最佳方式学习。&lt;/p&gt;
+
+&lt;p&gt;在 Katacoda 每个用户都可以免费的学习和创建课程，其中：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Course：课程，可包含一系列的 scenarios。
+
+&lt;ul&gt;
+&lt;li&gt;官方教程入口：&lt;a href=&#34;https://katacoda.com/scenario-examples/scenarios/create-course&#34; target=&#34;_blank&#34;&gt;https://katacoda.com/scenario-examples/scenarios/create-course&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;汉化教程入口：&lt;a href=&#34;https://www.katacoda.com/guoxudong/courses/katacoda-example/create-course&#34; target=&#34;_blank&#34;&gt;https://www.katacoda.com/guoxudong/courses/katacoda-example/create-course&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Scenarios：场景、方案。
+
+&lt;ul&gt;
+&lt;li&gt;官方教程入口：&lt;a href=&#34;https://www.katacoda.com/scenario-examples/scenarios/create-scenario-101&#34; target=&#34;_blank&#34;&gt;https://www.katacoda.com/scenario-examples/scenarios/create-scenario-101&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;汉化教程入口：&lt;a href=&#34;https://www.katacoda.com/guoxudong/courses/katacoda-example/katacoda-create-scenarios&#34; target=&#34;_blank&#34;&gt;https://www.katacoda.com/guoxudong/courses/katacoda-example/katacoda-create-scenarios&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;使用-katacoda-学习&#34;&gt;使用 Katacoda 学习&lt;/h2&gt;
+
+&lt;p&gt;Katacoda 提供了非常便利的学习方式，用户只需要打开相应课程，就可以跟着课程设计者的说明，按照设计好的步骤一步步完成学习。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;介绍会标明课程的难度和需要的时间，帮助用户了解该课程的基本信念：
+&lt;img src=&#34;https://tvax1.sinaimg.cn/large/ad5fbf65gy1gd8k9b4jwoj21ha0q7wha.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;进入课程，左侧是该步骤说明，左侧是一个已经准备好的终端，直接可以使用：
+&lt;img src=&#34;https://tvax2.sinaimg.cn/large/ad5fbf65gy1gd8kdmfr3ej21h90qeq8s.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;之后就是跟着步骤说明，一步步的完成学习即可：
+&lt;img src=&#34;https://tva3.sinaimg.cn/large/ad5fbf65gy1gd8kh1jcs1j21hb0q5do7.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;创建课程&#34;&gt;创建课程&lt;/h2&gt;
+
+&lt;p&gt;既然可以学习别人设计好的课程，那么也可以自己设计课程，以供用户学习。&lt;/p&gt;
+
+&lt;h3 id=&#34;新建仓库&#34;&gt;新建仓库&lt;/h3&gt;
+
+&lt;p&gt;Katacoda 需要注册账号登录，这里直接使用 GitHub 账号登录即可，毕竟之后创建的方案都是存放在 GitHub 上的。&lt;/p&gt;
+
+&lt;p&gt;这里推荐在页面新建仓库，访问 &lt;a href=&#34;https://www.katacoda.com/teach/git-hosted-scenarios&#34; target=&#34;_blank&#34;&gt;https://www.katacoda.com/teach/git-hosted-scenarios&lt;/a&gt; ，点击 &lt;code&gt;Automatically Create and Configure Github Repository&lt;/code&gt; 按钮，Katacoda 会自动在您的 Github 中创建一个名为 &lt;code&gt;katacoda-scenarios&lt;/code&gt; 的仓库，并自动为您配置 Webhook，每次更新该仓库时，都会自动更新您 Katacoda 中课程的内容。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tvax3.sinaimg.cn/large/ad5fbf65gy1gd73rov21ij219q0pl42u.jpg&#34; alt=&#34;katacoda 新建仓库页面&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;创建完成后，就可以在您的 Github 上找到名为 &lt;code&gt;katacoda-scenarios&lt;/code&gt; 的代码仓库。&lt;/p&gt;
+
+&lt;h3 id=&#34;scenarios&#34;&gt;Scenarios&lt;/h3&gt;
+
+&lt;p&gt;Scenarios 即为方案、场景，由一组 Markdown、bash 脚本和一个 JSON 文件组成，这些文件保存了该 Scenarios 的所有配置。&lt;/p&gt;
+
+&lt;p&gt;Katacoda 官方提供了 CLI 工具，帮助您创建 Scenarios。&lt;/p&gt;
+
+&lt;h4 id=&#34;安装-cli&#34;&gt;安装 CLI&lt;/h4&gt;
+
+&lt;p&gt;通过 npm 命令安装 &lt;code&gt;npm i katacoda-cli --global&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;命令遵循语法的是 &lt;code&gt;$ katacoda COMMAND&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;安装完成后，可以通过运行命令 &lt;code&gt;katacoda --help&lt;/code&gt; 查看帮助信息。&lt;/p&gt;
+
+&lt;h4 id=&#34;创建-scenarios-目录&#34;&gt;创建 Scenarios 目录&lt;/h4&gt;
+
+&lt;p&gt;例如，要创建新的方案，可以通过运行命令 &lt;code&gt;katacoda scenarios:create&lt;/code&gt;，CLI 将会提示一些信息，帮助您创建方案：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Friendly URL:&lt;/strong&gt; 此处可输入 &lt;code&gt;test-scenario&lt;/code&gt;，该属性将确定 scenarios 文件夹的名称，以及用来访问他的 URL。因此，该属性不能包括空格，需要是小写字母等。例如，如果您的用户名是 test-username 并且您的方案称为 test-scenario（如建议的那样），用于在平台中指向该方案的URL将为 &lt;a href=&#34;https://katacoda.com/test-username/scenarios/test-scenario/&#34; target=&#34;_blank&#34;&gt;https://katacoda.com/test-username/scenarios/test-scenario/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Title:&lt;/strong&gt; 方案的标题，将会显示在简介上&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Description:&lt;/strong&gt; 方案的描述，将会显示在简介上&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Difficulty level:&lt;/strong&gt; 难度级别，将会显示在简介上&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Estimated time:&lt;/strong&gt; 估计完成的时间，将会显示在简介上&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Number of steps:&lt;/strong&gt; 方案的步骤数。CLI 将会为您的所有步骤创建文件&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Image:&lt;/strong&gt; 确定适用于您的方案的基本软件。例如，如果您需要 docker，java，go 等作为前提条件。更多相关信息，请阅读 &lt;a href=&#34;https://katacoda.com/docs/scenarios/environments&#34; target=&#34;_blank&#34;&gt;https://katacoda.com/docs/scenarios/environments&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Layout:&lt;/strong&gt; 它将确定方案界面元素的配置。例如，如果您只想显示终端，或编辑器+终端等形式，更多相关信息，请阅读 &lt;a href=&#34;https://katacoda.com/docs/scenarios/layouts&#34; target=&#34;_blank&#34;&gt;https://katacoda.com/docs/scenarios/layouts&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;输入这些信息，CLI 将帮您创建一个文件夹，其中引入了 &lt;strong&gt;&lt;em&gt;friendly URL&lt;/em&gt;&lt;/strong&gt; 的名称，并将在该文件夹内创建方案所需的文件。&lt;/p&gt;
+
+&lt;h4 id=&#34;编辑-scenarios&#34;&gt;编辑 Scenarios&lt;/h4&gt;
+
+&lt;p&gt;Scenarios 目录创建好之后，可以看到目录的结构：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;.
+├── finish.md
+├── index.json
+├── intro.md
+├── step1.md
+├── step2.md
+├── step3.md
+├── step4.md
+└── step5.md
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;index.json&lt;/code&gt; ：文件中定义了标题、描述、步骤顺序、UI 布局以及所需环境，内容与您使用 CLI 工具创建时输入的是一致的，如果想对输入的内容进行修改，也可以在这里修改&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;intro.md&lt;/code&gt;：介绍页，用来介绍您这个 Scenarios&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;finish.md&lt;/code&gt; ：结束页&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;step1-setpN.md&lt;/code&gt;：步骤介绍，数目与您使用 CLI 工具创建 Scenarios 时输入的数目相同&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;上传&#34;&gt;上传&lt;/h3&gt;
+
+&lt;p&gt;将创建的 Scenarios 移动到之前创建的 git 项目中。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git add .
+$ git commit -m &amp;quot;New Scenarios&amp;quot;
+$ git push origin master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上传成功后，在 &lt;strong&gt;Your Profile&lt;/strong&gt; 页面就可以看到您上传的课程。&lt;/p&gt;
+
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+
+&lt;p&gt;Katacoda 是一个面向软件工程师的交互式学习和培训平台，开发人员根据产品特色设计学习流程，方便用户的学习；学习者则无需关心环境的搭建与依赖的安装，通过开发人员设计的最佳实践来进行学习，快速又高效。&lt;strong&gt;最重要的是，它是免费的！白嫖的东西又有谁不喜欢呢？&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;同时也欢迎各位朋友一起参与到&lt;a href=&#34;https://github.com/servicemesher/istio-handbook&#34; target=&#34;_blank&#34;&gt;《Istio 服务网格进阶实战》&lt;/a&gt; 的编撰中，和 ServiceMesher 社区的朋友一起完成这部开源书籍。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Kt Connect：研发侧利器，本地连通 Kubernetes 集群内网</title>
