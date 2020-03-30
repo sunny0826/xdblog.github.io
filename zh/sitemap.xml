@@ -78,21 +78,6 @@
   </url>
   
   <url>
-    <loc>https://guoxudong.io/categories/kubernetes/</loc>
-    <lastmod>2020-03-27T15:57:11+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/categories/kubernetes/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/categories/kubernetes/"
-                />
-  </url>
-  
-  <url>
     <loc>https://guoxudong.io/tags/kubernetes/</loc>
     <lastmod>2020-03-27T15:57:11+08:00</lastmod>
     <xhtml:link
@@ -104,6 +89,21 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://guoxudong.io/tags/kubernetes/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/categories/kubernetes/</loc>
+    <lastmod>2020-03-27T15:57:11+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/categories/kubernetes/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/categories/kubernetes/"
                 />
   </url>
   
@@ -408,21 +408,6 @@
   </url>
   
   <url>
-    <loc>https://guoxudong.io/tags/%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85/</loc>
-    <lastmod>2020-02-14T10:12:52+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/tags/%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/tags/%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85/"
-                />
-  </url>
-  
-  <url>
     <loc>https://guoxudong.io/categories/%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85/</loc>
     <lastmod>2020-02-14T10:12:52+08:00</lastmod>
     <xhtml:link
@@ -434,6 +419,21 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://guoxudong.io/categories/%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/tags/%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85/</loc>
+    <lastmod>2020-02-14T10:12:52+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/tags/%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/tags/%E8%82%BA%E7%82%8E%E7%96%AB%E6%83%85/"
                 />
   </url>
   
@@ -633,21 +633,6 @@
   </url>
   
   <url>
-    <loc>https://guoxudong.io/categories/%E5%85%AC%E7%9B%8A/</loc>
-    <lastmod>2019-09-29T09:52:11+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/categories/%E5%85%AC%E7%9B%8A/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/categories/%E5%85%AC%E7%9B%8A/"
-                />
-  </url>
-  
-  <url>
     <loc>https://guoxudong.io/tags/%E5%85%AC%E7%9B%8A/</loc>
     <lastmod>2019-09-29T09:52:11+08:00</lastmod>
     <xhtml:link
@@ -659,6 +644,21 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://guoxudong.io/tags/%E5%85%AC%E7%9B%8A/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/categories/%E5%85%AC%E7%9B%8A/</loc>
+    <lastmod>2019-09-29T09:52:11+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/categories/%E5%85%AC%E7%9B%8A/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/categories/%E5%85%AC%E7%9B%8A/"
                 />
   </url>
   
