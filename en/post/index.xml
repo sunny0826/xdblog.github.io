@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on GuoXD Blog</title>
+    <title>博客 on GuoXD Blog</title>
     <link>https://guoxudong.io/en/post/</link>
-    <description>Recent content in Posts on GuoXD Blog</description>
+    <description>Recent content in 博客 on GuoXD Blog</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
@@ -216,13 +216,13 @@
 
 &lt;ul&gt;
 &lt;li&gt;官方教程入口：&lt;a href=&#34;https://katacoda.com/scenario-examples/scenarios/create-course&#34; target=&#34;_blank&#34;&gt;https://katacoda.com/scenario-examples/scenarios/create-course&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;汉化教程入口：&lt;a href=&#34;https://www.katacoda.com/guoxudong/courses/katacoda-example/create-course&#34; target=&#34;_blank&#34;&gt;https://www.katacoda.com/guoxudong/courses/katacoda-example/create-course&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;汉化教程入口：&lt;a href=&#34;https://katacoda.com/guoxudong/courses/katacoda-example/create-course&#34; target=&#34;_blank&#34;&gt;https://katacoda.com/guoxudong/courses/katacoda-example/create-course&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Scenarios：场景、方案。
 
 &lt;ul&gt;
-&lt;li&gt;官方教程入口：&lt;a href=&#34;https://www.katacoda.com/scenario-examples/scenarios/create-scenario-101&#34; target=&#34;_blank&#34;&gt;https://www.katacoda.com/scenario-examples/scenarios/create-scenario-101&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;汉化教程入口：&lt;a href=&#34;https://www.katacoda.com/guoxudong/courses/katacoda-example/katacoda-create-scenarios&#34; target=&#34;_blank&#34;&gt;https://www.katacoda.com/guoxudong/courses/katacoda-example/katacoda-create-scenarios&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;官方教程入口：&lt;a href=&#34;https://katacoda.com/scenario-examples/scenarios/create-scenario-101&#34; target=&#34;_blank&#34;&gt;https://katacoda.com/scenario-examples/scenarios/create-scenario-101&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;汉化教程入口：&lt;a href=&#34;https://katacoda.com/guoxudong/courses/katacoda-example/katacoda-create-scenarios&#34; target=&#34;_blank&#34;&gt;https://katacoda.com/guoxudong/courses/katacoda-example/katacoda-create-scenarios&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -1122,7 +1122,7 @@ User:           user-485d6mhcfm
 
 &lt;p&gt;而无论是哪一家的数据推送和展示，都是面向大众的，并不能个性化的展示我们最关心的那些数据，所以这时就需要自制一个疫情动态展示的 Dashboard 了。&lt;/p&gt;
 
-&lt;p&gt;说道 Dashboard，第一个联想到的当然就是 &lt;a href=&#34;https://grafana.com/&#34; target=&#34;_blank&#34;&gt;Grafana&lt;/a&gt; 了，&lt;a href=&#34;https://grafana.com/&#34; target=&#34;_blank&#34;&gt;Grafana&lt;/a&gt; 是自2014年以来推出的多平台开源分析和交互式可视化软件。连接支持的数据源，它会提供 Web 图表的展示以及报警。终端用户可以通过插件进行拓展，从而使用交互式的查询及展示复杂的监控仪表盘。&lt;/p&gt;
+&lt;p&gt;说到 Dashboard，第一个联想到的当然就是 &lt;a href=&#34;https://grafana.com/&#34; target=&#34;_blank&#34;&gt;Grafana&lt;/a&gt; 了，&lt;a href=&#34;https://grafana.com/&#34; target=&#34;_blank&#34;&gt;Grafana&lt;/a&gt; 是自2014年以来推出的多平台开源分析和交互式可视化软件。连接支持的数据源，它会提供 Web 图表的展示以及报警。终端用户可以通过插件进行拓展，从而使用交互式的查询及展示复杂的监控仪表盘。&lt;/p&gt;
 
 &lt;h2 id=&#34;项目准备&#34;&gt;项目准备&lt;/h2&gt;
 
@@ -1302,7 +1302,7 @@ ENTRYPOINT [&amp;quot;uwsgi&amp;quot;,&amp;quot;--ini&amp;quot;,&amp;quot;uwsgi.
 
 &lt;h2 id=&#34;结语&#34;&gt;结语&lt;/h2&gt;
 
-&lt;p&gt;截止目前（2020年2月14日），病例数还在不断的增加，但是疑似病例数趋势开始下降，可以看出，目前新型肺炎的确诊速度增加了；治愈数也在不断的增加；上海地区和其他地区比起来，虽然有大批返工人员进入，但是并没有增加特别多的病例数，各个社区严防死守的效果初显；同时上海一直保持着死亡1人的情况，而且中国首例新型肺炎治愈的也在上海。总的来说只要大家注意预防，待在家中，多消毒，多通风，一定可以战胜疫情，度过难关的。&lt;/p&gt;
+&lt;p&gt;截止目前（2020年2月14日），病例数还在不断的增加，但是疑似病例数趋势开始下降，可以看出，目前新型肺炎的确诊速度增加了；治愈数也在不断的增加；上海地区和其他地区比起来，虽然有大批返工人员进入，但是并没有增加特别多的病例数，各个社区严防死守的效果初显；同时上海一直保持着死亡1人的情况，而且中国首例新型肺炎治愈的也在上海。总的来说只要大家注意预防，待在家中，多消毒，多通风，一定可以战胜疫情，度过难关。&lt;/p&gt;
 
 &lt;p&gt;导入 Dashboard 的 &lt;code&gt;json&lt;/code&gt; 文件和部署 K8S 的 &lt;code&gt;yaml&lt;/code&gt; 文件都可以在 GitHub 上找到。&lt;/p&gt;
 
@@ -1408,11 +1408,11 @@ ENTRYPOINT [&amp;quot;uwsgi&amp;quot;,&amp;quot;--ini&amp;quot;,&amp;quot;uwsgi.
 
 &lt;h3 id=&#34;上班路上&#34;&gt;上班路上&lt;/h3&gt;
 
-&lt;p&gt;经量避免乘坐公共交通，建议步行、骑行或乘坐私家车上班。如必须乘坐公共交通工具时，务必全程佩戴口罩，途中尽量避免用手触摸车上物品。&lt;/p&gt;
+&lt;p&gt;尽量避免乘坐公共交通，建议步行、骑行或乘坐私家车上班。如必须乘坐公共交通工具时，务必全程佩戴口罩，途中尽量避免用手触摸车上物品。&lt;/p&gt;
 
-&lt;p&gt;戴口罩的同时也要戴上手套（冬天的手套或者户外手套皆可），在地铁、汽车和公共场所不要摘下手套。同样要小心楼梯扶手、电梯按钮。尽量远离他人1米：特别是在公共场所时，应该适当于他人保持距离。如在路上时，尽可能远离其他人（至少1米）。&lt;/p&gt;
+&lt;p&gt;戴口罩的同时也要戴上手套（冬天的手套或者户外手套皆可），在地铁、汽车和公共场所不要摘下手套。同样要小心楼梯扶手、电梯按钮。尽量远离他人1米：特别是在公共场所时，应该适当与他人保持距离。如在路上时，尽可能远离其他人（至少1米）。&lt;/p&gt;
 
-&lt;p&gt;到达园区之后，经量走楼梯，不要乘电梯。&lt;/p&gt;
+&lt;p&gt;到达园区之后，尽量走楼梯，不要乘电梯。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/ad5fbf65gy1gbrcy6k5cxg20dc07i0y1.gif&#34; alt=&#34;走楼梯&#34; /&gt;&lt;/p&gt;
 
@@ -1544,7 +1544,7 @@ sudo mv kubecm /usr/local/bin/
 
 &lt;p&gt;然后使用 &lt;code&gt;source&lt;/code&gt; 命令，使其生效&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;source $HOME/.zshrc
+&lt;pre&gt;&lt;code class=&#34;language-zsh&#34;&gt;source $HOME/.zshrc
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;之后，在输入 &lt;code&gt;kubecm&lt;/code&gt; 后按 &lt;kbd&gt;tab&lt;/kbd&gt; 键，就可以看到命令行自动补全的内容&lt;/p&gt;
@@ -1604,9 +1604,26 @@ kubecm rename -o dev -n test
 kubecm rename -n dev -c
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;h4 id=&#34;切换默认-namespace&#34;&gt;切换默认 namespace&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 交互式切换 namespace
+kubecm namespace
+# 或者
+kubecm ns
+# 切换默认 namespace 为 kube-system
+kubecm ns kube-system
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;h2 id=&#34;效果展示&#34;&gt;效果展示&lt;/h2&gt;
 
 &lt;p&gt;&lt;img src=&#34;Interaction.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;视频介绍&#34;&gt;视频介绍&lt;/h2&gt;
+
+
+&lt;div style=&#34;position: relative; width: 100%; height: 0; padding-bottom: 75%;&#34;&gt;
+    &lt;iframe src=&#34;//player.bilibili.com/player.html?aid=88259938&amp;amp;cid=150776221&amp;amp;page=1&#34; scrolling=&#34;no&#34; border=&#34;0&#34; frameborder=&#34;no&#34; framespacing=&#34;0&#34; allowfullscreen=&#34;true&#34;style=&#34;position: absolute; width: 100%; height: 100%; left: 0; top: 0;&#34;&gt; &lt;/iframe&gt;
+&lt;/div&gt;
 
 &lt;h2 id=&#34;结语&#34;&gt;结语&lt;/h2&gt;
 
