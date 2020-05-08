@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>kubernetes on GuoXD Blog</title>
+    <title>Kubernetes on GuoXD Blog</title>
     <link>https://guoxudong.io/en/tags/kubernetes/</link>
-    <description>Recent content in kubernetes on GuoXD Blog</description>
+    <description>Recent content in Kubernetes on GuoXD Blog</description>
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
@@ -114,11 +114,11 @@ This chart helps you run a grafana server that include aliyun cms dashboard.
 {{ template &amp;quot;chart.valuesSection&amp;quot; . }}
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;更多内容和示例，详见 &lt;a href=&#34;https://github.com/norwoodj/helm-docs&#34; target=&#34;_blank&#34;&gt;https://github.com/norwoodj/helm-docs&lt;/a&gt;&lt;/p&gt;
-
 &lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
 
 &lt;p&gt;helm-docs 可以帮助很多像我这样需要维护多个 Helm Chart 的开发者，在更新完或新建 Chart 以后，使用 &lt;code&gt;helm-docs&lt;/code&gt; 来自动生成 &lt;code&gt;README.md&lt;/code&gt; 文件，无需逐个寻找和修改，甚至将其集成到 CI 流水线中，自动生成最新的 &lt;code&gt;README.md&lt;/code&gt;，保证文档和代码的一致。&lt;/p&gt;
+
+&lt;p&gt;更多内容和示例，详见 &lt;a href=&#34;https://github.com/norwoodj/helm-docs&#34; target=&#34;_blank&#34;&gt;https://github.com/norwoodj/helm-docs&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
