@@ -1050,7 +1050,7 @@ trigger:
 
 &lt;p&gt;值得注意的事：上面的这个 &lt;code&gt;.drone.yml&lt;/code&gt; 文件将本地的&lt;code&gt;.m2&lt;/code&gt;文件、kubeconfig文件、&lt;code&gt;docker.sock&lt;/code&gt; 文件挂载到 pipeline 中以实现 maven 打包缓存，k8s 部署、docker 缓存的作用，以提高 CI 速度。而是用挂载需要管理员在项目 settings 中勾选 &lt;code&gt;Trusted&lt;/code&gt; ，这个操作只能管理员进行，普通用户是看不到这个选项的。而管理员就是在docker运行时候 &lt;code&gt;--env=DRONE_USER_CREATE=username:{your-admin-username},admin:true&lt;/code&gt; 设置的。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://ws3.sinaimg.cn/large/ad5fbf65gy1g38qvifxwij21d40tk76s.jpg&#34; alt=&#34;WX20190521-104717@2x&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tvax2.sinaimg.cn/large/ad5fbf65gy1g38qvifxwij21d40tk76s.jpg&#34; alt=&#34;WX20190521-104717@2x&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;而上传镜像和钉钉同时需要在 settings 设置中添加 secret&lt;/p&gt;
 
