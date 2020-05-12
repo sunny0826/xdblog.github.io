@@ -469,10 +469,10 @@ trigger:
 
 &lt;blockquote&gt;
 &lt;p&gt;注意这里的钉钉 token 是 webhook 中 &lt;code&gt;https://oapi.dingtalk.com/robot/send?access_token=&lt;/code&gt; 后这部分
-&lt;img src=&#34;https://ws2.sinaimg.cn/large/ad5fbf65gy1g38r1mkoztj20iy0ezgmg.jpg&#34; alt=&#34;WX20190521-105337&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://tvax2.sinaimg.cn/large/ad5fbf65gy1g38r1mkoztj20iy0ezgmg.jpg&#34; alt=&#34;WX20190521-105337&#34; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://ws1.sinaimg.cn/large/ad5fbf65gy1g38qxizsg1j21ia0tujtb.jpg&#34; alt=&#34;WX20190521-104942@2x&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tvax2.sinaimg.cn/large/ad5fbf65gy1g38qxizsg1j21ia0tujtb.jpg&#34; alt=&#34;WX20190521-104942@2x&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;构建结果&#34;&gt;构建结果&lt;/h2&gt;
 
@@ -482,7 +482,7 @@ trigger:
 
 &lt;p&gt;CI 结束后，会在钉钉机器人所在群收到通知&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://ws4.sinaimg.cn/large/ad5fbf65gy1g38r8cttcrj20e90bzacr.jpg&#34; alt=&#34;WX20190521-110009&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tvax2.sinaimg.cn/large/ad5fbf65gy1g38r8cttcrj20e90bzacr.jpg&#34; alt=&#34;WX20190521-110009&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;插件支持&#34;&gt;插件支持&lt;/h2&gt;
 
