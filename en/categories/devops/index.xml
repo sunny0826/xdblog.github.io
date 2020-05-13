@@ -91,7 +91,7 @@ Forwarding from [::1]:8097 -&amp;gt; 9097
 
 &lt;p&gt;点击 &lt;code&gt;Import and Apply&lt;/code&gt; 按钮，之后 Dashboard 会创建一个 PipelineRun 来导入指定的 Tekton 资源。&lt;/p&gt;
 
-&lt;p&gt;点击页面底部的 &lt;code&gt;View status of this run&lt;/code&gt; 链接，查看 MyApp 导入 Tekton 资源的状态。&lt;/p&gt;
+&lt;p&gt;点击页面底部的 &lt;code&gt;View status of this run&lt;/code&gt; 链接，查看 pipeline-example-maven 导入 Tekton 资源的状态。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://tvax4.sinaimg.cn/large/ad5fbf65gy1geqnqyx5g2j20a403et8q.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
