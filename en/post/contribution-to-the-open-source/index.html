@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academia 4.3.1">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
+  <meta name="baidu-site-verification" content="A85okozwVV" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="never">
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="郭旭东">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="本文根据作者参与开源项目的经验，介绍了如何参与到开源项目中贡献自己的力量。">
+
+  
+  <link rel="alternate" hreflang="zh" href="https://guoxudong.io/post/contribution-to-the-open-source/">
+  
+  <link rel="alternate" hreflang="en-us" href="https://guoxudong.io/en/post/contribution-to-the-open-source/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#fc6f5c">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.9.0/instantsearch.min.css" integrity="sha256-ZtmLe16p4jS4/2wPwwH6NzJt460SJzgLmhKrYo5yn7g=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch-theme-algolia.min.css" integrity="sha256-uL8LUd3zkI/lXvc/Hv/oOu8ld6RJcOZiUY/8c+I+3/o=" crossorigin="anonymous">
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+
+  
+    
+    
+    
+    
+      
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://guoxudong.io/en/post/contribution-to-the-open-source/">
+
+  
+  
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@GuoXudong2">
+  <meta property="twitter:creator" content="@GuoXudong2">
+  
+  <meta property="og:site_name" content="GuoXD Blog">
+  <meta property="og:url" content="https://guoxudong.io/en/post/contribution-to-the-open-source/">
+  <meta property="og:title" content="如何参与开源项目 | GuoXD Blog">
+  <meta property="og:description" content="本文根据作者参与开源项目的经验，介绍了如何参与到开源项目中贡献自己的力量。"><meta property="og:image" content="https://guoxudong.io/img/icon-192.png">
+  <meta property="twitter:image" content="https://guoxudong.io/img/icon-192.png"><meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2020-05-20T11:12:59&#43;08:00">
+  
+  <meta property="article:modified_time" content="2020-05-20T11:12:59&#43;08:00">
+  
+
+  
+
+
+  
+
+
+
+
+
+  <title>如何参与开源项目 | GuoXD Blog</title>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4d507f28a1daf58fc7aca939db57093d";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>  
+</head>
+
+
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/en/"><img src="/img/logo.png" alt="GuoXD Blog"></a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/en/#slider"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/en/post"><span>Blog</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/en/#about"><span>About</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" ><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <span>English</span>
+          </a>
+          <ul class="dropdown-menu">
+            
+            <li class="dropdown-item my-0 py-0 mx-0 px-0">
+              <a href="https://guoxudong.io/post/contribution-to-the-open-source/">
+                <span>中文 (简体)</span>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article py-5" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+<div class="container split-header">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+        <img class="img-fluid w-100" src="https://tva1.sinaimg.cn/large/ad5fbf65gy1gf12hx32qgj20m40bmq2z.jpg" itemprop="image" alt="">
+        
+    </div>
+    <div class="col-lg-8">
+      <h1 itemprop="name">如何参与开源项目</h1>
+
+      
+
+      
+
+
+
+<meta content="2020-05-20 11:12:59 &#43;0800 CST" itemprop="datePublished">
+<meta content="2020-05-20 11:12:59 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+
+
+  <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/en/authors/guoxudong/">郭旭东</a></span>
+
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2020-05-20</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    5 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/en/post/contribution-to-the-open-source/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="">开源</a></span>
+  
+
+  
+    
+<br>
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://guoxudong.io/en/post/contribution-to-the-open-source/&amp;text=%e5%a6%82%e4%bd%95%e5%8f%82%e4%b8%8e%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://guoxudong.io/en/post/contribution-to-the-open-source/&amp;t=%e5%a6%82%e4%bd%95%e5%8f%82%e4%b8%8e%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%e5%a6%82%e4%bd%95%e5%8f%82%e4%b8%8e%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae&amp;body=https://guoxudong.io/en/post/contribution-to-the-open-source/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://guoxudong.io/en/post/contribution-to-the-open-source/&amp;title=%e5%a6%82%e4%bd%95%e5%8f%82%e4%b8%8e%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=%e5%a6%82%e4%bd%95%e5%8f%82%e4%b8%8e%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae%20https://guoxudong.io/en/post/contribution-to-the-open-source/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://guoxudong.io/en/post/contribution-to-the-open-source/&amp;title=%e5%a6%82%e4%bd%95%e5%8f%82%e4%b8%8e%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://guoxudong.io/en/post/contribution-to-the-open-source/&amp;title=%e5%a6%82%e4%bd%95%e5%8f%82%e4%b8%8e%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="/share?url=https://guoxudong.io/en/post/contribution-to-the-open-source/" target="_blank" rel="noopener" class="share-btn-weixin">
+          <i class="fab fa-weixin"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+  <div class="article-container" id="container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<h2 id="前言">前言</h2>
+
+<p>这篇文章的起因是朋友的一个疑问：如何参与开源项目？搜索了一下网上类似的文章，大多都是讲解如何操作 GitHub 来给开源项目贡献代码、开源协议有哪些以及开源项目的一些介绍。而开源项目作为开源思想的产物，最难的从来都不是贡献代码，而参与的方式也不只有贡献代码一种（虽然贡献代码是最直接的）。下面就根据我的经验，介绍一下如何参与到开源项目中。</p>
+
+<h2 id="心理建设">心理建设</h2>
+
+<p>在和不同的小伙伴聊过之后，发现大家都有一个同样的问题：很多同学都觉得参与开源项目是技术大牛的事情，我们这种技术水平一般的，只需学习怎么使用就行了。</p>
+
+<p>那么这就引出了小标题<strong>心理建设</strong>的重要性，一个开放的项目（伪开源不算），是可以接纳任何可行有益的建议的，只要是对项目有利的贡献，都会得到认可（前提是你能说服别人）。会有一些技术大牛维护这些项目，但不代表任何参与该项目人都是技术大牛，就如之前 4 岁小女孩可以给 Linux 内核贡献提交，只要你的提交可以提升项目质量，哪怕是一个符号的修改都会得到肯定。社区是开放的，任何人都可以参与进来；社区又是严谨的，只要有错误，任何人都可以修改它，并不是“大神”们的专利。</p>
+
+<h2 id="如何开始">如何开始</h2>
+
+<p>开始前，首先要明确你想要做的内容，除了贡献代码以外，bug 的发现、新功能的建议、文档的补充、测试用例的完善，甚至是错别字的纠正，这些都是参与开源项目的方式。正如上文所说，一个开放的社区，是不会拒绝任何可以提升项目质量的行为的。</p>
+
+<p>而代码贡献方面，如果有志于贡献高质量的代码、修复 bug 或贡献新功能，在开始时，可以打开 ISSUE，里面有一些打着 <code>good first issue</code> Label 的 ISSUE，这些 ISSUE 通常会使一些小功能的开发或者 bug 的修复，你可以通过完成这个 ISSUE 来踏出你贡献代码的第一步。当然，在该 ISSUE 中的交流时必不可少的，这样可以帮助你更详细的了解该 ISSUE 要解决的问题，从而在开发中少走弯路。</p>
+
+<p><img src="https://tvax4.sinaimg.cn/large/ad5fbf65gy1gf0ylqtijgj20sx0bjabu.jpg" alt="image" /></p>
+
+<h2 id="贡献规范">贡献规范</h2>
+
+<p>每个开源项目都会有自己的<strong>贡献指南（Contributing Guidelines）</strong>，在参与项目之前，请先<strong>阅读该指南</strong>，一般该指南中都会有诸如 Slack channel 或邮件列表这样的沟通工具的链接，或者钉钉、微信这样即时交流工具的二维码（当然最简单的是在 ISSUE 中交流，并且这也是最直接也最容易得到回复的沟通方式）。</p>
+
+<p>一般来说，<strong>不要在 fork 代码的 <code>master</code> 分支上做任何修改，该分支用来和上游代码库保持同步！</strong> 一个开发分支对应一个功能点，并且对应一个 PR，一个 PR 对应一个 ISSUE，最好不要将多个功能写在一个 PR 里，这样会增加项目维护者 review 的难度。</p>
+
+<h2 id="github-操作">GitHub 操作</h2>
+
+<p>下面就是一些在 Github 上的操作规范。</p>
+
+<p><strong>fork 项目</strong></p>
+
+<p>要参与项目贡献，首先需要 fork 项目代码，在项目页面点击 <code>fork</code> 按钮，将其 fork 到自己的仓库中：</p>
+
+<p><img src="https://tvax2.sinaimg.cn/large/ad5fbf65gy1gf05j7h9uzj20ty07ywfd.jpg" alt="image" /></p>
+
+<p><strong>本地配置</strong></p>
+
+<p>在项目 fork 好之后，将其拉取到本地：</p>
+
+<pre><code class="language-bash">$ git clone https://github.com/sunny0826/kubernetes.git
+</code></pre>
+
+<p>为了保持与上游仓库代码一致，添加上游仓库：</p>
+
+<pre><code class="language-bash">$ git remote add upstream https://github.com/kubernetes/kubernetes.git
+</code></pre>
+
+<p>上游仓库添加好之后，之后都可以通过以下命令来使本地仓库与上游仓库保持同步：</p>
+
+<pre><code class="language-bash"># 切换分支
+$ git checkout master
+# 更新上游代码
+$ git fetch upstream
+# 合并代码到 master 分支
+$ git merge upstream/master
+# 上传代码
+$ git push
+</code></pre>
+
+<p><strong>新建开发分支</strong></p>
+
+<p>在同步上游仓库之后，就可以新建分支，添加自己的修改了：</p>
+
+<pre><code class="language-bash">$ git checkout -b xxx
+</code></pre>
+
+<p><strong>提交 PR</strong></p>
+
+<p>在开发完成后，就可以 push 代码，然后提交 PR 了。一般需要在提交 PR 时，将关联的 ISSUE 标出，并说明该 PR 解决了什么问题。</p>
+
+<p>而一些大的开源组织会有一些其他要求，比如 CNCF 的项目，在提交 PR 后 <a href="https://github.com/k8s-ci-robot" target="_blank">k8s-ci-robot</a> 会检测你是否签署了 Linux 基金会的<a href="https://identity.linuxfoundation.org/projects/cncf" target="_blank">贡献许可协议</a>（如果没有，就会要求你先签署一下该协议），同时还会做一些其他操作，比如根据内容打一些标签、做一些简单的测试，确保代码无冲突，并给你分配 reviewer（当然也可以使用 <code>/assign</code> 命令自己指定）。</p>
+
+<p><strong>Review</strong></p>
+
+<p>在提交 PR 后，就会有人来对你提交的代码进行 review。当然，这个人并不会立即出现，因为大部分开源项目的维护者都不是全职的，并且如果该项目的维护者在国外，还需要考虑时差问题。</p>
+
+<p>reviewer 会对你提交的内容进行一些评论，可能是需要更改的点，或者是需要增加一些相关的单元测试，这个过程将一直持续，直到这些内容达到合并的标准，当看到 <code>/lgtm</code> 时，恭喜你，你的代码通过 review 被合并了。</p>
+
+<p><strong>删除开发分支</strong></p>
+
+<p>PR 被成功合并后，就可以对之前开发的分支进行清理了，因为在 review 中，会提交多个 commit，而合并一般会将这些 commit 压缩为一个 commit 然后合并到 <code>master</code> 分支，这就导致了 commit 信息的不一致，这也是为什么在前文要求不要使用 <code>master</code> 分支的原因，如果使用 <code>master</code> 分支，在提交几次 PR 后，就会多出很多很多的 commit&hellip;</p>
+
+<p><img src="https://tvax4.sinaimg.cn/large/ad5fbf65gy1gf07ejzdglj20mb04fdg6.jpg" alt="image" /></p>
+
+<p>清理本地分支：</p>
+
+<pre><code class="language-bash">$ git branch -d xxx
+</code></pre>
+
+<p>这种方式就是通过分支管理，让 <code>master</code> 分支始终与上游仓库的 commit 信息一致，而从 <code>master</code> 分支 checkout 出开发分支，在开发分支内容合并入上游之后，只需同步 <code>master</code> 分支内容，然后重复上面的步骤就可以开始新的开发了。</p>
+
+<h2 id="总结">总结</h2>
+
+<p>以上就是这些年我参与开源项目的一些经验，是对网上一些文章的补充，其实不同开源组织的贡献方式不尽相同，在参与之前一定要先阅读<strong>贡献指南（Contributing Guidelines）</strong>，这样会少走很多弯路。还有就是在 ISSUE 中的交流请尽量使用英语，哪怕你知道和你交流的是一名可以读懂汉语的人，这样做的原因是为了让其他不懂汉语的社区成员可以读懂你们交流，从而参与进来，而不是让人以为你们在“密谋”着什么。</p>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/%e5%bc%80%e6%ba%90">开源</a>
+  
+</div>
+
+
+
+     
+     
+<div class="entry-shang text-center">
+    <p>「一键投喂 小鱼干/小骨头」</p>
+    <button class="zs show-zs btn btn-primary">投喂</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+    <div class="zs-modal-head">
+        <button type="button" class="close">×</button>
+        <p class="author">
+            <a href="https://blog.maoxianplay.com">
+                <img src="https://wx3.sinaimg.cn/square/ad5fbf65gy1g2o621gcs6j20m80m8gng.jpg"/>
+            小助手毛线</a>
+        </p>
+        <p class="tip"><i></i><span>感谢投喂 <a href="/maoxian">毛线</a> & <a href="/sunny">Sunny</a> </span></p>
+    </div>
+    <div class="zs-modal-body">
+        <div class="zs-modal-btns">
+            <button class="btn btn-blink" data-num="2">2元</button>
+            <button class="btn btn-blink" data-num="5">5元</button>
+            <button class="btn btn-blink" data-num="10">10元</button>
+            <button class="btn btn-blink" data-num="50">50元</button>
+            <button class="btn btn-blink" data-num="100">100元</button>
+            <button class="btn btn-blink" data-num="any">任意金额</button>
+        </div>
+        <div class="zs-modal-pay">
+            <button class="btn btn-bred" id="pay-text">2元</button>
+            <p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+            <img id="pay-image" src="/img/alipay-2.png">
+        </div>
+    </div>
+    <div class="zs-modal-footer">
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="alipay" class="zs-type" checked="checked" style="float: left;">
+            <span class="zs-alipay">
+                <img src="/img/alipay-btn.png">
+            </span>
+        </label>
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="wechat" class="zs-type" style="float: left;">
+            <span class="zs-wechat">
+                <img src="/img/wechat-btn.png">
+            </span>
+        </label>
+    </div>
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="https://guoxudong.io/">郭旭东</a></h5>
+      <h6 class="card-subtitle">运维负责人</h6>
+      <p class="card-text" itemprop="description">云原生爱好者，分享云原生和 DevOps 技术实践，倡导开源运动，传播开源思想。</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          <li>
+            <a itemprop="sameAs" href="mailto:sunnydog0826@gmail.com" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/en/publication/wx_contact/" >
+              <i class="fab fa-weixin"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/sunny0826" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "gxd" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+  
+
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+  
+
+  
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+    
+  
+
+  
+  
+
+
+
+
+
+
+
+
+<script id="dsq-count-scr" src="//gxd.disqus.com/count.js" async></script>
+
+
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<script>
+  const search_index_filename = "/en/index.json";
+  const i18n = {
+    'placeholder': "Search...",
+    'results': "results found",
+    'no_results': "No results found"
+  };
+  const content_type = {
+    'post': "Posts",
+    'project': "Projects",
+    'publication' : "Publications",
+    'talk' : "Talks"
+    };
+</script>
+
+
+
+
+
+
+
+<script id="search-hit-algolia-template" type="text/html">
+  <div class="search-hit">
+    <div class="search-hit-content">
+      <div class="search-hit-name">
+        <a href="{{relpermalink}}">{{{_highlightResult.title.value}}}</a>
+      </div>
+      <div class="article-metadata search-hit-type">{{type}}</div>
+      <p class="search-hit-description">{{{_highlightResult.summary.value}}}</p>
+    </div>
+  </div>
+</script>
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch.min.js" integrity="sha256-gFCtPk/sonctyfwYOgjrPoWApQ0rqB6ezBBZ7p32yGc=" crossorigin="anonymous"></script>
+
+<script>
+  const algoliaConfig = {
+    appId: "BE80MGWD9D",
+    apiKey: "77ca6abe5531ce66ff7c3b2486222d85",
+    indexName: "gxd-blog",
+    poweredBy:  false 
+  };
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+  
+
+
+
+<script src="/js/academia.min.6ee120363d4a313a6fd39ad7c46e63f8.js"></script>
+
+
+
+
+
+
+
+<script src="https://my.openwrite.cn/js/readmore.js" type="text/javascript"></script>
+<script>
+  const btw = new BTWPlugin();
+  btw.init({
+      id: 'container',
+      blogId: '18752-1575602900012-529',
+      name: '云原生之路',
+      qrcode: 'https://guoxudong.io/publication/contact_me/qr_weixin.jpg',
+      keyword: 'road',
+  });
+</script>
+<style>
+div#btw-modal img {
+  width: 180px; margin-top: 10px; border: 8px solid rgb(230, 230, 230);margin: auto;
+}
+</style>
+
+  
+  <div class="container">
+    <footer class="site-footer">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        
+        <p>
+          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          Powered by
+          <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-inline network-icon text-right">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="mailto:sunnydog0826@gmail.com"  title="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="/en/publication/wx_contact/"  title="Chat on Keybase"><i class="fab fa-weixin" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/sunny0826" target="_blank" rel="noopener" title="Discuss on Forum"><i class="fab fa-github" aria-hidden="true"></i></a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
