@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academia 4.3.1">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
+  <meta name="baidu-site-verification" content="A85okozwVV" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="never">
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="郭旭东">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="本篇为系列文章第二篇，将介绍 ChaosBlade-Operator 的安装方式以及基本概念，并进行一个简单的示例实验。">
+
+  
+  <link rel="alternate" hreflang="zh" href="https://guoxudong.io/post/start-chaosblade-1/">
+  
+  <link rel="alternate" hreflang="en-us" href="https://guoxudong.io/en/post/start-chaosblade-1/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#fc6f5c">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.9.0/instantsearch.min.css" integrity="sha256-ZtmLe16p4jS4/2wPwwH6NzJt460SJzgLmhKrYo5yn7g=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch-theme-algolia.min.css" integrity="sha256-uL8LUd3zkI/lXvc/Hv/oOu8ld6RJcOZiUY/8c+I+3/o=" crossorigin="anonymous">
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+
+  
+    
+    
+    
+    
+      
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://guoxudong.io/en/post/start-chaosblade-1/">
+
+  
+  
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@GuoXudong2">
+  <meta property="twitter:creator" content="@GuoXudong2">
+  
+  <meta property="og:site_name" content="GuoXD Blog">
+  <meta property="og:url" content="https://guoxudong.io/en/post/start-chaosblade-1/">
+  <meta property="og:title" content="ChaosBlade：从零开始的混沌工程（二） | GuoXD Blog">
+  <meta property="og:description" content="本篇为系列文章第二篇，将介绍 ChaosBlade-Operator 的安装方式以及基本概念，并进行一个简单的示例实验。"><meta property="og:image" content="https://guoxudong.io/img/icon-192.png">
+  <meta property="twitter:image" content="https://guoxudong.io/img/icon-192.png"><meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2020-06-09T11:14:09&#43;08:00">
+  
+  <meta property="article:modified_time" content="2020-06-09T11:14:09&#43;08:00">
+  
+
+  
+
+
+  
+
+
+
+
+
+  <title>ChaosBlade：从零开始的混沌工程（二） | GuoXD Blog</title>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4d507f28a1daf58fc7aca939db57093d";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>  
+</head>
+
+
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/en/"><img src="/img/logo.png" alt="GuoXD Blog"></a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/en/#slider"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/en/post"><span>Blog</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/en/#about"><span>About</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" ><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <span>English</span>
+          </a>
+          <ul class="dropdown-menu">
+            
+            <li class="dropdown-item my-0 py-0 mx-0 px-0">
+              <a href="https://guoxudong.io/post/start-chaosblade-1/">
+                <span>中文 (简体)</span>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article py-5" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+<div class="container split-header">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+        <img class="img-fluid w-100" src="https://tva1.sinaimg.cn/large/ad5fbf65gy1gfgdamuzm1j212t0lq46x.jpg" itemprop="image" alt="">
+        
+    </div>
+    <div class="col-lg-8">
+      <h1 itemprop="name">ChaosBlade：从零开始的混沌工程（二）</h1>
+
+      
+
+      
+
+
+
+<meta content="2020-06-09 11:14:09 &#43;0800 CST" itemprop="datePublished">
+<meta content="2020-06-09 11:14:09 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+
+
+  <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/en/authors/guoxudong/">郭旭东</a></span>
+
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2020-06-09</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/en/post/start-chaosblade-1/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="">混沌工程</a></span>
+  
+
+  
+    
+<br>
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://guoxudong.io/en/post/start-chaosblade-1/&amp;text=ChaosBlade%ef%bc%9a%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%e6%b7%b7%e6%b2%8c%e5%b7%a5%e7%a8%8b%ef%bc%88%e4%ba%8c%ef%bc%89" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://guoxudong.io/en/post/start-chaosblade-1/&amp;t=ChaosBlade%ef%bc%9a%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%e6%b7%b7%e6%b2%8c%e5%b7%a5%e7%a8%8b%ef%bc%88%e4%ba%8c%ef%bc%89" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=ChaosBlade%ef%bc%9a%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%e6%b7%b7%e6%b2%8c%e5%b7%a5%e7%a8%8b%ef%bc%88%e4%ba%8c%ef%bc%89&amp;body=https://guoxudong.io/en/post/start-chaosblade-1/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://guoxudong.io/en/post/start-chaosblade-1/&amp;title=ChaosBlade%ef%bc%9a%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%e6%b7%b7%e6%b2%8c%e5%b7%a5%e7%a8%8b%ef%bc%88%e4%ba%8c%ef%bc%89" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=ChaosBlade%ef%bc%9a%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%e6%b7%b7%e6%b2%8c%e5%b7%a5%e7%a8%8b%ef%bc%88%e4%ba%8c%ef%bc%89%20https://guoxudong.io/en/post/start-chaosblade-1/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://guoxudong.io/en/post/start-chaosblade-1/&amp;title=ChaosBlade%ef%bc%9a%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%e6%b7%b7%e6%b2%8c%e5%b7%a5%e7%a8%8b%ef%bc%88%e4%ba%8c%ef%bc%89" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://guoxudong.io/en/post/start-chaosblade-1/&amp;title=ChaosBlade%ef%bc%9a%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%9a%84%e6%b7%b7%e6%b2%8c%e5%b7%a5%e7%a8%8b%ef%bc%88%e4%ba%8c%ef%bc%89" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="/share?url=https://guoxudong.io/en/post/start-chaosblade-1/" target="_blank" rel="noopener" class="share-btn-weixin">
+          <i class="fab fa-weixin"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+  <div class="article-container" id="container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<h2 id="前言">前言</h2>
+
+<p>在上篇文章中，我们介绍了<strong>混沌工程</strong>以及 <strong>ChaosBlade</strong>。从本篇开始，从 ChaosBlade 的安装部署，到实验的创建销毁，在实践的角度，一步步的完成各种混沌实验，深入认识和使用混沌工程。</p>
+
+<h2 id="chaosblade-operator">ChaosBlade-Operator</h2>
+
+<p><a href="https://github.com/chaosblade-io/chaosblade-operator" target="_blank">ChaosBlade-Operator</a> 是 ChaosBlade 的 Kubernetes 平台实验场景实现。将混沌实验通过 Kubernetes 标准的 CRD 方式定义，用户可以像定义 Deployment 或 StatefulSet 那样定义 ChaosBlade 实验，只要对 <code>kubectl</code> 和 Kubernetes 对象有所了解，就可以轻松的创建、更新和删除实验场景；同时也可以通过 chaosblade cli 工具来操作实验场景。</p>
+
+<h3 id="安装">安装</h3>
+
+<p>ChaosBlade-Operator 需要使用 Helm 安装，进入 <a href="https://github.com/chaosblade-io/chaosblade-operator/releases" target="_blank">release 页面</a> 下载安装包（ChaosBlade 还提供了阿里云 OSS 的下载地址，提升国内下载速度）。</p>
+
+<p>使用 Helm 3 安装：</p>
+
+<pre><code class="language-bash"># 下载安装包
+$ wget -qO chaosblade-operator-0.6.0.tgz https://chaosblade.oss-cn-hangzhou.aliyuncs.com/agent/github/0.6.0/chaosblade-operator-0.6.0-v3.tgz
+# 为 chaosblade 创建一个 namespace
+$ kubectl create namespace chaosblade
+# 安装 ChaosBlade-Operator
+$ helm install chaos chaosblade-operator-0.6.0.tgz --set webhook.enable=true --namespace=chaosblade
+# 查看安装结果
+$ kubectl get pod -n chaosblade | grep chaosblade
+chaosblade-operator-6b6b484599-gdgq8   1/1     Running   0          4d23h
+chaosblade-tool-7wtph                  1/1     Running   0          4d20h
+chaosblade-tool-r4zdk                  1/1     Running   0          4d23h
+</code></pre>
+
+<p>ChaosBlade-Operator 启动后将会在每个节点部署一个 <code>chaosblade-tool</code> Pod 和一个 <code>chaosblade-operator</code> Pod，如果都运行正常，则安装成功。上面设置 <code>--set webhook.enable=true</code> 是为了 Pod 文件系统 I/O 故障实验，如果不需要进行该实验，则无需添加该设置。</p>
+
+<h2 id="快速开始">快速开始</h2>
+
+<p>下面就以 Pod 网络延迟实验为例，展示如何使用 ChaosBlade-Operator。</p>
+
+<h3 id="实验准备">实验准备</h3>
+
+<p>实验前需要先准备实验对象，这里使用 <a href="https://github.com/cloudnativeapp/guestbook?spm=5176.2020520152.0.0.7c5f16ddH8myx6" target="_blank">guestbook</a> 应用。</p>
+
+<p><strong>安装</strong></p>
+
+<p>同样使用 Helm 3</p>
+
+<pre><code class="language-bash"># add repo
+helm repo add apphub-incubator https://apphub.aliyuncs.com/incubator/
+# 安装
+helm install guestbook apphub-incubator/guestbook --set service.type=NodePort --namespace=chaosblade
+</code></pre>
+
+<p>默认的 Service 类型为 <code>LoadBalancer</code>，这里为了方便访问设置为了 <code>NodePort</code>。</p>
+
+<h3 id="开始实验">开始实验</h3>
+
+<p><strong>实验目标：</strong>对 chaosblade 命名空间中，对 <code>redis-master-68857cd57c-dzbs9</code> Pod 的本地 6379 端口添加 3000 毫秒访问延迟，延迟时间上下浮动 1000 毫秒。</p>
+
+<p><strong>实验 yaml 配置</strong></p>
+
+<pre><code class="language-yaml">apiVersion: chaosblade.io/v1alpha1
+kind: ChaosBlade
+metadata:
+  name: delay-pod-network-by-names
+spec:
+  experiments:
+  - scope: pod
+    target: network
+    action: delay
+    desc: &quot;delay pod network by names&quot;
+    matchers:
+    - name: names
+      value:
+      - &quot;redis-master-68857cd57c-dzbs9&quot;
+    - name: namespace
+      value:
+      - &quot;chaosblade&quot;
+    - name: local-port
+      value: [&quot;6379&quot;]
+    - name: interface
+      value: [&quot;eth0&quot;]
+    - name: time
+      value: [&quot;3000&quot;]
+    - name: offset
+      value: [&quot;1000&quot;]
+</code></pre>
+
+<p>将其保存为 <code>delay_pod_network_by_names.yaml</code> 并执行命令，开始实验：</p>
+
+<pre><code class="language-bash">$ kubectl apply -f delay_pod_network_by_names.yaml
+</code></pre>
+
+<h3 id="查看实验状态">查看实验状态</h3>
+
+<p>执行 <code>kubectl get blade delay-pod-network-by-names -o json</code> 命令，查看实验状态：</p>
+
+<pre><code class="language-json">{
+    &quot;apiVersion&quot;: &quot;chaosblade.io/v1alpha1&quot;,
+    &quot;kind&quot;: &quot;ChaosBlade&quot;,
+    &quot;metadata&quot;: {
+        &quot;annotations&quot;: {
+            &quot;kubectl.kubernetes.io/last-applied-configuration&quot;: &quot;{\&quot;apiVersion\&quot;:\&quot;chaosblade.io/v1alpha1\&quot;,\&quot;kind\&quot;:\&quot;ChaosBlade\&quot;,\&quot;metadata\&quot;:{\&quot;annotations\&quot;:{},\&quot;name\&quot;:\&quot;delay-pod-network-by-names\&quot;},\&quot;spec\&quot;:{\&quot;experiments\&quot;:[{\&quot;action\&quot;:\&quot;delay\&quot;,\&quot;desc\&quot;:\&quot;delay pod network by names\&quot;,\&quot;matchers\&quot;:[{\&quot;name\&quot;:\&quot;names\&quot;,\&quot;value\&quot;:[\&quot;redis-master-68857cd57c-dzbs9\&quot;]},{\&quot;name\&quot;:\&quot;namespace\&quot;,\&quot;value\&quot;:[\&quot;chaosblade\&quot;]},{\&quot;name\&quot;:\&quot;local-port\&quot;,\&quot;value\&quot;:[\&quot;6379\&quot;]},{\&quot;name\&quot;:\&quot;interface\&quot;,\&quot;value\&quot;:[\&quot;eth0\&quot;]},{\&quot;name\&quot;:\&quot;time\&quot;,\&quot;value\&quot;:[\&quot;3000\&quot;]},{\&quot;name\&quot;:\&quot;offset\&quot;,\&quot;value\&quot;:[\&quot;1000\&quot;]}],\&quot;scope\&quot;:\&quot;pod\&quot;,\&quot;target\&quot;:\&quot;network\&quot;}]}}\n&quot;
+        },
+        &quot;creationTimestamp&quot;: &quot;2020-06-02T05:57:50Z&quot;,
+        &quot;finalizers&quot;: [
+            &quot;finalizer.chaosblade.io&quot;
+        ],
+        &quot;generation&quot;: 1,
+        &quot;name&quot;: &quot;delay-pod-network-by-names&quot;,
+        &quot;resourceVersion&quot;: &quot;7710394&quot;,
+        &quot;selfLink&quot;: &quot;/apis/chaosblade.io/v1alpha1/chaosblades/delay-pod-network-by-names&quot;,
+        &quot;uid&quot;: &quot;1235ff55-8256-4caa-a371-e1abf6c9e7b7&quot;
+    },
+    &quot;spec&quot;: {
+        &quot;experiments&quot;: [
+            {
+                &quot;action&quot;: &quot;delay&quot;,
+                &quot;desc&quot;: &quot;delay pod network by names&quot;,
+                &quot;matchers&quot;: [
+                    {
+                        &quot;name&quot;: &quot;names&quot;,
+                        &quot;value&quot;: [
+                            &quot;redis-master-68857cd57c-dzbs9&quot;
+                        ]
+                    },
+                    {
+                        &quot;name&quot;: &quot;namespace&quot;,
+                        &quot;value&quot;: [
+                            &quot;chaosblade&quot;
+                        ]
+                    },
+                    {
+                        &quot;name&quot;: &quot;local-port&quot;,
+                        &quot;value&quot;: [
+                            &quot;6379&quot;
+                        ]
+                    },
+                    {
+                        &quot;name&quot;: &quot;interface&quot;,
+                        &quot;value&quot;: [
+                            &quot;eth0&quot;
+                        ]
+                    },
+                    {
+                        &quot;name&quot;: &quot;time&quot;,
+                        &quot;value&quot;: [
+                            &quot;3000&quot;
+                        ]
+                    },
+                    {
+                        &quot;name&quot;: &quot;offset&quot;,
+                        &quot;value&quot;: [
+                            &quot;1000&quot;
+                        ]
+                    }
+                ],
+                &quot;scope&quot;: &quot;pod&quot;,
+                &quot;target&quot;: &quot;network&quot;
+            }
+        ]
+    },
+    &quot;status&quot;: {
+        &quot;expStatuses&quot;: [
+            {
+                &quot;action&quot;: &quot;delay&quot;,
+                &quot;resStatuses&quot;: [
+                    {
+                        &quot;id&quot;: &quot;a86f8cf8b68ace98&quot;,
+                        &quot;kind&quot;: &quot;pod&quot;,
+                        &quot;name&quot;: &quot;redis-master&quot;,
+                        &quot;nodeName&quot;: &quot;keking&quot;,
+                        &quot;state&quot;: &quot;Success&quot;,
+                        &quot;success&quot;: true,
+                        &quot;uid&quot;: &quot;619a19ceb213f9b6152159bd868e88de2ddbf9a8aac606dc274b34bec6510c60&quot;
+                    }
+                ],
+                &quot;scope&quot;: &quot;pod&quot;,
+                &quot;state&quot;: &quot;Success&quot;,
+                &quot;success&quot;: true,
+                &quot;target&quot;: &quot;network&quot;
+            }
+        ],
+        &quot;phase&quot;: &quot;Running&quot;
+    }
+}
+</code></pre>
+
+<p>可以看到实验成功创建了。</p>
+
+<h3 id="观测结果">观测结果</h3>
+
+<pre><code class="language-bash"># 获取实验 pod ip
+$ kubectl get pod -l app=redis,role=master -o jsonpath={.items..status.podIP}
+10.42.69.44
+# 进入观测 pod
+$ kubectl exec -it redis-slave-6dd975d4c8-2zrkb bash
+# 在 pod 中安装 telnet
+$ apt-get update &amp;&amp; apt-get install -y telnet
+# 测试时间
+$ time echo &quot;&quot; | telnet 10.42.69.44 6379
+Trying 10.42.69.44...
+Connected to 10.42.69.44.
+Escape character is '^]'.
+Connection closed by foreign host.
+
+real    0m3.790s
+user    0m0.007s
+sys     0m0.001s
+</code></pre>
+
+<p><img src="https://tva3.sinaimg.cn/large/ad5fbf65gy1gfm2deqtdwg20p606c1kx.gif" alt="" /></p>
+
+<p>可以看到结果符合预期。</p>
+
+<p><strong>停止实验</strong></p>
+
+<p>执行命令：<code>kubectl delete -f delay_pod_network_by_names.yaml</code></p>
+
+<p>或者直接删除 blade 资源：<code>kubectl delete blade delay-pod-network-by-names</code></p>
+
+<h2 id="结语">结语</h2>
+
+<p>本篇我们讲解了如何部署 ChaosBlade-Operator 并进行了简单的实验，可以看到在云原生场景下，ChaosBlade 依旧有着简单的操作方式，多种实验场景，并对混沌实验模型进行了标准化实现。很友好的将混沌实验模型与 Kubernetes 声明式设计结合在一起，依靠混沌实验模型便捷开发场景的同时，又可以很好的结合 Kubernetes 设计理念。</p>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/%e6%b7%b7%e6%b2%8c%e5%b7%a5%e7%a8%8b">混沌工程</a>
+  
+</div>
+
+
+
+     
+     
+<div class="entry-shang text-center">
+    <p>「一键投喂 小鱼干/小骨头」</p>
+    <button class="zs show-zs btn btn-primary">投喂</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+    <div class="zs-modal-head">
+        <button type="button" class="close">×</button>
+        <p class="author">
+            <a href="https://blog.maoxianplay.com">
+                <img src="https://wx3.sinaimg.cn/square/ad5fbf65gy1g2o621gcs6j20m80m8gng.jpg"/>
+            小助手毛线</a>
+        </p>
+        <p class="tip"><i></i><span>感谢投喂 <a href="/maoxian">毛线</a> & <a href="/sunny">Sunny</a> </span></p>
+    </div>
+    <div class="zs-modal-body">
+        <div class="zs-modal-btns">
+            <button class="btn btn-blink" data-num="2">2元</button>
+            <button class="btn btn-blink" data-num="5">5元</button>
+            <button class="btn btn-blink" data-num="10">10元</button>
+            <button class="btn btn-blink" data-num="50">50元</button>
+            <button class="btn btn-blink" data-num="100">100元</button>
+            <button class="btn btn-blink" data-num="any">任意金额</button>
+        </div>
+        <div class="zs-modal-pay">
+            <button class="btn btn-bred" id="pay-text">2元</button>
+            <p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+            <img id="pay-image" src="/img/alipay-2.png">
+        </div>
+    </div>
+    <div class="zs-modal-footer">
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="alipay" class="zs-type" checked="checked" style="float: left;">
+            <span class="zs-alipay">
+                <img src="/img/alipay-btn.png">
+            </span>
+        </label>
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="wechat" class="zs-type" style="float: left;">
+            <span class="zs-wechat">
+                <img src="/img/wechat-btn.png">
+            </span>
+        </label>
+    </div>
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="https://guoxudong.io/">郭旭东</a></h5>
+      <h6 class="card-subtitle">运维负责人</h6>
+      <p class="card-text" itemprop="description">云原生爱好者，分享云原生和 DevOps 技术实践，倡导开源运动，传播开源思想。</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          <li>
+            <a itemprop="sameAs" href="mailto:sunnydog0826@gmail.com" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/en/publication/wx_contact/" >
+              <i class="fab fa-weixin"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/sunny0826" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>Related</h3>
+        <ul>
+          
+          <li><a href="/en/post/start-chaosblade-0/">ChaosBlade：从零开始的混沌工程（一）</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "gxd" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+  
+
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+  
+
+  
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+    
+  
+
+  
+  
+
+
+
+
+
+
+
+
+<script id="dsq-count-scr" src="//gxd.disqus.com/count.js" async></script>
+
+
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<script>
+  const search_index_filename = "/en/index.json";
+  const i18n = {
+    'placeholder': "Search...",
+    'results': "results found",
+    'no_results': "No results found"
+  };
+  const content_type = {
+    'post': "Posts",
+    'project': "Projects",
+    'publication' : "Publications",
+    'talk' : "Talks"
+    };
+</script>
+
+
+
+
+
+
+
+<script id="search-hit-algolia-template" type="text/html">
+  <div class="search-hit">
+    <div class="search-hit-content">
+      <div class="search-hit-name">
+        <a href="{{relpermalink}}">{{{_highlightResult.title.value}}}</a>
+      </div>
+      <div class="article-metadata search-hit-type">{{type}}</div>
+      <p class="search-hit-description">{{{_highlightResult.summary.value}}}</p>
+    </div>
+  </div>
+</script>
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch.min.js" integrity="sha256-gFCtPk/sonctyfwYOgjrPoWApQ0rqB6ezBBZ7p32yGc=" crossorigin="anonymous"></script>
+
+<script>
+  const algoliaConfig = {
+    appId: "BE80MGWD9D",
+    apiKey: "77ca6abe5531ce66ff7c3b2486222d85",
+    indexName: "gxd-blog",
+    poweredBy:  false 
+  };
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+  
+
+
+
+<script src="/js/academia.min.6ee120363d4a313a6fd39ad7c46e63f8.js"></script>
+
+
+
+
+
+
+
+<script src="https://my.openwrite.cn/js/readmore.js" type="text/javascript"></script>
+<script>
+  const btw = new BTWPlugin();
+  btw.init({
+      id: 'container',
+      blogId: '18752-1575602900012-529',
+      name: '云原生之路',
+      qrcode: 'https://guoxudong.io/publication/contact_me/qr_weixin.jpg',
+      keyword: 'road',
+  });
+</script>
+<style>
+div#btw-modal img {
+  width: 180px; margin-top: 10px; border: 8px solid rgb(230, 230, 230);margin: auto;
+}
+</style>
+
+  
+  <div class="container">
+    <footer class="site-footer">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        
+        <p>
+          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          Powered by
+          <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-inline network-icon text-right">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="mailto:sunnydog0826@gmail.com"  title="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="/en/publication/wx_contact/"  title="Chat on Keybase"><i class="fab fa-weixin" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/sunny0826" target="_blank" rel="noopener" title="Discuss on Forum"><i class="fab fa-github" aria-hidden="true"></i></a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
