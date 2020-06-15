@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -356,7 +356,7 @@
     <div class="col-lg-8">
         <img class="img-fluid w-100" src="https://tva3.sinaimg.cn/large/ad5fbf65ly1ge3j4h35xpj21qi15oacw.jpg" itemprop="image" alt="">
         <span
-          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+          class="article-header-caption">Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a></span>
     </div>
     <div class="col-lg-8">
       <h1 itemprop="name">使用 Kustomize 帮你管理 kubernetes 应用（二）： Kustomize 的使用方法</h1>
@@ -560,114 +560,81 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<p>本文介绍使用和维护 Kustomize 的方法及步骤。</p>
-
+      <p>本文介绍使用和维护 Kustomize 的方法及步骤。</p>
 <h2 id="定制配置">定制配置</h2>
-
 <p>在这个工作流方式中，所有的配置文件（ YAML 资源）都为用户所有，存在于私有 repo 中。其他人是无法使用的。</p>
-
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g2813d1ia7j20qo0f0dgk.jpg" alt="" /></p>
-
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g2813d1ia7j20qo0f0dgk.jpg" alt=""></p>
 <ol>
-<li><p>创建一个目录用于版本控制</p>
-
-<p>我们希望将一个名为 <strong><em>ldap</em></strong> 的 Kubernetes 集群应用的配置保存在自己的 repo 中。
+<li>
+<p>创建一个目录用于版本控制</p>
+<p>我们希望将一个名为 <em><strong>ldap</strong></em> 的 Kubernetes 集群应用的配置保存在自己的 repo 中。
 这里使用 <code>git</code> 进行版本控制。</p>
-
-<pre><code class="language-bash">git init ~/ldap
-</code></pre></li>
-
-<li><p>创建一个 <code>base</code></p>
-
-<pre><code class="language-bash">mkdir -p ~/ldap/base
-</code></pre>
-
-<p>在这个目录中创建并提交 <code>kustomization.yaml</code> 文件和一组资源，例如 <code>deployment.yaml</code> <code>service.yaml</code> 等。</p></li>
-
-<li><p>创建 <code>overlays</code></p>
-
-<pre><code class="language-bash">mkdir -p ~/ldap/overlays/staging
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git init ~/ldap
+</code></pre></div></li>
+<li>
+<p>创建一个 <code>base</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir -p ~/ldap/base
+</code></pre></div><p>在这个目录中创建并提交 <code>kustomization.yaml</code> 文件和一组资源，例如 <code>deployment.yaml</code> <code>service.yaml</code> 等。</p>
+</li>
+<li>
+<p>创建 <code>overlays</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir -p ~/ldap/overlays/staging
 mkdir -p ~/ldap/overlays/production
-</code></pre>
-
-<p>每个目录都需要一个 <code>kustomization.yaml</code> 文件以及一个或多个 <code>patch</code> ，例如 <code>healthcheck_patch.yaml</code> <code>memorylimit_patch.yaml</code> 等。。</p>
-
-<pre><code class="language-staging```">
-</code></pre>
-
-<p>production<code>目录则可能会在</code>deployment``` 中增加在副本数。</p></li>
-
-<li><p>生成 <code>variants</code></p>
-
+</code></pre></div><p>每个目录都需要一个 <code>kustomization.yaml</code> 文件以及一个或多个 <code>patch</code> ，例如 <code>healthcheck_patch.yaml</code> <code>memorylimit_patch.yaml</code> 等。。</p>
+<p><code>staging</code> 目录可能会使用一个 <code>patch</code> ，用于在 <code>configmap</code> 增加一个实验配置。</p>
+<p><code>production</code> 目录则可能会在 <code>deployment</code> 中增加在副本数。</p>
+</li>
+<li>
+<p>生成 <code>variants</code></p>
 <p>运行 <code>kustomize</code> ，将生成的配置用于 kubernetes 应用部署</p>
-
-<pre><code class="language-bash">kustomize build ~/ldap/overlays/staging | kubectl apply -f -
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kustomize build ~/ldap/overlays/staging | kubectl apply -f -
 kustomize build ~/ldap/overlays/production | kubectl apply -f -
-</code></pre>
-
-<p>在 kubernetes 1.14 版本， <code>kustomize</code> 已经集成到 <code>kubectl</code> 命令中，成为了其一个子命令，可使用 <code>kubectl</code> 来进行部署</p>
-
-<pre><code class="language-bash">kubectl apply -k ~/ldap/overlays/staging
+</code></pre></div><p>在 kubernetes 1.14 版本， <code>kustomize</code> 已经集成到 <code>kubectl</code> 命令中，成为了其一个子命令，可使用 <code>kubectl</code> 来进行部署</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -k ~/ldap/overlays/staging
 kubectl apply -k ~/ldap/overlays/production
-</code></pre></li>
+</code></pre></div></li>
 </ol>
-
 <h2 id="使用现成的配置">使用现成的配置</h2>
-
 <p>在这个工作流方式中，可从别人的 repo 中 fork kustomize 配置，并根据自己的需求来配置。</p>
-
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g281xyfebej20qo0f0dgr.jpg" alt="" /></p>
-
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g281xyfebej20qo0f0dgr.jpg" alt=""></p>
 <ol>
-<li><p>通过 fork/modify/rebase 等方式获得配置</p></li>
-
-<li><p>将其克隆为你自己的 <code>base</code></p>
-
+<li>
+<p>通过 fork/modify/rebase 等方式获得配置</p>
+</li>
+<li>
+<p>将其克隆为你自己的 <code>base</code></p>
 <p>在这个 <code>bash</code> 目录维护在一个 repo 中，在这个例子使用 <code>ladp</code> 的 repo</p>
-
-<pre><code class="language-bash">mkdir ~/ldap
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir ~/ldap
 git clone https://github.com/$USER/ldap ~/ldap/base
 cd ~/ldap/base
 git remote add upstream git@github.com:$USER/ldap
-</code></pre></li>
-
-<li><p>创建 <code>overlays</code></p>
-
+</code></pre></div></li>
+<li>
+<p>创建 <code>overlays</code></p>
 <p>如上面的案例一样，创建并完善 <code>overlays</code> 目录中的内容</p>
-
-<pre><code class="language-bash">mkdir -p ~/ldap/overlays/staging
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir -p ~/ldap/overlays/staging
 mkdir -p ~/ldap/overlays/production
-</code></pre>
-
-<p>用户可以将 <code>overlays</code> 维护在不同的 repo 中</p></li>
-
-<li><p>生成 <code>variants</code></p>
-
-<pre><code class="language-bash">kustomize build ~/ldap/overlays/staging | kubectl apply -f -
+</code></pre></div><p>用户可以将 <code>overlays</code> 维护在不同的 repo 中</p>
+</li>
+<li>
+<p>生成 <code>variants</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kustomize build ~/ldap/overlays/staging | kubectl apply -f -
 kustomize build ~/ldap/overlays/production | kubectl apply -f -
-</code></pre>
-
-<p>在 kubernetes 1.14 版本， <code>kustomize</code> 已经集成到 <code>kubectl</code> 命令中，成为了其一个子命令，可使用 <code>kubectl</code> 来进行部署</p>
-
-<pre><code class="language-bash">kubectl apply -k ~/ldap/overlays/staging
+</code></pre></div><p>在 kubernetes 1.14 版本， <code>kustomize</code> 已经集成到 <code>kubectl</code> 命令中，成为了其一个子命令，可使用 <code>kubectl</code> 来进行部署</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -k ~/ldap/overlays/staging
 kubectl apply -k ~/ldap/overlays/production
-</code></pre></li>
-
-<li><p>（可选）更新 <code>base</code>
+</code></pre></div></li>
+<li>
+<p>（可选）更新 <code>base</code>
 用户可以定期从上游 repo 中 <code>rebase</code> 他们的 <code>base</code> 以保证及时更新</p>
-
-<pre><code class="language-bash">cd ~/ldap/base
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd ~/ldap/base
 git fetch upstream
 git rebase upstream/master
-</code></pre></li>
+</code></pre></div></li>
 </ol>
-
 <h2 id="参考">参考</h2>
-
 <ul>
-<li><a href="https://github.com/kubernetes-sigs/kustomize/blob/master/docs/workflows.md" target="_blank">kustomize workflows - github.com</a></li>
+<li><a href="https://github.com/kubernetes-sigs/kustomize/blob/master/docs/workflows.md">kustomize workflows - github.com</a></li>
 </ul>
 
     </div>
@@ -1041,7 +1008,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

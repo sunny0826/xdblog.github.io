@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -559,225 +559,182 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<h2 id="前言">前言</h2>
-
+      <h2 id="前言">前言</h2>
 <p>在上篇文章中，我们介绍了<strong>混沌工程</strong>以及 <strong>ChaosBlade</strong>。从本篇开始，从 ChaosBlade 的安装部署，到实验的创建销毁，在实践的角度，一步步的完成各种混沌实验，深入认识和使用混沌工程。</p>
-
 <h2 id="chaosblade-operator">ChaosBlade-Operator</h2>
-
-<p><a href="https://github.com/chaosblade-io/chaosblade-operator" target="_blank">ChaosBlade-Operator</a> 是 ChaosBlade 的 Kubernetes 平台实验场景实现。将混沌实验通过 Kubernetes 标准的 CRD 方式定义，用户可以像定义 Deployment 或 StatefulSet 那样定义 ChaosBlade 实验，只要对 <code>kubectl</code> 和 Kubernetes 对象有所了解，就可以轻松的创建、更新和删除实验场景；同时也可以通过 chaosblade cli 工具来操作实验场景。</p>
-
+<p><a href="https://github.com/chaosblade-io/chaosblade-operator">ChaosBlade-Operator</a> 是 ChaosBlade 的 Kubernetes 平台实验场景实现。将混沌实验通过 Kubernetes 标准的 CRD 方式定义，用户可以像定义 Deployment 或 StatefulSet 那样定义 ChaosBlade 实验，只要对 <code>kubectl</code> 和 Kubernetes 对象有所了解，就可以轻松的创建、更新和删除实验场景；同时也可以通过 chaosblade cli 工具来操作实验场景。</p>
 <h3 id="安装">安装</h3>
-
-<p>ChaosBlade-Operator 需要使用 Helm 安装，进入 <a href="https://github.com/chaosblade-io/chaosblade-operator/releases" target="_blank">release 页面</a> 下载安装包（ChaosBlade 还提供了阿里云 OSS 的下载地址，提升国内下载速度）。</p>
-
+<p>ChaosBlade-Operator 需要使用 Helm 安装，进入 <a href="https://github.com/chaosblade-io/chaosblade-operator/releases">release 页面</a> 下载安装包（ChaosBlade 还提供了阿里云 OSS 的下载地址，提升国内下载速度）。</p>
 <p>使用 Helm 3 安装：</p>
-
-<pre><code class="language-bash"># 下载安装包
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 下载安装包</span>
 $ wget -qO chaosblade-operator-0.6.0.tgz https://chaosblade.oss-cn-hangzhou.aliyuncs.com/agent/github/0.6.0/chaosblade-operator-0.6.0-v3.tgz
-# 为 chaosblade 创建一个 namespace
+<span style="color:#75715e"># 为 chaosblade 创建一个 namespace</span>
 $ kubectl create namespace chaosblade
-# 安装 ChaosBlade-Operator
-$ helm install chaos chaosblade-operator-0.6.0.tgz --set webhook.enable=true --namespace=chaosblade
-# 查看安装结果
+<span style="color:#75715e"># 安装 ChaosBlade-Operator</span>
+$ helm install chaos chaosblade-operator-0.6.0.tgz --set webhook.enable<span style="color:#f92672">=</span>true --namespace<span style="color:#f92672">=</span>chaosblade
+<span style="color:#75715e"># 查看安装结果</span>
 $ kubectl get pod -n chaosblade | grep chaosblade
-chaosblade-operator-6b6b484599-gdgq8   1/1     Running   0          4d23h
-chaosblade-tool-7wtph                  1/1     Running   0          4d20h
-chaosblade-tool-r4zdk                  1/1     Running   0          4d23h
-</code></pre>
-
-<p>ChaosBlade-Operator 启动后将会在每个节点部署一个 <code>chaosblade-tool</code> Pod 和一个 <code>chaosblade-operator</code> Pod，如果都运行正常，则安装成功。上面设置 <code>--set webhook.enable=true</code> 是为了 Pod 文件系统 I/O 故障实验，如果不需要进行该实验，则无需添加该设置。</p>
-
+chaosblade-operator-6b6b484599-gdgq8   1/1     Running   <span style="color:#ae81ff">0</span>          4d23h
+chaosblade-tool-7wtph                  1/1     Running   <span style="color:#ae81ff">0</span>          4d20h
+chaosblade-tool-r4zdk                  1/1     Running   <span style="color:#ae81ff">0</span>          4d23h
+</code></pre></div><p>ChaosBlade-Operator 启动后将会在每个节点部署一个 <code>chaosblade-tool</code> Pod 和一个 <code>chaosblade-operator</code> Pod，如果都运行正常，则安装成功。上面设置 <code>--set webhook.enable=true</code> 是为了 Pod 文件系统 I/O 故障实验，如果不需要进行该实验，则无需添加该设置。</p>
 <h2 id="快速开始">快速开始</h2>
-
 <p>下面就以 Pod 网络延迟实验为例，展示如何使用 ChaosBlade-Operator。</p>
-
 <h3 id="实验准备">实验准备</h3>
-
-<p>实验前需要先准备实验对象，这里使用 <a href="https://github.com/cloudnativeapp/guestbook?spm=5176.2020520152.0.0.7c5f16ddH8myx6" target="_blank">guestbook</a> 应用。</p>
-
+<p>实验前需要先准备实验对象，这里使用 <a href="https://github.com/cloudnativeapp/guestbook?spm=5176.2020520152.0.0.7c5f16ddH8myx6">guestbook</a> 应用。</p>
 <p><strong>安装</strong></p>
-
 <p>同样使用 Helm 3</p>
-
-<pre><code class="language-bash"># add repo
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># add repo</span>
 helm repo add apphub-incubator https://apphub.aliyuncs.com/incubator/
-# 安装
-helm install guestbook apphub-incubator/guestbook --set service.type=NodePort --namespace=chaosblade
-</code></pre>
-
-<p>默认的 Service 类型为 <code>LoadBalancer</code>，这里为了方便访问设置为了 <code>NodePort</code>。</p>
-
+<span style="color:#75715e"># 安装</span>
+helm install guestbook apphub-incubator/guestbook --set service.type<span style="color:#f92672">=</span>NodePort --namespace<span style="color:#f92672">=</span>chaosblade
+</code></pre></div><p>默认的 Service 类型为 <code>LoadBalancer</code>，这里为了方便访问设置为了 <code>NodePort</code>。</p>
 <h3 id="开始实验">开始实验</h3>
-
-<p><strong>实验目标：</strong>对 chaosblade 命名空间中，对 <code>redis-master-68857cd57c-dzbs9</code> Pod 的本地 6379 端口添加 3000 毫秒访问延迟，延迟时间上下浮动 1000 毫秒。</p>
-
+<p>**实验目标：**对 chaosblade 命名空间中，对 <code>redis-master-68857cd57c-dzbs9</code> Pod 的本地 6379 端口添加 3000 毫秒访问延迟，延迟时间上下浮动 1000 毫秒。</p>
 <p><strong>实验 yaml 配置</strong></p>
-
-<pre><code class="language-yaml">apiVersion: chaosblade.io/v1alpha1
-kind: ChaosBlade
-metadata:
-  name: delay-pod-network-by-names
-spec:
-  experiments:
-  - scope: pod
-    target: network
-    action: delay
-    desc: &quot;delay pod network by names&quot;
-    matchers:
-    - name: names
-      value:
-      - &quot;redis-master-68857cd57c-dzbs9&quot;
-    - name: namespace
-      value:
-      - &quot;chaosblade&quot;
-    - name: local-port
-      value: [&quot;6379&quot;]
-    - name: interface
-      value: [&quot;eth0&quot;]
-    - name: time
-      value: [&quot;3000&quot;]
-    - name: offset
-      value: [&quot;1000&quot;]
-</code></pre>
-
-<p>将其保存为 <code>delay_pod_network_by_names.yaml</code> 并执行命令，开始实验：</p>
-
-<pre><code class="language-bash">$ kubectl apply -f delay_pod_network_by_names.yaml
-</code></pre>
-
-<h3 id="查看实验状态">查看实验状态</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: chaosblade.io/v1alpha1
+<span style="color:#66d9ef">kind</span>: ChaosBlade
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: delay-pod-network-by-names
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">experiments</span>:
+  - <span style="color:#66d9ef">scope</span>: pod
+    <span style="color:#66d9ef">target</span>: network
+    <span style="color:#66d9ef">action</span>: delay
+    <span style="color:#66d9ef">desc</span>: <span style="color:#e6db74">&#34;delay pod network by names&#34;</span>
+    <span style="color:#66d9ef">matchers</span>:
+    - <span style="color:#66d9ef">name</span>: names
+      <span style="color:#66d9ef">value</span>:
+      - <span style="color:#e6db74">&#34;redis-master-68857cd57c-dzbs9&#34;</span>
+    - <span style="color:#66d9ef">name</span>: namespace
+      <span style="color:#66d9ef">value</span>:
+      - <span style="color:#e6db74">&#34;chaosblade&#34;</span>
+    - <span style="color:#66d9ef">name</span>: local-port
+      <span style="color:#66d9ef">value</span>: [<span style="color:#e6db74">&#34;6379&#34;</span>]
+    - <span style="color:#66d9ef">name</span>: interface
+      <span style="color:#66d9ef">value</span>: [<span style="color:#e6db74">&#34;eth0&#34;</span>]
+    - <span style="color:#66d9ef">name</span>: time
+      <span style="color:#66d9ef">value</span>: [<span style="color:#e6db74">&#34;3000&#34;</span>]
+    - <span style="color:#66d9ef">name</span>: offset
+      <span style="color:#66d9ef">value</span>: [<span style="color:#e6db74">&#34;1000&#34;</span>]
+</code></pre></div><p>将其保存为 <code>delay_pod_network_by_names.yaml</code> 并执行命令，开始实验：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl apply -f delay_pod_network_by_names.yaml
+</code></pre></div><h3 id="查看实验状态">查看实验状态</h3>
 <p>执行 <code>kubectl get blade delay-pod-network-by-names -o json</code> 命令，查看实验状态：</p>
-
-<pre><code class="language-json">{
-    &quot;apiVersion&quot;: &quot;chaosblade.io/v1alpha1&quot;,
-    &quot;kind&quot;: &quot;ChaosBlade&quot;,
-    &quot;metadata&quot;: {
-        &quot;annotations&quot;: {
-            &quot;kubectl.kubernetes.io/last-applied-configuration&quot;: &quot;{\&quot;apiVersion\&quot;:\&quot;chaosblade.io/v1alpha1\&quot;,\&quot;kind\&quot;:\&quot;ChaosBlade\&quot;,\&quot;metadata\&quot;:{\&quot;annotations\&quot;:{},\&quot;name\&quot;:\&quot;delay-pod-network-by-names\&quot;},\&quot;spec\&quot;:{\&quot;experiments\&quot;:[{\&quot;action\&quot;:\&quot;delay\&quot;,\&quot;desc\&quot;:\&quot;delay pod network by names\&quot;,\&quot;matchers\&quot;:[{\&quot;name\&quot;:\&quot;names\&quot;,\&quot;value\&quot;:[\&quot;redis-master-68857cd57c-dzbs9\&quot;]},{\&quot;name\&quot;:\&quot;namespace\&quot;,\&quot;value\&quot;:[\&quot;chaosblade\&quot;]},{\&quot;name\&quot;:\&quot;local-port\&quot;,\&quot;value\&quot;:[\&quot;6379\&quot;]},{\&quot;name\&quot;:\&quot;interface\&quot;,\&quot;value\&quot;:[\&quot;eth0\&quot;]},{\&quot;name\&quot;:\&quot;time\&quot;,\&quot;value\&quot;:[\&quot;3000\&quot;]},{\&quot;name\&quot;:\&quot;offset\&quot;,\&quot;value\&quot;:[\&quot;1000\&quot;]}],\&quot;scope\&quot;:\&quot;pod\&quot;,\&quot;target\&quot;:\&quot;network\&quot;}]}}\n&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;apiVersion&#34;</span>: <span style="color:#e6db74">&#34;chaosblade.io/v1alpha1&#34;</span>,
+    <span style="color:#f92672">&#34;kind&#34;</span>: <span style="color:#e6db74">&#34;ChaosBlade&#34;</span>,
+    <span style="color:#f92672">&#34;metadata&#34;</span>: {
+        <span style="color:#f92672">&#34;annotations&#34;</span>: {
+            <span style="color:#f92672">&#34;kubectl.kubernetes.io/last-applied-configuration&#34;</span>: <span style="color:#e6db74">&#34;{\&#34;apiVersion\&#34;:\&#34;chaosblade.io/v1alpha1\&#34;,\&#34;kind\&#34;:\&#34;ChaosBlade\&#34;,\&#34;metadata\&#34;:{\&#34;annotations\&#34;:{},\&#34;name\&#34;:\&#34;delay-pod-network-by-names\&#34;},\&#34;spec\&#34;:{\&#34;experiments\&#34;:[{\&#34;action\&#34;:\&#34;delay\&#34;,\&#34;desc\&#34;:\&#34;delay pod network by names\&#34;,\&#34;matchers\&#34;:[{\&#34;name\&#34;:\&#34;names\&#34;,\&#34;value\&#34;:[\&#34;redis-master-68857cd57c-dzbs9\&#34;]},{\&#34;name\&#34;:\&#34;namespace\&#34;,\&#34;value\&#34;:[\&#34;chaosblade\&#34;]},{\&#34;name\&#34;:\&#34;local-port\&#34;,\&#34;value\&#34;:[\&#34;6379\&#34;]},{\&#34;name\&#34;:\&#34;interface\&#34;,\&#34;value\&#34;:[\&#34;eth0\&#34;]},{\&#34;name\&#34;:\&#34;time\&#34;,\&#34;value\&#34;:[\&#34;3000\&#34;]},{\&#34;name\&#34;:\&#34;offset\&#34;,\&#34;value\&#34;:[\&#34;1000\&#34;]}],\&#34;scope\&#34;:\&#34;pod\&#34;,\&#34;target\&#34;:\&#34;network\&#34;}]}}\n&#34;</span>
         },
-        &quot;creationTimestamp&quot;: &quot;2020-06-02T05:57:50Z&quot;,
-        &quot;finalizers&quot;: [
-            &quot;finalizer.chaosblade.io&quot;
+        <span style="color:#f92672">&#34;creationTimestamp&#34;</span>: <span style="color:#e6db74">&#34;2020-06-02T05:57:50Z&#34;</span>,
+        <span style="color:#f92672">&#34;finalizers&#34;</span>: [
+            <span style="color:#e6db74">&#34;finalizer.chaosblade.io&#34;</span>
         ],
-        &quot;generation&quot;: 1,
-        &quot;name&quot;: &quot;delay-pod-network-by-names&quot;,
-        &quot;resourceVersion&quot;: &quot;7710394&quot;,
-        &quot;selfLink&quot;: &quot;/apis/chaosblade.io/v1alpha1/chaosblades/delay-pod-network-by-names&quot;,
-        &quot;uid&quot;: &quot;1235ff55-8256-4caa-a371-e1abf6c9e7b7&quot;
+        <span style="color:#f92672">&#34;generation&#34;</span>: <span style="color:#ae81ff">1</span>,
+        <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;delay-pod-network-by-names&#34;</span>,
+        <span style="color:#f92672">&#34;resourceVersion&#34;</span>: <span style="color:#e6db74">&#34;7710394&#34;</span>,
+        <span style="color:#f92672">&#34;selfLink&#34;</span>: <span style="color:#e6db74">&#34;/apis/chaosblade.io/v1alpha1/chaosblades/delay-pod-network-by-names&#34;</span>,
+        <span style="color:#f92672">&#34;uid&#34;</span>: <span style="color:#e6db74">&#34;1235ff55-8256-4caa-a371-e1abf6c9e7b7&#34;</span>
     },
-    &quot;spec&quot;: {
-        &quot;experiments&quot;: [
+    <span style="color:#f92672">&#34;spec&#34;</span>: {
+        <span style="color:#f92672">&#34;experiments&#34;</span>: [
             {
-                &quot;action&quot;: &quot;delay&quot;,
-                &quot;desc&quot;: &quot;delay pod network by names&quot;,
-                &quot;matchers&quot;: [
+                <span style="color:#f92672">&#34;action&#34;</span>: <span style="color:#e6db74">&#34;delay&#34;</span>,
+                <span style="color:#f92672">&#34;desc&#34;</span>: <span style="color:#e6db74">&#34;delay pod network by names&#34;</span>,
+                <span style="color:#f92672">&#34;matchers&#34;</span>: [
                     {
-                        &quot;name&quot;: &quot;names&quot;,
-                        &quot;value&quot;: [
-                            &quot;redis-master-68857cd57c-dzbs9&quot;
+                        <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;names&#34;</span>,
+                        <span style="color:#f92672">&#34;value&#34;</span>: [
+                            <span style="color:#e6db74">&#34;redis-master-68857cd57c-dzbs9&#34;</span>
                         ]
                     },
                     {
-                        &quot;name&quot;: &quot;namespace&quot;,
-                        &quot;value&quot;: [
-                            &quot;chaosblade&quot;
+                        <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;namespace&#34;</span>,
+                        <span style="color:#f92672">&#34;value&#34;</span>: [
+                            <span style="color:#e6db74">&#34;chaosblade&#34;</span>
                         ]
                     },
                     {
-                        &quot;name&quot;: &quot;local-port&quot;,
-                        &quot;value&quot;: [
-                            &quot;6379&quot;
+                        <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;local-port&#34;</span>,
+                        <span style="color:#f92672">&#34;value&#34;</span>: [
+                            <span style="color:#e6db74">&#34;6379&#34;</span>
                         ]
                     },
                     {
-                        &quot;name&quot;: &quot;interface&quot;,
-                        &quot;value&quot;: [
-                            &quot;eth0&quot;
+                        <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;interface&#34;</span>,
+                        <span style="color:#f92672">&#34;value&#34;</span>: [
+                            <span style="color:#e6db74">&#34;eth0&#34;</span>
                         ]
                     },
                     {
-                        &quot;name&quot;: &quot;time&quot;,
-                        &quot;value&quot;: [
-                            &quot;3000&quot;
+                        <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;time&#34;</span>,
+                        <span style="color:#f92672">&#34;value&#34;</span>: [
+                            <span style="color:#e6db74">&#34;3000&#34;</span>
                         ]
                     },
                     {
-                        &quot;name&quot;: &quot;offset&quot;,
-                        &quot;value&quot;: [
-                            &quot;1000&quot;
+                        <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;offset&#34;</span>,
+                        <span style="color:#f92672">&#34;value&#34;</span>: [
+                            <span style="color:#e6db74">&#34;1000&#34;</span>
                         ]
                     }
                 ],
-                &quot;scope&quot;: &quot;pod&quot;,
-                &quot;target&quot;: &quot;network&quot;
+                <span style="color:#f92672">&#34;scope&#34;</span>: <span style="color:#e6db74">&#34;pod&#34;</span>,
+                <span style="color:#f92672">&#34;target&#34;</span>: <span style="color:#e6db74">&#34;network&#34;</span>
             }
         ]
     },
-    &quot;status&quot;: {
-        &quot;expStatuses&quot;: [
+    <span style="color:#f92672">&#34;status&#34;</span>: {
+        <span style="color:#f92672">&#34;expStatuses&#34;</span>: [
             {
-                &quot;action&quot;: &quot;delay&quot;,
-                &quot;resStatuses&quot;: [
+                <span style="color:#f92672">&#34;action&#34;</span>: <span style="color:#e6db74">&#34;delay&#34;</span>,
+                <span style="color:#f92672">&#34;resStatuses&#34;</span>: [
                     {
-                        &quot;id&quot;: &quot;a86f8cf8b68ace98&quot;,
-                        &quot;kind&quot;: &quot;pod&quot;,
-                        &quot;name&quot;: &quot;redis-master&quot;,
-                        &quot;nodeName&quot;: &quot;keking&quot;,
-                        &quot;state&quot;: &quot;Success&quot;,
-                        &quot;success&quot;: true,
-                        &quot;uid&quot;: &quot;619a19ceb213f9b6152159bd868e88de2ddbf9a8aac606dc274b34bec6510c60&quot;
+                        <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;a86f8cf8b68ace98&#34;</span>,
+                        <span style="color:#f92672">&#34;kind&#34;</span>: <span style="color:#e6db74">&#34;pod&#34;</span>,
+                        <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;redis-master&#34;</span>,
+                        <span style="color:#f92672">&#34;nodeName&#34;</span>: <span style="color:#e6db74">&#34;keking&#34;</span>,
+                        <span style="color:#f92672">&#34;state&#34;</span>: <span style="color:#e6db74">&#34;Success&#34;</span>,
+                        <span style="color:#f92672">&#34;success&#34;</span>: <span style="color:#66d9ef">true</span>,
+                        <span style="color:#f92672">&#34;uid&#34;</span>: <span style="color:#e6db74">&#34;619a19ceb213f9b6152159bd868e88de2ddbf9a8aac606dc274b34bec6510c60&#34;</span>
                     }
                 ],
-                &quot;scope&quot;: &quot;pod&quot;,
-                &quot;state&quot;: &quot;Success&quot;,
-                &quot;success&quot;: true,
-                &quot;target&quot;: &quot;network&quot;
+                <span style="color:#f92672">&#34;scope&#34;</span>: <span style="color:#e6db74">&#34;pod&#34;</span>,
+                <span style="color:#f92672">&#34;state&#34;</span>: <span style="color:#e6db74">&#34;Success&#34;</span>,
+                <span style="color:#f92672">&#34;success&#34;</span>: <span style="color:#66d9ef">true</span>,
+                <span style="color:#f92672">&#34;target&#34;</span>: <span style="color:#e6db74">&#34;network&#34;</span>
             }
         ],
-        &quot;phase&quot;: &quot;Running&quot;
+        <span style="color:#f92672">&#34;phase&#34;</span>: <span style="color:#e6db74">&#34;Running&#34;</span>
     }
 }
-</code></pre>
-
-<p>可以看到实验成功创建了。</p>
-
+</code></pre></div><p>可以看到实验成功创建了。</p>
 <h3 id="观测结果">观测结果</h3>
-
-<pre><code class="language-bash"># 获取实验 pod ip
-$ kubectl get pod -l app=redis,role=master -o jsonpath={.items..status.podIP}
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 获取实验 pod ip</span>
+$ kubectl get pod -l app<span style="color:#f92672">=</span>redis,role<span style="color:#f92672">=</span>master -o jsonpath<span style="color:#f92672">={</span>.items..status.podIP<span style="color:#f92672">}</span>
 10.42.69.44
-# 进入观测 pod
+<span style="color:#75715e"># 进入观测 pod</span>
 $ kubectl exec -it redis-slave-6dd975d4c8-2zrkb bash
-# 在 pod 中安装 telnet
-$ apt-get update &amp;&amp; apt-get install -y telnet
-# 测试时间
-$ time echo &quot;&quot; | telnet 10.42.69.44 6379
+<span style="color:#75715e"># 在 pod 中安装 telnet</span>
+$ apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y telnet
+<span style="color:#75715e"># 测试时间</span>
+$ time echo <span style="color:#e6db74">&#34;&#34;</span> | telnet 10.42.69.44 <span style="color:#ae81ff">6379</span>
 Trying 10.42.69.44...
 Connected to 10.42.69.44.
-Escape character is '^]'.
+Escape character is <span style="color:#e6db74">&#39;^]&#39;</span>.
 Connection closed by foreign host.
 
 real    0m3.790s
 user    0m0.007s
 sys     0m0.001s
-</code></pre>
-
-<p><img src="https://tva3.sinaimg.cn/large/ad5fbf65gy1gfm2deqtdwg20p606c1kx.gif" alt="" /></p>
-
+</code></pre></div><p><img src="https://tva3.sinaimg.cn/large/ad5fbf65gy1gfm2deqtdwg20p606c1kx.gif" alt=""></p>
 <p>可以看到结果符合预期。</p>
-
 <p><strong>停止实验</strong></p>
-
 <p>执行命令：<code>kubectl delete -f delay_pod_network_by_names.yaml</code></p>
-
 <p>或者直接删除 blade 资源：<code>kubectl delete blade delay-pod-network-by-names</code></p>
-
 <h2 id="结语">结语</h2>
-
 <p>本篇我们讲解了如何部署 ChaosBlade-Operator 并进行了简单的实验，可以看到在云原生场景下，ChaosBlade 依旧有着简单的操作方式，多种实验场景，并对混沌实验模型进行了标准化实现。很友好的将混沌实验模型与 Kubernetes 声明式设计结合在一起，依靠混沌实验模型便捷开发场景的同时，又可以很好的结合 Kubernetes 设计理念。</p>
 
     </div>
@@ -1139,7 +1096,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -356,7 +356,7 @@
     <div class="col-lg-8">
         <img class="img-fluid w-100" src="https://tvax1.sinaimg.cn/large/ad5fbf65ly1ge3j6dyag5j21qc15oq6d.jpg" itemprop="image" alt="">
         <span
-          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+          class="article-header-caption">Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a></span>
     </div>
     <div class="col-lg-8">
       <h1 itemprop="name">使用 Kustomize 帮你管理 kubernetes 应用（五）：配合 kubedog 完善 CI/CD 的最后一步</h1>
@@ -560,100 +560,79 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<blockquote>
+      <blockquote>
 <p>在以往的 pipeline 中，使用 kubectl 进行部署 Deployment 后无法检查 Deployment 是否部署成功，只能通过使用命令/脚本来手动检查 Deployment 状态，而 kubedog 这个小工具完美解决了这个问题，完善了 CI/CD 流水线的最后一步。</p>
 </blockquote>
-
 <h2 id="kubedog">KubeDog</h2>
-
 <p>kubedog 是一个 lib 库和 CLI 小工具，允许在 CI/CD 部署 pipeline 中观察和跟踪 Kubernetes 资源。与 kustomize 配合，集成到 pipeline 之后，完美的解决了 CI/CD 的最后一步，完美的替代了之前不够灵活的脚本（好吧，其实我也开发了类似的小工具，但是有这么好用的轮子，拿来直接用何乐而不为呢？）。</p>
-
-<p>kubedog 提供了 lib 库和 CLI 小工具，这里由于是介绍 CI/CD 中的实践，所以只介绍其中的 <code>rollout track</code> 功能。 lib 库的使用和 CLI 的 <code>follow</code> 功能这里就不做介绍了，有兴趣的同学可以去 <a href="https://github.com/flant/kubedog" target="_blank">GitHub</a> 上查看该项目的各种使用方式。</p>
-
+<p>kubedog 提供了 lib 库和 CLI 小工具，这里由于是介绍 CI/CD 中的实践，所以只介绍其中的 <code>rollout track</code> 功能。 lib 库的使用和 CLI 的 <code>follow</code> 功能这里就不做介绍了，有兴趣的同学可以去 <a href="https://github.com/flant/kubedog">GitHub</a> 上查看该项目的各种使用方式。</p>
 <h3 id="集成-kubedog">集成 KubeDog</h3>
-
-<p>由于我司目前使用的是 <a href="https://drone.io/" target="_blank">drone</a> 进行 CI ，每个 step 都是由一个 docker 制作的插件组成。我制作了一个包含 <code>kubectl</code> 、 <code>kustomize</code> 和 <code>kubedog</code> 的镜像。该镜像已上传 dockerhub ，需要的可以自行拉取使用 <code>guoxudongdocker/kubectl</code> ,而该插件的使用也在 <a href="https://github.com/sunny0826/kubectl-kustomize" target="_blank">GitHub</a> 和 <a href="https://cloud.docker.com/u/guoxudongdocker/repository/docker/guoxudongdocker/kubectl" target="_blank">DockerHub</a> 上查看。</p>
-
+<p>由于我司目前使用的是 <a href="https://drone.io/">drone</a> 进行 CI ，每个 step 都是由一个 docker 制作的插件组成。我制作了一个包含 <code>kubectl</code> 、 <code>kustomize</code> 和 <code>kubedog</code> 的镜像。该镜像已上传 dockerhub ，需要的可以自行拉取使用 <code>guoxudongdocker/kubectl</code> ,而该插件的使用也在 <a href="https://github.com/sunny0826/kubectl-kustomize">GitHub</a> 和 <a href="https://cloud.docker.com/u/guoxudongdocker/repository/docker/guoxudongdocker/kubectl">DockerHub</a> 上查看。</p>
 <p>而集成方式也比较简单，直接将 <code>kubectl</code> 、 <code>kustomize</code> 和 <code>kubedog</code> 的可执行包下载到 <code>/usr/local/bin</code> 并赋予执行权限即可，下面就是 <code>Dockerfile</code> 文件：</p>
-
-<pre><code class="language-dockerfile">FROM alpine
-
-LABEL maintainer=&quot;sunnydog0826@gmail.com&quot;
-
-ENV KUBE_LATEST_VERSION=&quot;v1.14.1&quot;
-
-RUN apk add --update ca-certificates \
- &amp;&amp; apk add --update -t deps curl \
- &amp;&amp; curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBE_LATEST_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
- &amp;&amp; chmod +x /usr/local/bin/kubectl \
- &amp;&amp; curl -L https://github.com/kubernetes-sigs/kustomize/releases/download/v2.0.3/kustomize_2.0.3_linux_amd64 -o /usr/local/bin/kustomize \
- &amp;&amp; chmod +x /usr/local/bin/kustomize \
- &amp;&amp; curl -L https://dl.bintray.com/flant/kubedog/v0.2.0/kubedog-linux-amd64-v0.2.0 -o /usr/local/bin/kubedog \
- &amp;&amp; chmod +x /usr/local/bin/kubedog \
- &amp;&amp; apk del --purge deps \
- &amp;&amp; rm /var/cache/apk/*
-
-
-WORKDIR /root
-ENTRYPOINT [&quot;kubectl&quot;]
-CMD [&quot;help&quot;]
-</code></pre>
-
-<h2 id="kustomize-配合-kubedog-使用">Kustomize 配合 KubeDog 使用</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> alpine</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">LABEL</span> maintainer<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sunnydog0826@gmail.com&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> KUBE_LATEST_VERSION<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;v1.14.1&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> apk add --update ca-certificates <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span> <span style="color:#f92672">&amp;&amp;</span> apk add --update -t deps curl <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span> <span style="color:#f92672">&amp;&amp;</span> curl -L https://storage.googleapis.com/kubernetes-release/release/<span style="color:#e6db74">${</span>KUBE_LATEST_VERSION<span style="color:#e6db74">}</span>/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span> <span style="color:#f92672">&amp;&amp;</span> chmod +x /usr/local/bin/kubectl <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span> <span style="color:#f92672">&amp;&amp;</span> curl -L https://github.com/kubernetes-sigs/kustomize/releases/download/v2.0.3/kustomize_2.0.3_linux_amd64 -o /usr/local/bin/kustomize <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span> <span style="color:#f92672">&amp;&amp;</span> chmod +x /usr/local/bin/kustomize <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span> <span style="color:#f92672">&amp;&amp;</span> curl -L https://dl.bintray.com/flant/kubedog/v0.2.0/kubedog-linux-amd64-v0.2.0 -o /usr/local/bin/kubedog <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span> <span style="color:#f92672">&amp;&amp;</span> chmod +x /usr/local/bin/kubedog <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span> <span style="color:#f92672">&amp;&amp;</span> apk del --purge deps <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span> <span style="color:#f92672">&amp;&amp;</span> rm /var/cache/apk/*<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /root</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;kubectl&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;help&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><h2 id="kustomize-配合-kubedog-使用">Kustomize 配合 KubeDog 使用</h2>
 <p>在镜像构建好之后就可以直接使用了，这里使用的是 DockerHub 的镜像仓库，这里建议将镜像同步到私有仓库，比如阿里云的容器镜像服务或者 Habor ，因为国内拉取 DockerHub 的镜像不太稳定，经常会拉取镜像失败或者访问超时，在 CI/CD 流水线中推荐使用更稳定镜像。</p>
-
 <p>以下是 <code>.drone.yml</code> 示例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">kind</span>: pipeline
+<span style="color:#66d9ef">name</span>: {your-pipeline-name}
 
-<pre><code class="language-yaml">kind: pipeline
-name: {your-pipeline-name}
-
-steps:
-- name: Kubernetes 部署
-  image: guoxudongdocker/kubectl
-  volumes:
-  - name: kube
-    path: /root/.kube
-  commands:
-    - cd deploy/overlays/dev    # 这里使用 kustomize ,详细使用方法请见 https://github.com/kubernetes-sigs/kustomize
+<span style="color:#66d9ef">steps</span>:
+- <span style="color:#66d9ef">name</span>: Kubernetes 部署
+  <span style="color:#66d9ef">image</span>: guoxudongdocker/kubectl
+  <span style="color:#66d9ef">volumes</span>:
+  - <span style="color:#66d9ef">name</span>: kube
+    <span style="color:#66d9ef">path</span>: /root/.kube
+  <span style="color:#66d9ef">commands</span>:
+    - cd deploy/overlays/dev    <span style="color:#75715e"># 这里使用 kustomize ,详细使用方法请见 https://github.com/kubernetes-sigs/kustomize</span>
     - kustomize edit set image {your-docker-registry}:${DRONE_BUILD_NUMBER}
-    - kubectl apply -k . &amp;&amp; kubedog rollout track deployment {your-deployment-name} -n {your-namespace} -t {your-tomeout}
+    - kubectl apply -k . <span style="color:#75715e">&amp;&amp;</span> kubedog rollout track deployment {your-deployment-name} -n {your-namespace} -t {your-tomeout}
 
 ...
 
-volumes:
-- name: kube
-  host:
-    path: /tmp/cache/.kube  # kubeconfig 挂载位置
+<span style="color:#66d9ef">volumes</span>:
+- <span style="color:#66d9ef">name</span>: kube
+  <span style="color:#66d9ef">host</span>:
+    <span style="color:#66d9ef">path</span>: /tmp/cache/.kube  <span style="color:#75715e"># kubeconfig 挂载位置</span>
 
-trigger:
-  branch:
-  - master  # 触发 CI 的分支
-</code></pre>
-
-<p>从上面的配置可见，在该 step 中执行了如下几步：</p>
-
+<span style="color:#66d9ef">trigger</span>:
+  <span style="color:#66d9ef">branch</span>:
+  - master  <span style="color:#75715e"># 触发 CI 的分支</span>
+</code></pre></div><p>从上面的配置可见，在该 step 中执行了如下几步：</p>
 <ol>
 <li>进入 patch 所在路径</li>
 <li>使用了 Kustomize 命令 <code>kustomize edit set image {your-docker-registry}:${DRONE_BUILD_NUMBER}</code> 方式将前面 step 中构建好的镜像的 tag 插入到 patch 中</li>
 <li>使用 <code>kubectl apply -k .</code> 进行 k8s 部署，要注意最后的那个 <code>.</code></li>
 <li>使用 kubedog 跟踪 Deployment 部署状态</li>
 </ol>
-
 <blockquote>
 <p>命令解析：<code>kubedog rollout track deployment {your-deployment-name} -n {your-namespace} -t {your-tomeout}</code></p>
-
+</blockquote>
 <ul>
 <li>deployment {your-deployment-name} : Deployment 的名称</li>
 <li>-n {your-namespace} : Deployment 所在的 namespace</li>
 <li>-t {your-tomeout} : 超时时间，单位为秒，超时后会报错，这里请根据实际部署情况进行设置</li>
 </ul>
-</blockquote>
-
 <h2 id="结语">结语</h2>
-
 <p>从 Kubernetes release v1.14 版本开始，<code>kustomize</code> 集成到 <code>kubectl</code> 中，越来越多 k8S 周边的小工具出现。这些小工具的出现帮助了 Kubernetes 的使用者来拉平 Kubernetes 的使用曲线，同时也标志着 K8S 的成熟，越来越多的开发人员基于使用 K8S 的痛点开发相关工具。套用一句今年 KubeCon 的 Keynote 演讲上，阿里云智能容器平台负责人丁宇的话： <strong>Kubernetes 正当时，云原生未来可期</strong> 。</p>
 
     </div>
@@ -1027,7 +1006,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -356,7 +356,7 @@
     <div class="col-lg-8">
         <img class="img-fluid w-100" src="https://tvax4.sinaimg.cn/large/ad5fbf65ly1ge3ikxkvspj21qq15ods6.jpg" itemprop="image" alt="">
         <span
-          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+          class="article-header-caption">Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a></span>
     </div>
     <div class="col-lg-8">
       <h1 itemprop="name">centos7安装指定版本的docker</h1>
@@ -560,75 +560,58 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<h1 id="前言">前言</h1>
-
+      <h1 id="前言">前言</h1>
 <blockquote>
 <p>在使用<strong>centos7</strong>，并使用荫安装搬运工的时候，往往不希望安装最新版本的搬运工，而是希望安装与自己熟悉或者当前业务环境需要的版本，例如目前Kubernetes支持的最新搬运工版本为v17.03，所以就产生了安装指定版本码头工人的需求。</p>
 </blockquote>
-
 <h1 id="安装步骤">安装步骤</h1>
-
-<pre><code class="language-bash"># 安装依赖包
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 安装依赖包</span>
 yum install -y yum-utils device-mapper-persistent-data lvm2
 
-# 添加Docker软件包源
+<span style="color:#75715e"># 添加Docker软件包源</span>
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 
-#关闭测试版本list（只显示稳定版）
+<span style="color:#75715e">#关闭测试版本list（只显示稳定版）</span>
 sudo yum-config-manager --enable docker-ce-edge
 sudo yum-config-manager --enable docker-ce-test
 
-# 更新yum包索引
+<span style="color:#75715e"># 更新yum包索引</span>
 yum makecache fast
 
-#NO.1 直接安装Docker CE （will always install the highest  possible version，可能不符合你的需求）
+<span style="color:#75715e">#NO.1 直接安装Docker CE （will always install the highest  possible version，可能不符合你的需求）</span>
 yum install docker-ce
 
-#NO.2 指定版本安装
+<span style="color:#75715e">#NO.2 指定版本安装</span>
 yum list docker-ce --showduplicates|sort -r 
-#找到需要安装的
+<span style="color:#75715e">#找到需要安装的</span>
 yum install docker-ce-17.09.0.ce -y
-#启动docker
+<span style="color:#75715e">#启动docker</span>
 systemctl start docker &amp; systemctl enable docker
-</code></pre>
-
-<h1 id="采坑指南">采坑指南</h1>
-
+</code></pre></div><h1 id="采坑指南">采坑指南</h1>
 <blockquote>
 <p>当然本着万事皆有坑的原则，这里也是有坑的，在安装中也是会遇到如下的问题</p>
 </blockquote>
-
 <p>在执行一下命令的时候：</p>
-
-<pre><code class="language-bash">yum install docker-ce-17.03.0.ce -y
-</code></pre>
-
-<p>会出现如下的报错：</p>
-
-<pre><code class="language-bash">--&gt; Finished Dependency Resolution
-Error: Package: docker-ce-17.03.0.ce-1.el7.centos.x86_64 (docker-ce-stable)
-        Requires: docker-ce-selinux &gt;= 17.03.0.ce-1.el7.centos
-        Available: docker-ce-selinux-17.03.0.ce-1.el7.centos.noarch (docker-ce-stable)
-            docker-ce-selinux = 17.03.0.ce-1.el7.centos
-        Available: docker-ce-selinux-17.03.1.ce-1.el7.centos.noarch (docker-ce-stable)
-            docker-ce-selinux = 17.03.1.ce-1.el7.centos
-        Available: docker-ce-selinux-17.03.2.ce-1.el7.centos.noarch (docker-ce-stable)
-            docker-ce-selinux = 17.03.2.ce-1.el7.centos
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum install docker-ce-17.03.0.ce -y
+</code></pre></div><p>会出现如下的报错：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">--&gt; Finished Dependency Resolution
+Error: Package: docker-ce-17.03.0.ce-1.el7.centos.x86_64 <span style="color:#f92672">(</span>docker-ce-stable<span style="color:#f92672">)</span>
+        Requires: docker-ce-selinux &gt;<span style="color:#f92672">=</span> 17.03.0.ce-1.el7.centos
+        Available: docker-ce-selinux-17.03.0.ce-1.el7.centos.noarch <span style="color:#f92672">(</span>docker-ce-stable<span style="color:#f92672">)</span>
+            docker-ce-selinux <span style="color:#f92672">=</span> 17.03.0.ce-1.el7.centos
+        Available: docker-ce-selinux-17.03.1.ce-1.el7.centos.noarch <span style="color:#f92672">(</span>docker-ce-stable<span style="color:#f92672">)</span>
+            docker-ce-selinux <span style="color:#f92672">=</span> 17.03.1.ce-1.el7.centos
+        Available: docker-ce-selinux-17.03.2.ce-1.el7.centos.noarch <span style="color:#f92672">(</span>docker-ce-stable<span style="color:#f92672">)</span>
+            docker-ce-selinux <span style="color:#f92672">=</span> 17.03.2.ce-1.el7.centos
 You could try using --skip-broken to work around the problem
 You could try running: rpm -Va --nofiles --nodigest
-</code></pre>
-
-<p>在出现这个问题之后，需要执行以下命令：</p>
-
-<pre><code class="language-bash">#要先安装docker-ce-selinux-17.03.2.ce，否则安装docker-ce会报错
+</code></pre></div><p>在出现这个问题之后，需要执行以下命令：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#要先安装docker-ce-selinux-17.03.2.ce，否则安装docker-ce会报错</span>
 yum install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-selinux-17.03.2.ce-1.el7.centos.noarch.rpm
 
-#然后再安装 docker-ce-17.03.2.ce，就能正常安装
+<span style="color:#75715e">#然后再安装 docker-ce-17.03.2.ce，就能正常安装</span>
 yum install docker-ce-17.03.2.ce-1.el7.centos
-</code></pre>
-
+</code></pre></div>
     </div>
 
     
@@ -980,7 +963,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

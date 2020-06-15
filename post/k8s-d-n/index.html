@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -356,7 +356,7 @@
     <div class="col-lg-8">
         <img class="img-fluid w-100" src="https://tva3.sinaimg.cn/large/ad5fbf65ly1ge3ip90wwoj21qi15odl1.jpg" itemprop="image" alt="">
         <span
-          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+          class="article-header-caption">Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a></span>
     </div>
     <div class="col-lg-8">
       <h1 itemprop="name">Kubernetes删除一直处于Terminating状态的namespace</h1>
@@ -560,30 +560,18 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<blockquote>
+      <blockquote>
 <p>近期由于公司需要将部署在ucloud上的rancher迁移到阿里云上，所以需要将原有Rancher依赖的namespace（cattle-system）删除，但在删除中出现了删除的namespace一直处于Terminating状态的情况</p>
 </blockquote>
-
-<p><img src="/images/source/d-n-1.png" alt="imgage" /></p>
-
+<p><img src="/images/source/d-n-1.png" alt="imgage"></p>
 <h1 id="解决方案">解决方案</h1>
-
 <p>运行命令：</p>
-
-<pre><code class="language-bash">kubectl edit namespaces cattle-system
-</code></pre>
-
-<p>可以看到namespaces的yaml配置：</p>
-
-<p><img src="/images/source/d-n-2.png" alt="imgage" /></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl edit namespaces cattle-system
+</code></pre></div><p>可以看到namespaces的yaml配置：</p>
+<p><img src="/images/source/d-n-2.png" alt="imgage"></p>
 <p>将finalizer的value删除，这里将其设置为[]</p>
-
 <p>保存即可看到该namespace已被删除</p>
-
-<p><img src="/images/source/d-n-3.png" alt="imgage" /></p>
+<p><img src="/images/source/d-n-3.png" alt="imgage"></p>
 
     </div>
 
@@ -952,7 +940,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -356,7 +356,7 @@
     <div class="col-lg-8">
         <img class="img-fluid w-100" src="https://tva3.sinaimg.cn/large/ad5fbf65ly1ge3jag24tsj21qo15oglu.jpg" itemprop="image" alt="">
         <span
-          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+          class="article-header-caption">Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a></span>
     </div>
     <div class="col-lg-8">
       <h1 itemprop="name">kubernetes中pod同步时区问题</h1>
@@ -560,61 +560,47 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<blockquote>
+      <blockquote>
 <p>新版监控大屏于18年最后一天正式上线，之后陆续进行了几次优化和修改，最近发现一个比较大的bug，就是监控显示的时间轴不对，显示的就是和目前的时间相差8小时，这就引出了docker中的时区问题</p>
 </blockquote>
-
 <h1 id="问题的原因">问题的原因</h1>
-
 <p>默认的情况，在K8S里启动一个容器，该容器的设置的时区是UTC0，但是对用户而言，主机环境并不在UTC0。我们在UTC8。如果不把容器的时区和主机主机设置为一致，则在查找日志等时候将非常不方便，也容易造成误解。但是K8S以及Docker容器没有一个简便的设置/开关在系统层面做配置。都需要我们从单个容器入手做设置，具体有两个方法：</p>
-
 <ul>
 <li>直接修改镜像的时间设置，好处是应用部署时无需做特殊设置，但是需要手动构建Docker镜像。</li>
 <li>部署应用时，单独读取主机的“/etc/localtime”文件，即创建pod时同步时区，无需修改镜像，但是每个应用都要单独设置。</li>
 </ul>
-
 <h1 id="问题的解决">问题的解决</h1>
-
 <p>这里我们选择第二种方法，即修改部署应用的yaml文件，创建pod时同步时区</p>
-
-<pre><code class="language-yaml">apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-    name: myweb
-spec:
-    replicas: 2
-    template:
-        metadata:
-        labels:
-            app: myweb
-        spec:
-        containers:
-        - name: myweb
-            image: nginx:apline
-            ports:
-            - containerPort: 80
-        #挂载到pod中
-            volumeMounts:
-            - name: host-time
-            mountPath: /etc/localtime    
-        #需要被挂载的宿主机的时区文件
-        volumes:
-        - name: host-time
-            hostPath:
-            path: /etc/localtime
-</code></pre>
-
-<h1 id="效果对比">效果对比</h1>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: extensions/v1beta1
+<span style="color:#66d9ef">kind</span>: Deployment
+<span style="color:#66d9ef">metadata</span>:
+    <span style="color:#66d9ef">name</span>: myweb
+<span style="color:#66d9ef">spec</span>:
+    <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">2</span>
+    <span style="color:#66d9ef">template</span>:
+        <span style="color:#66d9ef">metadata</span>:
+        <span style="color:#66d9ef">labels</span>:
+            <span style="color:#66d9ef">app</span>: myweb
+        <span style="color:#66d9ef">spec</span>:
+        <span style="color:#66d9ef">containers</span>:
+        - <span style="color:#66d9ef">name</span>: myweb
+            <span style="color:#66d9ef">image</span>: nginx:apline
+            <span style="color:#66d9ef">ports</span>:
+            - <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">80</span>
+        <span style="color:#75715e">#挂载到pod中</span>
+            <span style="color:#66d9ef">volumeMounts</span>:
+            - <span style="color:#66d9ef">name</span>: host-time
+            <span style="color:#66d9ef">mountPath</span>: /etc/localtime    
+        <span style="color:#75715e">#需要被挂载的宿主机的时区文件</span>
+        <span style="color:#66d9ef">volumes</span>:
+        - <span style="color:#66d9ef">name</span>: host-time
+            <span style="color:#66d9ef">hostPath</span>:
+            <span style="color:#66d9ef">path</span>: /etc/localtime
+</code></pre></div><h1 id="效果对比">效果对比</h1>
 <h2 id="修改时区前">修改时区前</h2>
-
-<p><img src="/images/source/time-1.png" alt="image" /></p>
-
+<p><img src="/images/source/time-1.png" alt="image"></p>
 <h2 id="修改时区后">修改时区后</h2>
-
-<p><img src="/images/source/time-2.png" alt="image" /></p>
+<p><img src="/images/source/time-2.png" alt="image"></p>
 
     </div>
 
@@ -983,7 +969,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

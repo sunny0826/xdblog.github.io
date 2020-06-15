@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -561,153 +561,102 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<h2 id="前言">前言</h2>
-
+      <h2 id="前言">前言</h2>
 <p>k3s 是由 Rancher Labs 于2019年年初推出的一款轻量级 Kubernetes 发行版，满足在边缘计算环境中运行在 x86、ARM64 和 ARMv7 处理器上的小型、易于管理的 Kubernetes 集群日益增长的需求。</p>
-
 <p>k3s 除了在边缘计算领域的应用外，在研发侧的表现也十分出色。我们可以快速在本地拉起一个轻量级的 k8s 集群，而 k3d 则是 k3s 社区创建的一个小工具，可以在一个 docker 进程中运行整个 k3s 集群，相比直接使用 k3s 运行在本地，更好管理和部署。</p>
-
 <p>在日常工作中，时长要在本地集群和多个远程集群之间切换来完成运维工作，这时使用 <code>kubecm</code> 快速将 k3s 集群的 kubeconfig 与现有集群的 kubeconfig 合并，并可快速切换集群，开发运维两不误。</p>
-
 <h2 id="安装-k3d">安装 k3d</h2>
-
 <p>k3d 提供了多种安装方式，十分方便。</p>
-
 <h3 id="使用脚本安装">使用脚本安装</h3>
-
 <p>直接使用 <code>wget</code> 和 <code>curl</code> 安装</p>
-
-<pre><code class="language-bash">wget -q -O - https://raw.githubusercontent.com/rancher/k3d/master/install.sh | bash
-# 或
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget -q -O - https://raw.githubusercontent.com/rancher/k3d/master/install.sh | bash
+<span style="color:#75715e"># 或</span>
 curl -s https://raw.githubusercontent.com/rancher/k3d/master/install.sh | bash
-</code></pre>
-
-<p>安装指定版本</p>
-
-<pre><code class="language-bash">wget -q -O - https://raw.githubusercontent.com/rancher/k3d/master/install.sh | TAG=v1.3.4 bash
-# 或
-curl -s https://raw.githubusercontent.com/rancher/k3d/master/install.sh | TAG=v1.3.4 bash
-</code></pre>
-
-<h3 id="使用-homebrew-安装">使用 Homebrew 安装</h3>
-
+</code></pre></div><p>安装指定版本</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget -q -O - https://raw.githubusercontent.com/rancher/k3d/master/install.sh | TAG<span style="color:#f92672">=</span>v1.3.4 bash
+<span style="color:#75715e"># 或</span>
+curl -s https://raw.githubusercontent.com/rancher/k3d/master/install.sh | TAG<span style="color:#f92672">=</span>v1.3.4 bash
+</code></pre></div><h3 id="使用-homebrew-安装">使用 Homebrew 安装</h3>
 <p>MacOS 或安装了 Homebrew 的 Linux 可以使用 brew 安装：</p>
-
-<pre><code class="language-bash">brew install k3d
-</code></pre>
-
-<h3 id="其他">其他</h3>
-
-<p>还可以直接前往 <a href="https://github.com/rancher/k3d/releases" target="_blank">release 页面</a> 下载二进制可执行文件，或者直接使用 <code>go install github.com/rancher/k3d</code> 安装。</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install k3d
+</code></pre></div><h3 id="其他">其他</h3>
+<p>还可以直接前往 <a href="https://github.com/rancher/k3d/releases">release 页面</a> 下载二进制可执行文件，或者直接使用 <code>go install github.com/rancher/k3d</code> 安装。</p>
 <h2 id="创建-k3s-集群">创建 k3s 集群</h2>
-
 <p>创建 k3s 集群也十分简单，一行命令就可拉起，速度非常快。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#960050;background-color:#1e0010">$</span> <span style="color:#a6e22e">k3d</span> <span style="color:#a6e22e">create</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">n</span> <span style="color:#a6e22e">k3s</span><span style="color:#f92672">-</span><span style="color:#a6e22e">local</span>
+<span style="color:#a6e22e">INFO</span>[<span style="color:#ae81ff">0000</span>] <span style="color:#a6e22e">Created</span> <span style="color:#a6e22e">cluster</span> <span style="color:#a6e22e">network</span> <span style="color:#a6e22e">with</span> <span style="color:#a6e22e">ID</span> <span style="color:#a6e22e">facae4a046b169721805f93ec21ba1acb65b9efb8cf35866529178cb0fba75a9</span>
+<span style="color:#a6e22e">INFO</span>[<span style="color:#ae81ff">0000</span>] <span style="color:#a6e22e">Created</span> <span style="color:#a6e22e">docker</span> <span style="color:#a6e22e">volume</span>  <span style="color:#a6e22e">k3d</span><span style="color:#f92672">-</span><span style="color:#a6e22e">k3s</span><span style="color:#f92672">-</span><span style="color:#a6e22e">local</span><span style="color:#f92672">-</span><span style="color:#a6e22e">images</span>
+<span style="color:#a6e22e">INFO</span>[<span style="color:#ae81ff">0000</span>] <span style="color:#a6e22e">Creating</span> <span style="color:#a6e22e">cluster</span> [<span style="color:#a6e22e">k3s</span><span style="color:#f92672">-</span><span style="color:#a6e22e">local</span>]
+<span style="color:#a6e22e">INFO</span>[<span style="color:#ae81ff">0000</span>] <span style="color:#a6e22e">Creating</span> <span style="color:#a6e22e">server</span> <span style="color:#a6e22e">using</span> <span style="color:#a6e22e">docker</span>.<span style="color:#a6e22e">io</span><span style="color:#f92672">/</span><span style="color:#a6e22e">rancher</span><span style="color:#f92672">/</span><span style="color:#a6e22e">k3s</span>:<span style="color:#a6e22e">v1</span><span style="color:#ae81ff">.0.1</span><span style="color:#f92672">...</span>
+<span style="color:#a6e22e">INFO</span>[<span style="color:#ae81ff">0000</span>] <span style="color:#a6e22e">SUCCESS</span>: <span style="color:#a6e22e">created</span> <span style="color:#a6e22e">cluster</span> [<span style="color:#a6e22e">k3s</span><span style="color:#f92672">-</span><span style="color:#a6e22e">local</span>]
+<span style="color:#a6e22e">INFO</span>[<span style="color:#ae81ff">0000</span>] <span style="color:#a6e22e">You</span> <span style="color:#a6e22e">can</span> <span style="color:#a6e22e">now</span> <span style="color:#a6e22e">use</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">cluster</span> <span style="color:#a6e22e">with</span>:
 
-<pre><code class="language-go">$ k3d create -n k3s-local
-INFO[0000] Created cluster network with ID facae4a046b169721805f93ec21ba1acb65b9efb8cf35866529178cb0fba75a9
-INFO[0000] Created docker volume  k3d-k3s-local-images
-INFO[0000] Creating cluster [k3s-local]
-INFO[0000] Creating server using docker.io/rancher/k3s:v1.0.1...
-INFO[0000] SUCCESS: created cluster [k3s-local]
-INFO[0000] You can now use the cluster with:
-
-export KUBECONFIG=&quot;$(k3d get-kubeconfig --name='k3s-local')&quot;
-kubectl cluster-info
-</code></pre>
-
-<p>但是一般情况下，如果没有梯子的话，k3s 集群虽然拉起来很快，但因为拉不到镜像，集群组件都无法正常拉起。</p>
-
-<pre><code class="language-go">$ export KUBECONFIG=&quot;$(k3d get-kubeconfig --name='k3s-local')&quot;
-$ kubectl get pod -n kube-system
-NAME                                      READY   STATUS              RESTARTS   AGE
-helm-install-traefik-8wxmr                0/1     ContainerCreating   0          3m30s
-metrics-server-6d684c7b5-j4sc7            0/1     ContainerCreating   0          3m30s
-coredns-d798c9dd-j6lpw                    0/1     ContainerCreating   0          3m30s
-local-path-provisioner-58fb86bdfd-wv7sw   0/1     ContainerCreating   0          3m30s
-$ kubectl describe pod coredns-d798c9dd-j6lpw -n kube-system
-...
-Events:
-  Type     Reason                  Age                 From                           Message
-  ----     ------                  ----                ----                           -------
-  Normal   Scheduled               &lt;unknown&gt;           default-scheduler              Successfully assigned kube-system/coredns-d798c9dd-j6lpw to k3d-k3s-local-server
-  Warning  FailedCreatePodSandBox  7s (x7 over 4m30s)  kubelet, k3d-k3s-local-server  Failed create pod sandbox: rpc error: code = Unknown desc = failed to get sandbox image &quot;k8s.gcr.io/pause:3.1&quot;: failed to pull image &quot;k8s.gcr.io/pause:3.1&quot;: failed to pull and unpack image &quot;k8s.gcr.io/pause:3.1&quot;: failed to resolve reference &quot;k8s.gcr.io/pause:3.1&quot;: failed to do request: Head https://k8s.gcr.io/v2/pause/manifests/3.1: dial tcp 64.233.189.82:443: i/o timeout
-</code></pre>
-
-<h3 id="离线安装">离线安装</h3>
-
+<span style="color:#a6e22e">export</span> <span style="color:#a6e22e">KUBECONFIG</span>=<span style="color:#e6db74">&#34;$(k3d get-kubeconfig --name=&#39;k3s-local&#39;)&#34;</span>
+<span style="color:#a6e22e">kubectl</span> <span style="color:#a6e22e">cluster</span><span style="color:#f92672">-</span><span style="color:#a6e22e">info</span>
+</code></pre></div><p>但是一般情况下，如果没有梯子的话，k3s 集群虽然拉起来很快，但因为拉不到镜像，集群组件都无法正常拉起。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#960050;background-color:#1e0010">$</span> <span style="color:#a6e22e">export</span> <span style="color:#a6e22e">KUBECONFIG</span>=<span style="color:#e6db74">&#34;$(k3d get-kubeconfig --name=&#39;k3s-local&#39;)&#34;</span>
+<span style="color:#960050;background-color:#1e0010">$</span> <span style="color:#a6e22e">kubectl</span> <span style="color:#a6e22e">get</span> <span style="color:#a6e22e">pod</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">n</span> <span style="color:#a6e22e">kube</span><span style="color:#f92672">-</span><span style="color:#a6e22e">system</span>
+<span style="color:#a6e22e">NAME</span>                                      <span style="color:#a6e22e">READY</span>   <span style="color:#a6e22e">STATUS</span>              <span style="color:#a6e22e">RESTARTS</span>   <span style="color:#a6e22e">AGE</span>
+<span style="color:#a6e22e">helm</span><span style="color:#f92672">-</span><span style="color:#a6e22e">install</span><span style="color:#f92672">-</span><span style="color:#a6e22e">traefik</span><span style="color:#f92672">-</span><span style="color:#ae81ff">8</span><span style="color:#a6e22e">wxmr</span>                <span style="color:#ae81ff">0</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>     <span style="color:#a6e22e">ContainerCreating</span>   <span style="color:#ae81ff">0</span>          <span style="color:#ae81ff">3</span><span style="color:#a6e22e">m30s</span>
+<span style="color:#a6e22e">metrics</span><span style="color:#f92672">-</span><span style="color:#a6e22e">server</span><span style="color:#f92672">-</span><span style="color:#ae81ff">6</span><span style="color:#a6e22e">d684c7b5</span><span style="color:#f92672">-</span><span style="color:#a6e22e">j4sc7</span>            <span style="color:#ae81ff">0</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>     <span style="color:#a6e22e">ContainerCreating</span>   <span style="color:#ae81ff">0</span>          <span style="color:#ae81ff">3</span><span style="color:#a6e22e">m30s</span>
+<span style="color:#a6e22e">coredns</span><span style="color:#f92672">-</span><span style="color:#a6e22e">d798c9dd</span><span style="color:#f92672">-</span><span style="color:#a6e22e">j6lpw</span>                    <span style="color:#ae81ff">0</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>     <span style="color:#a6e22e">ContainerCreating</span>   <span style="color:#ae81ff">0</span>          <span style="color:#ae81ff">3</span><span style="color:#a6e22e">m30s</span>
+<span style="color:#a6e22e">local</span><span style="color:#f92672">-</span><span style="color:#a6e22e">path</span><span style="color:#f92672">-</span><span style="color:#a6e22e">provisioner</span><span style="color:#f92672">-</span><span style="color:#ae81ff">58</span><span style="color:#a6e22e">fb86bdfd</span><span style="color:#f92672">-</span><span style="color:#a6e22e">wv7sw</span>   <span style="color:#ae81ff">0</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>     <span style="color:#a6e22e">ContainerCreating</span>   <span style="color:#ae81ff">0</span>          <span style="color:#ae81ff">3</span><span style="color:#a6e22e">m30s</span>
+<span style="color:#960050;background-color:#1e0010">$</span> <span style="color:#a6e22e">kubectl</span> <span style="color:#a6e22e">describe</span> <span style="color:#a6e22e">pod</span> <span style="color:#a6e22e">coredns</span><span style="color:#f92672">-</span><span style="color:#a6e22e">d798c9dd</span><span style="color:#f92672">-</span><span style="color:#a6e22e">j6lpw</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">n</span> <span style="color:#a6e22e">kube</span><span style="color:#f92672">-</span><span style="color:#a6e22e">system</span>
+<span style="color:#f92672">...</span>
+<span style="color:#a6e22e">Events</span>:
+  <span style="color:#a6e22e">Type</span>     <span style="color:#a6e22e">Reason</span>                  <span style="color:#a6e22e">Age</span>                 <span style="color:#a6e22e">From</span>                           <span style="color:#a6e22e">Message</span>
+  <span style="color:#f92672">----</span>     <span style="color:#f92672">------</span>                  <span style="color:#f92672">----</span>                <span style="color:#f92672">----</span>                           <span style="color:#f92672">-------</span>
+  <span style="color:#a6e22e">Normal</span>   <span style="color:#a6e22e">Scheduled</span>               &lt;<span style="color:#a6e22e">unknown</span>&gt;           <span style="color:#66d9ef">default</span><span style="color:#f92672">-</span><span style="color:#a6e22e">scheduler</span>              <span style="color:#a6e22e">Successfully</span> <span style="color:#a6e22e">assigned</span> <span style="color:#a6e22e">kube</span><span style="color:#f92672">-</span><span style="color:#a6e22e">system</span><span style="color:#f92672">/</span><span style="color:#a6e22e">coredns</span><span style="color:#f92672">-</span><span style="color:#a6e22e">d798c9dd</span><span style="color:#f92672">-</span><span style="color:#a6e22e">j6lpw</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">k3d</span><span style="color:#f92672">-</span><span style="color:#a6e22e">k3s</span><span style="color:#f92672">-</span><span style="color:#a6e22e">local</span><span style="color:#f92672">-</span><span style="color:#a6e22e">server</span>
+  <span style="color:#a6e22e">Warning</span>  <span style="color:#a6e22e">FailedCreatePodSandBox</span>  <span style="color:#ae81ff">7</span><span style="color:#a6e22e">s</span> (<span style="color:#a6e22e">x7</span> <span style="color:#a6e22e">over</span> <span style="color:#ae81ff">4</span><span style="color:#a6e22e">m30s</span>)  <span style="color:#a6e22e">kubelet</span>, <span style="color:#a6e22e">k3d</span><span style="color:#f92672">-</span><span style="color:#a6e22e">k3s</span><span style="color:#f92672">-</span><span style="color:#a6e22e">local</span><span style="color:#f92672">-</span><span style="color:#a6e22e">server</span>  <span style="color:#a6e22e">Failed</span> <span style="color:#a6e22e">create</span> <span style="color:#a6e22e">pod</span> <span style="color:#a6e22e">sandbox</span>: <span style="color:#a6e22e">rpc</span> <span style="color:#66d9ef">error</span>: <span style="color:#a6e22e">code</span> = <span style="color:#a6e22e">Unknown</span> <span style="color:#a6e22e">desc</span> = <span style="color:#a6e22e">failed</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">get</span> <span style="color:#a6e22e">sandbox</span> <span style="color:#a6e22e">image</span> <span style="color:#e6db74">&#34;k8s.gcr.io/pause:3.1&#34;</span>: <span style="color:#a6e22e">failed</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">pull</span> <span style="color:#a6e22e">image</span> <span style="color:#e6db74">&#34;k8s.gcr.io/pause:3.1&#34;</span>: <span style="color:#a6e22e">failed</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">pull</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">unpack</span> <span style="color:#a6e22e">image</span> <span style="color:#e6db74">&#34;k8s.gcr.io/pause:3.1&#34;</span>: <span style="color:#a6e22e">failed</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">resolve</span> <span style="color:#a6e22e">reference</span> <span style="color:#e6db74">&#34;k8s.gcr.io/pause:3.1&#34;</span>: <span style="color:#a6e22e">failed</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">do</span> <span style="color:#a6e22e">request</span>: <span style="color:#a6e22e">Head</span> <span style="color:#a6e22e">https</span>:<span style="color:#75715e">//k8s.gcr.io/v2/pause/manifests/3.1: dial tcp 64.233.189.82:443: i/o timeout
+</span></code></pre></div><h3 id="离线安装">离线安装</h3>
 <p>如果没有梯子的话，就只能选择使用离线安装。</p>
-
 <h4 id="下载离线镜像">下载离线镜像</h4>
-
-<p>前往 <a href="https://github.com/rancher/k3s/releases" target="_blank">release 页面</a> 下载指定版本的镜像，这里我们下载最新的 <a href="https://github.com/rancher/k3s/releases/tag/v1.17.2%2Bk3s1" target="_blank">v1.17.2+k3s1</a> 镜像。</p>
-
-<p><img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1gbzdedmqpdj20sh0k776o.jpg" alt="image" /></p>
-
+<p>前往 <a href="https://github.com/rancher/k3s/releases">release 页面</a> 下载指定版本的镜像，这里我们下载最新的 <a href="https://github.com/rancher/k3s/releases/tag/v1.17.2%2Bk3s1">v1.17.2+k3s1</a> 镜像。</p>
+<p><img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1gbzdedmqpdj20sh0k776o.jpg" alt="image"></p>
 <p>下载到 <code>~/airgap</code> 目录中，并进行解压，将解压后的目录重命名为 <code>1.17.2</code>。</p>
-
 <h3 id="运行离线镜像">运行离线镜像</h3>
+<p>这里再次运行 k3d，部署 k3s 集群。这里要注意的是，挂载离线镜像的话，必须使用 <code>-i</code> flag 来指定镜像版本，这里我们使用的是 <a href="https://github.com/rancher/k3s/releases/tag/v1.17.2%2Bk3s1">v1.17.2+k3s1</a> 版本，而镜像的 tag 则是 <code>v1.17.2-k3s1</code>，如果不确定 tag，可以去 <a href="https://hub.docker.com/r/rancher/k3s/tags">DockerHub</a> 上查看。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#960050;background-color:#1e0010">$</span> <span style="color:#a6e22e">k3d</span> <span style="color:#a6e22e">create</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">n</span> <span style="color:#a6e22e">k3s</span><span style="color:#f92672">-</span><span style="color:#a6e22e">local</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">i</span> <span style="color:#a6e22e">rancher</span><span style="color:#f92672">/</span><span style="color:#a6e22e">k3s</span>:<span style="color:#a6e22e">v1</span><span style="color:#ae81ff">.17.2</span><span style="color:#f92672">-</span><span style="color:#a6e22e">k3s1</span>  <span style="color:#f92672">-</span><span style="color:#a6e22e">v</span> <span style="color:#960050;background-color:#1e0010">$</span>(<span style="color:#a6e22e">pwd</span>)<span style="color:#f92672">/</span><span style="color:#a6e22e">airgap</span><span style="color:#f92672">/</span><span style="color:#a6e22e">v1</span><span style="color:#ae81ff">.17.2</span><span style="color:#f92672">/</span>:<span style="color:#f92672">/</span><span style="color:#66d9ef">var</span><span style="color:#f92672">/</span><span style="color:#a6e22e">lib</span><span style="color:#f92672">/</span><span style="color:#a6e22e">rancher</span><span style="color:#f92672">/</span><span style="color:#a6e22e">k3s</span><span style="color:#f92672">/</span><span style="color:#a6e22e">agent</span><span style="color:#f92672">/</span><span style="color:#a6e22e">images</span><span style="color:#f92672">/</span>
+<span style="color:#a6e22e">INFO</span>[<span style="color:#ae81ff">0000</span>] <span style="color:#a6e22e">Created</span> <span style="color:#a6e22e">cluster</span> <span style="color:#a6e22e">network</span> <span style="color:#a6e22e">with</span> <span style="color:#a6e22e">ID</span> <span style="color:#ae81ff">10</span><span style="color:#a6e22e">b3fca995fcb491ae1fe1c901672bf6f0a0fd6f51785ba8403947d2773ebd43</span>
+<span style="color:#a6e22e">INFO</span>[<span style="color:#ae81ff">0000</span>] <span style="color:#a6e22e">Created</span> <span style="color:#a6e22e">docker</span> <span style="color:#a6e22e">volume</span>  <span style="color:#a6e22e">k3d</span><span style="color:#f92672">-</span><span style="color:#a6e22e">k3s</span><span style="color:#f92672">-</span><span style="color:#a6e22e">local</span><span style="color:#f92672">-</span><span style="color:#a6e22e">images</span>
+<span style="color:#a6e22e">INFO</span>[<span style="color:#ae81ff">0000</span>] <span style="color:#a6e22e">Creating</span> <span style="color:#a6e22e">cluster</span> [<span style="color:#a6e22e">k3s</span><span style="color:#f92672">-</span><span style="color:#a6e22e">local</span>]
+<span style="color:#a6e22e">INFO</span>[<span style="color:#ae81ff">0000</span>] <span style="color:#a6e22e">Creating</span> <span style="color:#a6e22e">server</span> <span style="color:#a6e22e">using</span> <span style="color:#a6e22e">docker</span>.<span style="color:#a6e22e">io</span><span style="color:#f92672">/</span><span style="color:#a6e22e">rancher</span><span style="color:#f92672">/</span><span style="color:#a6e22e">k3s</span>:<span style="color:#a6e22e">v1</span><span style="color:#ae81ff">.17.2</span><span style="color:#f92672">-</span><span style="color:#a6e22e">k3s1</span><span style="color:#f92672">...</span>
+<span style="color:#a6e22e">INFO</span>[<span style="color:#ae81ff">0000</span>] <span style="color:#a6e22e">SUCCESS</span>: <span style="color:#a6e22e">created</span> <span style="color:#a6e22e">cluster</span> [<span style="color:#a6e22e">k3s</span><span style="color:#f92672">-</span><span style="color:#a6e22e">local</span>]
+<span style="color:#a6e22e">INFO</span>[<span style="color:#ae81ff">0000</span>] <span style="color:#a6e22e">You</span> <span style="color:#a6e22e">can</span> <span style="color:#a6e22e">now</span> <span style="color:#a6e22e">use</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">cluster</span> <span style="color:#a6e22e">with</span>:
 
-<p>这里再次运行 k3d，部署 k3s 集群。这里要注意的是，挂载离线镜像的话，必须使用 <code>-i</code> flag 来指定镜像版本，这里我们使用的是 <a href="https://github.com/rancher/k3s/releases/tag/v1.17.2%2Bk3s1" target="_blank">v1.17.2+k3s1</a> 版本，而镜像的 tag 则是 <code>v1.17.2-k3s1</code>，如果不确定 tag，可以去 <a href="https://hub.docker.com/r/rancher/k3s/tags" target="_blank">DockerHub</a> 上查看。</p>
+<span style="color:#a6e22e">export</span> <span style="color:#a6e22e">KUBECONFIG</span>=<span style="color:#e6db74">&#34;$(k3d get-kubeconfig --name=&#39;k3s-local&#39;)&#34;</span>
+<span style="color:#a6e22e">kubectl</span> <span style="color:#a6e22e">cluster</span><span style="color:#f92672">-</span><span style="color:#a6e22e">info</span>
+</code></pre></div><p>查看 k3s 集群组件启动状态：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#960050;background-color:#1e0010">$</span> <span style="color:#a6e22e">export</span> <span style="color:#a6e22e">KUBECONFIG</span>=<span style="color:#e6db74">&#34;$(k3d get-kubeconfig --name=&#39;k3s-local&#39;)&#34;</span>
+<span style="color:#960050;background-color:#1e0010">$</span> <span style="color:#a6e22e">kubectl</span> <span style="color:#a6e22e">get</span> <span style="color:#a6e22e">pod</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">A</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">w</span>
+<span style="color:#a6e22e">NAMESPACE</span>     <span style="color:#a6e22e">NAME</span>                                      <span style="color:#a6e22e">READY</span>   <span style="color:#a6e22e">STATUS</span>              <span style="color:#a6e22e">RESTARTS</span>   <span style="color:#a6e22e">AGE</span>
+<span style="color:#a6e22e">kube</span><span style="color:#f92672">-</span><span style="color:#a6e22e">system</span>   <span style="color:#a6e22e">local</span><span style="color:#f92672">-</span><span style="color:#a6e22e">path</span><span style="color:#f92672">-</span><span style="color:#a6e22e">provisioner</span><span style="color:#f92672">-</span><span style="color:#ae81ff">58</span><span style="color:#a6e22e">fb86bdfd</span><span style="color:#f92672">-</span><span style="color:#ae81ff">7</span><span style="color:#a6e22e">jzbw</span>   <span style="color:#ae81ff">0</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>     <span style="color:#a6e22e">ContainerCreating</span>   <span style="color:#ae81ff">0</span>          <span style="color:#ae81ff">6</span><span style="color:#a6e22e">m35s</span>
+<span style="color:#a6e22e">kube</span><span style="color:#f92672">-</span><span style="color:#a6e22e">system</span>   <span style="color:#a6e22e">coredns</span><span style="color:#f92672">-</span><span style="color:#a6e22e">d798c9dd</span><span style="color:#f92672">-</span><span style="color:#a6e22e">jhmds</span>                    <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>     <span style="color:#a6e22e">Running</span>             <span style="color:#ae81ff">0</span>          <span style="color:#ae81ff">6</span><span style="color:#a6e22e">m35s</span>
+<span style="color:#a6e22e">kube</span><span style="color:#f92672">-</span><span style="color:#a6e22e">system</span>   <span style="color:#a6e22e">metrics</span><span style="color:#f92672">-</span><span style="color:#a6e22e">server</span><span style="color:#f92672">-</span><span style="color:#ae81ff">6</span><span style="color:#a6e22e">d684c7b5</span><span style="color:#f92672">-</span><span style="color:#ae81ff">4</span><span style="color:#a6e22e">x2cd</span>            <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>     <span style="color:#a6e22e">Running</span>             <span style="color:#ae81ff">0</span>          <span style="color:#ae81ff">6</span><span style="color:#a6e22e">m35s</span>
+<span style="color:#a6e22e">kube</span><span style="color:#f92672">-</span><span style="color:#a6e22e">system</span>   <span style="color:#a6e22e">traefik</span><span style="color:#f92672">-</span><span style="color:#ae81ff">6787</span><span style="color:#a6e22e">cddb4b</span><span style="color:#f92672">-</span><span style="color:#ae81ff">9</span><span style="color:#a6e22e">v7r4</span>                  <span style="color:#ae81ff">0</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>     <span style="color:#a6e22e">ContainerCreating</span>   <span style="color:#ae81ff">0</span>          <span style="color:#ae81ff">16</span><span style="color:#a6e22e">s</span>
+<span style="color:#a6e22e">kube</span><span style="color:#f92672">-</span><span style="color:#a6e22e">system</span>   <span style="color:#a6e22e">svclb</span><span style="color:#f92672">-</span><span style="color:#a6e22e">traefik</span><span style="color:#f92672">-</span><span style="color:#a6e22e">fzrqj</span>                       <span style="color:#ae81ff">0</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>     <span style="color:#a6e22e">ContainerCreating</span>   <span style="color:#ae81ff">0</span>          <span style="color:#ae81ff">15</span><span style="color:#a6e22e">s</span>
+<span style="color:#a6e22e">kube</span><span style="color:#f92672">-</span><span style="color:#a6e22e">system</span>   <span style="color:#a6e22e">helm</span><span style="color:#f92672">-</span><span style="color:#a6e22e">install</span><span style="color:#f92672">-</span><span style="color:#a6e22e">traefik</span><span style="color:#f92672">-</span><span style="color:#a6e22e">h8k2j</span>                <span style="color:#ae81ff">0</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>     <span style="color:#a6e22e">Completed</span>           <span style="color:#ae81ff">0</span>          <span style="color:#ae81ff">6</span><span style="color:#a6e22e">m35s</span>
+<span style="color:#a6e22e">kube</span><span style="color:#f92672">-</span><span style="color:#a6e22e">system</span>   <span style="color:#a6e22e">svclb</span><span style="color:#f92672">-</span><span style="color:#a6e22e">traefik</span><span style="color:#f92672">-</span><span style="color:#a6e22e">fzrqj</span>                       <span style="color:#ae81ff">2</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>     <span style="color:#a6e22e">Running</span>             <span style="color:#ae81ff">0</span>          <span style="color:#ae81ff">21</span><span style="color:#a6e22e">s</span>
+</code></pre></div><h2 id="使用-kubecm">使用 kubecm</h2>
+<p>在 k3s 集群启动成功后，使用 <a href="https://github.com/sunny0826/kubecm"><code>kubecm</code></a>，将 k3s 的 kubeconfig 与现有 kubeconfig 合并。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubecm add -f <span style="color:#66d9ef">$(</span>k3d get-kubeconfig --name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k3s-local&#39;</span><span style="color:#66d9ef">)</span> -n k3s -c
+</code></pre></div><p>切换集群，选择 k3s。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#960050;background-color:#1e0010">$</span> <span style="color:#a6e22e">kubecm</span> <span style="color:#a6e22e">s</span>
+<span style="color:#a6e22e">Use</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">arrow</span> <span style="color:#a6e22e">keys</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">navigate</span>: <span style="color:#960050;background-color:#1e0010">↓</span> <span style="color:#960050;background-color:#1e0010">↑</span> <span style="color:#960050;background-color:#1e0010">→</span> <span style="color:#960050;background-color:#1e0010">←</span>  <span style="color:#a6e22e">and</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">toggles</span> <span style="color:#a6e22e">search</span>
+<span style="color:#a6e22e">Select</span> <span style="color:#a6e22e">Kube</span> <span style="color:#a6e22e">Context</span>
+  <span style="color:#960050;background-color:#1e0010">😼</span> <span style="color:#a6e22e">k3s</span>(<span style="color:#f92672">*</span>)
+    <span style="color:#a6e22e">prod</span><span style="color:#f92672">-</span><span style="color:#a6e22e">tg</span>
+    <span style="color:#a6e22e">test</span>
+<span style="color:#960050;background-color:#1e0010">↓</span>   <span style="color:#a6e22e">banma</span>
 
-<pre><code class="language-go">$ k3d create -n k3s-local -i rancher/k3s:v1.17.2-k3s1  -v $(pwd)/airgap/v1.17.2/:/var/lib/rancher/k3s/agent/images/
-INFO[0000] Created cluster network with ID 10b3fca995fcb491ae1fe1c901672bf6f0a0fd6f51785ba8403947d2773ebd43
-INFO[0000] Created docker volume  k3d-k3s-local-images
-INFO[0000] Creating cluster [k3s-local]
-INFO[0000] Creating server using docker.io/rancher/k3s:v1.17.2-k3s1...
-INFO[0000] SUCCESS: created cluster [k3s-local]
-INFO[0000] You can now use the cluster with:
-
-export KUBECONFIG=&quot;$(k3d get-kubeconfig --name='k3s-local')&quot;
-kubectl cluster-info
-</code></pre>
-
-<p>查看 k3s 集群组件启动状态：</p>
-
-<pre><code class="language-go">$ export KUBECONFIG=&quot;$(k3d get-kubeconfig --name='k3s-local')&quot;
-$ kubectl get pod -A -w
-NAMESPACE     NAME                                      READY   STATUS              RESTARTS   AGE
-kube-system   local-path-provisioner-58fb86bdfd-7jzbw   0/1     ContainerCreating   0          6m35s
-kube-system   coredns-d798c9dd-jhmds                    1/1     Running             0          6m35s
-kube-system   metrics-server-6d684c7b5-4x2cd            1/1     Running             0          6m35s
-kube-system   traefik-6787cddb4b-9v7r4                  0/1     ContainerCreating   0          16s
-kube-system   svclb-traefik-fzrqj                       0/2     ContainerCreating   0          15s
-kube-system   helm-install-traefik-h8k2j                0/1     Completed           0          6m35s
-kube-system   svclb-traefik-fzrqj                       2/2     Running             0          21s
-</code></pre>
-
-<h2 id="使用-kubecm">使用 kubecm</h2>
-
-<p>在 k3s 集群启动成功后，使用 <a href="https://github.com/sunny0826/kubecm" target="_blank"><code>kubecm</code></a>，将 k3s 的 kubeconfig 与现有 kubeconfig 合并。</p>
-
-<pre><code class="language-bash">kubecm add -f $(k3d get-kubeconfig --name='k3s-local') -n k3s -c
-</code></pre>
-
-<p>切换集群，选择 k3s。</p>
-
-<pre><code class="language-go">$ kubecm s
-Use the arrow keys to navigate: ↓ ↑ → ←  and / toggles search
-Select Kube Context
-  😼 k3s(*)
-    prod-tg
-    test
-↓   banma
-
---------- Info ----------
-Name:           k3s
-Cluster:        cluster-485d6mhcfm
-User:           user-485d6mhcfm
-</code></pre>
-
-<p>现在就可以在本地使用 k3s 集群进行开发工作，而有运维工作的时候，使用 <code>kubecm switch</code> 快速切换集群。</p>
-
+<span style="color:#f92672">---------</span> <span style="color:#a6e22e">Info</span> <span style="color:#f92672">----------</span>
+<span style="color:#a6e22e">Name</span>:           <span style="color:#a6e22e">k3s</span>
+<span style="color:#a6e22e">Cluster</span>:        <span style="color:#a6e22e">cluster</span><span style="color:#f92672">-</span><span style="color:#ae81ff">485</span><span style="color:#a6e22e">d6mhcfm</span>
+<span style="color:#a6e22e">User</span>:           <span style="color:#a6e22e">user</span><span style="color:#f92672">-</span><span style="color:#ae81ff">485</span><span style="color:#a6e22e">d6mhcfm</span>
+</code></pre></div><p>现在就可以在本地使用 k3s 集群进行开发工作，而有运维工作的时候，使用 <code>kubecm switch</code> 快速切换集群。</p>
 <h2 id="结语">结语</h2>
-
-<p><img src="https://tva3.sinaimg.cn/large/ad5fbf65gy1gbzegsyex5j20x90n70vv.jpg" alt="image" /></p>
-
-<p>k3s 同时支持 <strong>x86_64</strong>、<strong>ARM64</strong> 和 <strong>ARMv7</strong> 架构，它可以十分灵活地跨任何边缘基础架构工作。不提 k3s 在边缘计算领域的应用，与之前使用的 <a href="https://github.com/kubernetes/minikube" target="_blank">minikube</a> 相比，k3s 裁剪掉了许多用不到的功能，并且安装更简单，启动更快，空间占用也更小。相信 k3s 在开发侧的作用也会越来越大，使云原生应用的开发更加的便利。</p>
+<p><img src="https://tva3.sinaimg.cn/large/ad5fbf65gy1gbzegsyex5j20x90n70vv.jpg" alt="image"></p>
+<p>k3s 同时支持 <strong>x86_64</strong>、<strong>ARM64</strong> 和 <strong>ARMv7</strong> 架构，它可以十分灵活地跨任何边缘基础架构工作。不提 k3s 在边缘计算领域的应用，与之前使用的 <a href="https://github.com/kubernetes/minikube">minikube</a> 相比，k3s 裁剪掉了许多用不到的功能，并且安装更简单，启动更快，空间占用也更小。相信 k3s 在开发侧的作用也会越来越大，使云原生应用的开发更加的便利。</p>
 
     </div>
 
@@ -1074,7 +1023,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

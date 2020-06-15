@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -356,7 +356,7 @@
     <div class="col-lg-8">
         <img class="img-fluid w-100" src="https://tvax1.sinaimg.cn/large/ad5fbf65ly1ge3ipmye8jj20dw099aa9.jpg" itemprop="image" alt="">
         <span
-          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+          class="article-header-caption">Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a></span>
     </div>
     <div class="col-lg-8">
       <h1 itemprop="name">解决kubernetes中ingress-nginx配置问题</h1>
@@ -560,133 +560,83 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<h2 id="前言">前言</h2>
-
+      <h2 id="前言">前言</h2>
 <p>随着公司容器化的深入，越来越多的服务陆续迁移到kubernetes集群中，有些问题在测试环境并未凸显，但是在生产环境中这些问题就显得格外的扎眼。这里就对实践中kubernetes集群中的7层负载均衡器ingress遇到的问题进行总结。</p>
-
-<h2 id="http-s-负载均衡器-ingress">HTTP(S)负载均衡器-ingress</h2>
-
+<h2 id="https负载均衡器-ingress">HTTP(S)负载均衡器-ingress</h2>
 <p>Ingress是kubernetes API的标准资源类型之一，其本质就是一组基于DNS名称(host)或URL路径把请求转发至指定的Service资源的规则，<strong>用于将集群外的请求流量转发至集群内部完成服务发布</strong>。</p>
-
 <p>Ingress控制器(Ingress Controller)可以由任何具有反向代理(HTTP/HTTPS)功能的服务程序实现，如Nginx、Envoy、HAProxy、Vulcand和Traefik等。Ingress控制器本身也作为Pod对象与被代理的运行为Pod资源的应用运行于同一网络中。我们在这里选择了NGINX Ingress Controller，由于对NGINX的配置较为熟悉，同时我们使用的kubernetes是阿里云的容器服务，构建集群的时候，容器服务会自带NGINX Ingress Controller。</p>
-
-<p><img src="http://wx2.sinaimg.cn/large/ad5fbf65ly1g0t3yj7wecj20w50doab9.jpg" alt="image" /></p>
-
+<p><img src="http://wx2.sinaimg.cn/large/ad5fbf65ly1g0t3yj7wecj20w50doab9.jpg" alt="image"></p>
 <h2 id="根据实际情况ingress调优">根据实际情况Ingress调优</h2>
-
 <h3 id="1-解决400-request-header-or-cookie-too-large问题">1. 解决400 Request Header Or Cookie Too Large问题</h3>
-
-<p>image:
-  caption: &ldquo;Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a>&ldquo;
-  focal_point: &ldquo;&rdquo;</p>
-
-<h2 id="preview-only-false">preview_only: false</h2>
-
+<h2 id="preview_only-false">image:
+caption: &ldquo;Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a>&rdquo;
+focal_point: &quot;&rdquo;
+preview_only: false</h2>
 <h4 id="现象">现象</h4>
-
 <p>微信小程序需要调用后端接口，需要在header中传一段很长的token参数，直接使用浏览器访问该端口可以访问通，但是在加上token访问之后，会报“400 Request Header Or Cookie Too Large”</p>
-
-<pre><code class="language-html">&lt;html&gt;
-    &lt;head&gt;
-        &lt;title&gt;400 Request Header Or Cookie Too Large&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;center&gt;
-            &lt;h1&gt;400 Bad Request&lt;/h1&gt;
-        &lt;/center&gt;
-        &lt;center&gt;Request Header Or Cookie Too Large&lt;/center&gt;
-        &lt;hr&gt;
-        &lt;center&gt;nginx/1.15.6&lt;/center&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
-<h4 id="问题定位">问题定位</h4>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">html</span>&gt;
+    &lt;<span style="color:#f92672">head</span>&gt;
+        &lt;<span style="color:#f92672">title</span>&gt;400 Request Header Or Cookie Too Large&lt;/<span style="color:#f92672">title</span>&gt;
+    &lt;/<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">body</span>&gt;
+        &lt;<span style="color:#f92672">center</span>&gt;
+            &lt;<span style="color:#f92672">h1</span>&gt;400 Bad Request&lt;/<span style="color:#f92672">h1</span>&gt;
+        &lt;/<span style="color:#f92672">center</span>&gt;
+        &lt;<span style="color:#f92672">center</span>&gt;Request Header Or Cookie Too Large&lt;/<span style="color:#f92672">center</span>&gt;
+        &lt;<span style="color:#f92672">hr</span>&gt;
+        &lt;<span style="color:#f92672">center</span>&gt;nginx/1.15.6&lt;/<span style="color:#f92672">center</span>&gt;
+    &lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><h4 id="问题定位">问题定位</h4>
 <p>直接修改Service使用nodeport的形式访问，则没有报错，初步定位需要在ingress中nginx配置客户端的请求头，进入Ingress Controller的Pod查询配置，果然是请求头空间不足。</p>
-
-<pre><code class="language-bash">$ cat nginx.conf | grep client_header_buffer_size
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat nginx.conf | grep client_header_buffer_size
     client_header_buffer_size       1k;
 $ cat nginx.conf | grep large_client_header_buffers
-    large_client_header_buffers     4 8k;
-</code></pre>
-
-<h4 id="解决方法">解决方法</h4>
-
+    large_client_header_buffers     <span style="color:#ae81ff">4</span> 8k;
+</code></pre></div><h4 id="解决方法">解决方法</h4>
 <p>在ingress中添加注释</p>
-
-<pre><code class="language-nginx">nginx.ingress.kubernetes.io/server-snippet: client_header_buffer_size 2046k;
-</code></pre>
-
-<p>image:
-  caption: &ldquo;Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a>&ldquo;
-  focal_point: &ldquo;&rdquo;</p>
-
-<h2 id="preview-only-false-1">preview_only: false</h2>
-
-<p><strong>Server snippet</strong><br>Using the annotation <code>nginx.ingress.kubernetes.io/server-snippet</code> it is possible to add custom configuration in the server configuration block.
-<br>该注释是将自定义配置加入nginx的server配置中</p>
-
-<p>image:
-  caption: &ldquo;Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a>&ldquo;
-  focal_point: &ldquo;&rdquo;</p>
-
-<h2 id="preview-only-false-2">preview_only: false</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#66d9ef">nginx.ingress.kubernetes.io/server-snippet:</span> <span style="color:#e6db74">client_header_buffer_size</span> <span style="color:#ae81ff">2046k</span>;
+</code></pre></div><h2 id="preview_only-false-1">image:
+caption: &ldquo;Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a>&rdquo;
+focal_point: &quot;&rdquo;
+preview_only: false</h2>
+<p><strong>Server snippet</strong><!-- raw HTML omitted -->Using the annotation <code>nginx.ingress.kubernetes.io/server-snippet</code> it is possible to add custom configuration in the server configuration block.
+<!-- raw HTML omitted -->该注释是将自定义配置加入nginx的server配置中</p>
+<h2 id="preview_only-false-2">image:
+caption: &ldquo;Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a>&rdquo;
+focal_point: &quot;&rdquo;
+preview_only: false</h2>
 <h3 id="2-解决请求超时问题">2. 解决请求超时问题</h3>
-
 <h4 id="现象-1">现象</h4>
-
 <p>有一个数据导出功能，需要将大量数据进行处理，然后以Excel格式返回，在导出一个大约3W条数据的时候，出现访问超时情况。</p>
-
-<p><img src="https://ws2.sinaimg.cn/mw690/ad5fbf65ly1g0ubdwwzo5j21b30bjaat.jpg" alt="image" /></p>
-
+<p><img src="https://ws2.sinaimg.cn/mw690/ad5fbf65ly1g0ubdwwzo5j21b30bjaat.jpg" alt="image"></p>
 <h4 id="解决方法-1">解决方法</h4>
-
 <p>调整proxy_read_timeout，连接成功后_等候后端服务器响应时间_其实已经进入后端的排队之中等候处理
 在ingress中添加注释</p>
-
-<pre><code class="language-nginx">nginx.ingress.kubernetes.io/proxy-read-timeout: 600
-</code></pre>
-
-<blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#66d9ef">nginx.ingress.kubernetes.io/proxy-read-timeout:</span> <span style="color:#ae81ff">600</span>
+</code></pre></div><blockquote>
 <p>这里需要注意的事该注释的value需要时number类型，不能加s，否则将不生效</p>
 </blockquote>
-
 <h3 id="3-增加白名单">3. 增加白名单</h3>
-
 <h4 id="现象-2">现象</h4>
-
 <p>在实际的使用中，会有一部分应用需要设置只可以在办公场地的网络使用，之前使用阿里云 SLB 的时候可以针对端口进行访问控制，但是现在走 ingress ，都是从80 or 443端口进，所以需要在 ingress 设置</p>
-
 <h4 id="解决方法-2">解决方法</h4>
-
 <blockquote>
 <p><strong>Whitelist source range</strong></p>
-
+</blockquote>
+<blockquote>
 <p>You can specify allowed client IP source ranges through the nginx.ingress.kubernetes.io/whitelist-source-range annotation. The value is a comma separated list of CIDRs, e.g. 10.0.0.0/24,172.10.0.1.</p>
 </blockquote>
-
 <p>在 ingress 里配置 <code>nginx.ingress.kubernetes.io/whitelist-source-range</code> ，如有多个ip段，用逗号分隔即可</p>
-
-<pre><code class="language-nginx">nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/24
-</code></pre>
-
-<p>如果想全局适用，可以在阿里云 SLB 里操作，也可以将该配置加入到 <code>NGINX ConfigMap</code> 中。</p>
-
-<p>image:
-  caption: &ldquo;Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a>&ldquo;
-  focal_point: &ldquo;&rdquo;</p>
-
-<h2 id="preview-only-false-3">preview_only: false</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#66d9ef">nginx.ingress.kubernetes.io/whitelist-source-range:</span> <span style="color:#ae81ff">10</span><span style="color:#e6db74">.0.0.0/24</span>
+</code></pre></div><p>如果想全局适用，可以在阿里云 SLB 里操作，也可以将该配置加入到 <code>NGINX ConfigMap</code> 中。</p>
+<h2 id="preview_only-false-3">image:
+caption: &ldquo;Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a>&rdquo;
+focal_point: &quot;&rdquo;
+preview_only: false</h2>
 <p>根据工作中遇到的实际问题，持续更新中&hellip;</p>
-
 <h2 id="总结">总结</h2>
-
-<p>使用NGINX ingress controller的好处就是对于nginx配置相对比较熟悉，性能也不差。相关nginx配置的对应的ingress可以在 <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/" target="_blank">https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/</a> 上查到。</p>
+<p>使用NGINX ingress controller的好处就是对于nginx配置相对比较熟悉，性能也不差。相关nginx配置的对应的ingress可以在 <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/">https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/</a> 上查到。</p>
 
     </div>
 
@@ -1057,7 +1007,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

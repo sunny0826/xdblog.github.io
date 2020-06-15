@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -356,7 +356,7 @@
     <div class="col-lg-8">
         <img class="img-fluid w-100" src="https://tvax4.sinaimg.cn/large/ad5fbf65ly1ge3jaudev1j21qx15owo8.jpg" itemprop="image" alt="">
         <span
-          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+          class="article-header-caption">Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a></span>
     </div>
     <div class="col-lg-8">
       <h1 itemprop="name">Rancher 2.2.1 解决工作负载监控为空问题</h1>
@@ -560,48 +560,26 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<h2 id="前言">前言</h2>
-
+      <h2 id="前言">前言</h2>
 <p>Rancher 2.2.X 版本于3月底正式GA，新版本处理其他部分的优化以外，最大亮点莫过于本身集成了 Prometheus ，可以通过 Rancher 自带 UI 或者 Grafana 查看集群的实时监控，对所有监控进行了一次聚合，不用再和之前一样，每个集群都要安装一个 Prometheus 用于监控，而告警部分也可使用 Rancher 自带的通知组件进行告警。通知方式目前支持 Slack 、 邮件、 PagerDuty 、 Webhook 、 企业微信，由于我司办公使用钉钉，所以我们使用了 Webhook 的方式，告警触发后通知我们的消息服务，然后消息服务将其发送到钉钉进行告警。</p>
-
-<p><img src="http://wx2.sinaimg.cn/large/ad5fbf65gy1g26xsh6omvj20rk0ilta6.jpg" alt="image" /></p>
-
+<p><img src="http://wx2.sinaimg.cn/large/ad5fbf65gy1g26xsh6omvj20rk0ilta6.jpg" alt="image"></p>
 <h2 id="问题">问题</h2>
-
 <p>Rancher 集成 Prometheus 后，监控方面变的十分强大，不用再徘徊于多个集群的 Grafana ，直接在 Rancher 上即可查看，非常方便</p>
-
-<p><img src="http://wx2.sinaimg.cn/large/ad5fbf65gy1g26xuv2frnj212b0onn1h.jpg" alt="image" /></p>
-
-<p>但是在使用的时候，我发现了一个问题：就是在查看 工作负载和 Pod 的时候会显示 <strong><em>没有足够的数据绘制图表</em></strong></p>
-
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g26xzvi2cpj20po057q31.jpg" alt="image" /></p>
-
+<p><img src="http://wx2.sinaimg.cn/large/ad5fbf65gy1g26xuv2frnj212b0onn1h.jpg" alt="image"></p>
+<p>但是在使用的时候，我发现了一个问题：就是在查看 工作负载和 Pod 的时候会显示 <em><strong>没有足够的数据绘制图表</strong></em></p>
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g26xzvi2cpj20po057q31.jpg" alt="image"></p>
 <p>进入 Grafana 查看会发现，其实监控参数是存在的，但是没有采集到值，所以并没有展示出来。</p>
-
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g26y4j4s3yj21f50m9wqj.jpg" alt="image" /></p>
-
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g26y4j4s3yj21f50m9wqj.jpg" alt="image"></p>
 <h2 id="解决">解决</h2>
-
 <p>在检查了配置后并没有找到原因，只好去 GitHub 上提一个 issue 来询问一下开发者或者其他用户有无遇到这个问题。</p>
-
-<p>Rancher 官方的开发者还是十分负责的， GitHub 上用户名为 <a href="https://github.com/loganhz" target="_blank">Logan</a> 的官方小哥来我指导解决这个问题。</p>
-
+<p>Rancher 官方的开发者还是十分负责的， GitHub 上用户名为 <a href="https://github.com/loganhz">Logan</a> 的官方小哥来我指导解决这个问题。</p>
 <p>小哥发现我是导入的集群，要我进入 Prometheus 查看，发现 <code>cattle-prometheus/exporter-kube-state-cluster-monitoring</code> 果然没有起来</p>
-
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g26yb1p4eoj21db0am782.jpg" alt="image" /></p>
-
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g26yb1p4eoj21db0am782.jpg" alt="image"></p>
 <p>解决这个问题，需要在集群监控配置中添加一个高级选项，插入值为：<code>exporter-kubelets.https=false</code></p>
-
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g26ycq6amfj221q0uggp8.jpg" alt="image" /></p>
-
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g26ycq6amfj221q0uggp8.jpg" alt="image"></p>
 <p>点击保存，问题就解决了！</p>
-
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g26yheqwp7j213e0g3di5.jpg" alt="image" /></p>
-
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65gy1g26yheqwp7j213e0g3di5.jpg" alt="image"></p>
 <h2 id="后记">后记</h2>
-
 <p>使用 Rancher 有半年，从2.0版本一直用到2.2版本，而18年分别在云栖大会和 KubeCon 上听了 Rancher 创始人梁胜博士的演讲。而从这一个小问题上就可以看到 Rancher 官方对每一个用户都是十分重视的。</p>
 
     </div>
@@ -975,7 +953,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

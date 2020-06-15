@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -356,7 +356,7 @@
     <div class="col-lg-8">
         <img class="img-fluid w-100" src="https://tva1.sinaimg.cn/large/ad5fbf65ly1ge3jciuxh3j21pj15o4ji.jpg" itemprop="image" alt="">
         <span
-          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+          class="article-header-caption">Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a></span>
     </div>
     <div class="col-lg-8">
       <h1 itemprop="name">Jenkins Pipeline集成Sonar进行代码质量检测</h1>
@@ -560,129 +560,95 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<h2 id="简介">简介</h2>
-
-<p>image:
-  caption: &ldquo;Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a>&ldquo;
-  focal_point: &ldquo;&rdquo;</p>
-
-<h2 id="preview-only-false">preview_only: false</h2>
-
+      <h2 id="简介">简介</h2>
+<h2 id="preview_only-false">image:
+caption: &ldquo;Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a>&rdquo;
+focal_point: &quot;&rdquo;
+preview_only: false</h2>
 <h3 id="jenkins-pipeline">jenkins pipeline</h3>
-
 <p>Jenkins Pipeline (或简称为 &ldquo;Pipeline&rdquo; )是一套插件，将持续交付的实现和实施集成到 Jenkins 中。</p>
-
 <p>持续交付Pipeline自动化的表达了这样一种流程：将基于版本控制管理的软件持续的交付到您的用户和消费者手中。</p>
-
 <p>Jenkins Pipeline 提供了一套可扩展的工具，用于将“简单到复杂”的交付流程实现为“持续交付即代码”。 Jenkins Pipeline 的定义通常被写入到一个文本文件（称为 <code>Jenkinsfile</code> ）中，该文件可以被检入到项目的源代码控制库中。</p>
-
-<p>摘自<a href="https://jenkins.io/zh/" target="_blank">Jenkins官方文档</a></p>
-
+<p>摘自<a href="https://jenkins.io/zh/">Jenkins官方文档</a></p>
 <h3 id="sonarqube">SonarQube</h3>
-
 <p>SonarQube is an open source platform to perform automatic reviews with static analysis of code to detect bugs, code smells and security vulnerabilities on 25+ programming languages including Java, C#, JavaScript, TypeScript, C/C++, COBOL and more.</p>
-
 <p>SonarQube是一个开源的平台，以执行与代码的静态分析，自动审查，可以检测在25+的编程语言如Java，C＃，JavaScript，TypeScript，C/C++，COBOL等的代码缺陷和安全漏洞。</p>
-
 <h3 id="owasp">OWASP</h3>
-
-<p>OWASP，全称是：Open Web Application Security Project，翻译为中文就是：开放式Web应用程序安全项目，是一个非营利组织，不附属于任何企业或财团，这也是该组织可以不受商业控制地进行安全开发及安全普及的重要原因，<a href="https://en.wikipedia.org/wiki/OWASP/" target="_blank">详细介绍</a>。OWASP Dependency-Check，它识别项目依赖关系，并检查是否存在任何已知的、公开的、漏洞，基于OWASP Top 10 2013。</p>
-
+<p>OWASP，全称是：Open Web Application Security Project，翻译为中文就是：开放式Web应用程序安全项目，是一个非营利组织，不附属于任何企业或财团，这也是该组织可以不受商业控制地进行安全开发及安全普及的重要原因，<a href="https://en.wikipedia.org/wiki/OWASP/">详细介绍</a>。OWASP Dependency-Check，它识别项目依赖关系，并检查是否存在任何已知的、公开的、漏洞，基于OWASP Top 10 2013。</p>
 <h2 id="场景">场景</h2>
-
 <p>在devops理念中，CI/CD毫无疑问是最重要的一环，而代码质量检查则是CI中必不可少的一步。在敏捷开发的思想下，代码的迭代周期变短，交付速度提升，这个时候代码的质量就很难保证，测试只能保证功能完整与可用，而代码的质量纯靠review的话效率又很低，这个时候sonar就可以很好的帮助开发自动化检测代码质量，降低bug数量，也可以根据扫描结果养成良好的编程习惯，同时也可以减少测试的工作量，真正提升整个团队效率，实现devops理念。</p>
-
 <h2 id="前提">前提</h2>
-
 <p>jenkins、sonarqube服务已经搭建完成，jenkins安装sonar插件<code>SonarQube Scanner for Jenkins</code>，jenkins、sonarqube安装Dependency-Check插件<code>OWASP Dependency-Check Plugin</code></p>
-
 <p>版本：jenkins2.166，sonarqube6.7.6</p>
-
 <h2 id="配置">配置</h2>
-
 <ol>
-<li><p>下载安装jenkins插件</p>
-
+<li>
+<p>下载安装jenkins插件</p>
 <p><strong>[系统管理]</strong>-<strong>[插件管理]</strong>-<strong>[可选插件]</strong>-<strong>[SonarQube Scanner for Jenkins]</strong></p>
-
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g0u4q3ae1bj20t90233yt.jpg" alt="image" /></p></li>
-
-<li><p>SonarQube生成token，<strong>这个token不会显示第二次，所以一定要记住</strong></p>
-
-<p><img src="https://ws1.sinaimg.cn/mw690/ad5fbf65ly1g0u5902q6nj213f0hgwgn.jpg" alt="image" /></p></li>
-
-<li><p>SonarQube配置Dependency-Check</p>
-
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g0u4q3ae1bj20t90233yt.jpg" alt="image"></p>
+</li>
+<li>
+<p>SonarQube生成token，<strong>这个token不会显示第二次，所以一定要记住</strong></p>
+<p><img src="https://ws1.sinaimg.cn/mw690/ad5fbf65ly1g0u5902q6nj213f0hgwgn.jpg" alt="image"></p>
+</li>
+<li>
+<p>SonarQube配置Dependency-Check</p>
 <p><strong>[配置]</strong>-<strong>[Dependency-Check]</strong></p>
-
-<p><strong>[注意：]</strong>这里去掉 <code>${WORKSPACE}/</code>，否则将报</p>
-
-<pre><code class="language-Java">[INFO] Dependency-Check XML report does not exists. Please check property sonar.dependencyCheck.reportPath:/data/jenkinsHome/workspace/xxx/${WORKSPACE}/dependency-check-report.xml
-</code></pre>
-
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g0yvjjcvdaj211b0jhgod.jpg" alt="image" /></p></li>
-
-<li><p>在pom.xml文件中添加</p>
-
-<pre><code class="language-xml">&lt;plugin&gt;
-    &lt;groupId&gt;org.sonarsource.scanner.maven&lt;/groupId&gt;
-    &lt;artifactId&gt;sonar-maven-plugin&lt;/artifactId&gt;
-    &lt;version&gt;3.6.0.1398&lt;/version&gt;
-&lt;/plugin&gt;
-</code></pre></li>
-
-<li><p>配置jenkins</p>
-
+<p>**[注意：]**这里去掉 <code>${WORKSPACE}/</code>，否则将报</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span> Dependency<span style="color:#f92672">-</span>Check XML report does not exists<span style="color:#f92672">.</span> Please check property sonar<span style="color:#f92672">.</span><span style="color:#a6e22e">dependencyCheck</span><span style="color:#f92672">.</span><span style="color:#a6e22e">reportPath</span><span style="color:#f92672">:/</span>data<span style="color:#f92672">/</span>jenkinsHome<span style="color:#f92672">/</span>workspace<span style="color:#f92672">/</span>xxx<span style="color:#f92672">/</span>$<span style="color:#f92672">{</span>WORKSPACE<span style="color:#f92672">}/</span>dependency<span style="color:#f92672">-</span>check<span style="color:#f92672">-</span>report<span style="color:#f92672">.</span><span style="color:#a6e22e">xml</span>
+</code></pre></div><p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g0yvjjcvdaj211b0jhgod.jpg" alt="image"></p>
+</li>
+<li>
+<p>在pom.xml文件中添加</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;plugin&gt;</span>
+    <span style="color:#f92672">&lt;groupId&gt;</span>org.sonarsource.scanner.maven<span style="color:#f92672">&lt;/groupId&gt;</span>
+    <span style="color:#f92672">&lt;artifactId&gt;</span>sonar-maven-plugin<span style="color:#f92672">&lt;/artifactId&gt;</span>
+    <span style="color:#f92672">&lt;version&gt;</span>3.6.0.1398<span style="color:#f92672">&lt;/version&gt;</span>
+<span style="color:#f92672">&lt;/plugin&gt;</span>
+</code></pre></div></li>
+<li>
+<p>配置jenkins</p>
 <p><strong>[系统管理]</strong>-<strong>[系统设置]</strong>-<strong>[SonarQube servers]</strong></p>
-
-<p><img src="http://wx3.sinaimg.cn/large/ad5fbf65ly1g0u50l8q4lj215o0b3myw.jpg" alt="image" /></p></li>
-
-<li><p>sonar添加webhook</p>
-
+<p><img src="http://wx3.sinaimg.cn/large/ad5fbf65ly1g0u50l8q4lj215o0b3myw.jpg" alt="image"></p>
+</li>
+<li>
+<p>sonar添加webhook</p>
 <p>在代码扫描成功后，扫描结果需要回调jenkins，添加的Jenkins的webhook结构为：http://[jenkins_url]/sonarqube-webhook/</p>
-
 <p><strong>[配置]</strong>-<strong>[web回调接口]</strong>-<strong>[URL]</strong></p>
-
-<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g0v4m590vhj212k0pw0vo.jpg" alt="image" /></p></li>
-
-<li><p>编辑jenkins pipeline</p>
-
+<p><img src="http://wx4.sinaimg.cn/large/ad5fbf65ly1g0v4m590vhj212k0pw0vo.jpg" alt="image"></p>
+</li>
+<li>
+<p>编辑jenkins pipeline</p>
 <p>在jenkinsfile文件中添加配置</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Groovy" data-lang="Groovy">stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;依赖安全检查&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    steps<span style="color:#f92672">{</span>
+        dependencyCheckAnalyzer datadir: <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">,</span> hintsFile: <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">,</span> includeCsvReports: <span style="color:#66d9ef">false</span><span style="color:#f92672">,</span> includeHtmlReports: <span style="color:#66d9ef">true</span><span style="color:#f92672">,</span> includeJsonReports: <span style="color:#66d9ef">false</span><span style="color:#f92672">,</span> includeVulnReports: <span style="color:#66d9ef">true</span><span style="color:#f92672">,</span> isAutoupdateDisabled: <span style="color:#66d9ef">false</span><span style="color:#f92672">,</span> outdir: <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">,</span> scanpath: <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">,</span> skipOnScmChange: <span style="color:#66d9ef">false</span><span style="color:#f92672">,</span> skipOnUpstreamChange: <span style="color:#66d9ef">false</span><span style="color:#f92672">,</span> suppressionFile: <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">,</span> zipExtensions: <span style="color:#e6db74">&#39;&#39;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
 
-<pre><code class="language-Groovy">stage('依赖安全检查') {
-    steps{
-        dependencyCheckAnalyzer datadir: '', hintsFile: '', includeCsvReports: false, includeHtmlReports: true, includeJsonReports: false, includeVulnReports: true, isAutoupdateDisabled: false, outdir: '', scanpath: '', skipOnScmChange: false, skipOnUpstreamChange: false, suppressionFile: '', zipExtensions: ''
-    }
-}
-
-stage('静态代码检查') {
-    steps {
-        echo &quot;starting codeAnalyze with SonarQube......&quot;
-        withSonarQubeEnv('sonar') {
-            //注意这里withSonarQubeEnv()中的参数要与之前SonarQube servers中Name的配置相同
-            withMaven(maven: 'M3') {
-                sh &quot;mvn clean package -Dmaven.test.skip=true sonar:sonar -Dsonar.projectKey={项目key} -Dsonar.projectName={项目名称} -Dsonar.projectVersion={项目版本} -Dsonar.sourceEncoding=UTF-8 -Dsonar.exclusions=src/test/** -Dsonar.sources=src/ -Dsonar.java.binaries=target/classes -Dsonar.host.url={SonarQube地址} -Dsonar.login={SonarQube的token}&quot;
-            }
-        }
-        script {
-            timeout(1) {
-                //这里设置超时时间1分钟，不会出现一直卡在检查状态
-                //利用sonar webhook功能通知pipeline代码检测结果，未通过质量阈，pipeline将会fail
-                def qg = waitForQualityGate('sonar')
-                //注意：这里waitForQualityGate()中的参数也要与之前SonarQube servers中Name的配置相同
-                if (qg.status != 'OK') {
-                    error &quot;未通过Sonarqube的代码质量阈检查，请及时修改！failure: ${qg.status}&quot;
-                }
-            }
-        }
-    }
-}
-</code></pre>
-
-<p><strong>参数解释：</strong></p>
-
+stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;静态代码检查&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    steps <span style="color:#f92672">{</span>
+        echo <span style="color:#e6db74">&#34;starting codeAnalyze with SonarQube......&#34;</span>
+        withSonarQubeEnv<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;sonar&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#75715e">//注意这里withSonarQubeEnv()中的参数要与之前SonarQube servers中Name的配置相同
+</span><span style="color:#75715e"></span>            withMaven<span style="color:#f92672">(</span>maven: <span style="color:#e6db74">&#39;M3&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                sh <span style="color:#e6db74">&#34;mvn clean package -Dmaven.test.skip=true sonar:sonar -Dsonar.projectKey={项目key} -Dsonar.projectName={项目名称} -Dsonar.projectVersion={项目版本} -Dsonar.sourceEncoding=UTF-8 -Dsonar.exclusions=src/test/** -Dsonar.sources=src/ -Dsonar.java.binaries=target/classes -Dsonar.host.url={SonarQube地址} -Dsonar.login={SonarQube的token}&#34;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+        script <span style="color:#f92672">{</span>
+            timeout<span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#75715e">//这里设置超时时间1分钟，不会出现一直卡在检查状态
+</span><span style="color:#75715e"></span>                <span style="color:#75715e">//利用sonar webhook功能通知pipeline代码检测结果，未通过质量阈，pipeline将会fail
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">def</span> qg <span style="color:#f92672">=</span> waitForQualityGate<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;sonar&#39;</span><span style="color:#f92672">)</span>
+                <span style="color:#75715e">//注意：这里waitForQualityGate()中的参数也要与之前SonarQube servers中Name的配置相同
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>qg<span style="color:#f92672">.</span><span style="color:#a6e22e">status</span> <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;OK&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                    error <span style="color:#e6db74">&#34;未通过Sonarqube的代码质量阈检查，请及时修改！failure: ${qg.status}&#34;</span>
+                <span style="color:#f92672">}</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p><strong>参数解释：</strong></p>
 <ul>
 <li>sonar.projectKey：项目key (必填项)</li>
 <li>sonar.projectName：项目名称（必填项）</li>
@@ -692,173 +658,154 @@ stage('静态代码检查') {
 <li>sonar.exclusions：排除的扫描的文件路径</li>
 <li>sonar.host.url：SonarQube地址</li>
 <li>sonar.login：SonarQube生成的token</li>
-</ul></li>
-</ol>
-
-<h2 id="运行">运行</h2>
-
-<p>执行jenkins构建，构建成功后会显示如下，则证明sonar代码扫描成功且通过代码质量阈检查
-<img src="https://wx1.sinaimg.cn/mw690/ad5fbf65ly1g0u6qrh8qrj21fu0q2dmw.jpg" alt="image" /></p>
-
-<p>查看sonar报告，这里有两种方式</p>
-
-<ul>
-<li><p>可直接登录SonarQube查看报告
-<img src="https://ws1.sinaimg.cn/mw690/ad5fbf65ly1g0u6vbspv5j21260myadw.jpg" alt="image" /></p></li>
-
-<li><p>也可直接在jenkins页面点击SonarQube图标进入，点击以下标记均可进去
-<img src="https://ws2.sinaimg.cn/mw690/ad5fbf65ly1g0u6xzcryhj21fn0q7wkm.jpg" alt="image" /></p></li>
 </ul>
-
+</li>
+</ol>
+<h2 id="运行">运行</h2>
+<p>执行jenkins构建，构建成功后会显示如下，则证明sonar代码扫描成功且通过代码质量阈检查
+<img src="https://wx1.sinaimg.cn/mw690/ad5fbf65ly1g0u6qrh8qrj21fu0q2dmw.jpg" alt="image"></p>
+<p>查看sonar报告，这里有两种方式</p>
+<ul>
+<li>
+<p>可直接登录SonarQube查看报告
+<img src="https://ws1.sinaimg.cn/mw690/ad5fbf65ly1g0u6vbspv5j21260myadw.jpg" alt="image"></p>
+</li>
+<li>
+<p>也可直接在jenkins页面点击SonarQube图标进入，点击以下标记均可进去
+<img src="https://ws2.sinaimg.cn/mw690/ad5fbf65ly1g0u6xzcryhj21fn0q7wkm.jpg" alt="image"></p>
+</li>
+</ul>
 <h2 id="其他">其他</h2>
-
-<h3 id="问题一-无法扫描代码-错误提示">问题一：无法扫描代码，错误提示</h3>
-
-<pre><code class="language-Java">hudson.remoting.ProxyException: hudson.AbortException: SonarQube installation defined in this job (sonar) does not match any configured installation. Number of installations that can be configured: 1.
-If you want to reassign jobs to a different SonarQube installation, check the documentation under https://redirect.sonarsource.com/plugins/jenkins.html
-    at hudson.plugins.sonar.SonarInstallation.checkValid(SonarInstallation.java:94)
-    at hudson.plugins.sonar.SonarBuildWrapper.setUp(SonarBuildWrapper.java:67)
-    at org.jenkinsci.plugins.workflow.steps.CoreWrapperStep$Execution.start(CoreWrapperStep.java:80)
-    at org.jenkinsci.plugins.workflow.cps.DSL.invokeStep(DSL.java:268)
-Caused: hudson.remoting.ProxyException: org.codehaus.groovy.runtime.InvokerInvocationException: hudson.AbortException: SonarQube installation defined in this job (sonar) does not match any configured installation. Number of installations that can be configured: 1.
-If you want to reassign jobs to a different SonarQube installation, check the documentation under https://redirect.sonarsource.com/plugins/jenkins.html
-    at org.jenkinsci.plugins.workflow.cps.CpsStepContext.replay(CpsStepContext.java:499)
-    at org.jenkinsci.plugins.workflow.cps.DSL.invokeStep(DSL.java:295)
-    at org.jenkinsci.plugins.workflow.cps.DSL.invokeStep(DSL.java:207)
-    at org.jenkinsci.plugins.workflow.cps.DSL.invokeDescribable(DSL.java:395)
-    at org.jenkinsci.plugins.workflow.cps.DSL.invokeMethod(DSL.java:179)
-    at org.jenkinsci.plugins.workflow.cps.CpsScript.invokeMethod(CpsScript.java:122)
-    at sun.reflect.GeneratedMethodAccessor1200.invoke(Unknown Source)
-    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-    at java.lang.reflect.Method.invoke(Method.java:498)
-    at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
-    at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
-    at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
-    at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1022)
-    at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:42)
-    at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
-    at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
-    at org.kohsuke.groovy.sandbox.impl.Checker$1.call(Checker.java:157)
-    at org.kohsuke.groovy.sandbox.GroovyInterceptor.onMethodCall(GroovyInterceptor.java:23)
-    at org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.SandboxInterceptor.onMethodCall(SandboxInterceptor.java:155)
-    at org.kohsuke.groovy.sandbox.impl.Checker$1.call(Checker.java:155)
-    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:159)
-    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
-    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
-    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
-    at com.cloudbees.groovy.cps.sandbox.SandboxInvoker.methodCall(SandboxInvoker.java:17)
-Caused: hudson.remoting.ProxyException: java.lang.IllegalArgumentException: Failed to prepare withSonarQubeEnv step
-    at org.jenkinsci.plugins.workflow.cps.DSL.invokeDescribable(DSL.java:397)
-    at org.jenkinsci.plugins.workflow.cps.DSL.invokeMethod(DSL.java:179)
-    at org.jenkinsci.plugins.workflow.cps.CpsScript.invokeMethod(CpsScript.java:122)
-    at sun.reflect.GeneratedMethodAccessor1200.invoke(Unknown Source)
-    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-    at java.lang.reflect.Method.invoke(Method.java:498)
-    at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
-    at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
-    at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1213)
-    at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1022)
-    at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:42)
-    at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)
-    at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)
-    at org.kohsuke.groovy.sandbox.impl.Checker$1.call(Checker.java:157)
-    at org.kohsuke.groovy.sandbox.GroovyInterceptor.onMethodCall(GroovyInterceptor.java:23)
-    at org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.SandboxInterceptor.onMethodCall(SandboxInterceptor.java:155)
-    at org.kohsuke.groovy.sandbox.impl.Checker$1.call(Checker.java:155)
-    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:159)
-    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
-    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
-    at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:129)
-    at com.cloudbees.groovy.cps.sandbox.SandboxInvoker.methodCall(SandboxInvoker.java:17)
-    at WorkflowScript.run(WorkflowScript:27)
-    at ___cps.transform___(Native Method)
-    at com.cloudbees.groovy.cps.impl.ContinuationGroup.methodCall(ContinuationGroup.java:57)
-    at com.cloudbees.groovy.cps.impl.FunctionCallBlock$ContinuationImpl.dispatchOrArg(FunctionCallBlock.java:109)
-    at com.cloudbees.groovy.cps.impl.FunctionCallBlock$ContinuationImpl.fixArg(FunctionCallBlock.java:82)
-    at sun.reflect.GeneratedMethodAccessor249.invoke(Unknown Source)
-    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-    at java.lang.reflect.Method.invoke(Method.java:498)
-    at com.cloudbees.groovy.cps.impl.ContinuationPtr$ContinuationImpl.receive(ContinuationPtr.java:72)
-    at com.cloudbees.groovy.cps.impl.ClosureBlock.eval(ClosureBlock.java:46)
-    at com.cloudbees.groovy.cps.Next.step(Next.java:83)
-    at com.cloudbees.groovy.cps.Continuable$1.call(Continuable.java:174)
-    at com.cloudbees.groovy.cps.Continuable$1.call(Continuable.java:163)
-    at org.codehaus.groovy.runtime.GroovyCategorySupport$ThreadCategoryInfo.use(GroovyCategorySupport.java:122)
-    at org.codehaus.groovy.runtime.GroovyCategorySupport.use(GroovyCategorySupport.java:261)
-    at com.cloudbees.groovy.cps.Continuable.run0(Continuable.java:163)
-    at org.jenkinsci.plugins.workflow.cps.SandboxContinuable.access$101(SandboxContinuable.java:34)
-    at org.jenkinsci.plugins.workflow.cps.SandboxContinuable.lambda$run0$0(SandboxContinuable.java:59)
-    at org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.GroovySandbox.runInSandbox(GroovySandbox.java:121)
-    at org.jenkinsci.plugins.workflow.cps.SandboxContinuable.run0(SandboxContinuable.java:58)
-    at org.jenkinsci.plugins.workflow.cps.CpsThread.runNextChunk(CpsThread.java:182)
-    at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup.run(CpsThreadGroup.java:332)
-    at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup.access$200(CpsThreadGroup.java:83)
-    at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup$2.call(CpsThreadGroup.java:244)
-    at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup$2.call(CpsThreadGroup.java:232)
-    at org.jenkinsci.plugins.workflow.cps.CpsVmExecutorService$2.call(CpsVmExecutorService.java:64)
-    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-    at hudson.remoting.SingleLaneExecutorService$1.run(SingleLaneExecutorService.java:131)
-    at jenkins.util.ContextResettingExecutorService$1.run(ContextResettingExecutorService.java:28)
-    at jenkins.security.ImpersonatingExecutorService$1.run(ImpersonatingExecutorService.java:59)
-    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-    at java.lang.Thread.run(Thread.java:748)
+<h3 id="问题一无法扫描代码错误提示">问题一：无法扫描代码，错误提示</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java">hudson<span style="color:#f92672">.</span><span style="color:#a6e22e">remoting</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ProxyException</span><span style="color:#f92672">:</span> hudson<span style="color:#f92672">.</span><span style="color:#a6e22e">AbortException</span><span style="color:#f92672">:</span> SonarQube installation defined in <span style="color:#66d9ef">this</span> <span style="color:#a6e22e">job</span> <span style="color:#f92672">(</span>sonar<span style="color:#f92672">)</span> does not match any configured installation<span style="color:#f92672">.</span> Number of installations that can be configured<span style="color:#f92672">:</span> 1<span style="color:#f92672">.</span>
+If you want to reassign jobs to a different SonarQube installation<span style="color:#f92672">,</span> check the documentation under https<span style="color:#f92672">:</span><span style="color:#75715e">//redirect.sonarsource.com/plugins/jenkins.html
+</span><span style="color:#75715e"></span>    at hudson<span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sonar</span><span style="color:#f92672">.</span><span style="color:#a6e22e">SonarInstallation</span><span style="color:#f92672">.</span><span style="color:#a6e22e">checkValid</span><span style="color:#f92672">(</span>SonarInstallation<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>94<span style="color:#f92672">)</span>
+    at hudson<span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sonar</span><span style="color:#f92672">.</span><span style="color:#a6e22e">SonarBuildWrapper</span><span style="color:#f92672">.</span><span style="color:#a6e22e">setUp</span><span style="color:#f92672">(</span>SonarBuildWrapper<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>67<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">steps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">CoreWrapperStep$Execution</span><span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">(</span>CoreWrapperStep<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>80<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">DSL</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invokeStep</span><span style="color:#f92672">(</span>DSL<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>268<span style="color:#f92672">)</span>
+Caused: hudson<span style="color:#f92672">.</span><span style="color:#a6e22e">remoting</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ProxyException</span><span style="color:#f92672">:</span> org<span style="color:#f92672">.</span><span style="color:#a6e22e">codehaus</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">runtime</span><span style="color:#f92672">.</span><span style="color:#a6e22e">InvokerInvocationException</span><span style="color:#f92672">:</span> hudson<span style="color:#f92672">.</span><span style="color:#a6e22e">AbortException</span><span style="color:#f92672">:</span> SonarQube installation defined in <span style="color:#66d9ef">this</span> <span style="color:#a6e22e">job</span> <span style="color:#f92672">(</span>sonar<span style="color:#f92672">)</span> does not match any configured installation<span style="color:#f92672">.</span> Number of installations that can be configured<span style="color:#f92672">:</span> 1<span style="color:#f92672">.</span>
+If you want to reassign jobs to a different SonarQube installation<span style="color:#f92672">,</span> check the documentation under https<span style="color:#f92672">:</span><span style="color:#75715e">//redirect.sonarsource.com/plugins/jenkins.html
+</span><span style="color:#75715e"></span>    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">CpsStepContext</span><span style="color:#f92672">.</span><span style="color:#a6e22e">replay</span><span style="color:#f92672">(</span>CpsStepContext<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>499<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">DSL</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invokeStep</span><span style="color:#f92672">(</span>DSL<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>295<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">DSL</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invokeStep</span><span style="color:#f92672">(</span>DSL<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>207<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">DSL</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invokeDescribable</span><span style="color:#f92672">(</span>DSL<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>395<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">DSL</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invokeMethod</span><span style="color:#f92672">(</span>DSL<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>179<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">CpsScript</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invokeMethod</span><span style="color:#f92672">(</span>CpsScript<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>122<span style="color:#f92672">)</span>
+    at sun<span style="color:#f92672">.</span><span style="color:#a6e22e">reflect</span><span style="color:#f92672">.</span><span style="color:#a6e22e">GeneratedMethodAccessor1200</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span>Unknown Source<span style="color:#f92672">)</span>
+    at sun<span style="color:#f92672">.</span><span style="color:#a6e22e">reflect</span><span style="color:#f92672">.</span><span style="color:#a6e22e">DelegatingMethodAccessorImpl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span>DelegatingMethodAccessorImpl<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>43<span style="color:#f92672">)</span>
+    at java<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">reflect</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Method</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span>Method<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>498<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">codehaus</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">reflection</span><span style="color:#f92672">.</span><span style="color:#a6e22e">CachedMethod</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span>CachedMethod<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>93<span style="color:#f92672">)</span>
+    at groovy<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">MetaMethod</span><span style="color:#f92672">.</span><span style="color:#a6e22e">doMethodInvoke</span><span style="color:#f92672">(</span>MetaMethod<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>325<span style="color:#f92672">)</span>
+    at groovy<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">MetaClassImpl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invokeMethod</span><span style="color:#f92672">(</span>MetaClassImpl<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>1213<span style="color:#f92672">)</span>
+    at groovy<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">MetaClassImpl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invokeMethod</span><span style="color:#f92672">(</span>MetaClassImpl<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>1022<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">codehaus</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">runtime</span><span style="color:#f92672">.</span><span style="color:#a6e22e">callsite</span><span style="color:#f92672">.</span><span style="color:#a6e22e">PogoMetaClassSite</span><span style="color:#f92672">.</span><span style="color:#a6e22e">call</span><span style="color:#f92672">(</span>PogoMetaClassSite<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>42<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">codehaus</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">runtime</span><span style="color:#f92672">.</span><span style="color:#a6e22e">callsite</span><span style="color:#f92672">.</span><span style="color:#a6e22e">CallSiteArray</span><span style="color:#f92672">.</span><span style="color:#a6e22e">defaultCall</span><span style="color:#f92672">(</span>CallSiteArray<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>48<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">codehaus</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">runtime</span><span style="color:#f92672">.</span><span style="color:#a6e22e">callsite</span><span style="color:#f92672">.</span><span style="color:#a6e22e">AbstractCallSite</span><span style="color:#f92672">.</span><span style="color:#a6e22e">call</span><span style="color:#f92672">(</span>AbstractCallSite<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>113<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">kohsuke</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">impl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Checker$1</span><span style="color:#f92672">.</span><span style="color:#a6e22e">call</span><span style="color:#f92672">(</span>Checker<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>157<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">kohsuke</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">GroovyInterceptor</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onMethodCall</span><span style="color:#f92672">(</span>GroovyInterceptor<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>23<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">scriptsecurity</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">SandboxInterceptor</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onMethodCall</span><span style="color:#f92672">(</span>SandboxInterceptor<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>155<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">kohsuke</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">impl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Checker$1</span><span style="color:#f92672">.</span><span style="color:#a6e22e">call</span><span style="color:#f92672">(</span>Checker<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>155<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">kohsuke</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">impl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Checker</span><span style="color:#f92672">.</span><span style="color:#a6e22e">checkedCall</span><span style="color:#f92672">(</span>Checker<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>159<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">kohsuke</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">impl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Checker</span><span style="color:#f92672">.</span><span style="color:#a6e22e">checkedCall</span><span style="color:#f92672">(</span>Checker<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>129<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">kohsuke</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">impl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Checker</span><span style="color:#f92672">.</span><span style="color:#a6e22e">checkedCall</span><span style="color:#f92672">(</span>Checker<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>129<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">kohsuke</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">impl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Checker</span><span style="color:#f92672">.</span><span style="color:#a6e22e">checkedCall</span><span style="color:#f92672">(</span>Checker<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>129<span style="color:#f92672">)</span>
+    at com<span style="color:#f92672">.</span><span style="color:#a6e22e">cloudbees</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">SandboxInvoker</span><span style="color:#f92672">.</span><span style="color:#a6e22e">methodCall</span><span style="color:#f92672">(</span>SandboxInvoker<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>17<span style="color:#f92672">)</span>
+Caused: hudson<span style="color:#f92672">.</span><span style="color:#a6e22e">remoting</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ProxyException</span><span style="color:#f92672">:</span> java<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">IllegalArgumentException</span><span style="color:#f92672">:</span> Failed to prepare withSonarQubeEnv step
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">DSL</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invokeDescribable</span><span style="color:#f92672">(</span>DSL<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>397<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">DSL</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invokeMethod</span><span style="color:#f92672">(</span>DSL<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>179<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">CpsScript</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invokeMethod</span><span style="color:#f92672">(</span>CpsScript<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>122<span style="color:#f92672">)</span>
+    at sun<span style="color:#f92672">.</span><span style="color:#a6e22e">reflect</span><span style="color:#f92672">.</span><span style="color:#a6e22e">GeneratedMethodAccessor1200</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span>Unknown Source<span style="color:#f92672">)</span>
+    at sun<span style="color:#f92672">.</span><span style="color:#a6e22e">reflect</span><span style="color:#f92672">.</span><span style="color:#a6e22e">DelegatingMethodAccessorImpl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span>DelegatingMethodAccessorImpl<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>43<span style="color:#f92672">)</span>
+    at java<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">reflect</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Method</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span>Method<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>498<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">codehaus</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">reflection</span><span style="color:#f92672">.</span><span style="color:#a6e22e">CachedMethod</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span>CachedMethod<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>93<span style="color:#f92672">)</span>
+    at groovy<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">MetaMethod</span><span style="color:#f92672">.</span><span style="color:#a6e22e">doMethodInvoke</span><span style="color:#f92672">(</span>MetaMethod<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>325<span style="color:#f92672">)</span>
+    at groovy<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">MetaClassImpl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invokeMethod</span><span style="color:#f92672">(</span>MetaClassImpl<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>1213<span style="color:#f92672">)</span>
+    at groovy<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">MetaClassImpl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invokeMethod</span><span style="color:#f92672">(</span>MetaClassImpl<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>1022<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">codehaus</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">runtime</span><span style="color:#f92672">.</span><span style="color:#a6e22e">callsite</span><span style="color:#f92672">.</span><span style="color:#a6e22e">PogoMetaClassSite</span><span style="color:#f92672">.</span><span style="color:#a6e22e">call</span><span style="color:#f92672">(</span>PogoMetaClassSite<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>42<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">codehaus</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">runtime</span><span style="color:#f92672">.</span><span style="color:#a6e22e">callsite</span><span style="color:#f92672">.</span><span style="color:#a6e22e">CallSiteArray</span><span style="color:#f92672">.</span><span style="color:#a6e22e">defaultCall</span><span style="color:#f92672">(</span>CallSiteArray<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>48<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">codehaus</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">runtime</span><span style="color:#f92672">.</span><span style="color:#a6e22e">callsite</span><span style="color:#f92672">.</span><span style="color:#a6e22e">AbstractCallSite</span><span style="color:#f92672">.</span><span style="color:#a6e22e">call</span><span style="color:#f92672">(</span>AbstractCallSite<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>113<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">kohsuke</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">impl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Checker$1</span><span style="color:#f92672">.</span><span style="color:#a6e22e">call</span><span style="color:#f92672">(</span>Checker<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>157<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">kohsuke</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">GroovyInterceptor</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onMethodCall</span><span style="color:#f92672">(</span>GroovyInterceptor<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>23<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">scriptsecurity</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">SandboxInterceptor</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onMethodCall</span><span style="color:#f92672">(</span>SandboxInterceptor<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>155<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">kohsuke</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">impl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Checker$1</span><span style="color:#f92672">.</span><span style="color:#a6e22e">call</span><span style="color:#f92672">(</span>Checker<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>155<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">kohsuke</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">impl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Checker</span><span style="color:#f92672">.</span><span style="color:#a6e22e">checkedCall</span><span style="color:#f92672">(</span>Checker<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>159<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">kohsuke</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">impl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Checker</span><span style="color:#f92672">.</span><span style="color:#a6e22e">checkedCall</span><span style="color:#f92672">(</span>Checker<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>129<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">kohsuke</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">impl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Checker</span><span style="color:#f92672">.</span><span style="color:#a6e22e">checkedCall</span><span style="color:#f92672">(</span>Checker<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>129<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">kohsuke</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">impl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Checker</span><span style="color:#f92672">.</span><span style="color:#a6e22e">checkedCall</span><span style="color:#f92672">(</span>Checker<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>129<span style="color:#f92672">)</span>
+    at com<span style="color:#f92672">.</span><span style="color:#a6e22e">cloudbees</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">SandboxInvoker</span><span style="color:#f92672">.</span><span style="color:#a6e22e">methodCall</span><span style="color:#f92672">(</span>SandboxInvoker<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>17<span style="color:#f92672">)</span>
+    at WorkflowScript<span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>WorkflowScript<span style="color:#f92672">:</span>27<span style="color:#f92672">)</span>
+    at ___cps<span style="color:#f92672">.</span><span style="color:#a6e22e">transform___</span><span style="color:#f92672">(</span>Native Method<span style="color:#f92672">)</span>
+    at com<span style="color:#f92672">.</span><span style="color:#a6e22e">cloudbees</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">impl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ContinuationGroup</span><span style="color:#f92672">.</span><span style="color:#a6e22e">methodCall</span><span style="color:#f92672">(</span>ContinuationGroup<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>57<span style="color:#f92672">)</span>
+    at com<span style="color:#f92672">.</span><span style="color:#a6e22e">cloudbees</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">impl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">FunctionCallBlock$ContinuationImpl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">dispatchOrArg</span><span style="color:#f92672">(</span>FunctionCallBlock<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>109<span style="color:#f92672">)</span>
+    at com<span style="color:#f92672">.</span><span style="color:#a6e22e">cloudbees</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">impl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">FunctionCallBlock$ContinuationImpl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">fixArg</span><span style="color:#f92672">(</span>FunctionCallBlock<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>82<span style="color:#f92672">)</span>
+    at sun<span style="color:#f92672">.</span><span style="color:#a6e22e">reflect</span><span style="color:#f92672">.</span><span style="color:#a6e22e">GeneratedMethodAccessor249</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span>Unknown Source<span style="color:#f92672">)</span>
+    at sun<span style="color:#f92672">.</span><span style="color:#a6e22e">reflect</span><span style="color:#f92672">.</span><span style="color:#a6e22e">DelegatingMethodAccessorImpl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span>DelegatingMethodAccessorImpl<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>43<span style="color:#f92672">)</span>
+    at java<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">reflect</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Method</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span>Method<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>498<span style="color:#f92672">)</span>
+    at com<span style="color:#f92672">.</span><span style="color:#a6e22e">cloudbees</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">impl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ContinuationPtr$ContinuationImpl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">receive</span><span style="color:#f92672">(</span>ContinuationPtr<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>72<span style="color:#f92672">)</span>
+    at com<span style="color:#f92672">.</span><span style="color:#a6e22e">cloudbees</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">impl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ClosureBlock</span><span style="color:#f92672">.</span><span style="color:#a6e22e">eval</span><span style="color:#f92672">(</span>ClosureBlock<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>46<span style="color:#f92672">)</span>
+    at com<span style="color:#f92672">.</span><span style="color:#a6e22e">cloudbees</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Next</span><span style="color:#f92672">.</span><span style="color:#a6e22e">step</span><span style="color:#f92672">(</span>Next<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>83<span style="color:#f92672">)</span>
+    at com<span style="color:#f92672">.</span><span style="color:#a6e22e">cloudbees</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Continuable$1</span><span style="color:#f92672">.</span><span style="color:#a6e22e">call</span><span style="color:#f92672">(</span>Continuable<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>174<span style="color:#f92672">)</span>
+    at com<span style="color:#f92672">.</span><span style="color:#a6e22e">cloudbees</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Continuable$1</span><span style="color:#f92672">.</span><span style="color:#a6e22e">call</span><span style="color:#f92672">(</span>Continuable<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>163<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">codehaus</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">runtime</span><span style="color:#f92672">.</span><span style="color:#a6e22e">GroovyCategorySupport$ThreadCategoryInfo</span><span style="color:#f92672">.</span><span style="color:#a6e22e">use</span><span style="color:#f92672">(</span>GroovyCategorySupport<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>122<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">codehaus</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">runtime</span><span style="color:#f92672">.</span><span style="color:#a6e22e">GroovyCategorySupport</span><span style="color:#f92672">.</span><span style="color:#a6e22e">use</span><span style="color:#f92672">(</span>GroovyCategorySupport<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>261<span style="color:#f92672">)</span>
+    at com<span style="color:#f92672">.</span><span style="color:#a6e22e">cloudbees</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Continuable</span><span style="color:#f92672">.</span><span style="color:#a6e22e">run0</span><span style="color:#f92672">(</span>Continuable<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>163<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">SandboxContinuable</span><span style="color:#f92672">.</span><span style="color:#a6e22e">access$101</span><span style="color:#f92672">(</span>SandboxContinuable<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>34<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">SandboxContinuable</span><span style="color:#f92672">.</span><span style="color:#a6e22e">lambda$run0$0</span><span style="color:#f92672">(</span>SandboxContinuable<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>59<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">scriptsecurity</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">groovy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">GroovySandbox</span><span style="color:#f92672">.</span><span style="color:#a6e22e">runInSandbox</span><span style="color:#f92672">(</span>GroovySandbox<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>121<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">SandboxContinuable</span><span style="color:#f92672">.</span><span style="color:#a6e22e">run0</span><span style="color:#f92672">(</span>SandboxContinuable<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>58<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">CpsThread</span><span style="color:#f92672">.</span><span style="color:#a6e22e">runNextChunk</span><span style="color:#f92672">(</span>CpsThread<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>182<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">CpsThreadGroup</span><span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>CpsThreadGroup<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>332<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">CpsThreadGroup</span><span style="color:#f92672">.</span><span style="color:#a6e22e">access$200</span><span style="color:#f92672">(</span>CpsThreadGroup<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>83<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">CpsThreadGroup$2</span><span style="color:#f92672">.</span><span style="color:#a6e22e">call</span><span style="color:#f92672">(</span>CpsThreadGroup<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>244<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">CpsThreadGroup$2</span><span style="color:#f92672">.</span><span style="color:#a6e22e">call</span><span style="color:#f92672">(</span>CpsThreadGroup<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>232<span style="color:#f92672">)</span>
+    at org<span style="color:#f92672">.</span><span style="color:#a6e22e">jenkinsci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">plugins</span><span style="color:#f92672">.</span><span style="color:#a6e22e">workflow</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cps</span><span style="color:#f92672">.</span><span style="color:#a6e22e">CpsVmExecutorService$2</span><span style="color:#f92672">.</span><span style="color:#a6e22e">call</span><span style="color:#f92672">(</span>CpsVmExecutorService<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>64<span style="color:#f92672">)</span>
+    at java<span style="color:#f92672">.</span><span style="color:#a6e22e">util</span><span style="color:#f92672">.</span><span style="color:#a6e22e">concurrent</span><span style="color:#f92672">.</span><span style="color:#a6e22e">FutureTask</span><span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>FutureTask<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>266<span style="color:#f92672">)</span>
+    at hudson<span style="color:#f92672">.</span><span style="color:#a6e22e">remoting</span><span style="color:#f92672">.</span><span style="color:#a6e22e">SingleLaneExecutorService$1</span><span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>SingleLaneExecutorService<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>131<span style="color:#f92672">)</span>
+    at jenkins<span style="color:#f92672">.</span><span style="color:#a6e22e">util</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ContextResettingExecutorService$1</span><span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>ContextResettingExecutorService<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>28<span style="color:#f92672">)</span>
+    at jenkins<span style="color:#f92672">.</span><span style="color:#a6e22e">security</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ImpersonatingExecutorService$1</span><span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>ImpersonatingExecutorService<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>59<span style="color:#f92672">)</span>
+    at java<span style="color:#f92672">.</span><span style="color:#a6e22e">util</span><span style="color:#f92672">.</span><span style="color:#a6e22e">concurrent</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Executors$RunnableAdapter</span><span style="color:#f92672">.</span><span style="color:#a6e22e">call</span><span style="color:#f92672">(</span>Executors<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>511<span style="color:#f92672">)</span>
+    at java<span style="color:#f92672">.</span><span style="color:#a6e22e">util</span><span style="color:#f92672">.</span><span style="color:#a6e22e">concurrent</span><span style="color:#f92672">.</span><span style="color:#a6e22e">FutureTask</span><span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>FutureTask<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>266<span style="color:#f92672">)</span>
+    at java<span style="color:#f92672">.</span><span style="color:#a6e22e">util</span><span style="color:#f92672">.</span><span style="color:#a6e22e">concurrent</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ThreadPoolExecutor</span><span style="color:#f92672">.</span><span style="color:#a6e22e">runWorker</span><span style="color:#f92672">(</span>ThreadPoolExecutor<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>1149<span style="color:#f92672">)</span>
+    at java<span style="color:#f92672">.</span><span style="color:#a6e22e">util</span><span style="color:#f92672">.</span><span style="color:#a6e22e">concurrent</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ThreadPoolExecutor$Worker</span><span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>ThreadPoolExecutor<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>624<span style="color:#f92672">)</span>
+    at java<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Thread</span><span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>748<span style="color:#f92672">)</span>
 Finished: FAILURE
-</code></pre>
-
-<p>原因：withSonarQubeEnv()中的参数与之前SonarQube servers中Name的配置不同，导致没有找到找到SonarQube</p>
-
-<h3 id="问题二-sonarqube的token配置不对-导致无法连接sonar">问题二：SonarQube的token配置不对，导致无法连接sonar</h3>
-
-<pre><code class="language-Java">[ERROR] Failed to execute goal org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar (default-cli) on project callcenter: Not authorized. Please check the properties sonar.login and sonar.password. -&gt; [Help 1]
-[ERROR] 
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
-[Pipeline] }
-[withMaven] artifactsPublisher - Archive artifact pom.xml under cn/keking/callcenter/callcenter/0.0.1-SNAPSHOT/callcenter-0.0.1-SNAPSHOT.pom
-[withMaven] artifactsPublisher - Archive artifact target/callcenter-0.0.1-SNAPSHOT.jar under cn/keking/callcenter/callcenter/0.0.1-SNAPSHOT/callcenter-0.0.1-SNAPSHOT.jar
-[withMaven] artifactsPublisher - Archive artifact target/callcenter-0.0.1-SNAPSHOT-api.jar under cn/keking/callcenter/callcenter/0.0.1-SNAPSHOT/callcenter-0.0.1-SNAPSHOT-api.jar
-[withMaven] junitPublisher - Archive test results for Maven artifact cn.keking.callcenter:callcenter:jar:0.0.1-SNAPSHOT generated by maven-surefire-plugin:test (default-test): target/surefire-reports/*.xml
-[withMaven] junitPublisher - Jenkins JUnit Attachments Plugin not found, can't publish test attachments.Recording test results
+</code></pre></div><p>原因：withSonarQubeEnv()中的参数与之前SonarQube servers中Name的配置不同，导致没有找到找到SonarQube</p>
+<h3 id="问题二sonarqube的token配置不对导致无法连接sonar">问题二：SonarQube的token配置不对，导致无法连接sonar</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> Failed to execute goal org<span style="color:#f92672">.</span><span style="color:#a6e22e">sonarsource</span><span style="color:#f92672">.</span><span style="color:#a6e22e">scanner</span><span style="color:#f92672">.</span><span style="color:#a6e22e">maven</span><span style="color:#f92672">:</span>sonar<span style="color:#f92672">-</span>maven<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>3<span style="color:#f92672">.</span><span style="color:#a6e22e">6</span><span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1398</span><span style="color:#f92672">:</span>sonar <span style="color:#f92672">(</span><span style="color:#66d9ef">default</span><span style="color:#f92672">-</span>cli<span style="color:#f92672">)</span> on project callcenter<span style="color:#f92672">:</span> Not authorized<span style="color:#f92672">.</span> Please check the properties sonar<span style="color:#f92672">.</span><span style="color:#a6e22e">login</span> and sonar<span style="color:#f92672">.</span><span style="color:#a6e22e">password</span><span style="color:#f92672">.</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">[</span>Help 1<span style="color:#f92672">]</span>
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> 
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> To see the full stack trace of the errors<span style="color:#f92672">,</span> re<span style="color:#f92672">-</span>run Maven with the <span style="color:#f92672">-</span>e <span style="color:#66d9ef">switch</span><span style="color:#f92672">.</span>
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> Re<span style="color:#f92672">-</span>run Maven using the <span style="color:#f92672">-</span>X <span style="color:#66d9ef">switch</span> to enable full debug logging<span style="color:#f92672">.</span>
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> 
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> For more information about the errors and possible solutions<span style="color:#f92672">,</span> please read the following articles<span style="color:#f92672">:</span>
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Help 1<span style="color:#f92672">]</span> http<span style="color:#f92672">:</span><span style="color:#75715e">//cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+</span><span style="color:#75715e"></span><span style="color:#f92672">[</span>Pipeline<span style="color:#f92672">]</span> <span style="color:#f92672">}</span>
+<span style="color:#f92672">[</span>withMaven<span style="color:#f92672">]</span> artifactsPublisher <span style="color:#f92672">-</span> Archive artifact pom<span style="color:#f92672">.</span><span style="color:#a6e22e">xml</span> under cn<span style="color:#f92672">/</span>keking<span style="color:#f92672">/</span>callcenter<span style="color:#f92672">/</span>callcenter<span style="color:#f92672">/</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span><span style="color:#f92672">-</span>SNAPSHOT<span style="color:#f92672">/</span>callcenter<span style="color:#f92672">-</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span><span style="color:#f92672">-</span>SNAPSHOT<span style="color:#f92672">.</span><span style="color:#a6e22e">pom</span>
+<span style="color:#f92672">[</span>withMaven<span style="color:#f92672">]</span> artifactsPublisher <span style="color:#f92672">-</span> Archive artifact target<span style="color:#f92672">/</span>callcenter<span style="color:#f92672">-</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span><span style="color:#f92672">-</span>SNAPSHOT<span style="color:#f92672">.</span><span style="color:#a6e22e">jar</span> under cn<span style="color:#f92672">/</span>keking<span style="color:#f92672">/</span>callcenter<span style="color:#f92672">/</span>callcenter<span style="color:#f92672">/</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span><span style="color:#f92672">-</span>SNAPSHOT<span style="color:#f92672">/</span>callcenter<span style="color:#f92672">-</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span><span style="color:#f92672">-</span>SNAPSHOT<span style="color:#f92672">.</span><span style="color:#a6e22e">jar</span>
+<span style="color:#f92672">[</span>withMaven<span style="color:#f92672">]</span> artifactsPublisher <span style="color:#f92672">-</span> Archive artifact target<span style="color:#f92672">/</span>callcenter<span style="color:#f92672">-</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span><span style="color:#f92672">-</span>SNAPSHOT<span style="color:#f92672">-</span>api<span style="color:#f92672">.</span><span style="color:#a6e22e">jar</span> under cn<span style="color:#f92672">/</span>keking<span style="color:#f92672">/</span>callcenter<span style="color:#f92672">/</span>callcenter<span style="color:#f92672">/</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span><span style="color:#f92672">-</span>SNAPSHOT<span style="color:#f92672">/</span>callcenter<span style="color:#f92672">-</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span><span style="color:#f92672">-</span>SNAPSHOT<span style="color:#f92672">-</span>api<span style="color:#f92672">.</span><span style="color:#a6e22e">jar</span>
+<span style="color:#f92672">[</span>withMaven<span style="color:#f92672">]</span> junitPublisher <span style="color:#f92672">-</span> Archive test results <span style="color:#66d9ef">for</span> Maven artifact cn<span style="color:#f92672">.</span><span style="color:#a6e22e">keking</span><span style="color:#f92672">.</span><span style="color:#a6e22e">callcenter</span><span style="color:#f92672">:</span>callcenter<span style="color:#f92672">:</span>jar<span style="color:#f92672">:</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span><span style="color:#f92672">-</span>SNAPSHOT generated by maven<span style="color:#f92672">-</span>surefire<span style="color:#f92672">-</span>plugin<span style="color:#f92672">:</span>test <span style="color:#f92672">(</span><span style="color:#66d9ef">default</span><span style="color:#f92672">-</span>test<span style="color:#f92672">):</span> target<span style="color:#f92672">/</span>surefire<span style="color:#f92672">-</span>reports<span style="color:#f92672">/*.</span><span style="color:#a6e22e">xml</span>
+<span style="color:#f92672">[</span>withMaven<span style="color:#f92672">]</span> junitPublisher <span style="color:#f92672">-</span> Jenkins JUnit Attachments Plugin not found<span style="color:#f92672">,</span> can<span style="color:#960050;background-color:#1e0010">&#39;</span>t publish test attachments<span style="color:#f92672">.</span><span style="color:#a6e22e">Recording</span> test results
 None of the test reports contained any result
-[withMaven] Jenkins Task Scanner Plugin not found, don't display results of source code scanning for 'TODO' and 'FIXME' in pipeline screen.
-[withMaven] Publishers: Pipeline Graph Publisher: 1 ms, Generated Artifacts Publisher: 891 ms, Junit Publisher: 4 ms, Dependencies Fingerprint Publisher: 5 ms
-[Pipeline] // withMaven
-[Pipeline] }
-WARN: Unable to locate 'report-task.txt' in the workspace. Did the SonarScanner succedeed?
-</code></pre>
-
-<p>原因：sonar.login的token配置不正确或者没有配置</p>
-
-<h3 id="问题三-jenkins-pipeline在sonarqube回调时显示超时">问题三：jenkins pipeline在SonarQube回调时显示超时</h3>
-
-<pre><code class="language-Java">[Pipeline] waitForQualityGate
-Checking status of SonarQube task 'AWlX97LSgWqXn-z33SO5' on server 'sonar'
-SonarQube task 'AWlX97LSgWqXn-z33SO5' status is 'IN_PROGRESS'
+<span style="color:#f92672">[</span>withMaven<span style="color:#f92672">]</span> Jenkins Task Scanner Plugin not found<span style="color:#f92672">,</span> don<span style="color:#960050;background-color:#1e0010">&#39;</span>t display results of source code scanning <span style="color:#66d9ef">for</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>TODO<span style="color:#960050;background-color:#1e0010">&#39;</span> and <span style="color:#960050;background-color:#1e0010">&#39;</span>FIXME<span style="color:#960050;background-color:#1e0010">&#39;</span> in pipeline screen<span style="color:#f92672">.</span>
+<span style="color:#f92672">[</span>withMaven<span style="color:#f92672">]</span> Publishers<span style="color:#f92672">:</span> Pipeline Graph Publisher<span style="color:#f92672">:</span> 1 ms<span style="color:#f92672">,</span> Generated Artifacts Publisher<span style="color:#f92672">:</span> 891 ms<span style="color:#f92672">,</span> Junit Publisher<span style="color:#f92672">:</span> 4 ms<span style="color:#f92672">,</span> Dependencies Fingerprint Publisher<span style="color:#f92672">:</span> 5 ms
+<span style="color:#f92672">[</span>Pipeline<span style="color:#f92672">]</span> <span style="color:#75715e">// withMaven
+</span><span style="color:#75715e"></span><span style="color:#f92672">[</span>Pipeline<span style="color:#f92672">]</span> <span style="color:#f92672">}</span>
+WARN: Unable to locate <span style="color:#960050;background-color:#1e0010">&#39;</span>report<span style="color:#f92672">-</span>task<span style="color:#f92672">.</span><span style="color:#a6e22e">txt</span><span style="color:#960050;background-color:#1e0010">&#39;</span> in the workspace<span style="color:#f92672">.</span> Did the SonarScanner succedeed<span style="color:#f92672">?</span>
+</code></pre></div><p>原因：sonar.login的token配置不正确或者没有配置</p>
+<h3 id="问题三jenkins-pipeline在sonarqube回调时显示超时">问题三：jenkins pipeline在SonarQube回调时显示超时</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#f92672">[</span>Pipeline<span style="color:#f92672">]</span> waitForQualityGate
+Checking status of SonarQube task <span style="color:#960050;background-color:#1e0010">&#39;</span>AWlX97LSgWqXn<span style="color:#f92672">-</span>z33SO5<span style="color:#960050;background-color:#1e0010">&#39;</span> on server <span style="color:#960050;background-color:#1e0010">&#39;</span>sonar<span style="color:#960050;background-color:#1e0010">&#39;</span>
+SonarQube task <span style="color:#960050;background-color:#1e0010">&#39;</span>AWlX97LSgWqXn<span style="color:#f92672">-</span>z33SO5<span style="color:#960050;background-color:#1e0010">&#39;</span> status is <span style="color:#960050;background-color:#1e0010">&#39;</span>IN_PROGRESS<span style="color:#960050;background-color:#1e0010">&#39;</span>
 Cancelling nested steps due to timeout
-</code></pre>
-
-<p>原因：SonarQube没有配置webhook回调，导致请求超时，按照步骤4配置webhook即可解决</p>
-
-<h3 id="问题四-sonar找不到dependency-check-xml">问题四：sonar找不到Dependency-Check XML</h3>
-
-<pre><code class="language-Java">[INFO] Sensor Dependency-Check [dependencycheck]
-[INFO] Process Dependency-Check report
-[INFO] Dependency-Check XML report does not exists. Please check property sonar.dependencyCheck.reportPath:/data/jenkinsHome/workspace/xxx/${WORKSPACE}/dependency-check-report.xml
-[INFO] Analysis skipped/aborted due to missing report file
-[INFO] Dependency-Check HTML report does not exists. Please check property sonar.dependencyCheck.htmlReportPath:/data/jenkinsHome/workspace/xxx/${WORKSPACE}/dependency-check-report.html
-[INFO] HTML-Dependency-Check report does not exist.
-</code></pre>
-
-<p>原因：SonarQube配置Dependency-Check插件有误，按照上文配置即可</p>
-
+</code></pre></div><p>原因：SonarQube没有配置webhook回调，导致请求超时，按照步骤4配置webhook即可解决</p>
+<h3 id="问题四sonar找不到dependency-check-xml">问题四：sonar找不到Dependency-Check XML</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span> Sensor Dependency<span style="color:#f92672">-</span>Check <span style="color:#f92672">[</span>dependencycheck<span style="color:#f92672">]</span>
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span> Process Dependency<span style="color:#f92672">-</span>Check report
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span> Dependency<span style="color:#f92672">-</span>Check XML report does not exists<span style="color:#f92672">.</span> Please check property sonar<span style="color:#f92672">.</span><span style="color:#a6e22e">dependencyCheck</span><span style="color:#f92672">.</span><span style="color:#a6e22e">reportPath</span><span style="color:#f92672">:/</span>data<span style="color:#f92672">/</span>jenkinsHome<span style="color:#f92672">/</span>workspace<span style="color:#f92672">/</span>xxx<span style="color:#f92672">/</span>$<span style="color:#f92672">{</span>WORKSPACE<span style="color:#f92672">}/</span>dependency<span style="color:#f92672">-</span>check<span style="color:#f92672">-</span>report<span style="color:#f92672">.</span><span style="color:#a6e22e">xml</span>
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span> Analysis skipped<span style="color:#f92672">/</span>aborted due to missing report file
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span> Dependency<span style="color:#f92672">-</span>Check HTML report does not exists<span style="color:#f92672">.</span> Please check property sonar<span style="color:#f92672">.</span><span style="color:#a6e22e">dependencyCheck</span><span style="color:#f92672">.</span><span style="color:#a6e22e">htmlReportPath</span><span style="color:#f92672">:/</span>data<span style="color:#f92672">/</span>jenkinsHome<span style="color:#f92672">/</span>workspace<span style="color:#f92672">/</span>xxx<span style="color:#f92672">/</span>$<span style="color:#f92672">{</span>WORKSPACE<span style="color:#f92672">}/</span>dependency<span style="color:#f92672">-</span>check<span style="color:#f92672">-</span>report<span style="color:#f92672">.</span><span style="color:#a6e22e">html</span>
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span> HTML<span style="color:#f92672">-</span>Dependency<span style="color:#f92672">-</span>Check report does not exist<span style="color:#f92672">.</span>
+</code></pre></div><p>原因：SonarQube配置Dependency-Check插件有误，按照上文配置即可</p>
 <h2 id="结语">结语</h2>
-
 <p>sonar与jenkins集成的方式还有很多，不止pipeline+maven这一种，还有配置在jenkins构建任务中、直接使用sonar脚本等方法。采用这样方法，一方面是配置相对简单，不需要每个构建任务都进行配置，只需要将jenkinsfile中拷入相应代码并修改几个参数即可。同时可以在静态代码扫描期间完整maven打包，减少持续集成的时间。</p>
 
     </div>
@@ -1214,7 +1161,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

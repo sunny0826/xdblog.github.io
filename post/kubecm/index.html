@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -561,16 +561,10 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<h2 id="前言">前言</h2>
-
-<p>该项目脱胎于 <a href="https://github.com/sunny0826/mergeKubeConfig" target="_blank">mergeKubeConfig</a> 项目，最早写该项目的目的是在一堆杂乱无章的 kubeconfig 中自由的切换。随着需要操作的 Kubernetes 集群越来越多，在不同的集群之间切换也越来越麻烦，而操作 Kubernetes 集群的本质不过是通过 <code>kubeconfig</code> 访问 Kubernetes 集群的 API Server，以操作 Kubernetes 的各种资源，而 <code>kubeconfig</code> 不过是一个 yaml 文件，用来保存访问集群的密钥，最早的 <a href="https://github.com/sunny0826/mergeKubeConfig" target="_blank">mergeKubeConfig</a> 不过是一个操作 yaml 文件的 Python 脚本。而随着 golang 学习的深入，也就动了重写这个项目的念头，就这样 <a href="https://github.com/sunny0826/kubecm" target="_blank">kubecm</a> 诞生了。</p>
-
+      <h2 id="前言">前言</h2>
+<p>该项目脱胎于 <a href="https://github.com/sunny0826/mergeKubeConfig">mergeKubeConfig</a> 项目，最早写该项目的目的是在一堆杂乱无章的 kubeconfig 中自由的切换。随着需要操作的 Kubernetes 集群越来越多，在不同的集群之间切换也越来越麻烦，而操作 Kubernetes 集群的本质不过是通过 <code>kubeconfig</code> 访问 Kubernetes 集群的 API Server，以操作 Kubernetes 的各种资源，而 <code>kubeconfig</code> 不过是一个 yaml 文件，用来保存访问集群的密钥，最早的 <a href="https://github.com/sunny0826/mergeKubeConfig">mergeKubeConfig</a> 不过是一个操作 yaml 文件的 Python 脚本。而随着 golang 学习的深入，也就动了重写这个项目的念头，就这样 <a href="https://github.com/sunny0826/kubecm">kubecm</a> 诞生了。</p>
 <h2 id="kubecm">kubecm</h2>
-
-<p><a href="https://github.com/sunny0826/kubecm" target="_blank">kubecm</a> 由 golang 编写，支持 <code>Mac</code> <code>Linux</code> 和 <code>windows</code> 平台，<code>delete</code> <code>rename</code> <code>switch</code> 提供比较实用的交互式的操作，目前的功能包括：</p>
-
+<p><a href="https://github.com/sunny0826/kubecm">kubecm</a> 由 golang 编写，支持 <code>Mac</code> <code>Linux</code> 和 <code>windows</code> 平台，<code>delete</code> <code>rename</code> <code>switch</code> 提供比较实用的交互式的操作，目前的功能包括：</p>
 <ul>
 <li>add ：添加新的 <code>kubeconfig</code> 到 <code>$HOME/.kube/config</code> 中</li>
 <li>completion ：命令行自动补全功能</li>
@@ -579,144 +573,76 @@
 <li>rename：重名指定的 <code>context</code>，提供交互式和指定重命名两种方式</li>
 <li>switch：交互式切换 <code>context</code></li>
 </ul>
-
 <h2 id="安装">安装</h2>
-
-<p><a href="https://github.com/sunny0826/kubecm" target="_blank">kubecm</a> 支持 <code>Mac</code> <code>Linux</code> 和 <code>windows</code> 平台，安装方式也比较简单：</p>
-
+<p><a href="https://github.com/sunny0826/kubecm">kubecm</a> 支持 <code>Mac</code> <code>Linux</code> 和 <code>windows</code> 平台，安装方式也比较简单：</p>
 <h4 id="macos">MacOS</h4>
-
-<div class="alert alert-note">
-  <div>
-    使用 <code>brew</code> 或者直接下载二进制可执行文件
-  </div>
-</div>
-
-<pre><code class="language-bash">brew install sunny0826/tap/kubecm
-</code></pre>
-
-<h4 id="linux">Linux</h4>
-
-<div class="alert alert-note">
-  <div>
-    下载二进制可执行文件
-  </div>
-</div>
-
-<pre><code class="language-bash"># linux x86_64
-curl -Lo kubecm.tar.gz https://github.com/sunny0826/kubecm/releases/download/v${VERSION}/kubecm_${VERSION}_Linux_x86_64.tar.gz
+<!-- raw HTML omitted -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install sunny0826/tap/kubecm
+</code></pre></div><h4 id="linux">Linux</h4>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># linux x86_64</span>
+curl -Lo kubecm.tar.gz https://github.com/sunny0826/kubecm/releases/download/v<span style="color:#e6db74">${</span>VERSION<span style="color:#e6db74">}</span>/kubecm_<span style="color:#e6db74">${</span>VERSION<span style="color:#e6db74">}</span>_Linux_x86_64.tar.gz
 tar -zxvf kubecm.tar.gz kubecm
 cd kubecm
 sudo mv kubecm /usr/local/bin/
-</code></pre>
-
-<h4 id="windows">Windows</h4>
-
-<div class="alert alert-note">
-  <div>
-    下载二进制可执行文件，并将文件移动到 <code>$PATH</code> 中即可
-  </div>
-</div>
-
+</code></pre></div><h4 id="windows">Windows</h4>
+<!-- raw HTML omitted -->
 <h2 id="命令行自动补全">命令行自动补全</h2>
-
-<div class="alert alert-note">
-  <div>
-    <a href="https://github.com/sunny0826/kubecm" target="_blank">kubecm</a> 提供了和 <a href="https://github.com/kubernetes/kubectl" target="_blank">kubectl</a> 一样的 completion 命令行自动补全功能（支持 bash/zsh）
-  </div>
-</div>
-
+<!-- raw HTML omitted -->
 <p>以 <code>zsh</code> 为例，在 <code>$HOME/.zshrc</code> 中添加</p>
-
-<pre><code class="language-vim">source &lt;(kubecm completion zsh)
-</code></pre>
-
-<p>然后使用 <code>source</code> 命令，使其生效</p>
-
-<pre><code class="language-zsh">source $HOME/.zshrc
-</code></pre>
-
-<p>之后，在输入 <code>kubecm</code> 后按 <kbd>tab</kbd> 键，就可以看到命令行自动补全的内容</p>
-
-<p><img src="https://tva2.sinaimg.cn/large/ad5fbf65gy1g9qa0yy3bvj21co0f2hdt.jpg" alt="image" /></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vim" data-lang="vim"><span style="color:#a6e22e">source</span> &lt;(<span style="color:#a6e22e">kubecm</span> <span style="color:#a6e22e">completion</span> <span style="color:#a6e22e">zsh</span>)<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>然后使用 <code>source</code> 命令，使其生效</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">source $HOME/.zshrc
+</code></pre></div><p>之后，在输入 <code>kubecm</code> 后按 <!-- raw HTML omitted -->tab<!-- raw HTML omitted --> 键，就可以看到命令行自动补全的内容</p>
+<p><img src="https://tva2.sinaimg.cn/large/ad5fbf65gy1g9qa0yy3bvj21co0f2hdt.jpg" alt="image"></p>
 <h2 id="操作-kubeconfig">操作 kubeconfig</h2>
-
-<div class="alert alert-note">
-  <div>
-    <a href="https://github.com/sunny0826/kubecm" target="_blank">kubecm</a> 可以实现 <code>kubeconfig</code> 的查看、添加、删除、合并、重命名和切换
-  </div>
-</div>
-
+<!-- raw HTML omitted -->
 <h4 id="查看">查看</h4>
-
-<pre><code class="language-bash"># 查看 $HOME/.kube/config 中所有的 context
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 查看 $HOME/.kube/config 中所有的 context</span>
 kubecm
-</code></pre>
-
-<h4 id="添加">添加</h4>
-
-<pre><code class="language-bash"># 添加 example.yaml 到 $HOME/.kube/config.yaml，该方式不会覆盖源 kubeconfig，只会在当前目录中生成一个 config.yaml 文件
+</code></pre></div><h4 id="添加">添加</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 添加 example.yaml 到 $HOME/.kube/config.yaml，该方式不会覆盖源 kubeconfig，只会在当前目录中生成一个 config.yaml 文件</span>
 kubecm add -f example.yaml
 
-# 功能同上，但是会将 example.yaml 中的 context 命名为 test
+<span style="color:#75715e"># 功能同上，但是会将 example.yaml 中的 context 命名为 test</span>
 kubecm add -f example.yaml -n test
 
-# 添加 -c 会覆盖源 kubeconfig
+<span style="color:#75715e"># 添加 -c 会覆盖源 kubeconfig</span>
 kubecm add -f example.yaml -c
-</code></pre>
-
-<h4 id="删除">删除</h4>
-
-<pre><code class="language-bash"># 交互式删除
+</code></pre></div><h4 id="删除">删除</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 交互式删除</span>
 kubecm delete
-# 删除指定 context
+<span style="color:#75715e"># 删除指定 context</span>
 kubecm delete my-context
-</code></pre>
-
-<h4 id="合并">合并</h4>
-
-<pre><code class="language-bash"># 合并 test 目录中的 kubeconfig,该方式不会覆盖源 kubeconfig，只会在当前目录中生成一个 config.yaml 文件
+</code></pre></div><h4 id="合并">合并</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 合并 test 目录中的 kubeconfig,该方式不会覆盖源 kubeconfig，只会在当前目录中生成一个 config.yaml 文件</span>
 kubecm merge -f test 
 
-# 添加 -c 会覆盖源 kubeconfig
+<span style="color:#75715e"># 添加 -c 会覆盖源 kubeconfig</span>
 kubecm merge -f test -c
-</code></pre>
-
-<h4 id="重命名">重命名</h4>
-
-<pre><code class="language-bash"># 交互式重命名
+</code></pre></div><h4 id="重命名">重命名</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 交互式重命名</span>
 kubecm rename
-# 将 dev 重命名为 test
+<span style="color:#75715e"># 将 dev 重命名为 test</span>
 kubecm rename -o dev -n test
-# 重命名 current-context 为 dev
+<span style="color:#75715e"># 重命名 current-context 为 dev</span>
 kubecm rename -n dev -c
-</code></pre>
-
-<h4 id="切换默认-namespace">切换默认 namespace</h4>
-
-<pre><code class="language-bash"># 交互式切换 namespace
+</code></pre></div><h4 id="切换默认-namespace">切换默认 namespace</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 交互式切换 namespace</span>
 kubecm namespace
-# 或者
+<span style="color:#75715e"># 或者</span>
 kubecm ns
-# 切换默认 namespace 为 kube-system
+<span style="color:#75715e"># 切换默认 namespace 为 kube-system</span>
 kubecm ns kube-system
-</code></pre>
-
-<h2 id="效果展示">效果展示</h2>
-
-<p><img src="Interaction.gif" alt="" /></p>
-
+</code></pre></div><h2 id="效果展示">效果展示</h2>
+<p><img src="Interaction.gif" alt=""></p>
 <h2 id="视频介绍">视频介绍</h2>
-
 
 <div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
     <iframe src="//player.bilibili.com/player.html?aid=88259938&amp;cid=150776221&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;"> </iframe>
 </div>
-
 <h2 id="结语">结语</h2>
-
-<p><a href="https://github.com/sunny0826/kubecm" target="_blank">kubecm</a> 项目的初衷为学习 golang 并熟悉 client-go 的使用，随着使用的深入，断断续续增加了不少功能，开发出了一个看上去还算正规的项目。总的来说都是根据自己的喜好来开发的业余项目，欢迎各位通过 <a href="https://github.com/sunny0826/kubecm/issues/new" target="_blank">ISSUE</a> 来进行交流和讨论。</p>
+<p><a href="https://github.com/sunny0826/kubecm">kubecm</a> 项目的初衷为学习 golang 并熟悉 client-go 的使用，随着使用的深入，断断续续增加了不少功能，开发出了一个看上去还算正规的项目。总的来说都是根据自己的喜好来开发的业余项目，欢迎各位通过 <a href="https://github.com/sunny0826/kubecm/issues/new">ISSUE</a> 来进行交流和讨论。</p>
 
     </div>
 
@@ -1085,7 +1011,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

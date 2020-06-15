@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -356,7 +356,7 @@
     <div class="col-lg-8">
         <img class="img-fluid w-100" src="https://tvax2.sinaimg.cn/large/ad5fbf65ly1ge3ifzmi4yj21jk15ognu.jpg" itemprop="image" alt="">
         <span
-          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+          class="article-header-caption">Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a></span>
     </div>
     <div class="col-lg-8">
       <h1 itemprop="name">轻量快速的 CI 工具 Drone</h1>
@@ -560,55 +560,43 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<h2 id="前言">前言</h2>
-
+      <h2 id="前言">前言</h2>
 <p>公司之前一直在使用 Jenkins 作为 CI/CD 工具， Jenkins 非常强大，它完成了几乎所有 CI/CD 的工作，并且应用于整个团队有好长一段时间了。但是随着公司推荐数字化、智慧化，以及服务容器化的推进， Jenkins 的一些弊端也凸显了出来：</p>
-
 <ul>
 <li><strong>重量级：</strong> Jenkins 功能十分齐全，几乎可以做所有的事情。但是这也是他的一个弊端，过于重量级，有时候往往一个小的修改需要改动许多地方，升级\下载插件后需要进行重启等。</li>
 <li><strong>升级不易：</strong> 在一些安全 Jenkins 相关的安全漏洞被公开后，我们会对 Jenkins 进行升级，但这也不是一件容易的事。之前就出现过升级\重启后，所有 job 丢失，虽然我们所有项目配置都是以 Jenkinsfile 的形式统一存储，但是每个 job 都需要重新重新创建，包括每个 job 的权限&hellip;.._(´ཀ`」 ∠)_</li>
 <li><strong>权限控制复杂：</strong> 这其实也是 Jenkins 的一大优势，可以精确控制每个用户的权限，但是需要花费更多时间去配置，时间长了也会出现权限混乱的问题。</li>
 <li><strong>UI 界面：</strong> 这个其实是吐槽最多的部分，虽然有诸如：Blue Ocean 这样的插件来展示 pipeline ，但是还是没有从根本改变它简陋的 UI 界面。</li>
 </ul>
-
 <p>那么为什么选择使用 Drone 呢？</p>
-
-<p>其实在 GitHub 上提交 PR 后，大部分开源项目都会使用 <a href="http://travis-ci.org/" target="_blank">travis-ci</a> 对提交的代码进行 CI 及检查，而如果是 Kubernetes 相关的项目，则会使用 <a href="https://github.com/k8s-ci-robot" target="_blank">prow</a> 进行 CI。但是 <a href="http://travis-ci.org/" target="_blank">travis-ci</a> 只能用于 GitHub ，在寻找类似项目的时候， Drone 进入了我的视野。</p>
-
+<p>其实在 GitHub 上提交 PR 后，大部分开源项目都会使用 <a href="http://travis-ci.org/">travis-ci</a> 对提交的代码进行 CI 及检查，而如果是 Kubernetes 相关的项目，则会使用 <a href="https://github.com/k8s-ci-robot">prow</a> 进行 CI。但是 <a href="http://travis-ci.org/">travis-ci</a> 只能用于 GitHub ，在寻找类似项目的时候， Drone 进入了我的视野。</p>
 <p>大道至简。和 Jenkins 相比， Drone 就轻量的多了，从应用本身的安装部署到流水线的构建都简洁的多。由于是和源码管理系统相集成，所以 Drone 天生就省去了各种账户\权限的配置，直接与 gitlab 、 github 、 Bitbucket 这样的源码管理系统操作源代码的权限一致。正如它官网上写的那样：</p>
-
 <blockquote>
 <p><strong>Any Source Code Manager</strong></p>
-
+</blockquote>
+<blockquote>
 <p>Drone integrates seamlessly with multiple source code management systems, including GitHub, GitHubEnterprise, Bitbucket, and GitLab.</p>
-
+</blockquote>
+<blockquote>
 <p><strong>Any Platform</strong></p>
-
+</blockquote>
+<blockquote>
 <p>Drone natively supports multiple operating systems and architectures, including Linux x64, ARM, ARM64 and Windows x64.</p>
-
+</blockquote>
+<blockquote>
 <p><strong>Any Language</strong></p>
-
+</blockquote>
+<blockquote>
 <p>Drone works with any language, database or service that runs inside a Docker container. Choose from thousands of public Docker images or provide your own.</p>
 </blockquote>
-
 <p>Drone 天生支持任何源码管理工具、任何平台和任何语言。</p>
-
 <p><strong>而写这篇文章的目的，并不是要吹捧这个工具有多么的好用，而是要总结在搭建 drone 和使用时候需要的各种坑，帮助读者绕过这些坑。</strong></p>
-
 <h2 id="声明">声明</h2>
-
 <p>鉴于在使用 Drone CI 中，遇到的各种坑都和 Drone 的版本有关，这里首先声明我使用的 Drone 版本为<code>1.1</code>，使用<code>0.8</code>版本的同学请绕道。</p>
-
 <h2 id="搭建-drone">搭建 Drone</h2>
-
-<p>这里要说的就是在使用 drone 中遇到的第一个坑，在最初正准备搭建 drone 的时候 Google 了很多相关的 blog ，大部分 blog （包括某些 <a href="https://medium.com/" target="_blank">medium.com</a> 上面近期的英文 blog） 推荐的安装方式都是使用 <code>docker-compose</code>，而无一例外的都失败了&hellip;走投无路之下，我回到了<a href="https://docs.drone.io/installation/" target="_blank">官网的文档</a>，发现<code>1.0</code>之后许多参数都发生了变化，并且官方推荐使用 docker 的方式运行 Drone。</p>
-
+<p>这里要说的就是在使用 drone 中遇到的第一个坑，在最初正准备搭建 drone 的时候 Google 了很多相关的 blog ，大部分 blog （包括某些 <a href="https://medium.com/">medium.com</a> 上面近期的英文 blog） 推荐的安装方式都是使用 <code>docker-compose</code>，而无一例外的都失败了&hellip;走投无路之下，我回到了<a href="https://docs.drone.io/installation/">官网的文档</a>，发现<code>1.0</code>之后许多参数都发生了变化，并且官方推荐使用 docker 的方式运行 Drone。</p>
 <p><strong>所以在使用任何开源软件之前都要去阅读它的文档，不要跟着一篇 blog 就开始了（包括我的），这样会少踩很多坑！！！</strong></p>
-
 <p>这里以 gitlab 为例，展示网上版本启动参数和实际参数的不同：</p>
-
 <table>
 <thead>
 <tr>
@@ -617,32 +605,27 @@
 <th>官网文档</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>设置 Drone 的管理员</td>
 <td>DRONE_ADMIN=admin</td>
 <td>DRONE_USER_CREATE=username:admin,admin:true</td>
 </tr>
-
 <tr>
 <td>设置GitLab的域名</td>
 <td>DRONE_GITLAB_URL</td>
 <td>DRONE_SERVER_HOST</td>
 </tr>
-
 <tr>
 <td>GitLab的Application中的key</td>
 <td>DRONE_GITLAB_CLIENT</td>
 <td>DRONE_GITLAB_CLIENT_ID</td>
 </tr>
-
 <tr>
 <td>GitLab的Application中的secret</td>
 <td>DRONE_GITLAB_SECRET</td>
 <td>DRONE_GITLAB_CLIENT_SECRET</td>
 </tr>
-
 <tr>
 <td>Drone 域名</td>
 <td>DRONE_HOST</td>
@@ -650,145 +633,118 @@
 </tr>
 </tbody>
 </table>
-
 <p>上面只是列举了部分官方文档和网上流产版本的不同，所以在使用之前一定要仔细阅读官方文档。下附运行 drone 的命令：</p>
-
-<pre><code class="language-bash">docker run \
-  --volume=/var/run/docker.sock:/var/run/docker.sock \
-  --volume=/var/lib/drone:/data \
-  --env=DRONE_GIT_ALWAYS_AUTH=false \
-  --env=DRONE_GITLAB_SERVER={your-gitlab-url} \  # gitlab 的 URL
-  --env=DRONE_GITLAB_CLIENT_ID={your-gitlab-applications-id} \  #GitLab的Application中的id
-  --env=DRONE_GITLAB_CLIENT_SECRET={your-gitlab-applicati-secret} \ #GitLab的Application中的secret
-  --env=DRONE_SERVER_HOST={your-drone-url} \    # drone 的URl
-  --env=DRONE_SERVER_PROTO=http \
-  --env=DRONE_TLS_AUTOCERT=false \
-  --env=DRONE_USER_CREATE=username:{your-admin-username},admin:true \   # Drone的管理员
-  --publish=8000:80 \
-  --publish=443:443 \
-  --restart=always \
-  --detach=true \
-  --name=drone \
-  drone/drone:1.1
-</code></pre>
-
-<p>关于 <code>gitlab Application</code> 的配置和 Drone 其他参数含义请参考<a href="https://docs.drone.io/installation/gitlab/single-machine/" target="_blank">官方文档</a>，这里只展示单节点办的运行方式。</p>
-
-<h2 id="核心文件-drone-yml">核心文件 <code>.drone.yml</code></h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --volume<span style="color:#f92672">=</span>/var/run/docker.sock:/var/run/docker.sock <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --volume<span style="color:#f92672">=</span>/var/lib/drone:/data <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --env<span style="color:#f92672">=</span>DRONE_GIT_ALWAYS_AUTH<span style="color:#f92672">=</span>false <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --env<span style="color:#f92672">=</span>DRONE_GITLAB_SERVER<span style="color:#f92672">={</span>your-gitlab-url<span style="color:#f92672">}</span> <span style="color:#ae81ff">\ </span> <span style="color:#75715e"># gitlab 的 URL</span>
+  --env<span style="color:#f92672">=</span>DRONE_GITLAB_CLIENT_ID<span style="color:#f92672">={</span>your-gitlab-applications-id<span style="color:#f92672">}</span> <span style="color:#ae81ff">\ </span> <span style="color:#75715e">#GitLab的Application中的id</span>
+  --env<span style="color:#f92672">=</span>DRONE_GITLAB_CLIENT_SECRET<span style="color:#f92672">={</span>your-gitlab-applicati-secret<span style="color:#f92672">}</span> <span style="color:#ae81ff">\ </span><span style="color:#75715e">#GitLab的Application中的secret</span>
+  --env<span style="color:#f92672">=</span>DRONE_SERVER_HOST<span style="color:#f92672">={</span>your-drone-url<span style="color:#f92672">}</span> <span style="color:#ae81ff">\ </span>   <span style="color:#75715e"># drone 的URl</span>
+  --env<span style="color:#f92672">=</span>DRONE_SERVER_PROTO<span style="color:#f92672">=</span>http <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --env<span style="color:#f92672">=</span>DRONE_TLS_AUTOCERT<span style="color:#f92672">=</span>false <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --env<span style="color:#f92672">=</span>DRONE_USER_CREATE<span style="color:#f92672">=</span>username:<span style="color:#f92672">{</span>your-admin-username<span style="color:#f92672">}</span>,admin:true <span style="color:#ae81ff">\ </span>  <span style="color:#75715e"># Drone的管理员</span>
+  --publish<span style="color:#f92672">=</span>8000:80 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --publish<span style="color:#f92672">=</span>443:443 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --restart<span style="color:#f92672">=</span>always <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --detach<span style="color:#f92672">=</span>true <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --name<span style="color:#f92672">=</span>drone <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  drone/drone:1.1
+</code></pre></div><p>关于 <code>gitlab Application</code> 的配置和 Drone 其他参数含义请参考<a href="https://docs.drone.io/installation/gitlab/single-machine/">官方文档</a>，这里只展示单节点办的运行方式。</p>
+<h2 id="核心文件-droneyml">核心文件 <code>.drone.yml</code></h2>
 <p>要使用 Drone 只需在项目根创建一个 <code>.drone.yml</code> 文件即可，这个是 Drone 构建脚本的配置文件，它随项目一块进行版本管理，开发者不需要额外再去维护一个配置脚本。其实现代 CI 程序都是这么做了，这个主要是相对于 Jekins 来说的。虽然 Jekins 也有插件支持，但毕竟还是需要配置。</p>
-
 <blockquote>
 <p>值得注意的事这个文件时 <code>.drone.yml</code>，由于 Kubernetes 使用的多了，第一次创建了一个 <code>.drone.yaml</code> 文件，导致怎么都获取不到配置&hellip;_(´ཀ`」 ∠)_&hellip; YAML 工程师石锤了&hellip;</p>
 </blockquote>
-
 <p>这里放一个 Java 的 .drone.yml ，这个项目是 fork 别人的项目用作演示，记得要修改 <code>deployment.yaml</code> 中的镜像仓库地址修改为自己的私有仓库。</p>
+<p>示例项目源码：https://github.com/sunny0826/pipeline-example-maven</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-YAML" data-lang="YAML"><span style="color:#66d9ef">kind</span>: pipeline
+<span style="color:#66d9ef">name</span>: pipeline-example-maven
 
-<p>示例项目源码：<a href="https://github.com/sunny0826/pipeline-example-maven" target="_blank">https://github.com/sunny0826/pipeline-example-maven</a></p>
-
-<pre><code class="language-YAML">kind: pipeline
-name: pipeline-example-maven
-
-steps:
-- name: Maven编译
-  image: maven:3-jdk-7
-  volumes:
-  - name: cache
-    path: /root/.m2
-  commands:
+<span style="color:#66d9ef">steps</span>:
+- <span style="color:#66d9ef">name</span>: Maven编译
+  <span style="color:#66d9ef">image</span>: maven:<span style="color:#ae81ff">3</span>-jdk<span style="color:#ae81ff">-7</span>
+  <span style="color:#66d9ef">volumes</span>:
+  - <span style="color:#66d9ef">name</span>: cache
+    <span style="color:#66d9ef">path</span>: /root/.m2
+  <span style="color:#66d9ef">commands</span>:
     - mvn clean install
 
-- name: 构建镜像  
-  image: plugins/docker
-  volumes:
-  - name: docker
-    path: /var/run/docker.sock
-  settings:
-    username: 
-      from_secret: docker_user
-    password: 
-      from_secret: docker_pass
-    repo: {your-repo}
-    registry: {your-registry}
-    tags: ${DRONE_BUILD_NUMBER}
+- <span style="color:#66d9ef">name</span>: 构建镜像  
+  <span style="color:#66d9ef">image</span>: plugins/docker
+  <span style="color:#66d9ef">volumes</span>:
+  - <span style="color:#66d9ef">name</span>: docker
+    <span style="color:#66d9ef">path</span>: /var/run/docker.sock
+  <span style="color:#66d9ef">settings</span>:
+    <span style="color:#66d9ef">username</span>: 
+      <span style="color:#66d9ef">from_secret</span>: docker_user
+    <span style="color:#66d9ef">password</span>: 
+      <span style="color:#66d9ef">from_secret</span>: docker_pass
+    <span style="color:#66d9ef">repo</span>: {your-repo}
+    <span style="color:#66d9ef">registry</span>: {your-registry}
+    <span style="color:#66d9ef">tags</span>: ${DRONE_BUILD_NUMBER}
 
-- name: Kubernetes 部署
-  image: guoxudongdocker/kubectl:v1.14.1 
-  volumes:
-  - name: kube
-    path: /root/.kube
-  commands:
-    - sed -i &quot;s/#Tag/${DRONE_BUILD_NUMBER}/g&quot; deployment.yaml
+- <span style="color:#66d9ef">name</span>: Kubernetes 部署
+  <span style="color:#66d9ef">image</span>: guoxudongdocker/kubectl:v1<span style="color:#ae81ff">.14.1</span> 
+  <span style="color:#66d9ef">volumes</span>:
+  - <span style="color:#66d9ef">name</span>: kube
+    <span style="color:#66d9ef">path</span>: /root/.kube
+  <span style="color:#66d9ef">commands</span>:
+    - sed -i <span style="color:#e6db74">&#34;s/#Tag/${DRONE_BUILD_NUMBER}/g&#34;</span> deployment.yaml
     - kubectl apply -f deployment.yaml
 
-- name: 钉钉通知
-  image: guoxudongdocker/drone-dingtalk 
-  settings:
-    token: 
-      from_secret: dingding
-    type: markdown
-    message_color: true
-    message_pic: true
-    sha_link: true
-  when:
-    status: [failure, success]
+- <span style="color:#66d9ef">name</span>: 钉钉通知
+  <span style="color:#66d9ef">image</span>: guoxudongdocker/drone-dingtalk 
+  <span style="color:#66d9ef">settings</span>:
+    <span style="color:#66d9ef">token</span>: 
+      <span style="color:#66d9ef">from_secret</span>: dingding
+    <span style="color:#66d9ef">type</span>: markdown
+    <span style="color:#66d9ef">message_color</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#66d9ef">message_pic</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#66d9ef">sha_link</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#66d9ef">when</span>:
+    <span style="color:#66d9ef">status</span>: [failure, success]
 
-volumes:
-- name: cache
-  host:
-    path: /tmp/cache/.m2
-- name: kube
-  host:
-    path: /tmp/cache/.kube/.test_kube
-- name: docker
-  host:
-    path: /var/run/docker.sock
+<span style="color:#66d9ef">volumes</span>:
+- <span style="color:#66d9ef">name</span>: cache
+  <span style="color:#66d9ef">host</span>:
+    <span style="color:#66d9ef">path</span>: /tmp/cache/.m2
+- <span style="color:#66d9ef">name</span>: kube
+  <span style="color:#66d9ef">host</span>:
+    <span style="color:#66d9ef">path</span>: /tmp/cache/.kube/.test_kube
+- <span style="color:#66d9ef">name</span>: docker
+  <span style="color:#66d9ef">host</span>:
+    <span style="color:#66d9ef">path</span>: /var/run/docker.sock
 
-trigger:
-  branch:
+<span style="color:#66d9ef">trigger</span>:
+  <span style="color:#66d9ef">branch</span>:
   - master
-</code></pre>
-
-<p>值得注意的事：上面的这个 <code>.drone.yml</code> 文件将本地的<code>.m2</code>文件、kubeconfig文件、<code>docker.sock</code> 文件挂载到 pipeline 中以实现 maven 打包缓存，k8s 部署、docker 缓存的作用，以提高 CI 速度。而是用挂载需要管理员在项目 settings 中勾选 <code>Trusted</code> ，这个操作只能管理员进行，普通用户是看不到这个选项的。而管理员就是在docker运行时候 <code>--env=DRONE_USER_CREATE=username:{your-admin-username},admin:true</code> 设置的。</p>
-
-<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g38qvifxwij21d40tk76s.jpg" alt="WX20190521-104717@2x" /></p>
-
+</code></pre></div><p>值得注意的事：上面的这个 <code>.drone.yml</code> 文件将本地的<code>.m2</code>文件、kubeconfig文件、<code>docker.sock</code> 文件挂载到 pipeline 中以实现 maven 打包缓存，k8s 部署、docker 缓存的作用，以提高 CI 速度。而是用挂载需要管理员在项目 settings 中勾选 <code>Trusted</code> ，这个操作只能管理员进行，普通用户是看不到这个选项的。而管理员就是在docker运行时候 <code>--env=DRONE_USER_CREATE=username:{your-admin-username},admin:true </code> 设置的。</p>
+<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g38qvifxwij21d40tk76s.jpg" alt="WX20190521-104717@2x"></p>
 <p>而上传镜像和钉钉同时需要在 settings 设置中添加 secret</p>
-
 <ul>
 <li>docker_user：docker 仓库用户名</li>
 <li>docker_pass：docker 仓库密码</li>
 <li>dingding： 钉钉机器人 token</li>
 </ul>
-
 <blockquote>
 <p>注意这里的钉钉 token 是 webhook 中 <code>https://oapi.dingtalk.com/robot/send?access_token=</code> 后这部分
-<img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g38r1mkoztj20iy0ezgmg.jpg" alt="WX20190521-105337" /></p>
+<img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g38r1mkoztj20iy0ezgmg.jpg" alt="WX20190521-105337"></p>
 </blockquote>
-
-<p><img src="https://ws1.sinaimg.cn/large/ad5fbf65gy1g38qxizsg1j21ia0tujtb.jpg" alt="WX20190521-104942@2x" /></p>
-
+<p><img src="https://ws1.sinaimg.cn/large/ad5fbf65gy1g38qxizsg1j21ia0tujtb.jpg" alt="WX20190521-104942@2x"></p>
 <h2 id="构建结果">构建结果</h2>
-
 <p>添加 <code>.drone.yml</code> 文件后，向 master 分支提交代码即可出发 CI 构建</p>
-
-<p><img src="https://wx3.sinaimg.cn/large/ad5fbf65gy1g38r68yb8pj21l40sawit.jpg" alt="WX20190521-105809@2x" /></p>
-
+<p><img src="https://wx3.sinaimg.cn/large/ad5fbf65gy1g38r68yb8pj21l40sawit.jpg" alt="WX20190521-105809@2x"></p>
 <p>CI 结束后，会在钉钉机器人所在群收到通知</p>
-
-<p><img src="https://ws4.sinaimg.cn/large/ad5fbf65gy1g38r8cttcrj20e90bzacr.jpg" alt="WX20190521-110009" /></p>
-
+<p><img src="https://ws4.sinaimg.cn/large/ad5fbf65gy1g38r8cttcrj20e90bzacr.jpg" alt="WX20190521-110009"></p>
 <h2 id="插件支持">插件支持</h2>
-
-<p>可以看到，每一步的镜像都是一个镜像，上面 pipeline 中的 Kubernetes 及钉钉通知插件就是我开发的，具体开发方法可以参考<a href="https://docs.drone.io/" target="_blank">官方文档</a>，而官方也提供了许多<a href="http://plugins.drone.io/" target="_blank">官方插件</a>。</p>
-
+<p>可以看到，每一步的镜像都是一个镜像，上面 pipeline 中的 Kubernetes 及钉钉通知插件就是我开发的，具体开发方法可以参考<a href="https://docs.drone.io/">官方文档</a>，而官方也提供了许多<a href="http://plugins.drone.io/">官方插件</a>。</p>
 <ul>
-<li>构建后部署：<a href="http://plugins.drone.io/mactynow/drone-kubernetes/" target="_blank">Kubernetes</a>、<a href="http://plugins.drone.io/ipedrazas/drone-helm/" target="_blank">helm</a>、<a href="http://plugins.drone.io/appleboy/drone-scp/" target="_blank">scp</a></li>
-<li>构建后通知：<a href="http://plugins.drone.io/lddsb/drone-dingtalk-message/" target="_blank">钉钉</a> 、<a href="http://plugins.drone.io/drillster/drone-email/" target="_blank">Email</a>、<a href="http://plugins.drone.io/drone-plugins/drone-slack/" target="_blank">Slack</a>、<a href="http://plugins.drone.io/lizheming/drone-wechat/" target="_blank">微信</a></li>
+<li>构建后部署：<a href="http://plugins.drone.io/mactynow/drone-kubernetes/">Kubernetes</a>、<a href="http://plugins.drone.io/ipedrazas/drone-helm/">helm</a>、<a href="http://plugins.drone.io/appleboy/drone-scp/">scp</a></li>
+<li>构建后通知：<a href="http://plugins.drone.io/lddsb/drone-dingtalk-message/">钉钉</a> 、<a href="http://plugins.drone.io/drillster/drone-email/">Email</a>、<a href="http://plugins.drone.io/drone-plugins/drone-slack/">Slack</a>、<a href="http://plugins.drone.io/lizheming/drone-wechat/">微信</a></li>
 </ul>
-
 <h2 id="后记">后记</h2>
-
 <p>Drone 整体用起来还是很方便的，搭建、上手速度都很快，但是官方文档给的不够详实，而网上充斥着各种各样0.8版本的的实例，但是其实官网早就发布了1.0版本，而官方并没有 <code>example</code> 这样的示例项目，这样就又把本来降下来的学习曲线拉高了。许多坑都需要自己去趟，我在测试 drone 的时候，就构构建了上百次，不停的修改 <code>.drone.yml</code> ， commit 信息看起来是很恐怖的。后续抽空会向官方贡献 <code>example</code> 这样的 PR。</p>
 
     </div>
@@ -1162,7 +1118,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -356,7 +356,7 @@
     <div class="col-lg-8">
         <img class="img-fluid w-100" src="https://tva2.sinaimg.cn/large/ad5fbf65ly1ge3j8edws4j21y013ete4.jpg" itemprop="image" alt="">
         <span
-          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+          class="article-header-caption">Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a></span>
     </div>
     <div class="col-lg-8">
       <h1 itemprop="name">自动合并Kubeconfig，实现多k8s集群切换</h1>
@@ -560,42 +560,27 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<h2 id="前言">前言</h2>
-
+      <h2 id="前言">前言</h2>
 <blockquote>
 <p>随着微服务和容器化的深入人心，以及kubernetes已经成为容器编排领域的事实标准，越来越多的公司将自己的服务迁移到kubernetes集群中。而随着kubernetes集群的增加，集群管理的问题就凸显出来，不同的环境存在不同的集群，不同的业务线不同的集群，甚至有些开发人员都有自己的集群。诚然，如果集群是使用公有云如阿里云或华为云的容器服务，可以登录其控制台进行集群管理；或者使用rancher这用的多集群管理工具进行统一的管理。但是在想操作<code>istio</code>特有的容器资源，或者想使用<code>istioctl</code>的时候，或者像我一样就是想使用<code>kubectl</code>命令的同学，这个时候多集群的切换就显的十分重要了。</p>
-
-<h2 id="简介">简介</h2>
-
-<pre><code class="language-kubectl```命令行工具通过```kubeconfig```文件的配置来选择集群以及集群的API">
-## 原理
-使用```kubeconfig```文件，您可以组织您的群集，用户和名称空间。 还可以定义上下文以快速轻松地在群集和名称空间之间切换。
-
-### 上下文(Context) 
-</code></pre>
-
-<p>kubeconfig```文件中的上下文元素用于以方便的名称对访问参数进行分组。 每个上下文有三个参数：集群，命名空间和用户。 默认情况下，kubectl命令行工具使用当前上下文中的参数与集群进行通信。可以使用下面的命令设置上下文：</p>
 </blockquote>
-
+<h2 id="简介">简介</h2>
+<p><code>kubectl</code>命令行工具通过<code>kubeconfig</code>文件的配置来选择集群以及集群的API Server通信的所有信息。<code>kubeconfig</code>用来保存关于集群，用户，名称空间和身份验证机制的信息。默认情况下<code>kubectl</code>使用的配置文件名称是在<code>$HOME/.kube</code>目录下的<code>config</code>文件，可以通过设置环境变量KUBECONFIG或者&ndash;kubeconfig指定其他的配置文件。详情可看官方文档https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/</p>
+<h2 id="原理">原理</h2>
+<p>使用<code>kubeconfig</code>文件，您可以组织您的群集，用户和名称空间。 还可以定义上下文以快速轻松地在群集和名称空间之间切换。</p>
+<h3 id="上下文context">上下文(Context)</h3>
+<p><code>kubeconfig</code>文件中的上下文元素用于以方便的名称对访问参数进行分组。 每个上下文有三个参数：集群，命名空间和用户。 默认情况下，kubectl命令行工具使用当前上下文中的参数与集群进行通信。可以使用下面的命令设置上下文：</p>
 <pre><code>kubectl config use-context
 </code></pre>
-
 <h3 id="配置内容">配置内容</h3>
-
 <pre><code>kubectl config view
 </code></pre>
-
 <ol>
 <li>如果设置了<code>--kubeconfig</code>标志，则只使用指定的文件。该标志只允许有一个实例。</li>
 <li>如果环境变量<code>KUBECONFIG</code>存在，那么就使用该环境变量<code>KUBECONFIG</code>里面的值，如果不存在该环境变量<code>KUBECONFIG</code>，那么默认就是使用<code>$HOME/.kube/config</code>文件。</li>
 </ol>
-
-<h3 id="kubeconfig-内容"><code>kubeconfig</code>内容</h3>
-
+<h3 id="kubeconfig内容"><code>kubeconfig</code>内容</h3>
 <p>从下面kubeconfig文件的配置来看集群、用户、上下文、当前上下文的关系就比较明显了。</p>
-
 <pre><code>apiVersion: v1
 kind: Config
 preferences: {}
@@ -615,81 +600,69 @@ name: {context-name}
 
 current-context: {context-name}
 </code></pre>
-
 <h2 id="为何要自动合并">为何要自动合并</h2>
-
 <p>在日常的工作中，如果我们需要操作多个集群，会得到多个kubeconfig配置文件。一般的kubeconfig文件都是yaml格式的，但是也有少部分的集群kubeconfig时已json文件的形式给出的（比如华为云的=。=），比如我们公司再阿里云、华为云和自建环境上均存在kubernetes集群，平时操作要在多集群之间切换，这也就催生了我写这个工具（其实就是一个脚本）的动机。</p>
-
 <h2 id="自动合并生成kubeconfig">自动合并生成kubeconfig</h2>
-
 <p>众所周知，yaml是一种直观的能够被电脑识别的数据序列化格式，是一个可读性高并且容易被人类阅读的语言和json相比（没有格式化之前）可读性更强。而我这个工具并不是很关心kubeconfig的格式，只要将想要合并的kubeconfig放入指定文件即可。</p>
-
-<p>GitHub：<a href="https://github.com/sunny0826/mergeKubeConfig" target="_blank">https://github.com/sunny0826/mergeKubeConfig</a></p>
-
+<p>GitHub：https://github.com/sunny0826/mergeKubeConfig</p>
 <h3 id="适用环境">适用环境</h3>
-
 <ul>
 <li>需要在终端使用命令行管理多集群</li>
 <li>kubernetes集群中安装了istio，需要使用<code>istioctl</code>命令，但是集群节点并没有安装<code>istioctl</code>，需要在本地终端操作</li>
 <li>不愿频繁编辑.kube目录中的config文件的同学</li>
 </ul>
-
 <h3 id="准备工作">准备工作</h3>
-
 <ul>
 <li>Python环境：2.7或者3均可</li>
 <li>需要依赖包：<code>PyYAML</code></li>
 </ul>
-
 <h3 id="开始使用">开始使用</h3>
-
 <ul>
-<li><p>安装依赖：</p>
-
-<pre><code>pip install PyYAML
-</code></pre></li>
-
-<li><p>运行脚本</p>
-
+<li>
+<p>安装依赖：</p>
+<pre><code>  pip install PyYAML
+</code></pre>
+</li>
+<li>
+<p>运行脚本</p>
 <ul>
-<li><p>默认运行方式，kubeconfig文件放入<code>configfile</code>文件,注意删掉作为示例的两个文件</p>
-
-<pre><code>python merge.py
-</code></pre></li>
-
-<li><p>自定义kubeconfig文件目录</p>
-
-<pre><code>python merge.py -d {custom-dir}
-</code></pre></li>
-</ul></li>
+<li>
+<p>默认运行方式，kubeconfig文件放入<code>configfile</code>文件,注意删掉作为示例的两个文件</p>
+<pre><code>  python merge.py
+</code></pre>
+</li>
+<li>
+<p>自定义kubeconfig文件目录</p>
+<pre><code>  python merge.py -d {custom-dir}
+</code></pre>
+</li>
 </ul>
-
+</li>
+</ul>
 <h3 id="运行后操作">运行后操作</h3>
-
 <ul>
-<li><p>将生成的config文件放入.kube目录中</p>
-
-<pre><code>cp config ~/.kube
-</code></pre></li>
-
-<li><p>查看所有的可使用的kubernetes集群角色</p>
-
-<pre><code>kubectl config get-contexts
-</code></pre></li>
-
-<li><p>更多关于kubernetes配置文件操作</p>
-
-<pre><code>kubectl config --help
-</code></pre></li>
-
-<li><p>切换kubernetes配置</p>
-
-<pre><code>kubectl config use-context {your-contexts}
-</code></pre></li>
+<li>
+<p>将生成的config文件放入.kube目录中</p>
+<pre><code>  cp config ~/.kube
+</code></pre>
+</li>
+<li>
+<p>查看所有的可使用的kubernetes集群角色</p>
+<pre><code>  kubectl config get-contexts
+</code></pre>
+</li>
+<li>
+<p>更多关于kubernetes配置文件操作</p>
+<pre><code>  kubectl config --help
+</code></pre>
+</li>
+<li>
+<p>切换kubernetes配置</p>
+<pre><code>  kubectl config use-context {your-contexts}
+</code></pre>
+</li>
 </ul>
-
 <h2 id="结语">结语</h2>
-
 <p>在使用kubernetes初期，在多集群之间我一直是频繁的切换<code>.kube/config</code>文件来达到切换操作集群的目的。这也导致了我的<code>.kube</code>目录中存在这多个类似于<code>al_test_config.bak</code>、<code>al_prod_config.bak</code>、<code>hw_test_config.bak</code>的文件，本地环境已经自建环境，在集群切换的时候十分头疼。而后来使用<code>--kubeconfig</code>来进行切换集群，虽然比之前的方法要方便很多，但是并不十分优雅。这个简单的小工具一举解决了我的文件，对于我这个<code>kubectl</code>重度依赖者来说十分重要。</p>
 
     </div>
@@ -1061,7 +1034,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

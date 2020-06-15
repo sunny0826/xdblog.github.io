@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -561,97 +561,62 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<h2 id="前言">前言</h2>
-
+      <h2 id="前言">前言</h2>
 <p>最近接到一个需求，需要展示 ingress 上面的访问日志，由于我们的业务系统都部署在 Kubernetes 上面，通过 ingress 进行访问，所以这里的访问日志，其实就是我们全部业务系统的访问日志。</p>
-
-<p>日志采集方面，阿里云天生就提供了 nginx-ingress 日志和采集和展示，本身提供很多不错的基于 ingress 日志数据的图表与分析。如果你使用的是阿里云 ACK 容器服务，那么极端推荐使用，配置方法见官方文档：<a href="https://help.aliyun.com/document_detail/86532.html。" target="_blank">https://help.aliyun.com/document_detail/86532.html。</a></p>
-
-<p><img src="https://tva2.sinaimg.cn/large/ad5fbf65gy1gcfmo5d410j21970nzwjg.jpg" alt="image" /></p>
-
+<p>日志采集方面，阿里云天生就提供了 nginx-ingress 日志和采集和展示，本身提供很多不错的基于 ingress 日志数据的图表与分析。如果你使用的是阿里云 ACK 容器服务，那么极端推荐使用，配置方法见官方文档：https://help.aliyun.com/document_detail/86532.html。</p>
+<p><img src="https://tva2.sinaimg.cn/large/ad5fbf65gy1gcfmo5d410j21970nzwjg.jpg" alt="image"></p>
 <p>让人头秃的是，我们这次不但要采集 ingress 日志上比较常规的 <code>url</code> <code>client_ip</code> <code>method</code> <code>status</code> 等字段，还要采集我们系统在 <code>Request Headers</code> 里面自定义的参数，这些参数是默认的 ingress 并不展示的，所以需要我们进行调整。</p>
-
 <h2 id="开始">开始</h2>
-
 <p>首先明确需要调整的组件：</p>
-
 <ul>
 <li><code>nginx-ingress</code> 的 ConfigMap：用于打印自定义日志字段</li>
 <li><code>AliyunLogConfig</code>：这个是阿里云日志服务的 CRD 扩展，需要在这个里面加入新增的字段名和修改后的正则表达式</li>
 <li>在日志服务控制台，添加新增字段的指定字段查询</li>
 <li>新增展示仪表盘</li>
 </ul>
-
 <h3 id="调整-ingress-日志输出">调整 ingress 日志输出</h3>
-
-<p>我们 ingress 组件使用的是 <code>nginx-ingress-container</code>，这里要调整日志输出格式，老规矩，直接官方文档：<a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/。" target="_blank">https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/。</a></p>
-
+<p>我们 ingress 组件使用的是 <code>nginx-ingress-container</code>，这里要调整日志输出格式，老规矩，直接官方文档：https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/。</p>
 <p>从文档可见，只需要调整 <code>ingress-nginx</code> 的 ConfigMap <code>nginx-configuration</code> data 中的 <code>log-format-upstream</code> 字段即可。</p>
-
-<div class="alert alert-note">
-  <div>
-    <p>知识点：</p>
-
-<p>官方文档里面给的说明不是很详细，没有提到 <code>Request Headers</code> 里自定义的字段应该怎么表示（也有可能是我眼瘸没看见），但经过我多次试验发现，<code>Request Headers</code> 里的字段在 <code>log-format-upstream</code> 中应该使用 <code>$http_{your field}</code> 表示，比如 <code>$http_cookie</code>；而带 <code>-</code> 的字段则需要将 <code>-</code> 改为 <code>_</code>，并且使用小写，比如 <code>app-Id</code> 就应使用 <code>$http_app_id</code> 表示。</p>
-
-  </div>
-</div>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>修改 ConfigMap，<code>ingress-controller</code> 将进行热更新，看到如下日志，就证明配置已完成更新，接下来就可以看到你自定义字段的值已经打印出来了。</p>
-
-<pre><code class="language-go">I0302 08:20:58.393365 9 controller.go:200] Backend successfully reloaded.
-</code></pre>
-
-<h3 id="调整阿里云日志组件配置">调整阿里云日志组件配置</h3>
-
-<div class="alert alert-note">
-  <div>
-    执行下面的步骤请确保已经按照<a href="https://help.aliyun.com/document_detail/86532.html" target="_blank">官方文档</a>正确部署阿里云日志服务在您的 K8S 集群之后，并且已达到要求的版本。
-  </div>
-</div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">I0302</span> <span style="color:#ae81ff">08</span>:<span style="color:#ae81ff">20</span>:<span style="color:#ae81ff">58.393365</span> <span style="color:#ae81ff">9</span> <span style="color:#a6e22e">controller</span>.<span style="color:#66d9ef">go</span>:<span style="color:#ae81ff">200</span>] <span style="color:#a6e22e">Backend</span> <span style="color:#a6e22e">successfully</span> <span style="color:#a6e22e">reloaded</span>.
+</code></pre></div><h3 id="调整阿里云日志组件配置">调整阿里云日志组件配置</h3>
+<!-- raw HTML omitted -->
 <p>日志已经成功打印了，接下来就是调整日志采集的字段了，这里只需要调整日志服务 CRD 的扩展配置即可。</p>
-
-<pre><code class="language-bash">$ kubectl edit AliyunLogConfig k8s-nginx-ingress
-</code></pre>
-
-<p>在修改配置之前，推荐先去 <a href="https://regex101.com/" target="_blank">https://regex101.com/</a> 验证正则表达式是否正确，将调整过的正则表达式和 <code>ingress-controller</code> 打印的日志贴入下图指定位置，就可以看出正则表达式是否正确。</p>
-
-<p><img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1gcfo9lxuc6j21gv0juwka.jpg" alt="image" /></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl edit AliyunLogConfig k8s-nginx-ingress
+</code></pre></div><p>在修改配置之前，推荐先去 <a href="https://regex101.com/">https://regex101.com/</a> 验证正则表达式是否正确，将调整过的正则表达式和 <code>ingress-controller</code> 打印的日志贴入下图指定位置，就可以看出正则表达式是否正确。</p>
+<p><img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1gcfo9lxuc6j21gv0juwka.jpg" alt="image"></p>
 <p>然后将添加的字段名称（这个名称将作为 key 在日志服务中展示，可以与 header 中的字段不同）和正则表达式贴入如下 CRD 中。</p>
-
-<pre><code class="language-yaml">apiVersion: log.alibabacloud.com/v1alpha1
-kind: AliyunLogConfig
-metadata:
-  # your config name, must be unique in you k8s cluster
-  name: k8s-nginx-ingress
-spec:
-  # logstore name to upload log
-  logstore: nginx-ingress
-  # product code, only for k8s nginx ingress
-  productCode: k8s-nginx-ingress
-  # logtail config detail
-  logtailConfig:
-    inputType: plugin
-    # logtail config name, should be same with [metadata.name]
-    configName: k8s-nginx-ingress
-    inputDetail:
-      plugin:
-        inputs:
-        - type: service_docker_stdout
-          detail:
-            IncludeLabel:
-              io.kubernetes.container.name: nginx-ingress-controller
-            Stderr: false
-            Stdout: true
-        processors:
-        - type: processor_regex
-          detail:
-            KeepSource: false
-            Keys:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: log.alibabacloud.com/v1alpha1
+<span style="color:#66d9ef">kind</span>: AliyunLogConfig
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#75715e"># your config name, must be unique in you k8s cluster</span>
+  <span style="color:#66d9ef">name</span>: k8s-nginx-ingress
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#75715e"># logstore name to upload log</span>
+  <span style="color:#66d9ef">logstore</span>: nginx-ingress
+  <span style="color:#75715e"># product code, only for k8s nginx ingress</span>
+  <span style="color:#66d9ef">productCode</span>: k8s-nginx-ingress
+  <span style="color:#75715e"># logtail config detail</span>
+  <span style="color:#66d9ef">logtailConfig</span>:
+    <span style="color:#66d9ef">inputType</span>: plugin
+    <span style="color:#75715e"># logtail config name, should be same with [metadata.name]</span>
+    <span style="color:#66d9ef">configName</span>: k8s-nginx-ingress
+    <span style="color:#66d9ef">inputDetail</span>:
+      <span style="color:#66d9ef">plugin</span>:
+        <span style="color:#66d9ef">inputs</span>:
+        - <span style="color:#66d9ef">type</span>: service_docker_stdout
+          <span style="color:#66d9ef">detail</span>:
+            <span style="color:#66d9ef">IncludeLabel</span>:
+              <span style="color:#66d9ef">io.kubernetes.container.name</span>: nginx-ingress-controller
+            <span style="color:#66d9ef">Stderr</span>: <span style="color:#66d9ef">false</span>
+            <span style="color:#66d9ef">Stdout</span>: <span style="color:#66d9ef">true</span>
+        <span style="color:#66d9ef">processors</span>:
+        - <span style="color:#66d9ef">type</span>: processor_regex
+          <span style="color:#66d9ef">detail</span>:
+            <span style="color:#66d9ef">KeepSource</span>: <span style="color:#66d9ef">false</span>
+            <span style="color:#66d9ef">Keys</span>:
             - client_ip
             - x_forward_for
             - remote_user
@@ -672,45 +637,30 @@ spec:
             - upstream_status
             - req_id
             - host
-            - #需要添加的字段名称
+            - <span style="color:#75715e">#需要添加的字段名称</span>
             - ...
-            NoKeyError: true
-            NoMatchError: true
-            Regex: #修改后的正则表达式
-            SourceKey: content
-</code></pre>
-
-<h3 id="日志控制台新增字段">日志控制台新增字段</h3>
-
+            <span style="color:#66d9ef">NoKeyError</span>: <span style="color:#66d9ef">true</span>
+            <span style="color:#66d9ef">NoMatchError</span>: <span style="color:#66d9ef">true</span>
+            <span style="color:#66d9ef">Regex</span>: <span style="color:#75715e">#修改后的正则表达式</span>
+            <span style="color:#66d9ef">SourceKey</span>: content
+</code></pre></div><h3 id="日志控制台新增字段">日志控制台新增字段</h3>
 <p>如果上面的操作无误的话，日志服务中就会展示您添加的字段了，如果配置有误，所有的自定义字段都会不显示，只会显示保留字段名称。</p>
-
 <p>添加指定字段查询，就可以快速查看添加的字段了。</p>
-
-<p><img src="https://tva3.sinaimg.cn/large/ad5fbf65gy1gcfohy9fv4j21460gxtc6.jpg" alt="image" /></p>
-
+<p><img src="https://tva3.sinaimg.cn/large/ad5fbf65gy1gcfohy9fv4j21460gxtc6.jpg" alt="image"></p>
 <h3 id="新增展示仪表盘">新增展示仪表盘</h3>
-
 <p>日志既然已经取到了，那么展示就很容易了，直接在查询栏中输入分析语句，日志服务支持 SQL 聚合日志，并直接生成统计图表，点击添加到仪表盘可以就可以添加到现有仪表盘或者新建一个仪表盘。</p>
-
-<p><img src="https://tva2.sinaimg.cn/large/ad5fbf65gy1gcfos33c23j219a0nuae3.jpg" alt="image" /></p>
-
+<p><img src="https://tva2.sinaimg.cn/large/ad5fbf65gy1gcfos33c23j219a0nuae3.jpg" alt="image"></p>
 <h2 id="成果">成果</h2>
-
 <p>之后进行一些微调，添加过滤栏，由于这里统计的是登录用户，你甚至都可以添加一个词云来看看哪些用于使用系统比较频繁。当然，想添加什么都看您的喜好，日志在你手里，想怎么分析都可以。</p>
-
-<p><img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1gcfowk10tjj21970ns79i.jpg" alt="image" /></p>
-
+<p><img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1gcfowk10tjj21970ns79i.jpg" alt="image"></p>
 <h2 id="结语">结语</h2>
-
 <p>本次实现的功能并不是什么高深的功能，只不过是一个简单的访问日志记录和展示，相信每个系统其实都有一套这种功能。但是这种实现方式在我看来优点更多：</p>
-
 <ul>
 <li>无代码：全程没有写一行代码，如果有的话，也就是业务需要统一 <code>Request Headers</code> 里面的字段。</li>
 <li>配置简单：只需要修改 nginx ConfigMap 中的一个字段，并在 CRD 中添加字段名称和正在表达式，唯一的难度可能就是正则表达式。</li>
 <li>配置快：整体的配置时间很短，加上查文档和调整图表也不过半天的时间，肯定比 <code>提需求-评估-开发-测试-验收</code> 全流程走一遍，前端后端撕一遍要快的多的多的多。</li>
 <li>高度定制：可以根据自己的喜好，随意定制图表。</li>
 </ul>
-
 <blockquote>
 <p>最近发现阿里云日志服务是一个宝藏产品，从安全到 k8s 业务，从成本控制到疫情动态，日志服务真的就是把所有没有前端开发资源的服务都帮了一把。
 &mdash; 摘自本人朋友圈</p>
@@ -1087,7 +1037,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

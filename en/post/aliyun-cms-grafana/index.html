@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -356,7 +356,7 @@
     <div class="col-lg-8">
         <img class="img-fluid w-100" src="https://tva2.sinaimg.cn/large/ad5fbf65ly1ge3i6sry8nj21y014swo7.jpg" itemprop="image" alt="">
         <span
-          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+          class="article-header-caption">Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a></span>
     </div>
     <div class="col-lg-8">
       <h1 itemprop="name">使用 Grafana 展示阿里云监控指标</h1>
@@ -560,122 +560,77 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<h2 id="前言">前言</h2>
-
+      <h2 id="前言">前言</h2>
 <p>对于阿里云用户来说，阿里云监控是一个很不错的产品，首先它在配额内使用是免费的！免费的！免费的！重要的事情说三遍。他的功能类似于 zabbix，但是比 zabbix 提供了更多的监控项，基本上在云上使用的资源都可以通过云监控来实时监控。而它提供的开箱即用方式，天然集成云资源，并提供多种告警方式，免去了监控与告警系统搭建与维护的繁琐，并且减少了资源的消耗，比购买 ECS 自己搭建 zabbix 要少消耗很多资源。同时阿里云监控和阿里云其他服务一样，也提供了比较完整的 OpenApi 以及各种语言的 sdk，可以基于阿里云的 OpenApi 将其与自己的系统集成。我们之前也是这么做的，但是随着监控项的增加，以及经常需要在办公场地监控投屏的专项监控页，光凭我们的运维开发工程师使用 vue 写速度明显跟不上，而且页面的美观程度也差很多。</p>
-
 <h3 id="手写前端-vs-grafana">手写前端 VS Grafana</h3>
-
 <p>手写前端虽然可定制化程度更高，但是需要消耗大量精力进行调试，对于运维人员，哪怕是运维开发也是吃不消的（前端小哥哥和小姐姐是不会来帮你的，下图就是我去年拿 vue 写的伪 Grafana 展示页面，花费了大约一周时间在调整这些前端元素）。
-<img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1g8pfrw1licj22ye1gg4qp.jpg" alt="image" /></p>
-
+<img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1g8pfrw1licj22ye1gg4qp.jpg" alt="image"></p>
 <p>Grafana 则标准化程度很高，展示也更加符合大众审美，某些定制化需求可以通过自定义 DataSource 或者 AJAX 插件的 iframe 模式完成。开发后端 DataSource 肯定就没有前端调整 css 那么痛苦和耗时了，整体配置开发一个这样的页面可能只消耗一人天就能完成。而在新产品上线时，构建一个专项监控展示页面速度就更快了，几分钟内就能完成。
-<img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1g8pfvp0keej22yc1g2khm.jpg" alt="image" /></p>
-
+<img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1g8pfvp0keej22yc1g2khm.jpg" alt="image"></p>
 <h2 id="关于阿里云监控">关于阿里云监控</h2>
-
 <p>云监控（CloudMonitor）是一项针对阿里云资源和互联网应用进行监控的服务。</p>
-
 <p>云监控为云上用户提供开箱即用的企业级开放型一站式监控解决方案。涵盖 IT 设施基础监控，外网网络质量拨测监控，基于事件、自定义指标、日志的业务监控。为您全方位提供更高效、更全面、更省钱的监控服务。通过提供跨产品、跨地域的应用分组管理模型和报警模板，帮助您快速构建支持几十种云产品、管理数万实例的高效监控报警管理体系。通过提供 Dashboard，帮助您快速构建自定义业务监控大盘。使用云监控，不但可以帮助您提升您的系统服务可用时长，还可以降低企业 IT 运维监控成本。</p>
-
 <p>云监控服务可用于收集获取阿里云资源的监控指标或用户自定义的监控指标，探测服务可用性，以及针对指标设置警报。使您全面了解阿里云上的资源使用情况、业务的运行状况和健康度，并及时收到异常报警做出反应，保证应用程序顺畅运行。</p>
-
 <h2 id="关于-grafana">关于 Grafana</h2>
-
 <p>Grafana 是一个跨平台的开源的度量分析和可视化工具，可以通过将采集的数据查询然后可视化的展示，并及时通知。由于云监控的 Grafana 还没有支持告警，所以我们这里只用了 Grafana 的可视化功能，而告警本身就是云监控自带的，所以也不需要依赖 Grafana 来实现。而我们的 Prometheus 也使用了 Grafana 进行数据可视化，所以有现成的 Grafana-Server 使用。</p>
-
 <h2 id="阿里云监控对接-grafana">阿里云监控对接 Grafana</h2>
-
 <p>首先 Grafana 服务的部署方式这里就不做介绍了，请使用较新版本的 Grafana，最好是 5.5.0+。后文中也有我开源的基于阿里云云监控的 Grafana 的 helm chart，可以使用 helm 安装，并会直接导入云监控的指标，这个会在后文中介绍。</p>
-
 <h3 id="安装阿里云监控插件">安装阿里云监控插件</h3>
-
 <p>进入插件目录进行安装</p>
-
-<pre><code class="language-bash">cd /var/lib/grafana/plugins/
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd /var/lib/grafana/plugins/
 git clone https://github.com/aliyun/aliyun-cms-grafana.git 
 service grafana-server restart
-</code></pre>
-
-<p>如果是使用 docker 或者部署在 k8s 集群，这里也可以使用环境变量在 Grafana 部署的时候进行安装</p>
-
-<pre><code class="language-yaml">...
-spec:
-  containers:
-  - env:
-    - name: GF_INSTALL_PLUGINS  # 多个插件请使用,隔开
-      value: grafana-simple-json-datasource,https://github.com/aliyun/aliyun-cms-grafana/archive/master.zip;aliyun-cms-grafana
+</code></pre></div><p>如果是使用 docker 或者部署在 k8s 集群，这里也可以使用环境变量在 Grafana 部署的时候进行安装</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">...
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">containers</span>:
+  - <span style="color:#66d9ef">env</span>:
+    - <span style="color:#66d9ef">name</span>: GF_INSTALL_PLUGINS  <span style="color:#75715e"># 多个插件请使用,隔开</span>
+      <span style="color:#66d9ef">value</span>: grafana-simple-json-datasource,https://github.com/aliyun/aliyun-cms-grafana/archive/master.zip;aliyun-cms-grafana
 ...
-</code></pre>
-
-<p>您也可以下载 aliyun-cms-grafana.zip 插件解压后，上传服务器的 Grafana 的 plugins 目录下，重启 grafana-server 即可。</p>
-
+</code></pre></div><p>您也可以下载 aliyun-cms-grafana.zip 插件解压后，上传服务器的 Grafana 的 plugins 目录下，重启 grafana-server 即可。</p>
 <h3 id="配置云监控-datasource">配置云监控 DataSource</h3>
-
 <ol>
 <li>Grafana 启动后，进入 <code>Configuration</code> 页面，选择 <code>DataSource</code> Tab 页，单击右上方的<code>Add data source</code>，添加数据源。</li>
 <li>选中<code>CMS Grafana Service</code>，单击<code>select</code>。
-<img src="https://tvax2.sinaimg.cn/large/ad5fbf65gy1g8ph0ukr0pj21nm0jk76m.jpg" alt="image" /></li>
+<img src="https://tvax2.sinaimg.cn/large/ad5fbf65gy1g8ph0ukr0pj21nm0jk76m.jpg" alt="image"></li>
 <li>填写配置项，URL 根据云监控所在地域填写，并且填写阿里云账号的 accessKeyId 和 accessSecret，完成后单击<code>Save&amp;Test</code>。
-<img src="https://tvax3.sinaimg.cn/large/ad5fbf65gy1g8ph4bg2bij218m194n9f.jpg" alt="image" /></li>
+<img src="https://tvax3.sinaimg.cn/large/ad5fbf65gy1g8ph4bg2bij218m194n9f.jpg" alt="image"></li>
 </ol>
-
 <h3 id="创建-dashboard">创建 Dashboard</h3>
-
 <ol>
 <li>单击 <code>Create</code> -&gt; <code>Dashboard</code> -&gt; <code>Add Query</code></li>
 <li>配置图标，数据源选择之前添加的 <code>CMS Grafana Service</code>，然后文档中的配置项填入指标即可（这里要注意的是，云监控 API 给返回的只有实例 ID，并没有自定义的实例名称，这里需要手动将其填入 <code>Y - column describe</code> 中；而且只支持输入单个 Dimension，若输入多个，默认选第一个，由于这些问题才有了后续我开发的 <code>cms-grafana-builder</code> 的动机）。
-<img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1g8phck0irbj22ye13in79.jpg" alt="image" /></li>
-<li>配置参考 <a href="https://help.aliyun.com/document_detail/28619.html" target="_blank">云产品监控项</a>，
-<img src="https://tva2.sinaimg.cn/large/ad5fbf65gy1g8phg832uvj21a40vo793.jpg" alt="image" /></li>
+<img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1g8phck0irbj22ye13in79.jpg" alt="image"></li>
+<li>配置参考 <a href="https://help.aliyun.com/document_detail/28619.html">云产品监控项</a>，
+<img src="https://tva2.sinaimg.cn/large/ad5fbf65gy1g8phg832uvj21a40vo793.jpg" alt="image"></li>
 </ol>
-
 <h2 id="使用-helm-chart-的方式部署-grafana">使用 helm chart 的方式部署 Grafana</h2>
-
-<p>项目地址：<a href="https://github.com/sunny0826/cms-grafana-builder" target="_blank">https://github.com/sunny0826/cms-grafana-builder</a></p>
-
+<p>项目地址：https://github.com/sunny0826/cms-grafana-builder</p>
 <h3 id="cms-grafana-builder">cms-grafana-builder</h3>
-
 <p>由于上文中的问题，我们需要手动选择每个实例 ID 到 Dimension 中，并且还要讲该实例的名称键入 <code>Y - column describe</code> 中，十分的繁琐，根本不可能大批量的输入。</p>
-
 <p>这就是我开发这个 Grafana 指标参数生成器的原因，起初只是一个 python 脚本，用来将我们要监控的指标组装成一个 Grafana 可以使用 json 文件，之后结合 Grafana 的容器化部署方法，将其做成了一个 helm chart。可以在启动的时候自动将需要的参数生成，并且每日会对所有指标进行更新，这样就不用每次新购或者释放掉资源后还需要再跑一遍脚本。</p>
-
 <h3 id="部署">部署</h3>
-
 <p>只需要将项目拉取下来运行 <code>helm install</code> 命令</p>
-
-<pre><code class="language-bash">helm install my-release kk-grafana-cms \
---namespace {your_namespace} \
---set access_key_id={your_access_key_id} \
---set access_secret={your_access_secret} \
---set region_id={your_aliyun_region_id} \
---set password={admin_password}
-</code></pre>
-
-<p>更多详情见 <a href="https://github.com/sunny0826/cms-grafana-builder" target="_blank">github README</a>，欢迎提 issue 交流。</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm install my-release kk-grafana-cms <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--namespace <span style="color:#f92672">{</span>your_namespace<span style="color:#f92672">}</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--set access_key_id<span style="color:#f92672">={</span>your_access_key_id<span style="color:#f92672">}</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--set access_secret<span style="color:#f92672">={</span>your_access_secret<span style="color:#f92672">}</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--set region_id<span style="color:#f92672">={</span>your_aliyun_region_id<span style="color:#f92672">}</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--set password<span style="color:#f92672">={</span>admin_password<span style="color:#f92672">}</span>
+</code></pre></div><p>更多详情见 <a href="https://github.com/sunny0826/cms-grafana-builder">github README</a>，欢迎提 issue 交流。</p>
 <h3 id="指标选择">指标选择</h3>
-
 <p>在部署成功后，可修改 ConfigMap：<code>grafana-cms-metric</code>，然后修改对应的监控指标项。</p>
-
 <h3 id="效果">效果</h3>
-
 <p>ECS:
-<img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1g8pi9toh3dj21gv0pldyf.jpg" alt="" /></p>
-
+<img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1g8pi9toh3dj21gv0pldyf.jpg" alt=""></p>
 <p>RDS:
-<img src="https://tva2.sinaimg.cn/large/ad5fbf65gy1g8pi9o91ejj21h80q316p.jpg" alt="" /></p>
-
+<img src="https://tva2.sinaimg.cn/large/ad5fbf65gy1g8pi9o91ejj21h80q316p.jpg" alt=""></p>
 <p>EIP:
-<img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1g8pi9i9if3j21h70q3aif.jpg" alt="" /></p>
-
+<img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1g8pi9i9if3j21h70q3aif.jpg" alt=""></p>
 <p>Redis:
-<img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1g8pi8ss733j21h30pz7b6.jpg" alt="" /></p>
-
+<img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1g8pi8ss733j21h30pz7b6.jpg" alt=""></p>
 <h2 id="后记">后记</h2>
-
 <p>为了满足公司需求，后续还开发 DataSource 定制部分，用于公司监控大屏的展示，这部分是另一个项目，不在这个项目里，就不细说了，之后有机会总结后再进行分享。</p>
 
     </div>
@@ -1049,7 +1004,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

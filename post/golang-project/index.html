@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -356,7 +356,7 @@
     <div class="col-lg-8">
         <img class="img-fluid w-100" src="https://tvax3.sinaimg.cn/large/ad5fbf65ly1ge3iinqxvnj21qf15oq62.jpg" itemprop="image" alt="">
         <span
-          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+          class="article-header-caption">Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a></span>
     </div>
     <div class="col-lg-8">
       <h1 itemprop="name">Golang 装逼指南：在 GitHub 上构建一个看上去正规的 Golang 项目</h1>
@@ -560,176 +560,117 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<h2 id="前言">前言</h2>
-
-<p>接触 golang 时间很长，但是真正动手开始写 golang 也就是在最近。虽然写的不多，但是见过的 golang 项目可是不计其数，从 <a href="https://github.com/kubernetes/kubernetes" target="_blank">Kubernetes</a> 和 <a href="https://github.com/istio/istio" target="_blank">istio</a> 到亲身参与的 <a href="https://github.com/kubernetes-sigs/kustomize" target="_blank">kustomize</a> 再到 Kubernetes 生态圈的众多小工具，比如： <a href="https://github.com/instrumenta/kubeval" target="_blank">kubeval</a> 、 <a href="https://github.com/flant/kubedog" target="_blank">kubedog</a> 等。从项目使用者和贡献者的角度接触了各种形形色色的 golang 项目。作为一个开发人员，在享受各种开源项目带来便利的同时，也希望自己动手开发一个 golang 项目。以我阅项目无数的经验，那么肯定要构建一个看上去正规的 GitHub 项目。</p>
-
+      <h2 id="前言">前言</h2>
+<p>接触 golang 时间很长，但是真正动手开始写 golang 也就是在最近。虽然写的不多，但是见过的 golang 项目可是不计其数，从 <a href="https://github.com/kubernetes/kubernetes">Kubernetes</a> 和 <a href="https://github.com/istio/istio">istio</a> 到亲身参与的 <a href="https://github.com/kubernetes-sigs/kustomize">kustomize</a> 再到 Kubernetes 生态圈的众多小工具，比如： <a href="https://github.com/instrumenta/kubeval">kubeval</a> 、 <a href="https://github.com/flant/kubedog">kubedog</a> 等。从项目使用者和贡献者的角度接触了各种形形色色的 golang 项目。作为一个开发人员，在享受各种开源项目带来便利的同时，也希望自己动手开发一个 golang 项目。以我阅项目无数的经验，那么肯定要构建一个看上去正规的 GitHub 项目。</p>
 <h2 id="goland-设置">GoLand 设置</h2>
-
 <p>Go 开发环境的安装网上教程很多，这里就不做介绍了。这里主要介绍一下在 GoLand 上开发环境的设置，这里的设置主要在 MacOS 上进行，其他系统可能有所不同。</p>
-
 <h3 id="使用goland-ide-vgo">使用Goland IDE vgo</h3>
-
 <p><code>vgo</code> 是基于 Go Module 规范的包管理工具，同官方的 go mod 命令工具类似。</p>
-
 <ol>
-<li><p>开启 <code>vgo</code>，<code>GoLand</code>-&gt;<code>Preferences</code>-&gt;<code>GO</code>-&gt;<code>Go Modules(vgo)</code>
-<img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g556yudwh8j20s20jhgn4.jpg" alt="image" /></p></li>
-
-<li><p>手动修改 <code>go.mod</code></p>
-
+<li>
+<p>开启 <code>vgo</code>，<code>GoLand</code>-&gt;<code>Preferences</code>-&gt;<code>GO</code>-&gt;<code>Go Modules(vgo)</code>
+<img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g556yudwh8j20s20jhgn4.jpg" alt="image"></p>
+</li>
+<li>
+<p>手动修改 <code>go.mod</code></p>
 <p>其中 latest 为最新版本，GoLand 会去下载最新依赖代码，下载成功后会修改 <code>go.mod</code> 并且生成 <code>go.sum</code> 依赖分析文件。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">module</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">sunny0826</span><span style="color:#f92672">/</span><span style="color:#a6e22e">hamal</span>
 
-<pre><code class="language-go">module github.com/sunny0826/hamal
+<span style="color:#66d9ef">go</span> <span style="color:#ae81ff">1.12</span>
 
-go 1.12
-
-require (
-    github.com/mitchellh/go-homedir latest
-    github.com/spf13/cobra latest
-    github.com/spf13/viper latest
+<span style="color:#a6e22e">require</span> (
+    <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">mitchellh</span><span style="color:#f92672">/</span><span style="color:#66d9ef">go</span><span style="color:#f92672">-</span><span style="color:#a6e22e">homedir</span> <span style="color:#a6e22e">latest</span>
+    <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">spf13</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cobra</span> <span style="color:#a6e22e">latest</span>
+    <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">spf13</span><span style="color:#f92672">/</span><span style="color:#a6e22e">viper</span> <span style="color:#a6e22e">latest</span>
 )
-</code></pre></li>
-
-<li><p>更新成功</p>
-
+</code></pre></div></li>
+<li>
+<p>更新成功</p>
 <p>在更新成功后，会生成 <code>go.sum</code> 文件并修改 <code>go.mod</code> 文件。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">module</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">sunny0826</span><span style="color:#f92672">/</span><span style="color:#a6e22e">hamal</span>
 
-<pre><code class="language-go">module github.com/sunny0826/hamal
+<span style="color:#66d9ef">go</span> <span style="color:#ae81ff">1.12</span>
 
-go 1.12
-
-require (
-    github.com/mitchellh/go-homedir v1.1.0
-    github.com/spf13/cobra v0.0.5
-    github.com/spf13/viper v1.4.0
+<span style="color:#a6e22e">require</span> (
+    <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">mitchellh</span><span style="color:#f92672">/</span><span style="color:#66d9ef">go</span><span style="color:#f92672">-</span><span style="color:#a6e22e">homedir</span> <span style="color:#a6e22e">v1</span><span style="color:#ae81ff">.1.0</span>
+    <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">spf13</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cobra</span> <span style="color:#a6e22e">v0</span><span style="color:#ae81ff">.0.5</span>
+    <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">spf13</span><span style="color:#f92672">/</span><span style="color:#a6e22e">viper</span> <span style="color:#a6e22e">v1</span><span style="color:#ae81ff">.4.0</span>
 )
 
-</code></pre></li>
-
-<li><p>使用快捷键 <code>⌥(option)+↩(return)</code> 或者点击鼠标右键, 选择 <code>Sync packages of github.com/sunny0826/hamal</code> 在 import 处导入依赖。</p></li>
+</code></pre></div></li>
+<li>
+<p>使用快捷键 <code>⌥(option)+↩(return)</code> 或者点击鼠标右键, 选择 <code>Sync packages of github.com/sunny0826/hamal</code> 在 import 处导入依赖。</p>
+</li>
 </ol>
-
 <h3 id="配置代理">配置代理</h3>
-
 <p>如果要选出 golang 最劝退一个原因，那么依赖下载难肯定得票最高！这个时候一个合适的梯子就很重要了，如果没有这个梯子，上面的这步就完全无法完成。这里主要介绍 GoLand 上的配置，Shadowsocks 的安装和配置就不做介绍了。</p>
-
 <p><code>GoLand</code>-&gt;<code>Preferences</code>-&gt;<code>Appearance &amp; Behavior</code>-&gt;<code>System Settings</code>-&gt;<code>HTTP Proxy</code> 这里设置好之后，别忘了点击 <code>Check connection</code> 测试一下梯子搭成没有。
-<img src="https://ws4.sinaimg.cn/large/ad5fbf65gy1g557j6it07j20s20je40p.jpg" alt="image" /></p>
-
+<img src="https://ws4.sinaimg.cn/large/ad5fbf65gy1g557j6it07j20s20je40p.jpg" alt="image"></p>
 <h3 id="配置-go-fmt-goimports-和-golangci-lint">配置 <code>go fmt</code>、 <code>goimports</code> 和 <code>golangci-lint</code></h3>
-
 <p>这三个工具都是 GoLand 自带的，设置起来十分简单:<code>GoLand</code>-&gt;<code>Preferences</code>-&gt;<code>Tools</code>-&gt;<code>File Watchers</code>，点击添加即可。之后在写完代码之后就会自动触发这3个工具的自动检测，工具作用：</p>
-
 <ul>
 <li><code>go fmt</code> : 统一的代码格式化工具。</li>
 <li><code>golangci-lint</code> : 静态代码质量检测工具，用于包的质量分析。</li>
 <li><code>goimports</code> : 自动 import 依赖包工具。</li>
 </ul>
-
-<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g557ps83gsj20s30njtbs.jpg" alt="image" /></p>
-
+<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g557ps83gsj20s30njtbs.jpg" alt="image"></p>
 <h3 id="安装配置-golint">安装配置 <code>golint</code></h3>
-
 <p>GoLand 没有自带 <code>golint</code> 工具，需要手动安装：</p>
-
-<pre><code class="language-bash">mkdir -p $GOPATH/src/golang.org/x/
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir -p $GOPATH/src/golang.org/x/
 cd $GOPATH/src/golang.org/x/
 git clone https://github.com/golang/lint.git
 git clone https://github.com/golang/tools.git
 cd $GOPATH/src/golang.org/x/lint/golint
 go install
-</code></pre>
-
-<p>安装成功之后将会在 <code>$GOPATH/bin</code> 目录下看到自动生成了 <code>golint</code> 二进制工具文件。</p>
-
+</code></pre></div><p>安装成功之后将会在 <code>$GOPATH/bin</code> 目录下看到自动生成了 <code>golint</code> 二进制工具文件。</p>
 <p>GoLand 配置 <code>golint</code>，修改 <code>Name</code>, <code>Program</code>, <code>Arguments</code> 三项配置，其中 <code>Arguments</code> 需要加上 <code>-set_exit_status</code> 参数，如图所示：</p>
-
-<p><img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g557z8a5jgj20ln0i0t9z.jpg" alt="image" /></p>
-
+<p><img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g557z8a5jgj20ln0i0t9z.jpg" alt="image"></p>
 <h2 id="travis-ci-持续集成">Travis CI 持续集成</h2>
+<p>在 Github 上装逼怎么能少的了 Travis CI ，直接登录 <a href="https://travis-ci.org/">Travis CI</a>，使用 GitHub 登录，然后选择需要使用 Travis CI 的项目，在项目根目录添加 <code>.travis.yml</code> ，内容如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">language</span>: go
 
-<p>在 Github 上装逼怎么能少的了 Travis CI ，直接登录 <a href="https://travis-ci.org/" target="_blank">Travis CI</a>，使用 GitHub 登录，然后选择需要使用 Travis CI 的项目，在项目根目录添加 <code>.travis.yml</code> ，内容如下：</p>
+<span style="color:#66d9ef">go</span>:
+  - <span style="color:#ae81ff">1.12.5</span>
 
-<pre><code class="language-yaml">language: go
+<span style="color:#66d9ef">sudo</span>: required
 
-go:
-  - 1.12.5
+<span style="color:#66d9ef">install</span>:
+  - echo <span style="color:#e6db74">&#34;install&#34;</span>
 
-sudo: required
-
-install:
-  - echo &quot;install&quot;
-
-script:
-  - echo &quot;script&quot;
-</code></pre>
-
-<p>这里只是一个示例，在每次 push 代码之后，都会触发 CI，具体语法可以参看<a href="https://docs.travis-ci.com/" target="_blank">官方文档</a>。</p>
-
+<span style="color:#66d9ef">script</span>:
+  - echo <span style="color:#e6db74">&#34;script&#34;</span>
+</code></pre></div><p>这里只是一个示例，在每次 push 代码之后，都会触发 CI，具体语法可以参看<a href="https://docs.travis-ci.com/">官方文档</a>。</p>
 <p><strong>装逼重点：</strong> 你以为使用 Travis CI 就是为了持续集成吗？那就太天真了！使用 Travis CI 当然为了他的 Badges ，将 <code>RESULT</code> 拷贝到你的 <code>README.md</code> 里面就好了。</p>
-
-<p><img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g558xf6io4j22dk15an4t.jpg" alt="image" /></p>
-
+<p><img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g558xf6io4j22dk15an4t.jpg" alt="image"></p>
 <h2 id="go-report-card">GO Report Card</h2>
-
-<p><strong>又一装逼重点</strong>：我们在 GoLand 上安装了 <code>golint</code> 等工具进行代码质量检测，在撸码的时候就能进行代码检查，那么这个就是为了纯装逼了。<a href="https://goreportcard.com/" target="_blank">GO Report Card</a> 是一个 golang 代码检测网站，你只需把 Github 地址填上去即可。获取 Badges 的方法和 Travis CI 类似，将 MarkDown 中的内容拷贝到 <code>RERADME.md</code> 中就好。</p>
-
-<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g559flsl3xj21t410ok1a.jpg" alt="image" /></p>
-
+<p><strong>又一装逼重点</strong>：我们在 GoLand 上安装了 <code>golint</code> 等工具进行代码质量检测，在撸码的时候就能进行代码检查，那么这个就是为了纯装逼了。<a href="https://goreportcard.com/">GO Report Card</a> 是一个 golang 代码检测网站，你只需把 Github 地址填上去即可。获取 Badges 的方法和 Travis CI 类似，将 MarkDown 中的内容拷贝到 <code>RERADME.md</code> 中就好。</p>
+<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g559flsl3xj21t410ok1a.jpg" alt="image"></p>
 <h2 id="goreleaser">GoReleaser</h2>
-
 <p>持续集成有了，代码检查也有了，再下面就是怎么发布一个漂亮的 release 了。如果还在手动发布 release ，那么就又掉 low 了。使用 GoReleaser 一行命令来发布一个漂亮的 release 吧。</p>
-
 <p>由于使用的的 MacOS ，这里使用 <code>brew</code> 来安装：</p>
-
-<pre><code class="language-bash">brew install goreleaser
-</code></pre>
-
-<p>在项目根目录生成 <code>.goreleaser.yml</code> 配置：</p>
-
-<pre><code class="language-bash">goreleaser init
-</code></pre>
-
-<p>配置好了以后要记得往 <code>.gitignore</code> 加上 <code>dist</code>，因为 goreleaser 会默认把编译编译好的文件输出到 <code>dist</code> 目录中。</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install goreleaser
+</code></pre></div><p>在项目根目录生成 <code>.goreleaser.yml</code> 配置：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">goreleaser init
+</code></pre></div><p>配置好了以后要记得往 <code>.gitignore</code> 加上 <code>dist</code>，因为 goreleaser 会默认把编译编译好的文件输出到 <code>dist</code> 目录中。</p>
 <p>goreleaser 配置好后，可以先编译测试一下：</p>
-
-<pre><code class="language-bash">goreleaser --skip-validate --skip-publish --snapshot
-</code></pre>
-
-<p><strong>注意：</strong> 首次使用 goreleaser 要配置 GITHUB_TOKEN ，可以在<a href="https://github.com/settings/tokens/new" target="_blank">这里</a>申请，申请好之后运行下面的命令配置<code>GITHUB_TOKEN</code></p>
-
-<pre><code class="language-bash">export GITHUB_TOKEN=&lt;YOUR_TOKEN&gt;
-</code></pre>
-
-<p>确保没有问题，那么就可以操作 git 和 goreleaser 来发布 release 了。</p>
-
-<pre><code class="language-bash">git add .
-git commit -m &quot;add goreleaser&quot;
-git tag -a v0.0.3 -m &quot;First release&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">goreleaser --skip-validate --skip-publish --snapshot
+</code></pre></div><p><strong>注意：</strong> 首次使用 goreleaser 要配置 GITHUB_TOKEN ，可以在<a href="https://github.com/settings/tokens/new">这里</a>申请，申请好之后运行下面的命令配置<code>GITHUB_TOKEN</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export GITHUB_TOKEN<span style="color:#f92672">=</span>&lt;YOUR_TOKEN&gt;
+</code></pre></div><p>确保没有问题，那么就可以操作 git 和 goreleaser 来发布 release 了。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git add .
+git commit -m <span style="color:#e6db74">&#34;add goreleaser&#34;</span>
+git tag -a v0.0.3 -m <span style="color:#e6db74">&#34;First release&#34;</span>
 git push origin master
 git push origin v0.0.3
-</code></pre>
-
-<p>全部搞定后，一行命令起飞：</p>
-
-<pre><code class="language-bash">goreleaser
-</code></pre>
-
-<p><code>goreleaser</code> 配合 CI 食用，效果更佳，这里就不做介绍了。
-<img src="https://wx2.sinaimg.cn/large/ad5fbf65gy1g55a7t8bq4j20sq0liacm.jpg" alt="image" /></p>
-
+</code></pre></div><p>全部搞定后，一行命令起飞：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">goreleaser
+</code></pre></div><p><code>goreleaser</code> 配合 CI 食用，效果更佳，这里就不做介绍了。
+<img src="https://wx2.sinaimg.cn/large/ad5fbf65gy1g55a7t8bq4j20sq0liacm.jpg" alt="image"></p>
 <h2 id="badges-展示神器">Badges 展示神器</h2>
-
-<p>这里介绍一个展示 Badges 的神器：<a href="https://shields.io/" target="_blank">https://shields.io/</a> 。这个网站提供各种各样的 Badges ，如果你愿意，完全可以把你的 GitHub README.md 填满，有兴趣的同学可以自取。
-<img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g55aendhrwj22fg19igz0.jpg" alt="image" /></p>
-
+<p>这里介绍一个展示 Badges 的神器：<a href="https://shields.io/">https://shields.io/</a> 。这个网站提供各种各样的 Badges ，如果你愿意，完全可以把你的 GitHub README.md 填满，有兴趣的同学可以自取。
+<img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g55aendhrwj22fg19igz0.jpg" alt="image"></p>
 <h2 id="后记">后记</h2>
-
-<p>到这里可以在 GitHub 上装逼的 golang 配置已经介绍的差不多了，其实还有 <a href="https://codecov.io/" target="_blank">Codecov</a>、<a href="https://circleci.com/" target="_blank">CircleCI</a> 等工具，这里就不做介绍了。这里要介绍的是我们的第一个 golang 项目 <a href="https://github.com/sunny0826/hamal" target="_blank">Hamal</a>，该项目是一个命令行工具，用来在不同的镜像仓库之间同步镜像。由于我司推行混合云，使用了阿里云与华为云，而在阿里云或华为云环境互相推镜像的时候时间都比较长，所以开发这个小工具用于在办公网络镜像同步，同时也可以用来将我在 dockerhub 上托管的镜像同步到我们的私有仓库，欢迎拍砖。</p>
+<p>到这里可以在 GitHub 上装逼的 golang 配置已经介绍的差不多了，其实还有 <a href="https://codecov.io/">Codecov</a>、<a href="https://circleci.com/">CircleCI</a> 等工具，这里就不做介绍了。这里要介绍的是我们的第一个 golang 项目 <a href="https://github.com/sunny0826/hamal">Hamal</a>，该项目是一个命令行工具，用来在不同的镜像仓库之间同步镜像。由于我司推行混合云，使用了阿里云与华为云，而在阿里云或华为云环境互相推镜像的时候时间都比较长，所以开发这个小工具用于在办公网络镜像同步，同时也可以用来将我在 dockerhub 上托管的镜像同步到我们的私有仓库，欢迎拍砖。</p>
 
     </div>
 
@@ -1080,7 +1021,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

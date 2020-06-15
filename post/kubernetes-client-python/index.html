@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -356,7 +356,7 @@
     <div class="col-lg-8">
         <img class="img-fluid w-100" src="https://tvax1.sinaimg.cn/large/ad5fbf65ly1ge3iyhw047j21qf15odp5.jpg" itemprop="image" alt="">
         <span
-          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+          class="article-header-caption">Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a></span>
     </div>
     <div class="col-lg-8">
       <h1 itemprop="name">由一封邮件看 Mailing List 在开源项目中的重要性</h1>
@@ -560,83 +560,59 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<blockquote>
+      <blockquote>
 <p>只要仔细找，想要的轮子总会有的。
 &mdash; 某不知名 DevOps 工程师</p>
 </blockquote>
-
 <p>感谢 <code>kubernetes-dev</code> 的 Mailing List ！早上在浏览邮件时发现了下面这封有趣的邮件：</p>
-
-<p><img src="https://wx3.sinaimg.cn/large/ad5fbf65gy1g4nkmrb8scj21780q0afv.jpg" alt="image" /></p>
-
-<p>接触 Kubernetes 也有不短的时间了，也见证了 Kubernetes 干掉 Swarm 和 Mesos 成为容器编排领域的事实标准的过程。在享受 Kubernetes 及其生态圈带来的便利的同时也在为 Kubernetes 及 CNCF 项目进行贡献。而使用 <a href="https://github.com/kubernetes/kubectl" target="_blank"><code>kubectl</code></a>、<a href="https://github.com/rancher/rancher" target="_blank"><code>rancher</code></a> 甚至是 <a href="https://github.com/IBM/kui" target="_blank"><code>kui</code></a> 这些 CLI 和 UI 工具对 Kubernetes 集群进行操作和观察。</p>
-
+<p><img src="https://wx3.sinaimg.cn/large/ad5fbf65gy1g4nkmrb8scj21780q0afv.jpg" alt="image"></p>
+<p>接触 Kubernetes 也有不短的时间了，也见证了 Kubernetes 干掉 Swarm 和 Mesos 成为容器编排领域的事实标准的过程。在享受 Kubernetes 及其生态圈带来的便利的同时也在为 Kubernetes 及 CNCF 项目进行贡献。而使用 <a href="https://github.com/kubernetes/kubectl"><code>kubectl</code></a>、<a href="https://github.com/rancher/rancher"><code>rancher</code></a> 甚至是 <a href="https://github.com/IBM/kui"><code>kui</code></a> 这些 CLI 和 UI 工具对 Kubernetes 集群进行操作和观察。</p>
 <p>虽然上面这些工具为操作 Kubernetes 集群带来了极大的便利，但是归根到底还是一些开源项目，并不能满足我们的全部需求。所以我们只能根据我们自己的需求和 Kubernetes 的 api-server 进行定制，但是由于 Kubernetes 的 api-server 比较复杂，短时间内并不是那么好梳理的。</p>
-
-<h2 id="kubernetes-client-python">kubernetes-client/python</h2>
-
+<h2 id="kubernetes-clientpython">kubernetes-client/python</h2>
 <p>由于我们自研的 DevOps 平台是使用 python 开发的，所以我也基于 python 语言开发了一套 Kubernetes Client ，但总的来说由于 Kubernetes 的功能实在太多，而我的开发实践并不是很多，开发出来的功能只是差强人意。</p>
-
-<p>而 <a href="https://github.com/kubernetes-client/python" target="_blank"><code>kubernetes-client/python</code></a> 这个官方给出的轮子是真的香！</p>
-
+<p>而 <a href="https://github.com/kubernetes-client/python"><code>kubernetes-client/python</code></a> 这个官方给出的轮子是真的香！</p>
 <h3 id="安装方便">安装方便</h3>
-
 <p>这个安装方式简单的令人发指，支持的 python 版本为 <code>2.7 | 3.4 | 3.5 | 3.6 | 3.7</code> 并且和所有 python 依赖包一样，只需要使用 <code>pip</code> 安装即可：</p>
-
-<pre><code class="language-bash">pip install kubernetes
-</code></pre>
-
-<h3 id="简单示例">简单示例</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install kubernetes
+</code></pre></div><h3 id="简单示例">简单示例</h3>
 <p>查看所有的 pod ：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python</span>
+<span style="color:#75715e">#encoding: utf-8</span>
+<span style="color:#75715e">#Author: guoxudong</span>
+<span style="color:#f92672">from</span> kubernetes <span style="color:#f92672">import</span> client, config
 
-<pre><code class="language-python">#!/usr/bin/env python
-#encoding: utf-8
-#Author: guoxudong
-from kubernetes import client, config
+<span style="color:#75715e"># Configs can be set in Configuration class directly or using helper utility</span>
+config<span style="color:#f92672">.</span>load_kube_config()
 
-# Configs can be set in Configuration class directly or using helper utility
-config.load_kube_config()
-
-v1 = client.CoreV1Api()
-print(&quot;Listing pods with their IPs:&quot;)
-ret = v1.list_pod_for_all_namespaces(watch=False)
-for i in ret.items:
-    print(&quot;%s\t%s\t%s&quot; % (i.status.pod_ip, i.metadata.namespace, i.metadata.name))
-</code></pre>
-
-<p>运行查看结果：</p>
-
-<pre><code class="language-python">Listing pods with their IPs:
-172.22.1.126	kube-system	coredns-5975fdf55b-bqgkx
-172.22.0.2	kube-system	coredns-5975fdf55b-vxbb4
-10.16.16.13	kube-system	flexvolume-9ccf7
-10.16.16.15	kube-system	flexvolume-h5xn2
-10.16.16.14	kube-system	flexvolume-kvn5x
-10.16.16.17	kube-system	flexvolume-mf4zv
-10.16.16.14	kube-system	kube-proxy-worker-7lpfz
-10.16.16.15	kube-system	kube-proxy-worker-9wd9s
-10.16.16.17	kube-system	kube-proxy-worker-phbbj
-10.16.16.13	kube-system	kube-proxy-worker-pst5d
-172.22.1.9	kube-system	metrics-server-78b597d5bf-wdvqh
-172.22.1.12	kube-system	nginx-ingress-controller-796ccc5d76-9jh5s
-172.22.1.125	kube-system	nginx-ingress-controller-796ccc5d76-jwwwz
-10.16.16.17	kube-system	terway-6mfs8
-10.16.16.14	kube-system	terway-fz9ck
-10.16.16.13	kube-system	terway-t9777
-10.16.16.15	kube-system	terway-xbxlp
-172.22.1.8	kube-system	tiller-deploy-5b5d8dd754-wpcrc
-...
-</code></pre>
-
-<p>果然是一个好轮子，引入 kubeconfig 的方式及展示所有 namespace 的 pod 的方法封装的也十分简洁，是个非常漂亮的范例。建议可以看一下<a href="https://github.com/kubernetes-client/python" target="_blank">源码</a>，肯定会有收获的！</p>
-
+v1 <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>CoreV1Api()
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Listing pods with their IPs:&#34;</span>)
+ret <span style="color:#f92672">=</span> v1<span style="color:#f92672">.</span>list_pod_for_all_namespaces(watch<span style="color:#f92672">=</span>False)
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> ret<span style="color:#f92672">.</span>items:
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%s</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">%s</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (i<span style="color:#f92672">.</span>status<span style="color:#f92672">.</span>pod_ip, i<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>namespace, i<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>name))
+</code></pre></div><p>运行查看结果：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">Listing pods <span style="color:#66d9ef">with</span> their IPs:
+<span style="color:#ae81ff">172.22</span><span style="color:#f92672">.</span><span style="color:#ae81ff">1.126</span>	kube<span style="color:#f92672">-</span>system	coredns<span style="color:#f92672">-</span><span style="color:#ae81ff">5975</span>fdf55b<span style="color:#f92672">-</span>bqgkx
+<span style="color:#ae81ff">172.22</span><span style="color:#f92672">.</span><span style="color:#ae81ff">0.2</span>	kube<span style="color:#f92672">-</span>system	coredns<span style="color:#f92672">-</span><span style="color:#ae81ff">5975</span>fdf55b<span style="color:#f92672">-</span>vxbb4
+<span style="color:#ae81ff">10.16</span><span style="color:#f92672">.</span><span style="color:#ae81ff">16.13</span>	kube<span style="color:#f92672">-</span>system	flexvolume<span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>ccf7
+<span style="color:#ae81ff">10.16</span><span style="color:#f92672">.</span><span style="color:#ae81ff">16.15</span>	kube<span style="color:#f92672">-</span>system	flexvolume<span style="color:#f92672">-</span>h5xn2
+<span style="color:#ae81ff">10.16</span><span style="color:#f92672">.</span><span style="color:#ae81ff">16.14</span>	kube<span style="color:#f92672">-</span>system	flexvolume<span style="color:#f92672">-</span>kvn5x
+<span style="color:#ae81ff">10.16</span><span style="color:#f92672">.</span><span style="color:#ae81ff">16.17</span>	kube<span style="color:#f92672">-</span>system	flexvolume<span style="color:#f92672">-</span>mf4zv
+<span style="color:#ae81ff">10.16</span><span style="color:#f92672">.</span><span style="color:#ae81ff">16.14</span>	kube<span style="color:#f92672">-</span>system	kube<span style="color:#f92672">-</span>proxy<span style="color:#f92672">-</span>worker<span style="color:#f92672">-</span><span style="color:#ae81ff">7</span>lpfz
+<span style="color:#ae81ff">10.16</span><span style="color:#f92672">.</span><span style="color:#ae81ff">16.15</span>	kube<span style="color:#f92672">-</span>system	kube<span style="color:#f92672">-</span>proxy<span style="color:#f92672">-</span>worker<span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>wd9s
+<span style="color:#ae81ff">10.16</span><span style="color:#f92672">.</span><span style="color:#ae81ff">16.17</span>	kube<span style="color:#f92672">-</span>system	kube<span style="color:#f92672">-</span>proxy<span style="color:#f92672">-</span>worker<span style="color:#f92672">-</span>phbbj
+<span style="color:#ae81ff">10.16</span><span style="color:#f92672">.</span><span style="color:#ae81ff">16.13</span>	kube<span style="color:#f92672">-</span>system	kube<span style="color:#f92672">-</span>proxy<span style="color:#f92672">-</span>worker<span style="color:#f92672">-</span>pst5d
+<span style="color:#ae81ff">172.22</span><span style="color:#f92672">.</span><span style="color:#ae81ff">1.9</span>	kube<span style="color:#f92672">-</span>system	metrics<span style="color:#f92672">-</span>server<span style="color:#f92672">-</span><span style="color:#ae81ff">78</span>b597d5bf<span style="color:#f92672">-</span>wdvqh
+<span style="color:#ae81ff">172.22</span><span style="color:#f92672">.</span><span style="color:#ae81ff">1.12</span>	kube<span style="color:#f92672">-</span>system	nginx<span style="color:#f92672">-</span>ingress<span style="color:#f92672">-</span>controller<span style="color:#f92672">-</span><span style="color:#ae81ff">796</span>ccc5d76<span style="color:#f92672">-</span><span style="color:#ae81ff">9j</span>h5s
+<span style="color:#ae81ff">172.22</span><span style="color:#f92672">.</span><span style="color:#ae81ff">1.125</span>	kube<span style="color:#f92672">-</span>system	nginx<span style="color:#f92672">-</span>ingress<span style="color:#f92672">-</span>controller<span style="color:#f92672">-</span><span style="color:#ae81ff">796</span>ccc5d76<span style="color:#f92672">-</span>jwwwz
+<span style="color:#ae81ff">10.16</span><span style="color:#f92672">.</span><span style="color:#ae81ff">16.17</span>	kube<span style="color:#f92672">-</span>system	terway<span style="color:#f92672">-</span><span style="color:#ae81ff">6</span>mfs8
+<span style="color:#ae81ff">10.16</span><span style="color:#f92672">.</span><span style="color:#ae81ff">16.14</span>	kube<span style="color:#f92672">-</span>system	terway<span style="color:#f92672">-</span>fz9ck
+<span style="color:#ae81ff">10.16</span><span style="color:#f92672">.</span><span style="color:#ae81ff">16.13</span>	kube<span style="color:#f92672">-</span>system	terway<span style="color:#f92672">-</span>t9777
+<span style="color:#ae81ff">10.16</span><span style="color:#f92672">.</span><span style="color:#ae81ff">16.15</span>	kube<span style="color:#f92672">-</span>system	terway<span style="color:#f92672">-</span>xbxlp
+<span style="color:#ae81ff">172.22</span><span style="color:#f92672">.</span><span style="color:#ae81ff">1.8</span>	kube<span style="color:#f92672">-</span>system	tiller<span style="color:#f92672">-</span>deploy<span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>b5d8dd754<span style="color:#f92672">-</span>wpcrc
+<span style="color:#f92672">...</span>
+</code></pre></div><p>果然是一个好轮子，引入 kubeconfig 的方式及展示所有 namespace 的 pod 的方法封装的也十分简洁，是个非常漂亮的范例。建议可以看一下<a href="https://github.com/kubernetes-client/python">源码</a>，肯定会有收获的！</p>
 <h3 id="支持版本">支持版本</h3>
-
-<p><code>client-python</code> 遵循 <a href="https://semver.org/lang/zh-CN/" target="_blank">semver</a> 规范，所以在 <code>client-python</code> 的主要版本增加之前，代码将继续使用明确支持的 Kubernetes 集群版本。</p>
-
+<p><code>client-python</code> 遵循 <a href="https://semver.org/lang/zh-CN/">semver</a> 规范，所以在 <code>client-python</code> 的主要版本增加之前，代码将继续使用明确支持的 Kubernetes 集群版本。</p>
 <table>
 <thead>
 <tr>
@@ -653,7 +629,6 @@ for i in ret.items:
 <th>Kubernetes 1.14</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>client-python 1.0</td>
@@ -668,7 +643,6 @@ for i in ret.items:
 <td>-</td>
 <td>-</td>
 </tr>
-
 <tr>
 <td>client-python 2.0</td>
 <td>+</td>
@@ -682,7 +656,6 @@ for i in ret.items:
 <td>-</td>
 <td>-</td>
 </tr>
-
 <tr>
 <td>client-python 3.0</td>
 <td>+</td>
@@ -696,7 +669,6 @@ for i in ret.items:
 <td>-</td>
 <td>-</td>
 </tr>
-
 <tr>
 <td>client-python 4.0</td>
 <td>+</td>
@@ -710,7 +682,6 @@ for i in ret.items:
 <td>-</td>
 <td>-</td>
 </tr>
-
 <tr>
 <td>client-python 5.0</td>
 <td>+</td>
@@ -724,7 +695,6 @@ for i in ret.items:
 <td>-</td>
 <td>-</td>
 </tr>
-
 <tr>
 <td>client-python 6.0</td>
 <td>+</td>
@@ -738,7 +708,6 @@ for i in ret.items:
 <td>-</td>
 <td>-</td>
 </tr>
-
 <tr>
 <td>client-python 7.0</td>
 <td>+</td>
@@ -752,7 +721,6 @@ for i in ret.items:
 <td>-</td>
 <td>-</td>
 </tr>
-
 <tr>
 <td>client-python 8.0</td>
 <td>+</td>
@@ -766,7 +734,6 @@ for i in ret.items:
 <td>-</td>
 <td>-</td>
 </tr>
-
 <tr>
 <td>client-python 9.0</td>
 <td>+</td>
@@ -780,7 +747,6 @@ for i in ret.items:
 <td>✓</td>
 <td>-</td>
 </tr>
-
 <tr>
 <td>client-python 10.0</td>
 <td>+</td>
@@ -794,7 +760,6 @@ for i in ret.items:
 <td>+</td>
 <td>✓</td>
 </tr>
-
 <tr>
 <td>client-python HEAD</td>
 <td>+</td>
@@ -810,11 +775,8 @@ for i in ret.items:
 </tr>
 </tbody>
 </table>
-
 <h2 id="mailing-list-的重要性">Mailing List 的重要性</h2>
-
 <p>这次的收获很大程度得益于 <code>kubernetes-dev</code> 的 Mailing List 也就是邮件列表。这种沟通方式在国内不是很流行，大家更喜欢使用 QQ 和微信这样的即时通讯软件进行交流，但是大多数著名开源项目都是主要使用 <strong>Mailing List</strong> 进行交流，交流的数量甚至比在 GitHub issue 中还多，在与 Apache 、 CNCF 项目开源的贡献者和维护者交流中得知了使用 <strong>Mailing List</strong> 主要考虑是一下几点：</p>
-
 <ul>
 <li>这种异步的交流方式可以让更多关心该话题的开发人员一起加入到讨论中。</li>
 <li>mailing list 是永久保留的，如果你对某个话题感兴趣，可以随时回复邮件，关注这个话题的开发者都会收到邮件，无论这个话题是昨天提出的，还是去年提出的，有助于解决一些陈年老 BUG （俗称技术债）。</li>
@@ -822,9 +784,7 @@ for i in ret.items:
 <li>并不是所有地区的开发者都有高速的宽带，性能优秀的PC，在地球上很多地区还是只能使用拨号上网，网速只有几kb/s，他们甚至 GitHub issue 都无法使用。但是你不能剥夺他们参与开源项目的权利，而 mailing list 是一种很好的交流方式。</li>
 <li>通过 mailing list 可以很好掌握社区动态，效果明显好于 GitHub watch ，因为并不是项目的所有 commit 都是你关心的。</li>
 </ul>
-
 <h2 id="结语">结语</h2>
-
 <p>如果你有志于参与到开源运动，在享受开源软件带来便利的同事，还想为开源软件做出自己的贡献，那么 mailing list 是你进入社区最好的选择。在 mailing list 中和来自世界各地志同道合的开发者交流中提升自己的能力，创造更大的价值，迈出你参与开源运动的第一步。</p>
 
     </div>
@@ -1198,7 +1158,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -356,7 +356,7 @@
     <div class="col-lg-8">
         <img class="img-fluid w-100" src="https://tvax2.sinaimg.cn/large/ad5fbf65ly1ge3i9py7k6j21jk15odie.jpg" itemprop="image" alt="">
         <span
-          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+          class="article-header-caption">Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a></span>
     </div>
     <div class="col-lg-8">
       <h1 itemprop="name">GitHub/Gitee 静态页托管页部署SSL证书</h1>
@@ -560,145 +560,120 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<p>本文档介绍了在 <a href="https://pages.github.com/" target="_blank">Github</a> / <a href="https://gitee.com/help/articles/4136" target="_blank">Gitee</a> 的静态页托管Pages服务部署SSL证书，配置HTTPS安全访问的操作说明。</p>
-
+      <p>本文档介绍了在 <a href="https://pages.github.com/">Github</a> / <a href="https://gitee.com/help/articles/4136">Gitee</a> 的静态页托管Pages服务部署SSL证书，配置HTTPS安全访问的操作说明。</p>
 <h3 id="pages服务">Pages服务</h3>
-
 <p>Github/Gitee的Pages是一个免费的静态网页托管服务，您可以使用Github或码云Pages托管博客、项目官网等静态网页。常见的静态站点生成器有：Hugo、Jekyll、Hexo等，可以用来生成静态站点。默认情况下，托管的站点使用 <code>github.io</code> / <code>gitee.io</code> 域名来访问站点，同时也支持自定义域名，并配置强制使用HTTPS。</p>
-
 <blockquote>
 <p>注意：如果要在 Gitee Pages 上配置自定义域名+HTTPS，则需要开启 Gitee Pages Pro 。</p>
 </blockquote>
-
 <h3 id="github-pages-服务部署ssl证书">Github Pages 服务部署SSL证书</h3>
-
 <h4 id="前提条件">前提条件</h4>
-
 <ul>
 <li>GitHub 仓库</li>
 <li>开启 GitHub Pages</li>
 </ul>
-
-<p><img src="https://ws1.sinaimg.cn/large/ad5fbf65gy1g69e503ukoj21ig0hwad9.jpg" alt="image" /></p>
-
+<p><img src="https://ws1.sinaimg.cn/large/ad5fbf65gy1g69e503ukoj21ig0hwad9.jpg" alt="image"></p>
 <h4 id="证书签发">证书签发</h4>
-
 <ol>
-<li><p>购买证书后点击申请</p>
-
-<p><img src="https://wx2.sinaimg.cn/large/ad5fbf65gy1g69ee2r500j22cc078t9z.jpg" alt="image" /></p></li>
-
-<li><p>证书申请</p>
-
+<li>
+<p>购买证书后点击申请</p>
+<p><img src="https://wx2.sinaimg.cn/large/ad5fbf65gy1g69ee2r500j22cc078t9z.jpg" alt="image"></p>
+</li>
+<li>
+<p>证书申请</p>
 <p>如果该域名是由阿里云购买，则选择自动DNS验证，如果不是在阿里云购买的，可以选择手动验证。</p>
-
-<p><img src="https://wx1.sinaimg.cn/bmiddle/ad5fbf65gy1g69egsu7fuj20ye0swwh3.jpg" alt="image" /></p>
-
-<p><img src="https://wx2.sinaimg.cn/bmiddle/ad5fbf65gy1g69eo1wls7j20ya0r0418.jpg" alt="image" /></p></li>
-
-<li><p>证书签发</p>
-
+<p><img src="https://wx1.sinaimg.cn/bmiddle/ad5fbf65gy1g69egsu7fuj20ye0swwh3.jpg" alt="image"></p>
+<p><img src="https://wx2.sinaimg.cn/bmiddle/ad5fbf65gy1g69eo1wls7j20ya0r0418.jpg" alt="image"></p>
+</li>
+<li>
+<p>证书签发</p>
 <p>证书通过申请后，会收到证书签发的邮件。</p>
-
-<p><img src="https://wx2.sinaimg.cn/wap720/ad5fbf65gy1g69epoqw6uj21680cotaj.jpg" alt="image" /></p></li>
+<p><img src="https://wx2.sinaimg.cn/wap720/ad5fbf65gy1g69epoqw6uj21680cotaj.jpg" alt="image"></p>
+</li>
 </ol>
-
 <h4 id="设置自定义域名">设置自定义域名</h4>
-
 <ol>
-<li><p>解析域名</p>
-
+<li>
+<p>解析域名</p>
 <p>在证书签发成功后，添加DNS解析，将绑定了SSL证书的域名解析到 <code>YourRepo.github.io</code> 。</p>
-
-<p><img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g69evivrvqj21mi07it9g.jpg" alt="image" /></p></li>
-
-<li><p>配置域名</p>
-
+<p><img src="https://ws2.sinaimg.cn/large/ad5fbf65gy1g69evivrvqj21mi07it9g.jpg" alt="image"></p>
+</li>
+<li>
+<p>配置域名</p>
 <p>解析之后将域名添加到 <code>Custom domain</code> 并且点击 <code>Save</code> ，Github会自动验证，出现<code>Your site is published at https://YourDomainName.com/</code>则证明解析成功。</p>
-
-<p><img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g69esrcn2tj21a210wwk0.jpg" alt="image" /></p></li>
+<p><img src="https://wx4.sinaimg.cn/large/ad5fbf65gy1g69esrcn2tj21a210wwk0.jpg" alt="image"></p>
+</li>
 </ol>
-
 <h3 id="gitee-pages-pro-服务部署ssl证书">Gitee Pages Pro 服务部署SSL证书</h3>
-
 <h4 id="前提条件-1">前提条件</h4>
-
 <ul>
 <li>Gitee 仓库</li>
 <li>开启 Gitee Pages Pro</li>
 </ul>
-
 <blockquote>
 <p>Gitee 需要开启 Gitee Pages Pro 服务才支持自定义域名+HTTPS。</p>
 </blockquote>
-
 <h4 id="证书签发-1">证书签发</h4>
-
 <p>证书签发同 Github Pages。这里介绍非阿里云购买的域名，进行证书申请。</p>
-
 <ol>
-<li><p>购买证书流程如上</p></li>
-
-<li><p>申请证书</p>
-
-<p>证书验证方式选择<code>手工DNS验证</code>。</p></li>
-
-<li><p>拷贝验证信息</p>
-
+<li>
+<p>购买证书流程如上</p>
+</li>
+<li>
+<p>申请证书</p>
+<p>证书验证方式选择<code>手工DNS验证</code>。</p>
+</li>
+<li>
+<p>拷贝验证信息</p>
 <p>拷贝验证信息内的<code>记录值</code>。</p>
-
-<p><img src="https://wx2.sinaimg.cn/bmiddle/ad5fbf65gy1g69eo1wls7j20ya0r0418.jpg" alt="image" /></p></li>
-
-<li><p>验证解析</p>
-
-<p>进入购买域名所在网站进行DNS解析，这里以<a href="https://www.name.com/zh-cn/" target="_blank">name.com</a>为例：</p>
-
-<p><img src="https://ws4.sinaimg.cn/large/ad5fbf65gy1g69fqad2euj221g0700tt.jpg" alt="image" /></p>
-
-<p>解析成功之后，返回阿里云SSL证书管理页面点击<code>验证</code>.</p></li>
-
-<li><p>证书签发</p>
-
-<p>签发成功后会收到签发成功的邮件。</p></li>
+<p><img src="https://wx2.sinaimg.cn/bmiddle/ad5fbf65gy1g69eo1wls7j20ya0r0418.jpg" alt="image"></p>
+</li>
+<li>
+<p>验证解析</p>
+<p>进入购买域名所在网站进行DNS解析，这里以<a href="https://www.name.com/zh-cn/">name.com</a>为例：</p>
+<p><img src="https://ws4.sinaimg.cn/large/ad5fbf65gy1g69fqad2euj221g0700tt.jpg" alt="image"></p>
+<p>解析成功之后，返回阿里云SSL证书管理页面点击<code>验证</code>.</p>
+</li>
+<li>
+<p>证书签发</p>
+<p>签发成功后会收到签发成功的邮件。</p>
+</li>
 </ol>
-
 <h4 id="设置自定义域名-1">设置自定义域名</h4>
-
 <ol>
-<li><p>解析域名</p>
-
+<li>
+<p>解析域名</p>
 <p>进入域名所在网站，添加DNS解析记录，将绑定了SSL证书的域名解析到<code>gitee.gitee.io</code></p>
-
-<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g69fyy5it5j21z606mjs9.jpg" alt="image" /></p></li>
-
-<li><p>配置域名</p>
-
+<p><img src="https://ws3.sinaimg.cn/large/ad5fbf65gy1g69fyy5it5j21z606mjs9.jpg" alt="image"></p>
+</li>
+<li>
+<p>配置域名</p>
 <ol>
-<li><p>域名添加到<code>自定义域名</code></p>
-
-<p><img src="https://wx2.sinaimg.cn/large/ad5fbf65gy1g69g11wx0qj21a60xiq7m.jpg" alt="image" /></p></li>
-
-<li><p>配置证书</p>
-
+<li>
+<p>域名添加到<code>自定义域名</code></p>
+<p><img src="https://wx2.sinaimg.cn/large/ad5fbf65gy1g69g11wx0qj21a60xiq7m.jpg" alt="image"></p>
+</li>
+<li>
+<p>配置证书</p>
 <ul>
-<li><p>证书下载，选择 nginx 类型。</p>
-
-<p><img src="https://ws4.sinaimg.cn/bmiddle/ad5fbf65gy1g69g3pua7xj20ne0v0jus.jpg" alt="image" /></p></li>
-
-<li><p>gitee pages 配置证书，将证书文件与私钥文件贴入并提交。</p>
-
-<p><img src="https://ws4.sinaimg.cn/large/ad5fbf65gy1g69g64n1btj21bs0yogq8.jpg" alt="image" /></p></li>
-
-<li><p>勾选<code>强制使用HTTPS</code>，并保存。</p></li>
-</ul></li>
-</ol></li>
+<li>
+<p>证书下载，选择 nginx 类型。</p>
+<p><img src="https://ws4.sinaimg.cn/bmiddle/ad5fbf65gy1g69g3pua7xj20ne0v0jus.jpg" alt="image"></p>
+</li>
+<li>
+<p>gitee pages 配置证书，将证书文件与私钥文件贴入并提交。</p>
+<p><img src="https://ws4.sinaimg.cn/large/ad5fbf65gy1g69g64n1btj21bs0yogq8.jpg" alt="image"></p>
+</li>
+<li>
+<p>勾选<code>强制使用HTTPS</code>，并保存。</p>
+</li>
+</ul>
+</li>
 </ol>
-
+</li>
+</ol>
 <h3 id="验证">验证</h3>
-
-<p>在Github/Gitee配置成功之后，您可在浏览器中输入 <a href="https://www.YourDomainName.com" target="_blank">https://www.YourDomainName.com</a> 验证证书安装结果。可以正常访问静态托管站点，并且浏览器地址栏显示绿色的小锁标识说明证书安装成功。</p>
+<p>在Github/Gitee配置成功之后，您可在浏览器中输入 <a href="https://www.YourDomainName.com">https://www.YourDomainName.com</a> 验证证书安装结果。可以正常访问静态托管站点，并且浏览器地址栏显示绿色的小锁标识说明证书安装成功。</p>
 
     </div>
 
@@ -1067,7 +1042,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

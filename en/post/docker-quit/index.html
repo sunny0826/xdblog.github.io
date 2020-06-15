@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -356,7 +356,7 @@
     <div class="col-lg-8">
         <img class="img-fluid w-100" src="https://tva4.sinaimg.cn/large/ad5fbf65ly1ge3if5zqkzj21qq15ojvp.jpg" itemprop="image" alt="">
         <span
-          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+          class="article-header-caption">Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a></span>
     </div>
     <div class="col-lg-8">
       <h1 itemprop="name">Docker容器启动退出解决方案</h1>
@@ -560,52 +560,42 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<h1 id="现象">现象</h1>
-
+      <h1 id="现象">现象</h1>
 <p>启动docker容器</p>
-
-<pre><code class="language-bash">docker run –name [CONTAINER_NAME] [CONTAINER_ID] 
-</code></pre>
-
-<p>查看容器运行状态</p>
-
-<pre><code class="language-bash">docker ps -a 
-</code></pre>
-
-<p>发现刚刚启动的mydocker容器已经退出</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run –name <span style="color:#f92672">[</span>CONTAINER_NAME<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>CONTAINER_ID<span style="color:#f92672">]</span> 
+</code></pre></div><p>查看容器运行状态</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker ps -a 
+</code></pre></div><p>发现刚刚启动的mydocker容器已经退出</p>
 <h1 id="原因">原因</h1>
-
 <p>docker容器的主线程（dockfile中CMD执行的命令）结束，容器会退出</p>
-
 <h1 id="解决办法">解决办法</h1>
-
 <ol>
-<li><p>可以使用交互式启动</p>
-
-<pre><code class="language-bash">docker run -i [CONTAINER_NAME or CONTAINER_ID]
-</code></pre></li>
-
-<li><p>上面的不太友好，建议使用后台模式和tty选项</p>
-
-<pre><code class="language-bash">docker run -dit [CONTAINER_NAME or CONTAINER_ID]
-</code></pre></li>
-
-<li><p>Docker 容器在后台以守护态（Daemonized）形式运行，可以通过添加 -d 参数来实现</p>
-
-<pre><code class="language-bash">$ sudo docker run -d ubuntu:14.04 /bin/sh -c &quot;while true; do echo hello world; sleep 1; done&quot;
-</code></pre></li>
-
-<li><p>在脚本最后一行添加<strong>tail -f /dev/null</strong>，这个命令永远完成不了，所以该脚本一直不会执行完，所以该容器永远不会退出。</p></li>
+<li>
+<p>可以使用交互式启动</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run -i <span style="color:#f92672">[</span>CONTAINER_NAME or CONTAINER_ID<span style="color:#f92672">]</span>
+</code></pre></div><p>``</p>
+</li>
+<li>
+<p>上面的不太友好，建议使用后台模式和tty选项</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run -dit <span style="color:#f92672">[</span>CONTAINER_NAME or CONTAINER_ID<span style="color:#f92672">]</span>
+</code></pre></div><p>``</p>
+</li>
+<li>
+<p>Docker 容器在后台以守护态（Daemonized）形式运行，可以通过添加 -d 参数来实现</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo docker run -d ubuntu:14.04 /bin/sh -c <span style="color:#e6db74">&#34;while true; do echo hello world; sleep 1; done&#34;</span>
+</code></pre></div><p>``</p>
+</li>
+<li>
+<p>在脚本最后一行添加<strong>tail -f /dev/null</strong>，这个命令永远完成不了，所以该脚本一直不会执行完，所以该容器永远不会退出。</p>
+</li>
 </ol>
-
 <blockquote>
 <p><strong>TIPs</strong>:退出时，使用<code>[ctrl + D]</code>，这样会结束docker当前线程，容器结束，可以使用 <code>[ctrl + P]</code> <code>[ctrl + Q]</code> 退出而不终止容器运行</p>
-
+</blockquote>
+<blockquote>
 <p>如下命令，会在指定容器中执行指定命令， <code>[ctrl+D]</code> 退出后不会终止容器运行</p>
-
+</blockquote>
+<blockquote>
 <p>docker默认会把容器内部pid=1的作为默认的程序</p>
 </blockquote>
 
@@ -974,7 +964,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

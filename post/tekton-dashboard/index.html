@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -561,97 +561,56 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<h2 id="前言">前言</h2>
-
+      <h2 id="前言">前言</h2>
 <p>Tekton 作为一款开源的云原生 CI/CD 框架，前身是 Knative 的 build-pipeline 项目。作为 CI/CD 框架，其本身并不是一个 CI/CD 产品，所以不应拿 Tekton 与 Jenkins 或者 Drone 这样的 CI/CD 产品进行比较，Tekton 本质是一个强大而灵活的 CI/CD 框架，开发者可以基于它开发自己的 CI/CD 工具或产品，一些有能力的团队可以使用 Tekton 做为底座开发出更适合自己团队使用的 CI/CD 工具。</p>
-
 <p>而 Tekton 的可视化组件 Tekton Dashboard 则为用户提供了可视化界面，使 Tekton 的体验更接近与 Jenkins 这样的 CI/CD 产品，同时开发者可以在使用 Tekton Dashboard 时也会对 Tekton 的一些概念进行更深入的了解。</p>
-
-<p>本文将会使用 Tekton Dashboard，通过 UI 界面在 K8S 集群中部署一个 Java 项目：<a href="https://github.com/sunny0826/pipeline-example-maven" target="_blank">pipeline-example-maven</a></p>
-
+<p>本文将会使用 Tekton Dashboard，通过 UI 界面在 K8S 集群中部署一个 Java 项目：<a href="https://github.com/sunny0826/pipeline-example-maven">pipeline-example-maven</a></p>
 <h2 id="交互式学习">交互式学习</h2>
-
-<p>本文还提供 <a href="https://katacoda.com" target="_blank">katacoda</a> 交互式学习版本，用户可以直接访问 katacoda 页面：<a href="https://katacoda.com/guoxudong/scenarios/tekton-dashboard" target="_blank">https://katacoda.com/guoxudong/scenarios/tekton-dashboard</a> ，使用 <a href="https://katacoda.com" target="_blank">katacoda</a> 在浏览器端学习使用 Tekton Dashboard。</p>
-
-<p>该教程属于官方教程的汉化版，并得到了<a href="https://github.com/ncskier/katacoda/issues/2" target="_blank">许可</a>。</p>
-
-<p><img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1geqt0wmbtvj21hb0q779v.jpg" alt="image" /></p>
-
+<p>本文还提供 <a href="https://katacoda.com">katacoda</a> 交互式学习版本，用户可以直接访问 katacoda 页面：https://katacoda.com/guoxudong/scenarios/tekton-dashboard ，使用 <a href="https://katacoda.com">katacoda</a> 在浏览器端学习使用 Tekton Dashboard。</p>
+<p>该教程属于官方教程的汉化版，并得到了<a href="https://github.com/ncskier/katacoda/issues/2">许可</a>。</p>
+<p><img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1geqt0wmbtvj21hb0q779v.jpg" alt="image"></p>
 <h2 id="tekton-dashboard">Tekton Dashboard</h2>
-
 <h3 id="安装">安装</h3>
-
 <p>这是所有步骤中最麻烦的一步，由于官方提供的 Tekton 镜像都在 <code>gcr.io</code> 上，在国内并不能直接拉取，所以在测试的时候着实花费了不少时间。</p>
-
 <p>我特意将这些镜像转储到 dockerhub 上，如果官方版无法使用，可以使用克隆版：</p>
-
-<p><strong>安装 <a href="https://github.com/tektoncd/pipeline/blob/master/docs/install.md" target="_blank">Tekton Pipelines</a></strong></p>
-
-<pre><code class="language-shell"># 官方
+<p><strong>安装 <a href="https://github.com/tektoncd/pipeline/blob/master/docs/install.md">Tekton Pipelines</a></strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 官方</span>
 $ kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.10.1/release.yaml
-# 克隆版
+<span style="color:#75715e"># 克隆版</span>
 $ kubectl apply -f https://raw.githubusercontent.com/sunny0826/tekton-local/v0.10.1/tekton-pipeline.yaml
-</code></pre>
-
-<p><strong>安装 <a href="https://github.com/tektoncd/dashboard#install-dashboard" target="_blank">Tekton Dashboard</a></strong></p>
-
-<pre><code class="language-shell"># 官方
+</code></pre></div><p><strong>安装 <a href="https://github.com/tektoncd/dashboard#install-dashboard">Tekton Dashboard</a></strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 官方</span>
 $ kubectl apply --filename https://storage.googleapis.com/tekton-releases/dashboard/previous/v0.5.3/tekton-dashboard-release.yaml
-# 克隆版
+<span style="color:#75715e"># 克隆版</span>
 $ kubectl apply -f https://raw.githubusercontent.com/sunny0826/tekton-local/v0.10.1/tekton-dashboard.yaml
-</code></pre>
-
-<p>安装成功之后需要配置 Tekton Dashboard 的访问地址，可以使用 ingress 或 Nodeport 暴露端口，这里采用 <code>port-forward</code> 的形式将端口映射到本地：</p>
-
-<pre><code class="language-shell">$ kubectl port-forward svc/tekton-dashboard 8097:9097 -n tekton-pipelines
-Forwarding from 127.0.0.1:8097 -&gt; 9097
-Forwarding from [::1]:8097 -&gt; 9097
+</code></pre></div><p>安装成功之后需要配置 Tekton Dashboard 的访问地址，可以使用 ingress 或 Nodeport 暴露端口，这里采用 <code>port-forward</code> 的形式将端口映射到本地：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl port-forward svc/tekton-dashboard 8097:9097 -n tekton-pipelines
+Forwarding from 127.0.0.1:8097 -&gt; <span style="color:#ae81ff">9097</span>
+Forwarding from <span style="color:#f92672">[</span>::1<span style="color:#f92672">]</span>:8097 -&gt; <span style="color:#ae81ff">9097</span>
 ...
-</code></pre>
-
-<p><strong>访问 Tekton Dashboard</strong></p>
-
-<p>打开浏览器访问访问 <a href="http://localhost:8097" target="_blank">http://localhost:8097</a></p>
-
-<p><img src="https://tvax3.sinaimg.cn/large/ad5fbf65gy1geqnhem9i9j21mk0tu425.jpg" alt="" /></p>
-
+</code></pre></div><p><strong>访问 Tekton Dashboard</strong></p>
+<p>打开浏览器访问访问 http://localhost:8097</p>
+<p><img src="https://tvax3.sinaimg.cn/large/ad5fbf65gy1geqnhem9i9j21mk0tu425.jpg" alt=""></p>
 <h3 id="导入资源">导入资源</h3>
-
 <p>点击 <code>Import Tekton resources</code> 进入资源导入页面，导入资源：</p>
-
 <ul>
 <li>Repository URL: <code>https://github.com/sunny0826/pipeline-example-maven</code></li>
 <li>Namespace: <code>default</code></li>
 <li>Repository directory: <code>tekton/</code></li>
 <li>Service Account <code>tekton-dashboard</code></li>
 </ul>
-
 <p>输入内容如下：</p>
-
-<p><img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1geqnp36mk0j20yu0memze.jpg" alt="image" /></p>
-
+<p><img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1geqnp36mk0j20yu0memze.jpg" alt="image"></p>
 <p>点击 <code>Import and Apply</code> 按钮，之后 Dashboard 会创建一个 PipelineRun 来导入指定的 Tekton 资源。</p>
-
 <p>点击页面底部的 <code>View status of this run</code> 链接，查看 MyApp 导入 Tekton 资源的状态。</p>
-
-<p><img src="https://tvax4.sinaimg.cn/large/ad5fbf65gy1geqnqyx5g2j20a403et8q.jpg" alt="" /></p>
-
+<p><img src="https://tvax4.sinaimg.cn/large/ad5fbf65gy1geqnqyx5g2j20a403et8q.jpg" alt=""></p>
 <p>PipelineRun 完成后，Tekton 资源已导入成功。</p>
-
-<p><img src="https://tvax4.sinaimg.cn/large/ad5fbf65gy1geqns0gqi8j21go0ozwhl.jpg" alt="image" /></p>
-
+<p><img src="https://tvax4.sinaimg.cn/large/ad5fbf65gy1geqns0gqi8j21go0ozwhl.jpg" alt="image"></p>
 <h3 id="创建-pipelineresource">创建 PipelineResource</h3>
-
 <p>选择 <code>default</code> 命名空间，并点击 <code>PipelineResource</code> 按钮。</p>
-
-<p><img src="https://tvax3.sinaimg.cn/large/ad5fbf65gy1geqnukrb3aj20yb0enmyg.jpg" alt="" /></p>
-
+<p><img src="https://tvax3.sinaimg.cn/large/ad5fbf65gy1geqnukrb3aj20yb0enmyg.jpg" alt=""></p>
 <p>点击页面右上方的 <code>Create +</code> 按钮，将弹出一个创建 PipelineResource 的表单。</p>
-
 <p>我们要在 <code>default</code> 命名空间中为 pipeline-example-maven 的 <code>master</code> 分支创建一个 git PipelineResource，故在弹出的表单中填写以下信息：</p>
-
 <ul>
 <li>Name: <code>pipeline-example-maven</code></li>
 <li>Namespace: <code>default</code></li>
@@ -659,69 +618,39 @@ Forwarding from [::1]:8097 -&gt; 9097
 <li>URL: <code>https://github.com/sunny0826/pipeline-example-maven</code></li>
 <li>Revision: <code>master</code></li>
 </ul>
-
 <p>该表单内容应如下：</p>
-
-<p><img src="https://tvax4.sinaimg.cn/large/ad5fbf65gy1geqnxalh2pj20pl0dbq3h.jpg" alt="image" /></p>
-
+<p><img src="https://tvax4.sinaimg.cn/large/ad5fbf65gy1geqnxalh2pj20pl0dbq3h.jpg" alt="image"></p>
 <p>点击 <code>Create</code> 按钮，创建 PipelineResource。</p>
-
 <h3 id="创建-pipelinerun">创建 PipelineRun</h3>
-
 <p>选择 <code>default</code> 命名空间，并点击 <code>PipelineRuns</code> 按钮。</p>
-
-<p><img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1geqo2iatnhj20yb0ewjso.jpg" alt="" /></p>
-
+<p><img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1geqo2iatnhj20yb0ewjso.jpg" alt=""></p>
 <p>点击页面右上方的 <code>Create +</code> 按钮，将弹出一个创建 PipelineRun 的表单。该表单是动态的，会根据所选的 Pipeline 提供 PipelineResource 和 Param 字段。</p>
-
 <p>我们需要 <code>default</code> 命名空间中使用 <code>pipeline-example-maven</code> 的 Pipeline 和 PipelineResource，创建一个 PipelineRun，故在弹出的表单中填写以下信息：</p>
-
 <ul>
 <li>Namespace: <code>default</code></li>
 <li>Pipeline: <code>pipeline-example-maven</code></li>
 <li>PipelineResources source: <code>pipeline-example-maven</code></li>
 <li>其余字段保留默认值。</li>
 </ul>
-
 <p>该表单内容应如下：</p>
-
-<p><img src="https://tva3.sinaimg.cn/large/ad5fbf65gy1geqrdvoaquj20pi0lzt9o.jpg" alt="image" /></p>
-
+<p><img src="https://tva3.sinaimg.cn/large/ad5fbf65gy1geqrdvoaquj20pi0lzt9o.jpg" alt="image"></p>
 <p>点击 <code>Create</code> 按钮，创建 PipelineRun。</p>
-
 <h3 id="查看-pipelinerun-日志">查看 PipelineRun 日志</h3>
-
 <p>点击页面顶部创建通知中的链接或在 PipelineRun 列表中对应的 PipelineRun，查看 pipeline-example-maven PipelineRun 的日志。</p>
-
-<p><img src="https://tva3.sinaimg.cn/large/ad5fbf65gy1geqrhrwspcj217x0i7425.jpg" alt="image" /></p>
-
+<p><img src="https://tva3.sinaimg.cn/large/ad5fbf65gy1geqrhrwspcj217x0i7425.jpg" alt="image"></p>
 <blockquote>
 <p>deploy 步骤中，有时会出现权限错误，需要给 default:default 绑定上 admin 的 clusterrole 权限：</p>
 </blockquote>
-
-<pre><code class="language-shell">$ kubectl create rolebinding default-admin --clusterrole=admin --serviceaccount=default:default
-</code></pre>
-
-<p>确认 <code>build</code> 和 <code>deploy</code> 任务均已成功。</p>
-
-<p><img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1geqrmy2mc9j218w0jo0uj.jpg" alt="image" /></p>
-
-<div class="alert alert-note">
-  <div>
-    <strong>注意</strong>：这里为了方便，使用的是单节点的 Kubernetes，构建完并没有推送到镜像仓库，镜像拉取策略为 <code>imagePullPolicy: Never</code> ，所以启动时候也没有从远程仓库拉取镜像，而是启动的本地镜像。
-  </div>
-</div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl create rolebinding default-admin --clusterrole<span style="color:#f92672">=</span>admin --serviceaccount<span style="color:#f92672">=</span>default:default
+</code></pre></div><p>确认 <code>build</code> 和 <code>deploy</code> 任务均已成功。</p>
+<p><img src="https://tvax1.sinaimg.cn/large/ad5fbf65gy1geqrmy2mc9j218w0jo0uj.jpg" alt="image"></p>
+<!-- raw HTML omitted -->
 <h3 id="查看构建结果">查看构建结果</h3>
-
-<pre><code class="language-shell">$ kubectl get deploy
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl get deploy
 NAME                 READY   UP-TO-DATE   AVAILABLE   AGE
-example-greenhouse   1/1     1            1           5h2m
-</code></pre>
-
-<h2 id="总结">总结</h2>
-
-<p>Tekton Dashboard 将 Tekton 的资源进行了可视化展示，指导用户快速理解 Tekton pipeline 流程以及配置方式，快速上手 Tekton。但是由于镜像的原因，导致新手体验不佳，所幸官方还提供了 <a href="https://katacoda.com" target="_blank">katacoda</a> 交互式教程，该教程我已汉化完成并获得了官方的许可，可以在浏览器端快速体验从安装 Tekton 到部署应用的整个过程。</p>
+example-greenhouse   1/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           5h2m
+</code></pre></div><h2 id="总结">总结</h2>
+<p>Tekton Dashboard 将 Tekton 的资源进行了可视化展示，指导用户快速理解 Tekton pipeline 流程以及配置方式，快速上手 Tekton。但是由于镜像的原因，导致新手体验不佳，所幸官方还提供了 <a href="https://katacoda.com">katacoda</a> 交互式教程，该教程我已汉化完成并获得了官方的许可，可以在浏览器端快速体验从安装 Tekton 到部署应用的整个过程。</p>
 
     </div>
 
@@ -1094,7 +1023,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

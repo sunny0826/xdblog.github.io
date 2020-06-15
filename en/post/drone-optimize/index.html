@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -356,7 +356,7 @@
     <div class="col-lg-8">
         <img class="img-fluid w-100" src="https://tva2.sinaimg.cn/large/ad5fbf65ly1ge3ighqw3uj21hc120dpl.jpg" itemprop="image" alt="">
         <span
-          class="article-header-caption">Image from: <a href="https://www.pexels.com" target="_blank"><strong>Pexels</strong></a></span>
+          class="article-header-caption">Image from: <a href="https://www.pexels.com"><strong>Pexels</strong></a></span>
     </div>
     <div class="col-lg-8">
       <h1 itemprop="name">玩转 Drone CI</h1>
@@ -560,146 +560,120 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<h2 id="前言">前言</h2>
-
+      <h2 id="前言">前言</h2>
 <p>使用 drone CI 已有小半年，在将原有项目的 CI 系统从 jenkins 向 drone 迁移的时候，也陆陆续续遇到了一些问题。在这段时间，也完成了使用官方插件到插件定制的转变，使得 drone CI 流程更贴合我们 devops 开发流程。通过这篇文章总结一下目前我们对 drone 进行的一些定制化开发以及使用技巧，由于 drone 官方的文档不是很详细，所以也希望通过这种方法来和其他使用 drone 的用户分享和交流使用经验。</p>
-
 <h2 id="并行构建">并行构建</h2>
-
 <p>在默认情况下，drone 会按照步骤执行，但是有时会遇到前后端在同一个 repo 的情况，这时使用并行构建就可以省去很多的构建时间。</p>
-
 <blockquote>
 <p>构建流程：</p>
 </blockquote>
-
 <p>在下面的示例里会展示一个如下流程：repo 中包含一个由 Java 写的服务以及一个 vue 前端项目，maven 构建和 npm 构建同时进行，maven 构建成功后会镜像 docker 镜像构建并上传镜像仓库，docker 构建成功后会镜像 k8s 部署，部署成功后会进行 vue 项目前端发布，在 k8s 部署成功并且前端发布成功后，进行钉钉构建成功同时，否则进行钉钉构建失败通知。</p>
-
-<pre><code class="language-bash">前端构建 ————————————          前端发布
-                    \      /        \
-                     \    /       钉钉通知
-                      \  /          /
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">前端构建 ————————————          前端发布
+                    <span style="color:#ae81ff">\ </span>     /        <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>                     <span style="color:#ae81ff">\ </span>   /       钉钉通知
+                      <span style="color:#ae81ff">\ </span> /          /
 后端构建 —— 镜像构建 —— k8s部署 ——————
 
-</code></pre>
-
-<blockquote>
+</code></pre></div><blockquote>
 <p><code>.drone.yml</code> 配置</p>
 </blockquote>
-
-<pre><code class="language-yaml">kind: &quot;pipeline&quot;
-name: &quot;default&quot;
-steps:
-  - name: &quot;Maven编译&quot;
-    image: &quot;guoxudongdocker/drone-maven&quot;
-    commands:
-      - &quot;mvn clean install&quot;
-    depends_on: [ &quot;clone&quot; ]
-  - name: &quot;构建镜像&quot;
-    image: &quot;guoxudongdocker/drone-docker&quot;
-    settings:
-      username:
-        from_secret: &quot;docker_user&quot;
-      password:
-        from_secret: &quot;docker_pass&quot;
-      dockerfile: &quot;Dockerfile&quot;
-      repo: &quot;registry-vpc.cn-shanghai.aliyuncs.com/guoxudong/test&quot;
-      registry: &quot;registry-vpc.cn-shanghai.aliyuncs.com&quot;
-      tags: &quot;${DRONE_BUILD_NUMBER}&quot;
-    depends_on: [ &quot;Maven编译&quot; ]
-  - name: &quot;Kubernetes 部署&quot;
-    image: &quot;guoxudongdocker/kubectl&quot;
-    settings:
-      config: &quot;deploy/overlays/uat&quot;
-      timeout: 300
-      check: false
-    depends_on: [ &quot;构建镜像&quot; ]
-  - name: &quot;前端构建&quot;
-    image: &quot;guoxudongdocker/node-drone&quot;
-    commands:
-      - &quot;npm install&quot;
-      - &quot;npm run build&quot;
-    depends_on: [ &quot;clone&quot; ]
-  - name: &quot;前端上传&quot;
-    image: &quot;guoxudongdocker/node-drone&quot;
-    commands:
-      - &quot;do something&quot;
-    depends_on: [ &quot;前端构建&quot;,&quot;Kubernetes 部署&quot; ]
-  - name: &quot;钉钉通知&quot;
-    image: &quot;guoxudongdocker/drone-dingtalk&quot;
-    settings:
-      token:
-        from_secret: &quot;dingding&quot;
-      type: &quot;markdown&quot;
-      message_color: true
-      message_pic: true
-      sha_link: true
-    depends_on: [ &quot;前端上传&quot;,&quot;Kubernetes 部署&quot; ]
-    when:
-      status:
-        - &quot;failure&quot;
-        - &quot;success&quot;
-</code></pre>
-
-<h2 id="多子项目构建">多子项目构建</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">kind</span>: <span style="color:#e6db74">&#34;pipeline&#34;</span>
+<span style="color:#66d9ef">name</span>: <span style="color:#e6db74">&#34;default&#34;</span>
+<span style="color:#66d9ef">steps</span>:
+  - <span style="color:#66d9ef">name</span>: <span style="color:#e6db74">&#34;Maven编译&#34;</span>
+    <span style="color:#66d9ef">image</span>: <span style="color:#e6db74">&#34;guoxudongdocker/drone-maven&#34;</span>
+    <span style="color:#66d9ef">commands</span>:
+      - <span style="color:#e6db74">&#34;mvn clean install&#34;</span>
+    <span style="color:#66d9ef">depends_on</span>: [ <span style="color:#e6db74">&#34;clone&#34;</span> ]
+  - <span style="color:#66d9ef">name</span>: <span style="color:#e6db74">&#34;构建镜像&#34;</span>
+    <span style="color:#66d9ef">image</span>: <span style="color:#e6db74">&#34;guoxudongdocker/drone-docker&#34;</span>
+    <span style="color:#66d9ef">settings</span>:
+      <span style="color:#66d9ef">username</span>:
+        <span style="color:#66d9ef">from_secret</span>: <span style="color:#e6db74">&#34;docker_user&#34;</span>
+      <span style="color:#66d9ef">password</span>:
+        <span style="color:#66d9ef">from_secret</span>: <span style="color:#e6db74">&#34;docker_pass&#34;</span>
+      <span style="color:#66d9ef">dockerfile</span>: <span style="color:#e6db74">&#34;Dockerfile&#34;</span>
+      <span style="color:#66d9ef">repo</span>: <span style="color:#e6db74">&#34;registry-vpc.cn-shanghai.aliyuncs.com/guoxudong/test&#34;</span>
+      <span style="color:#66d9ef">registry</span>: <span style="color:#e6db74">&#34;registry-vpc.cn-shanghai.aliyuncs.com&#34;</span>
+      <span style="color:#66d9ef">tags</span>: <span style="color:#e6db74">&#34;${DRONE_BUILD_NUMBER}&#34;</span>
+    <span style="color:#66d9ef">depends_on</span>: [ <span style="color:#e6db74">&#34;Maven编译&#34;</span> ]
+  - <span style="color:#66d9ef">name</span>: <span style="color:#e6db74">&#34;Kubernetes 部署&#34;</span>
+    <span style="color:#66d9ef">image</span>: <span style="color:#e6db74">&#34;guoxudongdocker/kubectl&#34;</span>
+    <span style="color:#66d9ef">settings</span>:
+      <span style="color:#66d9ef">config</span>: <span style="color:#e6db74">&#34;deploy/overlays/uat&#34;</span>
+      <span style="color:#66d9ef">timeout</span>: <span style="color:#ae81ff">300</span>
+      <span style="color:#66d9ef">check</span>: <span style="color:#66d9ef">false</span>
+    <span style="color:#66d9ef">depends_on</span>: [ <span style="color:#e6db74">&#34;构建镜像&#34;</span> ]
+  - <span style="color:#66d9ef">name</span>: <span style="color:#e6db74">&#34;前端构建&#34;</span>
+    <span style="color:#66d9ef">image</span>: <span style="color:#e6db74">&#34;guoxudongdocker/node-drone&#34;</span>
+    <span style="color:#66d9ef">commands</span>:
+      - <span style="color:#e6db74">&#34;npm install&#34;</span>
+      - <span style="color:#e6db74">&#34;npm run build&#34;</span>
+    <span style="color:#66d9ef">depends_on</span>: [ <span style="color:#e6db74">&#34;clone&#34;</span> ]
+  - <span style="color:#66d9ef">name</span>: <span style="color:#e6db74">&#34;前端上传&#34;</span>
+    <span style="color:#66d9ef">image</span>: <span style="color:#e6db74">&#34;guoxudongdocker/node-drone&#34;</span>
+    <span style="color:#66d9ef">commands</span>:
+      - <span style="color:#e6db74">&#34;do something&#34;</span>
+    <span style="color:#66d9ef">depends_on</span>: [ <span style="color:#e6db74">&#34;前端构建&#34;</span>,<span style="color:#e6db74">&#34;Kubernetes 部署&#34;</span> ]
+  - <span style="color:#66d9ef">name</span>: <span style="color:#e6db74">&#34;钉钉通知&#34;</span>
+    <span style="color:#66d9ef">image</span>: <span style="color:#e6db74">&#34;guoxudongdocker/drone-dingtalk&#34;</span>
+    <span style="color:#66d9ef">settings</span>:
+      <span style="color:#66d9ef">token</span>:
+        <span style="color:#66d9ef">from_secret</span>: <span style="color:#e6db74">&#34;dingding&#34;</span>
+      <span style="color:#66d9ef">type</span>: <span style="color:#e6db74">&#34;markdown&#34;</span>
+      <span style="color:#66d9ef">message_color</span>: <span style="color:#66d9ef">true</span>
+      <span style="color:#66d9ef">message_pic</span>: <span style="color:#66d9ef">true</span>
+      <span style="color:#66d9ef">sha_link</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#66d9ef">depends_on</span>: [ <span style="color:#e6db74">&#34;前端上传&#34;</span>,<span style="color:#e6db74">&#34;Kubernetes 部署&#34;</span> ]
+    <span style="color:#66d9ef">when</span>:
+      <span style="color:#66d9ef">status</span>:
+        - <span style="color:#e6db74">&#34;failure&#34;</span>
+        - <span style="color:#e6db74">&#34;success&#34;</span>
+</code></pre></div><h2 id="多子项目构建">多子项目构建</h2>
 <p>在使用 drone 中遇到的最大问题就是，我们有很多项目都是在一个 repo 中有很多子项目，而每个子项目都是 k8s 中的一个服务，这时一个 <code>.drone.yml</code> 文件很难把所有的服务都囊括。而又不想每个子项目拉一个分支管理，当前的模式就很不合适。</p>
-
 <h3 id="插件开发">插件开发</h3>
-
 <p>针对这个问题，我们对 drone 进行了定制化开发，会在每次提交代码后，对新提交的代码和老代码进行比较，筛选出做了修改的子项目，然后对有修改的子项目尽心 CI ，其余的子项目则不进行发布。</p>
-
 <p>而以上的方式仅适用于测试环境的快速迭代，生产环境则采用 tag 的模式，针对不同的子项目，打不同前缀的 tag ，比如子项目为 test1 ，则打 <code>test1-v0.0.1</code> 的 tag，就会对该子项目进行生产发布。</p>
-
 <h3 id="构建效果">构建效果</h3>
-
 <ul>
-<li><p>有修改的子项目</p>
-
-<p><img src="https://ws1.sinaimg.cn/large/ad5fbf65gy1g6vm2ul2zfj21ky148jx0.jpg" alt="image" /></p></li>
-
-<li><p>无修改的子项目</p>
-
-<p><img src="https://wx1.sinaimg.cn/large/ad5fbf65gy1g6vm49on4kj21jk11iaf7.jpg" alt="image" /></p></li>
+<li>
+<p>有修改的子项目</p>
+<p><img src="https://ws1.sinaimg.cn/large/ad5fbf65gy1g6vm2ul2zfj21ky148jx0.jpg" alt="image"></p>
+</li>
+<li>
+<p>无修改的子项目</p>
+<p><img src="https://wx1.sinaimg.cn/large/ad5fbf65gy1g6vm49on4kj21jk11iaf7.jpg" alt="image"></p>
+</li>
 </ul>
-
 <h2 id="kubernetes-发布状态检查">Kubernetes 发布状态检查</h2>
-
 <p>之前的 Kubernetes 发布只是将服务发布到 Kubernetes 集群，并不管服务是否正常启动。针对这个问题以及我们的 Kubernetes 应用管理模式，我们开发了 drone 的 Kubernetes 发布插件，该插件包括 <code>kubectl</code> 、<code>kustomize</code>、<code>kubedog</code> ，来完善我们的 Kubernetes 发布 step 。</p>
-
 <blockquote>
 <p>.drone.yml</p>
 </blockquote>
-
-<pre><code class="language-yaml">steps:
-- name: Kubernetes 部署
-  image: guoxudongdocker/kubectl
-  volumes:
-  - name: kube
-    path: /root/.kube
-  settings:
-    check: false                 # 该参数为是否开启子模块检查
-    config: deploy/overlays/uat  # 这里使用 kustomize ,详细使用方法请见 https://github.com/kubernetes-sigs/kustomize
-    timeout: 300                 # kubedog 的检测超时
-    name: {your-deployment-name} # 如果开启子模块检查则需要填入子模块名称
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">steps</span>:
+- <span style="color:#66d9ef">name</span>: Kubernetes 部署
+  <span style="color:#66d9ef">image</span>: guoxudongdocker/kubectl
+  <span style="color:#66d9ef">volumes</span>:
+  - <span style="color:#66d9ef">name</span>: kube
+    <span style="color:#66d9ef">path</span>: /root/.kube
+  <span style="color:#66d9ef">settings</span>:
+    <span style="color:#66d9ef">check</span>: <span style="color:#66d9ef">false</span>                 <span style="color:#75715e"># 该参数为是否开启子模块检查</span>
+    <span style="color:#66d9ef">config</span>: deploy/overlays/uat  <span style="color:#75715e"># 这里使用 kustomize ,详细使用方法请见 https://github.com/kubernetes-sigs/kustomize</span>
+    <span style="color:#66d9ef">timeout</span>: <span style="color:#ae81ff">300</span>                 <span style="color:#75715e"># kubedog 的检测超时</span>
+    <span style="color:#66d9ef">name</span>: {your-deployment-name} <span style="color:#75715e"># 如果开启子模块检查则需要填入子模块名称</span>
 
 ...
 
-volumes:
-- name: kube
-  host:
-    path: /tmp/cache/.kube  # kubeconfig 挂载位置
+<span style="color:#66d9ef">volumes</span>:
+- <span style="color:#66d9ef">name</span>: kube
+  <span style="color:#66d9ef">host</span>:
+    <span style="color:#66d9ef">path</span>: /tmp/cache/.kube  <span style="color:#75715e"># kubeconfig 挂载位置</span>
 
-trigger:
-  branch:
-  - master  # 触发 CI 的分支
-</code></pre>
-
-<p>使用该插件会如果为测试构建，则会自动设置 docker 镜像 tag 为 <code>DRONE_BUILD_NUMBER</code> ；如果为生产构建（git tag），则叫自动设置 docker 镜像 tag 为 <code>DRONE_TAG</code> ，然后通过 <code>kubectl apply -k .</code> 进行部署，同时使用 <code>kubedog</code> 进行部署状态检查，如果服务正常启动则该 step 通过，如果超时或者部署报错则该 step 失败。</p>
-
+<span style="color:#66d9ef">trigger</span>:
+  <span style="color:#66d9ef">branch</span>:
+  - master  <span style="color:#75715e"># 触发 CI 的分支</span>
+</code></pre></div><p>使用该插件会如果为测试构建，则会自动设置 docker 镜像 tag 为 <code>DRONE_BUILD_NUMBER</code> ；如果为生产构建（git tag），则叫自动设置 docker 镜像 tag 为 <code>DRONE_TAG</code> ，然后通过 <code>kubectl apply -k .</code> 进行部署，同时使用 <code>kubedog</code> 进行部署状态检查，如果服务正常启动则该 step 通过，如果超时或者部署报错则该 step 失败。</p>
 <h2 id="结语">结语</h2>
-
 <p>根据我们目前的开发模式，对 drone 插件进行了全方位的开发。由于 dockerhub 的镜像拉取经常超时，则将镜像推送到了我们自己的镜像仓库；对钉钉通知也进行了优化；同时也根据我们目前的开发语言进行了插件的开发，提供了基于 Java 、Python 以及 Node.js 的 drone 插件，基本可以满足我们现在的 CI 需求，但随着 drone 的深入使用，越来越多的问题将会暴露出来。后续将会不断解决遇到的问题，持续优化。</p>
 
     </div>
@@ -1073,7 +1047,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.

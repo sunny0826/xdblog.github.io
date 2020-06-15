@@ -12,7 +12,7 @@
   <meta name="baidu-site-verification" content="A85okozwVV" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="never">
-  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="generator" content="Hugo 0.68.3" />
 
   
 
@@ -93,7 +93,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academia.min.e8fbba34dd9a609c9ac6b5011b68ef68.css">
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
 
   
     
@@ -106,7 +106,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academia.1e44d9113ab3723e80d73cf9845fe484.css">
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
   
 
   
@@ -561,41 +561,29 @@
   <div class="article-container" id="container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<h2 id="前言">前言</h2>
-
+      <h2 id="前言">前言</h2>
 <p>新型冠状病毒疫情汹涌而来，全国各地严防死守，而疫情的实时数据也通过不同的渠道，如微信城市服务的疫情动态订阅、支付宝的疫情实时追踪、新浪新闻的疫情实时动态等等，各种平台纷纷将疫情的实时动态进行展示，确保人们可以第一时间了解疫情的发展情况。</p>
-
 <p>而无论是哪一家的数据推送和展示，都是面向大众的，并不能个性化的展示我们最关心的那些数据，所以这时就需要自制一个疫情动态展示的 Dashboard 了。</p>
-
-<p>说到 Dashboard，第一个联想到的当然就是 <a href="https://grafana.com/" target="_blank">Grafana</a> 了，<a href="https://grafana.com/" target="_blank">Grafana</a> 是自2014年以来推出的多平台开源分析和交互式可视化软件。连接支持的数据源，它会提供 Web 图表的展示以及报警。终端用户可以通过插件进行拓展，从而使用交互式的查询及展示复杂的监控仪表盘。</p>
-
+<p>说到 Dashboard，第一个联想到的当然就是 <a href="https://grafana.com/">Grafana</a> 了，<a href="https://grafana.com/">Grafana</a> 是自2014年以来推出的多平台开源分析和交互式可视化软件。连接支持的数据源，它会提供 Web 图表的展示以及报警。终端用户可以通过插件进行拓展，从而使用交互式的查询及展示复杂的监控仪表盘。</p>
 <h2 id="项目准备">项目准备</h2>
-
 <p>明确目标，我们这里需要定制一个 Dashboard 用于展示疫情动态，由于我目前在上海，需要展示全国和上海的确诊、疑似、治愈和死亡病例数；同时还需要一个病例发展曲线，用来观察疫情发展趋势；各省区情况已经上海各区情况也是需要的。</p>
-
-<p><a href="https://grafana.com/" target="_blank">Grafana</a> 只是一个展示数据的工具，首先需要的是数据源，目前市面上并没有可以直接用于 Grafana 的疫情数据源，这里我们需要：</p>
-
+<p><a href="https://grafana.com/">Grafana</a> 只是一个展示数据的工具，首先需要的是数据源，目前市面上并没有可以直接用于 Grafana 的疫情数据源，这里我们需要：</p>
 <ul>
-<li><p>需要一个 <a href="https://grafana.com/" target="_blank">Grafana</a>，无论是在你的笔记本电脑上，还是在你的 K8S 集群中（这里推荐使用 docker 进行运行 Grafana，如果部署在 K8S 集群中，那更好）。</p></li>
-
-<li><p>安装 <a href="https://grafana.com/grafana/plugins/grafana-simple-json-datasource/installation" target="_blank">SimpleJson</a> 插件，它可以将 json 格式的数据，用作 Grafana 的数据源。</p></li>
+<li>
+<p>需要一个 <a href="https://grafana.com/">Grafana</a>，无论是在你的笔记本电脑上，还是在你的 K8S 集群中（这里推荐使用 docker 进行运行 Grafana，如果部署在 K8S 集群中，那更好）。</p>
+</li>
+<li>
+<p>安装 <a href="https://grafana.com/grafana/plugins/grafana-simple-json-datasource/installation">SimpleJson</a> 插件，它可以将 json 格式的数据，用作 Grafana 的数据源。</p>
+</li>
 </ul>
-
 <h2 id="开发数据源">开发数据源</h2>
-
-<p>数据源这里使用 Python Bottle 进行开发，当然你也可以选择 flask，都是一样的，我使用 Bottle 的原因是之前开发的 Grafana 数据源是使用 Bottle 开发的，这里直接拿来就可以用，调试配置甚至用于构建 docker 镜像的 <code>Dockerfile</code> 和用于部署 K8S 的 <code>deploy.yaml</code> 都有现成可以用的。使用 Python 开发 <a href="https://grafana.com/" target="_blank">Grafana</a> 数据源很简单，只有符合 <a href="https://grafana.com/grafana/plugins/grafana-simple-json-datasource/installation" target="_blank">SimpleJson</a> 的格式要求即可。可以根据 <a href="http://oz123.github.io/about.html" target="_blank">Oz Nahum Tiram</a> 的博文 <a href="http://oz123.github.io/writings/2019-06-16-Visualize-almost-anything-with-Grafana-and-Python/index.html" target="_blank">Visualize almost anything with Grafana and Python</a> 来学习如果使用 Python 作为 <a href="https://grafana.com/" target="_blank">Grafana</a> 的数据源。</p>
-
+<p>数据源这里使用 Python Bottle 进行开发，当然你也可以选择 flask，都是一样的，我使用 Bottle 的原因是之前开发的 Grafana 数据源是使用 Bottle 开发的，这里直接拿来就可以用，调试配置甚至用于构建 docker 镜像的 <code>Dockerfile</code> 和用于部署 K8S 的 <code>deploy.yaml</code> 都有现成可以用的。使用 Python 开发 <a href="https://grafana.com/">Grafana</a> 数据源很简单，只有符合 <a href="https://grafana.com/grafana/plugins/grafana-simple-json-datasource/installation">SimpleJson</a> 的格式要求即可。可以根据 <a href="http://oz123.github.io/about.html">Oz Nahum Tiram</a> 的博文 <a href="http://oz123.github.io/writings/2019-06-16-Visualize-almost-anything-with-Grafana-and-Python/index.html">Visualize almost anything with Grafana and Python</a> 来学习如果使用 Python 作为 <a href="https://grafana.com/">Grafana</a> 的数据源。</p>
 <p>在对数据源的定制中，使用两种类型的的数据：</p>
-
 <ul>
-<li><p><code>timeserie</code> 类型：</p>
-
+<li>
+<p><code>timeserie</code> 类型：</p>
 <p>用于展示全国（含港澳台）和上海地区的疫情实时动态，展示确诊、疑似、治愈和死亡数，并且展示较昨日增加的数量，绘制了【确诊/疑似】数和【治愈/死亡】数的对比曲线。</p>
-
 <p>这里只要将全国确诊数 <code>gntotal</code> 与 当前时间戳组合返回即可，其他指标也是这种方式。</p>
-
 <pre><code>@app.post('/query')
 def query():
     print(request.json)
@@ -609,13 +597,10 @@ def query():
     body = dumps(body)
     return HTTPResponse(body=body, headers={'Content-Type': 'application/json'})
 </code></pre></li>
-
-<li><p><code>table</code> 类型：</p>
-
+<li>
+<p><code>table</code> 类型：</p>
 <p>用于绘制中国各省确诊、疑似、治愈和死亡病例数表格，以及上海各区确诊、疑似、治愈和死亡病例数表格。</p>
-
 <p>取出数据中的名称以及确诊、疑似、治愈和死亡数，<code>append</code> 到 <code>rows</code> 中即可。</p>
-
 <pre><code>@app.post('/query')
 def query():
     print(request.json)
@@ -659,46 +644,28 @@ def query():
   return HTTPResponse(body=body, headers={'Content-Type': 'application/json'})
 </code></pre></li>
 </ul>
-
 <h2 id="选择展示-panel-类型">选择展示 Panel 类型</h2>
-
 <p>总的来说，使用了4种 Panel 进行展示：</p>
-
 <ul>
 <li>展示病例数的展示块，使用 <code>Singlestat</code></li>
 <li>展示数据对比曲线，使用 <code>Graph</code></li>
 <li>展示表格，使用 <code>Table</code></li>
 <li>文字标题，使用 <code>Text</code></li>
 </ul>
-
 <h2 id="配置数据源">配置数据源</h2>
-
 <h3 id="病例数展示块">病例数展示块：</h3>
-
 <p>这里只有一个值，所以要选择 <code>First</code>。</p>
-
-<p><img src="https://tvax2.sinaimg.cn/large/ad5fbf65gy1gbvs6gmbzlj20x00ku0uk.jpg" alt="image" /></p>
-
+<p><img src="https://tvax2.sinaimg.cn/large/ad5fbf65gy1gbvs6gmbzlj20x00ku0uk.jpg" alt="image"></p>
 <h3 id="病例数发展趋势图">病例数发展趋势图：</h3>
-
 <p>这里将【确诊/疑似】和【治愈/死亡】数进行对比。</p>
-
-<p><img src="https://tva2.sinaimg.cn/large/ad5fbf65gy1gbvs8hmuvoj21gu0iu41j.jpg" alt="image" /></p>
-
+<p><img src="https://tva2.sinaimg.cn/large/ad5fbf65gy1gbvs8hmuvoj21gu0iu41j.jpg" alt="image"></p>
 <h3 id="数据表格">数据表格：</h3>
-
-<p><img src="https://tvax3.sinaimg.cn/large/ad5fbf65gy1gbvsa2pharj21b30igdi1.jpg" alt="image" /></p>
-
+<p><img src="https://tvax3.sinaimg.cn/large/ad5fbf65gy1gbvsa2pharj21b30igdi1.jpg" alt="image"></p>
 <h2 id="效果">效果</h2>
-
 <p>整体效果还可以，先已用作公司大屏展示疫情情况（这里我司用于展示屏幕较小，只不过是一个小米电视，故字体和展示块都做的大了一些）。</p>
-
-<p><img src="featured.png" alt="" /></p>
-
+<p><img src="featured.png" alt=""></p>
 <h2 id="构建">构建</h2>
-
 <p>将代码打包成为 docker 镜像，就可以运行在任意环境以及 K8S 集群了，镜像已上传 dockerhub 直接拉取镜像，开箱即食。</p>
-
 <pre><code># Dockerfile
 FROM python:3.7.3-alpine3.9
 
@@ -714,46 +681,35 @@ RUN echo &quot;https://mirrors.aliyun.com/alpine/v3.9/main/&quot; &gt; /etc/apk/
 WORKDIR /app
 
 ENTRYPOINT [&quot;uwsgi&quot;,&quot;--ini&quot;,&quot;uwsgi.ini&quot;]
-</code></pre>
-
-<h2 id="运行">运行</h2>
-
+</code></pre><h2 id="运行">运行</h2>
 <ul>
-<li><p>拉取镜像</p>
-
+<li>拉取镜像</li>
+</ul>
 <pre><code>docker pull guoxudongdocker/feiyan-datasource
-</code></pre></li>
-
-<li><p>运行镜像</p>
-
+</code></pre><ul>
+<li>运行镜像</li>
+</ul>
 <pre><code>docker run -d --name datasource -p 8088:3000 guoxudongdocker/feiyan-datasource
-</code></pre></li>
-
-<li><p>添加数据源</p>
-
-<p>选择 <a href="https://grafana.com/grafana/plugins/grafana-simple-json-datasource/installation" target="_blank">SimpleJson</a> 类型的数据源，点击添加，填入数据源地址：</p>
-
-<p><img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1gbvsocijjuj20jj0lagot.jpg" alt="datasource" /></p></li>
-
-<li><p>导入 Dashboard</p>
-
+</code></pre><ul>
+<li>
+<p>添加数据源</p>
+<p>选择 <a href="https://grafana.com/grafana/plugins/grafana-simple-json-datasource/installation">SimpleJson</a> 类型的数据源，点击添加，填入数据源地址：</p>
+<p><img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1gbvsocijjuj20jj0lagot.jpg" alt="datasource"></p>
+</li>
+<li>
+<p>导入 Dashboard</p>
 <p>点击 <code>Upload.json file</code>，选择 <code>wuhan2020-grafana/dashboard.json</code></p>
-
-<p><img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1gbvspqvaz0j20uh0iracw.jpg" alt="import" /></p></li>
-
-<li><p>使用 K8S 部署（可选）</p>
-
+<p><img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1gbvspqvaz0j20uh0iracw.jpg" alt="import"></p>
+</li>
+<li>
+<p>使用 K8S 部署（可选）</p>
 <pre><code>kubectl apply -f deploy.yaml
 </code></pre></li>
 </ul>
-
 <h2 id="结语">结语</h2>
-
 <p>截止目前（2020年2月14日），病例数还在不断的增加，但是疑似病例数趋势开始下降，可以看出，目前新型肺炎的确诊速度增加了；治愈数也在不断的增加；上海地区和其他地区比起来，虽然有大批返工人员进入，但是并没有增加特别多的病例数，各个社区严防死守的效果初显；同时上海一直保持着死亡1人的情况，而且中国首例新型肺炎治愈的也在上海。总的来说只要大家注意预防，待在家中，多消毒，多通风，一定可以战胜疫情，度过难关。</p>
-
 <p>导入 Dashboard 的 <code>json</code> 文件和部署 K8S 的 <code>yaml</code> 文件都可以在 GitHub 上找到。</p>
-
-<p>项目地址：<a href="https://github.com/sunny0826/wuhan2020-grafana" target="_blank">https://github.com/sunny0826/wuhan2020-grafana</a></p>
+<p>项目地址：https://github.com/sunny0826/wuhan2020-grafana</p>
 
     </div>
 
@@ -1104,7 +1060,7 @@ div#btw-modal img {
       <div class="col-md-6">
         
         <p>
-          <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>知识共享署名-非商业性使用 4.0 国际许可协议</a> &middot; 
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
           Powered by
           <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
