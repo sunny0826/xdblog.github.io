@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academia 4.3.1">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
+  <meta name="baidu-site-verification" content="A85okozwVV" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="never">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="郭旭东">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="本文通过一个简单的示例，介绍开放应用模型（OAM）是如何实现以应用为中心，管理 Kubernetes 的。">
+
+  
+  <link rel="alternate" hreflang="zh" href="https://guoxudong.io/post/start-oam/">
+  
+  <link rel="alternate" hreflang="en-us" href="https://guoxudong.io/en/post/start-oam/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#fc6f5c">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.9.0/instantsearch.min.css" integrity="sha256-ZtmLe16p4jS4/2wPwwH6NzJt460SJzgLmhKrYo5yn7g=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch-theme-algolia.min.css" integrity="sha256-uL8LUd3zkI/lXvc/Hv/oOu8ld6RJcOZiUY/8c+I+3/o=" crossorigin="anonymous">
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
+
+  
+    
+    
+    
+    
+      
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://guoxudong.io/en/post/start-oam/">
+
+  
+  
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@GuoXudong2">
+  <meta property="twitter:creator" content="@GuoXudong2">
+  
+  <meta property="og:site_name" content="GuoXD Blog">
+  <meta property="og:url" content="https://guoxudong.io/en/post/start-oam/">
+  <meta property="og:title" content="以应用为中心：开放应用模型（OAM）初探 | GuoXD Blog">
+  <meta property="og:description" content="本文通过一个简单的示例，介绍开放应用模型（OAM）是如何实现以应用为中心，管理 Kubernetes 的。"><meta property="og:image" content="https://guoxudong.io/img/icon-192.png">
+  <meta property="twitter:image" content="https://guoxudong.io/img/icon-192.png"><meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2020-06-28T14:53:23&#43;08:00">
+  
+  <meta property="article:modified_time" content="2020-06-28T14:53:23&#43;08:00">
+  
+
+  
+
+
+  
+
+
+
+
+
+  <title>以应用为中心：开放应用模型（OAM）初探 | GuoXD Blog</title>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4d507f28a1daf58fc7aca939db57093d";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>  
+</head>
+
+
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/en/"><img src="/img/logo.png" alt="GuoXD Blog"></a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/en/#slider"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/en/post"><span>Blog</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/en/#about"><span>About</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" ><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <span>English</span>
+          </a>
+          <ul class="dropdown-menu">
+            
+            <li class="dropdown-item my-0 py-0 mx-0 px-0">
+              <a href="https://guoxudong.io/post/start-oam/">
+                <span>中文 (简体)</span>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article py-5" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+<div class="container split-header">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+        <img class="img-fluid w-100" src="https://tva3.sinaimg.cn/large/ad5fbf65ly1gg82nyjdvmj20s8089764.jpg" itemprop="image" alt="">
+        
+    </div>
+    <div class="col-lg-8">
+      <h1 itemprop="name">以应用为中心：开放应用模型（OAM）初探</h1>
+
+      
+
+      
+
+
+
+<meta content="2020-06-28 14:53:23 &#43;0800 CST" itemprop="datePublished">
+<meta content="2020-06-28 14:53:23 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+
+
+  <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/en/authors/guoxudong/">郭旭东</a></span>
+
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2020-06-28</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    6 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/en/post/start-oam/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/en/categories/oam/">OAM</a></span>
+  
+
+  
+    
+<br>
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://guoxudong.io/en/post/start-oam/&amp;text=%e4%bb%a5%e5%ba%94%e7%94%a8%e4%b8%ba%e4%b8%ad%e5%bf%83%ef%bc%9a%e5%bc%80%e6%94%be%e5%ba%94%e7%94%a8%e6%a8%a1%e5%9e%8b%ef%bc%88OAM%ef%bc%89%e5%88%9d%e6%8e%a2" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://guoxudong.io/en/post/start-oam/&amp;t=%e4%bb%a5%e5%ba%94%e7%94%a8%e4%b8%ba%e4%b8%ad%e5%bf%83%ef%bc%9a%e5%bc%80%e6%94%be%e5%ba%94%e7%94%a8%e6%a8%a1%e5%9e%8b%ef%bc%88OAM%ef%bc%89%e5%88%9d%e6%8e%a2" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%e4%bb%a5%e5%ba%94%e7%94%a8%e4%b8%ba%e4%b8%ad%e5%bf%83%ef%bc%9a%e5%bc%80%e6%94%be%e5%ba%94%e7%94%a8%e6%a8%a1%e5%9e%8b%ef%bc%88OAM%ef%bc%89%e5%88%9d%e6%8e%a2&amp;body=https://guoxudong.io/en/post/start-oam/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://guoxudong.io/en/post/start-oam/&amp;title=%e4%bb%a5%e5%ba%94%e7%94%a8%e4%b8%ba%e4%b8%ad%e5%bf%83%ef%bc%9a%e5%bc%80%e6%94%be%e5%ba%94%e7%94%a8%e6%a8%a1%e5%9e%8b%ef%bc%88OAM%ef%bc%89%e5%88%9d%e6%8e%a2" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=%e4%bb%a5%e5%ba%94%e7%94%a8%e4%b8%ba%e4%b8%ad%e5%bf%83%ef%bc%9a%e5%bc%80%e6%94%be%e5%ba%94%e7%94%a8%e6%a8%a1%e5%9e%8b%ef%bc%88OAM%ef%bc%89%e5%88%9d%e6%8e%a2%20https://guoxudong.io/en/post/start-oam/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://guoxudong.io/en/post/start-oam/&amp;title=%e4%bb%a5%e5%ba%94%e7%94%a8%e4%b8%ba%e4%b8%ad%e5%bf%83%ef%bc%9a%e5%bc%80%e6%94%be%e5%ba%94%e7%94%a8%e6%a8%a1%e5%9e%8b%ef%bc%88OAM%ef%bc%89%e5%88%9d%e6%8e%a2" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://guoxudong.io/en/post/start-oam/&amp;title=%e4%bb%a5%e5%ba%94%e7%94%a8%e4%b8%ba%e4%b8%ad%e5%bf%83%ef%bc%9a%e5%bc%80%e6%94%be%e5%ba%94%e7%94%a8%e6%a8%a1%e5%9e%8b%ef%bc%88OAM%ef%bc%89%e5%88%9d%e6%8e%a2" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="/share?url=https://guoxudong.io/en/post/start-oam/" target="_blank" rel="noopener" class="share-btn-weixin">
+          <i class="fab fa-weixin"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+  <div class="article-container" id="container">
+
+    <div class="article-style" itemprop="articleBody">
+      <h2 id="前言">前言</h2>
+<p>不久前，Kubernetes 也迎来了他 6 岁的生日，在这 6 年中，从孵化之初的三足鼎立，到后来的一统天下，Kubernetes 成为容器编排领域的事实标准已经有段时间了。在这期间，云原生的概念开始深入人心，越来越的公司组织和开发者开始接受、了解、实践云原生。如今，已有无数的应用以容器的形式运行在各种版本 Kubernetes 中了。</p>
+<h2 id="应用管理之惑">应用管理之惑</h2>
+<p>然而我们慢慢发现，随着应用和服务数量、使用场景以及承载业务的增加，Kubernetes 资源越来越难以管理。比如，有时候可能多个运维人员重复为一个 Deployment 配置了多个 Service 或 Ingress，而在一个 namespace 中动辄就有上百个 Service，在这些 Service 中找到那些重复、无效、甚至错误的 Service 可不是一件容易的事情。</p>
+<p>上面描述的只是运维人员内部可能存在的冲突，更多的冲突来自开发与运维人员之间，由于各自关注的角度不同，出现了对 Deployment 配置权的争夺，他们各自关心的字段不尽相同，但同时还要面对同一份 <code>deployment.yaml</code>，这就是冲突的根源。我们的做法是使用 kustomize 将一份 <code>deployment.yaml</code> 分成不同的 <a href="https://kubernetes-sigs.github.io/kustomize/api-reference/glossary/#overlay">overlays</a>，将开发和运维关注的字段分开管理，而这只是缓兵之计，依旧没有一个统一的配置文件来描述整个应用，比如这个应用由几个 Deployment、Service、 Ingress 组成，一个新手如果想要查看一个资源相关的其他资源，只能通过 label 和“相似”的名称去找或者猜。而这样做显然是很危险的，这也是为什么我不敢轻易清理生产环境中无用的 Service 和 ConfigMap 的原因，你永远也想不到有什么地方可能引用了他们。</p>
+<p>相对标准 Kubernetes 资源，Operator 的管理难度就更大了，各式各样的 Operator 存在于我的 Kubernetes 集群中，<code>kubectl get crd</code> 命令输出的结果更是长的可怕。</p>
+<p>而开放应用模型（OAM）可能是助我脱离苦海的一味良药。</p>
+<h2 id="开放应用模型oam">开放应用模型（OAM）</h2>
+<p>OAM 是阿里云与 Azure 在 2019 年末联合推出的标准化云原生应用管理模型。相比于传统 PaaS 封闭、不能同“以 Operator 为基础的云原生生态”衔接的现状，基于 OAM 和 Kubernetes 构建的现代云原生应用管理平台，本质上是一个 <strong>“以应用为中心”</strong> 的 Kubernetes ，保证了这个应用平台在能够无缝接入整个云原生生态。同时，OAM 可以进一步屏蔽掉容器基础设施的复杂性和差异性，为平台的使用者带来低心智负担的、标准化的、一致的应用管理与交付体验。</p>
+<p>所谓 “应用模型”，其实是一个专门用来对云原生应用本身和它所需运维能力进行定义与描述的标准开源规范。所以对于 Kubernetes 来说，OAM 即是一个标准的“应用定义”项目（类比已经不再活跃的 Kubernetes Application CRD 项目），同时也是一个专注于封装、组织和管理 Kubernetes 中各种 “运维能力”、以及连接 “运维能力” 与 “应用” 的平台层项目。而通过 “定义应用” 和 “组织管理应用的运维能力” 这两大核心功能，我们可以构建一个更容易管理、维护和发展的云原生平台。</p>
+<p>以下是 OAM 的一些基本概念：</p>
+<h3 id="component">Component</h3>
+<p>在 OAM 中，<strong>Component（组件）</strong> 就是一个完全面向业务研发人员设计的、用于定义应用程序而不必考虑其运维详细信息的载体。一个应用程序包含一个或多个 Component 。例如，一个网站应用可以由一个 Java web 组件和一个数据库组件组成。</p>
+<p>OAM 中的 Component 包含两个部分：</p>
+<ul>
+<li>工作负载描述 —— 如何运行此 Component，以及它的运行内容，实际上就是一个完整的 K8s CR；</li>
+<li>可重写参数列表 —— 研发通过这个字段表示该 Component 的哪些字段后续可以被运维或者系统覆盖。</li>
+</ul>
+<h3 id="trait">Trait</h3>
+<p>在 OAM 中，我们通过 <strong>Trait（运维特征）</strong> 来描述和构建具备可发现性和可管理性的平台层能力。</p>
+<p>Trait 是与 Component 绑定的，一个 Component 可以绑定多个 Trait，从而把运维能力也加入到应用描述中，方便底层基础设施统一管理。</p>
+<h3 id="application-configuration">Application Configuration</h3>
+<p>最终，通过引用 Component 名称并对它绑定 Trait ，运维人员就可以使用 <strong>ApplicationConfiguration（应用配置）</strong> 来实例化应用程序。ApplicationConfiguration 的主要功能，就是让应用运维人员（或系统）了解和使用业务研发人员传达的信息，然后自由的为 Component 组合绑定不同的运维能力以相应实现其最终的运维目的。</p>
+<p>下面这张图很好的描述了 OAM 架构的使用场景，开发与运维的<strong>关注点分离</strong>，而最终都由一份 <code>ApplicationConfiguration</code> 来描述整个应用：</p>
+<p><img src="https://tvax4.sinaimg.cn/large/ad5fbf65ly1gg82h3v1o1j20jg0bg77i.jpg" alt="image"></p>
+<h2 id="上手实践">上手实践</h2>
+<p>上面只是对 OAM 进行了简单的介绍，由于篇幅有限，如 Scope 这样的概念并没有进行介绍，更多内容欢迎加入 <a href="https://oam.dev/">OAM 社区</a>。</p>
+<p>下面就以一个简单的示例，开启我们的 OAM 之旅：</p>
+<h3 id="前提条件">前提条件</h3>
+<p>本示例为官方示例，使用 OAM 部署一个 <code>nginx</code> 应用，该应用包含 Deployment、Service 和 Ingress。</p>
+<ul>
+<li>Kubernetes 集群</li>
+<li><a href="https://helm.sh/docs/intro/">Helm 3</a></li>
+</ul>
+<h3 id="安装控制端">安装控制端</h3>
+<h4 id="安装-crossplane-和-oam">安装 Crossplane 和 OAM</h4>
+<p>注意，这里的 <code>crossplane-oam-sample</code> 是官方维护的一个 crossplane 示例，只是用作开发和演示，并不是生产可用，关于 crossplane 的更多内容，请见<a href="https://crossplane.io/">项目官网</a>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ helm repo add oam https://oam-dev.github.io/crossplane-oam-sample/archives/
+$ kubectl create namespace oam-system
+$ helm install crossplane --namespace oam-system oam/crossplane-oam
+</code></pre></div><p>这里如果由于墙的原因无法拉取 <code>gcr.io/kubebuilder/kube-rbac-proxy:v0.4.1</code> 镜像，导致 <code>crossplane-oam-localstack</code> 无法启动的话，可以使用我提供的替代镜像 <code>guoxudongdocker/kube-rbac-proxy:v0.4.1</code>。</p>
+<h4 id="拉取示例仓库">拉取示例仓库</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone https://github.com/oam-dev/catalog.git
+<span style="color:#75715e"># 进入示例</span>
+$ cd catalog/traits/ingresstrait
+</code></pre></div><h4 id="部署-crd-并启动-controller">部署 CRD 并启动 controller</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 部署 CRD</span>
+$ make install
+~/go/bin/controller-gen <span style="color:#e6db74">&#34;crd:trivialVersions=true&#34;</span> rbac:roleName<span style="color:#f92672">=</span>manager-role webhook paths<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./...&#34;</span> output:crd:artifacts:config<span style="color:#f92672">=</span>config/crd/bases
+kustomize build config/crd | kubectl apply -f -
+customresourcedefinition.apiextensions.k8s.io/ingresstraits.core.oam.dev created
+<span style="color:#75715e"># 启动 IngressTrait controller</span>
+$ go run main.go
+I0629 11:15:22.035708     <span style="color:#ae81ff">802</span> request.go:621<span style="color:#f92672">]</span> Throttling request took 1.000526734s, request: GET:https://192.168.4.210:6443/apis/apiregistration.k8s.io/v1?timeout<span style="color:#f92672">=</span>32s
+2020-06-29T11:15:22.088+0800    INFO    controller-runtime.metrics      metrics server is starting to listen    <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;addr&#34;</span>: <span style="color:#e6db74">&#34;:8080&#34;</span><span style="color:#f92672">}</span>
+2020-06-29T11:15:22.089+0800    INFO    setup   starting manager
+2020-06-29T11:15:22.089+0800    INFO    controller-runtime.manager      starting metrics server <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;/metrics&#34;</span><span style="color:#f92672">}</span>
+2020-06-29T11:15:22.089+0800    INFO    controller-runtime.controller   Starting EventSource    <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;controller&#34;</span>: <span style="color:#e6db74">&#34;ingresstrait&#34;</span>, <span style="color:#e6db74">&#34;source&#34;</span>: <span style="color:#e6db74">&#34;kind source: /, Kind=&#34;</span><span style="color:#f92672">}</span>
+2020-06-29T11:15:22.193+0800    INFO    controller-runtime.controller   Starting Controller     <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;controller&#34;</span>: <span style="color:#e6db74">&#34;ingresstrait&#34;</span><span style="color:#f92672">}</span>
+2020-06-29T11:15:22.193+0800    INFO    controller-runtime.controller   Starting workers        <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;controller&#34;</span>: <span style="color:#e6db74">&#34;ingresstrait&#34;</span>, <span style="color:#e6db74">&#34;worker count&#34;</span>: 1<span style="color:#f92672">}</span>
+</code></pre></div><p>由于这里只是简单演示，没有将 IngressTrait controller 打包成镜像，而是在本地运行 controller，所以需要 go 环境。</p>
+<h3 id="部署应用">部署应用</h3>
+<h4 id="配置-rbac">配置 RBAC</h4>
+<p>使用命令：<code>kubectl apply -f rbac.yaml</code>，配置 RBAC。这里需要注意的是官方 IngressTrait 的 sample 示例中并没有 <code>rbac.yaml</code>，需要我们自己配置，否则的话会在部署时由于权限原因无法拉起 Deployment。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: rbac.authorization.k8s.io/v1
+<span style="color:#66d9ef">kind</span>: ClusterRole
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: deployment-clusterrole-poc
+<span style="color:#66d9ef">rules</span>:
+- <span style="color:#66d9ef">apiGroups</span>:
+  - apps
+  <span style="color:#66d9ef">resources</span>:
+  - deployments
+  <span style="color:#66d9ef">verbs</span>:
+  - <span style="color:#e6db74">&#34;*&#34;</span>
+
+---
+<span style="color:#66d9ef">apiVersion</span>: rbac.authorization.k8s.io/v1
+<span style="color:#66d9ef">kind</span>: ClusterRoleBinding
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: component-deployment-workload-poc
+<span style="color:#66d9ef">roleRef</span>:
+  <span style="color:#66d9ef">apiGroup</span>: rbac.authorization.k8s.io
+  <span style="color:#66d9ef">kind</span>: ClusterRole
+  <span style="color:#66d9ef">name</span>: deployment-clusterrole-poc
+<span style="color:#66d9ef">subjects</span>:
+  - <span style="color:#66d9ef">kind</span>: ServiceAccount
+    <span style="color:#66d9ef">name</span>: crossplane-oam              <span style="color:#75715e"># Remember to use the actual ServiceAccount name</span>
+    <span style="color:#66d9ef">namespace</span>: oam-system             <span style="color:#75715e"># Remember to use the actual ServiceAccount namespace</span>
+
+</code></pre></div><h4 id="部署-component">部署 Component</h4>
+<p>使用 <code>kubectl apply -f sample_component.yaml </code> 命令部署 Component，该 Component 中的 workload 为 Deployment。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: core.oam.dev/v1alpha2
+<span style="color:#66d9ef">kind</span>: Component
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: example-deploy
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">workload</span>:
+    <span style="color:#66d9ef">apiVersion</span>: apps/v1
+    <span style="color:#66d9ef">kind</span>: Deployment
+    <span style="color:#66d9ef">metadata</span>:
+      <span style="color:#66d9ef">name</span>: web
+    <span style="color:#66d9ef">spec</span>:
+      <span style="color:#66d9ef">selector</span>:
+        <span style="color:#66d9ef">matchLabels</span>:
+          <span style="color:#66d9ef">app</span>: test
+      <span style="color:#66d9ef">template</span>:
+        <span style="color:#66d9ef">metadata</span>:
+          <span style="color:#66d9ef">labels</span>:
+            <span style="color:#66d9ef">app</span>: test
+        <span style="color:#66d9ef">spec</span>:
+          <span style="color:#66d9ef">containers</span>:
+            - <span style="color:#66d9ef">name</span>: nginx
+              <span style="color:#66d9ef">image</span>: nginx:<span style="color:#ae81ff">1.17</span>
+              <span style="color:#66d9ef">ports</span>:
+                - <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">80</span>
+                  <span style="color:#66d9ef">name</span>: web
+</code></pre></div><h4 id="部署-applicationconfiguration">部署 ApplicationConfiguration</h4>
+<p>可以看到这个 ApplicationConfiguration 中包含一个 Component，而 Component 中又绑定了 一个 IngressTrait 类型的 Trait，由于这只是一个简单示例，所有只有一个 Component 和一个 Trait，在实际的生产环境中，一个 ApplicationConfiguration 可由多个 Component 组成，一个 Component 又可绑定多个 Trait 为其提供诸如流量管控、弹性伸缩等运维特性。</p>
+<p>使用命令：<code>kubectl apply -f sample_application_config.yaml</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: core.oam.dev/v1alpha2
+<span style="color:#66d9ef">kind</span>: ApplicationConfiguration
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: example-appconfig
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">components</span>:
+    - <span style="color:#66d9ef">componentName</span>: example-deploy
+      <span style="color:#66d9ef">traits</span>:
+        - <span style="color:#66d9ef">trait</span>:
+            <span style="color:#66d9ef">apiVersion</span>: core.oam.dev/v1alpha2
+            <span style="color:#66d9ef">kind</span>: IngressTrait
+            <span style="color:#66d9ef">metadata</span>:
+              <span style="color:#66d9ef">name</span>: example-ingress-trait
+            <span style="color:#66d9ef">spec</span>:
+                <span style="color:#66d9ef">rules</span>:
+                  - <span style="color:#66d9ef">host</span>: nginx.oam.com
+                    <span style="color:#66d9ef">paths</span>:
+                      - <span style="color:#66d9ef">path</span>: /
+                        <span style="color:#66d9ef">backend</span>:
+                          <span style="color:#66d9ef">serviceName</span>: deploy-test
+                          <span style="color:#66d9ef">servicePort</span>: <span style="color:#ae81ff">8080</span>
+</code></pre></div><h4 id="检查结果">检查结果</h4>
+<p>可以看到 Deployment、Service 和 Ingress 已经部署成功：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get deploy,svc,ing
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/web   1/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           8m29s
+
+NAME                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT<span style="color:#f92672">(</span>S<span style="color:#f92672">)</span>    AGE
+service/deploy-test   ClusterIP   10.43.170.228   &lt;none&gt;        8080/TCP   8m29s
+
+NAME                                       HOSTS           ADDRESS                       PORTS   AGE
+ingress.extensions/example-ingress-trait   nginx.oam.com   192.168.1.129,192.168.4.210   <span style="color:#ae81ff">80</span>      8m29s
+</code></pre></div><p>访问服务：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl -H <span style="color:#e6db74">&#34;Host: nginx.oam.com&#34;</span>  http://192.168.1.129
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+    body <span style="color:#f92672">{</span>
+        width: 35em;
+        margin: <span style="color:#ae81ff">0</span> auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    <span style="color:#f92672">}</span>
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://nginx.org/&#34;</span>&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://nginx.com/&#34;</span>&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you <span style="color:#66d9ef">for</span> using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div><p>应用的整体结构如下图所示：</p>
+<p><img src="https://tva4.sinaimg.cn/large/ad5fbf65gy1gg94rq5fyij20ef0drdgg.jpg" alt="OMA"></p>
+<h2 id="结语">结语</h2>
+<p>通过上面这个简单的示例，可以看出如果遵循 OAM 模型来划分应用，我们可以从 ApplicationConfiguration 入手，看到应用中都包含哪些组件（Component），同时又可以看到每个组件都有哪些运维特性（Trait）来支持这个组件，逐层的查看每个模块的描述和配置，最终全面了解这个应用，而不用像现在这样使用 label 和 name，漫无目的的靠运气来理清整个架构，真正的做到<strong>以应用为中心</strong>。</p>
+<p>OAM 的本质是将云原生应用定义中的研发、运维关注点分离，资源对象进行进一步抽象，化繁为简，包罗万象。</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/rRaHl5a5PU9Xg5psMservA?from=timeline&amp;isappinstalled=0&amp;scene=2&amp;clicktime=1588769747&amp;enterid=1588769747">深度解读！阿里统一应用管理架构升级的教训与实践 - CSDN</a></li>
+<li><a href="https://github.com/oam-dev/catalog">oam-dev/catalog - github.com</a></li>
+</ul>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/OAM">OAM</a>
+  
+  <a class="badge badge-light" href="/tags/kubernetes">kubernetes</a>
+  
+</div>
+
+
+
+     
+     
+<div class="entry-shang text-center">
+    <p>「一键投喂 小鱼干/小骨头」</p>
+    <button class="zs show-zs btn btn-primary">投喂</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+    <div class="zs-modal-head">
+        <button type="button" class="close">×</button>
+        <p class="author">
+            <a href="https://blog.maoxianplay.com">
+                <img src="https://wx3.sinaimg.cn/square/ad5fbf65gy1g2o621gcs6j20m80m8gng.jpg"/>
+            小助手毛线</a>
+        </p>
+        <p class="tip"><i></i><span>感谢投喂 <a href="/maoxian">毛线</a> & <a href="/sunny">Sunny</a> </span></p>
+    </div>
+    <div class="zs-modal-body">
+        <div class="zs-modal-btns">
+            <button class="btn btn-blink" data-num="2">2元</button>
+            <button class="btn btn-blink" data-num="5">5元</button>
+            <button class="btn btn-blink" data-num="10">10元</button>
+            <button class="btn btn-blink" data-num="50">50元</button>
+            <button class="btn btn-blink" data-num="100">100元</button>
+            <button class="btn btn-blink" data-num="any">任意金额</button>
+        </div>
+        <div class="zs-modal-pay">
+            <button class="btn btn-bred" id="pay-text">2元</button>
+            <p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+            <img id="pay-image" src="/img/alipay-2.png">
+        </div>
+    </div>
+    <div class="zs-modal-footer">
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="alipay" class="zs-type" checked="checked" style="float: left;">
+            <span class="zs-alipay">
+                <img src="/img/alipay-btn.png">
+            </span>
+        </label>
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="wechat" class="zs-type" style="float: left;">
+            <span class="zs-wechat">
+                <img src="/img/wechat-btn.png">
+            </span>
+        </label>
+    </div>
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="https://guoxudong.io/">郭旭东</a></h5>
+      <h6 class="card-subtitle">运维负责人</h6>
+      <p class="card-text" itemprop="description">云原生爱好者，分享云原生和 DevOps 技术实践，倡导开源运动，传播开源思想。</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          <li>
+            <a itemprop="sameAs" href="mailto:sunnydog0826@gmail.com" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/en/publication/wx_contact/" >
+              <i class="fab fa-weixin"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/sunny0826" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>Related</h3>
+        <ul>
+          
+          <li><a href="/en/post/helm-docs/">告别手写 Helm Chart README</a></li>
+          
+          <li><a href="/en/post/rancher-fleet/">去指挥你的舰队吧！体验使用 Fleet 批量管理 K8S 集群</a></li>
+          
+          <li><a href="/en/post/kubecm/">Kubecm：管理你的 kubeconfig</a></li>
+          
+          <li><a href="/en/post/kubewatch/">小工具介绍：KubeWatch</a></li>
+          
+          <li><a href="/en/post/aliyun-velero/">使用 Velero 进行集群备份与迁移</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "gxd" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+  
+
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+  
+
+  
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+    
+  
+
+  
+  
+
+
+
+
+
+
+
+
+<script id="dsq-count-scr" src="//gxd.disqus.com/count.js" async></script>
+
+
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<script>
+  const search_index_filename = "/en/index.json";
+  const i18n = {
+    'placeholder': "Search...",
+    'results': "results found",
+    'no_results': "No results found"
+  };
+  const content_type = {
+    'post': "Posts",
+    'project': "Projects",
+    'publication' : "Publications",
+    'talk' : "Talks"
+    };
+</script>
+
+
+
+
+
+
+
+<script id="search-hit-algolia-template" type="text/html">
+  <div class="search-hit">
+    <div class="search-hit-content">
+      <div class="search-hit-name">
+        <a href="{{relpermalink}}">{{{_highlightResult.title.value}}}</a>
+      </div>
+      <div class="article-metadata search-hit-type">{{type}}</div>
+      <p class="search-hit-description">{{{_highlightResult.summary.value}}}</p>
+    </div>
+  </div>
+</script>
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch.min.js" integrity="sha256-gFCtPk/sonctyfwYOgjrPoWApQ0rqB6ezBBZ7p32yGc=" crossorigin="anonymous"></script>
+
+<script>
+  const algoliaConfig = {
+    appId: "BE80MGWD9D",
+    apiKey: "77ca6abe5531ce66ff7c3b2486222d85",
+    indexName: "gxd-blog",
+    poweredBy:  false 
+  };
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+  
+
+
+
+<script src="/js/academia.min.6ee120363d4a313a6fd39ad7c46e63f8.js"></script>
+
+
+
+
+
+
+
+<script src="https://my.openwrite.cn/js/readmore.js" type="text/javascript"></script>
+<script>
+  const btw = new BTWPlugin();
+  btw.init({
+      id: 'container',
+      blogId: '18752-1575602900012-529',
+      name: '云原生之路',
+      qrcode: 'https://guoxudong.io/publication/contact_me/qr_weixin.jpg',
+      keyword: 'road',
+  });
+</script>
+<style>
+div#btw-modal img {
+  width: 180px; margin-top: 10px; border: 8px solid rgb(230, 230, 230);margin: auto;
+}
+</style>
+
+  
+  <div class="container">
+    <footer class="site-footer">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        
+        <p>
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
+          Powered by
+          <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-inline network-icon text-right">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="mailto:sunnydog0826@gmail.com"  title="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="/en/publication/wx_contact/"  title="Chat on Keybase"><i class="fab fa-weixin" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/sunny0826" target="_blank" rel="noopener" title="Discuss on Forum"><i class="fab fa-github" aria-hidden="true"></i></a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
