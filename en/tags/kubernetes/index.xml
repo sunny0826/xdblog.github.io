@@ -7,10 +7,340 @@
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 28 Jun 2020 14:53:23 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jul 2020 13:51:14 +0800</lastBuildDate>
     
 	    <atom:link href="https://guoxudong.io/en/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>基于 Flagger 和 Nginx-Ingress 实现金丝雀发布</title>
+      <link>https://guoxudong.io/en/post/flagger-nginx-ingress/</link>
+      <pubDate>Thu, 02 Jul 2020 13:51:14 +0800</pubDate>
+      
+      <guid>https://guoxudong.io/en/post/flagger-nginx-ingress/</guid>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;很久之前我写过一篇介绍使用 Nginx-Ingress 实现蓝绿部署和金丝雀发布的文章，但那篇文章只是介绍了 nginx-ingress 具备这些能力，真正应用还要很多额外的配置和操作，况且现在能实现这些功能的并不只有 nginx-ingress，Service Mesh 工具如：Istio，App Mesh，Linkerd；Ingress Controller 如：Contour，Gloo，NGINX 都能实现，而我们需要的更多是进行金丝雀发布之后指标的监控，流量的调整以及出现问题后的及时回滚。而 Flagger 就是这样一个帮助我们解决上面这些问题的开源工具。&lt;/p&gt;
+&lt;h2 id=&#34;flagger&#34;&gt;Flagger&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/weaveworks/flagger&#34;&gt;Flagger&lt;/a&gt; 是一种渐进式交付工具，可自动控制 Kubernetes 上应用程序的发布过程。通过指标监控和运行一致性测试，将流量逐渐切换到新版本，降低在生产环境中发布新软件版本导致的风险。&lt;/p&gt;
+&lt;p&gt;Flagger 使用 Service Mesh（App Mesh，Istio，Linkerd）或 Ingress Controller（Contour，Gloo，NGINX）来实现多种部署策略（金丝雀发布，A/B 测试，蓝绿发布）。对于发布分析，Flagger 可以查询 Prometheus、Datadog 或 CloudWatch，并使用 Slack、MS Teams、Discord 和 Rocket 来发出告警通知。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文主要介绍 Flagger 使用 Nginx-Ingress 进行金丝雀发布并监控发布状态，更多内容见&lt;a href=&#34;https://docs.flagger.app/&#34;&gt;官方文档&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://tvax4.sinaimg.cn/large/ad5fbf65ly1ggclsv45tqj21ok0skwfb.jpg&#34; alt=&#34;Flagger NGINX Ingress Controller&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;前提条件&#34;&gt;前提条件&lt;/h3&gt;
+&lt;h4 id=&#34;版本要求&#34;&gt;版本要求&lt;/h4&gt;
+&lt;p&gt;安装 Flagger 需要 Kubernetes 版本高于 &lt;strong&gt;v1.14&lt;/strong&gt;，NGINX ingress 版本高于 &lt;strong&gt;0.24&lt;/strong&gt;。&lt;/p&gt;
+&lt;h4 id=&#34;安装-nginx-ingress&#34;&gt;安装 NGINX ingress&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl create ns ingress-nginx
+$ helm upgrade -i nginx-ingress stable/nginx-ingress &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;--namespace ingress-nginx &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;--set controller.metrics.enabled&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;true &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;--set controller.podAnnotations.&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;prometheus\.io/scrape&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;true &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;--set controller.podAnnotations.&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;prometheus\.io/port&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;10254&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;安装部署&#34;&gt;安装部署&lt;/h3&gt;
+&lt;h4 id=&#34;flagger-安装&#34;&gt;Flagger 安装&lt;/h4&gt;
+&lt;p&gt;Flagger 提供了 Hlem 和 Kustomize 两种安装方式，这里使用 Helm 3 安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ helm repo add flagger https://flagger.app
+$ helm upgrade -i flagger flagger/flagger &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;--namespace ingress-nginx &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;--set prometheus.install&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;true &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;--set meshProvider&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;nginx
+--set slack.url&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;--set slack.channel&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;flagger &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;--set slack.user&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;flagger &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;值得注意的是这里我选择了 Slack 作为通知软件，需要在自己的 &lt;code&gt;#channel&lt;/code&gt; 内新增一个 APP，并将该 APP 的 &lt;code&gt;url&lt;/code&gt;、&lt;code&gt;channel&lt;/code&gt;、&lt;code&gt;user&lt;/code&gt; 填入上面的命令中。这里设置的是全局通知，集群中的 Flagger 被触发后都会进行通知，当然也可以为单个 Flagger 配置专门的通知，这里就不做过多介绍，详情见&lt;a href=&#34;https://docs.flagger.app/usage/alerting&#34;&gt;官方文档&lt;/a&gt;。&lt;/p&gt;
+&lt;h4 id=&#34;示例安装&#34;&gt;示例安装&lt;/h4&gt;
+&lt;p&gt;新建测试 namespace：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl create ns test
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;部署示例 deployment 和 horizontal pod autoscaler：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl apply -k github.com/weaveworks/flagger//kustomize/podinfo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;部署负载测试器，以便在金丝雀发布时进行流量分析：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ helm upgrade -i flagger-loadtester flagger/loadtester --namespace&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;test
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;部署 ingress，这里的 &lt;code&gt;app.example.com&lt;/code&gt; 需要改成你自己的域名，如果是在本地进行测试，则修改本机和负载测试器所在节点的 &lt;code&gt;/ect/hosts&lt;/code&gt;，将其指向你的 ADDRESS，否则将无法进行流量分析，导致部署失败。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;apiVersion&lt;/span&gt;: networking.k8s.io/v1beta1
+&lt;span style=&#34;color:#66d9ef&#34;&gt;kind&lt;/span&gt;: Ingress
+&lt;span style=&#34;color:#66d9ef&#34;&gt;metadata&lt;/span&gt;:
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: podinfo
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;namespace&lt;/span&gt;: test
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;labels&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;app&lt;/span&gt;: podinfo
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;annotations&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;kubernetes.io/ingress.class&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;nginx&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;spec&lt;/span&gt;:
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;rules&lt;/span&gt;:
+    - &lt;span style=&#34;color:#66d9ef&#34;&gt;host&lt;/span&gt;: app.example.com
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;http&lt;/span&gt;:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;paths&lt;/span&gt;:
+          - &lt;span style=&#34;color:#66d9ef&#34;&gt;backend&lt;/span&gt;:
+              &lt;span style=&#34;color:#66d9ef&#34;&gt;serviceName&lt;/span&gt;: podinfo
+              &lt;span style=&#34;color:#66d9ef&#34;&gt;servicePort&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;将以上内容另存为 &lt;code&gt;podinfo-ingress.yaml&lt;/code&gt;，然后应用：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl apply -f ./podinfo-ingress.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;创建一个 Canary 资源：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;apiVersion&lt;/span&gt;: flagger.app/v1beta1
+&lt;span style=&#34;color:#66d9ef&#34;&gt;kind&lt;/span&gt;: Canary
+&lt;span style=&#34;color:#66d9ef&#34;&gt;metadata&lt;/span&gt;:
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: podinfo
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;namespace&lt;/span&gt;: test
+&lt;span style=&#34;color:#66d9ef&#34;&gt;spec&lt;/span&gt;:
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;provider&lt;/span&gt;: nginx
+  &lt;span style=&#34;color:#75715e&#34;&gt;# deployment reference&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;targetRef&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;apiVersion&lt;/span&gt;: apps/v1
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;kind&lt;/span&gt;: Deployment
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: podinfo
+  &lt;span style=&#34;color:#75715e&#34;&gt;# ingress reference&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;ingressRef&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;apiVersion&lt;/span&gt;: networking.k8s.io/v1beta1
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;kind&lt;/span&gt;: Ingress
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: podinfo
+  &lt;span style=&#34;color:#75715e&#34;&gt;# HPA reference (optional)&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;autoscalerRef&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;apiVersion&lt;/span&gt;: autoscaling/v2beta1
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;kind&lt;/span&gt;: HorizontalPodAutoscaler
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: podinfo
+  &lt;span style=&#34;color:#75715e&#34;&gt;# the maximum time in seconds for the canary deployment&lt;/span&gt;
+  &lt;span style=&#34;color:#75715e&#34;&gt;# to make progress before it is rollback (default 600s)&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;progressDeadlineSeconds&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;60&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;service&lt;/span&gt;:
+    &lt;span style=&#34;color:#75715e&#34;&gt;# ClusterIP port number&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;port&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;# container port number or name&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;targetPort&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;9898&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;analysis&lt;/span&gt;:
+    &lt;span style=&#34;color:#75715e&#34;&gt;# 时间间隔 (默认 60s)&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;interval&lt;/span&gt;: 10s
+    &lt;span style=&#34;color:#75715e&#34;&gt;# 回滚前的最大失败指标检查次数&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;threshold&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;# 路由到金丝雀副本的最大流量百分比&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;# 百分比 (0-100)&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;maxWeight&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;50&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;# 金丝雀每次递增的百分比&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;# 百分比 (0-100)&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;stepWeight&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;# NGINX Prometheus checks&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;metrics&lt;/span&gt;:
+    - &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: request-success-rate
+      &lt;span style=&#34;color:#75715e&#34;&gt;# minimum req success rate (non 5xx responses)&lt;/span&gt;
+      &lt;span style=&#34;color:#75715e&#34;&gt;# percentage (0-100)&lt;/span&gt;
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;thresholdRange&lt;/span&gt;:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;min&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;99&lt;/span&gt;
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;interval&lt;/span&gt;: 1m
+    &lt;span style=&#34;color:#75715e&#34;&gt;# testing (optional)&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;webhooks&lt;/span&gt;:
+      - &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: acceptance-test
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt;: pre-rollout
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;url&lt;/span&gt;: http://flagger-loadtester.test/
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;timeout&lt;/span&gt;: 30s
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;metadata&lt;/span&gt;:
+          &lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt;: bash
+          &lt;span style=&#34;color:#66d9ef&#34;&gt;cmd&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;curl -sd &amp;#39;test&amp;#39; http://podinfo-canary/token | grep token&amp;#34;&lt;/span&gt;
+      - &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: load-test
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;url&lt;/span&gt;: http://flagger-loadtester.test/
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;timeout&lt;/span&gt;: 5s
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;metadata&lt;/span&gt;:
+          &lt;span style=&#34;color:#66d9ef&#34;&gt;cmd&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hey -z 1m -q 10 -c 2 http://app.example.com/&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;将以上内容另存为 &lt;code&gt;podinfo-canary.yaml&lt;/code&gt;，然后应用：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl apply -f ./podinfo-canary.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;目前可以看到示例应用 &lt;code&gt;podinfo&lt;/code&gt; 已经安装完毕，并出现了 &lt;code&gt;podinfo&lt;/code&gt; 和 &lt;code&gt;podinfo-primary&lt;/code&gt; 两个版本，并且 &lt;code&gt;http://app.example.com/&lt;/code&gt; 已经可以访问：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl get deploy,svc,ing -n test
+NAME                                 READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/flagger-loadtester   1/1     &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;            &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;           29h
+deployment.apps/podinfo              0/0     &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;            &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;           29h
+deployment.apps/podinfo-primary      2/2     &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;            &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;           29s
+
+NAME                         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;S&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;   AGE
+service/flagger-loadtester   ClusterIP   10.43.116.74    &amp;lt;none&amp;gt;        80/TCP    29h
+service/podinfo              ClusterIP   10.43.155.193   &amp;lt;none&amp;gt;        80/TCP    9s
+service/podinfo-canary       ClusterIP   10.43.194.226   &amp;lt;none&amp;gt;        80/TCP    29s
+service/podinfo-primary      ClusterIP   10.43.254.13    &amp;lt;none&amp;gt;        80/TCP    29s
+
+NAME                                HOSTS             ADDRESS                       PORTS   AGE
+ingress.extensions/podinfo          app.example.com   192.168.1.129,192.168.4.210   &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt;      5h17m
+ingress.extensions/podinfo-canary   app.example.com                                 &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt;      9s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个页面会展示 &lt;code&gt;podinfo&lt;/code&gt; 的版本已经其正在访问的 pod 名称：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva4.sinaimg.cn/large/ad5fbf65ly1ggcndtuqzsj21ha0q940s.jpg&#34; alt=&#34;app.example.com&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;自动金丝雀发布&#34;&gt;自动金丝雀发布&lt;/h3&gt;
+&lt;p&gt;现在起发布由 Flagger 控制，在部署新版本后，Flagger 自动将流量按照比例切换到新版本上，同时监控性能指标，例如 HTTP 请求的成功率、请求的平均持续时间和 pod 运行状态，经过分析后提升流量或者回滚，并通知到 Slack。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva4.sinaimg.cn/large/ad5fbf65ly1ggcng8c8vnj21q40t6q3n.jpg&#34; alt=&#34;自动金丝雀发布&#34;&gt;&lt;/p&gt;
+&lt;p&gt;通过更新镜像版本触发金丝雀部署：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl -n test set image deployment/podinfo podinfod&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;stefanprodan/podinfo:3.1.1
+deployment.apps/podinfo image updated
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可以看到初始化完成后已经有 5% 的流量切换到新版本了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl -n test describe canary/podinfo
+...
+Status:
+  Canary Weight:  &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;
+  Conditions:
+    Last Transition Time:  2020-07-02T07:21:26Z
+    Last Update Time:      2020-07-02T07:21:26Z
+    Message:               New revision detected, progressing canary analysis.
+    Reason:                Progressing
+    Status:                Unknown
+    Type:                  Promoted
+  Failed Checks:           &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+  Iterations:              &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+  Last Applied Spec:       c8bdf98d5
+  Last Transition Time:    2020-07-02T07:22:05Z
+  Phase:                   Progressing
+  Tracked Configs:
+Events:
+  Type     Reason  Age                From     Message
+  ----     ------  ----               ----     -------
+  Warning  Synced  10m                flagger  podinfo-primary.test not ready: waiting &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; rollout to finish: observed deployment generation less &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt; desired generation
+  Warning  Synced  10m                flagger  podinfo-primary.test not ready: waiting &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; rollout to finish: &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; of &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; updated replicas are available
+  Normal   Synced  10m &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;x3 over 10m&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;  flagger  all the metrics providers are available!
+  Normal   Synced  10m                flagger  Initialization &lt;span style=&#34;color:#66d9ef&#34;&gt;done&lt;/span&gt;! podinfo.test
+  Normal   Synced  41s                flagger  New revision detected! Scaling up podinfo.test
+  Warning  Synced  31s                flagger  canary deployment podinfo.test not ready: waiting &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; rollout to finish: &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; of &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; updated replicas are available
+  Warning  Synced  21s                flagger  canary deployment podinfo.test not ready: waiting &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; rollout to finish: &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; of &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; updated replicas are available
+  Warning  Synced  11s                flagger  canary deployment podinfo.test not ready: waiting &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; rollout to finish: &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; of &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; updated replicas are available
+  Normal   Synced  1s                 flagger  Starting canary analysis &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; podinfo.test
+  Normal   Synced  1s                 flagger  Pre-rollout check acceptance-test passed
+  Normal   Synced  1s                 flagger  Advance podinfo.test canary weight &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用 &lt;code&gt;watch&lt;/code&gt; 也能实时看到部署流量的权重，根据上面的设置，新版本权重大于 50% 就认为部署成功，流量将全部切换到新版本，并完成金丝雀部署：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ watch kubectl get canaries --all-namespaces
+Every 2.0s: kubectl get canaries --all-namespaces                                     guoxudongdeMacBook-Pro.local: Thu Jul  &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; 15:23:35 &lt;span style=&#34;color:#ae81ff&#34;&gt;2020&lt;/span&gt;
+
+NAMESPACE   NAME      STATUS        WEIGHT   LASTTRANSITIONTIME
+test        podinfo   Progressing   &lt;span style=&#34;color:#ae81ff&#34;&gt;45&lt;/span&gt;       2020-07-02T07:23:25Z
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;开始部署时的 Slack 通知：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tvax3.sinaimg.cn/large/ad5fbf65ly1ggcnsojp0kj20kj07kdgc.jpg&#34; alt=&#34;Slack 通知&#34;&gt;&lt;/p&gt;
+&lt;p&gt;页面上也能看出变化，访问到新版本的概率会越来越高，以蓝色和绿色的圆代表新版本和老版本：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tvax2.sinaimg.cn/large/ad5fbf65ly1ggco0nxzdrj21h80q8gnu.jpg&#34; alt=&#34;金丝雀发布&#34;&gt;&lt;/p&gt;
+&lt;p&gt;发布成功后，会收到 Slack 通知：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva2.sinaimg.cn/large/ad5fbf65ly1ggco2mdlphj20kq01h0sn.jpg&#34; alt=&#34;Slack 通知&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;自动回滚&#34;&gt;自动回滚&lt;/h3&gt;
+&lt;p&gt;当然，有自动发布就会有自动回滚，下面就通过手动触发状态码 500 异常，演示暂停发布并回滚。&lt;/p&gt;
+&lt;p&gt;部署一个新版本：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl -n test set image deployment/podinfo podinfod&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;stefanprodan/podinfo:3.1.2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;触发状态码 500 异常：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ watch curl http://app.example.com/status/500
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;等待一会儿，就可以看到部署失败并回滚：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ watch kubectl get canaries --all-namespaces
+Every 2.0s: kubectl get canaries --all-namespaces                                     guoxudongdeMacBook-Pro.local: Thu Jul  &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; 15:45:24 &lt;span style=&#34;color:#ae81ff&#34;&gt;2020&lt;/span&gt;
+
+NAMESPACE   NAME      STATUS   WEIGHT   LASTTRANSITIONTIME
+test        podinfo   Failed   &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;        2020-07-02T07:45:16Z
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;发布失败，也会收到 Slack 通知：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva3.sinaimg.cn/large/ad5fbf65ly1ggcobt1f0bj20kd01vmx1.jpg&#34; alt=&#34;失败 Slack 通知&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ab-测试&#34;&gt;A/B 测试&lt;/h3&gt;
+&lt;p&gt;除了加权路由，Flagger 还可以根据 HTTP 匹配条件将流量路由到新版本（当然，这个 Nginx-Ingress 的功能，Flagger 只是简化了操作）。可以根据 HTTP header 和 cookie 来定位用户并细分受众，对于需要关联会话的前端应用十分有用。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/ad5fbf65ly1ggcoglbmnyj217q0q0q3h.jpg&#34; alt=&#34;A/B 测试&#34;&gt;&lt;/p&gt;
+&lt;p&gt;修改 Canary 资源：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;apiVersion&lt;/span&gt;: flagger.app/v1beta1
+&lt;span style=&#34;color:#66d9ef&#34;&gt;kind&lt;/span&gt;: Canary
+&lt;span style=&#34;color:#66d9ef&#34;&gt;metadata&lt;/span&gt;:
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: podinfo
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;namespace&lt;/span&gt;: test
+&lt;span style=&#34;color:#66d9ef&#34;&gt;spec&lt;/span&gt;:
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;provider&lt;/span&gt;: nginx
+  &lt;span style=&#34;color:#75715e&#34;&gt;# deployment reference&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;targetRef&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;apiVersion&lt;/span&gt;: apps/v1
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;kind&lt;/span&gt;: Deployment
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: podinfo
+  &lt;span style=&#34;color:#75715e&#34;&gt;# ingress reference&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;ingressRef&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;apiVersion&lt;/span&gt;: networking.k8s.io/v1beta1
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;kind&lt;/span&gt;: Ingress
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: podinfo
+  &lt;span style=&#34;color:#75715e&#34;&gt;# HPA reference (optional)&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;autoscalerRef&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;apiVersion&lt;/span&gt;: autoscaling/v2beta1
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;kind&lt;/span&gt;: HorizontalPodAutoscaler
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: podinfo
+  &lt;span style=&#34;color:#75715e&#34;&gt;# the maximum time in seconds for the canary deployment&lt;/span&gt;
+  &lt;span style=&#34;color:#75715e&#34;&gt;# to make progress before it is rollback (default 600s)&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;progressDeadlineSeconds&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;60&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;service&lt;/span&gt;:
+    &lt;span style=&#34;color:#75715e&#34;&gt;# ClusterIP port number&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;port&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;# container port number or name&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;targetPort&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;9898&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;analysis&lt;/span&gt;:
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;interval&lt;/span&gt;: 1m
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;threshold&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;iterations&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;match&lt;/span&gt;:
+      &lt;span style=&#34;color:#75715e&#34;&gt;# curl -H &amp;#39;X-Canary: insider&amp;#39; http://app.example.com&lt;/span&gt;
+      - &lt;span style=&#34;color:#66d9ef&#34;&gt;headers&lt;/span&gt;:
+          &lt;span style=&#34;color:#66d9ef&#34;&gt;x-canary&lt;/span&gt;:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;exact&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;insider&amp;#34;&lt;/span&gt;
+      &lt;span style=&#34;color:#75715e&#34;&gt;# curl -b &amp;#39;canary=always&amp;#39; http://app.example.com&lt;/span&gt;
+      - &lt;span style=&#34;color:#66d9ef&#34;&gt;headers&lt;/span&gt;:
+          &lt;span style=&#34;color:#66d9ef&#34;&gt;cookie&lt;/span&gt;:
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;exact&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;canary&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;metrics&lt;/span&gt;:
+    - &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: request-success-rate
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;thresholdRange&lt;/span&gt;:
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;min&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;99&lt;/span&gt;
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;interval&lt;/span&gt;: 1m
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;webhooks&lt;/span&gt;:
+      - &lt;span style=&#34;color:#66d9ef&#34;&gt;name&lt;/span&gt;: load-test
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;url&lt;/span&gt;: http://flagger-loadtester.test/
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;timeout&lt;/span&gt;: 5s
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;metadata&lt;/span&gt;:
+          &lt;span style=&#34;color:#66d9ef&#34;&gt;cmd&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hey -z 1m -q 10 -c 2 -H &amp;#39;Cookie: canary=always&amp;#39; http://app.example.com/&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;从上面的配置可以看到，将 headers 为 &lt;code&gt;X-Canary: insider&lt;/code&gt; 或 cookie 为 &lt;code&gt;canary=always&lt;/code&gt; 的请求路由到新版本。&lt;/p&gt;
+&lt;p&gt;部署一个新版本：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl -n test set image deployment/podinfo podinfod&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;stefanprodan/podinfo:3.1.3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可以收到 Slack 通知：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva4.sinaimg.cn/large/ad5fbf65gy1ggcorvilrrj20kb07wdgb.jpg&#34; alt=&#34;A/B 测试 Slack 通知&#34;&gt;&lt;/p&gt;
+&lt;p&gt;正常访问，还是访问到老的 &lt;code&gt;v3.1.1&lt;/code&gt; 版：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ curl http://app.example.com
+&lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hostname&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;podinfo-primary-5dc6b76bd5-8sbh8&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;version&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3.1.1&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;revision&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;7b6f11780ab1ce8c7399da32ec6966215b8e43aa&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;color&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#34577c&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;logo&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://raw.githubusercontent.com/stefanprodan/podinfo/gh-pages/cuddle_clap.gif&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;message&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;greetings from podinfo v3.1.1&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;goos&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;linux&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;goarch&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;amd64&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;runtime&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;go1.13.1&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;num_goroutine&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;11&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;num_cpu&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;6&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;请求添加指定 header，访问到新的 &lt;code&gt;v3.1.3&lt;/code&gt; 版：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ curl -H &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;X-Canary: insider&amp;#39;&lt;/span&gt; http://app.example.com
+&lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hostname&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;podinfo-58bdd78d6f-m9bsc&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;version&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3.1.3&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;revision&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;7b6f11780ab1ce8c7399da32ec6966215b8e43aa&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;color&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#34577c&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;logo&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://raw.githubusercontent.com/stefanprodan/podinfo/gh-pages/cuddle_clap.gif&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;message&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;greetings from podinfo v3.1.3&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;goos&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;linux&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;goarch&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;amd64&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;runtime&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;go1.13.1&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;num_goroutine&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;10&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;num_cpu&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;6&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;请求添加指定 cookie，访问到新的 &lt;code&gt;v3.1.3&lt;/code&gt; 版：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ curl -b &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;canary=always&amp;#39;&lt;/span&gt; http://app.example.com
+&lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hostname&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;podinfo-58bdd78d6f-m9bsc&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;version&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;3.1.3&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;revision&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;7b6f11780ab1ce8c7399da32ec6966215b8e43aa&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;color&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#34577c&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;logo&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://raw.githubusercontent.com/stefanprodan/podinfo/gh-pages/cuddle_clap.gif&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;message&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;greetings from podinfo v3.1.3&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;goos&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;linux&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;goarch&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;amd64&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;runtime&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;go1.13.1&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;num_goroutine&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;10&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;num_cpu&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;6&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在浏览器中访问也能得到相同的结果：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva3.sinaimg.cn/large/ad5fbf65gy1ggcoy65l47j20yb0dvq49.jpg&#34; alt=&#34;添加 cookie 在浏览器中访问&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;结语&#34;&gt;结语&lt;/h2&gt;
+&lt;p&gt;最早了解 Flagger 其实是因为其与 Istio 的关系，Flagger 默认的 meshProvider 就是 Istio。但是在深入了解后，发现其对市面上常见的 Service Mesh 和 Ingress Controller 都有较好的支持，通过与 Prometheus 以及负载测试器的配合可以进行细粒度的分析，从而提高了发布质量，同时还降低了人工操作出错的可能性。&lt;/p&gt;
+&lt;p&gt;最近 &lt;a href=&#34;https://oam.dev/&#34;&gt;OAM 社区&lt;/a&gt;也放出了基于 Flagger 的部署 Trait 的示例，相信之后与 OAM 结合使用可以在持续部署和应用管理领域发挥更大的作用。&lt;/p&gt;
+&lt;p&gt;想了解 OAM 可以查看我之前的文章：&lt;a href=&#34;../start-oam&#34;&gt;《以应用为中心：开放应用模型（OAM）初探》&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tva3.sinaimg.cn/large/ad5fbf65gy1gfm3j2vo79g20b90b9x6r.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>以应用为中心：开放应用模型（OAM）初探</title>
