@@ -44,11 +44,11 @@ $ helm upgrade -i nginx-ingress stable/nginx-ingress &lt;span style=&#34;color:#
 $ helm upgrade -i flagger flagger/flagger &lt;span style=&#34;color:#ae81ff&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;--namespace ingress-nginx &lt;span style=&#34;color:#ae81ff&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;--set prometheus.install&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;true &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;--set meshProvider&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;nginx
---set slack.url&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;--set meshProvider&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;nginx &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;--set slack.url&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK &lt;span style=&#34;color:#ae81ff&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;--set slack.channel&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;flagger &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;--set slack.user&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;flagger &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;值得注意的是这里我选择了 Slack 作为通知软件，需要在自己的 &lt;code&gt;#channel&lt;/code&gt; 内新增一个 APP，并将该 APP 的 &lt;code&gt;url&lt;/code&gt;、&lt;code&gt;channel&lt;/code&gt;、&lt;code&gt;user&lt;/code&gt; 填入上面的命令中。这里设置的是全局通知，集群中的 Flagger 被触发后都会进行通知，当然也可以为单个 Flagger 配置专门的通知，这里就不做过多介绍，详情见&lt;a href=&#34;https://docs.flagger.app/usage/alerting&#34;&gt;官方文档&lt;/a&gt;。&lt;/p&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;--set slack.user&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;flagger
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;值得注意的是这里我选择了 Slack 作为通知软件，需要在自己的 &lt;code&gt;#channel&lt;/code&gt; 内新增一个 APP，并将该 APP 的 &lt;code&gt;url&lt;/code&gt;、&lt;code&gt;channel&lt;/code&gt;、&lt;code&gt;user&lt;/code&gt; 填入上面的命令中。这里设置的是全局通知，集群中的 Flagger 被触发后都会进行通知，当然也可以为单个 Flagger 配置专门的通知，这里就不做过多介绍，详情见&lt;a href=&#34;https://docs.flagger.app/usage/alerting&#34;&gt;官方文档&lt;/a&gt;。&lt;/p&gt;
 &lt;h4 id=&#34;示例安装&#34;&gt;示例安装&lt;/h4&gt;
 &lt;p&gt;新建测试 namespace：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl create ns test
