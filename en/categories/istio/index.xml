@@ -7,10 +7,62 @@
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 21 Mar 2019 09:42:18 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jul 2020 15:08:09 +0800</lastBuildDate>
     
 	    <atom:link href="https://guoxudong.io/en/categories/istio/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Istio 升级新方式：金丝雀升级</title>
+      <link>https://guoxudong.io/en/post/istio-upgrade/</link>
+      <pubDate>Wed, 08 Jul 2020 15:08:09 +0800</pubDate>
+      
+      <guid>https://guoxudong.io/en/post/istio-upgrade/</guid>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;自 1.5 版本开始，Istio 就弃用了之前使用 &lt;code&gt;Helm&lt;/code&gt; 的安装方式。而 1.6 发布也有一段时间了，目前都已经到了 &lt;code&gt;1.6.4&lt;/code&gt; 版本，就升级部分，Istio 1.6 推出了渐进式的升级方式：金丝雀升级，为相对头疼的 Istio 升级问题提供了一种解决方案。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Istio 不支持跨版本升级。本文仅讲解从 1.5 版本升级到 1.6 版本。如果您使用的是旧版本，请先升级到 1.5 版本。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;金丝雀升级&#34;&gt;金丝雀升级&lt;/h2&gt;
+&lt;p&gt;顾名思义，金丝雀升级可以让新老版本的 &lt;code&gt;istiod&lt;/code&gt; 同时存在，并允许将所有流量在由新版控制平面 &lt;code&gt;istiod-canary&lt;/code&gt; 控制之前，先将一小部分工作负载交由新版本 &lt;code&gt;istiod-canary&lt;/code&gt; 控制，并进行监控，渐进式的完成升级。该方式比原地升级安全的多，也是现在推荐的升级方式。&lt;/p&gt;
+&lt;h3 id=&#34;控制平面升级&#34;&gt;控制平面升级&lt;/h3&gt;
+&lt;p&gt;首先需要&lt;a href=&#34;https://github.com/istio/istio/releases&#34;&gt;下载新版本 Istio&lt;/a&gt; 并切换目录为新版本目录。&lt;/p&gt;
+&lt;p&gt;安装&lt;code&gt;canary&lt;/code&gt;版本，将&lt;code&gt;revision&lt;/code&gt;字段设置为&lt;code&gt;canary&lt;/code&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ istioctl install --set revision&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;canary
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里会部署新的 &lt;code&gt;istiod-canary&lt;/code&gt;，但并不会对原有的控制平面造成影响，部署成功后会看到两个并行的 &lt;code&gt;istiod&lt;/code&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl get pods -n istio-system
+NAME                                        READY   STATUS    RESTARTS   AGE
+pod/istiod-85745c747b-knlwb                 1/1     Running   &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;          33m
+pod/istiod-canary-865f754fdd-gx7dh          1/1     Running   &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;          3m25s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里还可以看到新版的 &lt;code&gt;sidecar injector&lt;/code&gt; 配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl get mutatingwebhookconfigurations
+NAME                            CREATED AT
+istio-sidecar-injector          2020-07-07T08:39:37Z
+istio-sidecar-injector-canary   2020-07-07T09:06:24Z
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;数据平面升级&#34;&gt;数据平面升级&lt;/h3&gt;
+&lt;p&gt;只安装 &lt;code&gt;canary&lt;/code&gt; 版本的控制平面并不会对现有的代理造成影响，要升级数据平面，并将他们指向新的控制平面，就需要在 namespace 中插入 &lt;code&gt;istio.io/rev&lt;/code&gt; 标签。&lt;/p&gt;
+&lt;p&gt;例如，想要要升级 &lt;code&gt;default&lt;/code&gt; namespace 的数据平面，需要添加 &lt;code&gt;istio.io/rev&lt;/code&gt; 标签并删除&lt;code&gt;istio-injection&lt;/code&gt;标签，以指向 &lt;code&gt;canary&lt;/code&gt; 版本的控制平面：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl label namespace default istio-injection- istio.io/rev&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;canary
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;注意：&lt;code&gt;istio-injection&lt;/code&gt; 标签必须删除，因为该标签的优先级高于 &lt;code&gt;istio.io/rev&lt;/code&gt; 标签，保留该标签将导致无法升级数据平面。&lt;/p&gt;
+&lt;p&gt;在 namespace 更新成功后，需要重启 Pod 来重新注入 Sidecar：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl rollout restart deployment -n default
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;当重启成功后，该 namespace 的 pod 将被配置指向新的&lt;code&gt;istiod-canary&lt;/code&gt;控制平面，使用如下命令查看启用新代理的 Pod：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl get pods -n default -l istio.io/rev&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;canary
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;同时可以使用如下命令验证新 Pod 的控制平面为&lt;code&gt;istiod-canary&lt;/code&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ istioctl proxy-config endpoints &lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;pod_name&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;.default --cluster xds-grpc -ojson | grep hostname
+    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hostname&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;istiod-canary.istio-system.svc&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这时 &lt;code&gt;default&lt;/code&gt; namespace 内的 Pod 就完成了金丝雀升级，接下来就可以进行验证，确定这些 Pod 有没有因为 Istio 升级而导致功能异常。&lt;/p&gt;
+&lt;h2 id=&#34;原地升级--降级&#34;&gt;原地升级 &amp;amp; 降级&lt;/h2&gt;
+&lt;p&gt;目前原地升级有很大的概率通不过升级检测，导致无法升级，不推荐这种升级方式，这里就不做介绍了，详情见&lt;a href=&#34;https://istio.io/latest/docs/setup/upgrade/&#34;&gt;官方文档&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;并且虽然 Istio 提供了降级方式，但是经过测试降级的体验并不好，并且出现了由于不支持的 CRD &lt;code&gt;apiVersion&lt;/code&gt; 导致无法降级的情况，所以请谨慎升级。&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;p&gt;总体来说，金丝雀升级的出现很好的解决了控制平面渐进式升级的需求，但是由于&lt;code&gt;istioctl upgrade&lt;/code&gt;命令支持的场景和版本太少以及 Istio 整体架构的更改，目前的原地升级体验很差。最近还爆出了谷歌将把 Istio 捐给一个新成立基金会的消息，看来 Istio 要走的路还很长。&lt;/p&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://istio.io/latest/docs/setup/upgrade/&#34;&gt;Upgrade Istio - istio.io&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Istio初探之Bookinfo样例部署</title>

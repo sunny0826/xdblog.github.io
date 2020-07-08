@@ -7,10 +7,19 @@
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a rel=&#39;license&#39; href=&#39;http://creativecommons.org/licenses/by-nc/4.0/&#39; target=&#39;_blank&#39;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 02 Jul 2020 13:51:14 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jul 2020 15:08:09 +0800</lastBuildDate>
     
 	    <atom:link href="https://guoxudong.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>istio</title>
+      <link>https://guoxudong.io/categories/istio/</link>
+      <pubDate>Wed, 08 Jul 2020 15:08:09 +0800</pubDate>
+      
+      <guid>https://guoxudong.io/categories/istio/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Kubernetes</title>
@@ -162,15 +171,6 @@
       <pubDate>Wed, 10 Apr 2019 14:03:25 +0800</pubDate>
       
       <guid>https://guoxudong.io/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>istio</title>
-      <link>https://guoxudong.io/categories/istio/</link>
-      <pubDate>Thu, 21 Mar 2019 09:42:18 +0800</pubDate>
-      
-      <guid>https://guoxudong.io/categories/istio/</guid>
       <description></description>
     </item>
     
