@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://guoxudong.io/en/authors/guoxudong/</loc>
-    <lastmod>2020-07-22T17:30:53+08:00</lastmod>
+    <lastmod>2020-07-24T10:53:04+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -19,7 +19,7 @@
   
   <url>
     <loc>https://guoxudong.io/en/authors/</loc>
-    <lastmod>2020-07-22T17:30:53+08:00</lastmod>
+    <lastmod>2020-07-24T10:53:04+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -34,7 +34,7 @@
   
   <url>
     <loc>https://guoxudong.io/en/categories/</loc>
-    <lastmod>2020-07-22T17:30:53+08:00</lastmod>
+    <lastmod>2020-07-24T10:53:04+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -44,6 +44,96 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://guoxudong.io/en/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/en/</loc>
+    <lastmod>2020-07-24T10:53:04+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/en/tags/oam/</loc>
+    <lastmod>2020-07-24T10:53:04+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/tags/oam/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/tags/oam/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/en/categories/oam/</loc>
+    <lastmod>2020-07-24T10:53:04+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/categories/oam/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/categories/oam/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/en/tags/</loc>
+    <lastmod>2020-07-24T10:53:04+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/en/post/</loc>
+    <lastmod>2020-07-24T10:53:04+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/post/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/post/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guoxudong.io/en/post/the-cloud-native-architecture-white-paper-oam/</loc>
+    <lastmod>2020-07-24T10:53:04+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://guoxudong.io/post/the-cloud-native-architecture-white-paper-oam/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://guoxudong.io/en/post/the-cloud-native-architecture-white-paper-oam/"
                 />
   </url>
   
@@ -59,51 +149,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://guoxudong.io/en/post/start-chaosblade-3/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://guoxudong.io/en/</loc>
-    <lastmod>2020-07-22T17:30:53+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://guoxudong.io/en/tags/</loc>
-    <lastmod>2020-07-22T17:30:53+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/tags/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://guoxudong.io/en/post/</loc>
-    <lastmod>2020-07-22T17:30:53+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/post/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/post/"
                 />
   </url>
   
@@ -254,36 +299,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://guoxudong.io/en/post/flagger-nginx-ingress/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://guoxudong.io/en/tags/oam/</loc>
-    <lastmod>2020-06-28T14:53:23+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/tags/oam/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/tags/oam/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://guoxudong.io/en/categories/oam/</loc>
-    <lastmod>2020-06-28T14:53:23+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://guoxudong.io/categories/oam/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://guoxudong.io/en/categories/oam/"
                 />
   </url>
   

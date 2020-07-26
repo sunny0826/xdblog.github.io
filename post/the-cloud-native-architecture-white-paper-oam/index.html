@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academia 4.3.1">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="google-site-verification" content="y_p63ODs-P2AkY0MyWnAhwc0yAFGOnzZQKo0Wzk59LQ" />
+  <meta name="baidu-site-verification" content="A85okozwVV" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="never">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="郭旭东">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="读完《云原生架构白皮书》，我们来谈谈开放应用模型（OAM）">
+
+  
+  <link rel="alternate" hreflang="en" href="https://guoxudong.io/en/post/the-cloud-native-architecture-white-paper-oam/">
+  
+  <link rel="alternate" hreflang="zh-Hans" href="https://guoxudong.io/post/the-cloud-native-architecture-white-paper-oam/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#fc6f5c">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.9.0/instantsearch.min.css" integrity="sha256-ZtmLe16p4jS4/2wPwwH6NzJt460SJzgLmhKrYo5yn7g=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch-theme-algolia.min.css" integrity="sha256-uL8LUd3zkI/lXvc/Hv/oOu8ld6RJcOZiUY/8c+I+3/o=" crossorigin="anonymous">
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academia.min.64fe95bc47b06794f0278d258273ff7f.css">
+
+  
+    
+    
+    
+    
+      
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academia.7482447e69566a36d3fe3ef417eedb5b.css">
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://guoxudong.io/post/the-cloud-native-architecture-white-paper-oam/">
+
+  
+  
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@GuoXudong2">
+  <meta property="twitter:creator" content="@GuoXudong2">
+  
+  <meta property="og:site_name" content="GuoXD Blog·郭旭东的博客">
+  <meta property="og:url" content="https://guoxudong.io/post/the-cloud-native-architecture-white-paper-oam/">
+  <meta property="og:title" content="读完《云原生架构白皮书》，我们来谈谈开放应用模型（OAM） | GuoXD Blog·郭旭东的博客">
+  <meta property="og:description" content="读完《云原生架构白皮书》，我们来谈谈开放应用模型（OAM）"><meta property="og:image" content="https://guoxudong.io/img/icon-192.png">
+  <meta property="twitter:image" content="https://guoxudong.io/img/icon-192.png"><meta property="og:locale" content="zh-Hans">
+  
+  <meta property="article:published_time" content="2020-07-24T10:53:04&#43;08:00">
+  
+  <meta property="article:modified_time" content="2020-07-24T10:53:04&#43;08:00">
+  
+
+  
+
+
+  
+
+
+
+
+
+  <title>读完《云原生架构白皮书》，我们来谈谈开放应用模型（OAM） | GuoXD Blog·郭旭东的博客</title>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4d507f28a1daf58fc7aca939db57093d";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>  
+</head>
+
+
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/"><img src="/img/logo.png" alt="GuoXD Blog·郭旭东的博客"></a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航"><span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#slider"><span>主页</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/post"><span>博客</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>关于</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" ><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <span>中文 (简体)</span>
+          </a>
+          <ul class="dropdown-menu">
+            
+            <li class="dropdown-item my-0 py-0 mx-0 px-0">
+              <a href="https://guoxudong.io/en/post/the-cloud-native-architecture-white-paper-oam/">
+                <span>English</span>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article py-5" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+<div class="container split-header">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+        <img class="img-fluid w-100" src="https://tvax4.sinaimg.cn/large/ad5fbf65gy1gh4iqcxmu7j20om0gomzp.jpg" itemprop="image" alt="">
+        
+    </div>
+    <div class="col-lg-8">
+      <h1 itemprop="name">读完《云原生架构白皮书》，我们来谈谈开放应用模型（OAM）</h1>
+
+      
+
+      
+
+
+
+<meta content="2020-07-24 10:53:04 &#43;0800 CST" itemprop="datePublished">
+<meta content="2020-07-24 10:53:04 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+
+
+  <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/guoxudong/">郭旭东</a></span>
+
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2020-07-24</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    5 分钟阅读时间
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/post/the-cloud-native-architecture-white-paper-oam/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/categories/oam/">OAM</a></span>
+  
+
+  
+    
+<br>
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://guoxudong.io/post/the-cloud-native-architecture-white-paper-oam/&amp;text=%e8%af%bb%e5%ae%8c%e3%80%8a%e4%ba%91%e5%8e%9f%e7%94%9f%e6%9e%b6%e6%9e%84%e7%99%bd%e7%9a%ae%e4%b9%a6%e3%80%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e6%9d%a5%e8%b0%88%e8%b0%88%e5%bc%80%e6%94%be%e5%ba%94%e7%94%a8%e6%a8%a1%e5%9e%8b%ef%bc%88OAM%ef%bc%89" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://guoxudong.io/post/the-cloud-native-architecture-white-paper-oam/&amp;t=%e8%af%bb%e5%ae%8c%e3%80%8a%e4%ba%91%e5%8e%9f%e7%94%9f%e6%9e%b6%e6%9e%84%e7%99%bd%e7%9a%ae%e4%b9%a6%e3%80%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e6%9d%a5%e8%b0%88%e8%b0%88%e5%bc%80%e6%94%be%e5%ba%94%e7%94%a8%e6%a8%a1%e5%9e%8b%ef%bc%88OAM%ef%bc%89" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%e8%af%bb%e5%ae%8c%e3%80%8a%e4%ba%91%e5%8e%9f%e7%94%9f%e6%9e%b6%e6%9e%84%e7%99%bd%e7%9a%ae%e4%b9%a6%e3%80%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e6%9d%a5%e8%b0%88%e8%b0%88%e5%bc%80%e6%94%be%e5%ba%94%e7%94%a8%e6%a8%a1%e5%9e%8b%ef%bc%88OAM%ef%bc%89&amp;body=https://guoxudong.io/post/the-cloud-native-architecture-white-paper-oam/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://guoxudong.io/post/the-cloud-native-architecture-white-paper-oam/&amp;title=%e8%af%bb%e5%ae%8c%e3%80%8a%e4%ba%91%e5%8e%9f%e7%94%9f%e6%9e%b6%e6%9e%84%e7%99%bd%e7%9a%ae%e4%b9%a6%e3%80%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e6%9d%a5%e8%b0%88%e8%b0%88%e5%bc%80%e6%94%be%e5%ba%94%e7%94%a8%e6%a8%a1%e5%9e%8b%ef%bc%88OAM%ef%bc%89" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=%e8%af%bb%e5%ae%8c%e3%80%8a%e4%ba%91%e5%8e%9f%e7%94%9f%e6%9e%b6%e6%9e%84%e7%99%bd%e7%9a%ae%e4%b9%a6%e3%80%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e6%9d%a5%e8%b0%88%e8%b0%88%e5%bc%80%e6%94%be%e5%ba%94%e7%94%a8%e6%a8%a1%e5%9e%8b%ef%bc%88OAM%ef%bc%89%20https://guoxudong.io/post/the-cloud-native-architecture-white-paper-oam/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://guoxudong.io/post/the-cloud-native-architecture-white-paper-oam/&amp;title=%e8%af%bb%e5%ae%8c%e3%80%8a%e4%ba%91%e5%8e%9f%e7%94%9f%e6%9e%b6%e6%9e%84%e7%99%bd%e7%9a%ae%e4%b9%a6%e3%80%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e6%9d%a5%e8%b0%88%e8%b0%88%e5%bc%80%e6%94%be%e5%ba%94%e7%94%a8%e6%a8%a1%e5%9e%8b%ef%bc%88OAM%ef%bc%89" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://guoxudong.io/post/the-cloud-native-architecture-white-paper-oam/&amp;title=%e8%af%bb%e5%ae%8c%e3%80%8a%e4%ba%91%e5%8e%9f%e7%94%9f%e6%9e%b6%e6%9e%84%e7%99%bd%e7%9a%ae%e4%b9%a6%e3%80%8b%ef%bc%8c%e6%88%91%e4%bb%ac%e6%9d%a5%e8%b0%88%e8%b0%88%e5%bc%80%e6%94%be%e5%ba%94%e7%94%a8%e6%a8%a1%e5%9e%8b%ef%bc%88OAM%ef%bc%89" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="/share?url=https://guoxudong.io/post/the-cloud-native-architecture-white-paper-oam/" target="_blank" rel="noopener" class="share-btn-weixin">
+          <i class="fab fa-weixin"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+  <div class="article-container" id="container">
+
+    <div class="article-style" itemprop="articleBody">
+      <h2 id="前言">前言</h2>
+<p>7月21日阿里云发布了《云原生架构白皮书》，该书由阿里云众多技术专家共同编撰而成，从云原生定义、技术、架构、产品、实践和发展趋势几个方面详细介绍了云原生这一近些年来大火的技术概念。受阿里云邀请，我有幸在该书发布前试读了该书，但是由于最近比较忙，现在才有空和大家分享我的试读感受。</p>
+<p>熟悉我的朋友肯定知道，去年开放应用模型（OAM）概念一经提出，我就十分关注这一技术模型，最近更是参与到了该模型的实现项目 <a href="https://github.com/crossplane/oam-kubernetes-runtime">Crossplane</a> 中，同社区中的同学共同实现云原生技术“以应用为中心”这一终极愿景。但是苦于社区中的资料都是英文，同时自己的理解又比较片面，在向身边同事和其他不了解该项技术的同学科普 OAM 时，往往很难准确表达我的观点。</p>
+<p>OAM 是什么？OAM 能做什么？我们为什么需要 OAM？每每被同事进行灵魂拷问时，总是不能拿出完整、条理、有说服力的东西，只能根据自己的理解以及一些零零散散的技术文章来说明我的观点，很是不爽。但是当我读到《云原生架构白皮书》第三章中的开放应用模型（OAM）章节时，我知道我的问题解决了。该章系统的介绍了 OAM 这项技术的背景、定义、概念、实现和未来，读者只要对云原生稍有理解，就能轻松从这章中找到前面那些问题的答案。</p>
+<h2 id="那么-oam-到底是什么">那么 OAM 到底是什么？</h2>
+<p>从《云原生架构白皮书》的内容出发，结合我的理解，大致将 OAM 的特点分为以下三点：</p>
+<h3 id="以应用为中心">以应用为中心</h3>
+<p>今年是 Kubernetes 项目诞生的第六年，在这六年中，以 Kubernetes 为首的云原生技术快速的改变着我们的技术架构，一个又一个的应用被拆分成微服务，打包成容器，运行在 Kubernetes 上。然而随着微服务越拆越多，管理微服务的难度也呈指数型增长，Kubernetes 中并没有”应用“这一概念，提供给我们的只有 deployment、StatefulSet 这样工作负载粒度的资源，而一个应用，可能由多个 Deployment、Service、以及各种相关配套资源组成（如：HPA 用于弹性伸缩、Ingress 用于外部访问等）。Kubernetes 并没有提供给我们一个统一的资源或者说是方法来管理这些相关资源，各个公司只能开发自己的 PASS 平台或设立规范约束自己的应用。</p>
+<p>OAM 的出现补充了“应用”这一概念，建立对应用和它所需的运维能力定义与描述的标准规范。换言之，OAM 既是标准“应用定义”同时也是帮助封装、组织和管理 Kubernetes 中各种“运维能力”的工具。通过 OAM 中应用的可交付对象 - Application Configuration，我们可以轻松的掌握我们的应用到底有那些 Kubernetes 工作负载组成，这些工作负载都使用了哪些运维特性，这些内容都会以 Kubernetes API 对象的形式展示，查看起来和查看 Deployment 与 Service 资源一样方便。</p>
+<p><img src="https://tvax4.sinaimg.cn/large/ad5fbf65gy1gh3bn5n23zj20t80f0myj.jpg" alt="Application Configuration"></p>
+<h3 id="关注点分离">关注点分离</h3>
+<p>在实践中，如果基础架构和应用是由不同团队维护的，由于各个团队的关注点不同、对 Kubernetes 了解的程度不同、使用习惯不同，很容易产生混乱。实际上，对于业务研发人员和运维人员而言，他们并不想配置这些如此底层的资源信息，而希望有更高维度的抽象。这就要求一个真正面向最终用户侧的应用定义，一个能够为业务研发和应用运维人员提供各自所需的应用定义原语。</p>
+<p><img src="https://tva2.sinaimg.cn/large/ad5fbf65gy1gh3cl2hzsaj20w80gmgnl.jpg" alt=""></p>
+<p>通过组件（Component）和运维特征（Trait）将业务研发人员与运维人员关注的不同特征进行分离，再将不同的运维特征（Trait）与业务组件（Component）进行绑定，最终再由OAM 可交付物 – Application Configuration 将所有组件组装为一个统一的应用。研发与运维对资源的控制进行细粒度的划分，可以有效的解决实际情况中存在的类似”我比你更懂 Kubernetes，要听我的“的现象，避免了研发与运维之间的甩锅与扯皮的情况。</p>
+<h3 id="面向最终用户的应用管理平台">面向最终用户的应用管理平台</h3>
+<p>这部分白皮书中并未详细提及，但这也是我们现阶段的主要工作和努力方向，经过不到一年的时间，OAM 的概念、思想已经基本成熟，而基于 OAM 的实现也已经出现 -  Crossplane 项目，该项目目前为 CNCF 的 <a href="https://www.cncf.io/sandbox-projects/">Sandbox</a> 项目。</p>
+<p>Crossplane 的出现解决了平台维护者，也就是负责维护 Kubernetes 的基础设施工程师的难题。但是对于应用研发和运维人员，也就是 OAM 的最终用户，操作起来并不是十分的友好。基础设施工程师为他们提供了一堆 CRD，他们必须逐个去挑选、测试和甄别，尤其是一些运维特征（Trait）可能存在功能冲突，不能同时与一个业务组件（Component）绑定，这都都要应用研发和运维人员自己去学习和测试，虽然可以通过文档来规范，但显然这样做并不优雅，这时 OAM App Engine（暂定名 RdurX）就出现了。</p>
+<p><img src="https://tva3.sinaimg.cn/large/ad5fbf65gy1gh3da963ouj20sj0at0ux.jpg" alt="OAM App Engine 所在位置"></p>
+<p>OAM App Engine 的目标用户群体是应用开发者，是希望终端开发者用户可以感受到 OAM 提倡的各类应用管理理念带来的价值。相比于其他基于 K8s 的应用管理平台（如 <a href="https://github.com/rancher/rio">rio</a> ），OAM App Engine 将至少具备如下三大核心价值。</p>
+<ol>
+<li>插件系统：App Engine 可以通过 OAM 具备快速纳管 operator 的能力，轻松扩展各种能力。</li>
+<li>用户体验：贴近开发者，一切设计以最终开发者使用体验至上，复杂的概念做抽象，用户熟悉的概念不隐藏。</li>
+<li>最佳实践：App Engine 将成为 OAM 实现的最佳实践。</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/ad5fbf65gy1gh3cutnty0j227415w1kx.jpg" alt="OAM 架构"></p>
+<p>OAM App Engine 由 CLI 命令行工具、 Dashboard UI 管理页面和一系列编排文件/DSL 组成，目前还处于功能设计与开发当中，预计在8月底会和用户见面。OAM App Engine 的开发者均来自 OAM 中国社区，来自不同的公司和组织，是真正的从社区中来，服务社区用户。</p>
+<p>欢迎对 OAM 有兴趣的朋友加入，社区每双周都会进行视频例会，欢迎大家发表自己的见解或提出相关疑问。</p>
+<p><img src="https://tva1.sinaimg.cn/wap360/ad5fbf65gy1gh3cx41p0gj20nc0uqtfu.jpg" alt="OAM 中国社区"></p>
+<h2 id="结语">结语</h2>
+<p>《云原生架构白皮书》的编写集合了阿里云众多技术专家，基于这些年阿里云海量的技术实践，对云原生这一当下十分火爆概念进行了十分深入的剖析，在分享知识和实践经验的同时还对云原生相关技术、架构设计和发展趋势等内容进行分析和描述，为那些对于云原生这一概念还十分陌生和迷茫的开发者/管理者提供了一份干货满满的参考资料。这里借用白皮书序言里的一句话：</p>
+<blockquote>
+<p>云计算的下一站，就是云原生；</p>
+<p>IT 架构的下一站，就是云原生架构 ;</p>
+<p>希望所有的开发者、架构师和技术决策者们，共同定义、共同迎接云原生时代。</p>
+</blockquote>
+<p>《云原生架构白皮书》下载链接 ： <a href="https://developer.aliyun.com/topic/download?id=721">https://developer.aliyun.com/topic/download?id=721</a></p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://developer.aliyun.com/topic/download?id=721">《云原生架构白皮书》</a></li>
+<li>基 Kubernetes 与 OAM 构建统一、标准化的应用管理平台</li>
+<li>OAM App Engine CLI 设计文档【实现基准】</li>
+</ul>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/OAM">OAM</a>
+  
+</div>
+
+
+
+     
+     
+<div class="entry-shang text-center">
+    <p>「一键投喂 小鱼干/小骨头」</p>
+    <button class="zs show-zs btn btn-primary">投喂</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+    <div class="zs-modal-head">
+        <button type="button" class="close">×</button>
+        <p class="author">
+            <a href="https://blog.maoxianplay.com">
+                <img src="https://wx3.sinaimg.cn/square/ad5fbf65gy1g2o621gcs6j20m80m8gng.jpg"/>
+            小助手毛线</a>
+        </p>
+        <p class="tip"><i></i><span>感谢投喂 <a href="/maoxian">毛线</a> & <a href="/sunny">Sunny</a> </span></p>
+    </div>
+    <div class="zs-modal-body">
+        <div class="zs-modal-btns">
+            <button class="btn btn-blink" data-num="2">2元</button>
+            <button class="btn btn-blink" data-num="5">5元</button>
+            <button class="btn btn-blink" data-num="10">10元</button>
+            <button class="btn btn-blink" data-num="50">50元</button>
+            <button class="btn btn-blink" data-num="100">100元</button>
+            <button class="btn btn-blink" data-num="any">任意金额</button>
+        </div>
+        <div class="zs-modal-pay">
+            <button class="btn btn-bred" id="pay-text">2元</button>
+            <p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+            <img id="pay-image" src="/img/alipay-2.png">
+        </div>
+    </div>
+    <div class="zs-modal-footer">
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="alipay" class="zs-type" checked="checked" style="float: left;">
+            <span class="zs-alipay">
+                <img src="/img/alipay-btn.png">
+            </span>
+        </label>
+        <label style="float: left;width: 130px;">
+            <input type="radio" name="zs-type" value="wechat" class="zs-type" style="float: left;">
+            <span class="zs-wechat">
+                <img src="/img/wechat-btn.png">
+            </span>
+        </label>
+    </div>
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="https://guoxudong.io/">郭旭东</a></h5>
+      <h6 class="card-subtitle">运维负责人</h6>
+      <p class="card-text" itemprop="description">云原生爱好者，分享云原生和 DevOps 技术实践，倡导开源运动，传播开源思想。</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          <li>
+            <a itemprop="sameAs" href="mailto:sunnydog0826@gmail.com" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/publication/wx_contact/" >
+              <i class="fab fa-weixin"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/sunny0826" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>相关</h3>
+        <ul>
+          
+          <li><a href="/post/start-oam/">以应用为中心：开放应用模型（OAM）初探</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "gxd" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+  
+
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+  
+
+  
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+    
+  
+
+  
+  
+
+
+
+
+
+
+
+
+<script id="dsq-count-scr" src="//gxd.disqus.com/count.js" async></script>
+
+
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<script>
+  const search_index_filename = "/index.json";
+  const i18n = {
+    'placeholder': "搜索...",
+    'results': "搜索结果",
+    'no_results': "没有找到结果"
+  };
+  const content_type = {
+    'post': "文章",
+    'project': "项目",
+    'publication' : "出版物",
+    'talk' : "演讲"
+    };
+</script>
+
+
+
+
+
+
+
+<script id="search-hit-algolia-template" type="text/html">
+  <div class="search-hit">
+    <div class="search-hit-content">
+      <div class="search-hit-name">
+        <a href="{{relpermalink}}">{{{_highlightResult.title.value}}}</a>
+      </div>
+      <div class="article-metadata search-hit-type">{{type}}</div>
+      <p class="search-hit-description">{{{_highlightResult.summary.value}}}</p>
+    </div>
+  </div>
+</script>
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.10.2/instantsearch.min.js" integrity="sha256-gFCtPk/sonctyfwYOgjrPoWApQ0rqB6ezBBZ7p32yGc=" crossorigin="anonymous"></script>
+
+<script>
+  const algoliaConfig = {
+    appId: "BE80MGWD9D",
+    apiKey: "77ca6abe5531ce66ff7c3b2486222d85",
+    indexName: "gxd-blog",
+    poweredBy:  false 
+  };
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+  
+
+
+
+<script src="/js/academia.min.6ee120363d4a313a6fd39ad7c46e63f8.js"></script>
+
+
+
+
+
+
+
+<script src="https://my.openwrite.cn/js/readmore.js" type="text/javascript"></script>
+<script>
+  const btw = new BTWPlugin();
+  btw.init({
+      id: 'container',
+      blogId: '18752-1575602900012-529',
+      name: '云原生之路',
+      qrcode: 'https://guoxudong.io/publication/contact_me/qr_weixin.jpg',
+      keyword: 'road',
+  });
+</script>
+<style>
+div#btw-modal img {
+  width: 180px; margin-top: 10px; border: 8px solid rgb(230, 230, 230);margin: auto;
+}
+</style>
+
+  
+  <div class="container">
+    <footer class="site-footer">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        
+        <p>
+          <!-- raw HTML omitted -->知识共享署名-非商业性使用 4.0 国际许可协议<!-- raw HTML omitted --> &middot; 
+          Powered by
+          <a href="https://themefisher.com" target="_blank" rel="noopener">themefisher</a> for
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-inline network-icon text-right">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="mailto:sunnydog0826@gmail.com"  title="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/GuoXudong2" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="/publication/wx_contact/"  title="Chat on Keybase"><i class="fab fa-weixin" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/sunny0826" target="_blank" rel="noopener" title="Discuss on Forum"><i class="fab fa-github" aria-hidden="true"></i></a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
